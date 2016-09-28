@@ -78,4 +78,4 @@ def build(bld):
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/force_control.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/descriptors.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/visualizations.hpp')
-    bld.install_files('${PREFIX}/share/robt_models/URDF', 'pendulum.urdf')
+    bld.install_files('${PREFIX}/share/robot_models/URDF', 'pendulum.urdf')
