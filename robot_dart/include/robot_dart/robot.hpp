@@ -119,6 +119,32 @@ namespace robot_dart {
             }
         }
 
+        // TO-DO: Warning this only works for the 1st DOF of the joints
+        void set_damping_coeff(const std::vector<double>& damps)
+        {
+            assert(damps.size() == _skeleton->getNumJoints());
+            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+                _skeleton->getJoint(i)->setDampingCoefficient(0, damps[i]);
+            }
+        }
+
+        void set_damping_coeff(double damp)
+        {
+            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+                _skeleton->getJoint(i)->setDampingCoefficient(0, damp);
+            }
+        }
+
+        void set_damping_coeff(const std::vector<size_t>& indices, const std::vector<double>& damps)
+        {
+            assert(indices.size() == damps.size());
+            size_t jnt_num = _skeleton->getNumJoints();
+            for (size_t i = 0; i < indices.size(); ++i) {
+                assert(indices[i] > 0 && indices[i] < jnt_num);
+                _skeleton->getJoint(indices[i])->setDampingCoefficient(0, damps[i]);
+            }
+        }
+
         Eigen::Vector3d body_pos(std::string body_name) const
         {
             auto bd = _skeleton->getBodyNode(body_name);
