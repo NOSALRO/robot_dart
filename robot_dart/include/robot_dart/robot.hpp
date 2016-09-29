@@ -25,7 +25,7 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string urdf_file, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(_load_urdf(urdf_file))
+        Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(_load_model(model_file))
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
@@ -147,28 +147,6 @@ namespace robot_dart {
         }
 
     protected:
-        dart::dynamics::SkeletonPtr _load_urdf(std::string urdf_file)
-        {
-            // Load file into string
-            std::ifstream t(urdf_file);
-            std::string str((std::istreambuf_iterator<char>(t)),
-                std::istreambuf_iterator<char>());
-            // Load the Skeleton from a file
-            dart::utils::DartLoader loader;
-            dart::dynamics::SkeletonPtr tmp_skel = loader.parseSkeletonString(str, "");
-            if (tmp_skel == nullptr)
-                return nullptr;
-            tmp_skel->setName(_robot_name);
-
-            // Set joint limits/actuator types
-            for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
-                tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
-                tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
-            }
-
-            return tmp_skel;
-        }
-
         dart::dynamics::SkeletonPtr _load_model(std::string model_file)
         {
             dart::dynamics::SkeletonPtr tmp_skel;
