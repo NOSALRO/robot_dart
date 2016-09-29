@@ -3,6 +3,8 @@
 
 #include <dart/dart.hpp>
 #include <dart/utils/urdf/urdf.hpp>
+#include <dart/utils/sdf/SdfParser.hpp>
+#include <boost/filesystem.hpp>
 #include <Eigen/Core>
 #include <string>
 #include <fstream>
@@ -145,8 +147,7 @@ namespace robot_dart {
         }
 
     protected:
-        dart::dynamics::SkeletonPtr
-        _load_urdf(std::string urdf_file)
+        dart::dynamics::SkeletonPtr _load_urdf(std::string urdf_file)
         {
             // Load file into string
             std::ifstream t(urdf_file);
@@ -159,6 +160,32 @@ namespace robot_dart {
                 return nullptr;
             tmp_skel->setName(_robot_name);
 
+            // Set joint limits/actuator types
+            for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
+                tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
+                tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
+            }
+
+            return tmp_skel;
+        }
+
+        dart::dynamics::SkeletonPtr _load_model(std::string model_file)
+        {
+            dart::dynamics::SkeletonPtr tmp_skel;
+            boost::filesystem::path p(model_file);
+            if (p.extension() == ".urdf") {
+                dart::utils::DartLoader loader;
+                tmp_skel = loader.parseSkeleton(model_file);
+            }
+            else if (p.extension() == ".sdf")
+                tmp_skel = dart::utils::SdfParser::readSkeleton(model_file);
+            else
+                return nullptr;
+
+            if (tmp_skel == nullptr)
+                return nullptr;
+
+            tmp_skel->setName(_robot_name);
             // Set joint limits/actuator types
             for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
                 tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
