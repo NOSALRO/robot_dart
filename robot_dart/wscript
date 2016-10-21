@@ -32,7 +32,7 @@ def configure(conf):
     conf.load('eigen')
     conf.load('dart')
 
-    conf.check_boost(lib='regex system', min_version='1.46')
+    conf.check_boost(lib='regex syste filesystem', min_version='1.46')
     conf.check_eigen()
     conf.check_dart()
 
@@ -61,7 +61,7 @@ def build(bld):
                       install_path = None,
                       source = 'src/test.cpp',
                       includes = './include',
-                      uselib = 'BOOST BOOST_SYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
                       defines = ['GRAPHIC'],
                       target = 'test')
 
@@ -69,7 +69,7 @@ def build(bld):
                   install_path = None,
                   source = 'src/test.cpp',
                   includes = './include',
-                  uselib = 'BOOST BOOST_SYSTEM BOOST_REGEX DART EIGEN',
+                  uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
                   target = 'test_plain')
 
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_dart_simu.hpp')

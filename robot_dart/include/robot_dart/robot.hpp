@@ -3,6 +3,8 @@
 
 #include <dart/dart.hpp>
 #include <dart/utils/urdf/urdf.hpp>
+#include <dart/utils/sdf/SdfParser.hpp>
+#include <boost/filesystem.hpp>
 #include <Eigen/Core>
 #include <string>
 #include <fstream>
@@ -23,7 +25,7 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string urdf_file, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(_load_urdf(urdf_file))
+        Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(_load_model(model_file))
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
@@ -171,20 +173,23 @@ namespace robot_dart {
         }
 
     protected:
-        dart::dynamics::SkeletonPtr
-        _load_urdf(std::string urdf_file)
+        dart::dynamics::SkeletonPtr _load_model(std::string model_file)
         {
-            // Load file into string
-            std::ifstream t(urdf_file);
-            std::string str((std::istreambuf_iterator<char>(t)),
-                std::istreambuf_iterator<char>());
-            // Load the Skeleton from a file
-            dart::utils::DartLoader loader;
-            dart::dynamics::SkeletonPtr tmp_skel = loader.parseSkeletonString(str, "");
+            dart::dynamics::SkeletonPtr tmp_skel;
+            boost::filesystem::path p(model_file);
+            if (p.extension() == ".urdf") {
+                dart::utils::DartLoader loader;
+                tmp_skel = loader.parseSkeleton(model_file);
+            }
+            else if (p.extension() == ".sdf")
+                tmp_skel = dart::utils::SdfParser::readSkeleton(model_file);
+            else
+                return nullptr;
+
             if (tmp_skel == nullptr)
                 return nullptr;
-            tmp_skel->setName(_robot_name);
 
+            tmp_skel->setName(_robot_name);
             // Set joint limits/actuator types
             for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
                 tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
