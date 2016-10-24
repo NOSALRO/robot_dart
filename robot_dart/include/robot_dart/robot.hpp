@@ -27,13 +27,13 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
+        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
         }
 
-        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton)
+        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton)
         {
             assert(_skeleton != nullptr);
             _skeleton->setName(robot_name);

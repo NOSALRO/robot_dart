@@ -77,7 +77,7 @@
 
 int main()
 {
-    std::vector<robot_dart::RobotDamage> brk = {};
+    // std::vector<robot_dart::RobotDamage> brk = {};
     // Examples of damages
     // robot_dart::RobotDamage dmg;
     // dmg.type = "blocked_joint";
@@ -92,7 +92,7 @@ int main()
     // dmg.data = "arm_joint_3";
     // brk.push_back(dmg);
 
-    auto global_robot = std::make_shared<robot_dart::Robot>("pendulum.urdf", brk);
+    auto global_robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
     // auto g_robot = global_robot->clone();
     auto g_robot = global_robot;
     g_robot->fix_to_world();
