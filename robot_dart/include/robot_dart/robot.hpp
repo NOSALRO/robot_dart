@@ -40,20 +40,6 @@ namespace robot_dart {
             _set_damages(damages);
         }
 
-        std::shared_ptr<Robot> operator=(std::shared_ptr<Robot> rhs)
-        {
-            if (this == rhs.get())
-                return rhs;
-
-            rhs->skeleton()->getMutex().lock();
-            _skeleton = rhs->skeleton()->clone();
-            rhs->skeleton()->getMutex().unlock();
-            _damages = rhs->damages();
-            _robot_name = rhs->name();
-
-            return std::shared_ptr<Robot>(this);
-        }
-
         std::shared_ptr<Robot> clone() const
         {
             // safely clone the skeleton
