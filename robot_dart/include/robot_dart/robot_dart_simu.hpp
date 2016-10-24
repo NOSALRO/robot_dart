@@ -80,7 +80,7 @@ namespace robot_dart {
             _fixed_camera = false;
             _osg_world_node = new dart::gui::osg::WorldNode(_world);
             _osg_viewer.addWorldNode(_osg_world_node);
-            _osg_viewer.setUpViewInWindow(0, 0, 640, 480);
+            _osg_viewer.setUpViewInWindow(0, 0, 1280, 720);
 // full-screen
 // _osg_viewer.setUpViewOnSingleScreen();
 #endif
@@ -121,7 +121,7 @@ namespace robot_dart {
                 }
 
 #ifdef GRAPHIC
-                if (!_fixed_camera) {
+                if (!_free_camera && !_fixed_camera) {
                     auto COM = rob->skeleton()->getCOM();
                     // set camera to follow hexapod
                     _osg_viewer.getCameraManipulator()->setHomePosition(
@@ -169,6 +169,11 @@ namespace robot_dart {
         void follow_robot()
         {
             _fixed_camera = false;
+        }
+
+        void free_camera()
+        {
+            _free_camera = true;
         }
 #endif
 
@@ -348,6 +353,7 @@ namespace robot_dart {
         std::vector<dart::dynamics::SkeletonPtr> _objects;
 #ifdef GRAPHIC
         bool _fixed_camera;
+        bool _free_camera;
         Eigen::Vector3d _look_at;
         Eigen::Vector3d _camera_pos;
         Eigen::Vector3d _camera_up;

@@ -79,41 +79,21 @@ int main()
 {
     // std::vector<robot_dart::RobotDamage> brk = {};
     // Examples of damages
-    // robot_dart::RobotDamage dmg;
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_4";
-    // dmg.extra = new double(1.0);
-    // brk.push_back(dmg);
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_2";
-    // dmg.extra = nullptr;
-    // brk.push_back(dmg);
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_3";
-    // brk.push_back(dmg);
+    // TODO
 
-    auto global_robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
+    auto global_robot = std::make_shared<robot_dart::Robot>("nao.urdf");
     auto g_robot = global_robot->clone();
-    g_robot->fix_to_world();
-    g_robot->set_position_enforced(false);
-    g_robot->skeleton()->setPosition(0, M_PI);
-    Eigen::Vector3d size(0.0402, 0.05, 1);
+    g_robot->set_position_enforced(true);
+    g_robot->skeleton()->setPosition(5, 5.0);
 
     std::vector<double> ctrl;
-    ctrl = {0.0};
-
+    ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>> simu(ctrl, g_robot);
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
-    simu.run(1);
-    // std::cout << simu.energy() << std::endl;
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
-    //     std::cout << g_robot->end_effector_pos().transpose() << std::endl;
-    ctrl = {2.5};
-    simu.controller().set_parameters(ctrl);
-    simu.run(0.5);
-    // std::cout << simu.energy() << std::endl;
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
-    //     std::cout << g_robot->end_effector_pos().transpose() << std::endl;
+    simu.add_floor();
+#ifdef GRAPHIC
+    simu.free_camera();
+#endif
+    simu.run(10000);
 
     global_robot.reset();
     g_robot.reset();
