@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/force_control.hpp>
-#include <boost/filesystem.hpp>
 
 // void setGeometry(const dart::dynamics::BodyNodePtr& bn)
 // {
@@ -93,8 +92,7 @@ int main()
     // dmg.data = "arm_joint_3";
     // brk.push_back(dmg);
 
-    std::string current_path = boost::filesystem::current_path().string();
-    auto global_robot = std::make_shared<robot_dart::Robot>(current_path + "/pendulum.urdf", brk);
+    auto global_robot = std::make_shared<robot_dart::Robot>("pendulum.urdf", brk);
     auto g_robot = global_robot->clone();
     g_robot->fix_to_world();
     g_robot->set_position_enforced(false);

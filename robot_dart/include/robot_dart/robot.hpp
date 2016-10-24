@@ -1,10 +1,12 @@
 #ifndef ROBOT_DART_ROBOT_HPP
 #define ROBOT_DART_ROBOT_HPP
 
+#include <boost/filesystem.hpp>
+
 #include <dart/dart.hpp>
 #include <dart/utils/urdf/urdf.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
-#include <boost/filesystem.hpp>
+
 #include <Eigen/Core>
 #include <string>
 #include <fstream>
@@ -25,7 +27,7 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(_load_model(model_file))
+        Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
@@ -173,8 +175,11 @@ namespace robot_dart {
         }
 
     protected:
-        dart::dynamics::SkeletonPtr _load_model(std::string model_file)
+        dart::dynamics::SkeletonPtr _load_model(std::string model_file, bool absolute_path)
         {
+            if (!absolute_path)
+                model_file = boost::filesystem::current_path().string() + "/" + model_file;
+
             dart::dynamics::SkeletonPtr tmp_skel;
             boost::filesystem::path p(model_file);
             if (p.extension() == ".urdf") {
