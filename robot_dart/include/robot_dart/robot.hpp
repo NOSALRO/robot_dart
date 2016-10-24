@@ -137,7 +137,7 @@ namespace robot_dart {
             }
         }
 
-        // TO-DO: Warning this only works for the 1st DOF of the joints
+        // TODO: Warning this only works for the 1st DOF of the joints
         void set_damping_coeff(const std::vector<double>& damps)
         {
             assert(damps.size() == _skeleton->getNumJoints());

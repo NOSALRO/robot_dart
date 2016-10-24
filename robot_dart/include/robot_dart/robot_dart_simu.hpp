@@ -14,6 +14,7 @@
 #include <robot_dart/robot_control.hpp>
 #include <robot_dart/descriptors.hpp>
 #include <robot_dart/visualizations.hpp>
+#include <robot_dart/macros.hpp>
 
 #ifdef GRAPHIC
 #include <dart/gui/osg/osg.hpp>
@@ -21,13 +22,21 @@
 
 namespace robot_dart {
 
+    namespace defaults {
+        struct world {
+            RS_PARAM(float, timestep, 0.015);
+            RS_PARAM(float, time, 0.0);
+        };
+    }
+
     BOOST_PARAMETER_TEMPLATE_KEYWORD(robot_control)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(viz)
 
     typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
         boost::parameter::optional<tag::desc>,
-        boost::parameter::optional<tag::viz>> class_signature;
+        boost::parameter::optional<tag::viz>>
+        class_signature;
 
     template <typename Simu, typename robot>
     struct Refresh {
@@ -41,7 +50,7 @@ namespace robot_dart {
         void operator()(T& x) const { x(_simu, _robot); }
     };
 
-    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_>
+    template <typename Params, class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_>
     class RobotDARTSimu {
     public:
         using robot_t = std::shared_ptr<Robot>;
@@ -67,13 +76,13 @@ namespace robot_dart {
                                                                         _desc_period(1),
                                                                         _break(false)
         {
-            // TO-DO: Make it more generic
+            // TODO: Make it more generic
             _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
             _robot = robot;
-            _world->setTimeStep(0.015);
+            _world->setTimeStep(Params::world::timestep());
             _world->addSkeleton(_robot->skeleton());
 
-            _world->setTime(0.0);
+            _world->setTime(Params::world::time());
 
 #ifdef GRAPHIC
             _fixed_camera = false;

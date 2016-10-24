@@ -75,6 +75,11 @@
 //     return bn;
 // }
 
+struct Params {
+    struct world : public robot_dart::defaults::world {
+    };
+};
+
 int main()
 {
     // std::vector<robot_dart::RobotDamage> brk = {};
@@ -103,7 +108,7 @@ int main()
     std::vector<double> ctrl;
     ctrl = {0.0};
 
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<Params, robot_dart::robot_control<robot_dart::ForceControl>> simu(ctrl, g_robot);
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(1);
     // std::cout << simu.energy() << std::endl;
