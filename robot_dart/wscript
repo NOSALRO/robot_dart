@@ -72,6 +72,14 @@ def build(bld):
                       defines = ['GRAPHIC'],
                       target = 'pendulum_test')
 
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/arm_test.cpp',
+                      includes = './include',
+                      uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      defines = ['GRAPHIC'],
+                      target = 'arm_test')
+
     bld.program(features = 'cxx',
                   install_path = None,
                   source = 'src/nao_test.cpp',
@@ -85,12 +93,16 @@ def build(bld):
                   uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
                   target = 'pendulum_test_plain')
 
+    bld.program(features = 'cxx',
+                  install_path = None,
+                  source = 'src/arm_test.cpp',
+                  includes = './include',
+                  uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
+                  target = 'arm_test_plain')
+
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_dart_simu.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_control.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/force_control.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/descriptors.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/visualizations.hpp')
-    bld.install_files('${PREFIX}/share/robot_models/URDF', 'res/models/pendulum.urdf')
-    bld.install_files('${PREFIX}/share/robot_models/URDF', 'res/models/nao.urdf')
-    bld.install_files('${PREFIX}/share/robot_models/URDF/nao_meshes', 'res/nao_meshes/')
