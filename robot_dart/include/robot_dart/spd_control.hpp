@@ -60,20 +60,6 @@ namespace robot_dart {
             mForces.setZero();
         }
 
-        void _add_pd_forces()
-        {
-            auto skel = _robot->skeleton();
-
-            Eigen::VectorXd q = skel->getPositions();
-            Eigen::VectorXd dq = skel->getVelocities();
-
-            Eigen::VectorXd p = -mKp * (q - mTargetPositions);
-            Eigen::VectorXd d = -mKd * dq;
-
-            mForces += p + d;
-            skel->setForces(mForces);
-        }
-
         void _add_spd_forces()
         {
             auto skel = _robot->skeleton();
