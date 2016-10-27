@@ -70,7 +70,10 @@ namespace robot_dart {
 
         void fix_to_world()
         {
+            Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
+            tf.translation() = _skeleton->getPositions().segment(3, 3);
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
+            _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
         }
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)

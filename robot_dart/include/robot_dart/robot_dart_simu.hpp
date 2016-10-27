@@ -69,7 +69,8 @@ namespace robot_dart {
                                                                         _break(false)
         {
             // TODO: Make it more generic
-            _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
+            // _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
+            _world->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
             _robot = robot;
             _world->setTimeStep(0.015);
             _world->addSkeleton(_robot->skeleton());
