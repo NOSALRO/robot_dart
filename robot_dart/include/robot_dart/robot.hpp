@@ -70,7 +70,10 @@ namespace robot_dart {
 
         void fix_to_world()
         {
+            Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
+            tf.translation() = _skeleton->getPositions().segment(3, 3);
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
+            _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
         }
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
@@ -199,6 +202,15 @@ namespace robot_dart {
             for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
                 tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
                 tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
+            }
+
+            // Remove collision shapes
+            for (size_t i = 0; i < tmp_skel->getNumShapeNodes(); ++i) {
+                dart::dynamics::ShapeNode* node = tmp_skel->getShapeNode(i);
+                if (!node->has<dart::dynamics::VisualAspect>()) {
+                    node->createAspect<dart::dynamics::VisualAspect>();
+                    node->getVisualAspect()->hide();
+                }
             }
 
             return tmp_skel;
