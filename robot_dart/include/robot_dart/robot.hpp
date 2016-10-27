@@ -204,6 +204,15 @@ namespace robot_dart {
                 tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
             }
 
+            // Remove collision shapes
+            for (size_t i = 0; i < tmp_skel->getNumShapeNodes(); ++i) {
+                dart::dynamics::ShapeNode* node = tmp_skel->getShapeNode(i);
+                if (!node->has<dart::dynamics::VisualAspect>()) {
+                    node->createAspect<dart::dynamics::VisualAspect>();
+                    node->getVisualAspect()->hide();
+                }
+            }
+
             return tmp_skel;
         }
 
