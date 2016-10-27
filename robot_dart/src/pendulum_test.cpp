@@ -3,6 +3,15 @@
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/force_control.hpp>
 
+#ifdef GRAPHIC
+#include <robot_dart/graphics.hpp>
+
+struct Params {
+    struct graphics : robot_dart::defaults::graphics {
+    };
+};
+#endif
+
 // void setGeometry(const dart::dynamics::BodyNodePtr& bn)
 // {
 //     // Create a BoxShape to be used for both visualization and collision checking
@@ -102,7 +111,11 @@ int main()
     std::vector<double> ctrl;
     ctrl = {0.0};
 
+#ifdef GRAPHIC
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>, robot_dart::graph<robot_dart::graphics::Graphics<Params>>> simu(ctrl, g_robot);
+#else
     robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>> simu(ctrl, g_robot);
+#endif
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(1);
     // std::cout << simu.energy() << std::endl;

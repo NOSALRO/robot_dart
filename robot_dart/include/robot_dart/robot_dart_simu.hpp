@@ -14,20 +14,19 @@
 #include <robot_dart/robot_control.hpp>
 #include <robot_dart/descriptors.hpp>
 #include <robot_dart/visualizations.hpp>
-
-#ifdef GRAPHIC
-#include <dart/gui/osg/osg.hpp>
-#endif
+#include <robot_dart/no_graphics.hpp>
 
 namespace robot_dart {
 
     BOOST_PARAMETER_TEMPLATE_KEYWORD(robot_control)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(viz)
+    BOOST_PARAMETER_TEMPLATE_KEYWORD(graph)
 
     typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
         boost::parameter::optional<tag::desc>,
-        boost::parameter::optional<tag::viz>>
+        boost::parameter::optional<tag::viz>,
+        boost::parameter::optional<tag::graph>>
         class_signature;
 
     template <typename Simu, typename robot>
@@ -42,7 +41,7 @@ namespace robot_dart {
         void operator()(T& x) const { x(_simu, _robot); }
     };
 
-    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_>
+    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_, class A4 = boost::parameter::void_>
     class RobotDARTSimu {
     public:
         using robot_t = std::shared_ptr<Robot>;
@@ -51,22 +50,25 @@ namespace robot_dart {
             using robot_control_t = RobotControl;
             using descriptors_t = boost::fusion::vector<>;
             using viz_t = boost::fusion::vector<>;
+            using graphics_t = graphics::No_Graphics;
         };
 
         // extract the types
-        using args = typename class_signature::bind<A1, A2, A3>::type;
+        using args = typename class_signature::bind<A1, A2, A3, A4>::type;
         using robot_control_t = typename boost::parameter::binding<args, tag::robot_control, typename defaults::robot_control_t>::type;
         using Descriptors = typename boost::parameter::binding<args, tag::desc, typename defaults::descriptors_t>::type;
         using Visualizations = typename boost::parameter::binding<args, tag::viz, typename defaults::viz_t>::type;
         using descriptors_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Descriptors>, Descriptors, boost::fusion::vector<Descriptors>>::type;
         using viz_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Visualizations>, Visualizations, boost::fusion::vector<Visualizations>>::type;
+        using graphics_t = typename boost::parameter::binding<args, tag::graph, typename defaults::graphics_t>::type;
 
         RobotDARTSimu(const std::vector<double>& ctrl, robot_t robot) : _energy(0.0),
                                                                         _world(std::make_shared<dart::simulation::World>()),
                                                                         _controller(ctrl, robot),
                                                                         _old_index(0),
                                                                         _desc_period(1),
-                                                                        _break(false)
+                                                                        _break(false),
+                                                                        _graphics(_world)
         {
             // TODO: Make it more generic
             // _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
@@ -76,15 +78,6 @@ namespace robot_dart {
             _world->addSkeleton(_robot->skeleton());
 
             _world->setTime(0.0);
-
-#ifdef GRAPHIC
-            _fixed_camera = false;
-            _osg_world_node = new dart::gui::osg::WorldNode(_world);
-            _osg_viewer.addWorldNode(_osg_world_node);
-            _osg_viewer.setUpViewInWindow(0, 0, 1280, 720);
-// full-screen
-// _osg_viewer.setUpViewOnSingleScreen();
-#endif
         }
 
         ~RobotDARTSimu() {}
@@ -96,12 +89,7 @@ namespace robot_dart {
             size_t index = _old_index;
             double old_t = _world->getTime();
 
-#ifdef GRAPHIC
-            while ((_world->getTime() - old_t) < max_duration && !_osg_viewer.done())
-#else
-            while ((_world->getTime() - old_t) < max_duration)
-#endif
-            {
+            while ((_world->getTime() - old_t) < max_duration && !_graphics.done()) {
                 Eigen::VectorXd positions = rob->skeleton()->getPositions();
                 _controller.update(_world->getTime());
 
@@ -121,17 +109,7 @@ namespace robot_dart {
                     return;
                 }
 
-#ifdef GRAPHIC
-                if (!_free_camera && !_fixed_camera) {
-                    auto COM = rob->skeleton()->getCOM();
-                    // set camera to follow hexapod
-                    _osg_viewer.getCameraManipulator()->setHomePosition(
-                        osg::Vec3d(-0.5, 3, 1), osg::Vec3d(COM(0), COM(1), COM(2)), osg::Vec3d(0, 0, 1));
-                    _osg_viewer.home();
-                }
-                // process next frame
-                _osg_viewer.frame();
-#endif
+                _graphics.refresh(*this);
 
                 if (index % _desc_period == 0) {
                     // update descriptors
@@ -148,35 +126,15 @@ namespace robot_dart {
             return _robot;
         }
 
+        graphics_t& graphics()
+        {
+            return _graphics;
+        }
+
         dart::simulation::WorldPtr world()
         {
             return _world;
         }
-
-#ifdef GRAPHIC
-        void fixed_camera(const Eigen::Vector3d& camera_pos, const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0), const Eigen::Vector3d& up = Eigen::Vector3d(0, 0, 1))
-        {
-            _fixed_camera = true;
-            _camera_pos = camera_pos;
-            _look_at = look_at;
-            _camera_up = up;
-
-            // set camera position
-            _osg_viewer.getCameraManipulator()->setHomePosition(
-                osg::Vec3d(_camera_pos(0), _camera_pos(1), _camera_pos(2)), osg::Vec3d(_look_at(0), _look_at(1), _look_at(2)), osg::Vec3d(_camera_up(0), _camera_up(1), _camera_up(2)));
-            _osg_viewer.home();
-        }
-
-        void follow_robot()
-        {
-            _fixed_camera = false;
-        }
-
-        void free_camera()
-        {
-            _free_camera = true;
-        }
-#endif
 
         template <typename Desc, typename T>
         void get_descriptor(T& result)
@@ -352,15 +310,7 @@ namespace robot_dart {
         descriptors_t _descriptors;
         viz_t _visualizations;
         std::vector<dart::dynamics::SkeletonPtr> _objects;
-#ifdef GRAPHIC
-        bool _fixed_camera;
-        bool _free_camera;
-        Eigen::Vector3d _look_at;
-        Eigen::Vector3d _camera_pos;
-        Eigen::Vector3d _camera_up;
-        osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
-        dart::gui::osg::Viewer _osg_viewer;
-#endif
+        graphics_t _graphics;
     };
 }
 
