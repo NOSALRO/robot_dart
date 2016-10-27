@@ -12,30 +12,11 @@ namespace robot_dart {
         SPDControl() {}
         SPDControl(const std::vector<double>& ctrl, robot_t robot)
             : RobotControl(ctrl, robot),
-              mSpeed(0.0)
+              _stiffness_coeff(1000),
+              _damping_coeff(50)
         {
             _robot->set_actuator_types(dart::dynamics::Joint::FORCE);
-            auto skel = _robot->skeleton();
-
-            mForces = Eigen::VectorXd::Zero(_dof);
-            mKp = Eigen::MatrixXd::Identity(_dof, _dof);
-            mKd = Eigen::MatrixXd::Identity(_dof, _dof);
-
-            size_t start_dim = 0;
-            if (!_robot->fixed_to_world()) {
-                for (size_t i = 0; i < 6; ++i) {
-                    mKp(i, i) = 0.0;
-                    mKd(i, i) = 0.0;
-                }
-                start_dim = 6;
-            }
-
-            for (size_t i = start_dim; i < _dof; ++i) {
-                mKp(i, i) = 1000;
-                mKd(i, i) = 50;
-            }
-
-            mTargetPositions = skel->getPositions();
+            init();
         }
 
         void set_commands()
@@ -43,22 +24,49 @@ namespace robot_dart {
             assert(_dof == _ctrl.size());
 
             auto skel = _robot->skeleton();
-            mTargetPositions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
-            _reset();
+            _mTargetPositions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
             _add_spd_forces();
         }
 
-    protected:
-        Eigen::VectorXd mForces;
-        Eigen::MatrixXd mKp;
-        Eigen::MatrixXd mKd;
-        Eigen::VectorXd mTargetPositions;
-        double mSpeed;
-
-        void _reset()
+        void init()
         {
-            mForces.setZero();
+            auto skel = _robot->skeleton();
+            _dof = skel->getNumDofs();
+            _mForces = Eigen::VectorXd::Zero(_dof);
+            _mKp = Eigen::MatrixXd::Identity(_dof, _dof);
+            _mKd = Eigen::MatrixXd::Identity(_dof, _dof);
+
+            size_t start_dim = 0;
+            if (!_robot->fixed_to_world()) {
+                for (size_t i = 0; i < 6; ++i) {
+                    _mKp(i, i) = 0.0;
+                    _mKd(i, i) = 0.0;
+                }
+                start_dim = 6;
+            }
+
+            for (size_t i = start_dim; i < _dof; ++i) {
+                _mKp(i, i) = _stiffness_coeff;
+                _mKd(i, i) = _damping_coeff;
+            }
+
+            _mTargetPositions = skel->getPositions();
         }
+
+        void set_pd(double p, double d)
+        {
+            _stiffness_coeff = p;
+            _damping_coeff = d;
+            init();
+        }
+
+    protected:
+        Eigen::VectorXd _mForces;
+        Eigen::MatrixXd _mKp;
+        Eigen::MatrixXd _mKd;
+        Eigen::VectorXd _mTargetPositions;
+        double _stiffness_coeff;
+        double _damping_coeff;
 
         void _add_spd_forces()
         {
@@ -68,15 +76,15 @@ namespace robot_dart {
             Eigen::VectorXd dq = skel->getVelocities();
 
             Eigen::MatrixXd invM = (skel->getMassMatrix()
-                                       + mKd * skel->getTimeStep())
+                                       + _mKd * skel->getTimeStep())
                                        .inverse();
-            Eigen::VectorXd p = -mKp * (q + dq * skel->getTimeStep() - mTargetPositions);
-            Eigen::VectorXd d = -mKd * dq;
+            Eigen::VectorXd p = -_mKp * (q + dq * skel->getTimeStep() - _mTargetPositions);
+            Eigen::VectorXd d = -_mKd * dq;
             Eigen::VectorXd qddot = invM * (-skel->getCoriolisAndGravityForces()
                                                + p + d + skel->getConstraintForces());
 
-            mForces += p + d - mKd * qddot * skel->getTimeStep();
-            skel->setForces(mForces);
+            _mForces = p + d - _mKd * qddot * skel->getTimeStep();
+            skel->setForces(_mForces);
         }
     };
 }

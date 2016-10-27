@@ -77,6 +77,15 @@ namespace robot_dart {
             _fixed_to_world = true;
         }
 
+        void free_from_world()
+        {
+            Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
+            tf.translation() = _skeleton->getPositions().segment(3, 3);
+            _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
+            _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
+            _fixed_to_world = false;
+        }
+
         bool fixed_to_world() const
         {
             return _fixed_to_world;

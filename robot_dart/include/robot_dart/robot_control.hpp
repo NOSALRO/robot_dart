@@ -40,6 +40,10 @@ namespace robot_dart {
         {
         }
 
+        virtual void init()
+        {
+        }
+
     protected:
         robot_t _robot;
 
