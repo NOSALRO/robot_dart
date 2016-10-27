@@ -27,13 +27,13 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
+        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path)), _fixed_to_world(false)
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
         }
 
-        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton)
+        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton), _fixed_to_world(false)
         {
             assert(_skeleton != nullptr);
             _skeleton->setName(robot_name);
@@ -74,6 +74,12 @@ namespace robot_dart {
             tf.translation() = _skeleton->getPositions().segment(3, 3);
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
             _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
+            _fixed_to_world = true;
+        }
+
+        bool fixed_to_world() const
+        {
+            return _fixed_to_world;
         }
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
@@ -235,6 +241,7 @@ namespace robot_dart {
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
+        bool _fixed_to_world;
     };
 }
 
