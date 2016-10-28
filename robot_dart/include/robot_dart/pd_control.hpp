@@ -1,5 +1,5 @@
-#ifndef ROBOT_DART_POSITION_CONTROL
-#define ROBOT_DART_POSITION_CONTROL
+#ifndef ROBOT_DART_PD_CONTROL
+#define ROBOT_DART_PD_CONTROL
 
 #include <robot_dart/robot_control.hpp>
 
