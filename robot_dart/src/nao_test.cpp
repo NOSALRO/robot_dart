@@ -17,14 +17,13 @@ int main()
 {
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/nao.urdf");
     auto g_robot = global_robot->clone();
-    g_robot->skeleton()->setPosition(5, 0.5);
-    g_robot->fix_to_world();
+    g_robot->skeleton()->setPosition(5, 0.35);
 
     std::vector<double> ctrl;
-    // ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    // ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    // running a simulation on a fixed robot
+    ctrl.resize(50, 0);
+    g_robot->fix_to_world();
 #ifdef GRAPHIC
     robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
         robot_dart::graph<robot_dart::graphics::Graphics<Params>>,
@@ -38,14 +37,14 @@ int main()
         simu(ctrl, g_robot);
 #endif
     simu.add_floor();
-    simu.run(5);
+    simu.run(2);
 
-    // g_robot->free_from_world();
-    // ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    //     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    // simu.controller().set_parameters(ctrl);
-    // simu.controller().init();
-    // simu.run(5);
+    // releasing the robot from a fixed point and simulating
+    g_robot->free_from_world({0, 0, 0.35});
+    ctrl.resize(56, 0);
+    simu.controller().set_parameters(ctrl);
+    simu.controller().set_pd(5000, 100);
+    simu.run(2);
 
     global_robot.reset();
     g_robot.reset();
