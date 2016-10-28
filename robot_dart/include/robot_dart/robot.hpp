@@ -50,6 +50,7 @@ namespace robot_dart {
             robot->_skeleton = tmp_skel;
             robot->_damages = _damages;
             robot->_robot_name = _robot_name;
+            robot->_fixed_to_world = _fixed_to_world;
             return robot;
         }
 
