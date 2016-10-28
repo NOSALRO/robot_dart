@@ -26,7 +26,7 @@ namespace robot_dart {
             Graphics(World world)
             {
                 _fixed_camera = false;
-                _free_camera = true;
+                _free_camera = false;
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
                 _osg_viewer.addWorldNode(_osg_world_node);
                 _osg_viewer.setUpViewInWindow(0, 0, Params::graphics::resolution(0), Params::graphics::resolution(1));
@@ -49,7 +49,6 @@ namespace robot_dart {
                     _osg_viewer.getCameraManipulator()->setHomePosition(
                         osg::Vec3d(-0.5, 3, 1), osg::Vec3d(COM(0), COM(1), COM(2)), osg::Vec3d(0, 0, 1));
                     _osg_viewer.home();
-                    std::cout << "test" << std::endl;
                 }
                 // process next frame
                 _osg_viewer.frame();

@@ -71,16 +71,14 @@ namespace robot_dart {
                                                                         _controller(ctrl, robot),
                                                                         _old_index(0),
                                                                         _desc_period(1),
-                                                                        _break(false),
-                                                                        _graphics(_world)
+                                                                        _break(false)
         {
-            // TODO: Make it more generic
-            _world->getConstraintSolver()->setCollisionDetector(collision_t::create());
             _robot = robot;
+            _world->getConstraintSolver()->setCollisionDetector(collision_t::create());
             _world->setTimeStep(0.015);
             _world->addSkeleton(_robot->skeleton());
-
             _world->setTime(0.0);
+            _graphics = std::make_shared<graphics_t>(_world);
         }
 
         ~RobotDARTSimu() {}
@@ -92,7 +90,7 @@ namespace robot_dart {
             size_t index = _old_index;
             double old_t = _world->getTime();
 
-            while ((_world->getTime() - old_t) < max_duration && !_graphics.done()) {
+            while ((_world->getTime() - old_t) < max_duration && !_graphics->done()) {
                 Eigen::VectorXd positions = rob->skeleton()->getPositions();
                 _controller.update(_world->getTime());
 
@@ -112,7 +110,7 @@ namespace robot_dart {
                     return;
                 }
 
-                _graphics.refresh(*this);
+                _graphics->refresh(*this);
 
                 if (index % _desc_period == 0) {
                     // update descriptors
@@ -129,7 +127,7 @@ namespace robot_dart {
             return _robot;
         }
 
-        graphics_t& graphics()
+        std::shared_ptr<graphics_t> graphics()
         {
             return _graphics;
         }
@@ -313,7 +311,7 @@ namespace robot_dart {
         descriptors_t _descriptors;
         viz_t _visualizations;
         std::vector<dart::dynamics::SkeletonPtr> _objects;
-        graphics_t _graphics;
+        std::shared_ptr<graphics_t> _graphics;
     };
 }
 

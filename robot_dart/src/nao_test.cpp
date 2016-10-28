@@ -31,6 +31,7 @@ int main()
         robot_dart::collision<dart::collision::FCLCollisionDetector>>
         simu(ctrl, g_robot);
     auto g = simu.graphics();
+    g->free_camera();
 #else
     robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
         robot_dart::collision<dart::collision::FCLCollisionDetector>>
