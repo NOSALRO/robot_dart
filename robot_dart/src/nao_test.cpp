@@ -40,7 +40,9 @@ int main()
     simu.run(2);
 
     // releasing the robot from a fixed point and simulating
-    g_robot->free_from_world({0, 0, 0.35});
+    Eigen::Vector6d pose;
+    pose << 0, 0, 0, 0, 0, 0.35;
+    g_robot->free_from_world(pose);
     ctrl.resize(56, 0);
     simu.controller().set_parameters(ctrl);
     simu.controller().set_pd(5000, 100);
