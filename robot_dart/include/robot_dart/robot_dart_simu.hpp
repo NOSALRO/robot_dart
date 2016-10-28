@@ -21,13 +21,13 @@ namespace robot_dart {
     BOOST_PARAMETER_TEMPLATE_KEYWORD(robot_control)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(viz)
-    BOOST_PARAMETER_TEMPLATE_KEYWORD(graph)
+    BOOST_PARAMETER_TEMPLATE_KEYWORD(graphics)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(collision)
 
     typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
         boost::parameter::optional<tag::desc>,
         boost::parameter::optional<tag::viz>,
-        boost::parameter::optional<tag::graph>,
+        boost::parameter::optional<tag::graphics>,
         boost::parameter::optional<tag::collision>>
         class_signature;
 
@@ -52,7 +52,7 @@ namespace robot_dart {
             using robot_control_t = RobotControl;
             using descriptors_t = boost::fusion::vector<>;
             using viz_t = boost::fusion::vector<>;
-            using graphics_t = graphics::No_Graphics;
+            using graphics_t = No_Graphics;
             using collision_t = dart::collision::DARTCollisionDetector;
         };
 
@@ -63,7 +63,7 @@ namespace robot_dart {
         using Visualizations = typename boost::parameter::binding<args, tag::viz, typename defaults::viz_t>::type;
         using descriptors_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Descriptors>, Descriptors, boost::fusion::vector<Descriptors>>::type;
         using viz_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Visualizations>, Visualizations, boost::fusion::vector<Visualizations>>::type;
-        using graphics_t = typename boost::parameter::binding<args, tag::graph, typename defaults::graphics_t>::type;
+        using graphics_t = typename boost::parameter::binding<args, tag::graphics, typename defaults::graphics_t>::type;
         using collision_t = typename boost::parameter::binding<args, tag::collision, typename defaults::collision_t>::type;
 
         RobotDARTSimu(const std::vector<double>& ctrl, robot_t robot) : _energy(0.0),

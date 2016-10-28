@@ -26,7 +26,7 @@ int main()
     g_robot->fix_to_world();
 #ifdef GRAPHIC
     robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
-        robot_dart::graph<robot_dart::graphics::Graphics<Params>>,
+        robot_dart::graphics<robot_dart::Graphics<Params>>,
         robot_dart::collision<dart::collision::FCLCollisionDetector>>
         simu(ctrl, g_robot);
     auto g = simu.graphics();
