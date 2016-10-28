@@ -20,13 +20,11 @@ namespace robot_dart {
 
     BOOST_PARAMETER_TEMPLATE_KEYWORD(robot_control)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
-    BOOST_PARAMETER_TEMPLATE_KEYWORD(viz)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(graphics)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(collision)
 
     typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
         boost::parameter::optional<tag::desc>,
-        boost::parameter::optional<tag::viz>,
         boost::parameter::optional<tag::graphics>,
         boost::parameter::optional<tag::collision>>
         class_signature;
@@ -51,7 +49,6 @@ namespace robot_dart {
         struct defaults {
             using robot_control_t = RobotControl;
             using descriptors_t = boost::fusion::vector<>;
-            using viz_t = boost::fusion::vector<>;
             using graphics_t = No_Graphics;
             using collision_t = dart::collision::DARTCollisionDetector;
         };
@@ -60,9 +57,7 @@ namespace robot_dart {
         using args = typename class_signature::bind<A1, A2, A3, A4, A5>::type;
         using robot_control_t = typename boost::parameter::binding<args, tag::robot_control, typename defaults::robot_control_t>::type;
         using Descriptors = typename boost::parameter::binding<args, tag::desc, typename defaults::descriptors_t>::type;
-        using Visualizations = typename boost::parameter::binding<args, tag::viz, typename defaults::viz_t>::type;
         using descriptors_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Descriptors>, Descriptors, boost::fusion::vector<Descriptors>>::type;
-        using viz_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Visualizations>, Visualizations, boost::fusion::vector<Visualizations>>::type;
         using graphics_t = typename boost::parameter::binding<args, tag::graphics, typename defaults::graphics_t>::type;
         using collision_t = typename boost::parameter::binding<args, tag::collision, typename defaults::collision_t>::type;
 
@@ -99,11 +94,6 @@ namespace robot_dart {
                 // integrate Torque (force) over time
                 Eigen::VectorXd state = rob->skeleton()->getForces().array().abs() * _world->getTimeStep();
                 _energy += state.sum();
-                // if ((positions - rob->skeleton()->getPositions()).norm() < 1e-5) //std::numeric_limits<double>::epsilon())
-                //     break;
-
-                // update visualizations
-                boost::fusion::for_each(_visualizations, Refresh<RobotDARTSimu, Robot>(*this, rob));
 
                 if (_break) {
                     _energy = -10002.0;
@@ -309,7 +299,6 @@ namespace robot_dart {
         size_t _desc_period;
         bool _break;
         descriptors_t _descriptors;
-        viz_t _visualizations;
         std::vector<dart::dynamics::SkeletonPtr> _objects;
         std::shared_ptr<graphics_t> _graphics;
     };
