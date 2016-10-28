@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <robot_dart/robot_dart_simu.hpp>
-#include <robot_dart/spd_control.hpp>
+#include <robot_dart/position_control.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
@@ -25,14 +25,14 @@ int main()
     ctrl.resize(50, 0);
     g_robot->fix_to_world();
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PositionControl>,
         robot_dart::graphics<robot_dart::Graphics<Params>>,
         robot_dart::collision<dart::collision::FCLCollisionDetector>>
         simu(ctrl, g_robot);
     auto g = simu.graphics();
     g->free_camera();
 #else
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PositionControl>,
         robot_dart::collision<dart::collision::FCLCollisionDetector>>
         simu(ctrl, g_robot);
 #endif
@@ -45,7 +45,7 @@ int main()
     g_robot->free_from_world(pose);
     ctrl.resize(56, 0);
     simu.controller().set_parameters(ctrl);
-    simu.controller().set_pd(5000, 100);
+    simu.controller().init();
     simu.run(2);
 
     global_robot.reset();

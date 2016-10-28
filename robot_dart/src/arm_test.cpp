@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <robot_dart/robot_dart_simu.hpp>
-#include <robot_dart/position_control.hpp>
+#include <robot_dart/pd_control.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
@@ -27,9 +27,9 @@ int main()
     ctrl = {0.0, 1.0, -1.5, 1.0};
 
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PositionControl>, robot_dart::graphics<robot_dart::Graphics<Params>>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PDControl>, robot_dart::graphics<robot_dart::Graphics<Params>>> simu(ctrl, g_robot);
 #else
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PositionControl>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::PDControl>> simu(ctrl, g_robot);
 #endif
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     simu.run(2);
