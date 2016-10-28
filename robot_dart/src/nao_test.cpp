@@ -17,7 +17,7 @@ int main()
 {
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/nao.urdf");
     auto g_robot = global_robot->clone();
-    g_robot->skeleton()->setPosition(5, 0.05);
+    g_robot->skeleton()->setPosition(5, 0.5);
     g_robot->fix_to_world();
 
     std::vector<double> ctrl;
@@ -26,21 +26,25 @@ int main()
     ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>, robot_dart::graph<robot_dart::graphics::Graphics<Params>>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
+        robot_dart::graph<robot_dart::graphics::Graphics<Params>>,
+        robot_dart::collision<dart::collision::FCLCollisionDetector>>
+        simu(ctrl, g_robot);
     auto g = simu.graphics();
-    g.free_camera();
 #else
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::SPDControl>,
+        robot_dart::collision<dart::collision::FCLCollisionDetector>>
+        simu(ctrl, g_robot);
 #endif
     simu.add_floor();
-    simu.run(1);
-
-    g_robot->free_from_world();
-    ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    simu.controller().set_parameters(ctrl);
-    simu.controller().init();
     simu.run(5);
+
+    // g_robot->free_from_world();
+    // ctrl = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    //     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // simu.controller().set_parameters(ctrl);
+    // simu.controller().init();
+    // simu.run(5);
 
     global_robot.reset();
     g_robot.reset();
