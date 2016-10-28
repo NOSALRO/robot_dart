@@ -13,18 +13,27 @@ namespace robot_dart {
         PositionControl(const std::vector<double>& ctrl, robot_t robot)
             : RobotControl(ctrl, robot)
         {
+            init();
+
+            // Default values for PD controller
+            _Kp = 200.0;
+            _Kd = 40.0;
+        }
+
+        void init()
+        {
+            if (!_robot->fixed_to_world()) {
+                _start_dof = 6;
+            }
+
             std::vector<size_t> indices;
             std::vector<dart::dynamics::Joint::ActuatorType> types;
-            for (size_t i = 0; i < _dof; i++) {
+            for (size_t i = _start_dof; i < _dof; i++) {
                 auto j = _robot->skeleton()->getDof(i)->getJoint();
                 indices.push_back(_robot->skeleton()->getIndexOf(j));
                 types.push_back(dart::dynamics::Joint::FORCE);
             }
             _robot->set_actuator_types(indices, types);
-
-            // Default values for PD controller
-            _Kp = 200.0;
-            _Kd = 40.0;
         }
 
         void set_commands()
@@ -44,6 +53,8 @@ namespace robot_dart {
             const Eigen::VectorXd& Cg = _robot->skeleton()->getCoriolisAndGravityForces();
 
             Eigen::VectorXd commands = M * (_Kp * q_err + _Kd * dq_err) + Cg;
+            if (_start_dof > 0)
+                commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
             _robot->skeleton()->setForces(commands);
         }
 
@@ -51,10 +62,12 @@ namespace robot_dart {
         {
             _Kp = p;
             _Kd = d;
+            init();
         }
 
     protected:
         double _Kp, _Kd;
+        size_t _start_dof;
     };
 }
 
