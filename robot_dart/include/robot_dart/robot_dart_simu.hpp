@@ -22,11 +22,13 @@ namespace robot_dart {
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(viz)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(graph)
+    BOOST_PARAMETER_TEMPLATE_KEYWORD(collision)
 
     typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
         boost::parameter::optional<tag::desc>,
         boost::parameter::optional<tag::viz>,
-        boost::parameter::optional<tag::graph>>
+        boost::parameter::optional<tag::graph>,
+        boost::parameter::optional<tag::collision>>
         class_signature;
 
     template <typename Simu, typename robot>
@@ -41,7 +43,7 @@ namespace robot_dart {
         void operator()(T& x) const { x(_simu, _robot); }
     };
 
-    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_, class A4 = boost::parameter::void_>
+    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_, class A4 = boost::parameter::void_, class A5 = boost::parameter::void_>
     class RobotDARTSimu {
     public:
         using robot_t = std::shared_ptr<Robot>;
@@ -51,33 +53,32 @@ namespace robot_dart {
             using descriptors_t = boost::fusion::vector<>;
             using viz_t = boost::fusion::vector<>;
             using graphics_t = graphics::No_Graphics;
+            using collision_t = dart::collision::DARTCollisionDetector;
         };
 
         // extract the types
-        using args = typename class_signature::bind<A1, A2, A3, A4>::type;
+        using args = typename class_signature::bind<A1, A2, A3, A4, A5>::type;
         using robot_control_t = typename boost::parameter::binding<args, tag::robot_control, typename defaults::robot_control_t>::type;
         using Descriptors = typename boost::parameter::binding<args, tag::desc, typename defaults::descriptors_t>::type;
         using Visualizations = typename boost::parameter::binding<args, tag::viz, typename defaults::viz_t>::type;
         using descriptors_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Descriptors>, Descriptors, boost::fusion::vector<Descriptors>>::type;
         using viz_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Visualizations>, Visualizations, boost::fusion::vector<Visualizations>>::type;
         using graphics_t = typename boost::parameter::binding<args, tag::graph, typename defaults::graphics_t>::type;
+        using collision_t = typename boost::parameter::binding<args, tag::collision, typename defaults::collision_t>::type;
 
         RobotDARTSimu(const std::vector<double>& ctrl, robot_t robot) : _energy(0.0),
                                                                         _world(std::make_shared<dart::simulation::World>()),
                                                                         _controller(ctrl, robot),
                                                                         _old_index(0),
                                                                         _desc_period(1),
-                                                                        _break(false),
-                                                                        _graphics(_world)
+                                                                        _break(false)
         {
-            // TODO: Make it more generic
-            // _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
-            _world->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
             _robot = robot;
+            _world->getConstraintSolver()->setCollisionDetector(collision_t::create());
             _world->setTimeStep(0.015);
             _world->addSkeleton(_robot->skeleton());
-
             _world->setTime(0.0);
+            _graphics = std::make_shared<graphics_t>(_world);
         }
 
         ~RobotDARTSimu() {}
@@ -89,7 +90,7 @@ namespace robot_dart {
             size_t index = _old_index;
             double old_t = _world->getTime();
 
-            while ((_world->getTime() - old_t) < max_duration && !_graphics.done()) {
+            while ((_world->getTime() - old_t) < max_duration && !_graphics->done()) {
                 Eigen::VectorXd positions = rob->skeleton()->getPositions();
                 _controller.update(_world->getTime());
 
@@ -109,7 +110,7 @@ namespace robot_dart {
                     return;
                 }
 
-                _graphics.refresh(*this);
+                _graphics->refresh(*this);
 
                 if (index % _desc_period == 0) {
                     // update descriptors
@@ -126,7 +127,7 @@ namespace robot_dart {
             return _robot;
         }
 
-        graphics_t& graphics()
+        std::shared_ptr<graphics_t> graphics()
         {
             return _graphics;
         }
@@ -310,7 +311,7 @@ namespace robot_dart {
         descriptors_t _descriptors;
         viz_t _visualizations;
         std::vector<dart::dynamics::SkeletonPtr> _objects;
-        graphics_t _graphics;
+        std::shared_ptr<graphics_t> _graphics;
     };
 }
 

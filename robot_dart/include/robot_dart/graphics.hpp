@@ -72,6 +72,7 @@ namespace robot_dart {
             void follow_robot()
             {
                 _fixed_camera = false;
+                _free_camera = false;
             }
 
             void free_camera()
