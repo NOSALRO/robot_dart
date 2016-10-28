@@ -76,7 +76,7 @@ namespace robot_dart {
             _fixed_to_world = true;
         }
 
-        // pose: Orientation-Position, dims: XYZ
+        // pose: Orientation-Position
         void free_from_world(const Eigen::Vector6d& pose = Eigen::Vector6d::Zero())
         {
             Eigen::Isometry3d tf(dart::math::expMap(pose));
