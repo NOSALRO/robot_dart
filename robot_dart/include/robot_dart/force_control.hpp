@@ -20,7 +20,7 @@ namespace robot_dart {
         {
             assert(_dof == _ctrl.size());
             Eigen::VectorXd commands = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
-            _robot->skeleton()->setForces(commands);
+            _robot->skeleton()->setCommands(commands);
         }
     };
 }

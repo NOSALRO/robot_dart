@@ -111,3 +111,4 @@ def build(bld):
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/macros.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/no_graphics.hpp')
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/graphics.hpp')
+    bld.install_files('${PREFIX}/share/arm_models/URDF', 'res/models/arm.urdf')

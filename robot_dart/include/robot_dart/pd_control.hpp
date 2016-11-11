@@ -58,7 +58,7 @@ namespace robot_dart {
             Eigen::VectorXd commands = M * (_Kp * q_err + _Kd * dq_err) + Cg;
             if (_start_dof > 0)
                 commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
-            _robot->skeleton()->setForces(commands);
+            _robot->skeleton()->setCommands(commands);
         }
 
         void set_pd(double p, double d)

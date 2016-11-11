@@ -36,7 +36,7 @@ namespace robot_dart {
             Eigen::VectorXd qddot = invM * (-skel->getCoriolisAndGravityForces() + p + d);
 
             Eigen::VectorXd forces = p + d - _mKd * qddot * skel->getTimeStep();
-            skel->setForces(forces);
+            skel->setCommands(forces);
         }
 
         void init()
