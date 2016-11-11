@@ -95,16 +95,16 @@ namespace robot_dart {
                 Eigen::VectorXd state = rob->skeleton()->getForces().array().abs() * _world->getTimeStep();
                 _energy += state.sum();
 
-                if (_break) {
-                    _energy = -10002.0;
-                    return;
-                }
-
                 _graphics->refresh(*this);
 
                 if (index % _desc_period == 0) {
                     // update descriptors
                     boost::fusion::for_each(_descriptors, Refresh<RobotDARTSimu, Robot>(*this, rob));
+                }
+
+                if (_break) {
+                    _energy = -10002.0;
+                    return;
                 }
 
                 ++index;
