@@ -13,7 +13,6 @@
 #include <robot_dart/robot.hpp>
 #include <robot_dart/robot_control.hpp>
 #include <robot_dart/descriptors.hpp>
-#include <robot_dart/visualizations.hpp>
 #include <robot_dart/no_graphics.hpp>
 
 namespace robot_dart {
