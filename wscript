@@ -59,13 +59,6 @@ def build(bld):
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/nao_test.cpp',
-                      includes = './include',
-                      uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
-                      defines = ['GRAPHIC'],
-                      target = 'nao_test')
-        bld.program(features = 'cxx',
-                      install_path = None,
                       source = 'src/pendulum_test.cpp',
                       includes = './include',
                       uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
@@ -80,12 +73,6 @@ def build(bld):
                       defines = ['GRAPHIC'],
                       target = 'arm_test')
 
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/nao_test.cpp',
-                  includes = './include',
-                  uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
-                  target = 'nao_test_plain')
     bld.program(features = 'cxx',
                   install_path = None,
                   source = 'src/pendulum_test.cpp',
