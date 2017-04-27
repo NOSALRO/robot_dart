@@ -85,7 +85,6 @@ namespace robot_dart {
             double old_t = _world->getTime();
 
             while ((_world->getTime() - old_t) < max_duration && !_graphics->done()) {
-                Eigen::VectorXd positions = rob->skeleton()->getPositions();
                 _controller.update(_world->getTime());
 
                 _world->step(false);
@@ -148,6 +147,7 @@ namespace robot_dart {
         {
             assert(_world != nullptr);
             _world->setTimeStep(step);
+            _graphics->set_render_period(step);
         }
 
         size_t desc_dump() const

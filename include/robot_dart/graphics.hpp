@@ -10,7 +10,7 @@ namespace robot_dart {
 
     namespace defaults {
         struct graphics {
-            RS_PARAM_ARRAY(int, resolution, 640, 380);
+            RS_PARAM_ARRAY(int, resolution, 640, 480);
             RS_PARAM(bool, fullscreen, false);
         };
     }
@@ -26,11 +26,13 @@ namespace robot_dart {
             _fixed_camera = false;
             _free_camera = false;
             _osg_world_node = new dart::gui::osg::WorldNode(world);
+            set_render_period(world->getTimeStep());
             _osg_viewer.addWorldNode(_osg_world_node);
             _osg_viewer.setUpViewInWindow(0, 0, Params::graphics::resolution(0), Params::graphics::resolution(1));
 
             if (Params::graphics::fullscreen())
                 _osg_viewer.setUpViewOnSingleScreen();
+            _osg_viewer.realize();
         }
 
         bool done() const
@@ -41,6 +43,7 @@ namespace robot_dart {
         template <typename Simu>
         void refresh(Simu& simu)
         {
+            static int i = 0;
             if (!_free_camera && !_fixed_camera) {
                 auto COM = simu.robot()->skeleton()->getCOM();
                 // set camera to follow hexapod
@@ -49,7 +52,17 @@ namespace robot_dart {
                 _osg_viewer.home();
             }
             // process next frame
-            _osg_viewer.frame();
+            if (i % _render_period == 0)
+                _osg_viewer.frame();
+            i++;
+        }
+
+        void set_render_period(double dt)
+        {
+            // we want to display at around 60Hz of simulated time
+            _render_period = std::floor(0.015 / dt);
+            if (_render_period < 1)
+                _render_period = 1;
         }
 
         void fixed_camera(const Eigen::Vector3d& camera_pos,
@@ -87,6 +100,7 @@ namespace robot_dart {
         Eigen::Vector3d _camera_up;
         osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
         dart::gui::osg::Viewer _osg_viewer;
+        int _render_period;
     };
 }
 

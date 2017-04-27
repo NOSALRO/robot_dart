@@ -18,6 +18,8 @@ namespace robot_dart {
 
         template <typename Simu>
         void refresh(Simu& simu) {}
+
+        void set_render_period(double dt) {}
     };
 }
 
