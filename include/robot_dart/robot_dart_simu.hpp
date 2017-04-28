@@ -171,7 +171,7 @@ namespace robot_dart {
         }
 
         // pose: RPY-Position, dims: XYZ
-        void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, std::string type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")
+        void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")
         {
             std::string name = box_name;
             // We do not want boxes with the same names!
@@ -219,7 +219,7 @@ namespace robot_dart {
         }
 
         // pose: RPY-Position, dims: XYZ
-        void add_ellipsoid(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, std::string type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "sphere")
+        void add_ellipsoid(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "sphere")
         {
             std::string name = ellipsoid_name;
             // We do not want ellipsoids with the same names!
@@ -267,7 +267,7 @@ namespace robot_dart {
         }
 
         // pose: RPY-Position
-        void add_skeleton(const dart::dynamics::SkeletonPtr& skel, const Eigen::Vector6d& pose, std::string type = "free")
+        void add_skeleton(const dart::dynamics::SkeletonPtr& skel, const Eigen::Vector6d& pose, const std::string& type = "free", const std::string& name = "")
         {
             // Put the body into position
             if (type == "free") // free floating
@@ -283,6 +283,9 @@ namespace robot_dart {
                 skel->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
                 skel->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(T);
             }
+
+            if (name != "")
+                skel->setName(name);
 
             _world->addSkeleton(skel);
             _objects.push_back(skel);
