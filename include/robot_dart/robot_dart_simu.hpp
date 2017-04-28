@@ -170,7 +170,7 @@ namespace robot_dart {
             return _controller;
         }
 
-        // pose: Orientation-Position, dims: XYZ
+        // pose: RPY-Position, dims: XYZ
         void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, std::string type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")
         {
             std::string name = box_name;
@@ -207,13 +207,18 @@ namespace robot_dart {
             if (type == "free") // free floating
                 box_skel->setPositions(pose);
             else // fixed
-                body->getParentJoint()->setTransformFromParentBodyNode(dart::math::expMap(pose));
+            {
+                Eigen::Isometry3d T;
+                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+                T.translation() = pose.tail(3);
+                body->getParentJoint()->setTransformFromParentBodyNode(T);
+            }
 
             _world->addSkeleton(box_skel);
             _objects.push_back(box_skel);
         }
 
-        // pose: Orientation-Position, dims: XYZ
+        // pose: RPY-Position, dims: XYZ
         void add_ellipsoid(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, std::string type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "sphere")
         {
             std::string name = ellipsoid_name;
@@ -250,10 +255,37 @@ namespace robot_dart {
             if (type == "free") // free floating
                 ellipsoid_skel->setPositions(pose);
             else // fixed
-                body->getParentJoint()->setTransformFromParentBodyNode(dart::math::expMap(pose));
+            {
+                Eigen::Isometry3d T;
+                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+                T.translation() = pose.tail(3);
+                body->getParentJoint()->setTransformFromParentBodyNode(T);
+            }
 
             _world->addSkeleton(ellipsoid_skel);
             _objects.push_back(ellipsoid_skel);
+        }
+
+        // pose: RPY-Position
+        void add_skeleton(const dart::dynamics::SkeletonPtr& skel, const Eigen::Vector6d& pose, std::string type = "free")
+        {
+            // Put the body into position
+            if (type == "free") // free floating
+            {
+                for (int i = 0; i < 6; i++)
+                    skel->setPosition(i, pose(i));
+            }
+            else // fixed
+            {
+                Eigen::Isometry3d T;
+                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+                T.translation() = pose.tail(3);
+                skel->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
+                skel->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(T);
+            }
+
+            _world->addSkeleton(skel);
+            _objects.push_back(skel);
         }
 
         void clear_objects()
