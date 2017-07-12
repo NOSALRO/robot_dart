@@ -4,13 +4,13 @@
 #include <boost/filesystem.hpp>
 
 #include <dart/dart.hpp>
-#include <dart/utils/urdf/urdf.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
+#include <dart/utils/urdf/urdf.hpp>
 
 #include <Eigen/Core>
-#include <string>
 #include <fstream>
 #include <streambuf>
+#include <string>
 
 namespace robot_dart {
 
@@ -88,7 +88,7 @@ namespace robot_dart {
 
         bool fixed_to_world() const
         {
-            return _fixed_to_world;
+            return _skeleton->getRootBodyNode()->getParentJoint()->getNumDofs() == 0;
         }
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
@@ -219,6 +219,7 @@ namespace robot_dart {
                 tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
             }
 
+            // Fix for mesh materials
             for (size_t i = 0; i < tmp_skel->getNumBodyNodes(); ++i) {
                 dart::dynamics::BodyNode* bn = tmp_skel->getBodyNode(i);
                 for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
