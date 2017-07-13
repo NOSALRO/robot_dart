@@ -11,7 +11,7 @@ namespace robot_dart {
 
         PositionControl() {}
         PositionControl(const std::vector<double>& ctrl, robot_t robot)
-            : RobotControl(ctrl, robot), _control_root_joint(true)
+            : RobotControl(ctrl, robot), _control_root_joint(false)
         {
             init();
         }
@@ -21,7 +21,7 @@ namespace robot_dart {
             _dof = _robot->skeleton()->getNumDofs();
 
             _start_dof = 0;
-            if (!_robot->fixed_to_world() && _control_root_joint) {
+            if (!_robot->fixed_to_world() && !_control_root_joint) {
                 _start_dof = _robot->skeleton()->getRootBodyNode()->getParentJoint()->getNumDofs();
             }
 
@@ -50,7 +50,12 @@ namespace robot_dart {
             _robot->skeleton()->setCommands(vel);
         }
 
-        void control_root_joint(bool enable = true) { _control_root_joint = enable; }
+        void control_root_joint(bool enable = true)
+        {
+            _control_root_joint = enable;
+            init();
+        }
+
         bool root_joint_controlled() { return _control_root_joint; }
 
     protected:

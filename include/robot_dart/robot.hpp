@@ -111,7 +111,7 @@ namespace robot_dart {
             assert(indices.size() == types.size());
             size_t jnt_num = _skeleton->getNumJoints();
             for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] > 0 && indices[i] < jnt_num);
+                assert(indices[i] >= 0 && indices[i] < jnt_num);
                 _skeleton->getJoint(indices[i])->setActuatorType(types[i]);
             }
         }
@@ -136,7 +136,7 @@ namespace robot_dart {
             assert(indices.size() == enforced.size());
             size_t jnt_num = _skeleton->getNumJoints();
             for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] > 0 && indices[i] < jnt_num);
+                assert(indices[i] >= 0 && indices[i] < jnt_num);
                 _skeleton->getJoint(indices[i])->setPositionLimitEnforced(enforced[i]);
             }
         }
@@ -162,7 +162,7 @@ namespace robot_dart {
             assert(indices.size() == damps.size());
             size_t jnt_num = _skeleton->getNumJoints();
             for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] > 0 && indices[i] < jnt_num);
+                assert(indices[i] >= 0 && indices[i] < jnt_num);
                 _skeleton->getJoint(indices[i])->setDampingCoefficient(0, damps[i]);
             }
         }
