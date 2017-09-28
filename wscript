@@ -32,7 +32,7 @@ def configure(conf):
     conf.load('eigen')
     conf.load('dart')
 
-    conf.check_boost(lib='regex syste filesystem', min_version='1.46')
+    conf.check_boost(lib='regex system filesystem', min_version='1.46')
     conf.check_eigen()
     conf.check_dart()
 
