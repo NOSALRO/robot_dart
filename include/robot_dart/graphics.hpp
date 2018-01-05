@@ -13,7 +13,7 @@ namespace robot_dart {
             RS_PARAM_ARRAY(int, resolution, 640, 480);
             RS_PARAM(bool, fullscreen, false);
         };
-    }
+    } // namespace defaults
 
     template <typename Params>
     class Graphics : public No_Graphics {
@@ -23,16 +23,12 @@ namespace robot_dart {
         template <typename World>
         Graphics(World world)
         {
+            _enabled = true;
             _fixed_camera = false;
             _free_camera = false;
             _osg_world_node = new dart::gui::osg::WorldNode(world);
             set_render_period(world->getTimeStep());
             _osg_viewer.addWorldNode(_osg_world_node);
-            _osg_viewer.setUpViewInWindow(0, 0, Params::graphics::resolution(0), Params::graphics::resolution(1));
-
-            if (Params::graphics::fullscreen())
-                _osg_viewer.setUpViewOnSingleScreen();
-            _osg_viewer.realize();
         }
 
         bool done() const
@@ -44,6 +40,17 @@ namespace robot_dart {
         void refresh(Simu& simu)
         {
             static int i = 0;
+
+            if (!_enabled)
+                return;
+
+            if (!_osg_viewer.isRealized()) {
+                _osg_viewer.setUpViewInWindow(0, 0, Params::graphics::resolution(0), Params::graphics::resolution(1));
+                if (Params::graphics::fullscreen())
+                    _osg_viewer.setUpViewOnSingleScreen();
+                _osg_viewer.realize();
+            }
+
             if (!_free_camera && !_fixed_camera) {
                 auto COM = simu.robot()->skeleton()->getCOM();
                 // set camera to follow hexapod
@@ -63,6 +70,11 @@ namespace robot_dart {
             _render_period = std::floor(0.015 / dt);
             if (_render_period < 1)
                 _render_period = 1;
+        }
+
+        void set_enable(bool enable)
+        {
+            _enabled = enable;
         }
 
         void fixed_camera(const Eigen::Vector3d& camera_pos,
@@ -101,7 +113,8 @@ namespace robot_dart {
         osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
         dart::gui::osg::Viewer _osg_viewer;
         int _render_period;
+        bool _enabled;
     };
-}
+} // namespace robot_dart
 
 #endif

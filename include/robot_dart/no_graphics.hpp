@@ -20,6 +20,8 @@ namespace robot_dart {
         void refresh(Simu& simu) {}
 
         void set_render_period(double dt) {}
+
+        void set_enable(bool enable) {}
     };
 }
 

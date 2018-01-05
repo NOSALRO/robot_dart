@@ -1,7 +1,7 @@
-#include <iostream>
 #include <cstdlib>
-#include <robot_dart/robot_dart_simu.hpp>
+#include <iostream>
 #include <robot_dart/force_control.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
