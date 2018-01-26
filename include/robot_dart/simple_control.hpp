@@ -15,7 +15,7 @@ namespace robot_dart {
         {
             _dof = _robot->skeleton()->getNumDofs();
             _start_dof = 0;
-            if (!_robot->fixed())
+            if (_robot->free())
                 _start_dof = 6;
 
             if (_ctrl.size() == _dof)

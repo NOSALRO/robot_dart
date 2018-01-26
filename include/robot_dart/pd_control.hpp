@@ -20,7 +20,7 @@ namespace robot_dart {
         {
             _dof = _robot->skeleton()->getNumDofs();
             _start_dof = 0;
-            if (!_robot->fixed())
+            if (_robot->free())
                 _start_dof = 6;
             _prev_error = Eigen::VectorXd::Zero(_dof);
 
