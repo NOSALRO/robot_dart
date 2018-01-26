@@ -12,8 +12,8 @@ namespace robot_dart {
 
     class RobotControl {
     public:
-        RobotControl() : _active(false) {}
-        RobotControl(const std::vector<double>& ctrl) : _ctrl(ctrl), _active(false) {}
+        RobotControl() : _weight(1.), _active(false) {}
+        RobotControl(const std::vector<double>& ctrl) : _ctrl(ctrl), _weight(1.), _active(false) {}
 
         void set_parameters(const std::vector<double>& ctrl) { _ctrl = ctrl; }
 
@@ -27,9 +27,13 @@ namespace robot_dart {
 
         bool active() const { return _active; }
 
+        double weight() const { return _weight; }
+        void set_weight(double weight) { _weight = weight; }
+
     protected:
         std::shared_ptr<Robot> _robot;
         std::vector<double> _ctrl;
+        double _weight;
         bool _active;
     };
 } // namespace robot_dart

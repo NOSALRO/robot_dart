@@ -76,7 +76,7 @@ namespace robot_dart {
             Eigen::VectorXd commands = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
             for (auto& ctrl : _controllers) {
                 if (ctrl->active())
-                    commands += ctrl->commands(t);
+                    commands += ctrl->weight() * ctrl->commands(t);
             }
 
             _skeleton->setCommands(commands);
@@ -100,10 +100,11 @@ namespace robot_dart {
             return ctrls;
         }
 
-        void add_controller(const std::shared_ptr<RobotControl>& controller)
+        void add_controller(const std::shared_ptr<RobotControl>& controller, double weight = 1.0)
         {
             _controllers.push_back(controller);
             controller->set_robot(this->shared_from_this());
+            controller->set_weight(weight);
             controller->init();
         }
 

@@ -113,7 +113,7 @@ int main()
 
     g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl));
     ctrl = {-1.0};
-    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl));
+    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl), 5.);
 
 #ifdef GRAPHIC
     robot_dart::RobotDARTSimu<robot_dart::graphics<robot_dart::Graphics<Params>>> simu;
