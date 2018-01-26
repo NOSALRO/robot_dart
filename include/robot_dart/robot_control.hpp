@@ -1,55 +1,37 @@
 #ifndef ROBOT_DART_ROBOT_CONTROL
 #define ROBOT_DART_ROBOT_CONTROL
 
-#include <robot_dart/robot.hpp>
+#include <Eigen/Core>
+
+#include <memory>
+#include <vector>
 
 namespace robot_dart {
 
+    class Robot;
+
     class RobotControl {
     public:
-        using robot_t = std::shared_ptr<Robot>;
+        RobotControl() : _active(false) {}
+        RobotControl(const std::vector<double>& ctrl) : _ctrl(ctrl), _active(false) {}
 
-        RobotControl() {}
-        RobotControl(const std::vector<double>& ctrl, robot_t robot)
-            : _robot(robot), _ctrl(ctrl)
-        {
-            _dof = _robot->skeleton()->getNumDofs();
-        }
+        void set_parameters(const std::vector<double>& ctrl) { _ctrl = ctrl; }
 
-        virtual void set_parameters(const std::vector<double>& ctrl)
-        {
-            _ctrl = ctrl;
-        }
+        std::vector<double> parameters() const { return _ctrl; }
 
-        std::vector<double> parameters() const
-        {
-            return _ctrl;
-        }
+        virtual Eigen::VectorXd commands(double t) = 0;
 
-        robot_t robot()
-        {
-            return _robot;
-        }
+        virtual void init() {}
 
-        virtual void update(double t)
-        {
-            set_commands();
-        }
+        virtual void set_robot(const std::shared_ptr<Robot>& robot) { _robot = robot; }
 
-        virtual void set_commands()
-        {
-        }
-
-        virtual void init()
-        {
-        }
+        bool active() const { return _active; }
 
     protected:
-        robot_t _robot;
-
+        std::shared_ptr<Robot> _robot;
         std::vector<double> _ctrl;
-        size_t _dof;
+        bool _active;
     };
-}
+} // namespace robot_dart
 
 #endif

@@ -51,13 +51,13 @@ namespace robot_dart {
                 _osg_viewer.realize();
             }
 
-            if (!_free_camera && !_fixed_camera) {
-                auto COM = simu.robot()->skeleton()->getCOM();
-                // set camera to follow hexapod
-                _osg_viewer.getCameraManipulator()->setHomePosition(
-                    osg::Vec3d(-0.5, 3, 1), osg::Vec3d(COM(0), COM(1), COM(2)), osg::Vec3d(0, 0, 1));
-                _osg_viewer.home();
-            }
+            // if (!_free_camera && !_fixed_camera) {
+            //     auto COM = simu.robot()->skeleton()->getCOM();
+            //     // set camera to follow hexapod
+            //     _osg_viewer.getCameraManipulator()->setHomePosition(
+            //         osg::Vec3d(-0.5, 3, 1), osg::Vec3d(COM(0), COM(1), COM(2)), osg::Vec3d(0, 0, 1));
+            //     _osg_viewer.home();
+            // }
             // process next frame
             if (i % _render_period == 0)
                 _osg_viewer.frame();
@@ -92,11 +92,11 @@ namespace robot_dart {
             _osg_viewer.home();
         }
 
-        void follow_robot()
-        {
-            _fixed_camera = false;
-            _free_camera = false;
-        }
+        // void follow_robot()
+        // {
+        //     _fixed_camera = false;
+        //     _free_camera = false;
+        // }
 
         void free_camera()
         {

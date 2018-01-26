@@ -1,6 +1,6 @@
 #include <cstdlib>
 #include <iostream>
-#include <robot_dart/force_control.hpp>
+#include <robot_dart/simple_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
@@ -111,18 +111,23 @@ int main()
     std::vector<double> ctrl;
     ctrl = {0.0};
 
+    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl));
+    ctrl = {-1.0};
+    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl));
+
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>, robot_dart::graphics<robot_dart::Graphics<Params>>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<robot_dart::graphics<robot_dart::Graphics<Params>>> simu;
 #else
-    robot_dart::RobotDARTSimu<robot_dart::robot_control<robot_dart::ForceControl>> simu(ctrl, g_robot);
+    robot_dart::RobotDARTSimu<> simu;
 #endif
+    simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(1);
     // std::cout << simu.energy() << std::endl;
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     //     std::cout << g_robot->end_effector_pos().transpose() << std::endl;
     ctrl = {2.5};
-    simu.controller().set_parameters(ctrl);
+    g_robot->controllers()[0]->set_parameters(ctrl);
     simu.run(0.5);
     // std::cout << simu.energy() << std::endl;
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;

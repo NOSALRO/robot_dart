@@ -74,9 +74,10 @@
   <joint name="arm_joint_1" type="revolute">
     <parent link="arm_link_0"/>
     <child link="arm_link_1"/>
-    <limit effort="30.0" lower="-3.1415926535" upper="3.1415926535" velocity="5.0"/>
+    <limit effort="5.0" lower="-3.1415926535" upper="3.1415926535" velocity="5.0"/>
     <origin rpy="0 0 0" xyz="0 0 0.0545"/>
     <axis xyz="0 0 1"/>
+    <dynamics damping="0.5"/>
   </joint>
   <link name="arm_link_1">
     <visual>
@@ -103,9 +104,10 @@
   <joint name="arm_joint_2" type="revolute">
     <parent link="arm_link_1"/>
     <child link="arm_link_2"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
+    <limit effort="5.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
     <origin rpy="0 0 0" xyz="0 0 0.123"/>
     <axis xyz="0 1 0"/>
+    <dynamics damping="0.5"/>
   </joint>
   <link name="arm_link_2">
     <visual>
@@ -132,9 +134,10 @@
   <joint name="arm_joint_3" type="revolute">
     <parent link="arm_link_2"/>
     <child link="arm_link_3"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
+    <limit effort="5.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
     <origin rpy="0 0 0" xyz="0 0 0.317"/>
     <axis xyz="0 1 0"/>
+    <dynamics damping="0.5"/>
   </joint>
   <link name="arm_link_3">
     <visual>
@@ -161,9 +164,10 @@
   <joint name="arm_joint_4" type="revolute">
     <parent link="arm_link_3"/>
     <child link="arm_link_4"/>
-    <limit effort="30.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
+    <limit effort="5.0" lower="-1.57079632679" upper="1.57079632679" velocity="5.0"/>
     <origin rpy="0 0 0" xyz="0 0 0.202"/>
     <axis xyz="0 1 0"/>
+    <dynamics damping="0.5"/>
   </joint>
   <link name="arm_link_4">
     <visual>
@@ -192,6 +196,13 @@
     <child link="arm_link_5"/>
     <origin rpy="0 0 0" xyz="0 0 0.1605"/>
   </joint>
-  <link name="arm_link_5"/>
+  <link name="arm_link_5">
+    <inertial>
+      <!-- CENTER OF MASS -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1e-8"/>
+      <inertia ixx="1e-12" ixy="0" ixz="0" iyy="1e-12" iyz="0" izz="1e-12"/>
+    </inertial>
+  </link>
   <!-- END OF ARM LINKS/JOINTS -->
 </robot>

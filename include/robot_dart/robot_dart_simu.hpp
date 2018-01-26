@@ -1,118 +1,101 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
-#include <boost/parameter.hpp>
-#include <boost/fusion/include/vector.hpp>
 #include <boost/fusion/include/accumulate.hpp>
-#include <boost/fusion/include/for_each.hpp>
 #include <boost/fusion/include/find.hpp>
+#include <boost/fusion/include/for_each.hpp>
+#include <boost/fusion/include/vector.hpp>
+#include <boost/parameter.hpp>
 
-#include <dart/dart.hpp>
-#include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <Eigen/Core>
-#include <robot_dart/robot.hpp>
-#include <robot_dart/robot_control.hpp>
+#include <dart/collision/dart/DARTCollisionDetector.hpp>
+#include <dart/dart.hpp>
 #include <robot_dart/descriptors.hpp>
 #include <robot_dart/no_graphics.hpp>
+#include <robot_dart/robot.hpp>
 
 namespace robot_dart {
 
-    BOOST_PARAMETER_TEMPLATE_KEYWORD(robot_control)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(desc)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(graphics)
     BOOST_PARAMETER_TEMPLATE_KEYWORD(collision)
 
-    typedef boost::parameter::parameters<boost::parameter::optional<tag::robot_control>,
-        boost::parameter::optional<tag::desc>,
+    typedef boost::parameter::parameters<boost::parameter::optional<tag::desc>,
         boost::parameter::optional<tag::graphics>,
         boost::parameter::optional<tag::collision>>
         class_signature;
 
     template <typename Simu, typename robot>
     struct Refresh {
-        Refresh(Simu& simu, std::shared_ptr<robot> rob)
-            : _simu(simu), _robot(rob) {}
+        Refresh(Simu& simu, std::vector<std::shared_ptr<robot>> robots)
+            : _simu(simu), _robots(robots) {}
 
         Simu& _simu;
-        std::shared_ptr<robot> _robot;
+        std::vector<std::shared_ptr<robot>> _robots;
 
         template <typename T>
-        void operator()(T& x) const { x(_simu, _robot); }
+        void operator()(T& x) const { x(_simu, _robots); }
     };
 
-    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_, class A4 = boost::parameter::void_, class A5 = boost::parameter::void_>
+    template <class A1 = boost::parameter::void_, class A2 = boost::parameter::void_, class A3 = boost::parameter::void_>
     class RobotDARTSimu {
     public:
         using robot_t = std::shared_ptr<Robot>;
         // defaults
         struct defaults {
-            using robot_control_t = RobotControl;
             using descriptors_t = boost::fusion::vector<>;
             using graphics_t = No_Graphics;
             using collision_t = dart::collision::DARTCollisionDetector;
         };
 
         // extract the types
-        using args = typename class_signature::bind<A1, A2, A3, A4, A5>::type;
-        using robot_control_t = typename boost::parameter::binding<args, tag::robot_control, typename defaults::robot_control_t>::type;
+        using args = typename class_signature::bind<A1, A2, A3>::type;
         using Descriptors = typename boost::parameter::binding<args, tag::desc, typename defaults::descriptors_t>::type;
         using descriptors_t = typename boost::mpl::if_<boost::fusion::traits::is_sequence<Descriptors>, Descriptors, boost::fusion::vector<Descriptors>>::type;
         using graphics_t = typename boost::parameter::binding<args, tag::graphics, typename defaults::graphics_t>::type;
         using collision_t = typename boost::parameter::binding<args, tag::collision, typename defaults::collision_t>::type;
 
-        RobotDARTSimu(const std::vector<double>& ctrl, robot_t robot) : _energy(0.0),
-                                                                        _world(std::make_shared<dart::simulation::World>()),
-                                                                        _controller(ctrl, robot),
-                                                                        _old_index(0),
-                                                                        _desc_period(1),
-                                                                        _break(false)
+        RobotDARTSimu(double time_step = 0.015) : _world(std::make_shared<dart::simulation::World>()),
+                                                  _old_index(0),
+                                                  _desc_period(1),
+                                                  _break(false)
         {
-            _robot = robot;
             _world->getConstraintSolver()->setCollisionDetector(collision_t::create());
-            _world->setTimeStep(0.015);
-            _world->addSkeleton(_robot->skeleton());
+            _world->setTimeStep(time_step);
             _world->setTime(0.0);
             _graphics = std::make_shared<graphics_t>(_world);
         }
 
-        ~RobotDARTSimu() {}
+        ~RobotDARTSimu()
+        {
+            _robots.clear();
+        }
 
         void run(double max_duration = 5.0)
         {
             _break = false;
-            robot_t rob = this->robot();
             size_t index = _old_index;
             double old_t = _world->getTime();
 
             while ((_world->getTime() - old_t) < max_duration && !_graphics->done()) {
-                _controller.update(_world->getTime());
+                for (auto& robot : _robots)
+                    robot->update(_world->getTime());
 
                 _world->step(false);
-
-                // integrate Torque (force) over time
-                Eigen::VectorXd state = rob->skeleton()->getForces().array().abs() * _world->getTimeStep();
-                _energy += state.sum();
 
                 _graphics->refresh(*this);
 
                 if (index % _desc_period == 0) {
                     // update descriptors
-                    boost::fusion::for_each(_descriptors, Refresh<RobotDARTSimu, Robot>(*this, rob));
+                    boost::fusion::for_each(_descriptors, Refresh<RobotDARTSimu, Robot>(*this, _robots));
                 }
 
-                if (_break) {
-                    _energy = -10002.0;
-                    return;
-                }
+                if (_break)
+                    break;
 
                 ++index;
             }
             _old_index = index;
-        }
-
-        robot_t robot()
-        {
-            return _robot;
         }
 
         std::shared_ptr<graphics_t> graphics()
@@ -130,11 +113,6 @@ namespace robot_dart {
         {
             auto d = boost::fusion::find<Desc>(_descriptors);
             (*d).get(result);
-        }
-
-        double energy() const
-        {
-            return _energy;
         }
 
         double step() const
@@ -165,139 +143,150 @@ namespace robot_dart {
             _break = disable;
         }
 
-        robot_control_t& controller()
+        void add_robot(const robot_t& robot)
         {
-            return _controller;
+            if (robot->skeleton()) {
+                _robots.push_back(robot);
+                _world->addSkeleton(robot->skeleton());
+            }
         }
 
-        // pose: RPY-Position, dims: XYZ
-        void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")
+        void clear_robots()
         {
-            std::string name = box_name;
-            // We do not want boxes with the same names!
-            while (_world->getSkeleton(name) != nullptr) {
-                if (name[name.size() - 2] == '_') {
-                    int i = name.back() - '0';
-                    i++;
-                    name.pop_back();
-                    name = name + std::to_string(i);
-                }
-                else {
-                    name = name + "_1";
-                }
+            for (auto& robot : _robots) {
+                _world->removeSkeleton(robot->skeleton());
             }
-
-            dart::dynamics::SkeletonPtr box_skel = dart::dynamics::Skeleton::create(name);
-
-            // Give the box a body
-            dart::dynamics::BodyNodePtr body;
-            if (type == "free")
-                body = box_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
-            else
-                body = box_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
-            body->setMass(mass);
-            body->setName(name);
-
-            // Give the body a shape
-            auto box = std::make_shared<dart::dynamics::BoxShape>(dims);
-            auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
-            box_node->getVisualAspect()->setColor(color);
-
-            // Put the body into position
-            if (type == "free") // free floating
-                box_skel->setPositions(pose);
-            else // fixed
-            {
-                Eigen::Isometry3d T;
-                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
-                T.translation() = pose.tail(3);
-                body->getParentJoint()->setTransformFromParentBodyNode(T);
-            }
-
-            _world->addSkeleton(box_skel);
-            _objects.push_back(box_skel);
+            _robots.clear();
         }
 
-        // pose: RPY-Position, dims: XYZ
-        void add_ellipsoid(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "sphere")
-        {
-            std::string name = ellipsoid_name;
-            // We do not want ellipsoids with the same names!
-            while (_world->getSkeleton(name) != nullptr) {
-                if (name[name.size() - 2] == '_') {
-                    int i = name.back() - '0';
-                    i++;
-                    name.pop_back();
-                    name = name + std::to_string(i);
-                }
-                else {
-                    name = name + "_1";
-                }
-            }
+        // // pose: RPY-Position, dims: XYZ
+        // void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")
+        // {
+        //     std::string name = box_name;
+        //     // We do not want boxes with the same names!
+        //     while (_world->getSkeleton(name) != nullptr) {
+        //         if (name[name.size() - 2] == '_') {
+        //             int i = name.back() - '0';
+        //             i++;
+        //             name.pop_back();
+        //             name = name + std::to_string(i);
+        //         }
+        //         else {
+        //             name = name + "_1";
+        //         }
+        //     }
 
-            dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(name);
+        //     dart::dynamics::SkeletonPtr box_skel = dart::dynamics::Skeleton::create(name);
 
-            // Give the ellipsoid a body
-            dart::dynamics::BodyNodePtr body;
-            if (type == "free")
-                body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
-            else
-                body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
-            body->setMass(mass);
-            body->setName(name);
+        //     // Give the box a body
+        //     dart::dynamics::BodyNodePtr body;
+        //     if (type == "free")
+        //         body = box_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
+        //     else
+        //         body = box_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
+        //     body->setMass(mass);
+        //     body->setName(name);
 
-            // Give the body a shape
-            auto ellipsoid = std::make_shared<dart::dynamics::EllipsoidShape>(dims);
-            auto ellipsoid_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(ellipsoid);
-            ellipsoid_node->getVisualAspect()->setColor(color);
+        //     // Give the body a shape
+        //     auto box = std::make_shared<dart::dynamics::BoxShape>(dims);
+        //     auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
+        //     box_node->getVisualAspect()->setColor(color);
 
-            // Put the body into position
-            if (type == "free") // free floating
-                ellipsoid_skel->setPositions(pose);
-            else // fixed
-            {
-                Eigen::Isometry3d T;
-                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
-                T.translation() = pose.tail(3);
-                body->getParentJoint()->setTransformFromParentBodyNode(T);
-            }
+        //     // Put the body into position
+        //     if (type == "free") // free floating
+        //         box_skel->setPositions(pose);
+        //     else // fixed
+        //     {
+        //         Eigen::Isometry3d T;
+        //         T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        //         T.translation() = pose.tail(3);
+        //         body->getParentJoint()->setTransformFromParentBodyNode(T);
+        //     }
 
-            _world->addSkeleton(ellipsoid_skel);
-            _objects.push_back(ellipsoid_skel);
-        }
+        //     _world->addSkeleton(box_skel);
+        //     _objects.push_back(box_skel);
+        // }
 
-        // pose: RPY-Position
-        void add_skeleton(const dart::dynamics::SkeletonPtr& skel, const Eigen::Vector6d& pose, const std::string& type = "free", const std::string& name = "")
-        {
-            // Put the body into position
-            if (type == "free") // free floating
-            {
-                for (int i = 0; i < 6; i++)
-                    skel->setPosition(i, pose(i));
-            }
-            else // fixed
-            {
-                Eigen::Isometry3d T;
-                T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
-                T.translation() = pose.tail(3);
-                skel->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
-                skel->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(T);
-            }
+        // // pose: RPY-Position, dims: XYZ
+        // void add_ellipsoid(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "sphere")
+        // {
+        //     std::string name = ellipsoid_name;
+        //     // We do not want ellipsoids with the same names!
+        //     while (_world->getSkeleton(name) != nullptr) {
+        //         if (name[name.size() - 2] == '_') {
+        //             int i = name.back() - '0';
+        //             i++;
+        //             name.pop_back();
+        //             name = name + std::to_string(i);
+        //         }
+        //         else {
+        //             name = name + "_1";
+        //         }
+        //     }
 
-            if (name != "")
-                skel->setName(name);
+        //     dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(name);
 
-            _world->addSkeleton(skel);
-            _objects.push_back(skel);
-        }
+        //     // Give the ellipsoid a body
+        //     dart::dynamics::BodyNodePtr body;
+        //     if (type == "free")
+        //         body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
+        //     else
+        //         body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
+        //     body->setMass(mass);
+        //     body->setName(name);
 
-        void clear_objects()
-        {
-            for (auto obj : _objects) {
-                _world->removeSkeleton(obj);
-            }
-            _objects.clear();
-        }
+        //     // Give the body a shape
+        //     auto ellipsoid = std::make_shared<dart::dynamics::EllipsoidShape>(dims);
+        //     auto ellipsoid_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(ellipsoid);
+        //     ellipsoid_node->getVisualAspect()->setColor(color);
+
+        //     // Put the body into position
+        //     if (type == "free") // free floating
+        //         ellipsoid_skel->setPositions(pose);
+        //     else // fixed
+        //     {
+        //         Eigen::Isometry3d T;
+        //         T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        //         T.translation() = pose.tail(3);
+        //         body->getParentJoint()->setTransformFromParentBodyNode(T);
+        //     }
+
+        //     _world->addSkeleton(ellipsoid_skel);
+        //     _objects.push_back(ellipsoid_skel);
+        // }
+
+        // // pose: RPY-Position
+        // void add_skeleton(const dart::dynamics::SkeletonPtr& skel, const Eigen::Vector6d& pose, const std::string& type = "free", const std::string& name = "")
+        // {
+        //     // Put the body into position
+        //     if (type == "free") // free floating
+        //     {
+        //         for (int i = 0; i < 6; i++)
+        //             skel->setPosition(i, pose(i));
+        //     }
+        //     else // fixed
+        //     {
+        //         Eigen::Isometry3d T;
+        //         T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        //         T.translation() = pose.tail(3);
+        //         skel->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
+        //         skel->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(T);
+        //     }
+
+        //     if (name != "")
+        //         skel->setName(name);
+
+        //     _world->addSkeleton(skel);
+        //     _objects.push_back(skel);
+        // }
+
+        // void clear_objects()
+        // {
+        //     for (auto obj : _objects) {
+        //         _world->removeSkeleton(obj);
+        //     }
+        //     _objects.clear();
+        // }
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, std::string floor_name = "floor", double x = 0.0, double y = 0.0)
         {
@@ -324,18 +313,14 @@ namespace robot_dart {
         }
 
     protected:
-        robot_t _robot;
-        Eigen::Vector3d _final_pos;
-        double _energy;
         dart::simulation::WorldPtr _world;
-        robot_control_t _controller;
         size_t _old_index;
         size_t _desc_period;
         bool _break;
         descriptors_t _descriptors;
-        std::vector<dart::dynamics::SkeletonPtr> _objects;
+        std::vector<robot_t> _robots;
         std::shared_ptr<graphics_t> _graphics;
     };
-}
+} // namespace robot_dart
 
 #endif

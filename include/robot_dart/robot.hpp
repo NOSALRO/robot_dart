@@ -12,6 +12,8 @@
 #include <streambuf>
 #include <string>
 
+#include <robot_dart/robot_control.hpp>
+
 namespace robot_dart {
 
     struct RobotDamage {
@@ -23,7 +25,7 @@ namespace robot_dart {
         void* extra = nullptr;
     };
 
-    class Robot {
+    class Robot : public std::enable_shared_from_this<Robot> {
     public:
         Robot() {}
 
@@ -69,26 +71,83 @@ namespace robot_dart {
             return _robot_name;
         }
 
+        void update(double t)
+        {
+            Eigen::VectorXd commands = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
+            for (auto& ctrl : _controllers) {
+                if (ctrl->active())
+                    commands += ctrl->commands(t);
+            }
+
+            _skeleton->setCommands(commands);
+        }
+
+        void reinitControllers()
+        {
+            for (auto& ctrl : _controllers)
+                ctrl->init();
+        }
+
+        std::vector<std::shared_ptr<RobotControl>> controllers() const { return _controllers; }
+        std::vector<std::shared_ptr<RobotControl>> activeControllers() const
+        {
+            std::vector<std::shared_ptr<RobotControl>> ctrls;
+            for (auto& ctrl : _controllers) {
+                if (ctrl->active())
+                    ctrls.push_back(ctrl);
+            }
+
+            return ctrls;
+        }
+
+        void add_controller(const std::shared_ptr<RobotControl>& controller)
+        {
+            _controllers.push_back(controller);
+            controller->set_robot(this->shared_from_this());
+            controller->init();
+        }
+
+        const std::shared_ptr<RobotControl>& controller(size_t index)
+        {
+            assert(index < _controllers.size());
+            return _controllers[index];
+        }
+
+        // TO-DO: Add remove_controller
+
         void fix_to_world()
         {
+            if (fixed())
+                return;
             Eigen::Isometry3d tf(dart::math::expMap(_skeleton->getPositions().segment(0, 6)));
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
             _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
             _fixed_to_world = true;
+
+            reinitControllers();
         }
 
         // pose: Orientation-Position
         void free_from_world(const Eigen::Vector6d& pose = Eigen::Vector6d::Zero())
         {
+            if (free())
+                return;
             Eigen::Isometry3d tf(dart::math::expMap(pose));
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
             _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
             _fixed_to_world = false;
+
+            reinitControllers();
         }
 
-        bool fixed_to_world() const
+        bool fixed() const
         {
-            return _skeleton->getRootBodyNode()->getParentJoint()->getNumDofs() == 0;
+            return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::WeldJoint::getStaticType();
+        }
+
+        bool free() const
+        {
+            return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::FreeJoint::getStaticType();
         }
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
@@ -254,8 +313,9 @@ namespace robot_dart {
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
+        std::vector<std::shared_ptr<RobotControl>> _controllers;
         bool _fixed_to_world;
     };
-}
+} // namespace robot_dart
 
 #endif

@@ -15,7 +15,7 @@ namespace robot_dart {
         struct DescriptorBase {
         public:
             template <typename Simu, typename robot>
-            void operator()(Simu& simu, std::shared_ptr<robot> rob)
+            void operator()(Simu& simu, std::vector<std::shared_ptr<robot>> rob)
             {
                 assert(false);
             }
@@ -26,25 +26,6 @@ namespace robot_dart {
                 assert(false);
             }
         };
-
-        // struct EndEffectorTraj : public DescriptorBase {
-        // public:
-        //     EndEffectorTraj() {}
-        //
-        //     template <typename Simu, typename robot>
-        //     void operator()(Simu& simu, std::shared_ptr<robot> rob)
-        //     {
-        //         _eef_traj.push_back(rob->end_effector_pos());
-        //     }
-        //
-        //     void get(std::vector<Eigen::Vector3d>& results)
-        //     {
-        //         results = _eef_traj;
-        //     }
-        //
-        // protected:
-        //     std::vector<Eigen::Vector3d> _eef_traj;
-        // };
     }
 }
 

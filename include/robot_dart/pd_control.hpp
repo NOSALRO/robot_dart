@@ -1,45 +1,34 @@
 #ifndef ROBOT_DART_PD_CONTROL
 #define ROBOT_DART_PD_CONTROL
 
+#include <robot_dart/robot.hpp>
 #include <robot_dart/robot_control.hpp>
 
 namespace robot_dart {
 
     class PDControl : public RobotControl {
     public:
-        using robot_t = std::shared_ptr<Robot>;
-
-        PDControl() {}
-        PDControl(const std::vector<double>& ctrl, robot_t robot)
-            : RobotControl(ctrl, robot)
+        PDControl() : RobotControl() {}
+        PDControl(const std::vector<double>& ctrl) : RobotControl(ctrl)
         {
-            init();
-
             // Default values for PD controller
-            _Kp = 200.0;
-            _Kd = 40.0;
+            _Kp = 10.0;
+            _Kd = 0.1;
         }
 
         void init()
         {
             _dof = _robot->skeleton()->getNumDofs();
-
             _start_dof = 0;
-            if (!_robot->fixed_to_world()) {
+            if (!_robot->fixed())
                 _start_dof = 6;
-            }
+            _prev_error = Eigen::VectorXd::Zero(_dof);
 
-            std::vector<size_t> indices;
-            std::vector<dart::dynamics::Joint::ActuatorType> types;
-            for (size_t i = _start_dof; i < _dof; i++) {
-                auto j = _robot->skeleton()->getDof(i)->getJoint();
-                indices.push_back(_robot->skeleton()->getIndexOf(j));
-                types.push_back(dart::dynamics::Joint::FORCE);
-            }
-            _robot->set_actuator_types(indices, types);
+            if (_ctrl.size() == _dof)
+                _active = true;
         }
 
-        void set_commands()
+        Eigen::VectorXd commands(double t) override
         {
             assert(_dof == _ctrl.size());
             Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
@@ -50,28 +39,27 @@ namespace robot_dart {
             q += dq * _robot->skeleton()->getTimeStep();
 
             Eigen::VectorXd q_err = target_positions - q;
-            Eigen::VectorXd dq_err = -dq;
+            Eigen::VectorXd dq_err = (q_err - _prev_error) / _robot->skeleton()->getTimeStep();
+            _prev_error = q_err;
 
-            const Eigen::MatrixXd& M = _robot->skeleton()->getMassMatrix();
-            const Eigen::VectorXd& Cg = _robot->skeleton()->getCoriolisAndGravityForces();
-
-            Eigen::VectorXd commands = M * (_Kp * q_err + _Kd * dq_err) + Cg;
+            Eigen::VectorXd commands = _Kp * q_err + _Kd * dq_err;
             if (_start_dof > 0)
                 commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
-            _robot->skeleton()->setCommands(commands);
+
+            return commands;
         }
 
         void set_pd(double p, double d)
         {
             _Kp = p;
             _Kd = d;
-            init();
         }
 
     protected:
         double _Kp, _Kd;
-        size_t _start_dof;
+        Eigen::VectorXd _prev_error;
+        size_t _start_dof, _dof;
     };
-}
+} // namespace robot_dart
 
 #endif
