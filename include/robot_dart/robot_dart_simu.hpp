@@ -27,7 +27,7 @@ namespace robot_dart {
 
     template <typename Simu, typename robot>
     struct Refresh {
-        Refresh(Simu& simu, std::vector<std::shared_ptr<robot>> robots)
+        Refresh(Simu& simu, const std::vector<std::shared_ptr<robot>>& robots)
             : _simu(simu), _robots(robots) {}
 
         Simu& _simu;

@@ -17,16 +17,20 @@ int main()
 {
     std::srand(std::time(NULL));
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
-    auto g_robot = global_robot->clone();
-    g_robot->fix_to_world();
-    g_robot->set_position_enforced(true);
+
+    global_robot->fix_to_world();
+    global_robot->set_position_enforced(true);
     // g_robot->skeleton()->setPosition(1, M_PI / 2.0);
     Eigen::Vector3d size(0, 0, 0);
+
+    global_robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
 
     std::vector<double> ctrl;
     ctrl = {0.0, 1.0, -1.5, 1.0};
 
-    g_robot->add_controller(std::make_shared<robot_dart::PDControl>(ctrl));
+    global_robot->add_controller(std::make_shared<robot_dart::PDControl>(ctrl));
+
+    auto g_robot = global_robot->clone();
 
 #ifdef GRAPHIC
     robot_dart::RobotDARTSimu<robot_dart::graphics<robot_dart::Graphics<Params>>> simu(0.001);

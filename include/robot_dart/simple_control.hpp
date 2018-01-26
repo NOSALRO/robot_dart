@@ -11,7 +11,7 @@ namespace robot_dart {
         SimpleControl() : RobotControl() {}
         SimpleControl(const std::vector<double>& ctrl) : RobotControl(ctrl) {}
 
-        void init()
+        void init() override
         {
             _dof = _robot->skeleton()->getNumDofs();
             _start_dof = 0;
@@ -31,6 +31,11 @@ namespace robot_dart {
                 commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
 
             return commands;
+        }
+
+        std::shared_ptr<RobotControl> clone() const override
+        {
+            return std::make_shared<SimpleControl>(*this);
         }
 
     protected:

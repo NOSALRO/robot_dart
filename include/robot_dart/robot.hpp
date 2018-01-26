@@ -29,13 +29,13 @@ namespace robot_dart {
     public:
         Robot() {}
 
-        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path)), _fixed_to_world(false)
+        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
         {
             assert(_skeleton != nullptr);
             _set_damages(damages);
         }
 
-        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton), _fixed_to_world(false)
+        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot") : _robot_name(robot_name), _skeleton(skeleton)
         {
             assert(_skeleton != nullptr);
             _skeleton->setName(robot_name);
@@ -52,7 +52,11 @@ namespace robot_dart {
             robot->_skeleton = tmp_skel;
             robot->_damages = _damages;
             robot->_robot_name = _robot_name;
-            robot->_fixed_to_world = _fixed_to_world;
+            robot->_controllers.clear();
+            for (auto& ctrl : _controllers) {
+                robot->_controllers.push_back(ctrl->clone());
+                robot->_controllers.back()->set_robot(robot);
+            }
             return robot;
         }
 
@@ -123,7 +127,6 @@ namespace robot_dart {
             Eigen::Isometry3d tf(dart::math::expMap(_skeleton->getPositions().segment(0, 6)));
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
             _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
-            _fixed_to_world = true;
 
             reinitControllers();
         }
@@ -136,7 +139,6 @@ namespace robot_dart {
             Eigen::Isometry3d tf(dart::math::expMap(pose));
             _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
             _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
-            _fixed_to_world = false;
 
             reinitControllers();
         }
@@ -153,77 +155,47 @@ namespace robot_dart {
 
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
         {
-            assert(types.size() == _skeleton->getNumJoints());
+            assert(types.size() == _skeleton->getNumDofs());
             for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setActuatorType(types[i]);
+                _skeleton->getDof(i)->getJoint()->setActuatorType(types[i]);
             }
         }
 
         void set_actuator_types(dart::dynamics::Joint::ActuatorType type)
         {
-            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setActuatorType(type);
-            }
-        }
-
-        void set_actuator_types(const std::vector<size_t>& indices, const std::vector<dart::dynamics::Joint::ActuatorType>& types)
-        {
-            assert(indices.size() == types.size());
-            size_t jnt_num = _skeleton->getNumJoints();
-            for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] >= 0 && indices[i] < jnt_num);
-                _skeleton->getJoint(indices[i])->setActuatorType(types[i]);
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->getJoint()->setActuatorType(type);
             }
         }
 
         void set_position_enforced(const std::vector<bool>& enforced)
         {
-            assert(enforced.size() == _skeleton->getNumJoints());
-            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setPositionLimitEnforced(enforced[i]);
+            assert(enforced.size() == _skeleton->getNumDofs());
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced[i]);
             }
         }
 
         void set_position_enforced(bool enforced)
         {
-            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setPositionLimitEnforced(enforced);
-            }
-        }
-
-        void set_position_enforced(const std::vector<size_t>& indices, const std::vector<bool>& enforced)
-        {
-            assert(indices.size() == enforced.size());
-            size_t jnt_num = _skeleton->getNumJoints();
-            for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] >= 0 && indices[i] < jnt_num);
-                _skeleton->getJoint(indices[i])->setPositionLimitEnforced(enforced[i]);
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced);
             }
         }
 
         // TODO: Warning this only works for the 1st DOF of the joints
         void set_damping_coeff(const std::vector<double>& damps)
         {
-            assert(damps.size() == _skeleton->getNumJoints());
-            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setDampingCoefficient(0, damps[i]);
+            assert(damps.size() == _skeleton->getNumDofs());
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->getJoint()->setDampingCoefficient(0, damps[i]);
             }
         }
 
         void set_damping_coeff(double damp)
         {
-            for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
-                _skeleton->getJoint(i)->setDampingCoefficient(0, damp);
-            }
-        }
-
-        void set_damping_coeff(const std::vector<size_t>& indices, const std::vector<double>& damps)
-        {
-            assert(indices.size() == damps.size());
-            size_t jnt_num = _skeleton->getNumJoints();
-            for (size_t i = 0; i < indices.size(); ++i) {
-                assert(indices[i] >= 0 && indices[i] < jnt_num);
-                _skeleton->getJoint(indices[i])->setDampingCoefficient(0, damps[i]);
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->getJoint()->setDampingCoefficient(0, damp);
             }
         }
 
@@ -315,7 +287,6 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<RobotControl>> _controllers;
-        bool _fixed_to_world;
     };
 } // namespace robot_dart
 

@@ -16,7 +16,7 @@ namespace robot_dart {
             _Kd = 0.1;
         }
 
-        void init()
+        void init() override
         {
             _dof = _robot->skeleton()->getNumDofs();
             _start_dof = 0;
@@ -53,6 +53,11 @@ namespace robot_dart {
         {
             _Kp = p;
             _Kd = d;
+        }
+
+        std::shared_ptr<RobotControl> clone() const override
+        {
+            return std::make_shared<PDControl>(*this);
         }
 
     protected:

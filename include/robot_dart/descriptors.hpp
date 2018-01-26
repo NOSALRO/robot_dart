@@ -15,7 +15,7 @@ namespace robot_dart {
         struct DescriptorBase {
         public:
             template <typename Simu, typename robot>
-            void operator()(Simu& simu, std::vector<std::shared_ptr<robot>> rob)
+            void operator()(Simu& simu, const std::vector<std::shared_ptr<robot>>& rob)
             {
                 assert(false);
             }

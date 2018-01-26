@@ -24,11 +24,14 @@ namespace robot_dart {
         virtual void init() {}
 
         virtual void set_robot(const std::shared_ptr<Robot>& robot) { _robot = robot; }
+        std::shared_ptr<Robot> robot() { return _robot; }
 
         bool active() const { return _active; }
 
         double weight() const { return _weight; }
         void set_weight(double weight) { _weight = weight; }
+
+        virtual std::shared_ptr<RobotControl> clone() const = 0;
 
     protected:
         std::shared_ptr<Robot> _robot;
