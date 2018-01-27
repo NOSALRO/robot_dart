@@ -45,7 +45,7 @@ def configure(conf):
 
     if conf.env.CXX_NAME in ["icc", "icpc"]:
         common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -xHost  -march=native -mtune=native -unroll -fma -g"
+        opt_flags = " -O3 -xHost -mtune=native -unroll -g"
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
         opt_flags = " -O3 -march=native -g"
