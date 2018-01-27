@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
+import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
 VERSION = '0.0.1'
@@ -56,12 +57,23 @@ def configure(conf):
 
 def build(bld):
 
+    files = glob.glob(bld.path.abspath()+"/include/robot_dart/*.cpp")
+    files = [f[len(bld.path.abspath())+1:] for f in files]
+    robot_dart_srcs = " ".join(files)
+
+    bld.stlib(features = 'cxx',
+                source = robot_dart_srcs,
+                includes = './include',
+                uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART',
+                target = 'robot_dart_simu')
+
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
                       source = 'src/pendulum_test.cpp',
                       includes = './include',
                       uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      use = 'robot_dart_simu',
                       defines = ['GRAPHIC'],
                       target = 'pendulum_test')
 
@@ -70,6 +82,7 @@ def build(bld):
                       source = 'src/arm_test.cpp',
                       includes = './include',
                       uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      use = 'robot_dart_simu',
                       defines = ['GRAPHIC'],
                       target = 'arm_test')
 
@@ -78,6 +91,7 @@ def build(bld):
                   source = 'src/pendulum_test.cpp',
                   includes = './include',
                   uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
+                  use = 'robot_dart_simu',
                   target = 'pendulum_test_plain')
 
     bld.program(features = 'cxx',
@@ -85,6 +99,7 @@ def build(bld):
                   source = 'src/arm_test.cpp',
                   includes = './include',
                   uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
+                  use = 'robot_dart_simu',
                   target = 'arm_test_plain')
 
     bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_dart_simu.hpp')

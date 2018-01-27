@@ -7,10 +7,10 @@
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
 
-struct Params {
-    struct graphics : robot_dart::defaults::graphics {
-    };
-};
+// struct Params {
+//     struct graphics : robot_dart::defaults::graphics {
+//     };
+// };
 #endif
 
 int main()
@@ -32,10 +32,9 @@ int main()
 
     auto g_robot = global_robot->clone();
 
+    robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::graphics<robot_dart::Graphics<Params>>> simu(0.001);
-#else
-    robot_dart::RobotDARTSimu<> simu(0.001);
+    simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
 #endif
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;

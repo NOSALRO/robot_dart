@@ -9,26 +9,19 @@ namespace robot_dart {
     class SimpleControl : public RobotControl {
     public:
         SimpleControl() : RobotControl() {}
-        SimpleControl(const std::vector<double>& ctrl) : RobotControl(ctrl) {}
+        SimpleControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control) {}
 
-        void init() override
+        void configure() override
         {
-            _dof = _robot->skeleton()->getNumDofs();
-            _start_dof = 0;
-            if (_robot->free())
-                _start_dof = 6;
-
-            if (_ctrl.size() == _dof)
+            if (_ctrl.size() == _control_dof)
                 _active = true;
         }
 
         Eigen::VectorXd commands(double t) override
         {
-            assert(_dof == _ctrl.size());
-            Eigen::VectorXd commands = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
-
-            if (_start_dof > 0)
-                commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
+            assert(_control_dof == _ctrl.size());
+            Eigen::VectorXd commands = Eigen::VectorXd::Zero(_dof);
+            commands.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
             return commands;
         }
@@ -37,9 +30,6 @@ namespace robot_dart {
         {
             return std::make_shared<SimpleControl>(*this);
         }
-
-    protected:
-        size_t _start_dof, _dof;
     };
 } // namespace robot_dart
 

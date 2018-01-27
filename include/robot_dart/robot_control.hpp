@@ -12,32 +12,35 @@ namespace robot_dart {
 
     class RobotControl {
     public:
-        RobotControl() : _weight(1.), _active(false) {}
-        RobotControl(const std::vector<double>& ctrl) : _ctrl(ctrl), _weight(1.), _active(false) {}
+        RobotControl();
+        RobotControl(const std::vector<double>& ctrl, bool full_control = false);
 
-        void set_parameters(const std::vector<double>& ctrl) { _ctrl = ctrl; }
+        void set_parameters(const std::vector<double>& ctrl);
+        std::vector<double> parameters() const;
 
-        std::vector<double> parameters() const { return _ctrl; }
+        void init();
 
+        void set_robot(const std::shared_ptr<Robot>& robot);
+        std::shared_ptr<Robot> robot();
+
+        bool active() const;
+
+        bool fully_controlled() const;
+        void set_full_control(bool enable = true);
+
+        double weight() const;
+        void set_weight(double weight);
+
+        virtual void configure() = 0;
         virtual Eigen::VectorXd commands(double t) = 0;
-
-        virtual void init() {}
-
-        virtual void set_robot(const std::shared_ptr<Robot>& robot) { _robot = robot; }
-        std::shared_ptr<Robot> robot() { return _robot; }
-
-        bool active() const { return _active; }
-
-        double weight() const { return _weight; }
-        void set_weight(double weight) { _weight = weight; }
-
         virtual std::shared_ptr<RobotControl> clone() const = 0;
 
     protected:
         std::shared_ptr<Robot> _robot;
         std::vector<double> _ctrl;
         double _weight;
-        bool _active;
+        bool _active, _full_control;
+        size_t _start_dof, _dof, _control_dof;
     };
 } // namespace robot_dart
 

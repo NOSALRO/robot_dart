@@ -9,29 +9,26 @@ namespace robot_dart {
     class PDControl : public RobotControl {
     public:
         PDControl() : RobotControl() {}
-        PDControl(const std::vector<double>& ctrl) : RobotControl(ctrl)
+        PDControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control)
         {
             // Default values for PD controller
             _Kp = 10.0;
             _Kd = 0.1;
         }
 
-        void init() override
+        void configure() override
         {
-            _dof = _robot->skeleton()->getNumDofs();
-            _start_dof = 0;
-            if (_robot->free())
-                _start_dof = 6;
             _prev_error = Eigen::VectorXd::Zero(_dof);
 
-            if (_ctrl.size() == _dof)
+            if (_ctrl.size() == _control_dof)
                 _active = true;
         }
 
         Eigen::VectorXd commands(double t) override
         {
-            assert(_dof == _ctrl.size());
-            Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            assert(_control_dof == _ctrl.size());
+            Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);
+            target_positions.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
             Eigen::VectorXd q = _robot->skeleton()->getPositions();
             Eigen::VectorXd dq = _robot->skeleton()->getVelocities();
@@ -63,7 +60,6 @@ namespace robot_dart {
     protected:
         double _Kp, _Kd;
         Eigen::VectorXd _prev_error;
-        size_t _start_dof, _dof;
     };
 } // namespace robot_dart
 

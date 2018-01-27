@@ -1,15 +1,10 @@
 #include <cstdlib>
 #include <iostream>
-#include <robot_dart/simple_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/simple_control.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
-
-struct Params {
-    struct graphics : robot_dart::defaults::graphics {
-    };
-};
 #endif
 
 // void setGeometry(const dart::dynamics::BodyNodePtr& bn)
@@ -115,10 +110,9 @@ int main()
     ctrl = {-1.0};
     g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl), 5.);
 
+    robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    robot_dart::RobotDARTSimu<robot_dart::graphics<robot_dart::Graphics<Params>>> simu;
-#else
-    robot_dart::RobotDARTSimu<> simu;
+    simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
 #endif
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
