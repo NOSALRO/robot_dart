@@ -57,58 +57,55 @@ def configure(conf):
 
 def build(bld):
 
-    files = glob.glob(bld.path.abspath()+"/include/robot_dart/*.cpp")
+    files = glob.glob(bld.path.abspath()+"/src/robot_dart/*.cpp")
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
 
-    bld.stlib(features = 'cxx',
+    bld.program(features = 'cxx cxxstlib',
                 source = robot_dart_srcs,
-                includes = './include',
+                includes = './src',
                 uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART',
-                target = 'robot_dart_simu')
+                target = 'RobotDARTSimu')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/pendulum_test.cpp',
-                      includes = './include',
+                      source = 'src/examples/pendulum_test.cpp',
+                      includes = './src',
                       uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
-                      use = 'robot_dart_simu',
+                      use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
                       target = 'pendulum_test')
 
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/arm_test.cpp',
-                      includes = './include',
+                      source = 'src/examples/arm_test.cpp',
+                      includes = './src',
                       uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
-                      use = 'robot_dart_simu',
+                      use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
                       target = 'arm_test')
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/pendulum_test.cpp',
-                  includes = './include',
+                  source = 'src/examples/pendulum_test.cpp',
+                  includes = './src',
                   uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
-                  use = 'robot_dart_simu',
+                  use = 'RobotDARTSimu',
                   target = 'pendulum_test_plain')
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/arm_test.cpp',
-                  includes = './include',
+                  source = 'src/examples/arm_test.cpp',
+                  includes = './src',
                   uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
-                  use = 'robot_dart_simu',
+                  use = 'RobotDARTSimu',
                   target = 'arm_test_plain')
 
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_dart_simu.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/simple_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/pd_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/descriptors.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/macros.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/no_graphics.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/graphics.hpp')
+    install_files = glob.glob(bld.path.abspath()+"/src/robot_dart/*.hpp")
+    install_files = [f[len(bld.path.abspath())+1:] for f in install_files]
+
+    for f in install_files:
+        bld.install_files('${PREFIX}/include/robot_dart', f)
+    bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
     bld.install_files('${PREFIX}/share/arm_models/URDF', 'res/models/arm.urdf')
