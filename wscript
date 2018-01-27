@@ -23,6 +23,8 @@ def options(opt):
     opt.load('eigen')
     opt.load('dart')
 
+    opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
+
 
 def configure(conf):
     conf.get_env()['BUILD_GRAPHIC'] = False
@@ -36,6 +38,10 @@ def configure(conf):
     conf.check_boost(lib='regex system filesystem', min_version='1.46')
     conf.check_eigen()
     conf.check_dart()
+
+    conf.env['lib_type'] = 'cxxstlib'
+    if conf.options.build_shared:
+        conf.env['lib_type'] = 'cxxshlib'
 
     if conf.env.CXX_NAME in ["icc", "icpc"]:
         common_flags = "-Wall -std=c++11"
@@ -61,7 +67,7 @@ def build(bld):
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
 
-    bld.program(features = 'cxx cxxstlib',
+    bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
                 includes = './src',
                 uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART',
@@ -107,5 +113,8 @@ def build(bld):
 
     for f in install_files:
         bld.install_files('${PREFIX}/include/robot_dart', f)
-    bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
+    if bld.env['lib_type'] == 'cxxstlib':
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
+    else:
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')
     bld.install_files('${PREFIX}/share/arm_models/URDF', 'res/models/arm.urdf')
