@@ -6,12 +6,20 @@
 
 #ifdef GRAPHIC
 #include <robot_dart/graphics.hpp>
-
-// struct Params {
-//     struct graphics : robot_dart::defaults::graphics {
-//     };
-// };
 #endif
+
+struct StateDesc : public robot_dart::BaseDescriptor {
+    StateDesc(const robot_dart::RobotDARTSimu& simu) : BaseDescriptor(simu) {}
+
+    void operator()()
+    {
+        if (_simu.robots().size() > 0) {
+            states.push_back(_simu.robots()[0]->skeleton()->getPositions());
+        }
+    }
+
+    std::vector<Eigen::VectorXd> states;
+};
 
 int main()
 {
@@ -36,6 +44,7 @@ int main()
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
 #endif
+    simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     simu.run(2);
@@ -47,6 +56,8 @@ int main()
     simu.run(2);
     // std::cout << simu.energy() << std::endl;
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
+
+    std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
 
     global_robot.reset();
     g_robot.reset();

@@ -46,7 +46,7 @@ namespace robot_dart {
         _old_index = index;
     }
 
-    std::shared_ptr<BaseGraphics> RobotDARTSimu::graphics()
+    std::shared_ptr<BaseGraphics> RobotDARTSimu::graphics() const
     {
         return _graphics;
     }
@@ -64,15 +64,14 @@ namespace robot_dart {
     void RobotDARTSimu::add_descriptor(const std::shared_ptr<BaseDescriptor>& desc)
     {
         _descriptors.push_back(desc);
-        desc->set_robots(_robots);
     }
 
-    std::vector<std::shared_ptr<BaseDescriptor>> RobotDARTSimu::descriptors()
+    std::vector<std::shared_ptr<BaseDescriptor>> RobotDARTSimu::descriptors() const
     {
         return _descriptors;
     }
 
-    std::shared_ptr<BaseDescriptor> RobotDARTSimu::descriptor(size_t index)
+    std::shared_ptr<BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
     {
         assert(index < _descriptors.size());
         return _descriptors[index];
@@ -111,13 +110,10 @@ namespace robot_dart {
         if (robot->skeleton()) {
             _robots.push_back(robot);
             _world->addSkeleton(robot->skeleton());
-
-            for (auto& desc : _descriptors)
-                desc->set_robots(_robots);
         }
     }
 
-    std::vector<std::shared_ptr<Robot>> RobotDARTSimu::robots()
+    std::vector<std::shared_ptr<Robot>> RobotDARTSimu::robots() const
     {
         return _robots;
     }

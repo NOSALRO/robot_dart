@@ -39,7 +39,7 @@ namespace robot_dart {
 
         void add_controller(const std::shared_ptr<RobotControl>& controller, double weight = 1.0);
 
-        const std::shared_ptr<RobotControl>& controller(size_t index);
+        std::shared_ptr<RobotControl> controller(size_t index) const;
 
         // TO-DO: Add remove_controller
 

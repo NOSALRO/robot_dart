@@ -19,14 +19,20 @@ namespace robot_dart {
 
         void run(double max_duration = 5.0);
 
-        std::shared_ptr<BaseGraphics> graphics();
+        std::shared_ptr<BaseGraphics> graphics() const;
         void set_graphics(const std::shared_ptr<BaseGraphics>& graphics);
 
         dart::simulation::WorldPtr world();
 
+        template <typename Descriptor>
+        void add_descriptor()
+        {
+            add_descriptor(std::make_shared<Descriptor>(*this));
+        }
+
         void add_descriptor(const std::shared_ptr<BaseDescriptor>& desc);
-        std::vector<std::shared_ptr<BaseDescriptor>> descriptors();
-        std::shared_ptr<BaseDescriptor> descriptor(size_t index);
+        std::vector<std::shared_ptr<BaseDescriptor>> descriptors() const;
+        std::shared_ptr<BaseDescriptor> descriptor(size_t index) const;
 
         double step() const;
         void set_step(double step);
@@ -37,7 +43,7 @@ namespace robot_dart {
         void stop_sim(bool disable = true);
 
         void add_robot(const robot_t& robot);
-        std::vector<robot_t> robots();
+        std::vector<robot_t> robots() const;
         void clear_robots();
 
         // // pose: RPY-Position, dims: XYZ

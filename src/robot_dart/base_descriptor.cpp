@@ -4,9 +4,4 @@
 
 namespace robot_dart {
     BaseDescriptor::BaseDescriptor(const RobotDARTSimu& simu) : _simu(simu) {}
-
-    void BaseDescriptor::set_robots(const std::vector<std::shared_ptr<Robot>>& robots)
-    {
-        _robots = robots;
-    }
 } // namespace robot_dart

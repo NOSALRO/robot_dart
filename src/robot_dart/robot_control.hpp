@@ -21,7 +21,7 @@ namespace robot_dart {
         void init();
 
         void set_robot(const std::shared_ptr<Robot>& robot);
-        std::shared_ptr<Robot> robot();
+        std::shared_ptr<Robot> robot() const;
 
         bool active() const;
 
@@ -32,6 +32,7 @@ namespace robot_dart {
         void set_weight(double weight);
 
         virtual void configure() = 0;
+        // TO-DO: Maybe make this const?
         virtual Eigen::VectorXd commands(double t) = 0;
         virtual std::shared_ptr<RobotControl> clone() const = 0;
 

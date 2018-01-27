@@ -102,7 +102,7 @@ namespace robot_dart {
         controller->init();
     }
 
-    const std::shared_ptr<RobotControl>& Robot::controller(size_t index)
+    std::shared_ptr<RobotControl> Robot::controller(size_t index) const
     {
         assert(index < _controllers.size());
         return _controllers[index];

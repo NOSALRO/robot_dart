@@ -38,7 +38,7 @@ namespace robot_dart {
         _robot = robot;
     }
 
-    std::shared_ptr<Robot> RobotControl::robot()
+    std::shared_ptr<Robot> RobotControl::robot() const
     {
         return _robot;
     }

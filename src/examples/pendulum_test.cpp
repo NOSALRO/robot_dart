@@ -7,77 +7,18 @@
 #include <robot_dart/graphics.hpp>
 #endif
 
-// void setGeometry(const dart::dynamics::BodyNodePtr& bn)
-// {
-//     // Create a BoxShape to be used for both visualization and collision checking
-//     std::shared_ptr<dart::dynamics::BoxShape> box(new dart::dynamics::BoxShape(
-//         Eigen::Vector3d(1.0, 0.2, 0.2)));
-//
-//     // Create a shape node for visualization and collision checking
-//     auto shapeNode
-//         = bn->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
-//     shapeNode->getVisualAspect()->setColor(dart::Color::Blue());
-//
-//     // Set the location of the shape node
-//     Eigen::Isometry3d box_tf(Eigen::Isometry3d::Identity());
-//     Eigen::Vector3d center = Eigen::Vector3d(0, 0, 1.0 / 2.0);
-//     box_tf.translation() = center;
-//     shapeNode->setRelativeTransform(box_tf);
-//
-//     // Move the center of mass to the center of the object
-//     bn->setLocalCOM(center);
-// }
-//
-// dart::dynamics::BodyNode* makeRootBody(const dart::dynamics::SkeletonPtr& pendulum, const std::string& name)
-// {
-//     // dart::dynamics::BallJoint::Properties properties;
-//     // properties.mName = name + "_joint";
-//     // properties.mRestPositions = Eigen::Vector3d::Constant(0.0);
-//     // properties.mSpringStiffnesses = Eigen::Vector3d::Constant(0.0);
-//     // properties.mDampingCoefficients = Eigen::Vector3d::Constant(5.0);
-//     //
-//     // dart::dynamics::BodyNodePtr bn = pendulum->createJointAndBodyNodePair<dart::dynamics::BallJoint>(
-//     //                                                nullptr, properties, dart::dynamics::BodyNode::AspectProperties(name)).second;
-//     // Set up the properties for the Joint
-//     dart::dynamics::RevoluteJoint::Properties properties;
-//     properties.mName = name + "_joint";
-//     properties.mAxis = Eigen::Vector3d::UnitY();
-//     properties.mT_ParentBodyToJoint.translation() = Eigen::Vector3d(0, 0, 1.0);
-//     properties.mRestPosition = 0.0;
-//     properties.mSpringStiffness = 0.0;
-//     properties.mDampingCoefficient = 5.0;
-//
-//     // Create a new BodyNode, attached to its parent by a RevoluteJoint
-//     dart::dynamics::BodyNodePtr bn = pendulum->createJointAndBodyNodePair<dart::dynamics::RevoluteJoint>(
-//                                                    nullptr, properties, dart::dynamics::BodyNode::AspectProperties(name)).second;
-//
-//     // Set the geometry of the Body
-//     setGeometry(bn);
-//
-//     return bn;
-// }
-//
-// dart::dynamics::BodyNode* addBody(const dart::dynamics::SkeletonPtr& pendulum, dart::dynamics::BodyNode* parent,
-//     const std::string& name)
-// {
-//     // Set up the properties for the Joint
-//     dart::dynamics::RevoluteJoint::Properties properties;
-//     properties.mName = name + "_joint";
-//     properties.mAxis = Eigen::Vector3d::UnitY();
-//     properties.mT_ParentBodyToJoint.translation() = Eigen::Vector3d(0, 0, 1.0);
-//     properties.mRestPosition = 0.0;
-//     properties.mSpringStiffness = 0.0;
-//     properties.mDampingCoefficient = 5.0;
-//
-//     // Create a new BodyNode, attached to its parent by a RevoluteJoint
-//     dart::dynamics::BodyNodePtr bn = pendulum->createJointAndBodyNodePair<dart::dynamics::RevoluteJoint>(
-//                                                    parent, properties, dart::dynamics::BodyNode::AspectProperties(name)).second;
-//
-//     // Set the geometry of the Body
-//     setGeometry(bn);
-//
-//     return bn;
-// }
+struct StateDesc : public robot_dart::BaseDescriptor {
+    StateDesc(const robot_dart::RobotDARTSimu& simu) : BaseDescriptor(simu) {}
+
+    void operator()()
+    {
+        if (_simu.robots().size() > 0) {
+            states.push_back(_simu.robots()[0]->skeleton()->getPositions());
+        }
+    }
+
+    std::vector<Eigen::VectorXd> states;
+};
 
 int main()
 {
@@ -114,6 +55,7 @@ int main()
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
 #endif
+    simu.add_descriptor<StateDesc>();
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(1);
@@ -126,6 +68,8 @@ int main()
     // std::cout << simu.energy() << std::endl;
     std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
     //     std::cout << g_robot->end_effector_pos().transpose() << std::endl;
+
+    std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
 
     global_robot.reset();
     g_robot.reset();
