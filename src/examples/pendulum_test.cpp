@@ -1,14 +1,14 @@
 #include <cstdlib>
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
-#include <robot_dart/simple_control.hpp>
+#include <robot_dart/control/simple_control.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics.hpp>
+#include <robot_dart/graphics/graphics.hpp>
 #endif
 
-struct StateDesc : public robot_dart::BaseDescriptor {
-    StateDesc(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : BaseDescriptor(simu, desc_dump) {}
+struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
+    StateDesc(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {
@@ -47,13 +47,13 @@ int main()
     std::vector<double> ctrl;
     ctrl = {0.0};
 
-    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl));
+    g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl));
     ctrl = {-1.0};
-    g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>(ctrl), 5.);
+    g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl), 5.);
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
 #endif
     // <Type>(desc_period)
     simu.add_descriptor<StateDesc>(2);

@@ -4,8 +4,8 @@
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/simulation/World.hpp>
 
-#include <robot_dart/base_descriptor.hpp>
-#include <robot_dart/base_graphics.hpp>
+#include <robot_dart/descriptor/base_descriptor.hpp>
+#include <robot_dart/graphics/base_graphics.hpp>
 #include <robot_dart/robot.hpp>
 
 namespace robot_dart {
@@ -19,8 +19,8 @@ namespace robot_dart {
 
         void run(double max_duration = 5.0);
 
-        std::shared_ptr<BaseGraphics> graphics() const;
-        void set_graphics(const std::shared_ptr<BaseGraphics>& graphics);
+        std::shared_ptr<graphics::BaseGraphics> graphics() const;
+        void set_graphics(const std::shared_ptr<graphics::BaseGraphics>& graphics);
 
         dart::simulation::WorldPtr world();
 
@@ -30,9 +30,9 @@ namespace robot_dart {
             add_descriptor(std::make_shared<Descriptor>(Descriptor{*this, desc_dump}));
         }
 
-        void add_descriptor(const std::shared_ptr<BaseDescriptor>& desc);
-        std::vector<std::shared_ptr<BaseDescriptor>> descriptors() const;
-        std::shared_ptr<BaseDescriptor> descriptor(size_t index) const;
+        void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+        std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
+        std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
 
         double step() const;
         void set_step(double step);
@@ -176,9 +176,9 @@ namespace robot_dart {
         dart::simulation::WorldPtr _world;
         size_t _old_index;
         bool _break;
-        std::vector<std::shared_ptr<BaseDescriptor>> _descriptors;
+        std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
         std::vector<robot_t> _robots;
-        std::shared_ptr<BaseGraphics> _graphics;
+        std::shared_ptr<graphics::BaseGraphics> _graphics;
     };
 } // namespace robot_dart
 

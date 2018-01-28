@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
+import os
+import fnmatch
 import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
@@ -66,7 +68,11 @@ def configure(conf):
 
 
 def build(bld):
-    files = glob.glob(bld.path.abspath()+"/src/robot_dart/*.cpp")
+    files = []
+    for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            files.append(os.path.join(root, filename))
+
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
 
@@ -135,11 +141,17 @@ def build(bld):
                     use = 'RobotDARTSimu',
                     target = 'hexapod_plain')
 
-    install_files = glob.glob(bld.path.abspath()+"/src/robot_dart/*.hpp")
+    install_files = []
+    for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
+        for filename in fnmatch.filter(filenames, '*.hpp'):
+            install_files.append(os.path.join(root, filename))
     install_files = [f[len(bld.path.abspath())+1:] for f in install_files]
 
     for f in install_files:
-        bld.install_files('${PREFIX}/include/robot_dart', f)
+        end_index = f.rfind('/')
+        if end_index == -1:
+            end_index = len(f)
+        bld.install_files('${PREFIX}/include/' + f[4:end_index], f)
     if bld.env['lib_type'] == 'cxxstlib':
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
     else:

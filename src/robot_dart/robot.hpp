@@ -4,8 +4,9 @@
 #include <dart/dynamics/Skeleton.hpp>
 
 namespace robot_dart {
-
-    class RobotControl;
+    namespace control {
+        class RobotControl;
+    }
 
     struct RobotDamage {
         RobotDamage() {}
@@ -35,15 +36,15 @@ namespace robot_dart {
         void reinit_controllers();
 
         size_t num_controllers() const;
-        std::vector<std::shared_ptr<RobotControl>> controllers() const;
-        std::vector<std::shared_ptr<RobotControl>> activeControllers() const;
+        std::vector<std::shared_ptr<control::RobotControl>> controllers() const;
+        std::vector<std::shared_ptr<control::RobotControl>> activeControllers() const;
 
-        void add_controller(const std::shared_ptr<RobotControl>& controller, double weight = 1.0);
-        void remove_controller(const std::shared_ptr<RobotControl>& controller);
+        void add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight = 1.0);
+        void remove_controller(const std::shared_ptr<control::RobotControl>& controller);
         void remove_controller(size_t index);
         void clear_controllers();
 
-        std::shared_ptr<RobotControl> controller(size_t index) const;
+        std::shared_ptr<control::RobotControl> controller(size_t index) const;
 
         void fix_to_world();
         // pose: Orientation-Position
@@ -73,7 +74,7 @@ namespace robot_dart {
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
-        std::vector<std::shared_ptr<RobotControl>> _controllers;
+        std::vector<std::shared_ptr<control::RobotControl>> _controllers;
     };
 } // namespace robot_dart
 

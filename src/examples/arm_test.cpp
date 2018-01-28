@@ -1,15 +1,15 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
-#include <robot_dart/pd_control.hpp>
+#include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics.hpp>
+#include <robot_dart/graphics/graphics.hpp>
 #endif
 
-struct StateDesc : public robot_dart::BaseDescriptor {
-    StateDesc(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : BaseDescriptor(simu, desc_dump) {}
+struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
+    StateDesc(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {
@@ -36,13 +36,13 @@ int main()
     std::vector<double> ctrl;
     ctrl = {0.0, 1.0, -1.5, 1.0};
 
-    global_robot->add_controller(std::make_shared<robot_dart::PDControl>(ctrl));
+    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
 
     auto g_robot = global_robot->clone();
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
@@ -52,7 +52,7 @@ int main()
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     ctrl = {0.0, -1.0, 1.5, -1.0};
     g_robot->controllers()[0]->set_parameters(ctrl);
-    std::static_pointer_cast<robot_dart::PDControl>(g_robot->controllers()[0])->set_pd(20., 0.);
+    std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(20., 0.);
     simu.run(2);
     // std::cout << simu.energy() << std::endl;
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;

@@ -1,13 +1,12 @@
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
-#include <robot_dart/simple_control.hpp>
 
-#include <robot_dart/policy_control.hpp>
+#include <robot_dart/control/policy_control.hpp>
 
 #include <hexapod_controller/hexapod_controller_simple.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics.hpp>
+#include <robot_dart/graphics/graphics.hpp>
 #endif
 
 using namespace hexapod_controller;
@@ -56,13 +55,13 @@ int main()
     // g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>());
     std::vector<double> ctrl = {1, 0, 0.5, 0.25, 0.25, 0.5, 1, 0.5, 0.5, 0.25, 0.75, 0.5, 1, 0, 0.5, 0.25, 0.25, 0.5, 1, 0, 0.5, 0.25, 0.75, 0.5, 1, 0.5, 0.5, 0.25, 0.25, 0.5, 1, 0, 0.5, 0.25, 0.75, 0.5};
 
-    using HexaControl = robot_dart::PolicyControl<HexaPolicy>;
+    using HexaControl = robot_dart::control::PolicyControl<HexaPolicy>;
     g_robot->add_controller(std::make_shared<HexaControl>(ctrl));
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::Graphics>(simu.world()));
-    std::static_pointer_cast<robot_dart::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
     simu.add_floor();
     simu.add_robot(g_robot);

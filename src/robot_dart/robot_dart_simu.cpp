@@ -12,7 +12,7 @@ namespace robot_dart {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
         _world->setTimeStep(time_step);
         _world->setTime(0.0);
-        _graphics = std::make_shared<BaseGraphics>(_world);
+        _graphics = std::make_shared<graphics::BaseGraphics>(_world);
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -48,12 +48,12 @@ namespace robot_dart {
         _old_index = index;
     }
 
-    std::shared_ptr<BaseGraphics> RobotDARTSimu::graphics() const
+    std::shared_ptr<graphics::BaseGraphics> RobotDARTSimu::graphics() const
     {
         return _graphics;
     }
 
-    void RobotDARTSimu::set_graphics(const std::shared_ptr<BaseGraphics>& graphics)
+    void RobotDARTSimu::set_graphics(const std::shared_ptr<graphics::BaseGraphics>& graphics)
     {
         _graphics = graphics;
     }
@@ -63,17 +63,17 @@ namespace robot_dart {
         return _world;
     }
 
-    void RobotDARTSimu::add_descriptor(const std::shared_ptr<BaseDescriptor>& desc)
+    void RobotDARTSimu::add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
     {
         _descriptors.push_back(desc);
     }
 
-    std::vector<std::shared_ptr<BaseDescriptor>> RobotDARTSimu::descriptors() const
+    std::vector<std::shared_ptr<descriptor::BaseDescriptor>> RobotDARTSimu::descriptors() const
     {
         return _descriptors;
     }
 
-    std::shared_ptr<BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
+    std::shared_ptr<descriptor::BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
     {
         assert(index < _descriptors.size());
         return _descriptors[index];

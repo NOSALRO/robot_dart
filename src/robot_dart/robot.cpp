@@ -9,7 +9,7 @@
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
 
-#include <robot_dart/robot_control.hpp>
+#include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
     Robot::Robot() {}
@@ -82,14 +82,14 @@ namespace robot_dart {
         return _controllers.size();
     }
 
-    std::vector<std::shared_ptr<RobotControl>> Robot::controllers() const
+    std::vector<std::shared_ptr<control::RobotControl>> Robot::controllers() const
     {
         return _controllers;
     }
 
-    std::vector<std::shared_ptr<RobotControl>> Robot::activeControllers() const
+    std::vector<std::shared_ptr<control::RobotControl>> Robot::activeControllers() const
     {
-        std::vector<std::shared_ptr<RobotControl>> ctrls;
+        std::vector<std::shared_ptr<control::RobotControl>> ctrls;
         for (auto& ctrl : _controllers) {
             if (ctrl->active())
                 ctrls.push_back(ctrl);
@@ -98,7 +98,7 @@ namespace robot_dart {
         return ctrls;
     }
 
-    void Robot::add_controller(const std::shared_ptr<RobotControl>& controller, double weight)
+    void Robot::add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight)
     {
         _controllers.push_back(controller);
         controller->set_robot(this->shared_from_this());
@@ -106,7 +106,7 @@ namespace robot_dart {
         controller->init();
     }
 
-    void Robot::remove_controller(const std::shared_ptr<RobotControl>& controller)
+    void Robot::remove_controller(const std::shared_ptr<control::RobotControl>& controller)
     {
         auto it = std::find(_controllers.begin(), _controllers.end(), controller);
         if (it != _controllers.end())
@@ -124,7 +124,7 @@ namespace robot_dart {
         _controllers.clear();
     }
 
-    std::shared_ptr<RobotControl> Robot::controller(size_t index) const
+    std::shared_ptr<control::RobotControl> Robot::controller(size_t index) const
     {
         assert(index < _controllers.size());
         return _controllers[index];
