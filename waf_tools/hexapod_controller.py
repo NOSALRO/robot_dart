@@ -26,8 +26,9 @@ def check_hexapod_controller(conf):
     try:
         conf.start_msg('Checking for hexapod_controller includes')
         res = conf.find_file('hexapod_controller/hexapod_controller_simple.hpp', includes_check)
-        conf.end_msg('ok')
-        conf.env.INCLUDES_HEXAPOD_CONTROLLER = res[:-len('hexapod_controller/hexapod_controller_simple.hpp')-1]
+        incl = res[:-len('hexapod_controller/hexapod_controller_simple.hpp')-1]
+        conf.end_msg(incl)
+        conf.env.INCLUDES_HEXAPOD_CONTROLLER = incl
     except:
         conf.end_msg('Not found', 'RED')
         return

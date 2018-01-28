@@ -111,7 +111,7 @@ def check_dart(conf):
 			conf.start_msg('Checking for DART gui includes')
 			res = res and conf.find_file('dart/gui/gui.hpp', includes_check)
 			res = res and conf.find_file('dart/gui/osg/osg.hpp', includes_check)
-			conf.end_msg('ok')
+			conf.end_msg(res[:-len('dart/gui/osg/osg.hpp')-1])
 		except:
 			conf.end_msg('Not found', 'RED')
 		more_includes = []
@@ -124,13 +124,13 @@ def check_dart(conf):
 		res = res and conf.find_file('libdart-'+dart_load_prefix+'.so', libs_check)
 		res = res and conf.find_file('libdart-'+dart_load_prefix+'-urdf.so', libs_check)
 		dart_lib = [res[:-len('libdart-'+dart_load_prefix+'-urdf.so')-1]]
-		conf.end_msg('ok')
 		conf.env.INCLUDES_DART = dart_include + more_includes
 		conf.env.LIBPATH_DART = dart_lib
 		conf.env.LIB_DART = ['dart', 'dart-'+dart_load_prefix, 'dart-'+dart_load_prefix+'-urdf']
+		conf.end_msg(conf.env.LIB_DART)
 		conf.start_msg('DART: Checking for Assimp')
 		if assimp_found:
-			conf.end_msg('ok')
+			conf.end_msg(assimp_include[0])
 			conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + assimp_lib
 			conf.env.LIB_DART.append('assimp')
 		else:
@@ -140,12 +140,12 @@ def check_dart(conf):
 		if bullet_found:
 			try:
 				res = conf.find_file('libdart-collision-bullet.so', libs_check)
-				conf.end_msg('ok')
 				conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + bullet_include
 				conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + bullet_lib
 				conf.env.LIB_DART.append('LinearMath')
 				conf.env.LIB_DART.append('BulletCollision')
 				conf.env.LIB_DART.append('dart-collision-bullet')
+				conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
 			except:
 				conf.end_msg('Not found', 'RED')
 		else:
@@ -159,16 +159,16 @@ def check_dart(conf):
 			conf.start_msg('DART: Checking for gui libs')
 			res = res and conf.find_file('libdart-gui.so', libs_check)
 			res = res and conf.find_file('libdart-gui-osg.so', libs_check)
-			conf.end_msg('ok')
 			conf.env.INCLUDES_DART_GRAPHIC = deepcopy(conf.env.INCLUDES_DART)
 			conf.env.LIBPATH_DART_GRAPHIC = deepcopy(conf.env.LIBPATH_DART)
 			conf.env.LIB_DART_GRAPHIC = deepcopy(conf.env.LIB_DART) + ['dart-gui', 'dart-gui-osg']
+			conf.end_msg(conf.env.LIB_DART_GRAPHIC[-2:])
 			conf.start_msg('DART: Checking for OSG (optional)')
 			if osg_found:
 				conf.env.INCLUDES_DART_GRAPHIC += osg_include
 				conf.env.LIBPATH_DART_GRAPHIC += osg_lib
 				conf.env.LIB_DART_GRAPHIC += osg_comp
-				conf.end_msg('ok')
+				conf.end_msg(osg_comp)
 			else:
 				conf.end_msg('Not found - Your graphical programs may not compile/link', 'RED')
 			conf.get_env()['BUILD_GRAPHIC'] = True
@@ -182,6 +182,6 @@ def check_dart(conf):
 		if dart_major < 6 and dart_major > -1:
 			conf.fatal('We need DART >= 6.0.0')
 		else:
-			conf.end_msg('Not found', 'RED')
+			conf.fatal('Not found')
 		return
 	return 1
