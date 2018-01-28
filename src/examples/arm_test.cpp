@@ -9,7 +9,7 @@
 #endif
 
 struct StateDesc : public robot_dart::BaseDescriptor {
-    StateDesc(const robot_dart::RobotDARTSimu& simu) : BaseDescriptor(simu) {}
+    StateDesc(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {

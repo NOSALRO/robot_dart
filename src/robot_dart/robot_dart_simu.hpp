@@ -25,9 +25,9 @@ namespace robot_dart {
         dart::simulation::WorldPtr world();
 
         template <typename Descriptor>
-        void add_descriptor()
+        void add_descriptor(size_t desc_dump = 1)
         {
-            add_descriptor(std::make_shared<Descriptor>(*this));
+            add_descriptor(std::make_shared<Descriptor>(Descriptor{*this, desc_dump}));
         }
 
         void add_descriptor(const std::shared_ptr<BaseDescriptor>& desc);
