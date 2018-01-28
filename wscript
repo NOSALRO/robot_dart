@@ -13,6 +13,7 @@ srcdir = '.'
 blddir = 'build'
 
 from waflib.Build import BuildContext
+from waflib import Logs
 import dart
 import boost
 import eigen
@@ -68,6 +69,8 @@ def configure(conf):
 
 
 def build(bld):
+    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
+        bld.fatal('Some libraries were not found! Cannot proceed!')
     files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.cpp'):
