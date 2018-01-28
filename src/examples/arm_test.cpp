@@ -59,7 +59,7 @@ int main()
 
     std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
 
-    global_robot.reset();
     g_robot.reset();
+    global_robot.reset();
     return 0;
 }
