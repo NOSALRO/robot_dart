@@ -41,6 +41,21 @@ def check_dart(conf):
 	except:
 		assimp_found = False
 
+	# DART has some optional Bullet features
+	bullet_check = ['/usr/local/include', '/usr/include']
+	bullet_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
+	bullet_include = []
+	bullet_lib = []
+	bullet_found = False
+	try:
+		bullet_found = conf.find_file('bullet/btBulletCollisionCommon.h', bullet_check)
+		bullet_include = [bullet_found[:-len('bullet/btBulletCollisionCommon.h')-1]]
+		bullet_found = conf.find_file('libLinearMath.so', bullet_libs)
+		bullet_found = conf.find_file('libBulletCollision.so', bullet_libs)
+		bullet_lib = [bullet_found[:-len('libBulletCollision.so')-1]]
+	except:
+		bullet_found = False
+
 	# DART requires OSG library for their graphic version
 	osg_include = []
 	osg_lib = []
@@ -120,13 +135,28 @@ def check_dart(conf):
 			conf.env.LIB_DART.append('assimp')
 		else:
 			conf.end_msg('Not found - Your programs may not compile', 'RED')
+		
+		conf.start_msg('DART: Checking for Bullet Collision libs')
+		if bullet_found:
+			try:
+				res = conf.find_file('libdart-collision-bullet.so', libs_check)
+				conf.end_msg('ok')
+				conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + bullet_include
+				conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + bullet_lib
+				conf.env.LIB_DART.append('LinearMath')
+				conf.env.LIB_DART.append('BulletCollision')
+				conf.env.LIB_DART.append('dart-collision-bullet')
+			except:
+				conf.end_msg('Not found', 'RED')
+		else:
+			conf.end_msg('Not found', 'RED')
 
 		# remove duplicates
 		conf.env.INCLUDES_DART = list(set(conf.env.INCLUDES_DART))
 		conf.env.LIBPATH_DART = list(set(conf.env.LIBPATH_DART))
 
 		try:
-			conf.start_msg('Checking for DART gui libs')
+			conf.start_msg('DART: Checking for gui libs')
 			res = res and conf.find_file('libdart-gui.so', libs_check)
 			res = res and conf.find_file('libdart-gui-osg.so', libs_check)
 			conf.end_msg('ok')
