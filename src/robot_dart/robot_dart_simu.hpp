@@ -1,7 +1,6 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
-#include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/simulation/World.hpp>
 
 #include <robot_dart/descriptor/base_descriptor.hpp>

@@ -42,14 +42,14 @@ def check_dart(conf):
 		assimp_found = False
 
 	# DART has some optional Bullet features
-	bullet_check = ['/usr/local/include', '/usr/include']
+	bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet']
 	bullet_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
 	bullet_include = []
 	bullet_lib = []
 	bullet_found = False
 	try:
-		bullet_found = conf.find_file('bullet/btBulletCollisionCommon.h', bullet_check)
-		bullet_include = [bullet_found[:-len('bullet/btBulletCollisionCommon.h')-1]]
+		bullet_found = conf.find_file('btBulletCollisionCommon.h', bullet_check)
+		bullet_include = [bullet_found[:-len('btBulletCollisionCommon.h')-1]]
 		bullet_found = conf.find_file('libLinearMath.so', bullet_libs)
 		bullet_found = conf.find_file('libBulletCollision.so', bullet_libs)
 		bullet_lib = [bullet_found[:-len('libBulletCollision.so')-1]]

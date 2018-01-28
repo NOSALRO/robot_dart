@@ -1,5 +1,6 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
