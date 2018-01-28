@@ -1,7 +1,7 @@
 #ifndef ROBOT_DART_ROBOT_HPP
 #define ROBOT_DART_ROBOT_HPP
 
-#include <dart/dart.hpp>
+#include <dart/dynamics/Skeleton.hpp>
 
 namespace robot_dart {
 

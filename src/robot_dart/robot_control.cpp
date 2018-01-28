@@ -1,5 +1,7 @@
 #include <robot_dart/robot_control.hpp>
 
+#include <dart/dynamics/DegreeOfFreedom.hpp>
+
 #include <robot_dart/robot.hpp>
 
 namespace robot_dart {

@@ -2,6 +2,10 @@
 
 #include <boost/filesystem.hpp>
 
+#include <dart/dynamics/DegreeOfFreedom.hpp>
+#include <dart/dynamics/FreeJoint.hpp>
+#include <dart/dynamics/MeshShape.hpp>
+#include <dart/dynamics/WeldJoint.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
 

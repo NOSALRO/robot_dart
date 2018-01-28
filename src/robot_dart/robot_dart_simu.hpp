@@ -3,7 +3,7 @@
 
 #include <Eigen/Core>
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
-#include <dart/dart.hpp>
+#include <dart/simulation/World.hpp>
 #include <robot_dart/base_descriptor.hpp>
 #include <robot_dart/base_graphics.hpp>
 #include <robot_dart/robot.hpp>

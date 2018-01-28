@@ -1,5 +1,9 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <dart/constraint/ConstraintSolver.hpp>
+#include <dart/dynamics/BoxShape.hpp>
+#include <dart/dynamics/WeldJoint.hpp>
+
 namespace robot_dart {
     RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
                                                      _old_index(0),
