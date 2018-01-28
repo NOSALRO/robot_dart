@@ -9,12 +9,7 @@ namespace robot_dart {
     class PDControl : public RobotControl {
     public:
         PDControl() : RobotControl() {}
-        PDControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control)
-        {
-            // Default values for PD controller
-            _Kp = 10.0;
-            _Kd = 0.1;
-        }
+        PDControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control) {}
 
         void configure() override
         {
@@ -24,7 +19,7 @@ namespace robot_dart {
                 _active = true;
         }
 
-        Eigen::VectorXd commands(double t) override
+        Eigen::VectorXd calculate(double t) override
         {
             assert(_control_dof == _ctrl.size());
             Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);
@@ -40,10 +35,8 @@ namespace robot_dart {
             _prev_error = q_err;
 
             Eigen::VectorXd commands = _Kp * q_err + _Kd * dq_err;
-            if (_start_dof > 0)
-                commands.segment(0, _start_dof) = Eigen::VectorXd::Zero(_start_dof);
 
-            return commands;
+            return commands.tail(_control_dof);
         }
 
         void set_pd(double p, double d)
@@ -58,7 +51,8 @@ namespace robot_dart {
         }
 
     protected:
-        double _Kp, _Kd;
+        double _Kp = 10.;
+        double _Kd = 0.1;
         Eigen::VectorXd _prev_error;
     };
 } // namespace robot_dart

@@ -17,11 +17,10 @@ namespace robot_dart {
                 _active = true;
         }
 
-        Eigen::VectorXd commands(double t) override
+        Eigen::VectorXd calculate(double t) override
         {
             assert(_control_dof == _ctrl.size());
-            Eigen::VectorXd commands = Eigen::VectorXd::Zero(_dof);
-            commands.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd commands = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
             return commands;
         }

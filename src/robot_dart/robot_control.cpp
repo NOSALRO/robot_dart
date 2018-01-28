@@ -71,4 +71,12 @@ namespace robot_dart {
     {
         _weight = weight;
     }
+
+    Eigen::VectorXd RobotControl::commands(double t)
+    {
+        Eigen::VectorXd coms = Eigen::VectorXd::Zero(_dof);
+        coms.tail(_control_dof) = calculate(t);
+
+        return coms;
+    }
 } // namespace robot_dart

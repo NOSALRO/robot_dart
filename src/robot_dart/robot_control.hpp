@@ -32,8 +32,9 @@ namespace robot_dart {
         void set_weight(double weight);
 
         virtual void configure() = 0;
-        // TO-DO: Maybe make this const?
-        virtual Eigen::VectorXd commands(double t) = 0;
+        // TO-DO: Maybe make these 2 const?
+        Eigen::VectorXd commands(double t);
+        virtual Eigen::VectorXd calculate(double t) = 0;
         virtual std::shared_ptr<RobotControl> clone() const = 0;
 
     protected:
