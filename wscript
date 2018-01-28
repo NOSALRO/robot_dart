@@ -4,7 +4,7 @@ import sys
 import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
-VERSION = '0.0.1'
+VERSION = '1.0.0'
 APPNAME = 'robot_dart'
 
 srcdir = '.'
