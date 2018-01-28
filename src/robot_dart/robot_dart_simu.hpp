@@ -37,9 +37,6 @@ namespace robot_dart {
         double step() const;
         void set_step(double step);
 
-        size_t desc_dump() const;
-        void set_desc_dump(size_t desc_dump);
-
         void stop_sim(bool disable = true);
 
         void add_robot(const robot_t& robot);
@@ -172,7 +169,6 @@ namespace robot_dart {
     protected:
         dart::simulation::WorldPtr _world;
         size_t _old_index;
-        size_t _desc_period;
         bool _break;
         std::vector<std::shared_ptr<BaseDescriptor>> _descriptors;
         std::vector<robot_t> _robots;

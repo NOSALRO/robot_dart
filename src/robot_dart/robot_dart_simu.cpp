@@ -3,7 +3,6 @@
 namespace robot_dart {
     RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
                                                      _old_index(0),
-                                                     _desc_period(1),
                                                      _break(false)
     {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
@@ -32,11 +31,10 @@ namespace robot_dart {
 
             _graphics->refresh();
 
-            if (index % _desc_period == 0) {
-                // update descriptors
-                for (auto& desc : _descriptors)
+            // update descriptors
+            for (auto& desc : _descriptors)
+                if (index % desc->desc_dump() == 0)
                     desc->operator()();
-            }
 
             if (_break)
                 break;
@@ -88,16 +86,6 @@ namespace robot_dart {
         assert(_world != nullptr);
         _world->setTimeStep(step);
         _graphics->set_render_period(step);
-    }
-
-    size_t RobotDARTSimu::desc_dump() const
-    {
-        return _desc_period;
-    }
-
-    void RobotDARTSimu::set_desc_dump(size_t desc_dump)
-    {
-        _desc_period = desc_dump;
     }
 
     void RobotDARTSimu::stop_sim(bool disable)
