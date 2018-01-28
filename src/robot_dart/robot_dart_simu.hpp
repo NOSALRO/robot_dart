@@ -1,9 +1,9 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
-#include <Eigen/Core>
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/simulation/World.hpp>
+
 #include <robot_dart/base_descriptor.hpp>
 #include <robot_dart/base_graphics.hpp>
 #include <robot_dart/robot.hpp>
@@ -39,9 +39,15 @@ namespace robot_dart {
 
         void stop_sim(bool disable = true);
 
-        void add_robot(const robot_t& robot);
+        size_t num_robots() const;
         std::vector<robot_t> robots() const;
+
+        void add_robot(const robot_t& robot);
+        void remove_robot(const robot_t& robot);
+        void remove_robot(size_t index);
         void clear_robots();
+
+        robot_t robot(size_t index) const;
 
         // // pose: RPY-Position, dims: XYZ
         // void add_box(const Eigen::Vector6d& pose, const Eigen::Vector3d& dims, const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box")

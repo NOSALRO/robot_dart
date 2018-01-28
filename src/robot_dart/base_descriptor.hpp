@@ -1,10 +1,8 @@
 #ifndef ROBOT_DART_BASE_DESCRIPTOR_HPP
 #define ROBOT_DART_BASE_DESCRIPTOR_HPP
 
-#include <memory>
-#include <vector>
-
-#include <Eigen/Core>
+// for size_t
+#include <cstddef>
 
 namespace robot_dart {
 

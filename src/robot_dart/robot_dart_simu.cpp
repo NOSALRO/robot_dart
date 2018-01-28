@@ -97,6 +97,16 @@ namespace robot_dart {
         _break = disable;
     }
 
+    size_t RobotDARTSimu::num_robots() const
+    {
+        return _robots.size();
+    }
+
+    std::vector<std::shared_ptr<Robot>> RobotDARTSimu::robots() const
+    {
+        return _robots;
+    }
+
     void RobotDARTSimu::add_robot(const std::shared_ptr<Robot>& robot)
     {
         if (robot->skeleton()) {
@@ -105,9 +115,20 @@ namespace robot_dart {
         }
     }
 
-    std::vector<std::shared_ptr<Robot>> RobotDARTSimu::robots() const
+    void RobotDARTSimu::remove_robot(const std::shared_ptr<Robot>& robot)
     {
-        return _robots;
+        auto it = std::find(_robots.begin(), _robots.end(), robot);
+        if (it != _robots.end()) {
+            _world->removeSkeleton(robot->skeleton());
+            _robots.erase(it);
+        }
+    }
+
+    void RobotDARTSimu::remove_robot(size_t index)
+    {
+        assert(index < _robots.size());
+        _world->removeSkeleton(_robots[index]->skeleton());
+        _robots.erase(_robots.begin() + index);
     }
 
     void RobotDARTSimu::clear_robots()
@@ -116,6 +137,12 @@ namespace robot_dart {
             _world->removeSkeleton(robot->skeleton());
         }
         _robots.clear();
+    }
+
+    std::shared_ptr<Robot> RobotDARTSimu::robot(size_t index) const
+    {
+        assert(index < _robots.size());
+        return _robots[index];
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, std::string floor_name, double x, double y)

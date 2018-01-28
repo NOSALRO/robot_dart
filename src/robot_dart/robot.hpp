@@ -32,16 +32,18 @@ namespace robot_dart {
 
         void update(double t);
 
-        void reinitControllers();
+        void reinit_controllers();
 
+        size_t num_controllers() const;
         std::vector<std::shared_ptr<RobotControl>> controllers() const;
         std::vector<std::shared_ptr<RobotControl>> activeControllers() const;
 
         void add_controller(const std::shared_ptr<RobotControl>& controller, double weight = 1.0);
+        void remove_controller(const std::shared_ptr<RobotControl>& controller);
+        void remove_controller(size_t index);
+        void clear_controllers();
 
         std::shared_ptr<RobotControl> controller(size_t index) const;
-
-        // TO-DO: Add remove_controller
 
         void fix_to_world();
         // pose: Orientation-Position

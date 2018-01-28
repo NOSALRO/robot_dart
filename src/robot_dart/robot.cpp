@@ -9,11 +9,6 @@
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
 
-#include <Eigen/Core>
-#include <fstream>
-#include <streambuf>
-#include <string>
-
 #include <robot_dart/robot_control.hpp>
 
 namespace robot_dart {
@@ -76,10 +71,15 @@ namespace robot_dart {
         _skeleton->setCommands(commands);
     }
 
-    void Robot::reinitControllers()
+    void Robot::reinit_controllers()
     {
         for (auto& ctrl : _controllers)
             ctrl->init();
+    }
+
+    size_t Robot::num_controllers() const
+    {
+        return _controllers.size();
     }
 
     std::vector<std::shared_ptr<RobotControl>> Robot::controllers() const
@@ -106,6 +106,24 @@ namespace robot_dart {
         controller->init();
     }
 
+    void Robot::remove_controller(const std::shared_ptr<RobotControl>& controller)
+    {
+        auto it = std::find(_controllers.begin(), _controllers.end(), controller);
+        if (it != _controllers.end())
+            _controllers.erase(it);
+    }
+
+    void Robot::remove_controller(size_t index)
+    {
+        assert(index < _controllers.size());
+        _controllers.erase(_controllers.begin() + index);
+    }
+
+    void Robot::clear_controllers()
+    {
+        _controllers.clear();
+    }
+
     std::shared_ptr<RobotControl> Robot::controller(size_t index) const
     {
         assert(index < _controllers.size());
@@ -120,7 +138,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
-        reinitControllers();
+        reinit_controllers();
     }
 
     // pose: Orientation-Position
@@ -132,7 +150,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
-        reinitControllers();
+        reinit_controllers();
     }
 
     bool Robot::fixed() const
