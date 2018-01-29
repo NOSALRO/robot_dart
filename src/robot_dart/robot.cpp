@@ -14,7 +14,7 @@
 namespace robot_dart {
     Robot::Robot() {}
 
-    Robot::Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name, bool absolute_path) : _robot_name(robot_name), _skeleton(_load_model(model_file, absolute_path))
+    Robot::Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name) : _robot_name(robot_name), _skeleton(_load_model(model_file))
     {
         assert(_skeleton != nullptr);
         _set_damages(damages);
@@ -234,9 +234,14 @@ namespace robot_dart {
         return Eigen::Isometry3d::Identity();
     }
 
-    dart::dynamics::SkeletonPtr Robot::_load_model(std::string model_file, bool absolute_path)
+    dart::dynamics::SkeletonPtr Robot::_load_model(std::string model_file)
     {
-        if (!absolute_path)
+        // Remove spaces from beginning of the filename/path
+        model_file.erase(model_file.begin(), std::find_if(model_file.begin(), model_file.end(), [](int ch) {
+            return !std::isspace(ch);
+        }));
+
+        if (model_file[0] != '/')
             model_file = boost::filesystem::current_path().string() + "/" + model_file;
 
         dart::dynamics::SkeletonPtr tmp_skel;

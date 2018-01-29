@@ -20,7 +20,7 @@ namespace robot_dart {
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
         Robot();
-        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot", bool absolute_path = false);
+        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot");
         Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot");
 
         std::shared_ptr<Robot> clone() const;
@@ -67,7 +67,7 @@ namespace robot_dart {
         Eigen::Isometry3d body_trans(std::string body_name) const;
 
     protected:
-        dart::dynamics::SkeletonPtr _load_model(std::string model_file, bool absolute_path);
+        dart::dynamics::SkeletonPtr _load_model(std::string model_file);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
 
