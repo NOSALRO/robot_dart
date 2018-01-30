@@ -20,7 +20,7 @@ namespace robot_dart {
                     _active = true;
             }
 
-            Eigen::VectorXd calculate(double t) override
+            Eigen::VectorXd calculate(double) override
             {
                 assert(_control_dof == _ctrl.size());
                 Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);

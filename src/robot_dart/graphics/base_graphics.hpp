@@ -9,7 +9,7 @@ namespace robot_dart {
         public:
             BaseGraphics() {}
 
-            BaseGraphics(dart::simulation::WorldPtr world) {}
+            BaseGraphics(dart::simulation::WorldPtr) {}
 
             virtual bool done() const
             {
@@ -18,9 +18,9 @@ namespace robot_dart {
 
             virtual void refresh() {}
 
-            virtual void set_render_period(double dt) {}
+            virtual void set_render_period(double) {}
 
-            virtual void set_enable(bool enable) {}
+            virtual void set_enable(bool) {}
         };
     } // namespace graphics
 } // namespace robot_dart
