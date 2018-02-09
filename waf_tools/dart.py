@@ -62,7 +62,7 @@ def check_dart(conf):
     osg_check = ['/usr/local/include', '/usr/include']
     osg_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
     osg_found = False
-    osg_comp = ['osg', 'osgViewer', 'osgManipulator', 'osgGA', 'osgDB']
+    osg_comp = ['osg', 'osgViewer', 'osgManipulator', 'osgGA', 'osgDB', 'osgShadow']
     try:
         osg_found = True
         for f in osg_comp:
@@ -99,7 +99,7 @@ def check_dart(conf):
 
         if dart_major < 6:
             raise Exception('')
-        if dart_major == 6 and dart_minor >= 4:
+        if dart_major > 6 or (dart_major == 6 and dart_minor > 4):
             dart_load_prefix = 'io'
 
         res = conf.find_file('dart/dart.hpp', includes_check)

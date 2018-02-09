@@ -9,20 +9,22 @@ namespace robot_dart {
     namespace graphics {
         class Graphics : public BaseGraphics {
         public:
-            Graphics() {}
-
-            Graphics(dart::simulation::WorldPtr world)
+            Graphics(dart::simulation::WorldPtr world, bool shadowed = true)
             {
                 _enabled = true;
                 _world = world;
+                _osg_viewer = new dart::gui::osg::Viewer;
+                if (shadowed)
+                    _osg_viewer->enableShadows();
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
                 set_render_period(world->getTimeStep());
-                _osg_viewer.addWorldNode(_osg_world_node);
+                _osg_viewer->addWorldNode(_osg_world_node);
+                _osg_viewer->switchHeadlights(true);
             }
 
             bool done() const override
             {
-                return _osg_viewer.done();
+                return _osg_viewer->done();
             }
 
             void refresh() override
@@ -32,16 +34,16 @@ namespace robot_dart {
                 if (!_enabled)
                     return;
 
-                if (!_osg_viewer.isRealized()) {
-                    _osg_viewer.setUpViewInWindow(0, 0, 640, 480);
+                if (!_osg_viewer->isRealized()) {
+                    _osg_viewer->setUpViewInWindow(0, 0, 640, 480);
                     // if (Params::graphics::fullscreen())
                     //     _osg_viewer.setUpViewOnSingleScreen();
-                    _osg_viewer.realize();
+                    _osg_viewer->realize();
                 }
 
                 // process next frame
                 if (i % _render_period == 0)
-                    _osg_viewer.frame();
+                    _osg_viewer->frame();
                 i++;
             }
 
@@ -67,9 +69,14 @@ namespace robot_dart {
                 _camera_up = up;
 
                 // set camera position
-                _osg_viewer.getCameraManipulator()->setHomePosition(
+                _osg_viewer->getCameraManipulator()->setHomePosition(
                     osg::Vec3d(_camera_pos(0), _camera_pos(1), _camera_pos(2)), osg::Vec3d(_look_at(0), _look_at(1), _look_at(2)), osg::Vec3d(_camera_up(0), _camera_up(1), _camera_up(2)));
-                _osg_viewer.home();
+                _osg_viewer->home();
+            }
+
+            void enable_default_lights(bool enable = true)
+            {
+                _osg_viewer->switchHeadlights(enable);
             }
 
         protected:
@@ -77,7 +84,7 @@ namespace robot_dart {
             Eigen::Vector3d _camera_pos;
             Eigen::Vector3d _camera_up;
             osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
-            dart::gui::osg::Viewer _osg_viewer;
+            osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
             dart::simulation::WorldPtr _world;
             int _render_period;
             bool _enabled;
