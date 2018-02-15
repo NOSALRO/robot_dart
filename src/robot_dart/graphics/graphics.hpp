@@ -14,9 +14,9 @@ namespace robot_dart {
                 _enabled = true;
                 _world = world;
                 _osg_viewer = new dart::gui::osg::Viewer;
-                if (shadowed)
-                    _osg_viewer->enableShadows();
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
+                if (shadowed)
+                    _osg_world_node->setShadowTechnique(dart::gui::osg::WorldNode::createDefaultShadowTechnique(_osg_viewer));
                 set_render_period(world->getTimeStep());
                 _osg_viewer->addWorldNode(_osg_world_node);
                 _osg_viewer->switchHeadlights(true);
