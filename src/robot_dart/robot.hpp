@@ -20,8 +20,8 @@ namespace robot_dart {
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
         Robot();
-        Robot(std::string model_file, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot");
-        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, std::string robot_name = "robot");
+        Robot(const std::string& model_file, std::vector<RobotDamage> damages = {}, const std::string& robot_name = "robot");
+        Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages = {}, const std::string& robot_name = "robot");
 
         std::shared_ptr<Robot> clone() const;
 
@@ -29,7 +29,7 @@ namespace robot_dart {
 
         std::vector<RobotDamage> damages() const;
 
-        std::string name() const;
+        const std::string& name() const;
 
         void update(double t);
 
@@ -62,12 +62,12 @@ namespace robot_dart {
         void set_damping_coeff(const std::vector<double>& damps);
         void set_damping_coeff(double damp);
 
-        Eigen::Vector3d body_pos(std::string body_name) const;
-        Eigen::Matrix3d body_rot(std::string body_name) const;
-        Eigen::Isometry3d body_trans(std::string body_name) const;
+        Eigen::Vector3d body_pos(const std::string& body_name) const;
+        Eigen::Matrix3d body_rot(const std::string& body_name) const;
+        Eigen::Isometry3d body_trans(const std::string& body_name) const;
 
     protected:
-        dart::dynamics::SkeletonPtr _load_model(std::string model_file);
+        dart::dynamics::SkeletonPtr _load_model(const std::string& filename);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
 

@@ -146,7 +146,7 @@ namespace robot_dart {
         return _robots[index];
     }
 
-    void RobotDARTSimu::add_floor(double floor_width, double floor_height, std::string floor_name, double x, double y)
+    void RobotDARTSimu::add_floor(double floor_width, double floor_height, const std::string& floor_name, double x, double y)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)

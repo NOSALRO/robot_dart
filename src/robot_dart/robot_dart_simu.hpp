@@ -169,7 +169,7 @@ namespace robot_dart {
         //     _objects.push_back(skel);
         // }
 
-        void add_floor(double floor_width = 10.0, double floor_height = 0.1, std::string floor_name = "floor", double x = 0.0, double y = 0.0);
+        void add_floor(double floor_width = 10.0, double floor_height = 0.1, const std::string& floor_name = "floor", double x = 0.0, double y = 0.0);
 
     protected:
         dart::simulation::WorldPtr _world;

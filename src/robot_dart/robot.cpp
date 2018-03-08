@@ -14,13 +14,13 @@
 namespace robot_dart {
     Robot::Robot() {}
 
-    Robot::Robot(std::string model_file, std::vector<RobotDamage> damages, std::string robot_name) : _robot_name(robot_name), _skeleton(_load_model(model_file))
+    Robot::Robot(const std::string& model_file, std::vector<RobotDamage> damages, const std::string& robot_name) : _robot_name(robot_name), _skeleton(_load_model(model_file))
     {
         assert(_skeleton != nullptr);
         _set_damages(damages);
     }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages, std::string robot_name) : _robot_name(robot_name), _skeleton(skeleton)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages, const std::string& robot_name) : _robot_name(robot_name), _skeleton(skeleton)
     {
         assert(_skeleton != nullptr);
         _skeleton->setName(robot_name);
@@ -55,7 +55,7 @@ namespace robot_dart {
         return _damages;
     }
 
-    std::string Robot::name() const
+    const std::string& Robot::name() const
     {
         return _robot_name;
     }
@@ -209,7 +209,7 @@ namespace robot_dart {
         }
     }
 
-    Eigen::Vector3d Robot::body_pos(std::string body_name) const
+    Eigen::Vector3d Robot::body_pos(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
         if (bd)
@@ -218,7 +218,7 @@ namespace robot_dart {
         return Eigen::Vector3d::Zero();
     }
 
-    Eigen::Matrix3d Robot::body_rot(std::string body_name) const
+    Eigen::Matrix3d Robot::body_rot(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
         if (bd)
@@ -226,7 +226,7 @@ namespace robot_dart {
         return Eigen::Matrix3d::Identity();
     }
 
-    Eigen::Isometry3d Robot::body_trans(std::string body_name) const
+    Eigen::Isometry3d Robot::body_trans(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
         if (bd)
@@ -234,9 +234,10 @@ namespace robot_dart {
         return Eigen::Isometry3d::Identity();
     }
 
-    dart::dynamics::SkeletonPtr Robot::_load_model(std::string model_file)
+    dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename)
     {
         // Remove spaces from beginning of the filename/path
+        std::string model_file = filename;
         model_file.erase(model_file.begin(), std::find_if(model_file.begin(), model_file.end(), [](int ch) {
             return !std::isspace(ch);
         }));
