@@ -2,25 +2,39 @@
 
 #include <unistd.h>
 
+#include <dart/config.hpp>
 #include <dart/dynamics/DegreeOfFreedom.hpp>
 #include <dart/dynamics/FreeJoint.hpp>
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
+
+#if DART_MAJOR_VERSION > 6
+#include <dart/io/SkelParser.hpp>
+#include <dart/io/sdf/SdfParser.hpp>
+#include <dart/io/urdf/urdf.hpp>
+#else
+#include <dart/utils/SkelParser.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
+
+// namespace alias for compatibility
+namespace dart {
+    namespace io = utils;
+}
+#endif
 
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
     Robot::Robot() {}
 
-    Robot::Robot(const std::string& model_file, std::vector<RobotDamage> damages, const std::string& robot_name) : _robot_name(robot_name), _skeleton(_load_model(model_file))
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file))
     {
         assert(_skeleton != nullptr);
         _set_damages(damages);
     }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, std::vector<RobotDamage> damages, const std::string& robot_name) : _robot_name(robot_name), _skeleton(skeleton)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(skeleton)
     {
         assert(_skeleton != nullptr);
         _skeleton->setName(robot_name);
@@ -253,11 +267,20 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr tmp_skel;
         std::string extension = model_file.substr(model_file.find_last_of(".") + 1);
         if (extension == "urdf") {
-            dart::utils::DartLoader loader;
+            dart::io::DartLoader loader;
             tmp_skel = loader.parseSkeleton(model_file);
         }
         else if (extension == "sdf")
-            tmp_skel = dart::utils::SdfParser::readSkeleton(model_file);
+            tmp_skel = dart::io::SdfParser::readSkeleton(model_file);
+        else if (extension == "skel") {
+            tmp_skel = dart::io::SkelParser::readSkeleton(model_file);
+            // if the skel file contains a world
+            // try to read the skeleton with name 'robot_name'
+            if (!tmp_skel) {
+                dart::simulation::WorldPtr world = dart::io::SkelParser::readWorld(model_file);
+                tmp_skel = world->getSkeleton(_robot_name);
+            }
+        }
         else
             return nullptr;
 

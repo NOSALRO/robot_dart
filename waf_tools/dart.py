@@ -98,7 +98,7 @@ def check_dart(conf):
                 break
 
         if dart_major < 6:
-            raise Exception('')
+            raise Exception('We need DART version at least 6.0.0')
         if dart_major > 6 or (dart_major == 6 and dart_minor > 4):
             dart_load_prefix = 'io'
 
