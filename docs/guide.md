@@ -126,4 +126,4 @@ simu.run(5.);
 
 ### The final code
 
-The full code of the tutorial can be found in the [source file](src/examples/tutorial.cpp).
+The full code of the tutorial can be found in the [source file](../src/examples/tutorial.cpp).
