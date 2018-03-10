@@ -9,10 +9,8 @@ namespace robot_dart {
     namespace graphics {
         class Graphics : public BaseGraphics {
         public:
-            Graphics(dart::simulation::WorldPtr world, bool shadowed = true)
+            Graphics(dart::simulation::WorldPtr world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _enabled(true)
             {
-                _enabled = true;
-                _world = world;
                 _osg_viewer = new dart::gui::osg::Viewer;
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
                 if (shadowed)
@@ -35,7 +33,7 @@ namespace robot_dart {
                     return;
 
                 if (!_osg_viewer->isRealized()) {
-                    _osg_viewer->setUpViewInWindow(0, 0, 640, 480);
+                    _osg_viewer->setUpViewInWindow(0, 0, _width, _height);
                     // if (Params::graphics::fullscreen())
                     //     _osg_viewer.setUpViewOnSingleScreen();
                     _osg_viewer->realize();
@@ -86,7 +84,7 @@ namespace robot_dart {
             osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
             osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
             dart::simulation::WorldPtr _world;
-            int _render_period;
+            unsigned int _render_period, _width, _height;
             bool _enabled;
         };
     } // namespace graphics

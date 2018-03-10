@@ -1,6 +1,6 @@
 #include <robot_dart/robot.hpp>
 
-#include <boost/filesystem.hpp>
+#include <unistd.h>
 
 #include <dart/dynamics/DegreeOfFreedom.hpp>
 #include <dart/dynamics/FreeJoint.hpp>
@@ -242,16 +242,21 @@ namespace robot_dart {
             return !std::isspace(ch);
         }));
 
-        if (model_file[0] != '/')
-            model_file = boost::filesystem::current_path().string() + "/" + model_file;
+        if (model_file[0] != '/') {
+            constexpr size_t max_size = 512;
+            char buff[max_size];
+            auto val = getcwd(buff, max_size);
+            assert(val && "robot_dart: Something bad happenned when trying to read current path!");
+            model_file = std::string(buff) + "/" + model_file;
+        }
 
         dart::dynamics::SkeletonPtr tmp_skel;
-        boost::filesystem::path p(model_file);
-        if (p.extension() == ".urdf") {
+        std::string extension = model_file.substr(model_file.find_last_of(".") + 1);
+        if (extension == "urdf") {
             dart::utils::DartLoader loader;
             tmp_skel = loader.parseSkeleton(model_file);
         }
-        else if (p.extension() == ".sdf")
+        else if (extension == "sdf")
             tmp_skel = dart::utils::SdfParser::readSkeleton(model_file);
         else
             return nullptr;
