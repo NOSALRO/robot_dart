@@ -32,7 +32,7 @@ int main()
 
 ### Create box or ellipsoid shapes
 
-In robot\_dart there are some helper functions to create boxes and ellipsoid shapes. By default, robot\_dart uses the DART collision detector that supports collision detection only for basic shapes (boxes, spheres, etc.); for that reason, we will create only boxes and spheres. Of course you can change the collision detector to another one supported by DART (you can check the [DART documentation](http://dartsim.github.io/) and our `hexapod` example to see how to do it).
+In robot\_dart there are some helper functions to create boxes and ellipsoid shapes. By default, robot\_dart uses the DART collision detector that supports collision detection only for basic shapes (boxes, spheres, etc.); for that reason, we will create only boxes and spheres. Of course we can change the collision detector to another one supported by DART (check the [DART documentation](http://dartsim.github.io/) and our `hexapod` example to see how to do it).
 
 ```cpp
 std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
@@ -96,9 +96,7 @@ arm_robot->set_position_enforced(true);
 
 ### Create a PD controller to control the arm
 
-In order to control our robots, we need to create some controllers. One of the most traditional and basic controllers, is a PD-controller.
-
-First, you need to include the proper file:
+In order to control our robots, we need to create some controllers. One of the most traditional and basic controllers, is a PD-controller. First, we need to include the proper file:
 
 ```cpp
 #include <robot_dart/control/pd_control.hpp>
