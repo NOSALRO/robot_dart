@@ -159,4 +159,3 @@ def build(bld):
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
     else:
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')
-    # bld.install_files('${PREFIX}/share/arm_models/URDF', 'res/models/arm.urdf')
