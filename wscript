@@ -91,21 +91,21 @@ def build(bld):
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/examples/pendulum_test.cpp',
+                      source = 'src/examples/pendulum.cpp',
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
-                      target = 'pendulum_test')
+                      target = 'pendulum')
 
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/examples/arm_test.cpp',
+                      source = 'src/examples/arm.cpp',
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
-                      target = 'arm_test')
+                      target = 'arm')
 
         # if we found the hexapod controller includes
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
@@ -120,19 +120,19 @@ def build(bld):
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/examples/pendulum_test.cpp',
+                  source = 'src/examples/pendulum.cpp',
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  target = 'pendulum_test_plain')
+                  target = 'pendulum_plain')
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/examples/arm_test.cpp',
+                  source = 'src/examples/arm.cpp',
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  target = 'arm_test_plain')
+                  target = 'arm_plain')
 
     # if we found the hexapod controller includes
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
