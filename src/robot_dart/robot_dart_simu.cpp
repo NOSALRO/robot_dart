@@ -146,7 +146,7 @@ namespace robot_dart {
         return _robots[index];
     }
 
-    void RobotDARTSimu::add_floor(double floor_width, double floor_height, const std::string& floor_name, double x, double y)
+    void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
@@ -164,7 +164,10 @@ namespace robot_dart {
 
         // Put the body into position
         Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-        tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
+        // tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
+        tf.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        tf.translation() = pose.tail(3);
+        tf.translation()[2] -= floor_height / 2.0;
         body->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         _world->addSkeleton(floor_skel);

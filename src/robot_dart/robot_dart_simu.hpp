@@ -48,7 +48,7 @@ namespace robot_dart {
 
         robot_t robot(size_t index) const;
 
-        void add_floor(double floor_width = 10.0, double floor_height = 0.1, const std::string& floor_name = "floor", double x = 0.0, double y = 0.0);
+        void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
 
     protected:
         dart::simulation::WorldPtr _world;
