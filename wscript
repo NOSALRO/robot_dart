@@ -107,6 +107,15 @@ def build(bld):
                       defines = ['GRAPHIC'],
                       target = 'arm')
 
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/tutorial.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
+                      defines = ['GRAPHIC'],
+                      target = 'tutorial')
+
         # if we found the hexapod controller includes
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
             bld.program(features = 'cxx',
@@ -133,6 +142,14 @@ def build(bld):
                   uselib = libs,
                   use = 'RobotDARTSimu',
                   target = 'arm_plain')
+
+    bld.program(features = 'cxx',
+                  install_path = None,
+                  source = 'src/examples/tutorial.cpp',
+                  includes = './src',
+                  uselib = libs,
+                  use = 'RobotDARTSimu',
+                  target = 'tutorial_plain')
 
     # if we found the hexapod controller includes
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
