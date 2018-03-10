@@ -40,7 +40,7 @@ int main()
     std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->look_at({0., 3., 1.}, {0., 0., 0.});
 #endif
 
-    // add floor
+    // add floor of square size of 10 meters and height of 0.2 meters
     simu.add_floor(10., 0.2);
 
     // add random objects to the world
