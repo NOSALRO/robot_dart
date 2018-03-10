@@ -98,6 +98,14 @@ arm_robot->set_position_enforced(true);
 
 In order to control our robots, we need to create some controllers. One of the most traditional and basic controllers, is a PD-controller.
 
+First, you need to include the proper file:
+
+```cpp
+#include <robot_dart/control/pd_control.hpp>
+```
+
+Then we need instantiate the controller, set the desired positions and add it to the robot:
+
 ```cpp
 // add a PD-controller to the arm
 // set desired positions
@@ -115,3 +123,7 @@ simu.add_robot(arm_robot);
 // run the simulator for 5 seconds
 simu.run(5.);
 ```
+
+### The final code
+
+The full code of the tutorial can be found in the [source file](src/examples/tutorial.cpp).
