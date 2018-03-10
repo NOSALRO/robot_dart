@@ -17,7 +17,7 @@ int main()
 
     global_robot->set_position_enforced(true);
 
-    global_robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
+    global_robot->set_actuator_types(dart::dynamics::Joint::SERVO);
 
     auto g_robot = global_robot->clone();
     g_robot->skeleton()->setPosition(5, 0.2);

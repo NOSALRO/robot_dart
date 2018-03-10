@@ -209,19 +209,18 @@ namespace robot_dart {
         }
     }
 
-    // TODO: Warning this only works for the 1st DOF of the joints
     void Robot::set_damping_coeff(const std::vector<double>& damps)
     {
         assert(damps.size() == _skeleton->getNumDofs());
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->getJoint()->setDampingCoefficient(0, damps[i]);
+            _skeleton->getDof(i)->setDampingCoefficient(damps[i]);
         }
     }
 
     void Robot::set_damping_coeff(double damp)
     {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->getJoint()->setDampingCoefficient(0, damp);
+            _skeleton->getDof(i)->setDampingCoefficient(damp);
         }
     }
 
