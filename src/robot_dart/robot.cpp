@@ -3,7 +3,9 @@
 #include <unistd.h>
 
 #include <dart/config.hpp>
+#include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/DegreeOfFreedom.hpp>
+#include <dart/dynamics/EllipsoidShape.hpp>
 #include <dart/dynamics/FreeJoint.hpp>
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
@@ -324,5 +326,77 @@ namespace robot_dart {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
             }
         }
+    }
+
+    std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
+    {
+        dart::dynamics::SkeletonPtr box_skel = dart::dynamics::Skeleton::create(box_name);
+
+        // Give the box a body
+        dart::dynamics::BodyNodePtr body;
+        if (type == "free")
+            body = box_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
+        else
+            body = box_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
+        body->setName(box_name);
+
+        // Give the body a shape
+        auto box = std::make_shared<dart::dynamics::BoxShape>(dims);
+        auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
+        box_node->getVisualAspect()->setColor(color);
+        // Set up inertia
+        dart::dynamics::Inertia inertia;
+        inertia.setMass(mass);
+        inertia.setMoment(box->computeInertia(mass));
+        body->setInertia(inertia);
+
+        // Put the body into position
+        if (type == "free") // free floating
+            box_skel->setPositions(pose);
+        else // fixed
+        {
+            Eigen::Isometry3d T;
+            T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+            T.translation() = pose.tail(3);
+            body->getParentJoint()->setTransformFromParentBodyNode(T);
+        }
+
+        return std::make_shared<Robot>(box_skel, box_name);
+    }
+
+    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
+    {
+        dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(ellipsoid_name);
+
+        // Give the ellipsoid a body
+        dart::dynamics::BodyNodePtr body;
+        if (type == "free")
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
+        else
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
+        body->setName(ellipsoid_name);
+
+        // Give the body a shape
+        auto ellipsoid = std::make_shared<dart::dynamics::EllipsoidShape>(dims);
+        auto ellipsoid_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(ellipsoid);
+        ellipsoid_node->getVisualAspect()->setColor(color);
+        // Set up inertia
+        dart::dynamics::Inertia inertia;
+        inertia.setMass(mass);
+        inertia.setMoment(ellipsoid->computeInertia(mass));
+        body->setInertia(inertia);
+
+        // Put the body into position
+        if (type == "free") // free floating
+            ellipsoid_skel->setPositions(pose);
+        else // fixed
+        {
+            Eigen::Isometry3d T;
+            T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+            T.translation() = pose.tail(3);
+            body->getParentJoint()->setTransformFromParentBodyNode(T);
+        }
+
+        return std::make_shared<Robot>(ellipsoid_skel, ellipsoid_name);
     }
 } // namespace robot_dart

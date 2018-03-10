@@ -66,6 +66,12 @@ namespace robot_dart {
         Eigen::Matrix3d body_rot(const std::string& body_name) const;
         Eigen::Isometry3d body_trans(const std::string& body_name) const;
 
+        // helper functions
+        // pose: Orientation-Position
+        static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box");
+
+        static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "ellipsoid");
+
     protected:
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename);
 
