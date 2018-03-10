@@ -55,8 +55,7 @@ namespace robot_dart {
         robot->_robot_name = _robot_name;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
-            robot->_controllers.push_back(ctrl->clone());
-            robot->_controllers.back()->set_robot(robot);
+            robot->add_controller(ctrl->clone(), ctrl->weight());
         }
         return robot;
     }
