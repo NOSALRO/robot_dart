@@ -1,127 +1,175 @@
-## robot_dart tutorial
+## robot_dart guide
 
-This tutorial aims at providing a gentle introduction to the robot\_dart library.
+In this short guide, a short introduction to the main functionalities of robot\_dart is provided.
 
-### Base skeleton of the code
+### Main classes
 
-Here's the basic skeleton of the code:
+#### Robot
+
+##### Load a new robot from file
+
+**Load robot from URDF, sdf or SKEL file:**
 
 ```cpp
-// basic includes
-#include <robot_dart/robot_dart_simu.hpp>
+auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages])
+```
 
-// if we want graphics, include the appropriate file
-#ifdef GRAPHIC
-#include <robot_dart/graphics/graphics.hpp>
-#endif
+**The default skeleton name is "robot".**
 
-// ....
+**Attention:** *if you want to load a SKEL file, there are two options:*
 
-int main()
-{
-    // create the robot_dart simulator
+- The SKEL file contains a skeleton, then the above code should work fine
+- The SKEL file contains a full world and you want to load the skeleton by the name "my_robot":
 
-    // add some random boxes/spheres
+```cpp
+auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages])
+```
 
-    // add one robot with a controller
+##### Create a robot from an already defined Skeleton
 
-    // simulate the world
-    return 0;
+
+```cpp
+dart::dynamics::SkeletonPtr my_skeleton = ...;
+
+auto my_robot = std::make_shared<robot_dart::Robot>(my_skeleton, [name_to_give_to_skeleton], [vector_of_damages])
+```
+
+##### Controllers
+
+In each robot you can have attached multiple controllers with different weights. Here's the basic functionality:
+
+```cpp
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+
+// add new controller with weight
+std::shared_ptr<robot_dart::control::RobotControl> my_controller = ...; // create controller
+// ctrl_weight defaults to 1.0
+my_robot->add_controller(my_controller, [ctrl_weight]);
+
+// remove controller by pointer
+my_robot->remove_controller(my_controller);
+
+// remove controller by index
+my_robot->remove_controller(0);
+
+// remove all controllers
+my_robot->clear_controllers();
+
+// get all controllers
+std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot->controllers();
+
+// get controller by index
+auto my_controller = my_robot->controller(0);
+
+// get active controllers
+std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot->active_controllers();
+
+// get number of controllers
+size_t num_ctrls = my_robot->num_controllers();
+```
+
+**Retrieving controller with specific type**
+
+Most of the times, the controllers will have some additional functionality over the one needed to update them. For example, [robot_dart::control::PDControl](../src/robot_dart/control/pd_control.hpp) provides a method for changing the PD gains. Here's how to retrieve a controller with specific type:
+
+```cpp
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+
+// add a PD-controller
+std::vector<double> ctrl = ...;
+my_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
+
+// retrieve controller with specific type
+auto my_pd_control = std::static_pointer_cast<robot_dart::control::PDControl>(my_robot->controller(0));
+
+// change PD gains
+my_pd_control->set_pd(20., 0.);
+```
+
+In case you're not sure of the type, you need to use `std::dynamic_pointer_cast`. Here's an example function that returns the first controller with a type of `robot_dart::control:SimpleControl`:
+
+```cpp
+std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_ptr<robot_dart::Robot>& my_robot) {
+    // loop through all the controllers
+    for(auto ctrl : my_robot->controllers()) {
+        auto tmp_ctrl = std::dynamic_pointer_cast<robot_dart::control:SimpleControl>(ctrl);
+        // if the type is indeed robot_dart::control:SimpleControl
+        if(tmp_ctrl)
+            return tmp_ctrl;
+    }
+
+    // we did not find a controller with type robot_dart::control:SimpleControl
+    return nullptr;
 }
 ```
 
-### Create box or ellipsoid shapes
+##### Helper functionality
 
-In robot\_dart there are some helper functions to create boxes and ellipsoid shapes. By default, robot\_dart uses the DART collision detector that supports collision detection only for basic shapes (boxes, spheres, etc.); for that reason, we will create only boxes and spheres. Of course we can change the collision detector to another one supported by DART (check the [DART documentation](http://dartsim.github.io/) and our `hexapod` example to see how to do it).
-
-```cpp
-std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
-{
-    // random pose
-    Eigen::Vector6d pose = Eigen::Vector6d::Random();
-    // make sure it is above the ground
-    pose(5) += 1.5;
-    // random size
-    Eigen::Vector3d size = Eigen::Vector3d::Random().array() * Eigen::Vector3d(0.1, 0.2, 0.1).array() + 0.3;
-    return robot_dart::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
-}
-
-std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
-{
-    // random pose
-    Eigen::Vector6d pose = Eigen::Vector6d::Random();
-    // make sure it is above the ground
-    pose(5) += 1.5;
-    // random size
-    Eigen::Vector3d size = Eigen::Vector3d::Random()[0] * Eigen::Vector3d(0.2, 0.2, 0.2).array() + 0.3;
-    return robot_dart::Robot::create_ellipsoid(size, pose, "free", 1., dart::Color::Blue(1.0), "sphere_" + std::to_string(num));
-}
-```
-
-### Instantiate the simulator
+**Clone robot**
 
 ```cpp
-std::srand(std::time(NULL));
-// choose time step of 0.001 seconds
-robot_dart::RobotDARTSimu simu(0.001);
-#ifdef GRAPHIC
-simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
-// set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
-std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->look_at({0., 3., 1.}, {0., 0., 0.});
-#endif
-
-// add floor of square size of 10 meters and height of 0.2 meters
-simu.add_floor(10., 0.2);
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+auto cloned_robot = my_robot->clone();
 ```
 
-### Create some random objects
+This function will clone the robot using DART's cloning functionality (e.g., it will not clone the full visual shapes).
+
+**Fixing/freeing from world**
 
 ```cpp
-// add random objects to the world
-for (size_t i = 0; i < 10; i++) {
-    simu.add_robot(random_box(i));
-    simu.add_robot(random_sphere(i));
-}
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+
+// fix the robot to the world
+// remove the first 6 DOFs
+my_robot->fix_to_world();
+
+// free from world
+// add back the first 6 DOFs
+my_robot->free_from_world();
+
+// check if robot is fixed
+my_robot->fixed();
+
+// check if robot can freely move
+my_robot->free();
 ```
 
-### Add a robot from a URDF file
+**Actuators**
 
 ```cpp
-// add a simple arm
-auto arm_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
-// pin the arm to world
-arm_robot->fix_to_world();
-arm_robot->set_position_enforced(true);
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+
+// change actuator type
+// same for all DOFs
+my_robot->set_actuator_types(dart::dynamics::Joint::ActuatorType type);
+
+// change actuator type
+// one for each DOF
+my_robot->set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
+
+// set damping coefficients
+// same for all DOFs
+my_robot->set_damping_coeff(double damping);
+
+// set damping coefficients
+// one for each DOF
+my_robot->set_damping_coeff(const std::vector<double>& damps);
 ```
 
-### Create a PD controller to control the arm
-
-In order to control our robots, we need to create some controllers. One of the most traditional and basic controllers, is a PD-controller. First, we need to include the proper file:
+**Other functionality**
 
 ```cpp
-#include <robot_dart/control/pd_control.hpp>
+std::shared_ptr<robot_dart::Robot> my_robot = ...;
+
+// get underlying skeleton pointer
+auto skel_ptr = my_robot->skeleton();
+
+// get robot name
+std::string robot_name = my_robot->name();
+
+// enforce position limits
+my_robot->set_position_enforced(boolean);
+
+// get attached damages
+my_robot->damages();
 ```
-
-Then we need instantiate the controller, set the desired positions and add it to the robot:
-
-```cpp
-// add a PD-controller to the arm
-// set desired positions
-std::vector<double> ctrl = {0.0, 1.0, -1.5, 1.0};
-// add the controller to the robot
-arm_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-
-// add the arm to the simulator
-simu.add_robot(arm_robot);
-```
-
-### Run the simulation
-
-```cpp
-// run the simulator for 5 seconds
-simu.run(5.);
-```
-
-### The final code
-
-The full code of the tutorial can be found in the [source file](../src/examples/tutorial.cpp).

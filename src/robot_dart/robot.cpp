@@ -102,7 +102,7 @@ namespace robot_dart {
         return _controllers;
     }
 
-    std::vector<std::shared_ptr<control::RobotControl>> Robot::activeControllers() const
+    std::vector<std::shared_ptr<control::RobotControl>> Robot::active_controllers() const
     {
         std::vector<std::shared_ptr<control::RobotControl>> ctrls;
         for (auto& ctrl : _controllers) {
@@ -111,6 +111,12 @@ namespace robot_dart {
         }
 
         return ctrls;
+    }
+
+    std::shared_ptr<control::RobotControl> Robot::controller(size_t index) const
+    {
+        assert(index < _controllers.size());
+        return _controllers[index];
     }
 
     void Robot::add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight)
@@ -137,12 +143,6 @@ namespace robot_dart {
     void Robot::clear_controllers()
     {
         _controllers.clear();
-    }
-
-    std::shared_ptr<control::RobotControl> Robot::controller(size_t index) const
-    {
-        assert(index < _controllers.size());
-        return _controllers[index];
     }
 
     void Robot::fix_to_world()

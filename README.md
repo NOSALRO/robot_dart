@@ -9,7 +9,7 @@
 
 ### Using the code
 
-Please look at the [installation guide](docs/installation.md). You will find detailed guidelines on how to properly install all the dependencies, compile the code and run the examples. There is also a short [guide](docs/guide.md) where the basics of this small library are explained through coding a small example.
+Please look at the [installation guide](docs/installation.md). You will find detailed guidelines on how to properly install all the dependencies, compile the code and run the examples. There is also a short [tutorial](docs/tutorial.md) where the basics of this small library are explained through coding a small example. Finally, a small [guide](docs/guide.md) provides a brief overview of the main classes and functionality of the library.
 
 ## LICENSE
 
