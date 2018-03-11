@@ -2,19 +2,17 @@
 
 In this short guide, a short introduction to the main functionalities of robot\_dart is provided.
 
-### Main classes
+### Robot Class
 
-#### Robot
+#### Load a new robot from file
 
-##### Load a new robot from file
-
-**Load robot from URDF, sdf or SKEL file:**
+*Load robot from URDF, sdf or SKEL file:*
 
 ```cpp
 auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages])
 ```
 
-**The default skeleton name is "robot".**
+*The default skeleton name is "robot".*
 
 **Attention:** *if you want to load a SKEL file, there are two options:*
 
@@ -25,7 +23,7 @@ auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_t
 auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages])
 ```
 
-##### Create a robot from an already defined Skeleton
+#### Create a robot from an already defined Skeleton
 
 
 ```cpp
@@ -34,7 +32,7 @@ dart::dynamics::SkeletonPtr my_skeleton = ...;
 auto my_robot = std::make_shared<robot_dart::Robot>(my_skeleton, [name_to_give_to_skeleton], [vector_of_damages])
 ```
 
-##### Controllers
+#### Controllers
 
 In each robot you can have attached multiple controllers with different weights. Here's the basic functionality:
 
@@ -103,7 +101,7 @@ std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_
 }
 ```
 
-##### Helper functionality
+#### Helper functionality
 
 **Clone robot**
 
