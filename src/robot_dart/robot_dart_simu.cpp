@@ -146,6 +146,25 @@ namespace robot_dart {
         _robots.clear();
     }
 
+    void RobotDARTSimu::remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
+    {
+        auto it = std::find(_descriptors.begin(), _descriptors.end(), desc);
+        if (it != _descriptors.end()) {
+            _descriptors.erase(it);
+        }
+    }
+
+    void RobotDARTSimu::remove_descriptor(size_t index)
+    {
+        assert(index < _descriptors.size());
+        _descriptors.erase(_descriptors.begin() + index);
+    }
+
+    void RobotDARTSimu::clear_descriptors()
+    {
+        _descriptors.clear();
+    }
+
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!

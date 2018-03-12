@@ -280,7 +280,70 @@ size_t num_robots() const;
 std::vector<td::shared_ptr<robot_dart::Robot>> robots() const;
 
 // get robot by index
-td::shared_ptr<robot_dart::Robot> robot(size_t index) const;
+std::shared_ptr<robot_dart::Robot> robot(size_t index) const;
+```
+
+**Descriptors**
+
+In *RobotDARTSimu* there's the possibility for attaching **descriptors**. *Descriptors* are functors that can be used either to log information/data (e.g., state trajectories) or to trigger a stop in the simulation (e.g., a NaN value or safety reasons). All descriptors must **inherit** from `robot_dart::descriptor::BaseDescriptor`:
+
+```cpp
+struct BaseDescriptor {
+public:
+    BaseDescriptor(const RobotDARTSimu& simu, size_t desc_dump = 1);
+
+    virtual void operator()() = 0;
+
+    size_t desc_dump() const;
+    void set_desc_dump(size_t desc_dump);
+
+protected:
+    const RobotDARTSimu& _simu;
+    size_t _desc_period;
+};
+```
+
+*desc_dump* defines the number of steps at which the descriptor should be called and you need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
+
+```cpp
+struct MySafety : public robot_dart::descriptor::BaseDescriptor {
+    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
+
+    void operator()()
+    {
+        if (_simu.robots().size() > 0) {
+            auto my_robot = _simu.robot(0);
+            if (my_robot->is_in_unsafe_state())
+                _simu.stop_sim();
+        }
+    }
+};
+```
+
+*Retrieving, removing and adding descriptors to a simulation can be done with the following `RobotDARTSimu` functions*:
+
+```cpp
+// add a descriptor with type Descriptor
+template <typename Descriptor>
+void add_descriptor(size_t desc_dump = 1);
+
+// add a descriptor by passing a pointer
+void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+
+// get all descriptors
+std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
+
+// get descriptor by index
+std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
+
+// remove descriptor by pointer
+void remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+
+// remove descriptor by index
+void remove_descriptor(size_t index);
+
+// remove all descriptors
+void clear_descriptors();
 ```
 
 **Other functionality**
