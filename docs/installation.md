@@ -101,7 +101,7 @@ To install the library (assuming that you have already compiled it), you need on
 
 - `./waf install`
 
-By default the library will be install in `/usr/lib` (for this maybe `sudo ./waf install` might be needed) and a static library will be generated. You can change the defaults as follows:
+By default the library will be installed in `/usr/lib` (for this maybe `sudo ./waf install` might be needed) and a static library will be generated. You can change the defaults as follows:
 
 - `./waf configure --prefix=/path/to/install/dir --shared`
 - `./waf install`
