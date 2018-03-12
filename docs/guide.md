@@ -64,6 +64,9 @@ std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot
 
 // get number of controllers
 size_t num_ctrls = my_robot->num_controllers();
+
+// re-initialize all controllers
+my_robot->reinit_controllers();
 ```
 
 **Retrieving controller with specific type**
@@ -174,7 +177,7 @@ my_robot->damages();
 
 ### RobotControl Class
 
-This is an abstract class that should serve as a base when creating controllers in robot\_dart. For examples of already implemented controllers can be found in the [control directory](../src/robot_dart/control).
+This is an abstract class that should serve as a base when creating controllers in robot\_dart. Examples of already implemented controllers can be found in the [control directory](../src/robot_dart/control).
 
 #### Main methods
 
@@ -186,14 +189,6 @@ RobotControl::RobotControl(const std::vector<double>& ctrl, bool full_control = 
 
 - *ctrl* is the parameter vector
 - *full_control* defines whether we should control all the DOFs or not; this has an actual point only when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
-
-**Control commands**
-
-```cpp
-// this is the method that get the commands
-// depending on time
-Eigen::VectorXd commands(double t);
-```
 
 **Parameters**
 
