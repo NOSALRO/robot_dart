@@ -239,3 +239,62 @@ Eigen::VectorXd calculate(double t);
 // method that properly clones the controller
 std::shared_ptr<RobotControl> clone() const;
 ```
+
+### RobotDARTSimu Class
+
+This is the simulator class. It handles and aids in configuration of a DART simulation in robot\_dart.
+
+**Constructor**
+
+```cpp
+// initialize a simulation with a certain time step
+RobotDARTSimu::RobotDARTSimu(double time_step = 0.015);
+```
+
+**Running a simulation**
+
+```cpp
+// run a simulation for max_duration seconds
+void run(double max_duration);
+```
+
+**Robots**
+
+```cpp
+// add a robot
+void add_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+
+// remove a robot by pointer
+void remove_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+
+// remove a robot by index
+void remove_robot(size_t index);
+
+// remove all robots
+void clear_robots();
+
+// number of robots
+size_t num_robots() const;
+
+// get vector of robots
+std::vector<td::shared_ptr<robot_dart::Robot>> robots() const;
+
+// get robot by index
+td::shared_ptr<robot_dart::Robot> robot(size_t index) const;
+```
+
+**Other functionality**
+
+```cpp
+// get pointer to the underlying DART world
+dart::simulation::WorldPtr world();
+
+// get time step
+double step() const;
+
+// set a new time step
+void set_step(double step);
+
+// add a floor to the world
+void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name);
+```

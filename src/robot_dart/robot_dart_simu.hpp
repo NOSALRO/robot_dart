@@ -40,13 +40,12 @@ namespace robot_dart {
 
         size_t num_robots() const;
         std::vector<robot_t> robots() const;
+        robot_t robot(size_t index) const;
 
         void add_robot(const robot_t& robot);
         void remove_robot(const robot_t& robot);
         void remove_robot(size_t index);
         void clear_robots();
-
-        robot_t robot(size_t index) const;
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
 

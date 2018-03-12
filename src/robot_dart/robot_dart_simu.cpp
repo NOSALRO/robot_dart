@@ -108,6 +108,12 @@ namespace robot_dart {
         return _robots;
     }
 
+    std::shared_ptr<Robot> RobotDARTSimu::robot(size_t index) const
+    {
+        assert(index < _robots.size());
+        return _robots[index];
+    }
+
     void RobotDARTSimu::add_robot(const std::shared_ptr<Robot>& robot)
     {
         if (robot->skeleton()) {
@@ -138,12 +144,6 @@ namespace robot_dart {
             _world->removeSkeleton(robot->skeleton());
         }
         _robots.clear();
-    }
-
-    std::shared_ptr<Robot> RobotDARTSimu::robot(size_t index) const
-    {
-        assert(index < _robots.size());
-        return _robots[index];
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
