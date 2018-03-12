@@ -171,3 +171,76 @@ my_robot->set_position_enforced(boolean);
 // get attached damages
 my_robot->damages();
 ```
+
+### RobotControl Class
+
+This is an abstract class that should serve as a base when creating controllers in robot\_dart. For examples of already implemented controllers can be found in the [control directory](../src/robot_dart/control).
+
+#### Main methods
+
+**Constructor**
+
+```cpp
+RobotControl::RobotControl(const std::vector<double>& ctrl, bool full_control = false);
+```
+
+- *ctrl* is the parameter vector
+- *full_control* defines whether we should control all the DOFs or not; this has an actual point only when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
+
+**Control commands**
+
+```cpp
+// this is the method that get the commands
+// depending on time
+Eigen::VectorXd commands(double t);
+```
+
+**Parameters**
+
+```cpp
+// change/set the parameters
+void set_parameters(const std::vector<double>& ctrl);
+
+// get parameters
+std::vector<double> parameters() const;
+```
+
+**Other functionality**
+
+```cpp
+// set the parent robot
+// this is automatically done when you add a controller to a robot
+void set_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+// get the parent robot
+std::shared_ptr<robot_dart::Robot> robot() const;
+
+// get if controller is active
+// if it's not active, you should update the parameters
+// and re-initialize
+bool active() const;
+
+// helper functions for full control
+bool fully_controlled() const;
+void set_full_control(bool enable);
+
+// helper functions for weight
+double weight() const;
+void set_weight(double weight);
+```
+
+#### Abstract methods
+
+All of the following methods, you **need** to override them when you are creating a new controller.
+
+```cpp
+// method that initializes the controller
+void configure();
+
+// method that computes the actual commands
+// you should return an Eigen::VectorXd
+// of size of _control_dof
+Eigen::VectorXd calculate(double t);
+
+// method that properly clones the controller
+std::shared_ptr<RobotControl> clone() const;
+```
