@@ -33,6 +33,10 @@ namespace robot_dart {
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
         std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
 
+        void remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+        void remove_descriptor(size_t index);
+        void clear_descriptors();
+
         double step() const;
         void set_step(double step);
 
