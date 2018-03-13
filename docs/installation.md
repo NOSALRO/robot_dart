@@ -71,14 +71,14 @@ For **OSX systems** with homebrew, please follow the detailed installation instr
 ```bash
 brew install eigen
 brew install assimp
-brew install homebrew/science/libccd
-brew install dartsim/dart/fcl
+brew install libccd
+brew install dartsim/dart/fcl04
 brew install boost
 brew install open-scene-graph
 
 brew install tinyxml
 brew install tinyxml2
-brew install ros/deps/urdfdom
+brew install urdfdom
 
 cd /path/to/tmp/folder
 git clone git://github.com/dartsim/dart.git
