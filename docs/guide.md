@@ -1,10 +1,10 @@
-## robot_dart guide
+# robot_dart guide
 
 In this short guide, a short introduction to the main functionalities of robot\_dart is provided.
 
-### Robot Class
+## Robot Class
 
-#### Load a new robot from file
+### Load a new robot from file
 
 *Load robot from URDF, sdf or SKEL file:*
 
@@ -23,7 +23,7 @@ auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_t
 auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages])
 ```
 
-#### Create a robot from an already defined Skeleton
+### Create a robot from an already defined Skeleton
 
 
 ```cpp
@@ -32,7 +32,7 @@ dart::dynamics::SkeletonPtr my_skeleton = ...;
 auto my_robot = std::make_shared<robot_dart::Robot>(my_skeleton, [name_to_give_to_skeleton], [vector_of_damages])
 ```
 
-#### Controllers
+### Controllers
 
 In each robot you can have attached multiple controllers with different weights. Here's the basic functionality:
 
@@ -104,7 +104,7 @@ std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_
 }
 ```
 
-#### Helper functionality
+### Helper functionality
 
 **Clone robot**
 
@@ -185,11 +185,11 @@ my_robot->set_position_enforced(const std::vector<bool>& enforced);
 my_robot->damages();
 ```
 
-### RobotControl Class
+## RobotControl Class
 
 This is an abstract class that should serve as a base when creating controllers in robot\_dart. Examples of already implemented controllers can be found in the [control directory](../src/robot_dart/control).
 
-#### Main methods
+### Main methods
 
 **Constructor**
 
@@ -233,7 +233,7 @@ double weight() const;
 void set_weight(double weight);
 ```
 
-#### Abstract methods
+### Abstract methods
 
 All of the following methods, you **need** to override them when you are creating a new controller.
 
@@ -250,7 +250,7 @@ Eigen::VectorXd calculate(double t);
 std::shared_ptr<RobotControl> clone() const;
 ```
 
-### RobotDARTSimu Class
+## RobotDARTSimu Class
 
 This is the simulator class. It handles and aids in configuration of a DART simulation in robot\_dart.
 
