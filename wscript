@@ -1,18 +1,23 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
+import os
+import fnmatch
+import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
-VERSION = '0.0.1'
+VERSION = '1.0.0'
 APPNAME = 'robot_dart'
 
 srcdir = '.'
 blddir = 'build'
 
 from waflib.Build import BuildContext
+from waflib import Logs
 import dart
 import boost
 import eigen
+import hexapod_controller
 
 
 def options(opt):
@@ -21,6 +26,9 @@ def options(opt):
     opt.load('boost')
     opt.load('eigen')
     opt.load('dart')
+    opt.load('hexapod_controller')
+
+    opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
 
 
 def configure(conf):
@@ -31,14 +39,20 @@ def configure(conf):
     conf.load('boost')
     conf.load('eigen')
     conf.load('dart')
+    conf.load('hexapod_controller')
 
     conf.check_boost(lib='regex system filesystem', min_version='1.46')
     conf.check_eigen()
     conf.check_dart()
+    conf.check_hexapod_controller()
+
+    conf.env['lib_type'] = 'cxxstlib'
+    if conf.options.build_shared:
+        conf.env['lib_type'] = 'cxxshlib'
 
     if conf.env.CXX_NAME in ["icc", "icpc"]:
         common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -xHost  -march=native -mtune=native -unroll -fma -g"
+        opt_flags = " -O3 -xHost -mtune=native -unroll -g"
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
         opt_flags = " -O3 -march=native -g"
@@ -55,47 +69,110 @@ def configure(conf):
 
 
 def build(bld):
+    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
+        bld.fatal('Some libraries were not found! Cannot proceed!')
+    files = []
+    for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            files.append(os.path.join(root, filename))
+
+    files = [f[len(bld.path.abspath())+1:] for f in files]
+    robot_dart_srcs = " ".join(files)
+
+    libs = 'BOOST EIGEN DART'
+    libs_graphics = libs + ' DART_GRAPHIC'
+
+    bld.program(features = 'cxx ' + bld.env['lib_type'],
+                source = robot_dart_srcs,
+                includes = './src',
+                uselib = libs,
+                target = 'RobotDARTSimu')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/pendulum_test.cpp',
-                      includes = './include',
-                      uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      source = 'src/examples/pendulum.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
-                      target = 'pendulum_test')
+                      target = 'pendulum')
 
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/arm_test.cpp',
-                      includes = './include',
-                      uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX EIGEN DART_GRAPHIC',
+                      source = 'src/examples/arm.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
-                      target = 'arm_test')
+                      target = 'arm')
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/tutorial.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
+                      defines = ['GRAPHIC'],
+                      target = 'tutorial')
+
+        # if we found the hexapod controller includes
+        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
+            bld.program(features = 'cxx',
+                        install_path = None,
+                        source = 'src/examples/hexapod.cpp',
+                        includes = './src',
+                        uselib = libs_graphics + ' HEXAPOD_CONTROLLER',
+                        use = 'RobotDARTSimu',
+                        defines = ['GRAPHIC'],
+                        target = 'hexapod')
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/pendulum_test.cpp',
-                  includes = './include',
-                  uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
-                  target = 'pendulum_test_plain')
+                  source = 'src/examples/pendulum.cpp',
+                  includes = './src',
+                  uselib = libs,
+                  use = 'RobotDARTSimu',
+                  target = 'pendulum_plain')
 
     bld.program(features = 'cxx',
                   install_path = None,
-                  source = 'src/arm_test.cpp',
-                  includes = './include',
-                  uselib = 'BOOST BOOST_SYSTEM BOOST_FILESYSTEM BOOST_REGEX DART EIGEN',
-                  target = 'arm_test_plain')
+                  source = 'src/examples/arm.cpp',
+                  includes = './src',
+                  uselib = libs,
+                  use = 'RobotDARTSimu',
+                  target = 'arm_plain')
 
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_dart_simu.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/robot_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/force_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/position_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/pd_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/spd_control.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/descriptors.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/macros.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/no_graphics.hpp')
-    bld.install_files('${PREFIX}/include/robot_dart', 'include/robot_dart/graphics.hpp')
-    bld.install_files('${PREFIX}/share/arm_models/URDF', 'res/models/arm.urdf')
+    bld.program(features = 'cxx',
+                  install_path = None,
+                  source = 'src/examples/tutorial.cpp',
+                  includes = './src',
+                  uselib = libs,
+                  use = 'RobotDARTSimu',
+                  target = 'tutorial_plain')
+
+    # if we found the hexapod controller includes
+    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
+        bld.program(features = 'cxx',
+                    install_path = None,
+                    source = 'src/examples/hexapod.cpp',
+                    includes = './src',
+                    uselib = libs + ' HEXAPOD_CONTROLLER',
+                    use = 'RobotDARTSimu',
+                    target = 'hexapod_plain')
+
+    install_files = []
+    for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
+        for filename in fnmatch.filter(filenames, '*.hpp'):
+            install_files.append(os.path.join(root, filename))
+    install_files = [f[len(bld.path.abspath())+1:] for f in install_files]
+
+    for f in install_files:
+        end_index = f.rfind('/')
+        if end_index == -1:
+            end_index = len(f)
+        bld.install_files('${PREFIX}/include/' + f[4:end_index], f)
+    if bld.env['lib_type'] == 'cxxstlib':
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
+    else:
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')

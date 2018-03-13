@@ -3,3 +3,4 @@ build
 .lock-waf*
 *.pyc
 res/nao_meshes
+.vscode
