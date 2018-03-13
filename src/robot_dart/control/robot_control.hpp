@@ -24,6 +24,7 @@ namespace robot_dart {
             void set_robot(const std::shared_ptr<Robot>& robot);
             std::shared_ptr<Robot> robot() const;
 
+            void activate(bool enable = true);
             bool active() const;
 
             bool fully_controlled() const;
