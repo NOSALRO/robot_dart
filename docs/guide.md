@@ -36,7 +36,7 @@ auto my_robot = std::make_shared<robot_dart::Robot>(
 
 ### Controllers
 
-In each robot you can have attached multiple controllers with different weights. Here's the basic functionality:
+Multiple controllers can be attached to a robot, each with their own weight. Here's the basic functionality:
 
 ```cpp
 std::shared_ptr<robot_dart::Robot> my_robot = ...;
@@ -168,7 +168,7 @@ my_robot->set_damping_coeff(double damp);
 my_robot->set_damping_coeff(const std::vector<double>& damps);
 ```
 
-**Other functionality**
+**Other functionalities**
 
 ```cpp
 std::shared_ptr<robot_dart::Robot> my_robot = ...;
@@ -201,7 +201,7 @@ RobotControl::RobotControl(const std::vector<double>& ctrl, bool full_control = 
 ```
 
 - *ctrl* is the parameter vector
-- *full_control* defines whether we should control all the DOFs or not; this has an actual point only when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
+- *full_control* defines whether we should control all the DOFs or not; this is only relevant when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
 
 **Parameters**
 
@@ -231,7 +231,7 @@ bool active() const;
 bool fully_controlled() const;
 void set_full_control(bool enable);
 
-// helper functions for weight
+// helper functions for controller's weight
 double weight() const;
 void set_weight(double weight);
 ```
@@ -246,7 +246,7 @@ void configure();
 
 // method that computes the actual commands
 // you should return an Eigen::VectorXd
-// of size of _control_dof
+// with a size equal to _control_dof
 Eigen::VectorXd calculate(double t);
 
 // method that properly clones the controller
@@ -316,7 +316,9 @@ protected:
 };
 ```
 
-*desc_dump* defines the number of steps at which the descriptor should be called and you need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
+*desc_dump* defines the number of steps at which the descriptor should be called.
+
+You need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
 
 ```cpp
 struct MySafety : public robot_dart::descriptor::BaseDescriptor {
@@ -334,7 +336,7 @@ struct MySafety : public robot_dart::descriptor::BaseDescriptor {
 };
 ```
 
-*Retrieving, removing and adding descriptors to a simulation can be done with the following `RobotDARTSimu` functions*:
+Retrieving, removing and adding descriptors to a simulation can be done with the following `RobotDARTSimu` methods:
 
 ```cpp
 // add a descriptor with type Descriptor
