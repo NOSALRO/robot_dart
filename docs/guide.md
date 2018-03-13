@@ -141,6 +141,10 @@ my_robot->free();
 std::shared_ptr<robot_dart::Robot> my_robot = ...;
 
 // change actuator type
+// for DOF index dof
+my_robot->set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type);
+
+// change actuator type
 // same for all DOFs
 my_robot->set_actuator_types(dart::dynamics::Joint::ActuatorType type);
 
@@ -149,8 +153,12 @@ my_robot->set_actuator_types(dart::dynamics::Joint::ActuatorType type);
 my_robot->set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
 
 // set damping coefficients
+// for DOF index dof
+my_robot->set_damping_coeff(size_t dof, double damp);
+
+// set damping coefficients
 // same for all DOFs
-my_robot->set_damping_coeff(double damping);
+my_robot->set_damping_coeff(double damp);
 
 // set damping coefficients
 // one for each DOF
@@ -169,7 +177,9 @@ auto skel_ptr = my_robot->skeleton();
 std::string robot_name = my_robot->name();
 
 // enforce position limits
-my_robot->set_position_enforced(boolean);
+my_robot->set_position_enforced(size_t dof, bool enforced);
+my_robot->set_position_enforced(bool enforced);
+my_robot->set_position_enforced(const std::vector<bool>& enforced);
 
 // get attached damages
 my_robot->damages();
