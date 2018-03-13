@@ -178,10 +178,16 @@ namespace robot_dart {
         return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
+    void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type)
+    {
+        assert(dof < _skeleton->getNumDofs());
+        _skeleton->getDof(dof)->getJoint()->setActuatorType(type);
+    }
+
     void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
     {
         assert(types.size() == _skeleton->getNumDofs());
-        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->getJoint()->setActuatorType(types[i]);
         }
     }
@@ -191,6 +197,12 @@ namespace robot_dart {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->getJoint()->setActuatorType(type);
         }
+    }
+
+    void Robot::set_position_enforced(size_t dof, bool enforced)
+    {
+        assert(dof < _skeleton->getNumDofs());
+        _skeleton->getDof(dof)->getJoint()->setPositionLimitEnforced(enforced);
     }
 
     void Robot::set_position_enforced(const std::vector<bool>& enforced)
@@ -206,6 +218,12 @@ namespace robot_dart {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced);
         }
+    }
+
+    void Robot::set_damping_coeff(size_t dof, double damp)
+    {
+        assert(dof < _skeleton->getNumDofs());
+        _skeleton->getDof(dof)->setDampingCoefficient(damp);
     }
 
     void Robot::set_damping_coeff(const std::vector<double>& damps)
