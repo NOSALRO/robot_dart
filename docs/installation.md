@@ -96,6 +96,7 @@ sudo make install
 
 The compilation of the library is straight-forward:
 
+- retrieve the code, for instance with `git clone https://github.com/resibots/robot_dart.git`
 - `cd /path/to/repo/root`
 - `./waf configure`
 - `./waf`
