@@ -39,33 +39,30 @@ auto my_robot = std::make_shared<robot_dart::Robot>(
 Multiple controllers can be attached to a robot, each with their own weight. Here's the basic functionality:
 
 ```cpp
-std::shared_ptr<robot_dart::Robot> my_robot = ...;
-
 // add new controller with weight
-std::shared_ptr<robot_dart::control::RobotControl> my_controller = ...; // create controller
 // ctrl_weight defaults to 1.0
-my_robot->add_controller(my_controller, [ctrl_weight]);
+void add_controller(const std::shared_ptr<robot_dart::control::RobotControl>& controller, [ctrl_weight]);
 
 // remove controller by pointer
-my_robot->remove_controller(my_controller);
+void remove_controller(const std::shared_ptr<robot_dart::control::RobotControl>& controller);
 
 // remove controller by index
-my_robot->remove_controller(0);
+void remove_controller(size_t index);
 
 // remove all controllers
-my_robot->clear_controllers();
+void clear_controllers();
 
 // get all controllers
-std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot->controllers();
+std::vector<std::shared_ptr<robot_dart::control::RobotControl>> controllers() const;
 
 // get controller by index
-auto my_controller = my_robot->controller(0);
+std::shared_ptr<robot_dart::control::RobotControl> controller(size_t index) const;
 
 // get active controllers
-std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot->active_controllers();
+std::vector<std::shared_ptr<robot_dart::control::RobotControl>> active_controllers() const;
 
 // get number of controllers
-size_t num_ctrls = my_robot->num_controllers();
+size_t num_controllers() const;
 
 // re-initialize all controllers
 // this is automatically called when
@@ -73,7 +70,7 @@ size_t num_ctrls = my_robot->num_controllers();
 // are called. You should also call it
 // when the structure of the robot changed
 // (i.e., you added a new DOF)
-my_robot->reinit_controllers();
+void reinit_controllers();
 ```
 
 **Retrieving controller with specific type**
