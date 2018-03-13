@@ -298,7 +298,7 @@ std::shared_ptr<robot_dart::Robot> robot(size_t index) const;
 
 **Descriptors**
 
-In *RobotDARTSimu* there's the possibility of attaching **descriptors**. *Descriptors* are functors that can be used either to log information/data (e.g., state trajectories) or to trigger a stop in the simulation (e.g., a NaN value or safety reasons). All descriptors must **inherit** from `robot_dart::descriptor::BaseDescriptor`:
+In *RobotDARTSimu* there's the possibility of attaching **descriptors**. *Descriptors* are functors that can be used to log information/data (e.g., state trajectories) or to stop the simulation (e.g., a NaN value was produced or for safety reasons). All descriptors must **inherit** from `robot_dart::descriptor::BaseDescriptor`:
 
 ```cpp
 struct BaseDescriptor {
