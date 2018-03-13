@@ -45,6 +45,14 @@ namespace robot_dart {
             return _robot;
         }
 
+        void RobotControl::activate(bool enable)
+        {
+            _active = false;
+            if (enable) {
+                init();
+            }
+        }
+
         bool RobotControl::active() const
         {
             return _active;

@@ -68,6 +68,11 @@ std::vector<std::shared_ptr<robot_dart::control::RobotControl>> ctrls = my_robot
 size_t num_ctrls = my_robot->num_controllers();
 
 // re-initialize all controllers
+// this is automatically called when
+// robot->fix_to_world() or robot->free()
+// are called. You should also call it
+// when the structure of the robot changed
+// (i.e., you added a new DOF)
 my_robot->reinit_controllers();
 ```
 
@@ -183,9 +188,6 @@ std::string robot_name = my_robot->name();
 my_robot->set_position_enforced(size_t dof, bool enforced);
 my_robot->set_position_enforced(bool enforced);
 my_robot->set_position_enforced(const std::vector<bool>& enforced);
-
-// get attached damages
-my_robot->damages();
 ```
 
 ## RobotControl Class
@@ -216,24 +218,32 @@ std::vector<double> parameters() const;
 **Other functionality**
 
 ```cpp
+std::vector<double> parameters = ...;
+auto my_ctrl = std::make_shared<MyController>(parameters);
+
 // set the parent robot
 // this is automatically done when you add a controller to a robot
-void set_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+my_ctrl->set_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 // get the parent robot
-std::shared_ptr<robot_dart::Robot> robot() const;
+std::shared_ptr<robot_dart::Robot> parent_robot = my_ctrl->robot();
+
+// activate or deactivate the controller
+// enable == true, then it tries to activate
+// the controller (i.e., tries to initialize it)
+my_ctrl->activate(bool enable);
 
 // get if controller is active
 // if it's not active, you should update the parameters
 // and re-initialize
-bool active() const;
+bool is_my_ctrl_active = my_ctrl->active();
 
 // helper functions for full control
-bool fully_controlled() const;
-void set_full_control(bool enable);
+bool is_my_ctrl_fully_controlled = my_ctrl->fully_controlled();
+my_ctrl->set_full_control(bool enable);
 
 // helper functions for controller's weight
-double weight() const;
-void set_weight(double weight);
+double ctrl_weight = my_ctrl->weight();
+my_ctrl->set_weight(double weight);
 ```
 
 ### Abstract methods
@@ -242,6 +252,9 @@ All of the following methods, you **need** to override them when you are creatin
 
 ```cpp
 // method that initializes the controller
+// you should make sure that you set _active
+// to true if everything went ok (i.e., the
+// controller parameters are well-behaved)
 void configure();
 
 // method that computes the actual commands
@@ -267,33 +280,34 @@ RobotDARTSimu::RobotDARTSimu(double time_step = 0.015);
 **Running a simulation**
 
 ```cpp
+RobotDARTSimu simu;
 // run a simulation for max_duration seconds
-void run(double max_duration);
+simu.run(double max_duration);
 ```
 
 **Robots**
 
 ```cpp
 // add a robot
-void add_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+simu.add_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 
 // remove a robot by pointer
-void remove_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+simu.remove_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 
 // remove a robot by index
-void remove_robot(size_t index);
+simu.remove_robot(size_t index);
 
 // remove all robots
-void clear_robots();
+simu.clear_robots();
 
 // number of robots
-size_t num_robots() const;
+size_t number_of_robots = simu.num_robots();
 
 // get vector of robots
-std::vector<td::shared_ptr<robot_dart::Robot>> robots() const;
+std::vector<td::shared_ptr<robot_dart::Robot>> sim_robots = simu.robots();
 
 // get robot by index
-std::shared_ptr<robot_dart::Robot> robot(size_t index) const;
+std::shared_ptr<robot_dart::Robot> my_robot = simu.robot(size_t index);
 ```
 
 **Descriptors**
@@ -316,7 +330,7 @@ protected:
 };
 ```
 
-*desc_dump* defines the number of steps at which the descriptor should be called.
+**The descriptor will be called every `desc_dump` steps of the simulation.**
 
 You need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
 
@@ -340,41 +354,40 @@ Retrieving, removing and adding descriptors to a simulation can be done with the
 
 ```cpp
 // add a descriptor with type Descriptor
-template <typename Descriptor>
-void add_descriptor(size_t desc_dump = 1);
+simu.add_descriptor<MyDescriptor>(size_t desc_dump);
 
 // add a descriptor by passing a pointer
-void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+simu.add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
 
 // get all descriptors
-std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
+std::vector<std::shared_ptr<descriptor::BaseDescriptor>> all_descs = simu.descriptors();
 
 // get descriptor by index
-std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
+std::shared_ptr<descriptor::BaseDescriptor> my_desc = simu.descriptor(size_t index) const;
 
 // remove descriptor by pointer
-void remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+simu.remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
 
 // remove descriptor by index
-void remove_descriptor(size_t index);
+simu.remove_descriptor(size_t index);
 
 // remove all descriptors
-void clear_descriptors();
+simu.clear_descriptors();
 ```
 
 **Other functionality**
 
 ```cpp
 // get pointer to the underlying DART world
-dart::simulation::WorldPtr world();
+dart::simulation::WorldPtr dart_world = simu.world();
 
 // get time step
-double step() const;
+double dt = simu.step();
 
 // set a new time step
-void set_step(double step);
+simu.set_step(double step);
 
 // add a floor to the world
-void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
+simu.add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
     const std::string& floor_name);
 ```
