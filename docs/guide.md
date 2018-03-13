@@ -9,7 +9,8 @@ In this short guide, a short introduction to the main functionalities of robot\_
 *Load robot from URDF, sdf or SKEL file:*
 
 ```cpp
-auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>(
+    "relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages]);
 ```
 
 *The default skeleton name is "robot".*
@@ -20,7 +21,7 @@ auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_t
 - The SKEL file contains a full world and you want to load the skeleton by the name "my_robot":
 
 ```cpp
-auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages]);
 ```
 
 ### Create a robot from an already defined Skeleton
@@ -29,7 +30,8 @@ auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_rob
 ```cpp
 dart::dynamics::SkeletonPtr my_skeleton = ...;
 
-auto my_robot = std::make_shared<robot_dart::Robot>(my_skeleton, [name_to_give_to_skeleton], [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>(
+    my_skeleton, [name_to_give_to_skeleton], [vector_of_damages]);
 ```
 
 ### Controllers
@@ -90,7 +92,8 @@ my_pd_control->set_pd(20., 0.);
 In case you're not sure of the type, you need to use `std::dynamic_pointer_cast`. Here's an example function that returns the first controller with a type of `robot_dart::control:SimpleControl`:
 
 ```cpp
-std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_ptr<robot_dart::Robot>& my_robot) {
+std::shared_ptr<robot_dart::control::RobotControl>
+get_simple(const std::shared_ptr<robot_dart::Robot>& my_robot) {
     // loop through all the controllers
     for(auto ctrl : my_robot->controllers()) {
         auto tmp_ctrl = std::dynamic_pointer_cast<robot_dart::control:SimpleControl>(ctrl);
@@ -317,7 +320,8 @@ protected:
 
 ```cpp
 struct MySafety : public robot_dart::descriptor::BaseDescriptor {
-    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
+    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1)
+        : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {
@@ -369,5 +373,6 @@ double step() const;
 void set_step(double step);
 
 // add a floor to the world
-void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name);
+void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
+    const std::string& floor_name);
 ```
