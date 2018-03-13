@@ -28,7 +28,7 @@ brew install boost
 
 #### Installing DART
 
-Of course in order to use robot\_dart, you need to install [DART](http://dartsim.github.io/).
+Of course in order to use robot\_dart, you need to install [DART](http://dartsim.github.io/) (from source).
 
 For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you need to enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependencies: **DART Parsers** and **OpenSceneGraph GUI**. Lastly, it is recommended to use either the `master` or `release-6.4` branch (and not the one provided in DART's documentation). In short you should do the following:
 
@@ -96,6 +96,7 @@ sudo make install
 
 The compilation of the library is straight-forward:
 
+- retrieve the code, for instance with `git clone https://github.com/resibots/robot_dart.git`
 - `cd /path/to/repo/root`
 - `./waf configure`
 - `./waf`

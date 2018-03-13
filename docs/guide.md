@@ -1,15 +1,16 @@
-## robot_dart guide
+# robot_dart guide
 
 In this short guide, a short introduction to the main functionalities of robot\_dart is provided.
 
-### Robot Class
+## Robot Class
 
-#### Load a new robot from file
+### Load a new robot from file
 
 *Load robot from URDF, sdf or SKEL file:*
 
 ```cpp
-auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>(
+    "relative_or_absolute_path_to_file", [name_to_give_to_skeleton], [vector_of_damages]);
 ```
 
 *The default skeleton name is "robot".*
@@ -20,21 +21,22 @@ auto my_robot = std::make_shared<robot_dart::Robot>("relative_or_absolute_path_t
 - The SKEL file contains a full world and you want to load the skeleton by the name "my_robot":
 
 ```cpp
-auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>("path_to_skel_file", "my_robot", [vector_of_damages]);
 ```
 
-#### Create a robot from an already defined Skeleton
+### Create a robot from an already defined Skeleton
 
 
 ```cpp
 dart::dynamics::SkeletonPtr my_skeleton = ...;
 
-auto my_robot = std::make_shared<robot_dart::Robot>(my_skeleton, [name_to_give_to_skeleton], [vector_of_damages])
+auto my_robot = std::make_shared<robot_dart::Robot>(
+    my_skeleton, [name_to_give_to_skeleton], [vector_of_damages]);
 ```
 
-#### Controllers
+### Controllers
 
-In each robot you can have attached multiple controllers with different weights. Here's the basic functionality:
+Multiple controllers can be attached to a robot, each with their own weight. Here's the basic functionality:
 
 ```cpp
 std::shared_ptr<robot_dart::Robot> my_robot = ...;
@@ -90,7 +92,8 @@ my_pd_control->set_pd(20., 0.);
 In case you're not sure of the type, you need to use `std::dynamic_pointer_cast`. Here's an example function that returns the first controller with a type of `robot_dart::control:SimpleControl`:
 
 ```cpp
-std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_ptr<robot_dart::Robot>& my_robot) {
+std::shared_ptr<robot_dart::control::RobotControl>
+get_simple(const std::shared_ptr<robot_dart::Robot>& my_robot) {
     // loop through all the controllers
     for(auto ctrl : my_robot->controllers()) {
         auto tmp_ctrl = std::dynamic_pointer_cast<robot_dart::control:SimpleControl>(ctrl);
@@ -104,7 +107,7 @@ std::shared_ptr<robot_dart::control::RobotControl> get_simple(const std::shared_
 }
 ```
 
-#### Helper functionality
+### Helper functionality
 
 **Clone robot**
 
@@ -165,7 +168,7 @@ my_robot->set_damping_coeff(double damp);
 my_robot->set_damping_coeff(const std::vector<double>& damps);
 ```
 
-**Other functionality**
+**Other functionalities**
 
 ```cpp
 std::shared_ptr<robot_dart::Robot> my_robot = ...;
@@ -185,11 +188,11 @@ my_robot->set_position_enforced(const std::vector<bool>& enforced);
 my_robot->damages();
 ```
 
-### RobotControl Class
+## RobotControl Class
 
 This is an abstract class that should serve as a base when creating controllers in robot\_dart. Examples of already implemented controllers can be found in the [control directory](../src/robot_dart/control).
 
-#### Main methods
+### Main methods
 
 **Constructor**
 
@@ -198,7 +201,7 @@ RobotControl::RobotControl(const std::vector<double>& ctrl, bool full_control = 
 ```
 
 - *ctrl* is the parameter vector
-- *full_control* defines whether we should control all the DOFs or not; this has an actual point only when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
+- *full_control* defines whether we should control all the DOFs or not; this is only relevant when our robot can freely move around the world (i.e., this gives us the ability to control the first 6 DOFs)
 
 **Parameters**
 
@@ -228,12 +231,12 @@ bool active() const;
 bool fully_controlled() const;
 void set_full_control(bool enable);
 
-// helper functions for weight
+// helper functions for controller's weight
 double weight() const;
 void set_weight(double weight);
 ```
 
-#### Abstract methods
+### Abstract methods
 
 All of the following methods, you **need** to override them when you are creating a new controller.
 
@@ -243,14 +246,14 @@ void configure();
 
 // method that computes the actual commands
 // you should return an Eigen::VectorXd
-// of size of _control_dof
+// with a size equal to _control_dof
 Eigen::VectorXd calculate(double t);
 
 // method that properly clones the controller
 std::shared_ptr<RobotControl> clone() const;
 ```
 
-### RobotDARTSimu Class
+## RobotDARTSimu Class
 
 This is the simulator class. It handles and aids in configuration of a DART simulation in robot\_dart.
 
@@ -295,7 +298,7 @@ std::shared_ptr<robot_dart::Robot> robot(size_t index) const;
 
 **Descriptors**
 
-In *RobotDARTSimu* there's the possibility of attaching **descriptors**. *Descriptors* are functors that can be used either to log information/data (e.g., state trajectories) or to trigger a stop in the simulation (e.g., a NaN value or safety reasons). All descriptors must **inherit** from `robot_dart::descriptor::BaseDescriptor`:
+In *RobotDARTSimu* there's the possibility of attaching **descriptors**. *Descriptors* are functors that can be used to log information/data (e.g., state trajectories) or to stop the simulation (e.g., a NaN value was produced or for safety reasons). All descriptors must **inherit** from `robot_dart::descriptor::BaseDescriptor`:
 
 ```cpp
 struct BaseDescriptor {
@@ -313,11 +316,14 @@ protected:
 };
 ```
 
-*desc_dump* defines the number of steps at which the descriptor should be called and you need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
+*desc_dump* defines the number of steps at which the descriptor should be called.
+
+You need to overload the functor operator to add your functionality. If you want to create a safety mechanism, you can do the following:
 
 ```cpp
 struct MySafety : public robot_dart::descriptor::BaseDescriptor {
-    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
+    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1)
+        : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {
@@ -330,7 +336,7 @@ struct MySafety : public robot_dart::descriptor::BaseDescriptor {
 };
 ```
 
-*Retrieving, removing and adding descriptors to a simulation can be done with the following `RobotDARTSimu` functions*:
+Retrieving, removing and adding descriptors to a simulation can be done with the following `RobotDARTSimu` methods:
 
 ```cpp
 // add a descriptor with type Descriptor
@@ -369,5 +375,6 @@ double step() const;
 void set_step(double step);
 
 // add a floor to the world
-void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name);
+void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
+    const std::string& floor_name);
 ```
