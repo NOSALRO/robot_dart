@@ -126,68 +126,62 @@ This function will clone the robot using DART's cloning functionality (e.g., it 
 **Fixing/freeing from world**
 
 ```cpp
-std::shared_ptr<robot_dart::Robot> my_robot = ...;
-
 // fix the robot to the world
 // remove the first 6 DOFs
-my_robot->fix_to_world();
+void fix_to_world();
 
 // free from world
 // add back the first 6 DOFs
-my_robot->free_from_world();
+void free_from_world();
 
 // check if robot is fixed
-my_robot->fixed();
+bool fixed() const;
 
 // check if robot can freely move
-my_robot->free();
+bool free() const;
 ```
 
 **Actuators**
 
 ```cpp
-std::shared_ptr<robot_dart::Robot> my_robot = ...;
-
 // change actuator type
 // for DOF index dof
-my_robot->set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type);
+void set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type);
 
 // change actuator type
 // same for all DOFs
-my_robot->set_actuator_types(dart::dynamics::Joint::ActuatorType type);
+void set_actuator_types(dart::dynamics::Joint::ActuatorType type);
 
 // change actuator type
 // one for each DOF
-my_robot->set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
+void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
 
 // set damping coefficients
 // for DOF index dof
-my_robot->set_damping_coeff(size_t dof, double damp);
+void set_damping_coeff(size_t dof, double damp);
 
 // set damping coefficients
 // same for all DOFs
-my_robot->set_damping_coeff(double damp);
+void set_damping_coeff(double damp);
 
 // set damping coefficients
 // one for each DOF
-my_robot->set_damping_coeff(const std::vector<double>& damps);
+void set_damping_coeff(const std::vector<double>& damps);
 ```
 
 **Other functionalities**
 
 ```cpp
-std::shared_ptr<robot_dart::Robot> my_robot = ...;
-
 // get underlying skeleton pointer
-auto skel_ptr = my_robot->skeleton();
+std::shared_ptr<dart::dynamics::Skeleton> skeleton();
 
 // get robot name
-std::string robot_name = my_robot->name();
+std::string name() const;
 
 // enforce position limits
-my_robot->set_position_enforced(size_t dof, bool enforced);
-my_robot->set_position_enforced(bool enforced);
-my_robot->set_position_enforced(const std::vector<bool>& enforced);
+void set_position_enforced(size_t dof, bool enforced);
+void set_position_enforced(bool enforced);
+void set_position_enforced(const std::vector<bool>& enforced);
 ```
 
 ## RobotControl Class
@@ -218,32 +212,29 @@ std::vector<double> parameters() const;
 **Other functionality**
 
 ```cpp
-std::vector<double> parameters = ...;
-auto my_ctrl = std::make_shared<MyController>(parameters);
-
 // set the parent robot
 // this is automatically done when you add a controller to a robot
-my_ctrl->set_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+void set_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 // get the parent robot
-std::shared_ptr<robot_dart::Robot> parent_robot = my_ctrl->robot();
+std::shared_ptr<robot_dart::Robot> robot() const;
 
 // activate or deactivate the controller
 // enable == true, then it tries to activate
 // the controller (i.e., tries to initialize it)
-my_ctrl->activate(bool enable);
+void activate(bool enable = true);
 
 // get if controller is active
 // if it's not active, you should update the parameters
 // and re-initialize
-bool is_my_ctrl_active = my_ctrl->active();
+bool active() const;
 
 // helper functions for full control
-bool is_my_ctrl_fully_controlled = my_ctrl->fully_controlled();
-my_ctrl->set_full_control(bool enable);
+bool fully_controlled() const;
+void set_full_control(bool enable);
 
 // helper functions for controller's weight
-double ctrl_weight = my_ctrl->weight();
-my_ctrl->set_weight(double weight);
+double weight() const;
+void set_weight(double weight);
 ```
 
 ### Abstract methods
@@ -280,34 +271,33 @@ RobotDARTSimu::RobotDARTSimu(double time_step = 0.015);
 **Running a simulation**
 
 ```cpp
-RobotDARTSimu simu;
 // run a simulation for max_duration seconds
-simu.run(double max_duration);
+void run(double max_duration);
 ```
 
 **Robots**
 
 ```cpp
 // add a robot
-simu.add_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+void add_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 
 // remove a robot by pointer
-simu.remove_robot(const std::shared_ptr<robot_dart::Robot>& robot);
+void remove_robot(const std::shared_ptr<robot_dart::Robot>& robot);
 
 // remove a robot by index
-simu.remove_robot(size_t index);
+void remove_robot(size_t index);
 
 // remove all robots
-simu.clear_robots();
+void clear_robots();
 
 // number of robots
-size_t number_of_robots = simu.num_robots();
+size_t num_robots() const;
 
 // get vector of robots
-std::vector<td::shared_ptr<robot_dart::Robot>> sim_robots = simu.robots();
+std::vector<td::shared_ptr<robot_dart::Robot>> robots() const;
 
 // get robot by index
-std::shared_ptr<robot_dart::Robot> my_robot = simu.robot(size_t index);
+std::shared_ptr<robot_dart::Robot> robot(size_t index) const;
 ```
 
 **Descriptors**
@@ -354,40 +344,41 @@ Retrieving, removing and adding descriptors to a simulation can be done with the
 
 ```cpp
 // add a descriptor with type Descriptor
-simu.add_descriptor<MyDescriptor>(size_t desc_dump);
+template <typename Descriptor>
+void add_descriptor(size_t desc_dump = 1);
 
 // add a descriptor by passing a pointer
-simu.add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
 
 // get all descriptors
-std::vector<std::shared_ptr<descriptor::BaseDescriptor>> all_descs = simu.descriptors();
+std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
 
 // get descriptor by index
-std::shared_ptr<descriptor::BaseDescriptor> my_desc = simu.descriptor(size_t index) const;
+std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
 
 // remove descriptor by pointer
-simu.remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
+void remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
 
 // remove descriptor by index
-simu.remove_descriptor(size_t index);
+void remove_descriptor(size_t index);
 
 // remove all descriptors
-simu.clear_descriptors();
+void clear_descriptors();
 ```
 
 **Other functionality**
 
 ```cpp
 // get pointer to the underlying DART world
-dart::simulation::WorldPtr dart_world = simu.world();
+dart::simulation::WorldPtr world();
 
 // get time step
-double dt = simu.step();
+double step() const;
 
 // set a new time step
-simu.set_step(double step);
+void set_step(double step);
 
 // add a floor to the world
-simu.add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
+void add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose,
     const std::string& floor_name);
 ```
