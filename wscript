@@ -117,7 +117,7 @@ def build(bld):
                       target = 'tutorial')
 
         # if we found the hexapod controller includes
-        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
+        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
             bld.program(features = 'cxx',
                         install_path = None,
                         source = 'src/examples/hexapod.cpp',
@@ -152,7 +152,7 @@ def build(bld):
                   target = 'tutorial_plain')
 
     # if we found the hexapod controller includes
-    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
+    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
         bld.program(features = 'cxx',
                     install_path = None,
                     source = 'src/examples/hexapod.cpp',

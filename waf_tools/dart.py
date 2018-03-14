@@ -15,9 +15,13 @@ def options(opt):
     opt.add_option('--dart', type='string', help='path to DART physics engine/sim', dest='dart')
 
 @conf
-def check_dart(conf):
+def check_dart(conf, *k, **kw):
+    def get_directory(filename, dirs):
+        res = conf.find_file(filename, dirs)
+        return res[:-len(filename)-1]
+
     # OSX/Mac uses .dylib and GNU/Linux .so
-    suffix = 'dylib' if conf.env['DEST_OS']=='darwin' else 'so'
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
         
     if conf.options.dart:
         includes_check = [conf.options.dart + '/include']
@@ -37,10 +41,9 @@ def check_dart(conf):
     assimp_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
     assimp_found = False
     try:
-        assimp_found = conf.find_file('assimp/scene.h', assimp_check)
-        assimp_include = [assimp_found[:-len('assimp/scene.h')-1]]
-        assimp_found = assimp_found and conf.find_file('libassimp.' + suffix, assimp_libs)
-        assimp_lib = [assimp_found[:-len('libassimp.'+suffix)-1]]
+        assimp_include = get_directory('assimp/scene.h', assimp_check)
+        assimp_lib = [get_directory('libassimp.' + suffix, assimp_libs)]
+        assimp_found = True
     except:
         assimp_found = False
 
@@ -51,11 +54,12 @@ def check_dart(conf):
     bullet_lib = []
     bullet_found = False
     try:
-        bullet_found = conf.find_file('btBulletCollisionCommon.h', bullet_check)
-        bullet_include = [bullet_found[:-len('btBulletCollisionCommon.h')-1]]
-        bullet_found = conf.find_file('libLinearMath.' + suffix, bullet_libs)
-        bullet_found = conf.find_file('libBulletCollision.' + suffix, bullet_libs)
-        bullet_lib = [bullet_found[:-len('libBulletCollision.' + suffix)-1]]
+        bullet_include = [get_directory('btBulletCollisionCommon.h', bullet_check)]
+        bullet_lib = []
+        bullet_lib.append(get_directory('libLinearMath.' + suffix, bullet_libs))
+        bullet_lib.append(get_directory('libBulletCollision.' + suffix, bullet_libs))
+        bullet_lib = list(set(bullet_lib))
+        bullet_found = True
     except:
         bullet_found = False
 
@@ -67,12 +71,12 @@ def check_dart(conf):
     osg_found = False
     osg_comp = ['osg', 'osgViewer', 'osgManipulator', 'osgGA', 'osgDB', 'osgShadow', 'OpenThreads']
     try:
-        osg_found = True
         for f in osg_comp:
-            osg_found = osg_found and conf.find_file(f + '/Version', osg_check)
-            osg_include = [osg_found[:-len(f + '/Version')-1]]
-            osg_found = osg_found and conf.find_file('lib' + f + '.' + suffix, osg_libs)
-            osg_lib = [osg_found[:-len('lib' + f + '.' + suffix)-1]]
+            osg_include = [get_directory(f + '/Version', osg_check)]
+            osg_lib = [get_directory('lib' + f + '.' + suffix, osg_libs)]
+            osg_found = True
+        osg_include = list(set(osg_include))
+        osg_lib = list(set(osg_lib))
     except:
         osg_found = False
 
@@ -105,18 +109,23 @@ def check_dart(conf):
         if dart_major > 6 or (dart_major == 6 and dart_minor > 4):
             dart_load_prefix = 'io'
 
-        res = conf.find_file('dart/dart.hpp', includes_check)
-        res = res and conf.find_file('dart/'+dart_load_prefix+'/'+dart_load_prefix+'.hpp', includes_check)
-        res = res and conf.find_file('dart/'+dart_load_prefix+'/urdf/urdf.hpp', includes_check)
-        dart_include = [res[:-len('dart/'+dart_load_prefix+'/urdf/urdf.hpp')-1]]
+        dart_include = []
+        dart_include.append(get_directory('dart/dart.hpp', includes_check))
+        dart_include.append(get_directory('dart/'+dart_load_prefix+'/'+dart_load_prefix+'.hpp', includes_check))
+        dart_include.append(get_directory('dart/'+dart_load_prefix+'/urdf/urdf.hpp', includes_check))
+        dart_include = list(set(dart_include))
         conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_include[0])
+
+        gui_include = []
         try:
             conf.start_msg('Checking for DART gui includes')
-            res = res and conf.find_file('dart/gui/gui.hpp', includes_check)
-            res = res and conf.find_file('dart/gui/osg/osg.hpp', includes_check)
-            conf.end_msg(res[:-len('dart/gui/osg/osg.hpp')-1])
+            gui_include.append(get_directory('dart/gui/gui.hpp', includes_check))
+            gui_include.append(get_directory('dart/gui/osg/osg.hpp', includes_check))
+            gui_include = list(set(gui_include))
+            conf.end_msg(gui_include[0])
         except:
             conf.end_msg('Not found', 'RED')
+
         more_includes = []
         if osg_found:
             more_includes += osg_include
@@ -124,17 +133,18 @@ def check_dart(conf):
             more_includes += assimp_include
 
         conf.start_msg('Checking for DART libs (including io/urdf)')
-        res = res and conf.find_file('libdart.' + suffix, libs_check)
-        res = res and conf.find_file('libdart-'+dart_load_prefix+'.' + suffix, libs_check)
-        res = res and conf.find_file('libdart-'+dart_load_prefix+'-urdf.' + suffix, libs_check)
-        dart_lib = [res[:-len('libdart-'+dart_load_prefix+'-urdf' + suffix)-1]]
+        dart_lib = []
+        dart_lib.append(get_directory('libdart.' + suffix, libs_check))
+        dart_lib.append(get_directory('libdart-'+dart_load_prefix+'.' + suffix, libs_check))
+        dart_lib.append(get_directory('libdart-'+dart_load_prefix+'-urdf.' + suffix, libs_check))
+        dart_lib = list(set(dart_lib))
         conf.env.INCLUDES_DART = dart_include + more_includes
         conf.env.LIBPATH_DART = dart_lib
         conf.env.LIB_DART = ['dart', 'dart-'+dart_load_prefix, 'dart-'+dart_load_prefix+'-urdf']
         conf.end_msg(conf.env.LIB_DART)
         conf.start_msg('DART: Checking for Assimp')
         if assimp_found:
-            conf.end_msg(assimp_include[0])
+            conf.end_msg(assimp_include)
             conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + assimp_lib
             conf.env.LIB_DART.append('assimp')
         else:
@@ -143,9 +153,9 @@ def check_dart(conf):
         conf.start_msg('DART: Checking for Bullet Collision libs')
         if bullet_found:
             try:
-                res = conf.find_file('libdart-collision-bullet.'+suffix, libs_check)
+                bullet_lib.append(get_directory('libdart-collision-bullet.'+suffix, libs_check))
                 conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + bullet_include
-                conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + bullet_lib
+                conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + bullet_lib
                 conf.env.LIB_DART.append('LinearMath')
                 conf.env.LIB_DART.append('BulletCollision')
                 conf.env.LIB_DART.append('dart-collision-bullet')
@@ -161,10 +171,12 @@ def check_dart(conf):
 
         try:
             conf.start_msg('DART: Checking for gui libs')
-            res = res and conf.find_file('libdart-gui.' + suffix, libs_check)
-            res = res and conf.find_file('libdart-gui-osg.' + suffix, libs_check)
+            dart_gui_lib = []
+            dart_gui_lib.append(get_directory('libdart-gui.' + suffix, libs_check))
+            dart_gui_lib.append(get_directory('libdart-gui-osg.' + suffix, libs_check))
+
             conf.env.INCLUDES_DART_GRAPHIC = deepcopy(conf.env.INCLUDES_DART)
-            conf.env.LIBPATH_DART_GRAPHIC = deepcopy(conf.env.LIBPATH_DART)
+            conf.env.LIBPATH_DART_GRAPHIC = deepcopy(conf.env.LIBPATH_DART) + dart_gui_lib
             conf.env.LIB_DART_GRAPHIC = deepcopy(conf.env.LIB_DART) + ['dart-gui', 'dart-gui-osg']
             conf.end_msg(conf.env.LIB_DART_GRAPHIC[-2:])
             conf.start_msg('DART: Checking for OSG (optional)')
