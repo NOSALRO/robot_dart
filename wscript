@@ -116,7 +116,7 @@ def build(bld):
                       defines = ['GRAPHIC'],
                       target = 'tutorial')
 
-        # if we found the hexapod controller includes
+        # if we found the hexapod controller includes and Bullet collision
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
             bld.program(features = 'cxx',
                         install_path = None,
@@ -151,7 +151,7 @@ def build(bld):
                   use = 'RobotDARTSimu',
                   target = 'tutorial_plain')
 
-    # if we found the hexapod controller includes
+    # if we found the hexapod controller includes and Bullet collision
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
         bld.program(features = 'cxx',
                     install_path = None,
