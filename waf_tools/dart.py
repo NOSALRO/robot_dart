@@ -20,9 +20,11 @@ def check_dart(conf, *k, **kw):
         res = conf.find_file(filename, dirs)
         return res[:-len(filename)-1]
 
+    required = kw.get('required', False)
+
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
-        
+
     if conf.options.dart:
         includes_check = [conf.options.dart + '/include']
         libs_check = [conf.options.dart + '/lib']
@@ -196,8 +198,14 @@ def check_dart(conf, *k, **kw):
             conf.end_msg('Not found', 'RED')
     except:
         if dart_major < 6 and dart_major > -1:
-            conf.fatal('We need DART >= 6.0.0')
+            if required:
+                conf.fatal('We need DART >= 6.0.0')
+            else:
+                conf.end_msg('We need DART >= 6.0.0', 'RED')
         else:
-            conf.fatal('Not found')
+            if required:
+                conf.fatal('Not found')
+            else:
+                conf.end_msg('Not found', 'RED')
         return
     return 1

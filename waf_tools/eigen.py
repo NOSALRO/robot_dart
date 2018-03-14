@@ -18,7 +18,9 @@ def options(opt):
 
 
 @conf
-def check_eigen(conf):
+def check_eigen(conf, *k, **kw):
+    required = kw.get('required', False)
+
     conf.start_msg('Checking for Eigen')
     includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
 
@@ -100,5 +102,8 @@ def check_eigen(conf):
             else:
                 conf.end_msg('LAPACKE/BLAS can be used only with Eigen>=3.3', 'RED')
     except:
-        conf.fatal('Not found in %s' % str(includes_check))
+        if required:
+            conf.fatal('Not found in %s' % str(includes_check))
+        else:
+            conf.end_msg('Not found in %s' % str(includes_check), 'RED')
     return 1

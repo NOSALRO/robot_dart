@@ -42,8 +42,8 @@ def configure(conf):
     conf.load('hexapod_controller')
 
     conf.check_boost(lib='regex system filesystem', min_version='1.46')
-    conf.check_eigen()
-    conf.check_dart()
+    conf.check_eigen(required=True)
+    conf.check_dart(required=True)
     conf.check_hexapod_controller()
 
     conf.env['lib_type'] = 'cxxstlib'
