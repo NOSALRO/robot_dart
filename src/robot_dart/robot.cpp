@@ -196,6 +196,22 @@ namespace robot_dart {
         }
     }
 
+    dart::dynamics::Joint::ActuatorType Robot::actuator_type(size_t dof) const
+    {
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", dart::dynamics::Joint::ActuatorType::FORCE);
+        return _skeleton->getDof(dof)->getJoint()->getActuatorType();
+    }
+
+    std::vector<dart::dynamics::Joint::ActuatorType> Robot::actuator_types() const
+    {
+        std::vector<dart::dynamics::Joint::ActuatorType> types;
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            types.push_back(_skeleton->getDof(i)->getJoint()->getActuatorType());
+        }
+
+        return types;
+    }
+
     void Robot::set_position_enforced(size_t dof, bool enforced)
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
@@ -217,13 +233,29 @@ namespace robot_dart {
         }
     }
 
+    bool Robot::position_enforced(size_t dof) const
+    {
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", false);
+        return _skeleton->getDof(dof)->getJoint()->isPositionLimitEnforced();
+    }
+
+    std::vector<bool> Robot::position_enforced() const
+    {
+        std::vector<bool> pos;
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            pos.push_back(_skeleton->getDof(i)->getJoint()->isPositionLimitEnforced());
+        }
+
+        return pos;
+    }
+
     void Robot::set_damping_coeff(size_t dof, double damp)
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
         _skeleton->getDof(dof)->setDampingCoefficient(damp);
     }
 
-    void Robot::set_damping_coeff(const std::vector<double>& damps)
+    void Robot::set_damping_coeffs(const std::vector<double>& damps)
     {
         ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(), "Damping coefficient vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
@@ -231,11 +263,27 @@ namespace robot_dart {
         }
     }
 
-    void Robot::set_damping_coeff(double damp)
+    void Robot::set_damping_coeffs(double damp)
     {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->setDampingCoefficient(damp);
         }
+    }
+
+    double Robot::damping_coeff(size_t dof) const
+    {
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", 0.);
+        return _skeleton->getDof(dof)->getDampingCoefficient();
+    }
+
+    std::vector<double> Robot::damping_coeffs() const
+    {
+        std::vector<double> damps;
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            damps.push_back(_skeleton->getDof(i)->getDampingCoefficient());
+        }
+
+        return damps;
     }
 
     Eigen::Vector3d Robot::body_pos(const std::string& body_name) const
