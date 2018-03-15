@@ -140,6 +140,8 @@ bool free() const;
 
 **Actuators**
 
+*You have to be aware of the fact that if one joint has multiple DOFs, changing a property in one DOF will result in changes in all the DOFs of the joint for the actuator types and position limits. The damping coefficients operate in DOFs.*
+
 ```cpp
 // get/set actuator type
 // for specific DOF
