@@ -41,6 +41,11 @@ namespace robot_dart {
             _Kd = d;
         }
 
+        std::pair<double, double> PDControl::pd() const
+        {
+            return std::make_pair(_Kp, _Kd);
+        }
+
         std::shared_ptr<RobotControl> PDControl::clone() const
         {
             return std::make_shared<PDControl>(*this);

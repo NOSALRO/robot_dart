@@ -1,8 +1,8 @@
-#include <robot_dart/control/robot_control.hpp>
+#include "robot_control.hpp"
+#include "robot_dart/robot.hpp"
+#include "robot_dart/utils.hpp"
 
 #include <dart/dynamics/DegreeOfFreedom.hpp>
-
-#include <robot_dart/robot.hpp>
 
 namespace robot_dart {
     namespace control {
@@ -23,6 +23,7 @@ namespace robot_dart {
 
         void RobotControl::init()
         {
+            ROBOT_DART_ASSERT(_robot, "RobotControl: parent robot should be initialized; use set_robot()", );
             _dof = _robot->skeleton()->getNumDofs();
             _start_dof = 0;
             if (_robot->free() && !_full_control)

@@ -12,3 +12,11 @@ def build(bld):
                 uselib=libs,
                 use='RobotDARTSimu',
                 cxxflags = cxxflags + ['-DRESPATH="' + path + '"'],)
+
+    bld.program(features='cxx test',
+                source='test_control.cpp',
+                includes='..',
+                target='test_control',
+                uselib=libs,
+                use='RobotDARTSimu',
+                cxxflags = cxxflags + ['-DRESPATH="' + path + '"'],)
