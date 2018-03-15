@@ -9,7 +9,6 @@ Quick n dirty eigen3 detection
 """
 
 import os, glob, types
-import subprocess
 from waflib.Configure import conf
 
 
