@@ -2,6 +2,7 @@
 # encoding: utf-8
 # JB Mouret - 2009
 # Federico Allocati - 2015
+# Konstantinos Chatzilygeroudis - 2016, 2017, 2018
 
 """
 Quick n dirty eigen3 detection
@@ -14,38 +15,51 @@ from waflib.Configure import conf
 
 def options(opt):
     opt.add_option('--eigen', type='string', help='path to eigen', dest='eigen')
+    # to-do: rename this to --eigen_lapacke
     opt.add_option('--lapacke_blas', action='store_true', help='enable lapacke/blas if found (required Eigen>=3.3)', dest='lapacke_blas')
 
 
 @conf
 def check_eigen(conf, *k, **kw):
+    def get_directory(filename, dirs):
+        res = conf.find_file(filename, dirs)
+        return res[:-len(filename)-1]
+    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
+
     required = kw.get('required', False)
 
-    conf.start_msg('Checking for Eigen')
-    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
+    # OSX/Mac uses .dylib and GNU/Linux .so
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
 
     if conf.options.eigen:
         includes_check = [conf.options.eigen]
 
     try:
-        res = conf.find_file('Eigen/Core', includes_check)
-        incl = res[:-len('Eigen/Core')-1]
+        conf.start_msg('Checking for Eigen')
+        incl = get_directory('Eigen/Core', includes_check)
         conf.env.INCLUDES_EIGEN = [incl]
         conf.end_msg(incl)
         if conf.options.lapacke_blas:
             conf.start_msg('Checking for LAPACKE/BLAS (optional)')
-            p1 = subprocess.Popen(["cat", incl+"/Eigen/src/Core/util/Macros.h"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            p2 = subprocess.Popen(["grep", "#define EIGEN_WORLD_VERSION"], stdin=p1.stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            p1.stdout.close()
-            out1, err = p2.communicate()
-            p1 = subprocess.Popen(["cat", incl+"/Eigen/src/Core/util/Macros.h"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            p2 = subprocess.Popen(["grep", "#define EIGEN_MAJOR_VERSION"], stdin=p1.stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            p1.stdout.close()
-            out2, err = p2.communicate()
-            out1 = out1.decode('UTF-8')
-            out2 = out2.decode('UTF-8')
-            world_version = int(out1.strip()[-1])
-            major_version = int(out2.strip()[-1])
+            world_version = -1
+            major_version = -1
+            minor_version = -1
+
+            config_file = conf.find_file('Eigen/src/Core/util/Macros.h', includes_check)
+            with open(config_file) as f:
+                config_content = f.readlines()
+            for line in config_content:
+                world = line.find('#define EIGEN_WORLD_VERSION')
+                major = line.find('#define EIGEN_MAJOR_VERSION')
+                minor = line.find('#define EIGEN_MINOR_VERSION')
+                if world > -1:
+                    world_version = int(line.split(' ')[-1].strip())
+                if major > -1:
+                    major_version = int(line.split(' ')[-1].strip())
+                if minor > -1:
+                    minor_version = int(line.split(' ')[-1].strip())
+                if world_version > 0 and major_version > 0 and minor_version > 0:
+                    break
 
             if world_version == 3 and major_version >= 3:
                 # Check for lapacke and blas
@@ -55,12 +69,7 @@ def check_eigen(conf, *k, **kw):
                 blas_path = ''
                 for b in blas_libs:
                     try:
-                        if conf.env['DEST_OS']=='darwin':
-                            res = conf.find_file('lib'+b+'.dylib', extra_libs)
-                            blas_path = res[:-len('lib'+b+'.dylib')-1]
-                        else:
-                            res = conf.find_file('lib'+b+'.so', extra_libs)
-                            blas_path = res[:-len('lib'+b+'.so')-1]
+                        blas_path = get_directory('lib'+b+'.'+suffix, extra_libs)
                     except:
                         continue
                     blas_lib = b
@@ -69,12 +78,7 @@ def check_eigen(conf, *k, **kw):
                 lapacke = False
                 lapacke_path = ''
                 try:
-                    if conf.env['DEST_OS']=='darwin':
-                            res = conf.find_file('liblapacke.dylib', extra_libs)
-                            lapacke_path = res[:-len('liblapacke.dylib')-1]
-                    else:
-                            res = conf.find_file('liblapacke.so', extra_libs)
-                            lapacke_path = res[:-len('liblapacke.so')-1]
+                    lapacke_path = get_directory('liblapacke.'+suffix, extra_libs)
                     lapacke = True
                 except:
                     lapacke = False
@@ -100,10 +104,9 @@ def check_eigen(conf, *k, **kw):
                     conf.env.DEFINES_EIGEN.append('EIGEN_USE_BLAS')
                     conf.env.LIB_EIGEN.append(blas_lib)
             else:
-                conf.end_msg('LAPACKE/BLAS can be used only with Eigen>=3.3', 'RED')
+                conf.end_msg('Found Eigen version %s: LAPACKE/BLAS can be used only with Eigen>=3.3' % (str(world_version) + '.' + str(major_version) + '.' + str(minor_version)), 'RED')
     except:
         if required:
             conf.fatal('Not found in %s' % str(includes_check))
-        else:
-            conf.end_msg('Not found in %s' % str(includes_check), 'RED')
+        conf.end_msg('Not found in %s' % str(includes_check), 'RED')
     return 1
