@@ -52,17 +52,26 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type);
+        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type);
         void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
         void set_actuator_types(dart::dynamics::Joint::ActuatorType type);
+
+        dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
+        std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
 
         void set_position_enforced(size_t dof, bool enforced);
         void set_position_enforced(const std::vector<bool>& enforced);
         void set_position_enforced(bool enforced);
 
+        bool position_enforced(size_t dof) const;
+        std::vector<bool> position_enforced() const;
+
         void set_damping_coeff(size_t dof, double damp);
-        void set_damping_coeff(const std::vector<double>& damps);
-        void set_damping_coeff(double damp);
+        void set_damping_coeffs(const std::vector<double>& damps);
+        void set_damping_coeffs(double damp);
+
+        double damping_coeff(size_t dof) const;
+        std::vector<double> damping_coeffs() const;
 
         Eigen::Vector3d body_pos(const std::string& body_name) const;
         Eigen::Matrix3d body_rot(const std::string& body_name) const;

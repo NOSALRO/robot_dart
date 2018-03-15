@@ -141,9 +141,10 @@ bool free() const;
 **Actuators**
 
 ```cpp
-// change actuator type
-// for DOF index dof
+// get/set actuator type
+// for specific DOF
 void set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type);
+dart::dynamics::Joint::ActuatorType type actuator_type(size_t dof) const;
 
 // change actuator type
 // same for all DOFs
@@ -153,17 +154,24 @@ void set_actuator_types(dart::dynamics::Joint::ActuatorType type);
 // one for each DOF
 void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
 
-// set damping coefficients
-// for DOF index dof
+// get actuator types
+std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
+
+// get/set damping coefficient
+// for specific DOF
 void set_damping_coeff(size_t dof, double damp);
+double damping_coeff(size_t dof) const;
 
 // set damping coefficients
 // same for all DOFs
-void set_damping_coeff(double damp);
+void set_damping_coeffs(double damp);
 
 // set damping coefficients
 // one for each DOF
-void set_damping_coeff(const std::vector<double>& damps);
+void set_damping_coeffs(const std::vector<double>& damps);
+
+// get damping coefficients
+std::vector<double> damping_coeffs() const;
 ```
 
 **Other functionalities**
@@ -179,6 +187,10 @@ std::string name() const;
 void set_position_enforced(size_t dof, bool enforced);
 void set_position_enforced(bool enforced);
 void set_position_enforced(const std::vector<bool>& enforced);
+
+// get if position limits are enforced
+bool position_enforced(size_t dof) const;
+std::vector<bool> position_enforced() const;
 ```
 
 ## RobotControl Class
