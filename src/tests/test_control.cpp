@@ -117,3 +117,61 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
         BOOST_CHECK(ctrl[i] == commands(i));
     }
 }
+
+BOOST_AUTO_TEST_CASE(test_robot_control)
+{
+    // load a robot
+    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    BOOST_REQUIRE(pendulum);
+    pendulum->fix_to_world();
+
+    std::vector<double> ctrl;
+    // add a PD controller with weight 1.
+    ctrl = {2.};
+    pendulum->add_controller(std::make_shared<control::PDControl>(ctrl), 1.0);
+
+    // verify that it is added
+    BOOST_CHECK(pendulum->num_controllers() == 1);
+    auto pd_control = std::dynamic_pointer_cast<control::PDControl>(pendulum->controller(0));
+    BOOST_REQUIRE(pd_control);
+    // check that it is valid
+    BOOST_CHECK(pd_control->active());
+    // check that the weight is 1.
+    BOOST_CHECK(pd_control->weight() == 1.0);
+
+    // add a Simple controller with weight 30.
+    ctrl = {-2.};
+    pendulum->add_controller(std::make_shared<control::SimpleControl>(ctrl), 30.0);
+
+    // verify that it is added
+    BOOST_CHECK(pendulum->num_controllers() == 2);
+    auto simple_control = std::dynamic_pointer_cast<control::SimpleControl>(pendulum->controller(1));
+    BOOST_REQUIRE(simple_control);
+    // check that it is valid
+    BOOST_CHECK(simple_control->active());
+    // check that the weight is 30.
+    BOOST_CHECK(simple_control->weight() == 30.0);
+
+    // check that commands are combined
+    Eigen::VectorXd commands = Eigen::VectorXd::Zero(pendulum->skeleton()->getNumDofs());
+    commands += pd_control->weight() * pd_control->commands(0.0);
+    commands += simple_control->weight() * simple_control->commands(0.0);
+    // clamp commands to limits
+    for (int i = 0; i < commands.size(); i++) {
+        if (commands(i) > pendulum->skeleton()->getForceUpperLimit(i)) {
+            commands(i) = pendulum->skeleton()->getForceUpperLimit(i);
+        }
+        else if (commands(i) < pendulum->skeleton()->getForceLowerLimit(i)) {
+            commands(i) = pendulum->skeleton()->getForceLowerLimit(i);
+        }
+    }
+
+    // reset state of PD controller
+    pd_control->init();
+
+    pendulum->update(0.0);
+    Eigen::VectorXd robot_commands = pendulum->skeleton()->getCommands();
+    for (int i = 0; i < robot_commands.size(); i++) {
+        BOOST_CHECK(robot_commands(i) == commands(i));
+    }
+}
