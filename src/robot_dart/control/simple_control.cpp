@@ -1,5 +1,6 @@
 #include "simple_control.hpp"
 #include "robot_dart/robot.hpp"
+#include "robot_dart/utils.hpp"
 
 namespace robot_dart {
     namespace control {
@@ -14,7 +15,7 @@ namespace robot_dart {
 
         Eigen::VectorXd SimpleControl::calculate(double)
         {
-            assert(_control_dof == _ctrl.size());
+            ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "SimpleControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             Eigen::VectorXd commands = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
             return commands;

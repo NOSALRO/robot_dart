@@ -19,7 +19,6 @@ namespace robot_dart {
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot();
         Robot(const std::string& model_file, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
         Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
 

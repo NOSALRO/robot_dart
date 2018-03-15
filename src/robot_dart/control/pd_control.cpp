@@ -1,5 +1,6 @@
 #include "pd_control.hpp"
 #include "robot_dart/robot.hpp"
+#include "robot_dart/utils.hpp"
 
 namespace robot_dart {
     namespace control {
@@ -16,7 +17,7 @@ namespace robot_dart {
 
         Eigen::VectorXd PDControl::calculate(double)
         {
-            assert(_control_dof == _ctrl.size());
+            ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "PDControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);
             target_positions.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 

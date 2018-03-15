@@ -1,4 +1,5 @@
-#include <robot_dart/robot_dart_simu.hpp>
+#include "robot_dart_simu.hpp"
+#include "utils.hpp"
 
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
@@ -76,19 +77,17 @@ namespace robot_dart {
 
     std::shared_ptr<descriptor::BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
     {
-        assert(index < _descriptors.size());
+        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", nullptr);
         return _descriptors[index];
     }
 
     double RobotDARTSimu::step() const
     {
-        assert(_world != nullptr);
         return _world->getTimeStep();
     }
 
     void RobotDARTSimu::set_step(double step)
     {
-        assert(_world != nullptr);
         _world->setTimeStep(step);
         _graphics->set_render_period(step);
     }
@@ -110,7 +109,7 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotDARTSimu::robot(size_t index) const
     {
-        assert(index < _robots.size());
+        ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", nullptr);
         return _robots[index];
     }
 
@@ -133,7 +132,7 @@ namespace robot_dart {
 
     void RobotDARTSimu::remove_robot(size_t index)
     {
-        assert(index < _robots.size());
+        ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", );
         _world->removeSkeleton(_robots[index]->skeleton());
         _robots.erase(_robots.begin() + index);
     }
@@ -156,7 +155,7 @@ namespace robot_dart {
 
     void RobotDARTSimu::remove_descriptor(size_t index)
     {
-        assert(index < _descriptors.size());
+        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", );
         _descriptors.erase(_descriptors.begin() + index);
     }
 

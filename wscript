@@ -14,6 +14,7 @@ blddir = 'build'
 
 from waflib.Build import BuildContext
 from waflib import Logs
+from waflib.Tools import waf_unit_test
 import dart
 import boost
 import eigen
@@ -29,6 +30,7 @@ def options(opt):
     opt.load('hexapod_controller')
 
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
+    opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
 
 
 def configure(conf):
@@ -36,12 +38,13 @@ def configure(conf):
 
     conf.load('compiler_cxx')
     conf.load('compiler_c')
+    conf.load('waf_unit_test')
     conf.load('boost')
     conf.load('eigen')
     conf.load('dart')
     conf.load('hexapod_controller')
 
-    conf.check_boost(lib='regex system filesystem', min_version='1.46')
+    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
@@ -67,10 +70,24 @@ def configure(conf):
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
     print conf.env['CXXFLAGS']
 
+def summary(bld):
+    lst = getattr(bld, 'utest_results', [])
+    total = 0
+    tfail = 0
+    if lst:
+        total = len(lst)
+        tfail = len([x for x in lst if x[1]])
+    waf_unit_test.summary(bld)
+    if tfail > 0:
+        bld.fatal("Build failed, because some tests failed!")
 
 def build(bld):
     if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
         bld.fatal('Some libraries were not found! Cannot proceed!')
+
+    if bld.options.tests:
+        bld.recurse('src/tests')
+
     files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.cpp'):
@@ -160,6 +177,8 @@ def build(bld):
                     uselib = libs + ' HEXAPOD_CONTROLLER',
                     use = 'RobotDARTSimu',
                     target = 'hexapod_plain')
+
+    bld.add_post_fun(summary)
 
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):

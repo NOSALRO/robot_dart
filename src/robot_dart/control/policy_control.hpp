@@ -3,6 +3,7 @@
 
 #include <robot_dart/control/robot_control.hpp>
 #include <robot_dart/robot.hpp>
+#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
     namespace control {
@@ -22,7 +23,7 @@ namespace robot_dart {
 
             Eigen::VectorXd calculate(double t) override
             {
-                assert(_control_dof == _policy.output_size());
+                ROBOT_DART_ASSERT(_control_dof == _policy.output_size(), "PolicyControl: Policy output size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
                 Eigen::VectorXd commands = _policy.query(_robot, t);
 
                 return commands;

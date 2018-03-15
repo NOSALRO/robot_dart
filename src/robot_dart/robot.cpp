@@ -1,4 +1,5 @@
-#include <robot_dart/robot.hpp>
+#include "robot.hpp"
+#include "utils.hpp"
 
 #include <unistd.h>
 
@@ -28,17 +29,15 @@ namespace dart {
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
-    Robot::Robot() {}
-
     Robot::Robot(const std::string& model_file, const std::string& robot_name, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file))
     {
-        assert(_skeleton != nullptr);
+        ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
     }
 
     Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(skeleton)
     {
-        assert(_skeleton != nullptr);
+        ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
     }
@@ -49,10 +48,8 @@ namespace robot_dart {
         _skeleton->getMutex().lock();
         auto tmp_skel = _skeleton->clone();
         _skeleton->getMutex().unlock();
-        auto robot = std::make_shared<Robot>();
-        robot->_skeleton = tmp_skel;
+        auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
         robot->_damages = _damages;
-        robot->_robot_name = _robot_name;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
             robot->add_controller(ctrl->clone(), ctrl->weight());
@@ -115,7 +112,7 @@ namespace robot_dart {
 
     std::shared_ptr<control::RobotControl> Robot::controller(size_t index) const
     {
-        assert(index < _controllers.size());
+        ROBOT_DART_ASSERT(index < _controllers.size(), "Controller index out of bounds", nullptr);
         return _controllers[index];
     }
 
@@ -136,7 +133,7 @@ namespace robot_dart {
 
     void Robot::remove_controller(size_t index)
     {
-        assert(index < _controllers.size());
+        ROBOT_DART_ASSERT(index < _controllers.size(), "Controller index out of bounds", );
         _controllers.erase(_controllers.begin() + index);
     }
 
@@ -180,13 +177,13 @@ namespace robot_dart {
 
     void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type)
     {
-        assert(dof < _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
         _skeleton->getDof(dof)->getJoint()->setActuatorType(type);
     }
 
     void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
     {
-        assert(types.size() == _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(types.size() == _skeleton->getNumDofs(), "Actuator types vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->getJoint()->setActuatorType(types[i]);
         }
@@ -201,13 +198,13 @@ namespace robot_dart {
 
     void Robot::set_position_enforced(size_t dof, bool enforced)
     {
-        assert(dof < _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
         _skeleton->getDof(dof)->getJoint()->setPositionLimitEnforced(enforced);
     }
 
     void Robot::set_position_enforced(const std::vector<bool>& enforced)
     {
-        assert(enforced.size() == _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(), "Position enforced vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced[i]);
         }
@@ -222,13 +219,13 @@ namespace robot_dart {
 
     void Robot::set_damping_coeff(size_t dof, double damp)
     {
-        assert(dof < _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
         _skeleton->getDof(dof)->setDampingCoefficient(damp);
     }
 
     void Robot::set_damping_coeff(const std::vector<double>& damps)
     {
-        assert(damps.size() == _skeleton->getNumDofs());
+        ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(), "Damping coefficient vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->setDampingCoefficient(damps[i]);
         }
@@ -278,7 +275,7 @@ namespace robot_dart {
             constexpr size_t max_size = 512;
             char buff[max_size];
             auto val = getcwd(buff, max_size);
-            assert(val && "robot_dart: Something bad happenned when trying to read current path!");
+            ROBOT_DART_ASSERT(val, "Something bad happenned when trying to read current path", nullptr);
             model_file = std::string(buff) + "/" + model_file;
         }
 
