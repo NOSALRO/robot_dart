@@ -1,6 +1,8 @@
 #ifndef ROBOT_DART_CONTROL_PD_CONTROL
 #define ROBOT_DART_CONTROL_PD_CONTROL
 
+#include <utility>
+
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
@@ -15,6 +17,7 @@ namespace robot_dart {
             Eigen::VectorXd calculate(double) override;
 
             void set_pd(double p, double d);
+            std::pair<double, double> pd() const;
 
             std::shared_ptr<RobotControl> clone() const override;
 
