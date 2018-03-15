@@ -16,6 +16,10 @@ def options(opt):
 
 @conf
 def check_dart(conf, *k, **kw):
+    def fail(msg, required):
+        if required:
+            conf.fatal(msg)
+        conf.end_msg(msg, 'RED')
     def get_directory(filename, dirs):
         res = conf.find_file(filename, dirs)
         return res[:-len(filename)-1]
@@ -198,14 +202,8 @@ def check_dart(conf, *k, **kw):
             conf.end_msg('Not found', 'RED')
     except:
         if dart_major < 6 and dart_major > -1:
-            if required:
-                conf.fatal('We need DART >= 6.0.0')
-            else:
-                conf.end_msg('We need DART >= 6.0.0', 'RED')
+            fail('We need DART >= 6.0.0', required)
         else:
-            if required:
-                conf.fatal('Not found')
-            else:
-                conf.end_msg('Not found', 'RED')
+            fail('Not found', required)
         return
     return 1
