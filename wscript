@@ -68,7 +68,7 @@ def configure(conf):
 
     all_flags = common_flags + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
-    print conf.env['CXXFLAGS']
+    print(conf.env['CXXFLAGS'])
 
 def summary(bld):
     lst = getattr(bld, 'utest_results', [])
