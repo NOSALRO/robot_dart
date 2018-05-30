@@ -23,15 +23,16 @@ namespace robot_dart {
 
         void RobotControl::init()
         {
-            ROBOT_DART_ASSERT(_robot, "RobotControl: parent robot should be initialized; use set_robot()", );
-            _dof = _robot->skeleton()->getNumDofs();
+            ROBOT_DART_ASSERT(_robot.use_count() > 0, "RobotControl: parent robot should be initialized; use set_robot()", );
+            auto robot = _robot.lock();
+            _dof = robot->skeleton()->getNumDofs();
             _start_dof = 0;
-            if (_robot->free() && !_full_control)
+            if (robot->free() && !_full_control)
                 _start_dof = 6;
             _control_dof = _dof - _start_dof;
 
             for (size_t i = 0; i < _start_dof; i++)
-                _robot->skeleton()->getDof(i)->getJoint()->setActuatorType(dart::dynamics::Joint::FORCE);
+                robot->skeleton()->getDof(i)->getJoint()->setActuatorType(dart::dynamics::Joint::FORCE);
 
             configure();
         }
@@ -43,7 +44,7 @@ namespace robot_dart {
 
         std::shared_ptr<Robot> RobotControl::robot() const
         {
-            return _robot;
+            return _robot.lock();
         }
 
         void RobotControl::activate(bool enable)

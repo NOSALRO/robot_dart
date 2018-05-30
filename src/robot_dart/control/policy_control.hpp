@@ -20,11 +20,12 @@ namespace robot_dart {
                 _policy.set_params(_ctrl);
                 if (_policy.output_size() == _control_dof)
                     _active = true;
+                auto robot = _robot.lock();
                 if (_full_dt)
-                    _dt = _robot->skeleton()->getTimeStep();
+                    _dt = robot->skeleton()->getTimeStep();
                 _first = true;
                 _i = 0;
-                _threshold = -_robot->skeleton()->getTimeStep() * 0.5;
+                _threshold = -robot->skeleton()->getTimeStep() * 0.5;
             }
 
             void set_h_params(const std::vector<double>& h_params)
@@ -41,7 +42,7 @@ namespace robot_dart {
             {
                 ROBOT_DART_ASSERT(_control_dof == _policy.output_size(), "PolicyControl: Policy output size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
                 if (_first || _full_dt || (t - _prev_time - _dt) >= _threshold) {
-                    _prev_commands = _policy.query(_robot, t);
+                    _prev_commands = _policy.query(_robot.lock(), t);
 
                     _first = false;
                     _prev_time = t;
