@@ -40,7 +40,7 @@ namespace robot_dart {
             virtual std::shared_ptr<RobotControl> clone() const = 0;
 
         protected:
-            std::shared_ptr<Robot> _robot;
+            std::weak_ptr<Robot> _robot;
             std::vector<double> _ctrl;
             double _weight;
             bool _active, _full_control;
