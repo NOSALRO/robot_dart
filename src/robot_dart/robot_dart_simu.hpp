@@ -41,6 +41,7 @@ namespace robot_dart {
         void set_step(double step);
 
         void stop_sim(bool disable = true);
+        bool halted_sim() const;
 
         size_t num_robots() const;
         std::vector<robot_t> robots() const;
