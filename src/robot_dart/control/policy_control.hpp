@@ -12,21 +12,43 @@ namespace robot_dart {
         class PolicyControl : public RobotControl {
         public:
             PolicyControl() : RobotControl() {}
-            PolicyControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control) {}
+            PolicyControl(double dt, const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(dt), _first(true), _full_dt(false) {}
+            PolicyControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(0.), _first(true), _full_dt(true) {}
 
             void configure() override
             {
                 _policy.set_params(_ctrl);
                 if (_policy.output_size() == _control_dof)
                     _active = true;
+                if (_full_dt)
+                    _dt = _robot->skeleton()->getTimeStep();
+                _first = true;
+                _i = 0;
+                _threshold = -_robot->skeleton()->getTimeStep() * 0.5;
+            }
+
+            void set_h_params(const std::vector<double>& h_params)
+            {
+                _policy.set_h_params(h_params);
+            }
+
+            std::vector<double> h_params() const
+            {
+                return _policy.h_params();
             }
 
             Eigen::VectorXd calculate(double t) override
             {
                 ROBOT_DART_ASSERT(_control_dof == _policy.output_size(), "PolicyControl: Policy output size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
-                Eigen::VectorXd commands = _policy.query(_robot, t);
+                if (_first || _full_dt || (t - _prev_time - _dt) >= _threshold) {
+                    _prev_commands = _policy.query(_robot, t);
 
-                return commands;
+                    _first = false;
+                    _prev_time = t;
+                    _i++;
+                }
+
+                return _prev_commands;
             }
 
             std::shared_ptr<RobotControl> clone() const override
@@ -35,7 +57,11 @@ namespace robot_dart {
             }
 
         protected:
+            int _i;
             Policy _policy;
+            double _dt, _prev_time, _threshold;
+            Eigen::VectorXd _prev_commands;
+            bool _first, _full_dt;
         };
     } // namespace control
 } // namespace robot_dart

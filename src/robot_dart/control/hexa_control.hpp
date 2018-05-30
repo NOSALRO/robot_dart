@@ -19,6 +19,9 @@ namespace robot_dart {
 
             Eigen::VectorXd query(const std::shared_ptr<robot_dart::Robot>& robot, double t)
             {
+                if (!_h_params_set) {
+                    _dt = robot->skeleton()->getTimeStep();
+                }
                 auto angles = _controller.pos(t);
 
                 Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(18 + 6);
@@ -28,14 +31,27 @@ namespace robot_dart {
                 Eigen::VectorXd q = robot->skeleton()->getPositions();
                 Eigen::VectorXd q_err = target_positions - q;
 
-                double gain = 1.0 / (dart::math::constants<double>::pi() * robot->skeleton()->getTimeStep());
+                double gain = 1.0 / (dart::math::constants<double>::pi() * _dt);
                 Eigen::VectorXd vel = q_err * gain;
 
                 return vel.tail(18);
             }
 
+            void set_h_params(const std::vector<double>& h_params)
+            {
+                _dt = h_params[0];
+                _h_params_set = true;
+            }
+
+            std::vector<double> h_params() const
+            {
+                return std::vector<double>(1, _dt);
+            }
+
         protected:
             hexapod_controller::HexapodControllerSimple _controller;
+            double _dt;
+            bool _h_params_set = false;
         };
 
         using HexaControl = robot_dart::control::PolicyControl<HexaPolicy>;
