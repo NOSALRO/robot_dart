@@ -4,7 +4,7 @@
 
 namespace robot_dart {
     namespace descriptor {
-        BaseDescriptor::BaseDescriptor(const RobotDARTSimu& simu, size_t desc_dump) : _simu(simu), _desc_period(desc_dump) {}
+        BaseDescriptor::BaseDescriptor(RobotDARTSimu& simu, size_t desc_dump) : _simu(simu), _desc_period(desc_dump) {}
 
         size_t BaseDescriptor::desc_dump() const
         {

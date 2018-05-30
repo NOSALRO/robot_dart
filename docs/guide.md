@@ -318,7 +318,7 @@ In *RobotDARTSimu* there's the possibility of attaching **descriptors**. *Descri
 ```cpp
 struct BaseDescriptor {
 public:
-    BaseDescriptor(const RobotDARTSimu& simu, size_t desc_dump = 1);
+    BaseDescriptor(RobotDARTSimu& simu, size_t desc_dump = 1);
 
     virtual void operator()() = 0;
 
@@ -326,7 +326,7 @@ public:
     void set_desc_dump(size_t desc_dump);
 
 protected:
-    const RobotDARTSimu& _simu;
+    RobotDARTSimu& _simu;
     size_t _desc_period;
 };
 ```
@@ -337,7 +337,7 @@ You need to overload the functor operator to add your functionality. If you want
 
 ```cpp
 struct MySafety : public robot_dart::descriptor::BaseDescriptor {
-    MySafety(const robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1)
+    MySafety(robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1)
         : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
