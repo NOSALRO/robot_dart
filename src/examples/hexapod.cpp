@@ -20,7 +20,7 @@ int main()
     global_robot->set_actuator_types(dart::dynamics::Joint::SERVO);
 
     auto g_robot = global_robot->clone();
-    g_robot->skeleton()->setPosition(5, 0.2);
+    g_robot->skeleton()->setPosition(5, 0.15);
 
     // std::vector<double> ctrl(18, 0.);
     // g_robot->add_controller(std::make_shared<robot_dart::SimpleControl>());
