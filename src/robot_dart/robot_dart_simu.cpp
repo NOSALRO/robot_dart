@@ -97,6 +97,11 @@ namespace robot_dart {
         _break = disable;
     }
 
+    bool RobotDARTSimu::halted_sim() const
+    {
+        return _break;
+    }
+
     size_t RobotDARTSimu::num_robots() const
     {
         return _robots.size();
