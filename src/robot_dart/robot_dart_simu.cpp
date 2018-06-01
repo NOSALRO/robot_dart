@@ -6,8 +6,6 @@
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
 
-#include <iostream>
-
 namespace robot_dart {
     RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
                                                      _old_index(0),
@@ -30,7 +28,7 @@ namespace robot_dart {
         _break = false;
         size_t index = _old_index;
         double old_t = _world->getTime();
-	double factor = _world->getTimeStep() / 2.;
+        double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
             for (auto& robot : _robots)
