@@ -28,8 +28,9 @@ namespace robot_dart {
         _break = false;
         size_t index = _old_index;
         double old_t = _world->getTime();
+        double factor = _world->getTimeStep() / 2.;
 
-        while ((_world->getTime() - old_t) < max_duration && !_graphics->done()) {
+        while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
             for (auto& robot : _robots)
                 robot->update(_world->getTime());
 
