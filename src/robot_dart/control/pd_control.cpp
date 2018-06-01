@@ -9,8 +9,6 @@ namespace robot_dart {
 
         void PDControl::configure()
         {
-            _prev_error = Eigen::VectorXd::Zero(_dof);
-
             if (_ctrl.size() == _control_dof)
                 _active = true;
         }
@@ -25,13 +23,9 @@ namespace robot_dart {
             Eigen::VectorXd q = robot->skeleton()->getPositions();
             Eigen::VectorXd dq = robot->skeleton()->getVelocities();
 
-            q += dq * robot->skeleton()->getTimeStep();
-
-            Eigen::VectorXd q_err = target_positions - q;
-            Eigen::VectorXd dq_err = (q_err - _prev_error) / robot->skeleton()->getTimeStep();
-            _prev_error = q_err;
-
-            Eigen::VectorXd commands = _Kp * q_err + _Kd * dq_err;
+            /// Compute the simplest PD controller output:
+            /// P gain * (target position - current position) + D gain * (0 - current velocity)
+            Eigen::VectorXd commands = _Kp * (target_positions - q) - _Kd * dq;
 
             return commands.tail(_control_dof);
         }
