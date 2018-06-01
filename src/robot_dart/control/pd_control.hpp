@@ -24,7 +24,6 @@ namespace robot_dart {
         protected:
             double _Kp = 10.;
             double _Kd = 0.1;
-            Eigen::VectorXd _prev_error;
         };
     } // namespace control
 } // namespace robot_dart
