@@ -1,9 +1,8 @@
 #ifndef ROBOT_DART_CONTROL_PD_CONTROL
 #define ROBOT_DART_CONTROL_PD_CONTROL
 
-#include <iostream>
-#include <utility>
 #include <Eigen/Core>
+#include <utility>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -21,8 +20,7 @@ namespace robot_dart {
             void set_pd(double p, double d);
             void set_pd(const Eigen::VectorXd& p, const Eigen::VectorXd& d);
 
-            std::pair<double, double> pd() const;
-            void pd(Eigen::VectorXd& p, Eigen::VectorXd& d) const;
+            std::pair<Eigen::VectorXd, Eigen::VectorXd> pd() const;
 
             std::shared_ptr<RobotControl> clone() const override;
 

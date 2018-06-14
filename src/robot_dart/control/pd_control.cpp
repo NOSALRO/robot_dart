@@ -13,7 +13,7 @@ namespace robot_dart {
                 _active = true;
 
             if (_Kp.size() == 0)
-                set_pd(10.,0.1);
+                set_pd(10., 0.1);
         }
 
         Eigen::VectorXd PDControl::calculate(double)
@@ -33,33 +33,24 @@ namespace robot_dart {
             return commands.tail(_control_dof);
         }
 
-        void PDControl::set_pd(double p, double d)
+        void PDControl::set_pd(double Kp, double Kd)
         {
-	    if(_control_dof != 1) {
-		std::cout << "[WARNING] Setting all the gains to Kp = " << p << " and Kd = " << d << std::endl;
-	    }
-            _Kp = Eigen::VectorXd::Constant(_control_dof, p);
-            _Kd = Eigen::VectorXd::Constant(_control_dof, d);
+            ROBOT_DART_WARNING(_control_dof != 1, "Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
+            _Kp = Eigen::VectorXd::Constant(_control_dof, Kp);
+            _Kd = Eigen::VectorXd::Constant(_control_dof, Kd);
         }
 
-        void PDControl::set_pd(const Eigen::VectorXd& p, const Eigen::VectorXd& d)
+        void PDControl::set_pd(const Eigen::VectorXd& Kp, const Eigen::VectorXd& Kd)
         {
-	    assert((size_t)p.size() == _control_dof);
-	    assert((size_t)d.size() == _control_dof);
-            _Kp = p;
-            _Kd = d;
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "The Kp-values is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "The Kd-values is not the same as the DOFs!", );
+            _Kp = Kp;
+            _Kd = Kd;
         }
 
-        std::pair<double, double> PDControl::pd() const
+        std::pair<Eigen::VectorXd, Eigen::VectorXd> PDControl::pd() const
         {
-	    assert(_control_dof == 1);
-            return std::make_pair(_Kp(0), _Kd(0));
-        }
-
-        void PDControl::pd(Eigen::VectorXd& p, Eigen::VectorXd& d) const
-        {
-            p = _Kp;
-            d = _Kd;
+            return std::make_pair(_Kp, _Kd);
         }
 
         std::shared_ptr<RobotControl> PDControl::clone() const

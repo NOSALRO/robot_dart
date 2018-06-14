@@ -5,6 +5,10 @@
 #include <exception>
 #include <iostream>
 
+#ifndef ROBOT_DART_SHOW_WARNINGS
+#define ROBOT_DART_SHOW_WARNINGS false
+#endif
+
 namespace robot_dart {
 
     class Assertion : public std::exception {
@@ -28,6 +32,11 @@ namespace robot_dart {
         }
     };
 } // namespace robot_dart
+
+#define ROBOT_DART_WARNING(condition, message)                                    \
+    if(ROBOT_DART_SHOW_WARNINGS && (condition)) {                                                            \
+        std::cerr<< "[robot_dart WARNING]: \"" << message << "\"" << std::endl;   \
+    }                                                                             \
 
 #define ROBOT_DART_ASSERT(condition, message, returnValue)                        \
     do {                                                                          \
