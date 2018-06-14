@@ -12,7 +12,8 @@ namespace robot_dart {
             if (_ctrl.size() == _control_dof)
                 _active = true;
 
-	    set_pd(10.,0.1);
+            if (_Kp.size() == 0)
+                set_pd(10.,0.1);
         }
 
         Eigen::VectorXd PDControl::calculate(double)
