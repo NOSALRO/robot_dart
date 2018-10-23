@@ -356,10 +356,9 @@ namespace robot_dart {
             return nullptr;
 
         tmp_skel->setName(_robot_name);
-        // Set joint limits/actuator types
+        // Set joint limits
         for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
             tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
-            tmp_skel->getJoint(i)->setActuatorType(dart::dynamics::Joint::FORCE);
         }
 
         // Fix for mesh materials
