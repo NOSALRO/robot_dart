@@ -20,17 +20,16 @@ namespace robot_dart {
         {
             ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "PDControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             auto robot = _robot.lock();
-            Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);
-            target_positions.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
-            Eigen::VectorXd q = robot->skeleton()->getPositions();
-            Eigen::VectorXd dq = robot->skeleton()->getVelocities();
+            Eigen::VectorXd q = get_positions();
+            Eigen::VectorXd dq = get_velocities();
 
             /// Compute the simplest PD controller output:
             /// P gain * (target position - current position) + D gain * (0 - current velocity)
             Eigen::VectorXd commands = _Kp.array() * (target_positions.array() - q.array()) - _Kd.array() * dq.array();
 
-            return commands.tail(_control_dof);
+            return commands;
         }
 
         void PDControl::set_pd(double Kp, double Kd)
