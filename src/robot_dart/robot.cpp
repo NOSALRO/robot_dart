@@ -148,7 +148,8 @@ namespace robot_dart {
     {
         if (fixed())
             return;
-        Eigen::Isometry3d tf(dart::math::expMap(_skeleton->getPositions().segment(0, 6)));
+        Eigen::Isometry3d tf(dart::math::expAngular(_skeleton->getPositions().head(3)));
+        tf.translation() = _skeleton->getPositions().segment(3, 3);
         _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
@@ -160,7 +161,8 @@ namespace robot_dart {
     {
         if (free())
             return;
-        Eigen::Isometry3d tf(dart::math::expMap(pose));
+        Eigen::Isometry3d tf(dart::math::expAngular(pose.head(3)));
+        tf.translation() = pose.segment(3, 3);
         _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
