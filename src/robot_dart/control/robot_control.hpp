@@ -61,10 +61,10 @@ namespace robot_dart {
             size_t _start_dof, _dof, _control_dof;
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
             std::vector<size_t> _mimic_dofs;
+#endif
 
             Eigen::VectorXd _get_vector_mimic(const Eigen::VectorXd& vec) const;
             Eigen::VectorXd _set_vector_mimic(const Eigen::VectorXd& vec) const;
-#endif
         };
     } // namespace control
 } // namespace robot_dart
