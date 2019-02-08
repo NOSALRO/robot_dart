@@ -11,7 +11,7 @@
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
 
-#if DART_MAJOR_VERSION > 6
+#if DART_VERSION_AT_LEAST(7, 0, 0)
 #include <dart/io/SkelParser.hpp>
 #include <dart/io/sdf/SdfParser.hpp>
 #include <dart/io/urdf/urdf.hpp>
@@ -48,7 +48,11 @@ namespace robot_dart {
     {
         // safely clone the skeleton
         _skeleton->getMutex().lock();
+#if DART_VERSION_AT_LEAST(6, 7, 2)
+        auto tmp_skel = _skeleton->cloneSkeleton();
+#else
         auto tmp_skel = _skeleton->clone();
+#endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
         robot->_damages = _damages;
