@@ -11,7 +11,7 @@ namespace robot_dart {
 
         // Operational Space control (for open chains)
         // Requires torque-control
-        // Extractd and adapted from official DART examples
+        // Extracted and adapted from official DART examples
         class OSControl : public RobotControl {
         public:
             OSControl();
