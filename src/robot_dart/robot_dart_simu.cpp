@@ -43,10 +43,10 @@ namespace robot_dart {
                 if (index % desc->desc_dump() == 0)
                     desc->operator()();
 
+            ++index;
+
             if (_break)
                 break;
-
-            ++index;
         }
         _old_index = index;
     }
