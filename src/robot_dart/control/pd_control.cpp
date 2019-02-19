@@ -34,15 +34,15 @@ namespace robot_dart {
 
         void PDControl::set_pd(double Kp, double Kd)
         {
-            ROBOT_DART_WARNING(_control_dof != 1, "Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
+            ROBOT_DART_WARNING(_control_dof != 1, "PDControl: Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
             _Kp = Eigen::VectorXd::Constant(_control_dof, Kp);
             _Kd = Eigen::VectorXd::Constant(_control_dof, Kd);
         }
 
         void PDControl::set_pd(const Eigen::VectorXd& Kp, const Eigen::VectorXd& Kd)
         {
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "The Kp-values is not the same as the DOFs!", );
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "The Kd-values is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "PDControl: The Kp size is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "PDControl: The Kd size is not the same as the DOFs!", );
             _Kp = Kp;
             _Kd = Kd;
         }
