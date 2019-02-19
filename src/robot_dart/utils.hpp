@@ -6,7 +6,7 @@
 #include <iostream>
 
 #ifndef ROBOT_DART_SHOW_WARNINGS
-#define ROBOT_DART_SHOW_WARNINGS false
+#define ROBOT_DART_SHOW_WARNINGS true
 #endif
 
 namespace robot_dart {
