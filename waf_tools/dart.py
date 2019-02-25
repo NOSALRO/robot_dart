@@ -34,7 +34,7 @@ def check_dart(conf, *k, **kw):
         libs_check = [conf.options.dart + '/lib']
     else:
         includes_check = ['/usr/local/include', '/usr/include']
-        libs_check = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
+        libs_check = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
 
         if 'RESIBOTS_DIR' in os.environ:
             includes_check = [os.environ['RESIBOTS_DIR'] + '/include'] + includes_check
