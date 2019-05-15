@@ -37,6 +37,14 @@ namespace robot_dart {
         void remove_descriptor(size_t index);
         void clear_descriptors();
 
+        void add_camera(const std::shared_ptr<graphics::BaseGraphics>& cam);
+        std::vector<std::shared_ptr<graphics::BaseGraphics>> cameras() const;
+        std::shared_ptr<graphics::BaseGraphics> camera(size_t index) const;
+
+        void remove_camera(const std::shared_ptr<graphics::BaseGraphics>& desc);
+        void remove_camera(size_t index);
+        void clear_cameras();
+
         double step() const;
         void set_step(double step);
 
@@ -59,6 +67,7 @@ namespace robot_dart {
         size_t _old_index;
         bool _break;
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
+        std::vector<std::shared_ptr<graphics::BaseGraphics>> _cameras; // designed to include mainly graphcis::CameraOSR
         std::vector<robot_t> _robots;
         std::shared_ptr<graphics::BaseGraphics> _graphics;
     };

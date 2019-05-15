@@ -21,6 +21,7 @@ namespace robot_dart {
     {
         _robots.clear();
         _descriptors.clear();
+        _cameras.clear();
     }
 
     void RobotDARTSimu::run(double max_duration)
@@ -42,6 +43,10 @@ namespace robot_dart {
             for (auto& desc : _descriptors)
                 if (index % desc->desc_dump() == 0)
                     desc->operator()();
+
+            // update cameras
+            for (auto& cam : _cameras)
+                cam->refresh();
 
             ++index;
 
@@ -80,6 +85,22 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", nullptr);
         return _descriptors[index];
+    }
+
+    void RobotDARTSimu::add_camera(const std::shared_ptr<graphics::BaseGraphics>& cam)
+    {
+        _cameras.push_back(cam);
+    }
+
+    std::vector<std::shared_ptr<graphics::BaseGraphics>> RobotDARTSimu::cameras() const
+    {
+        return _cameras;
+    }
+
+    std::shared_ptr<graphics::BaseGraphics> RobotDARTSimu::camera(size_t index) const
+    {
+        ROBOT_DART_ASSERT(index < _cameras.size(), "Camera index out of bounds", nullptr);
+        return _cameras[index];
     }
 
     double RobotDARTSimu::step() const
@@ -168,6 +189,25 @@ namespace robot_dart {
     void RobotDARTSimu::clear_descriptors()
     {
         _descriptors.clear();
+    }
+
+    void RobotDARTSimu::remove_camera(const std::shared_ptr<graphics::BaseGraphics>& cam)
+    {
+        auto it = std::find(_cameras.begin(), _cameras.end(), cam);
+        if (it != _cameras.end()) {
+            _cameras.erase(it);
+        }
+    }
+
+    void RobotDARTSimu::remove_camera(size_t index)
+    {
+        ROBOT_DART_ASSERT(index < _cameras.size(), "Cameras index out of bounds", );
+        _cameras.erase(_cameras.begin() + index);
+    }
+
+    void RobotDARTSimu::clear_cameras()
+    {
+        _cameras.clear();
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
