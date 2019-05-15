@@ -20,30 +20,29 @@ namespace robot_dart {
         {
             ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "PDControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             auto robot = _robot.lock();
-            Eigen::VectorXd target_positions = Eigen::VectorXd::Zero(_dof);
-            target_positions.tail(_control_dof) = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
 
-            Eigen::VectorXd q = robot->skeleton()->getPositions();
-            Eigen::VectorXd dq = robot->skeleton()->getVelocities();
+            Eigen::VectorXd q = get_positions();
+            Eigen::VectorXd dq = get_velocities();
 
             /// Compute the simplest PD controller output:
             /// P gain * (target position - current position) + D gain * (0 - current velocity)
             Eigen::VectorXd commands = _Kp.array() * (target_positions.array() - q.array()) - _Kd.array() * dq.array();
 
-            return commands.tail(_control_dof);
+            return commands;
         }
 
         void PDControl::set_pd(double Kp, double Kd)
         {
-            ROBOT_DART_WARNING(_control_dof != 1, "Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
+            ROBOT_DART_WARNING(_control_dof != 1, "PDControl: Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
             _Kp = Eigen::VectorXd::Constant(_control_dof, Kp);
             _Kd = Eigen::VectorXd::Constant(_control_dof, Kd);
         }
 
         void PDControl::set_pd(const Eigen::VectorXd& Kp, const Eigen::VectorXd& Kd)
         {
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "The Kp-values is not the same as the DOFs!", );
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "The Kd-values is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "PDControl: The Kp size is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "PDControl: The Kd size is not the same as the DOFs!", );
             _Kp = Kp;
             _Kd = Kd;
         }
