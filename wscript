@@ -129,6 +129,15 @@ def build(bld):
 
         bld.program(features = 'cxx',
                       install_path = None,
+                      source = 'src/examples/cameras.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
+                      defines = ['GRAPHIC'],
+                      target = 'cameras')
+
+        bld.program(features = 'cxx',
+                      install_path = None,
                       source = 'src/examples/tutorial.cpp',
                       includes = './src',
                       uselib = libs_graphics,

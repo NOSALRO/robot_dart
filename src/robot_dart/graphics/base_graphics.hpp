@@ -9,7 +9,7 @@ namespace robot_dart {
         public:
             BaseGraphics() {}
 
-            BaseGraphics(dart::simulation::WorldPtr) {}
+            BaseGraphics(const dart::simulation::WorldPtr&) {}
 
             virtual bool done() const
             {
