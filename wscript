@@ -58,13 +58,13 @@ def configure(conf):
         opt_flags = " -O3 -xHost -mtune=native -unroll -g"
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -march=native -g -faligned-new"
+        opt_flags = " -O3 -march=native -g "
     else:
         if int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1]) < 47:
             common_flags = "-Wall -std=c++0x"
         else:
             common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -march=native -g -faligned-new"
+        opt_flags = " -O3 -march=native -g "
 
     all_flags = common_flags + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
@@ -123,6 +123,15 @@ def build(bld):
                       use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
                       target = 'arm')
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/cameras.cpp',
+                      includes = './src',
+                      uselib = libs_graphics,
+                      use = 'RobotDARTSimu',
+                      defines = ['GRAPHIC'],
+                      target = 'cameras')
 
         bld.program(features = 'cxx',
                       install_path = None,
