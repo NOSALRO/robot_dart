@@ -1,18 +1,19 @@
 #ifndef ROBOT_DART_GRAPHICS_CAMERAOSR_HPP
 #define ROBOT_DART_GRAPHICS_CAMERAOSR_HPP
 
-#include <dart/gui/osg/osg.hpp>
-#include <osgDB/WriteFile>
 #include <robot_dart/graphics/base_graphics.hpp>
+#include <robot_dart/utils.hpp>
+
+#include <dart/gui/osg/osg.hpp>
+
+#include <osgDB/WriteFile>
 
 namespace robot_dart {
     namespace graphics {
         template <typename Viewer_t>
         class GetScreen : public ::osg::Camera::DrawCallback {
         public:
-            GetScreen(Viewer_t* viewer, ::osg::ref_ptr<::osg::Camera> cam)
-                : _viewer(viewer),
-                  mCamera(cam) {}
+            GetScreen(Viewer_t* viewer, ::osg::ref_ptr<::osg::Camera> cam) : _viewer(viewer), _osg_camera(cam) {}
 
             virtual void operator()(::osg::RenderInfo& renderInfo) const
             {
@@ -20,40 +21,38 @@ namespace robot_dart {
 
                 int x, y;
                 unsigned int width, height;
-                ::osg::ref_ptr<::osg::Viewport> vp = mCamera->getViewport();
+                ::osg::ref_ptr<::osg::Viewport> vp = _osg_camera->getViewport();
                 x = vp->x();
                 y = vp->y();
                 width = vp->width();
                 height = vp->height();
 
-                _viewer->get_image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
+                _viewer->image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
 
                 if (_viewer->recording()) {
                     if (!_viewer->filename().empty()) {
-                        if (!::osgDB::writeImageFile(*_viewer->get_image(), _viewer->filename()))
-                            dtwarn << "[SaveScreen::capture] Unable to save image to file named: "
-                                   << _viewer->filename() << "\n";
+                        bool saved = ::osgDB::writeImageFile(*_viewer->image(), _viewer->filename());
+                        ROBOT_DART_WARNING(saved, "GetScreen unable to save image to file '" + _viewer->filename() + "'");
                     }
                 }
             }
 
         protected:
             Viewer_t* _viewer;
-            ::osg::ref_ptr<::osg::Camera> mCamera;
+            ::osg::ref_ptr<::osg::Camera> _osg_camera;
         };
 
         // Camera-OffScreen-Rendering
         class CameraOSR : public BaseGraphics {
 
         public:
-            CameraOSR(dart::simulation::WorldPtr world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _enabled(true), _recording(false), _filename("camera_record.png"), _image(new osg::Image)
+            CameraOSR(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true), _buffer_valid(true), _recording(false), _filename("camera_record.png"), _image(new osg::Image)
 
             {
                 _osg_viewer = new dart::gui::osg::Viewer;
                 //graphics context
                 ::osg::ref_ptr<::osg::GraphicsContext::Traits> traits = new ::osg::GraphicsContext::Traits;
                 traits->readDISPLAY();
-                //if (traits->displayNum<0) traits->displayNum = 0;
 
                 traits->x = 0;
                 traits->y = 0;
@@ -91,8 +90,9 @@ namespace robot_dart {
                     _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
                 }
                 else {
-                    std::cout << "Error configuring pbuffer\n";
-                    exit(0);
+                    ROBOT_DART_WARNING(true, "Error configuring pbuffer in CameraOSR! Camera will be disabled!");
+                    _enabled = false;
+                    _buffer_valid = false;
                 }
             }
 
@@ -103,9 +103,7 @@ namespace robot_dart {
 
             void refresh() override
             {
-                static int i = 0;
-
-                if (!_enabled)
+                if (!_buffer_valid || !_enabled)
                     return;
 
                 if (!_osg_viewer->isRealized()) {
@@ -113,14 +111,16 @@ namespace robot_dart {
                 }
 
                 // process next frame
-                if (i % _render_period == 0) {
+                if (_frame_counter % _render_period == 0) {
                     _osg_viewer->frame();
                 }
-                i++;
+                _frame_counter++;
             }
 
             void take_single_shot()
             {
+                if (!_buffer_valid)
+                    return;
                 if (!_osg_viewer->isRealized()) {
                     _osg_viewer->realize();
                 }
@@ -163,8 +163,9 @@ namespace robot_dart {
             std::string filename() { return _filename; }
             void set_recording(bool recording) { _recording = recording; }
             bool recording() { return _recording; }
+            bool valid() { return _buffer_valid; }
 
-            osg::ref_ptr<osg::Image> get_image() { return _image; }
+            osg::ref_ptr<osg::Image> image() { return _image; }
 
         protected:
             Eigen::Vector3d _look_at;
@@ -173,8 +174,8 @@ namespace robot_dart {
             osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
             osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
             dart::simulation::WorldPtr _world;
-            unsigned int _render_period, _width, _height;
-            bool _enabled;
+            size_t _render_period, _width, _height, _frame_counter;
+            bool _enabled, _buffer_valid;
             bool _recording;
             std::string _filename;
 

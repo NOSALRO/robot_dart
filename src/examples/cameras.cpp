@@ -49,7 +49,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    // setting up a first camera, with a high resolution
+    // setting up a first camera, with a low resolution
     auto cam1 = std::make_shared<robot_dart::graphics::CameraOSR>(simu.world(), 128, 128);
     // adding the camera to the simulation
     simu.add_camera(cam1);
@@ -60,7 +60,7 @@ int main()
     // setting the direction of the camera
     cam1->look_at({0.4, 1.5, 1.75}, {0.0, 0., 0.5});
 
-    // setting up a second camera with a different resolution
+    // setting up a second camera with a higher resolution
     auto cam2 = std::make_shared<robot_dart::graphics::CameraOSR>(simu.world(), 512, 512);
     simu.add_camera(cam2);
     cam2->set_recording(true);
@@ -70,14 +70,14 @@ int main()
     cam2->set_enable(false);
 
     // The usual graphics can be also added
-    //simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
     simu.run(1.);
 
     // a pointer to the last image taken cam be found here:
-    auto image_cam1 = cam1->get_image();
+    auto image_cam1 = cam1->image();
     std::cout << "Cam1: " << image_cam1->s() << "x" << image_cam1->t() << std::endl;
 
 #ifdef GRAPHIC
