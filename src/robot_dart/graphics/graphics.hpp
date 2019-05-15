@@ -9,7 +9,7 @@ namespace robot_dart {
     namespace graphics {
         class Graphics : public BaseGraphics {
         public:
-            Graphics(dart::simulation::WorldPtr world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _enabled(true)
+            Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
             {
                 _osg_viewer = new dart::gui::osg::Viewer;
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
@@ -27,8 +27,6 @@ namespace robot_dart {
 
             void refresh() override
             {
-                static int i = 0;
-
                 if (!_enabled)
                     return;
 
@@ -40,9 +38,9 @@ namespace robot_dart {
                 }
 
                 // process next frame
-                if (i % _render_period == 0)
+                if (_frame_counter % _render_period == 0)
                     _osg_viewer->frame();
-                i++;
+                _frame_counter++;
             }
 
             void set_render_period(double dt) override
@@ -84,7 +82,7 @@ namespace robot_dart {
             osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
             osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
             dart::simulation::WorldPtr _world;
-            unsigned int _render_period, _width, _height;
+            size_t _render_period, _width, _height, _frame_counter;
             bool _enabled;
         };
     } // namespace graphics
