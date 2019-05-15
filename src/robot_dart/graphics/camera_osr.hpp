@@ -23,18 +23,18 @@ namespace robot_dart {
 	{
 	  ::osg::Camera::DrawCallback::operator ()(renderInfo);
 	  
+	  int x, y;
+	  unsigned int width, height;
+	  ::osg::ref_ptr<::osg::Viewport> vp = mCamera->getViewport();
+	  x = vp->x();
+	  y = vp->y();
+	  width = vp->width();
+	  height = vp->height();
+	  
+	  _viewer->get_image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
+
 	  if(_viewer->recording())
 	    {
-	      int x, y;
-	      unsigned int width, height;
-	      ::osg::ref_ptr<::osg::Viewport> vp = mCamera->getViewport();
-	      x = vp->x();
-	      y = vp->y();
-	      width = vp->width();
-	      height = vp->height();
-	      
-	      _viewer->get_image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
-
 	      if(!_viewer->filename().empty())
 		{
 		  if(!::osgDB::writeImageFile(*_viewer->get_image(), _viewer->filename()))
@@ -130,6 +130,14 @@ namespace robot_dart {
 	      _osg_viewer->frame();
 	    }
 	  i++;
+	}
+
+	void take_single_shot() {
+	  if (!_osg_viewer->isRealized())
+            {
+              _osg_viewer->realize();
+            }
+	  _osg_viewer->frame();
 	}
 	
 	void set_render_period(double dt) override

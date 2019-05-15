@@ -63,7 +63,9 @@ int main()
     cam2->set_recording(true);
     cam2->set_filename("cam2.png");
     cam2->look_at({0.0, 1.75, 0.45}, {0.0, 0.0, 0.45});
-
+    // this camera is disabled, it will not render and record images.
+    cam2->set_enable(false);
+    
     // The usual graphics can be also added
     //simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
 #endif
@@ -71,6 +73,14 @@ int main()
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     simu.run(0.2);
+
+
+
+#ifdef GRAPHIC
+    // we can take a single shot with a camera:
+    cam2->take_single_shot();
+#endif
+    
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     ctrl = {0.0, -1.0, 1.5, -1.0};
     g_robot->controllers()[0]->set_parameters(ctrl);
