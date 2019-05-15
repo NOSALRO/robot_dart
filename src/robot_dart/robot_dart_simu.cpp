@@ -21,7 +21,7 @@ namespace robot_dart {
     {
         _robots.clear();
         _descriptors.clear();
-	//	_cameras.clear();
+        _cameras.clear();
     }
 
     void RobotDARTSimu::run(double max_duration)
@@ -44,15 +44,14 @@ namespace robot_dart {
                 if (index % desc->desc_dump() == 0)
                     desc->operator()();
 
-	    // update descriptors
+            // update cameras
             for (auto& cam : _cameras)
-	      cam->refresh();
-
-	    
-            if (_break)
-                break;
+                cam->refresh();
 
             ++index;
+
+            if (_break)
+                break;
         }
         _old_index = index;
     }
@@ -104,10 +103,6 @@ namespace robot_dart {
         return _cameras[index];
     }
 
-
-
-  
-  
     double RobotDARTSimu::step() const
     {
         return _world->getTimeStep();
@@ -215,7 +210,6 @@ namespace robot_dart {
         _cameras.clear();
     }
 
-  
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!

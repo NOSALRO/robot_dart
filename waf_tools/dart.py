@@ -34,7 +34,7 @@ def check_dart(conf, *k, **kw):
         libs_check = [conf.options.dart + '/lib']
     else:
         includes_check = ['/usr/local/include', '/usr/include']
-        libs_check = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
+        libs_check = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
 
         if 'RESIBOTS_DIR' in os.environ:
             includes_check = [os.environ['RESIBOTS_DIR'] + '/include'] + includes_check
@@ -44,7 +44,7 @@ def check_dart(conf, *k, **kw):
     assimp_include = []
     assimp_lib = []
     assimp_check = ['/usr/local/include', '/usr/include']
-    assimp_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
+    assimp_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
     assimp_found = False
     try:
         assimp_include = get_directory('assimp/scene.h', assimp_check)
@@ -55,7 +55,7 @@ def check_dart(conf, *k, **kw):
 
     # DART has some optional Bullet features
     bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet']
-    bullet_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu/']
+    bullet_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
     bullet_include = []
     bullet_lib = []
     bullet_found = False
@@ -68,6 +68,19 @@ def check_dart(conf, *k, **kw):
         bullet_found = True
     except:
         bullet_found = False
+
+    # DART has some optional ODE features
+    ode_check = ['/usr/local/include', '/usr/include']
+    ode_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    ode_include = []
+    ode_lib = []
+    ode_found = False
+    try:
+        ode_include = [get_directory('ode/collision.h', ode_check)]
+        ode_lib = [get_directory('libode.' + suffix, ode_libs)]
+        ode_found = True
+    except:
+        ode_found = False
 
     # DART requires OSG library for their graphic version
     osg_include = []
@@ -166,6 +179,20 @@ def check_dart(conf, *k, **kw):
                 conf.env.LIB_DART.append('BulletCollision')
                 conf.env.LIB_DART.append('dart-collision-bullet')
                 conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
+            except:
+                conf.end_msg('Not found', 'RED')
+        else:
+            conf.end_msg('Not found', 'RED')
+
+        conf.start_msg('DART: Checking for Ode Collision libs')
+        if ode_found:
+            try:
+                ode_lib.append(get_directory('libdart-collision-ode.'+suffix, libs_check))
+                conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + ode_include
+                conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + ode_lib
+                conf.env.LIB_DART.append('ode')
+                conf.env.LIB_DART.append('dart-collision-ode')
+                conf.end_msg('libs: ' + str(conf.env.LIB_DART[-2:]) + ', ode: ' + str(ode_include[0]))
             except:
                 conf.end_msg('Not found', 'RED')
         else:

@@ -21,8 +21,8 @@ namespace robot_dart {
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
-        Robot(const std::string& model_file, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, std::vector<RobotDamage> damages = {});
         Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
 
         std::shared_ptr<Robot> clone() const;
@@ -87,7 +87,7 @@ namespace robot_dart {
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "ellipsoid");
 
     protected:
-        dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>());
+        dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
 
