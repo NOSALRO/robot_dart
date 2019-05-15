@@ -32,7 +32,7 @@ namespace robot_dart {
                 if (_viewer->recording()) {
                     if (!_viewer->filename().empty()) {
                         bool saved = ::osgDB::writeImageFile(*_viewer->image(), _viewer->filename());
-                        ROBOT_DART_WARNING(saved, "GetScreen unable to save image to file '" + _viewer->filename() + "'");
+                        ROBOT_DART_WARNING(!saved, "GetScreen unable to save image to file '" + _viewer->filename() + "'");
                     }
                 }
             }
