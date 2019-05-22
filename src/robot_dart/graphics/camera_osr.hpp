@@ -50,6 +50,7 @@ namespace robot_dart {
 
             {
                 _osg_viewer = new dart::gui::osg::Viewer;
+                _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
                 //graphics context
                 ::osg::ref_ptr<::osg::GraphicsContext::Traits> traits = new ::osg::GraphicsContext::Traits;
                 traits->readDISPLAY();
@@ -67,7 +68,6 @@ namespace robot_dart {
                 traits->pbuffer = true;
                 traits->doubleBuffer = true;
                 traits->sharedContext = 0;
-                traits->readDISPLAY();
                 traits->setUndefinedScreenDetailsToDefaultScreen();
 
                 ::osg::ref_ptr<::osg::GraphicsContext> pbuffer = ::osg::GraphicsContext::createGraphicsContext(traits.get());
@@ -87,13 +87,23 @@ namespace robot_dart {
                     _osg_viewer->addWorldNode(_osg_world_node);
                     _osg_viewer->switchHeadlights(true);
                     _osg_viewer->getCamera()->setFinalDrawCallback(new GetScreen<CameraOSR>(this, _osg_viewer->getCamera()));
-                    _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
                 }
                 else {
                     ROBOT_DART_WARNING(true, "Error configuring pbuffer in CameraOSR! Camera will be disabled!");
                     _enabled = false;
                     _buffer_valid = false;
                 }
+            }
+
+            ~CameraOSR()
+            {
+                _osg_viewer->removeWorldNode(_osg_world_node); // This line fixes a memory leak from DART
+
+                // This following lines will still be necessary after DART fixes their side.
+                _osg_viewer->getCamera()->setFinalDrawCallback(0);
+                _osg_world_node = NULL;
+                _osg_viewer = NULL;
+                _image = NULL;
             }
 
             bool done() const override
