@@ -78,10 +78,6 @@ namespace robot_dart {
                     _osg_viewer->addWorldNode(_osg_world_node);
                     _osg_viewer->switchHeadlights(true);
                     _osg_viewer->getCamera()->setFinalDrawCallback(new GetScreen<CameraOSR>(this, _osg_viewer->getCamera()));
-		    //std::vector<OpenThreads::Thread*> threads;
-		    //_osg_viewer->getAllThreads(threads, true);
-		    //std::cout<<" NUmber of threads: "<<threads.size()<<std::endl;
-             
                 }
                 else {
                     ROBOT_DART_WARNING(true, "Error configuring pbuffer in CameraOSR! Camera will be disabled!");
@@ -90,20 +86,20 @@ namespace robot_dart {
 		}
             }
 
-	  ~CameraOSR()
-	  {
-	    _osg_viewer->removeWorldNode(_osg_world_node); // This line fixes a memory leak from DART
-
-	    // This following lines will still be necessary after DART fixes their side. 
-	    _osg_viewer->getCamera()->setFinalDrawCallback(0);
-	    _osg_viewer->getCamera()->setGraphicsContext(0);
-	    _osg_world_node=NULL;
-	    _osg_viewer=NULL;
-	    _image=NULL;
-
-	    global::pbufferManager->release_pbuffer(_pbuffer);
-	    _pbuffer=NULL;
+            ~CameraOSR()
+            {
+                _osg_viewer->removeWorldNode(_osg_world_node); // This line fixes a memory leak from DART
+		// This following lines will still be necessary after DART fixes their side. 
+		_osg_viewer->getCamera()->setFinalDrawCallback(0);
+		_osg_viewer->getCamera()->setGraphicsContext(0);
+		_osg_world_node=NULL;
+		_osg_viewer=NULL;
+		_image=NULL;
+		
+		global::pbufferManager->release_pbuffer(_pbuffer);
+		_pbuffer=NULL;
 	  }
+
 
             bool done() const override
             {
