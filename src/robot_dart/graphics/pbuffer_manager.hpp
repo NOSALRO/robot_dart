@@ -20,6 +20,7 @@ namespace robot_dart {
 
         public:
 	  static void createPbufferManager(size_t nb_threads = 8){
+	    ::osg::setNotifyLevel(::osg::WARN); // used to remove INFO messages that are coming from realising a context already realized
 	    global::pbufferManager = std::unique_ptr<PbufferManager>(new PbufferManager(nb_threads));
 	  }
 	  
