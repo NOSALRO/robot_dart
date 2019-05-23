@@ -12,7 +12,7 @@ namespace robot_dart {
             Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
             {
                 _osg_viewer = new dart::gui::osg::Viewer;
-		_osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
+                _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
                 _osg_world_node = new dart::gui::osg::WorldNode(world);
                 if (shadowed)
                     _osg_world_node->setShadowTechnique(dart::gui::osg::WorldNode::createDefaultShadowTechnique(_osg_viewer));
@@ -20,15 +20,17 @@ namespace robot_dart {
                 _osg_viewer->addWorldNode(_osg_world_node);
                 _osg_viewer->switchHeadlights(true);
             }
-	  ~Graphics()
-	  {
-	    // the following lines fix a memory leak from DART
-	    _osg_viewer->removeWorldNode(_osg_world_node);
-	    _osg_viewer->getCamera()->setFinalDrawCallback(0);
 
-	    _osg_world_node=NULL;
-	    _osg_viewer=NULL;
-	  }
+            ~Graphics()
+            {
+                // the following lines fix a memory leak from DART
+                _osg_viewer->removeWorldNode(_osg_world_node);
+                _osg_viewer->getCamera()->setFinalDrawCallback(0);
+
+                _osg_world_node = NULL;
+                _osg_viewer = NULL;
+            }
+
             bool done() const override
             {
                 return _osg_viewer->done();

@@ -11,6 +11,8 @@ namespace robot_dart {
 
             BaseGraphics(const dart::simulation::WorldPtr&) {}
 
+            virtual ~BaseGraphics() {}
+
             virtual bool done() const
             {
                 return false;
