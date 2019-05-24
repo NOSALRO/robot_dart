@@ -83,6 +83,12 @@ def configure(conf):
 
     all_flags = common_flags + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
+    if len(conf.env.CXXFLAGS_DART) > 0:
+        if '-std=c++11' in conf.env['CXXFLAGS']:
+            conf.env['CXXFLAGS'].remove('-std=c++11')
+        if '-std=c++0x' in conf.env['CXXFLAGS']:
+            conf.env['CXXFLAGS'].remove('-std=c++11')
+        conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):
