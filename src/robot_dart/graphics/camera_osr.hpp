@@ -3,12 +3,12 @@
 #include <unistd.h>
 
 #include <robot_dart/graphics/base_graphics.hpp>
+#include <robot_dart/graphics/pbuffer_manager.hpp>
 #include <robot_dart/utils.hpp>
 
 #include <dart/gui/osg/osg.hpp>
 
 #include <osgDB/WriteFile>
-#include "pbuffer_manager.hpp"
 
 namespace robot_dart {
     namespace graphics {
@@ -37,7 +37,7 @@ namespace robot_dart {
                         ROBOT_DART_WARNING(!saved, "GetScreen unable to save image to file '" + _viewer->filename() + "'");
                     }
                 }
-		_viewer->set_shot_done(true);
+                _viewer->set_shot_done(true);
             }
 
         protected:
@@ -49,20 +49,19 @@ namespace robot_dart {
         class CameraOSR : public BaseGraphics {
 
         public:
-	  CameraOSR(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true), _buffer_valid(true), _recording(false), _filename("camera_record.png"), _image(new osg::Image),_shot_done(false)
+            CameraOSR(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true), _buffer_valid(true), _recording(false), _filename("camera_record.png"), _image(new osg::Image), _shot_done(false)
 
             {
-	      if(!global::pbufferManager)
-		{
-		  std::cout<< "Error: pbufferManager seems not to be started"<<std::endl;
-		  assert(0);
-		}
-	      
-	      _osg_viewer = new dart::gui::osg::Viewer;
-	      _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
-	      _osg_viewer->setUseConfigureAffinity(false);
-	      _pbuffer = global::pbufferManager->get_pbuffer();
-		
+                if (!global::pbufferManager) {
+                    std::cout << "Error: pbufferManager seems not to be started" << std::endl;
+                    assert(0);
+                }
+
+                _osg_viewer = new dart::gui::osg::Viewer;
+                _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
+                _osg_viewer->setUseConfigureAffinity(false);
+                _pbuffer = global::pbufferManager->get_pbuffer();
+
                 if (_pbuffer.valid()) {
                     ::osg::ref_ptr<osg::Camera> camera = _osg_viewer->getCamera();
                     camera->setGraphicsContext(_pbuffer.get());
@@ -83,23 +82,22 @@ namespace robot_dart {
                     ROBOT_DART_WARNING(true, "Error configuring pbuffer in CameraOSR! Camera will be disabled!");
                     _enabled = false;
                     _buffer_valid = false;
-		}
+                }
             }
 
             ~CameraOSR()
             {
                 _osg_viewer->removeWorldNode(_osg_world_node); // This line fixes a memory leak from DART
-		// This following lines will still be necessary after DART fixes their side. 
-		_osg_viewer->getCamera()->setFinalDrawCallback(0);
-		_osg_viewer->getCamera()->setGraphicsContext(0);
-		_osg_world_node=NULL;
-		_osg_viewer=NULL;
-		_image=NULL;
-		
-		global::pbufferManager->release_pbuffer(_pbuffer);
-		_pbuffer=NULL;
-	  }
+                // This following lines will still be necessary after DART fixes their side.
+                _osg_viewer->getCamera()->setFinalDrawCallback(0);
+                _osg_viewer->getCamera()->setGraphicsContext(0);
+                _osg_world_node = NULL;
+                _osg_viewer = NULL;
+                _image = NULL;
 
+                global::pbufferManager->release_pbuffer(_pbuffer);
+                _pbuffer = NULL;
+            }
 
             bool done() const override
             {
@@ -126,15 +124,15 @@ namespace robot_dart {
             {
                 if (!_buffer_valid)
                     return;
-		_shot_done=false;
+                _shot_done = false;
                 if (!_osg_viewer->isRealized()) {
                     _osg_viewer->realize();
                 }
                 _osg_viewer->frame();
             }
 
-	  bool shot_done()const{return _shot_done;}
-	  void set_shot_done(bool val){_shot_done = val;}
+            bool shot_done() const { return _shot_done; }
+            void set_shot_done(bool val) { _shot_done = val; }
             void set_render_period(double dt) override
             {
                 // we want to display at around 60Hz of simulated time
@@ -181,7 +179,7 @@ namespace robot_dart {
             Eigen::Vector3d _camera_up;
             osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
             osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
-	  ::osg::ref_ptr<::osg::GraphicsContext> _pbuffer;
+            ::osg::ref_ptr<::osg::GraphicsContext> _pbuffer;
             dart::simulation::WorldPtr _world;
             size_t _render_period, _width, _height, _frame_counter;
             bool _enabled, _buffer_valid;
@@ -189,7 +187,7 @@ namespace robot_dart {
             std::string _filename;
 
             osg::ref_ptr<osg::Image> _image;
-	  bool _shot_done;
+            bool _shot_done;
         };
 
     } // namespace graphics
