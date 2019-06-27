@@ -127,6 +127,9 @@ def check_dart(conf, *k, **kw):
             raise Exception('We need DART version at least 6.0.0')
         if dart_major > 6:
             dart_load_prefix = 'io'
+        dart_cxx_flags = ''
+        if dart_major > 6 or (dart_major == 6 and dart_minor >= 9):
+            dart_cxx_flags = '-std=c++14'
 
         dart_include = []
         dart_include.append(get_directory('dart/dart.hpp', includes_check))
@@ -160,6 +163,8 @@ def check_dart(conf, *k, **kw):
         conf.env.INCLUDES_DART = dart_include + more_includes
         conf.env.LIBPATH_DART = dart_lib
         conf.env.LIB_DART = ['dart', 'dart-'+dart_load_prefix, 'dart-'+dart_load_prefix+'-urdf']
+        if len(dart_cxx_flags) > 0:
+            conf.env.CXXFLAGS_DART = [dart_cxx_flags]
         conf.end_msg(conf.env.LIB_DART)
         conf.start_msg('DART: Checking for Assimp')
         if assimp_found:
