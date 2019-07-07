@@ -4,6 +4,8 @@
 #include <memory>
 #include <mutex>
 
+#include <robot_dart/utils.hpp>
+
 #include <dart/gui/osg/osg.hpp>
 
 namespace robot_dart {
@@ -55,36 +57,25 @@ namespace robot_dart {
                 std::lock_guard<std::mutex> lock(g_i_mutex);
                 while (it != _pbuffers.end() && it->second == true)
                     it++;
-                if (it == _pbuffers.end()) {
-                    std::cout << "All the pbuffers are already used... Please create more" << std::endl;
-                    assert(0);
-                }
-                else {
-                    it->second = true;
-                    //just checking
-                    if (_pbuffers[it->first] != true) {
-                        std::cout << "State not changed in the pbuffer map" << std::endl;
-                        assert(0);
-                    }
-                    return it->first;
-                }
+                ROBOT_DART_EXCEPTION_ASSERT(it != _pbuffers.end(), "All the pbuffers are already used... Please create more!");
+
+                it->second = true;
+
+                ROBOT_DART_EXCEPTION_ASSERT(_pbuffers[it->first], "State not changed in the pbuffer map!");
+
+                return it->first;
             }
 
             void release_pbuffer(::osg::ref_ptr<::osg::GraphicsContext> pbuffer)
             {
                 std::lock_guard<std::mutex> lock(g_i_mutex);
                 auto it = _pbuffers.find(pbuffer);
-                if (it == _pbuffers.end()) {
-                    std::cout << "Pbuffer not found in the pbuffer map" << std::endl;
-                    assert(0);
-                }
-                else
-                    it->second = false;
+                ROBOT_DART_EXCEPTION_ASSERT(it != _pbuffers.end(), "Pbuffer not found in the pbuffer map!");
+
+                it->second = false;
             }
 
-            ~PbufferManager()
-            {
-            }
+            ~PbufferManager() {}
 
         protected:
             size_t _nb_threads;
