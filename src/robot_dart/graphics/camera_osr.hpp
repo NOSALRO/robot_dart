@@ -8,6 +8,7 @@
 
 #include <dart/gui/osg/osg.hpp>
 
+#include <osg/Version>
 #include <osgDB/WriteFile>
 
 namespace robot_dart {
@@ -29,7 +30,7 @@ namespace robot_dart {
                 width = vp->width();
                 height = vp->height();
 
-                _viewer->image()->readPixels(x, y, width, height, GL_LUMINANCE, GL_UNSIGNED_BYTE);
+                _viewer->image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
 
                 if (_viewer->recording()) {
                     if (!_viewer->filename().empty()) {
@@ -52,14 +53,13 @@ namespace robot_dart {
             CameraOSR(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true), _buffer_valid(true), _recording(false), _filename("camera_record.png"), _image(new osg::Image), _shot_done(false)
 
             {
-                if (!global::pbufferManager) {
-                    std::cout << "Error: pbufferManager seems not to be started" << std::endl;
-                    assert(0);
-                }
+                ROBOT_DART_EXCEPTION_ASSERT(global::pbufferManager, "Error: pbufferManager seems not to be started!");
 
                 _osg_viewer = new dart::gui::osg::Viewer;
                 _osg_viewer->setThreadingModel(osgViewer::ViewerBase::ThreadingModel::SingleThreaded);
+#if OPENSCENEGRAPH_MAJOR_VERSION > 3 || (OPENSCENEGRAPH_MAJOR_VERSION == 3 && OPENSCENEGRAPH_MINOR_VERSION >= 6)
                 _osg_viewer->setUseConfigureAffinity(false);
+#endif
                 _pbuffer = global::pbufferManager->get_pbuffer();
 
                 if (_pbuffer.valid()) {
