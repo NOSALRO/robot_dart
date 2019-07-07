@@ -19,6 +19,9 @@ import dart
 import boost
 import eigen
 import hexapod_controller
+import corrade
+import magnum
+import magnum_integration
 
 
 def options(opt):
@@ -28,6 +31,9 @@ def options(opt):
     opt.load('eigen')
     opt.load('dart')
     opt.load('hexapod_controller')
+    opt.load('corrade')
+    opt.load('magnum')
+    opt.load('magnum_integration')
 
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
@@ -44,11 +50,20 @@ def configure(conf):
     conf.load('dart')
     conf.load('hexapod_controller')
     conf.load('avx')
+    conf.load('corrade')
+    conf.load('magnum')
+    conf.load('magnum_integration')
 
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
+    conf.check_corrade(components='Utility PluginManager')
+    conf.check_magnum(components='MeshTools Primitives Shaders Sdl2Application SceneGraph')
+    conf.check_magnum_integration(components='Dart')
+
+    if len(conf.env.INCLUDES_MagnumIntegration) > 0:
+        conf.get_env()['BUILD_MAGNUM'] = True
 
     avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
 
@@ -125,6 +140,16 @@ def build(bld):
                 includes = './src',
                 uselib = libs,
                 target = 'RobotDARTSimu')
+
+    if bld.get_env()['BUILD_MAGNUM'] == True and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/magnum.cpp',
+                      includes = './src',
+                      uselib = magnum.get_magnum_dependency_libs(bld, 'Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                      use = 'RobotDARTSimu',
+                      defines = ['GRAPHIC'],
+                      target = 'magnum')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
