@@ -38,76 +38,77 @@ namespace Magnum {
         Vector3 _scaling;
     };
 
-    class ColoredObject : public Object3D, SceneGraph::Drawable3D {
+    class DrawableObject : public Object3D, SceneGraph::Drawable3D {
     public:
-        explicit ColoredObject(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
+        explicit DrawableObject(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
             : Object3D{parent}, SceneGraph::Drawable3D{*this, group}, _meshes{meshes}, _color_shader{ViewerResourceManager::instance().get<Shaders::Phong>("color")}, _texture_shader{ViewerResourceManager::instance().get<Shaders::Phong>("texture")}, _materials(materials)
         {
             assert(_materials.size() >= meshes.size());
             _isSoftBody.resize(_meshes.size(), false);
+            _textures.resize(_meshes.size());
 
             _light0Position = Vector3{0.f, 2.f, 3.f};
             _light1Position = Vector3{0.f, -2.f, 3.f};
         }
 
-        ColoredObject& setMesh(size_t i, GL::Mesh& mesh)
+        DrawableObject& setMesh(size_t i, GL::Mesh& mesh)
         {
             assert(i < _meshes.size());
             _meshes[i] = mesh;
             return *this;
         }
 
-        ColoredObject& setMeshes(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes)
+        DrawableObject& setMeshes(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes)
         {
             _meshes = meshes;
             return *this;
         }
 
-        ColoredObject& setMaterial(size_t i, const MaterialData& material)
+        DrawableObject& setMaterial(size_t i, const MaterialData& material)
         {
             assert(i < _materials.size());
             _materials[i] = material;
             return *this;
         }
 
-        ColoredObject& setMaterials(const std::vector<MaterialData>& materials)
+        DrawableObject& setMaterials(const std::vector<MaterialData>& materials)
         {
             _materials = materials;
             return *this;
         }
 
-        ColoredObject& setSoftBody(size_t i, bool softBody = true)
+        DrawableObject& setSoftBody(size_t i, bool softBody = true)
         {
             assert(i < _isSoftBody.size());
             _isSoftBody[i] = softBody;
             return *this;
         }
 
-        ColoredObject& setSoftBodies(const std::vector<bool>& softBody)
+        DrawableObject& setSoftBodies(const std::vector<bool>& softBody)
         {
             _isSoftBody = softBody;
             return *this;
         }
 
-        ColoredObject& setTextures(std::vector<Containers::Optional<GL::Texture2D>>& textures)
+        DrawableObject& setTextures(std::vector<Containers::Optional<GL::Texture2D>>& textures)
         {
             _textures = std::move(textures);
             return *this;
         }
 
-        ColoredObject& setTexture(size_t i, Containers::Optional<GL::Texture2D>& texture)
+        DrawableObject& setTexture(size_t i, Containers::Optional<GL::Texture2D>& texture)
         {
             _textures[i] = std::move(texture);
             return *this;
         }
 
-        ColoredObject& setLight0Position(const Vector3& position)
+        DrawableObject& setLight0Position(const Vector3& position)
         {
             _light0Position = position;
             return *this;
         }
 
-        ColoredObject& setLight1Position(const Vector3& position)
+        DrawableObject& setLight1Position(const Vector3& position)
         {
             _light1Position = position;
             return *this;
@@ -235,7 +236,7 @@ namespace Magnum {
         void setLightPosition(size_t index, const Eigen::Vector3d& position)
         {
             Vector3 pos = {static_cast<float>(position[0]), static_cast<float>(position[1]), static_cast<float>(position[2])};
-            for (auto& n : _coloredObjects) {
+            for (auto& n : _drawableObjects) {
                 if (index == 0)
                     n.second->setLight0Position(pos);
                 else
@@ -329,13 +330,13 @@ namespace Magnum {
                 }
 
                 /* Check if we already have it */
-                auto it = _coloredObjects.insert(std::make_pair(&object, nullptr));
+                auto it = _drawableObjects.insert(std::make_pair(&object, nullptr));
                 if (it.second) {
                     /* If not, create a new object and add it to our drawables list */
-                    auto coloredObj = new ColoredObject(meshes, materials, static_cast<Object3D*>(&(object.object())), &_drawables);
-                    coloredObj->setSoftBodies(isSoftBody);
-                    coloredObj->setTextures(textures);
-                    it.first->second = coloredObj;
+                    auto drawableObject = new DrawableObject(meshes, materials, static_cast<Object3D*>(&(object.object())), &_drawables);
+                    drawableObject->setSoftBodies(isSoftBody);
+                    drawableObject->setTextures(textures);
+                    it.first->second = drawableObject;
                 }
                 else {
                     /* Otherwise, update the mesh and the material data */
@@ -358,7 +359,7 @@ namespace Magnum {
 
         /* DART */
         std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
-        std::unordered_map<DartIntegration::Object*, ColoredObject*> _coloredObjects;
+        std::unordered_map<DartIntegration::Object*, DrawableObject*> _drawableObjects;
         std::vector<Object3D*> _dartObjs;
     };
 } // namespace Magnum
