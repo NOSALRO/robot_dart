@@ -42,7 +42,7 @@ namespace Magnum {
     class ColoredObject : public Object3D, SceneGraph::Drawable3D {
     public:
         explicit ColoredObject(const std::vector<GL::Mesh*>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
-            : Object3D{parent}, SceneGraph::Drawable3D{*this, group}, _meshes{meshes}, _color_shader{ViewerResourceManager::instance().get<Shaders::Phong>("color")}, _materials(materials)
+            : Object3D{parent}, SceneGraph::Drawable3D{*this, group}, _meshes{meshes}, _color_shader{ViewerResourceManager::instance().get<Shaders::Phong>("color")}, _texture_shader{ViewerResourceManager::instance().get<Shaders::Phong>("texture")}, _materials(materials)
         {
             assert(_materials.size() >= meshes.size());
             _isSoftBody.resize(_meshes.size(), false);
@@ -90,6 +90,18 @@ namespace Magnum {
             return *this;
         }
 
+        ColoredObject& setTextures(std::vector<Containers::Optional<GL::Texture2D>>& textures)
+        {
+            _textures = std::move(textures);
+            return *this;
+        }
+
+        ColoredObject& setTexture(size_t i, Containers::Optional<GL::Texture2D>& texture)
+        {
+            _textures[i] = std::move(texture);
+            return *this;
+        }
+
         ColoredObject& setLight0Position(const Vector3& position)
         {
             _light0Position = position;
@@ -107,19 +119,36 @@ namespace Magnum {
         {
             for (size_t i = 0; i < _meshes.size(); i++) {
                 Matrix4 scalingMatrix = Matrix4::scaling(_materials[i]._scaling);
-                _color_shader->setAmbientColor(_materials[i]._ambientColor)
-                    .setDiffuseColor(_materials[i]._diffuseColor)
-                    .setSpecularColor(_materials[i]._specularColor)
-                    .setShininess(_materials[i]._shininess)
-                    .setLightPosition(0, camera.cameraMatrix().transformPoint(_light0Position))
-                    .setLightPosition(1, camera.cameraMatrix().transformPoint(_light1Position))
-                    .setTransformationMatrix(transformationMatrix * scalingMatrix)
-                    .setNormalMatrix((transformationMatrix * scalingMatrix).rotation())
-                    .setProjectionMatrix(camera.projectionMatrix());
+                bool isColor = !_textures[i];
+                if (isColor) {
+                    _color_shader->setAmbientColor(_materials[i]._ambientColor)
+                        .setDiffuseColor(_materials[i]._diffuseColor)
+                        .setSpecularColor(_materials[i]._specularColor)
+                        .setShininess(_materials[i]._shininess)
+                        .setLightPosition(0, camera.cameraMatrix().transformPoint(_light0Position))
+                        .setLightPosition(1, camera.cameraMatrix().transformPoint(_light1Position))
+                        .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                        .setNormalMatrix((transformationMatrix * scalingMatrix).rotation())
+                        .setProjectionMatrix(camera.projectionMatrix());
+                }
+                else {
+                    _texture_shader->setAmbientColor(_materials[i]._ambientColor)
+                        .bindDiffuseTexture(*_textures[i])
+                        .setSpecularColor(_materials[i]._specularColor)
+                        .setShininess(_materials[i]._shininess)
+                        .setLightPosition(0, camera.cameraMatrix().transformPoint(_light0Position))
+                        .setLightPosition(1, camera.cameraMatrix().transformPoint(_light1Position))
+                        .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                        .setNormalMatrix((transformationMatrix * scalingMatrix).rotation())
+                        .setProjectionMatrix(camera.projectionMatrix());
+                }
 
                 if (_isSoftBody[i])
                     GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
-                _meshes[i]->draw(*_color_shader);
+                if (isColor)
+                    _meshes[i]->draw(*_color_shader);
+                else
+                    _meshes[i]->draw(*_texture_shader);
                 if (_isSoftBody[i])
                     GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
             }
@@ -127,9 +156,10 @@ namespace Magnum {
 
         std::vector<GL::Mesh*> _meshes;
         Resource<Shaders::Phong> _color_shader;
-        // Resource<Shaders::Phong> _texture_shader;
+        Resource<Shaders::Phong> _texture_shader;
         std::vector<MaterialData> _materials;
         std::vector<bool> _isSoftBody;
+        std::vector<Containers::Optional<GL::Texture2D>> _textures;
         Vector3 _light0Position, _light1Position;
     };
 
@@ -166,7 +196,7 @@ namespace Magnum {
 
             /* Phong shader instance */
             _resourceManager.set("color", new Shaders::Phong({}, 2));
-            // _resourceManager.set("texture", new Shaders::Phong{Shaders::Phong::Flag::DiffuseTexture, 2});
+            _resourceManager.set("texture", new Shaders::Phong{Shaders::Phong::Flag::DiffuseTexture, 2});
 
             /* Loop at 60 Hz max */
             setSwapInterval(1);
@@ -267,10 +297,22 @@ namespace Magnum {
                 std::vector<MaterialData> materials;
                 std::vector<GL::Mesh*> meshes;
                 std::vector<bool> isSoftBody;
+                std::vector<Containers::Optional<GL::Texture2D>> textures;
+
                 for (size_t i = 0; i < object.drawData().meshes.size(); i++) {
+                    bool isColor = true;
+
+                    if (object.drawData().materials[i].flags() & Trade::PhongMaterialData::Flag::DiffuseTexture) {
+                        textures.push_back(std::move(object.drawData().textures[object.drawData().materials[i].diffuseTexture()]));
+                        isColor = false;
+                    }
+                    else
+                        textures.push_back({});
+
                     MaterialData mat;
                     mat._ambientColor = object.drawData().materials[i].ambientColor().rgb();
-                    mat._diffuseColor = object.drawData().materials[i].diffuseColor().rgb();
+                    if (isColor)
+                        mat._diffuseColor = object.drawData().materials[i].diffuseColor().rgb();
                     mat._specularColor = object.drawData().materials[i].specularColor().rgb();
                     mat._shininess = object.drawData().materials[i].shininess();
                     mat._scaling = object.drawData().scaling;
@@ -292,11 +334,12 @@ namespace Magnum {
                     /* If not, create a new object and add it to our drawables list */
                     auto coloredObj = new ColoredObject(meshes, materials, static_cast<Object3D*>(&(object.object())), &_drawables);
                     coloredObj->setSoftBodies(isSoftBody);
+                    coloredObj->setTextures(textures);
                     it.first->second = coloredObj;
                 }
                 else {
                     /* Otherwise, update the mesh and the material data */
-                    it.first->second->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody);
+                    it.first->second->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setTextures(textures);
                 }
             }
 
