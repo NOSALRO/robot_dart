@@ -33,6 +33,8 @@ int main()
     std::srand(std::time(NULL));
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
 
+    robot_dart::graphics::PbufferManager::createPbufferManager(3);
+    
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
     // g_robot->skeleton()->setPosition(1, M_PI / 2.0);
