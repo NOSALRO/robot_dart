@@ -14,7 +14,7 @@ namespace robot_dart {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
         _world->setTimeStep(time_step);
         _world->setTime(0.0);
-        _graphics = std::make_shared<graphics::BaseGraphics>(_world);
+        _graphics = std::make_shared<gui::Base>(_world);
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -56,12 +56,12 @@ namespace robot_dart {
         _old_index = index;
     }
 
-    std::shared_ptr<graphics::BaseGraphics> RobotDARTSimu::graphics() const
+    std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
     {
         return _graphics;
     }
 
-    void RobotDARTSimu::set_graphics(const std::shared_ptr<graphics::BaseGraphics>& graphics)
+    void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
     }
@@ -87,17 +87,17 @@ namespace robot_dart {
         return _descriptors[index];
     }
 
-    void RobotDARTSimu::add_camera(const std::shared_ptr<graphics::BaseGraphics>& cam)
+    void RobotDARTSimu::add_camera(const std::shared_ptr<gui::Base>& cam)
     {
         _cameras.push_back(cam);
     }
 
-    std::vector<std::shared_ptr<graphics::BaseGraphics>> RobotDARTSimu::cameras() const
+    std::vector<std::shared_ptr<gui::Base>> RobotDARTSimu::cameras() const
     {
         return _cameras;
     }
 
-    std::shared_ptr<graphics::BaseGraphics> RobotDARTSimu::camera(size_t index) const
+    std::shared_ptr<gui::Base> RobotDARTSimu::camera(size_t index) const
     {
         ROBOT_DART_ASSERT(index < _cameras.size(), "Camera index out of bounds", nullptr);
         return _cameras[index];
@@ -191,7 +191,7 @@ namespace robot_dart {
         _descriptors.clear();
     }
 
-    void RobotDARTSimu::remove_camera(const std::shared_ptr<graphics::BaseGraphics>& cam)
+    void RobotDARTSimu::remove_camera(const std::shared_ptr<gui::Base>& cam)
     {
         auto it = std::find(_cameras.begin(), _cameras.end(), cam);
         if (it != _cameras.end()) {

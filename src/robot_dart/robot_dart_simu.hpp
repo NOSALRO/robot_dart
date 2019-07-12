@@ -4,7 +4,7 @@
 #include <dart/simulation/World.hpp>
 
 #include <robot_dart/descriptor/base_descriptor.hpp>
-#include <robot_dart/graphics/base_graphics.hpp>
+#include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
 
 namespace robot_dart {
@@ -18,8 +18,8 @@ namespace robot_dart {
 
         void run(double max_duration = 5.0);
 
-        std::shared_ptr<graphics::BaseGraphics> graphics() const;
-        void set_graphics(const std::shared_ptr<graphics::BaseGraphics>& graphics);
+        std::shared_ptr<gui::Base> graphics() const;
+        void set_graphics(const std::shared_ptr<gui::Base>& graphics);
 
         dart::simulation::WorldPtr world();
 
@@ -37,11 +37,11 @@ namespace robot_dart {
         void remove_descriptor(size_t index);
         void clear_descriptors();
 
-        void add_camera(const std::shared_ptr<graphics::BaseGraphics>& cam);
-        std::vector<std::shared_ptr<graphics::BaseGraphics>> cameras() const;
-        std::shared_ptr<graphics::BaseGraphics> camera(size_t index) const;
+        void add_camera(const std::shared_ptr<gui::Base>& cam);
+        std::vector<std::shared_ptr<gui::Base>> cameras() const;
+        std::shared_ptr<gui::Base> camera(size_t index) const;
 
-        void remove_camera(const std::shared_ptr<graphics::BaseGraphics>& desc);
+        void remove_camera(const std::shared_ptr<gui::Base>& desc);
         void remove_camera(size_t index);
         void clear_cameras();
 
@@ -67,9 +67,9 @@ namespace robot_dart {
         size_t _old_index;
         bool _break;
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
-        std::vector<std::shared_ptr<graphics::BaseGraphics>> _cameras; // designed to include mainly graphcis::CameraOSR
+        std::vector<std::shared_ptr<gui::Base>> _cameras; // designed to include mainly graphcis::CameraOSR
         std::vector<robot_t> _robots;
-        std::shared_ptr<graphics::BaseGraphics> _graphics;
+        std::shared_ptr<gui::Base> _graphics;
     };
 } // namespace robot_dart
 

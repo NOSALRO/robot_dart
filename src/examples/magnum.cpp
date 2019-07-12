@@ -5,7 +5,7 @@
 #include <robot_dart/control/pd_control.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics/magnum_graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 #include <dart/collision/bullet/BulletCollisionDetector.hpp>
@@ -85,8 +85,8 @@ int main()
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::graphics::MagnumGraphics>(simu.world(), 1024, 768));
-    std::static_pointer_cast<robot_dart::graphics::MagnumGraphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+    simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics>(simu.world(), 1024, 768));
+    std::static_pointer_cast<robot_dart::gui::magnum::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::BulletCollisionDetector::create());
     simu.add_floor();
