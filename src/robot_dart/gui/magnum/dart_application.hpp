@@ -36,12 +36,11 @@ namespace Magnum {
             _specularColor;
         Float _shininess;
         Vector3 _scaling;
-        GL::Texture2D* _texture;
     };
 
     class ColoredObject : public Object3D, SceneGraph::Drawable3D {
     public:
-        explicit ColoredObject(const std::vector<GL::Mesh*>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
+        explicit ColoredObject(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
             : Object3D{parent}, SceneGraph::Drawable3D{*this, group}, _meshes{meshes}, _color_shader{ViewerResourceManager::instance().get<Shaders::Phong>("color")}, _texture_shader{ViewerResourceManager::instance().get<Shaders::Phong>("texture")}, _materials(materials)
         {
             assert(_materials.size() >= meshes.size());
@@ -51,14 +50,14 @@ namespace Magnum {
             _light1Position = Vector3{0.f, -2.f, 3.f};
         }
 
-        ColoredObject& setMesh(size_t i, GL::Mesh* mesh)
+        ColoredObject& setMesh(size_t i, GL::Mesh& mesh)
         {
             assert(i < _meshes.size());
             _meshes[i] = mesh;
             return *this;
         }
 
-        ColoredObject& setMeshes(const std::vector<GL::Mesh*>& meshes)
+        ColoredObject& setMeshes(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes)
         {
             _meshes = meshes;
             return *this;
@@ -118,6 +117,7 @@ namespace Magnum {
         void draw(const Matrix4& transformationMatrix, SceneGraph::Camera3D& camera) override
         {
             for (size_t i = 0; i < _meshes.size(); i++) {
+                GL::Mesh& mesh = _meshes[i];
                 Matrix4 scalingMatrix = Matrix4::scaling(_materials[i]._scaling);
                 bool isColor = !_textures[i];
                 if (isColor) {
@@ -146,15 +146,15 @@ namespace Magnum {
                 if (_isSoftBody[i])
                     GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
                 if (isColor)
-                    _meshes[i]->draw(*_color_shader);
+                    mesh.draw(*_color_shader);
                 else
-                    _meshes[i]->draw(*_texture_shader);
+                    mesh.draw(*_texture_shader);
                 if (_isSoftBody[i])
                     GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
             }
         }
 
-        std::vector<GL::Mesh*> _meshes;
+        std::vector<std::reference_wrapper<GL::Mesh>> _meshes;
         Resource<Shaders::Phong> _color_shader;
         Resource<Shaders::Phong> _texture_shader;
         std::vector<MaterialData> _materials;
@@ -295,7 +295,7 @@ namespace Magnum {
             for (DartIntegration::Object& object : _dartWorld->updatedShapeObjects()) {
                 /* Get material information */
                 std::vector<MaterialData> materials;
-                std::vector<GL::Mesh*> meshes;
+                std::vector<std::reference_wrapper<GL::Mesh>> meshes;
                 std::vector<bool> isSoftBody;
                 std::vector<Containers::Optional<GL::Texture2D>> textures;
 
@@ -318,7 +318,7 @@ namespace Magnum {
                     mat._scaling = object.drawData().scaling;
 
                     /* Get the modified mesh */
-                    GL::Mesh* mesh = &object.drawData().meshes[i];
+                    GL::Mesh& mesh = object.drawData().meshes[i];
 
                     meshes.push_back(mesh);
                     materials.push_back(mat);
