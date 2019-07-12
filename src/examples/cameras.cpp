@@ -5,8 +5,8 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics/camera_osr.hpp>
-#include <robot_dart/graphics/graphics.hpp>
+#include <robot_dart/gui/osg/camera_osr.hpp>
+#include <robot_dart/gui/osg/graphics.hpp>
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
@@ -17,7 +17,7 @@ struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
         if (_simu.robots().size() > 0) {
             states.push_back(_simu.robots()[0]->skeleton()->getPositions());
 
-            auto cam = std::static_pointer_cast<robot_dart::graphics::CameraOSR>(_simu.cameras()[0]);
+            auto cam = std::static_pointer_cast<robot_dart::gui::osg::CameraOSR>(_simu.cameras()[0]);
             cam->set_filename("cam_" + std::to_string(step) + ".png");
         }
 
@@ -33,8 +33,8 @@ int main()
     std::srand(std::time(NULL));
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
 
-    robot_dart::graphics::PbufferManager::createPbufferManager(3);
-    
+    robot_dart::gui::osg::PbufferManager::createPbufferManager(3);
+
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
     // g_robot->skeleton()->setPosition(1, M_PI / 2.0);
@@ -52,7 +52,7 @@ int main()
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
     // setting up a first camera, with a low resolution
-    auto cam1 = std::make_shared<robot_dart::graphics::CameraOSR>(simu.world(), 128, 128);
+    auto cam1 = std::make_shared<robot_dart::gui::osg::CameraOSR>(simu.world(), 128, 128);
     // adding the camera to the simulation
     simu.add_camera(cam1);
     // setting the camera to recording (it will write the image in a file)
@@ -63,7 +63,7 @@ int main()
     cam1->look_at({0.4, 1.5, 1.75}, {0.0, 0., 0.5});
 
     // setting up a second camera with a higher resolution
-    auto cam2 = std::make_shared<robot_dart::graphics::CameraOSR>(simu.world(), 512, 512);
+    auto cam2 = std::make_shared<robot_dart::gui::osg::CameraOSR>(simu.world(), 512, 512);
     simu.add_camera(cam2);
     cam2->set_recording(true);
     cam2->set_filename("cam2.png");
@@ -72,7 +72,7 @@ int main()
     cam2->set_enable(false);
 
     // The usual graphics can be also added
-    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
