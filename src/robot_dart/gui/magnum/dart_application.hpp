@@ -25,37 +25,27 @@
 #include <Magnum/DartIntegration/ConvertShapeNode.h>
 #include <Magnum/DartIntegration/World.h>
 
+#include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
+
 namespace Magnum {
-    using ViewerResourceManager = ResourceManager<GL::Buffer, GL::Mesh, Shaders::Phong>;
+    using namespace robot_dart::gui;
+
+    using ViewerResourceManager = ResourceManager<GL::Buffer, GL::Mesh, Shaders::Phong, magnum::gs::PhongMultiLight>;
     using Object3D = SceneGraph::Object<SceneGraph::MatrixTransformation3D>;
     using Scene3D = SceneGraph::Scene<SceneGraph::MatrixTransformation3D>;
 
-    struct MaterialData {
-        Vector3 _ambientColor,
-            _diffuseColor,
-            _specularColor;
-        Float _shininess;
-        Vector3 _scaling;
-    };
-
     class DrawableObject : public Object3D, SceneGraph::Drawable3D {
     public:
-        explicit DrawableObject(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes, const std::vector<MaterialData>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
-            : Object3D{parent}, SceneGraph::Drawable3D{*this, group}, _meshes{meshes}, _color_shader{ViewerResourceManager::instance().get<Shaders::Phong>("color")}, _texture_shader{ViewerResourceManager::instance().get<Shaders::Phong>("texture")}, _materials(materials)
+        explicit DrawableObject(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes, const std::vector<magnum::gs::Material>& materials, Object3D* parent, SceneGraph::DrawableGroup3D* group)
+            : Object3D{parent},
+              SceneGraph::Drawable3D{*this, group},
+              _meshes{meshes},
+              _color_shader{ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-color")},
+              _texture_shader{ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-texture")},
+              _materials(materials)
         {
             assert(_materials.size() >= meshes.size());
             _isSoftBody.resize(_meshes.size(), false);
-            _textures.resize(_meshes.size());
-
-            _light0Position = Vector3{0.f, 2.f, 3.f};
-            _light1Position = Vector3{0.f, -2.f, 3.f};
-        }
-
-        DrawableObject& setMesh(size_t i, GL::Mesh& mesh)
-        {
-            assert(i < _meshes.size());
-            _meshes[i] = mesh;
-            return *this;
         }
 
         DrawableObject& setMeshes(const std::vector<std::reference_wrapper<GL::Mesh>>& meshes)
@@ -64,23 +54,9 @@ namespace Magnum {
             return *this;
         }
 
-        DrawableObject& setMaterial(size_t i, const MaterialData& material)
-        {
-            assert(i < _materials.size());
-            _materials[i] = material;
-            return *this;
-        }
-
-        DrawableObject& setMaterials(const std::vector<MaterialData>& materials)
+        DrawableObject& setMaterials(const std::vector<magnum::gs::Material>& materials)
         {
             _materials = materials;
-            return *this;
-        }
-
-        DrawableObject& setSoftBody(size_t i, bool softBody = true)
-        {
-            assert(i < _isSoftBody.size());
-            _isSoftBody[i] = softBody;
             return *this;
         }
 
@@ -90,27 +66,9 @@ namespace Magnum {
             return *this;
         }
 
-        DrawableObject& setTextures(std::vector<Containers::Optional<GL::Texture2D>>& textures)
+        DrawableObject& setScalings(const std::vector<Vector3>& scalings)
         {
-            _textures = std::move(textures);
-            return *this;
-        }
-
-        DrawableObject& setTexture(size_t i, Containers::Optional<GL::Texture2D>& texture)
-        {
-            _textures[i] = std::move(texture);
-            return *this;
-        }
-
-        DrawableObject& setLight0Position(const Vector3& position)
-        {
-            _light0Position = position;
-            return *this;
-        }
-
-        DrawableObject& setLight1Position(const Vector3& position)
-        {
-            _light1Position = position;
+            _scalings = scalings;
             return *this;
         }
 
@@ -119,26 +77,16 @@ namespace Magnum {
         {
             for (size_t i = 0; i < _meshes.size(); i++) {
                 GL::Mesh& mesh = _meshes[i];
-                Matrix4 scalingMatrix = Matrix4::scaling(_materials[i]._scaling);
-                bool isColor = !_textures[i];
+                Matrix4 scalingMatrix = Matrix4::scaling(_scalings[i]);
+                bool isColor = !_materials[i].hasDiffuseTexture();
                 if (isColor) {
-                    _color_shader->setAmbientColor(_materials[i]._ambientColor)
-                        .setDiffuseColor(_materials[i]._diffuseColor)
-                        .setSpecularColor(_materials[i]._specularColor)
-                        .setShininess(_materials[i]._shininess)
-                        .setLightPosition(0, camera.cameraMatrix().transformPoint(_light0Position))
-                        .setLightPosition(1, camera.cameraMatrix().transformPoint(_light1Position))
+                    _color_shader->setMaterial(_materials[i])
                         .setTransformationMatrix(transformationMatrix * scalingMatrix)
                         .setNormalMatrix((transformationMatrix * scalingMatrix).rotation())
                         .setProjectionMatrix(camera.projectionMatrix());
                 }
                 else {
-                    _texture_shader->setAmbientColor(_materials[i]._ambientColor)
-                        .bindDiffuseTexture(*_textures[i])
-                        .setSpecularColor(_materials[i]._specularColor)
-                        .setShininess(_materials[i]._shininess)
-                        .setLightPosition(0, camera.cameraMatrix().transformPoint(_light0Position))
-                        .setLightPosition(1, camera.cameraMatrix().transformPoint(_light1Position))
+                    _texture_shader->setMaterial(_materials[i])
                         .setTransformationMatrix(transformationMatrix * scalingMatrix)
                         .setNormalMatrix((transformationMatrix * scalingMatrix).rotation())
                         .setProjectionMatrix(camera.projectionMatrix());
@@ -156,12 +104,11 @@ namespace Magnum {
         }
 
         std::vector<std::reference_wrapper<GL::Mesh>> _meshes;
-        Resource<Shaders::Phong> _color_shader;
-        Resource<Shaders::Phong> _texture_shader;
-        std::vector<MaterialData> _materials;
+        Resource<magnum::gs::PhongMultiLight> _color_shader;
+        Resource<magnum::gs::PhongMultiLight> _texture_shader;
+        std::vector<magnum::gs::Material> _materials;
+        std::vector<Vector3> _scalings;
         std::vector<bool> _isSoftBody;
-        std::vector<Containers::Optional<GL::Texture2D>> _textures;
-        Vector3 _light0Position, _light1Position;
     };
 
     class DartApplication : public Platform::Application {
@@ -189,21 +136,60 @@ namespace Magnum {
                 .setViewport(GL::defaultFramebuffer.viewport().size());
             /* DART has +Z-axis as up direction*/
             /* Default look at */
-            _cameraObject->setTransformation(Magnum::Matrix4::lookAt(Vector3{0.f, 3.f, 1.5f}, Vector3{0.f, 0.f, 0.5f}, Vector3{0.f, 0.f, 1.f}));
+            _cameraObject->setTransformation(Magnum::Matrix4::lookAt(Vector3{0.f, 2.f, 1.5f}, Vector3{0.f, 0.f, 0.5f}, Vector3{0.f, 0.f, 1.f}));
 
             /* Create our DARTIntegration object/world */
             auto dartObj = new Object3D{&_scene};
             _dartWorld.reset(new DartIntegration::World(*dartObj, *world));
 
             /* Phong shader instance */
-            _resourceManager.set("color", new Shaders::Phong({}, 2));
-            _resourceManager.set("texture", new Shaders::Phong{Shaders::Phong::Flag::DiffuseTexture, 2});
+            _resourceManager.set("multi-color", new magnum::gs::PhongMultiLight{{}, 10});
+            _resourceManager.set("multi-texture", new magnum::gs::PhongMultiLight{{magnum::gs::PhongMultiLight::Flag::DiffuseTexture}, 10});
+
+            /* Add default lights (2 directional lights) */
+            magnum::gs::Material mat;
+            mat.diffuseColor() = {1.f, 1.f, 1.f, 1.f};
+            mat.specularColor() = {1.f, 1.f, 1.f, 1.f};
+            // magnum::gs::Light light = magnum::gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
+            // magnum::gs::Light light = magnum::gs::createSpotLight(
+            //     {0.f, 0.f, 3.f}, mat, {0.f, 0.f, -1.f}, 1.f, Magnum::Math::Constants<Magnum::Float>::piHalf() / 5.f, 2.f, {0.f, 0.f, 1.f});
+            Vector3 dir = {-1.f, -1.f, -1.f};
+            magnum::gs::Light light = magnum::gs::createDirectionalLight(dir, mat);
+            _lights.push_back(light);
+            dir = {1.f, 1.f, -1.f};
+            light = magnum::gs::createDirectionalLight(dir, mat);
+            _lights.push_back(light);
+
+            /* Change default clear color to black */
+            GL::Renderer::setClearColor(Vector4{0.f, 0.f, 0.f, 1.f});
 
             /* Loop at 60 Hz max */
             setSwapInterval(1);
             setMinimalLoopPeriod(16);
 
             redraw();
+        }
+
+        void clearLights()
+        {
+            _lights.clear();
+            /* Reset lights in shaders */
+            magnum::gs::Light light;
+            for (int i = 0; i < ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-color")->maxLights(); i++)
+                ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-color")->setLight(i, light);
+            for (int i = 0; i < ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-texture")->maxLights(); i++)
+                ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-texture")->setLight(i, light);
+        }
+
+        void addLight(const magnum::gs::Light& light)
+        {
+            _lights.push_back(light);
+        }
+
+        magnum::gs::Light& light(size_t i)
+        {
+            assert(i < _lights.size());
+            return _lights[i];
         }
 
         bool done() const
@@ -233,17 +219,6 @@ namespace Magnum {
                     Vector3{ux, uy, uz}));
         }
 
-        void setLightPosition(size_t index, const Eigen::Vector3d& position)
-        {
-            Vector3 pos = {static_cast<float>(position[0]), static_cast<float>(position[1]), static_cast<float>(position[2])};
-            for (auto& n : _drawableObjects) {
-                if (index == 0)
-                    n.second->setLight0Position(pos);
-                else
-                    n.second->setLight1Position(pos);
-            }
-        }
-
     private:
         void viewportEvent(const Vector2i& size) override
         {
@@ -259,6 +234,23 @@ namespace Magnum {
 
             /* Update graphic meshes/materials and render */
             updateGraphics();
+            /* Update lights transformations */
+            for (size_t i = 0; i < _lights.size(); i++) {
+                Magnum::Vector4 old_pos = _lights[i].position();
+                Magnum::Vector3 pos;
+                /* Directional lights need only rotational transformation */
+                if (_lights[i].position().w() == 0.f)
+                    pos = _camera->cameraMatrix().transformVector(old_pos.xyz());
+                /* Other light types, need full transformation */
+                else
+                    pos = _camera->cameraMatrix().transformPoint(old_pos.xyz());
+                _lights[i].setTransformedPosition(Magnum::Vector4{pos, old_pos.w()});
+                /* Transform spotlight direction */
+                _lights[i].setTransformedSpotDirection(_camera->cameraMatrix().transformVector(_lights[i].spotDirection()));
+
+                ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-color")->setLight(i, _lights[i]);
+                ViewerResourceManager::instance().get<magnum::gs::PhongMultiLight>("multi-texture")->setLight(i, _lights[i]);
+            }
             _camera->draw(_drawables);
 
             swapBuffers();
@@ -295,28 +287,27 @@ namespace Magnum {
             /* For each update object */
             for (DartIntegration::Object& object : _dartWorld->updatedShapeObjects()) {
                 /* Get material information */
-                std::vector<MaterialData> materials;
+                std::vector<magnum::gs::Material> materials;
                 std::vector<std::reference_wrapper<GL::Mesh>> meshes;
                 std::vector<bool> isSoftBody;
-                std::vector<Containers::Optional<GL::Texture2D>> textures;
+                // std::vector<Containers::Optional<GL::Texture2D>> textures;
+                std::vector<Vector3> scalings;
 
                 for (size_t i = 0; i < object.drawData().meshes.size(); i++) {
                     bool isColor = true;
+                    magnum::gs::Material mat;
 
                     if (object.drawData().materials[i].flags() & Trade::PhongMaterialData::Flag::DiffuseTexture) {
-                        textures.push_back(std::move(object.drawData().textures[object.drawData().materials[i].diffuseTexture()]));
+                        mat.setDiffuseTexture(&(*object.drawData().textures[object.drawData().materials[i].diffuseTexture()]));
                         isColor = false;
                     }
-                    else
-                        textures.push_back({});
-
-                    MaterialData mat;
-                    mat._ambientColor = object.drawData().materials[i].ambientColor().rgb();
+                    mat.ambientColor() = object.drawData().materials[i].ambientColor();
                     if (isColor)
-                        mat._diffuseColor = object.drawData().materials[i].diffuseColor().rgb();
-                    mat._specularColor = object.drawData().materials[i].specularColor().rgb();
-                    mat._shininess = object.drawData().materials[i].shininess();
-                    mat._scaling = object.drawData().scaling;
+                        mat.diffuseColor() = object.drawData().materials[i].diffuseColor();
+                    mat.specularColor() = object.drawData().materials[i].specularColor();
+                    mat.shininess() = object.drawData().materials[i].shininess();
+
+                    scalings.push_back(object.drawData().scaling);
 
                     /* Get the modified mesh */
                     GL::Mesh& mesh = object.drawData().meshes[i];
@@ -335,12 +326,12 @@ namespace Magnum {
                     /* If not, create a new object and add it to our drawables list */
                     auto drawableObject = new DrawableObject(meshes, materials, static_cast<Object3D*>(&(object.object())), &_drawables);
                     drawableObject->setSoftBodies(isSoftBody);
-                    drawableObject->setTextures(textures);
+                    drawableObject->setScalings(scalings);
                     it.first->second = drawableObject;
                 }
                 else {
                     /* Otherwise, update the mesh and the material data */
-                    it.first->second->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setTextures(textures);
+                    it.first->second->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings);
                 }
             }
 
@@ -361,6 +352,7 @@ namespace Magnum {
         std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
         std::unordered_map<DartIntegration::Object*, DrawableObject*> _drawableObjects;
         std::vector<Object3D*> _dartObjs;
+        std::vector<magnum::gs::Light> _lights;
     };
 } // namespace Magnum
 

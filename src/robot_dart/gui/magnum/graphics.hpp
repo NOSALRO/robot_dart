@@ -56,6 +56,21 @@ namespace robot_dart {
                     _magnum_app->lookAt(camera_pos, look_at, up);
                 }
 
+                void clear_lights()
+                {
+                    _magnum_app->clearLights();
+                }
+
+                void add_light(const magnum::gs::Light& light)
+                {
+                    _magnum_app->addLight(light);
+                }
+
+                magnum::gs::Light& light(size_t i)
+                {
+                    return _magnum_app->light(i);
+                }
+
             protected:
                 std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
                 Eigen::Vector3d _look_at;
