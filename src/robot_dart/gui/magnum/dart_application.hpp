@@ -113,12 +113,15 @@ namespace Magnum {
 
     class DartApplication : public Platform::Application {
     public:
-        explicit DartApplication(const Arguments& arguments, const dart::simulation::WorldPtr& world, size_t width, size_t height) : Platform::Application(arguments, NoCreate)
+        explicit DartApplication(
+            const Arguments& arguments, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
+            : Platform::Application(arguments, NoCreate)
         {
             /* Try 16x MSAA */
             Configuration conf;
             GLConfiguration glConf;
-            conf.setTitle("Magnum Dart Integration Example");
+            // conf.setTitle("Magnum Dart Integration Example");
+            conf.setTitle(title);
             conf.setSize({static_cast<int>(width), static_cast<int>(height)});
             glConf.setSampleCount(8);
             if (!tryCreate(conf, glConf))

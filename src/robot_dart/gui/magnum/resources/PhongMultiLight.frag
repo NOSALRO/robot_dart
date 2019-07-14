@@ -166,7 +166,7 @@ void main() {
         highp vec4 specularReflection = vec4(0.0, 0.0, 0.0, 1.0);
 
         /* Specular color if needed */
-        if(intensity >= 0.0) {
+        if(intensity > 0.0) {
             highp vec3 reflection = reflect(-lightDirection, normalizedTransformedNormal);
             highp float specularity = pow(max(0.0, dot(normalize(cameraDirection), reflection)), shininess + 1e-8);
             specularReflection = attenuation * lights[i].specular * finalSpecularColor * specularity;

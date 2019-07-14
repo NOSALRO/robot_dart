@@ -9,12 +9,12 @@ namespace robot_dart {
         namespace magnum {
             class Graphics : public Base {
             public:
-                Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true)
+                Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, const std::string& title = "DART")
                     : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
                 {
                     int argc = 0;
                     char** argv = NULL;
-                    _magnum_app = std::unique_ptr<Magnum::DartApplication>(new Magnum::DartApplication({argc, argv}, world, width, height));
+                    _magnum_app = std::unique_ptr<Magnum::DartApplication>(new Magnum::DartApplication({argc, argv}, world, width, height, title));
                     set_render_period(world->getTimeStep());
                 }
 
