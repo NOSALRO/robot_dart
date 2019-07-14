@@ -120,9 +120,9 @@ namespace Magnum {
             /* Try 16x MSAA */
             Configuration conf;
             GLConfiguration glConf;
-            // conf.setTitle("Magnum Dart Integration Example");
             conf.setTitle(title);
             conf.setSize({static_cast<int>(width), static_cast<int>(height)});
+            conf.setWindowFlags(Configuration::WindowFlag::Resizable);
             glConf.setSampleCount(8);
             if (!tryCreate(conf, glConf))
                 create(conf, glConf.setSampleCount(0));
