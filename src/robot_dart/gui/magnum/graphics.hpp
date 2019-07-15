@@ -2,19 +2,18 @@
 #define ROBOT_DART_GUI_MAGNUM_GRAPHICS_HPP
 
 #include <robot_dart/gui/base.hpp>
-#include <robot_dart/gui/magnum/dart_application.hpp>
+#include <robot_dart/gui/magnum/sdl2_application.hpp>
 
 namespace robot_dart {
     namespace gui {
         namespace magnum {
+            template <typename T = Sdl2Application>
             class Graphics : public Base {
             public:
                 Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, const std::string& title = "DART")
                     : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
                 {
-                    int argc = 0;
-                    char** argv = NULL;
-                    _magnum_app = std::unique_ptr<Magnum::DartApplication>(new Magnum::DartApplication({argc, argv}, world, width, height, title));
+                    _magnum_app.reset(make_application<T>(world, width, height, title));
                     set_render_period(world->getTimeStep());
                 }
 
@@ -32,7 +31,7 @@ namespace robot_dart {
 
                     // process next frame
                     if (_frame_counter % _render_period == 0)
-                        _magnum_app->mainLoopIteration();
+                        _magnum_app->render();
                     _frame_counter++;
                 }
 
@@ -72,15 +71,11 @@ namespace robot_dart {
                 }
 
             protected:
-                std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
-                Eigen::Vector3d _look_at;
-                Eigen::Vector3d _camera_pos;
-                Eigen::Vector3d _camera_up;
                 dart::simulation::WorldPtr _world;
                 size_t _render_period, _width, _height, _frame_counter;
                 bool _enabled;
 
-                std::unique_ptr<Magnum::DartApplication> _magnum_app;
+                std::unique_ptr<BaseApplication> _magnum_app;
             };
         } // namespace magnum
     } // namespace gui
