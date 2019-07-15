@@ -3,6 +3,7 @@
 
 #include <Corrade/Containers/Optional.h>
 
+#include <Magnum/GL/Texture.h>
 #include <Magnum/Math/Color.h>
 
 namespace robot_dart {
