@@ -13,6 +13,7 @@
 #include <Magnum/GL/Mesh.h>
 #include <Magnum/GL/OpenGLTester.h>
 #include <Magnum/GL/Texture.h>
+#include <Magnum/Platform/GLContext.h>
 #include <Magnum/ResourceManager.h>
 #include <Magnum/SceneGraph/Camera.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -44,7 +45,8 @@ namespace robot_dart {
                 GlobalData(const GlobalData&) = delete;
                 void operator=(const GlobalData&) = delete;
 
-                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& pluginManager() { return _plugin_manager; }
+                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& plugin_manager() { return _plugin_manager; }
+                Magnum::Platform::WindowlessGLContext& gl_context() { return _gl_context; }
 
             private:
                 GlobalData() {}
@@ -57,6 +59,7 @@ namespace robot_dart {
 
                 // ViewerResourceManager _resourceManager;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _plugin_manager;
+                Magnum::Platform::WindowlessGLContext _gl_context{{}};
             };
 
             class DrawableObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -169,7 +172,7 @@ namespace robot_dart {
 
                     /* Create our DARTIntegration object/world */
                     auto dartObj = new Object3D{&_scene};
-                    _dartWorld.reset(new Magnum::DartIntegration::World(GlobalData::instance()->pluginManager(), *dartObj, *world));
+                    _dartWorld.reset(new Magnum::DartIntegration::World(GlobalData::instance()->plugin_manager(), *dartObj, *world));
 
                     /* Phong shaders */
                     _color_shader.reset(new gs::PhongMultiLight{{}, 10});

@@ -59,7 +59,7 @@ def configure(conf):
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
     conf.check_corrade(components='Utility PluginManager')
-    conf.check_magnum(components='MeshTools Primitives Shaders Sdl2Application SceneGraph')
+    conf.check_magnum(components='MeshTools Primitives Shaders Sdl2Application SceneGraph WindowlessGlxApplication')
     conf.check_magnum_integration(components='Dart')
 
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
@@ -148,7 +148,7 @@ def build(bld):
                       install_path = None,
                       source = 'src/examples/magnum.cpp ' + shaders_resource,
                       includes = './src',
-                      uselib = magnum.get_magnum_dependency_libs(bld, 'Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                      uselib = magnum.get_magnum_dependency_libs(bld, 'WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu',
                       defines = ['GRAPHIC'],
                       target = 'magnum')
