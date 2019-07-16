@@ -59,7 +59,7 @@ namespace robot_dart {
                     updateGraphics();
                     /* Update lights transformations */
                     updateLights();
-                    _camera->draw(_drawables);
+                    _camera->camera()->draw(_drawables);
 
                     // if (_index % 10 == 0) {
                     //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(_index) + ".png");
