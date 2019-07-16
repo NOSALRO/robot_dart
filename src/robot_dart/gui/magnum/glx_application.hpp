@@ -17,14 +17,16 @@ namespace robot_dart {
                 explicit GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
                     : BaseApplication(), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
                 {
-                    /* Create/Get GLContext */
-                    GlobalData::instance()->gl_context().makeCurrent();
-                    if (!tryCreateContext(Configuration())) {
-                        Corrade::Utility::Error{} << "Could not create context!";
-                        return;
+                    /* Assume context is given externally, if not create it */
+                    if (!Magnum::GL::Context::hasCurrent()) {
+                        Corrade::Utility::Debug{} << "GL::Context not provided. Creating...";
+                        if (!tryCreateContext(Configuration())) {
+                            Corrade::Utility::Error{} << "Could not create context!";
+                            return;
+                        }
                     }
-                    else
-                        Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
+                    // else
+                    // Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
 
                     /* Create FrameBuffer to draw */
                     int w = width, h = height;
@@ -48,6 +50,11 @@ namespace robot_dart {
                     Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
                 }
 
+                ~GLXApplication()
+                {
+                    GLCleanUp();
+                }
+
                 void render() override
                 {
                     /* Clear framebuffer */
@@ -62,7 +69,8 @@ namespace robot_dart {
                     _camera->camera()->draw(_drawables);
 
                     // if (_index % 10 == 0) {
-                    //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(_index) + ".png");
+                    //     intptr_t tt = (intptr_t)_glx_context;
+                    //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(tt) + "_" + std::to_string(_index) + ".png");
                     // }
 
                     // _index++;

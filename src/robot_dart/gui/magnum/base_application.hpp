@@ -1,6 +1,9 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_BASE_APPLICATION_HPP
 #define ROBOT_DART_GUI_MAGNUM_BASE_APPLICATION_HPP
 
+#include <mutex>
+#include <unordered_map>
+
 #include <robot_dart/gui/magnum/gs/camera.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
@@ -13,10 +16,11 @@
 #include <Magnum/GL/Buffer.h>
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Mesh.h>
-#include <Magnum/GL/OpenGLTester.h>
+#include <Magnum/GL/Renderer.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/Platform/GLContext.h>
-#include <Magnum/ResourceManager.h>
+#include <Magnum/Platform/WindowlessGlxApplication.h>
+// #include <Magnum/ResourceManager.h>
 #include <Magnum/SceneGraph/Camera.h>
 #include <Magnum/SceneGraph/Drawable.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
@@ -28,6 +32,17 @@
 #include <Magnum/DartIntegration/ConvertShapeNode.h>
 #include <Magnum/DartIntegration/World.h>
 
+#define get_glx_context(name)                                                     \
+    /* Create/Get GLContext */                                                    \
+    Magnum::Platform::WindowlessGLContext* name = nullptr;                        \
+    while (name == nullptr)                                                       \
+        name = robot_dart::gui::magnum::GlobalData::instance()->get_gl_context(); \
+    while (!name->makeCurrent()) {}                                               \
+                                                                                  \
+    Magnum::Platform::GLContext name##_magnum_context;
+
+#define release_glx_context(name) robot_dart::gui::magnum::GlobalData::instance()->free_gl_context(name);
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -37,29 +52,75 @@ namespace robot_dart {
             public:
                 static GlobalData* instance()
                 {
-                    static GlobalData* gdata = new GlobalData();
+                    static GlobalData gdata;
 
-                    return gdata;
+                    return &gdata;
                 }
 
                 GlobalData(const GlobalData&) = delete;
                 void operator=(const GlobalData&) = delete;
 
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& plugin_manager() { return _plugin_manager; }
-                Magnum::Platform::WindowlessGLContext& gl_context() { return _gl_context; }
+
+                Magnum::Platform::WindowlessGLContext* get_gl_context()
+                {
+                    std::lock_guard<std::mutex> lg(_context_mutex);
+                    if (_gl_contexts.size() == 0)
+                        _create_contexts();
+
+                    for (size_t i = 0; i < _max_contexts; i++) {
+                        if (!_used[i]) {
+                            _used[i] = true;
+                            return &_gl_contexts[i];
+                        }
+                    }
+
+                    return nullptr;
+                }
+
+                void free_gl_context(Magnum::Platform::WindowlessGLContext* context)
+                {
+                    std::lock_guard<std::mutex> lg(_context_mutex);
+                    for (size_t i = 0; i < _gl_contexts.size(); i++) {
+                        if (&_gl_contexts[i] == context) {
+                            _used[i] = false;
+                            break;
+                        }
+                    }
+                }
+
+                std::mutex& mutex() { return _mutex; }
+
+                /* You should call this before starting to draw or after finished */
+                void set_max_contexts(size_t N)
+                {
+                    std::lock_guard<std::mutex> lg(_context_mutex);
+                    _max_contexts = N;
+                    _create_contexts();
+                }
 
             private:
                 GlobalData() {}
 
-                ~GlobalData()
+                ~GlobalData() {}
+
+                void _create_contexts()
                 {
-                    auto inst = instance();
-                    delete inst;
+                    _used.clear();
+                    _gl_contexts.clear();
+                    _gl_contexts.reserve(_max_contexts);
+                    for (size_t i = 0; i < _max_contexts; i++) {
+                        _used.push_back(false);
+                        _gl_contexts.push_back(std::move(Magnum::Platform::WindowlessGLContext{{}}));
+                    }
                 }
 
                 // ViewerResourceManager _resourceManager;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _plugin_manager;
-                Magnum::Platform::WindowlessGLContext _gl_context{{}};
+                std::vector<Magnum::Platform::WindowlessGLContext> _gl_contexts;
+                std::vector<bool> _used;
+                std::mutex _mutex, _context_mutex;
+                size_t _max_contexts = 4;
             };
 
             class DrawableObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -154,7 +215,7 @@ namespace robot_dart {
             class BaseApplication {
             public:
                 BaseApplication() {}
-                ~BaseApplication() {}
+                virtual ~BaseApplication() {} // on purpose not virtual to not clean WindowlessGlxContext
 
                 void init(const dart::simulation::WorldPtr& world)
                 {
@@ -164,8 +225,10 @@ namespace robot_dart {
                         new gs::Camera(_scene, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]));
 
                     /* Create our DARTIntegration object/world */
+                    GlobalData::instance()->mutex().lock(); /* Need to lock for plugin manager not being thread-safe */
                     auto dartObj = new Object3D{&_scene};
                     _dartWorld.reset(new Magnum::DartIntegration::World(GlobalData::instance()->plugin_manager(), *dartObj, *world));
+                    GlobalData::instance()->mutex().unlock();
 
                     /* Phong shaders */
                     _color_shader.reset(new gs::PhongMultiLight{{}, 10});
@@ -256,9 +319,23 @@ namespace robot_dart {
                 std::vector<Object3D*> _dartObjs;
                 std::vector<gs::Light> _lights;
 
+                void GLCleanUp()
+                {
+                    /* Clean up GL because of destructor order */
+                    _color_shader.reset();
+                    _texture_shader.reset();
+
+                    _camera.reset();
+
+                    _dartWorld.reset();
+                    _drawableObjects.clear();
+                    _dartObjs.clear();
+                    _lights.clear();
+                }
+
                 void updateGraphics()
                 {
-                    /* We refresh the graphical models at 60Hz */
+                    /* Refresh the graphical models */
                     _dartWorld->refresh();
 
                     /* For each update object */
