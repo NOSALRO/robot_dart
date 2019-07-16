@@ -39,6 +39,11 @@ namespace robot_dart {
                     redraw();
                 }
 
+                ~Sdl2Application()
+                {
+                    GLCleanUp();
+                }
+
                 void render() override
                 {
                     mainLoopIteration();
