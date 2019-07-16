@@ -215,7 +215,7 @@ namespace robot_dart {
             class BaseApplication {
             public:
                 BaseApplication() {}
-                virtual ~BaseApplication() {} // on purpose not virtual to not clean WindowlessGlxContext
+                virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world)
                 {
