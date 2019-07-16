@@ -1,7 +1,9 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_BASE_APPLICATION_HPP
 #define ROBOT_DART_GUI_MAGNUM_BASE_APPLICATION_HPP
 
+#include <robot_dart/gui/magnum/gs/camera.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
+#include <robot_dart/gui/magnum/types.hpp>
 
 #include <dart/dynamics/SoftBodyNode.hpp>
 #include <dart/dynamics/SoftMeshShape.hpp>
@@ -30,8 +32,6 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             // using ViewerResourceManager = Magnum::ResourceManager<Magnum::GL::Buffer, Magnum::GL::Mesh, Magnum::Shaders::Phong, gs::PhongMultiLight>;
-            using Object3D = Magnum::SceneGraph::Object<Magnum::SceneGraph::MatrixTransformation3D>;
-            using Scene3D = Magnum::SceneGraph::Scene<Magnum::SceneGraph::MatrixTransformation3D>;
 
             struct GlobalData {
             public:
@@ -160,15 +160,8 @@ namespace robot_dart {
                 {
                     /* Anything not related to GL */
                     /* Camera setup */
-                    (_cameraRig = new Object3D(&_scene));
-                    (_cameraObject = new Object3D(_cameraRig));
-                    (_camera = new Magnum::SceneGraph::Camera3D(*_cameraObject))
-                        ->setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
-                        .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(Magnum::Deg(35.0f), 1.0f, 0.001f, 100.0f))
-                        .setViewport(Magnum::GL::defaultFramebuffer.viewport().size());
-                    /* DART has +Z-axis as up direction*/
-                    /* Default look at */
-                    _cameraObject->setTransformation(Magnum::Matrix4::lookAt(Magnum::Vector3{0.f, 2.f, 1.5f}, Magnum::Vector3{0.f, 0.f, 0.5f}, Magnum::Vector3{0.f, 0.f, 1.f}));
+                    _camera.reset(
+                        new gs::Camera(_scene, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]));
 
                     /* Create our DARTIntegration object/world */
                     auto dartObj = new Object3D{&_scene};
@@ -236,10 +229,13 @@ namespace robot_dart {
                     float uy = static_cast<float>(up[1]);
                     float uz = static_cast<float>(up[2]);
 
-                    _cameraObject->setTransformation(
-                        Magnum::Matrix4::lookAt(Magnum::Vector3{cx, cy, cz},
-                            Magnum::Vector3{lx, ly, lz},
-                            Magnum::Vector3{ux, uy, uz}));
+                    // _cameraObject->setTransformation(
+                    //     Magnum::Matrix4::lookAt(Magnum::Vector3{cx, cy, cz},
+                    //         Magnum::Vector3{lx, ly, lz},
+                    //         Magnum::Vector3{ux, uy, uz}));
+                    _camera->look_at(Magnum::Vector3{cx, cy, cz},
+                        Magnum::Vector3{lx, ly, lz},
+                        Magnum::Vector3{ux, uy, uz});
                 }
 
                 virtual void render() {}
@@ -248,10 +244,9 @@ namespace robot_dart {
                 /* Magnum */
                 Scene3D _scene;
                 Magnum::SceneGraph::DrawableGroup3D _drawables;
-                Magnum::SceneGraph::Camera3D* _camera;
-                std::unique_ptr<magnum::gs::PhongMultiLight> _color_shader, _texture_shader;
+                std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
-                Object3D *_cameraRig, *_cameraObject;
+                std::unique_ptr<gs::Camera> _camera;
 
                 bool _done = false;
 
@@ -328,13 +323,13 @@ namespace robot_dart {
                         Magnum::Vector3 pos;
                         /* Directional lights need only rotational transformation */
                         if (_lights[i].position().w() == 0.f)
-                            pos = _camera->cameraMatrix().transformVector(old_pos.xyz());
+                            pos = _camera->camera()->cameraMatrix().transformVector(old_pos.xyz());
                         /* Other light types, need full transformation */
                         else
-                            pos = _camera->cameraMatrix().transformPoint(old_pos.xyz());
+                            pos = _camera->camera()->cameraMatrix().transformPoint(old_pos.xyz());
                         _lights[i].setTransformedPosition(Magnum::Vector4{pos, old_pos.w()});
                         /* Transform spotlight direction */
-                        _lights[i].setTransformedSpotDirection(_camera->cameraMatrix().transformVector(_lights[i].spotDirection()));
+                        _lights[i].setTransformedSpotDirection(_camera->camera()->cameraMatrix().transformVector(_lights[i].spotDirection()));
 
                         _color_shader->setLight(i, _lights[i]);
                         _texture_shader->setLight(i, _lights[i]);
