@@ -3,6 +3,10 @@
 
 #include <robot_dart/gui/magnum/base_application.hpp>
 
+// #include <Magnum/DebugTools/Screenshot.h>
+#include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/Renderbuffer.h>
+#include <Magnum/GL/RenderbufferFormat.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 
 namespace robot_dart {
@@ -13,7 +17,7 @@ namespace robot_dart {
                 explicit GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
                     : BaseApplication(), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
                 {
-                    // tryCreateContext(Configuration());
+                    /* Create/Get GLContext */
                     GlobalData::instance()->gl_context().makeCurrent();
                     if (!tryCreateContext(Configuration())) {
                         Corrade::Utility::Error{} << "Could not create context!";
@@ -21,25 +25,35 @@ namespace robot_dart {
                     }
                     else
                         Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
+
+                    /* Create FrameBuffer to draw */
+                    int w = width, h = height;
+                    _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
+                    Magnum::GL::Renderbuffer color, depth;
+                    color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
+                    depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
+
+                    _framebuffer.attachRenderbuffer(
+                        Magnum::GL::Framebuffer::ColorAttachment(0), color);
+                    _framebuffer.attachRenderbuffer(
+                        Magnum::GL::Framebuffer::BufferAttachment::Depth, depth);
+
                     Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                     Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
 
+                    /* Initialize DART world */
                     this->init(world);
 
                     /* Change default clear color to black */
                     Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
-
-                    // /* Loop at 60 Hz max */
-                    // setSwapInterval(1);
-                    // setMinimalLoopPeriod(16);
-
-                    // redraw();
                 }
 
                 void render() override
                 {
-                    Magnum::GL::defaultFramebuffer.clear(
-                        Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
+                    /* Clear framebuffer */
+                    _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
+                    /* Bind the framebuffer */
+                    _framebuffer.bind();
 
                     /* Update graphic meshes/materials and render */
                     updateGraphics();
@@ -47,11 +61,17 @@ namespace robot_dart {
                     updateLights();
                     _camera->draw(_drawables);
 
-                    // swapBuffers();
-                    // redraw();
+                    // if (_index % 10 == 0) {
+                    //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(_index) + ".png");
+                    // }
+
+                    // _index++;
                 }
 
             private:
+                Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
+                // size_t _index = 0;
+
                 int exec() override
                 {
                     return 0;
