@@ -90,7 +90,6 @@ namespace robot_dart {
                 _osg_viewer->removeWorldNode(_osg_world_node); // This line fixes a memory leak from DART
                 // This following lines will still be necessary after DART fixes their side.
                 _osg_viewer->getCamera()->setFinalDrawCallback(0);
-                _osg_viewer->getCamera()->setGraphicsContext(0);
                 _osg_world_node = NULL;
                 _osg_viewer = NULL;
                 _image = NULL;
