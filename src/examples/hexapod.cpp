@@ -35,6 +35,7 @@ int main()
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
     std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+    std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->add_grid(0.25,20); // adds a 20x20 grid with 25cm tiles 
 #endif
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::BulletCollisionDetector::create());
     simu.add_floor();
