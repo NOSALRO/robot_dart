@@ -385,7 +385,7 @@ namespace robot_dart {
                 if (sn->getVisualAspect()) {
                     dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
                     if (ms)
-                        ms->setColorMode(dart::dynamics::MeshShape::SHAPE_COLOR);
+                        ms->setColorMode(dart::dynamics::MeshShape::MATERIAL_COLOR);
                 }
             }
         }
