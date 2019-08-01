@@ -81,12 +81,9 @@ namespace robot_dart {
                 _osg_viewer->home();
             }
 	  
-	    void add_grid(double size = 1, size_t number = 10)
+	    osg::ref_ptr<dart::gui::osg::Viewer> osg_viewer()
 	    {
-	        osg::ref_ptr<dart::gui::osg::GridVisual> grid = new dart::gui::osg::GridVisual();
-		grid->setNumCells(number);
-		grid->setMinorLineStepSize(size);
-		_osg_viewer->addAttachment(grid);
+	      return _osg_viewer;
 	    }
 	  
             void enable_default_lights(bool enable = true)
