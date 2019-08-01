@@ -81,6 +81,9 @@ namespace robot_dart {
         Eigen::Matrix3d body_rot(const std::string& body_name) const;
         Eigen::Isometry3d body_trans(const std::string& body_name) const;
 
+        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
+        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
+
         // helper functions
         // pose: Orientation-Position
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box");
@@ -89,9 +92,6 @@ namespace robot_dart {
 
     protected:
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
-
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
 	void _set_damages(const std::vector<RobotDamage>& damages);
 
