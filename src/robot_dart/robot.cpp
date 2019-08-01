@@ -377,20 +377,28 @@ namespace robot_dart {
             tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
         }
 
-        // Fix for mesh materials
-        for (size_t i = 0; i < tmp_skel->getNumBodyNodes(); ++i) {
-            dart::dynamics::BodyNode* bn = tmp_skel->getBodyNode(i);
-            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
-                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
-                if (sn->getVisualAspect()) {
-                    dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
-                    if (ms)
-                        ms->setColorMode(dart::dynamics::MeshShape::MATERIAL_COLOR);
-                }
-            }
-        }
 
         return tmp_skel;
+    }
+
+    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
+    {
+        for (size_t i = 0; i < _skeleton->getNumBodyNodes(); ++i) {
+	    dart::dynamics::BodyNode* bn = _skeleton->getBodyNode(i);
+	    for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
+	        dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
+		set_color_mode(color_mode, sn);
+	    }
+	}
+    }
+  
+    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn)
+    {
+        if (sn->getVisualAspect()) {
+	    dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
+	    if (ms)
+	        ms->setColorMode(color_mode);
+	}
     }
 
     void Robot::_set_damages(const std::vector<RobotDamage>& damages)
