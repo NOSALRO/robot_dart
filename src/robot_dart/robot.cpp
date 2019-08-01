@@ -33,7 +33,6 @@ namespace robot_dart {
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
-        set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
     }
 
     Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, damages) {}
@@ -43,7 +42,6 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
-        set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
     }
 
     std::shared_ptr<Robot> Robot::clone() const
@@ -323,13 +321,7 @@ namespace robot_dart {
 
     void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
     {
-        for (size_t i = 0; i < _skeleton->getNumBodyNodes(); ++i) {
-            dart::dynamics::BodyNode* bn = _skeleton->getBodyNode(i);
-            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
-                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
-                _set_color_mode(color_mode, sn);
-            }
-        }
+        _set_color_mode(color_mode, _skeleton);
     }
 
     void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name)
@@ -401,6 +393,8 @@ namespace robot_dart {
             tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
         }
 
+        _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, tmp_skel);
+
         return tmp_skel;
     }
 
@@ -416,6 +410,17 @@ namespace robot_dart {
             }
             else if (dmg.type == "free_joint") {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
+            }
+        }
+    }
+
+    void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
+    {
+        for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
+            dart::dynamics::BodyNode* bn = skel->getBodyNode(i);
+            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
+                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
+                _set_color_mode(color_mode, sn);
             }
         }
     }
