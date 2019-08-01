@@ -31,6 +31,10 @@ int main()
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->look_at({0., 3.5, 2.}, {0., 0., 0.25});
+#if DART_VERSION_AT_LEAST(6, 8, 0) // GridShape for OSG is available only for DART version >=6.8.0
+    std::static_pointer_cast<robot_dart::graphics::Graphics>(simu.graphics())->add_grid(0.25, 20); // adds a 20x20 grid with 25cm tiles
+#endif
 #endif
     simu.add_robot(global_robot);
     simu.run(20.);

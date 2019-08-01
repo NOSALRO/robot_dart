@@ -81,6 +81,21 @@ namespace robot_dart {
                 _osg_viewer->home();
             }
 
+#if DART_VERSION_AT_LEAST(6, 8, 0)
+            void add_grid(double size = 1, size_t number = 10)
+            {
+                osg::ref_ptr<dart::gui::osg::GridVisual> grid = new dart::gui::osg::GridVisual();
+                grid->setNumCells(number);
+                grid->setMinorLineStepSize(size);
+                _osg_viewer->addAttachment(grid);
+            }
+#endif
+
+            osg::ref_ptr<dart::gui::osg::Viewer> osg_viewer()
+            {
+                return _osg_viewer;
+            }
+
             void enable_default_lights(bool enable = true)
             {
                 _osg_viewer->switchHeadlights(enable);
