@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include <dart/dynamics/Skeleton.hpp>
 #include <dart/dynamics/MeshShape.hpp>
+#include <dart/dynamics/Skeleton.hpp>
 
 namespace robot_dart {
     namespace control {
@@ -82,7 +82,7 @@ namespace robot_dart {
         Eigen::Isometry3d body_trans(const std::string& body_name) const;
 
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
+        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
 
         // helper functions
         // pose: Orientation-Position
@@ -93,7 +93,8 @@ namespace robot_dart {
     protected:
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
-	void _set_damages(const std::vector<RobotDamage>& damages);
+        void _set_damages(const std::vector<RobotDamage>& damages);
+        void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
