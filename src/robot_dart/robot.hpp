@@ -76,6 +76,8 @@ namespace robot_dart {
         double damping_coeff(size_t dof) const;
         std::vector<double> damping_coeffs() const;
 
+        void set_base_pose(const Eigen::Isometry3d& tf);
+
         Eigen::Vector3d body_pos(const std::string& body_name) const;
         Eigen::Matrix3d body_rot(const std::string& body_name) const;
         Eigen::Isometry3d body_trans(const std::string& body_name) const;
