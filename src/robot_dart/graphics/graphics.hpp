@@ -18,7 +18,7 @@ namespace robot_dart {
                     _osg_world_node->setShadowTechnique(dart::gui::osg::WorldNode::createDefaultShadowTechnique(_osg_viewer));
                 set_render_period(world->getTimeStep());
                 _osg_viewer->addWorldNode(_osg_world_node);
-                _osg_viewer->switchHeadlights(true);
+                // _osg_viewer->switchHeadlights(true);
             }
 
             ~Graphics()
