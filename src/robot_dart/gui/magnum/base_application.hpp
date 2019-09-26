@@ -271,6 +271,11 @@ namespace robot_dart {
                     return _lights[i];
                 }
 
+                size_t numLights() const
+                {
+                    return _lights.size();
+                }
+
                 bool done() const
                 {
                     return _done;
