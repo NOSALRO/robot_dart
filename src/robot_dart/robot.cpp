@@ -294,6 +294,13 @@ namespace robot_dart {
         return damps;
     }
 
+    void Robot::set_base_pose(const Eigen::Isometry3d& tf)
+    {
+        auto jt = _skeleton->getRootBodyNode()->getParentJoint();
+        if (jt)
+            jt->setTransformFromParentBodyNode(tf);
+    }
+
     Eigen::Vector3d Robot::body_pos(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
@@ -317,6 +324,22 @@ namespace robot_dart {
         if (bd)
             return bd->getTransform();
         return Eigen::Isometry3d::Identity();
+    }
+
+    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
+    {
+        _set_color_mode(color_mode, _skeleton);
+    }
+
+    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name)
+    {
+        auto bn = _skeleton->getBodyNode(body_name);
+        if (bn) {
+            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
+                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
+                _set_color_mode(color_mode, sn);
+            }
+        }
     }
 
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
@@ -377,18 +400,7 @@ namespace robot_dart {
             tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
         }
 
-        // Fix for mesh materials
-        for (size_t i = 0; i < tmp_skel->getNumBodyNodes(); ++i) {
-            dart::dynamics::BodyNode* bn = tmp_skel->getBodyNode(i);
-            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
-                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
-                if (sn->getVisualAspect()) {
-                    dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
-                    if (ms)
-                        ms->setColorMode(dart::dynamics::MeshShape::SHAPE_COLOR);
-                }
-            }
-        }
+        _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, tmp_skel);
 
         return tmp_skel;
     }
@@ -406,6 +418,26 @@ namespace robot_dart {
             else if (dmg.type == "free_joint") {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
             }
+        }
+    }
+
+    void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
+    {
+        for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
+            dart::dynamics::BodyNode* bn = skel->getBodyNode(i);
+            for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
+                dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
+                _set_color_mode(color_mode, sn);
+            }
+        }
+    }
+
+    void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn)
+    {
+        if (sn->getVisualAspect()) {
+            dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
+            if (ms)
+                ms->setColorMode(color_mode);
         }
     }
 
