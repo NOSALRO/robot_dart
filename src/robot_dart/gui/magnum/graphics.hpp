@@ -65,6 +65,11 @@ namespace robot_dart {
                     _magnum_app->addLight(light);
                 }
 
+                size_t num_lights() const
+                {
+                    return _magnum_app->numLights();
+                }
+
                 magnum::gs::Light& light(size_t i)
                 {
                     return _magnum_app->light(i);
