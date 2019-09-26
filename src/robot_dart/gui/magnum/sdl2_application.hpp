@@ -11,7 +11,7 @@ namespace robot_dart {
             class Sdl2Application : public BaseApplication, public Magnum::Platform::Application {
             public:
                 explicit Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
-                    : BaseApplication(), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _firstMouse(true), _speedMove(0.f), _speedStrafe(0.f)
+                    : BaseApplication(), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
                 {
                     /* Try 16x MSAA */
                     Configuration conf;
@@ -50,8 +50,6 @@ namespace robot_dart {
                 }
 
             private:
-                Magnum::Vector2i _lastMousePos;
-                bool _firstMouse, _mousePressed = false;
                 Magnum::Float _speedMove, _speedStrafe;
 
                 static constexpr Magnum::Float _speed = 0.05f;
@@ -60,7 +58,7 @@ namespace robot_dart {
                 {
                     Magnum::GL::defaultFramebuffer.setViewport({{}, size});
 
-                    _camera->camera()->setViewport(size);
+                    _camera->camera().setViewport(size);
                 }
 
                 void drawEvent() override
@@ -68,14 +66,14 @@ namespace robot_dart {
                     Magnum::GL::defaultFramebuffer.clear(
                         Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
-                    _camera->move(_speedMove);
+                    _camera->forward(_speedMove);
                     _camera->strafe(_speedStrafe);
 
                     /* Update graphic meshes/materials and render */
                     updateGraphics();
                     /* Update lights transformations */
                     updateLights();
-                    _camera->camera()->draw(_drawables);
+                    _camera->camera().draw(_drawables);
 
                     swapBuffers();
 
@@ -129,40 +127,9 @@ namespace robot_dart {
 
                 void mouseMoveEvent(MouseMoveEvent& event)
                 {
-                    if (!_mousePressed)
-                        return;
-
-                    Magnum::Vector2i dPos = event.position() - _lastMousePos;
-                    dPos.y() = -dPos.y();
-
-                    _camera->rotate(dPos.x(), dPos.y(), 0.005f);
-                    _lastMousePos = event.position();
-
-                    event.setAccepted();
-                }
-
-                void mousePressEvent(MouseEvent& event)
-                {
-                    if (_firstMouse) {
-                        _lastMousePos = event.position();
-                        _firstMouse = false;
+                    if (event.buttons() == MouseMoveEvent::Button::Left) {
+                        _camera->move(event.relativePosition());
                     }
-                    _lastMousePos = event.position();
-
-                    _mousePressed = true;
-
-                    event.setAccepted();
-                }
-
-                void mouseReleaseEvent(MouseEvent& event)
-                {
-                    if (_firstMouse) {
-                        _lastMousePos = event.position();
-                        _firstMouse = false;
-                    }
-                    _lastMousePos = event.position();
-
-                    _mousePressed = false;
 
                     event.setAccepted();
                 }
