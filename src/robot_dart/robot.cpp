@@ -296,8 +296,9 @@ namespace robot_dart {
 
     void Robot::set_base_pose(const Eigen::Isometry3d& tf)
     {
-        // Set the pose of the robot base. 
-        _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
+        auto jt = _skeleton->getRootBodyNode()->getParentJoint();
+        if (jt)
+            jt->setTransformFromParentBodyNode(tf);
     }
 
     Eigen::Vector3d Robot::body_pos(const std::string& body_name) const
