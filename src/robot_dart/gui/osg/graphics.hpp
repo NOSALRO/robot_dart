@@ -8,7 +8,7 @@
 namespace robot_dart {
     namespace gui {
         namespace osg {
-            class Graphics : public BaseGraphics {
+            class Graphics : public Base {
             public:
                 Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true) : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
                 {
@@ -78,21 +78,21 @@ namespace robot_dart {
 
                     // set camera position
                     _osg_viewer->getCameraManipulator()->setHomePosition(
-                        osg::Vec3d(_camera_pos(0), _camera_pos(1), _camera_pos(2)), osg::Vec3d(_look_at(0), _look_at(1), _look_at(2)), osg::Vec3d(_camera_up(0), _camera_up(1), _camera_up(2)));
+                        ::osg::Vec3d(_camera_pos(0), _camera_pos(1), _camera_pos(2)), ::osg::Vec3d(_look_at(0), _look_at(1), _look_at(2)), ::osg::Vec3d(_camera_up(0), _camera_up(1), _camera_up(2)));
                     _osg_viewer->home();
                 }
 
 #if DART_VERSION_AT_LEAST(6, 8, 0)
                 void add_grid(double size = 1, size_t number = 10)
                 {
-                    osg::ref_ptr<dart::gui::osg::GridVisual> grid = new dart::gui::osg::GridVisual();
+                    ::osg::ref_ptr<dart::gui::osg::GridVisual> grid = new dart::gui::osg::GridVisual();
                     grid->setNumCells(number);
                     grid->setMinorLineStepSize(size);
                     _osg_viewer->addAttachment(grid);
                 }
 #endif
 
-                osg::ref_ptr<dart::gui::osg::Viewer> osg_viewer()
+                ::osg::ref_ptr<dart::gui::osg::Viewer> osg_viewer()
                 {
                     return _osg_viewer;
                 }
@@ -106,8 +106,8 @@ namespace robot_dart {
                 Eigen::Vector3d _look_at;
                 Eigen::Vector3d _camera_pos;
                 Eigen::Vector3d _camera_up;
-                osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
-                osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
+                ::osg::ref_ptr<dart::gui::osg::WorldNode> _osg_world_node;
+                ::osg::ref_ptr<dart::gui::osg::Viewer> _osg_viewer;
                 dart::simulation::WorldPtr _world;
                 size_t _render_period, _width, _height, _frame_counter;
                 bool _enabled;
