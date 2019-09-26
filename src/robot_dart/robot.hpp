@@ -3,6 +3,7 @@
 
 #include <utility>
 
+#include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/Skeleton.hpp>
 
 namespace robot_dart {
@@ -76,9 +77,15 @@ namespace robot_dart {
         double damping_coeff(size_t dof) const;
         std::vector<double> damping_coeffs() const;
 
+        // Set the pose of the robot base (changes the transformation of the parent joint of the root body)
+        void set_base_pose(const Eigen::Isometry3d& tf);
+
         Eigen::Vector3d body_pos(const std::string& body_name) const;
         Eigen::Matrix3d body_rot(const std::string& body_name) const;
         Eigen::Isometry3d body_trans(const std::string& body_name) const;
+
+        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
+        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
 
         // helper functions
         // pose: Orientation-Position
@@ -90,6 +97,8 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
+        void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
+        void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
