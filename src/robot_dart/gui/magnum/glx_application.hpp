@@ -66,7 +66,7 @@ namespace robot_dart {
                     updateGraphics();
                     /* Update lights transformations */
                     updateLights();
-                    _camera->camera()->draw(_drawables);
+                    _camera->camera().draw(_drawables);
 
                     // if (_index % 10 == 0) {
                     //     intptr_t tt = (intptr_t)_glx_context;
