@@ -7,36 +7,37 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
-                class Camera {
+                // This is partly code from the ThirdPersonCameraController of https://github.com/alexesDev/magnum-tips
+                class Camera : public Object3D {
                 public:
-                    explicit Camera(Scene3D& parent, Magnum::Int width, Magnum::Int height)
+                    explicit Camera(Object3D& object, Magnum::Int width, Magnum::Int height) : Object3D{&object}
                     {
-                        using namespace Magnum::Math::Literals;
+                        _yawObject = new Object3D{this};
+                        _pitchObject = new Object3D{_yawObject};
 
-                        _fov = 35.0_degf;
-                        _aspectRatio = 1.0f;
+                        _cameraObject = new Object3D{_pitchObject};
+                        _cameraObject->setTransformation(Magnum::Matrix4::lookAt({0., 2., 1.}, {0., 0., 0.}, Magnum::Vector3::zAxis(1)));
+
+                        _fov = Magnum::Deg(60.0f);
+                        _aspectRatio = 4.0f / 3.0f;
                         _nearPlane = 0.01f;
-                        _farPlane = 100.f;
+                        _farPlane = 200.f;
 
-                        _up = Magnum::Vector3{0.f, 0.f, 1.f};
-                        _yaw = -Magnum::Math::Constants<Magnum::Float>::piHalf();
-                        _pitch = 0.f;
-                        _front = (Magnum::Vector3{
-                                      std::cos(_yaw) * std::cos(_pitch), std::sin(_pitch), std::sin(_yaw) * std::cos(_pitch)})
-                                     .normalized();
-
-                        /* Create the camera object attached to the parent */
-                        (*(_cameraObject = new Object3D{&parent}));
-                        Magnum::Vector3 cameraPos = _cameraObject->transformation().translation();
-                        _cameraObject->setTransformation(Magnum::Matrix4::lookAt(cameraPos, cameraPos + _front, _up));
-                        (*(_camera = new Magnum::SceneGraph::Camera3D{*_cameraObject}))
-                            .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
+                        _camera = new Camera3D{*_cameraObject};
+                        _camera->setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
                             .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane))
                             .setViewport({width, height});
                     }
 
-                    Object3D* cameraObject() { return _cameraObject; }
-                    Camera3D* camera() { return _camera; }
+                    Camera3D& camera() const
+                    {
+                        return *_camera;
+                    }
+
+                    Object3D& cameraObject() const
+                    {
+                        return *_cameraObject;
+                    }
 
                     Camera& zoom(Magnum::Float percentage)
                     {
@@ -50,26 +51,17 @@ namespace robot_dart {
                         return *this;
                     }
 
-                    Camera& rotate(Magnum::Float dYaw, Magnum::Float dPitch, Magnum::Float sensitivity = 0.001f)
+                    Camera& move(const Magnum::Vector2i& shift)
                     {
-                        {
-                            _pitch += dPitch * sensitivity;
-                            _pitch = std::max(-Magnum::Math::Constants<Magnum::Float>::piHalf(),
-                                std::min(Magnum::Math::Constants<Magnum::Float>::piHalf(), _pitch));
-                            _yaw += dYaw * sensitivity;
+                        Magnum::Vector2 s = Magnum::Vector2{shift} * _speed;
 
-                            _front = (Magnum::Vector3{
-                                          std::cos(_yaw) * std::cos(_pitch), std::sin(_pitch), std::sin(_yaw) * std::cos(_pitch)})
-                                         .normalized();
-                            Magnum::Vector3 cameraPos = _cameraObject->transformation().translation();
+                        _yawObject->rotate(Magnum::Rad(s.x()), Magnum::Vector3::zAxis(1));
+                        _pitchObject->rotate(Magnum::Rad(s.y()), Magnum::Vector3::xAxis(1));
 
-                            _cameraObject->setTransformation(Magnum::Matrix4::lookAt(cameraPos, cameraPos + _front, _up));
-
-                            return *this;
-                        }
+                        return *this;
                     }
 
-                    Camera& move(Magnum::Float speed)
+                    Camera& forward(Magnum::Float speed)
                     {
                         _cameraObject->translate(speed * _front);
 
@@ -83,29 +75,35 @@ namespace robot_dart {
                         return *this;
                     }
 
-                    Camera& look_at(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis())
+                    Camera& setSpeed(const Magnum::Vector2& speed)
+                    {
+                        _speed = speed;
+                        return *this;
+                    }
+
+                    Camera& lookAt(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis())
                     {
                         _front = (center - camera).normalized();
                         _up = up;
 
-                        /* Update yaw and pitch */
-                        _yaw = std::atan(_front.z() / _front.x());
-                        _pitch = std::atan2(_front.y(), _front.x() / std::cos(_yaw));
-
-                        _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, camera + _front, _up));
+                        _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, center, up));
+                        _yawObject->setTransformation(Magnum::Matrix4{});
+                        _pitchObject->setTransformation(Magnum::Matrix4{});
 
                         return *this;
                     }
 
-                protected:
+                private:
+                    Object3D* _yawObject;
+                    Object3D* _pitchObject;
                     Object3D* _cameraObject;
-                    Camera3D* _camera;
 
-                    Magnum::Float _aspectRatio, _nearPlane, _farPlane;
-                    Magnum::Rad _fov;
+                    Camera3D* _camera;
+                    Magnum::Vector2 _speed{-0.01f, 0.01f};
 
                     Magnum::Vector3 _up, _front;
-                    Magnum::Float _yaw, _pitch;
+                    Magnum::Float _aspectRatio, _nearPlane, _farPlane;
+                    Magnum::Rad _fov;
                 };
             } // namespace gs
         } // namespace magnum

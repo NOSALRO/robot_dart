@@ -301,7 +301,7 @@ namespace robot_dart {
                     //     Magnum::Matrix4::lookAt(Magnum::Vector3{cx, cy, cz},
                     //         Magnum::Vector3{lx, ly, lz},
                     //         Magnum::Vector3{ux, uy, uz}));
-                    _camera->look_at(Magnum::Vector3{cx, cy, cz},
+                    _camera->lookAt(Magnum::Vector3{cx, cy, cz},
                         Magnum::Vector3{lx, ly, lz},
                         Magnum::Vector3{ux, uy, uz});
                 }
@@ -405,13 +405,13 @@ namespace robot_dart {
                         Magnum::Vector3 pos;
                         /* Directional lights need only rotational transformation */
                         if (_lights[i].position().w() == 0.f)
-                            pos = _camera->camera()->cameraMatrix().transformVector(old_pos.xyz());
+                            pos = _camera->camera().cameraMatrix().transformVector(old_pos.xyz());
                         /* Other light types, need full transformation */
                         else
-                            pos = _camera->camera()->cameraMatrix().transformPoint(old_pos.xyz());
+                            pos = _camera->camera().cameraMatrix().transformPoint(old_pos.xyz());
                         _lights[i].setTransformedPosition(Magnum::Vector4{pos, old_pos.w()});
                         /* Transform spotlight direction */
-                        _lights[i].setTransformedSpotDirection(_camera->camera()->cameraMatrix().transformVector(_lights[i].spotDirection()));
+                        _lights[i].setTransformedSpotDirection(_camera->camera().cameraMatrix().transformVector(_lights[i].spotDirection()));
 
                         _color_shader->setLight(i, _lights[i]);
                         _texture_shader->setLight(i, _lights[i]);
