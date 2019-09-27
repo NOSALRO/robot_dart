@@ -49,7 +49,7 @@ namespace robot_dart {
                     mainLoopIteration();
                 }
 
-            private:
+            protected:
                 Magnum::Float _speedMove, _speedStrafe;
 
                 static constexpr Magnum::Float _speed = 0.05f;
@@ -80,7 +80,7 @@ namespace robot_dart {
                     redraw();
                 }
 
-                void keyReleaseEvent(KeyEvent& event) override
+                virtual void keyReleaseEvent(KeyEvent& event) override
                 {
                     _speedMove = 0.f;
                     _speedStrafe = 0.f;
@@ -88,7 +88,7 @@ namespace robot_dart {
                     event.setAccepted();
                 }
 
-                void keyPressEvent(KeyEvent& event) override
+                virtual void keyPressEvent(KeyEvent& event) override
                 {
                     if (event.key() == KeyEvent::Key::W) {
                         _speedMove = _speed;
@@ -109,7 +109,7 @@ namespace robot_dart {
                     event.setAccepted();
                 }
 
-                void mouseScrollEvent(MouseScrollEvent& event)
+                virtual void mouseScrollEvent(MouseScrollEvent& event)
                 {
                     if (!event.offset().y())
                         return;
@@ -125,7 +125,7 @@ namespace robot_dart {
                     event.setAccepted();
                 }
 
-                void mouseMoveEvent(MouseMoveEvent& event)
+                virtual void mouseMoveEvent(MouseMoveEvent& event)
                 {
                     if (event.buttons() == MouseMoveEvent::Button::Left) {
                         _camera->move(event.relativePosition());
