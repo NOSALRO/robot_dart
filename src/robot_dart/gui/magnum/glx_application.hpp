@@ -76,11 +76,11 @@ namespace robot_dart {
                     // _index++;
                 }
 
-            private:
+            protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 // size_t _index = 0;
 
-                int exec() override
+                virtual int exec() override
                 {
                     return 0;
                 }
