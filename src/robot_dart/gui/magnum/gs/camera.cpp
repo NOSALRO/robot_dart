@@ -9,8 +9,16 @@ namespace robot_dart {
                     _yawObject = new Object3D{this};
                     _pitchObject = new Object3D{_yawObject};
 
+                    _yawObject->setTransformation(Magnum::Matrix4{});
+                    _pitchObject->setTransformation(Magnum::Matrix4{});
+
+                    Magnum::Vector3 center{0., 0., 0.};
+                    Magnum::Vector3 camera{0., 2., 1.};
+                    _front = (center - camera).normalized();
+                    _up = Magnum::Vector3::zAxis();
+
                     _cameraObject = new Object3D{_pitchObject};
-                    _cameraObject->setTransformation(Magnum::Matrix4::lookAt({0., 2., 1.}, {0., 0., 0.}, Magnum::Vector3::zAxis(1)));
+                    _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, center, _up));
 
                     _fov = Magnum::Deg(60.0f);
                     _aspectRatio = 4.0f / 3.0f;
@@ -49,8 +57,8 @@ namespace robot_dart {
                 {
                     Magnum::Vector2 s = Magnum::Vector2{shift} * _speed;
 
-                    _yawObject->rotate(Magnum::Rad(s.x()), Magnum::Vector3::zAxis(1));
-                    _pitchObject->rotate(Magnum::Rad(s.y()), Magnum::Vector3::xAxis(1));
+                    _yawObject->rotate(Magnum::Rad(s.x()), Magnum::Vector3::zAxis());
+                    _pitchObject->rotate(Magnum::Rad(s.y()), Magnum::Vector3::xAxis());
 
                     return *this;
                 }

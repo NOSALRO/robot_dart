@@ -99,7 +99,7 @@ namespace robot_dart {
                 BaseApplication() {}
                 virtual ~BaseApplication() {}
 
-                void init(const dart::simulation::WorldPtr& world);
+                void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
 
                 void clearLights();
                 void addLight(const gs::Light& light);

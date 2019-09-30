@@ -23,7 +23,7 @@ namespace robot_dart {
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
 
                 /* Initialize DART world */
-                this->init(world);
+                this->init(world, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
 
                 /* Change default clear color to black */
                 Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});

@@ -1,7 +1,6 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_PHONG_MULTI_LIGHT_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_PHONG_MULTI_LIGHT_HPP
 
-#include <robot_dart/gui/magnum/gs/create_compatibility_shader.hpp>
 #include <robot_dart/gui/magnum/gs/light.hpp>
 
 #include <Corrade/Containers/ArrayView.h>
