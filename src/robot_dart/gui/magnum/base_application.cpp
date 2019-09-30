@@ -202,6 +202,11 @@ namespace robot_dart {
                 return _lights[i];
             }
 
+            std::vector<gs::Light>& BaseApplication::lights()
+            {
+                return _lights;
+            }
+
             size_t BaseApplication::numLights() const
             {
                 return _lights.size();
@@ -237,18 +242,16 @@ namespace robot_dart {
                     Magnum::Vector3{ux, uy, uz});
             }
 
-            void BaseApplication::GLCleanUp()
+            void BaseApplication::updateLights(const gs::Camera& camera)
             {
-                /* Clean up GL because of destructor order */
-                _color_shader.reset();
-                _texture_shader.reset();
+                /* Update lights transformations */
+                camera.transformLights(_lights);
 
-                _camera.reset();
-
-                _dartWorld.reset();
-                _drawableObjects.clear();
-                _dartObjs.clear();
-                _lights.clear();
+                /* Set the shader information */
+                for (size_t i = 0; i < _lights.size(); i++) {
+                    _color_shader->setLight(i, _lights[i]);
+                    _texture_shader->setLight(i, _lights[i]);
+                }
             }
 
             void BaseApplication::updateGraphics()
@@ -310,25 +313,18 @@ namespace robot_dart {
                 _dartWorld->clearUpdatedShapeObjects();
             }
 
-            void BaseApplication::updateLights()
+            void BaseApplication::GLCleanUp()
             {
-                /* Update lights transformations */
-                for (size_t i = 0; i < _lights.size(); i++) {
-                    Magnum::Vector4 old_pos = _lights[i].position();
-                    Magnum::Vector3 pos;
-                    /* Directional lights need only rotational transformation */
-                    if (_lights[i].position().w() == 0.f)
-                        pos = _camera->camera().cameraMatrix().transformVector(old_pos.xyz());
-                    /* Other light types, need full transformation */
-                    else
-                        pos = _camera->camera().cameraMatrix().transformPoint(old_pos.xyz());
-                    _lights[i].setTransformedPosition(Magnum::Vector4{pos, old_pos.w()});
-                    /* Transform spotlight direction */
-                    _lights[i].setTransformedSpotDirection(_camera->camera().cameraMatrix().transformVector(_lights[i].spotDirection()));
+                /* Clean up GL because of destructor order */
+                _color_shader.reset();
+                _texture_shader.reset();
 
-                    _color_shader->setLight(i, _lights[i]);
-                    _texture_shader->setLight(i, _lights[i]);
-                }
+                _camera.reset();
+
+                _dartWorld.reset();
+                _drawableObjects.clear();
+                _dartObjs.clear();
+                _lights.clear();
             }
 
             Corrade::Containers::Optional<Magnum::PixelFormat> BaseApplication::getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer)

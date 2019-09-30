@@ -21,14 +21,8 @@ namespace robot_dart {
                 if (!tryCreate(conf, glConf))
                     create(conf, glConf.setSampleCount(0));
 
-                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
-                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
-
                 /* Initialize DART world */
-                this->init(world, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
-
-                /* Change default clear color to black */
-                Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
+                init(world, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
 
                 /* Loop at 60 Hz max */
                 setSwapInterval(1);
@@ -56,6 +50,12 @@ namespace robot_dart {
 
             void Sdl2Application::drawEvent()
             {
+                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
+                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
+
+                /* Change default clear color to black */
+                Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
+
                 Magnum::GL::defaultFramebuffer.bind();
                 Magnum::GL::defaultFramebuffer.clear(
                     Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
@@ -66,17 +66,11 @@ namespace robot_dart {
                 /* Update graphic meshes/materials and render */
                 updateGraphics();
                 /* Update lights transformations */
-                updateLights();
-                _camera->camera().draw(_drawables);
+                updateLights(*_camera);
+                /* Draw with main camera */
+                _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm);
 
                 swapBuffers();
-
-                if (_recording) {
-                    // auto format = getPixelFormat(Magnum::GL::defaultFramebuffer);
-                    // if (format) {
-                    _image = Magnum::GL::defaultFramebuffer.read(Magnum::GL::defaultFramebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
-                    // }
-                }
 
                 redraw();
             }

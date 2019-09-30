@@ -65,6 +65,11 @@ namespace robot_dart {
                     _magnum_app->addLight(light);
                 }
 
+                std::vector<gs::Light>& lights()
+                {
+                    return _magnum_app->lights();
+                }
+
                 size_t num_lights() const
                 {
                     return _magnum_app->numLights();
@@ -84,6 +89,8 @@ namespace robot_dart {
                         return &(*_magnum_app->image());
                     return nullptr;
                 }
+
+                BaseApplication* magnum_app() { return &*_magnum_app; }
 
             protected:
                 dart::simulation::WorldPtr _world;
