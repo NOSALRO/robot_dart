@@ -10,8 +10,6 @@
 
 #include <dart/simulation/World.hpp>
 
-#include <Corrade/Containers/Optional.h>
-#include <Magnum/Image.h>
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -106,7 +104,11 @@ namespace robot_dart {
                 void clearLights();
                 void addLight(const gs::Light& light);
                 gs::Light& light(size_t i);
+                std::vector<gs::Light>& lights();
                 size_t numLights() const;
+
+                Magnum::SceneGraph::DrawableGroup3D& drawables() { return _drawables; }
+                Scene3D& scene() { return _scene; }
 
                 bool done() const;
 
@@ -116,10 +118,13 @@ namespace robot_dart {
 
                 virtual void render() {}
 
-                void record(bool recording) { _recording = recording; }
-                bool isRecording() { return _recording; }
+                void updateLights(const gs::Camera& camera);
+                void updateGraphics();
 
-                Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
+                void record(bool recording) { _camera->record(recording); }
+                bool isRecording() { return _camera->isRecording(); }
+
+                Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
             protected:
                 /* Magnum */
@@ -128,9 +133,8 @@ namespace robot_dart {
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
-                Corrade::Containers::Optional<Magnum::Image2D> _image;
 
-                bool _done = false, _recording = false;
+                bool _done = false;
 
                 /* DART */
                 std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
@@ -139,9 +143,6 @@ namespace robot_dart {
                 std::vector<gs::Light> _lights;
 
                 void GLCleanUp();
-
-                void updateGraphics();
-                void updateLights();
 
                 Corrade::Containers::Optional<Magnum::PixelFormat> getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer);
             };

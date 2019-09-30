@@ -1,7 +1,11 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 
+#include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
+
+#include <Corrade/Containers/Optional.h>
+#include <Magnum/Image.h>
 
 namespace robot_dart {
     namespace gui {
@@ -24,6 +28,15 @@ namespace robot_dart {
 
                     Camera& lookAt(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 
+                    void transformLights(std::vector<gs::Light>& lights) const;
+
+                    void record(bool recording) { _recording = recording; }
+                    bool isRecording() { return _recording; }
+
+                    Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
+
+                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format);
+
                 private:
                     Object3D* _yawObject;
                     Object3D* _pitchObject;
@@ -35,6 +48,9 @@ namespace robot_dart {
                     Magnum::Vector3 _up, _front;
                     Magnum::Float _aspectRatio, _nearPlane, _farPlane;
                     Magnum::Rad _fov;
+
+                    bool _recording = false;
+                    Corrade::Containers::Optional<Magnum::Image2D> _image;
                 };
             } // namespace gs
         } // namespace magnum

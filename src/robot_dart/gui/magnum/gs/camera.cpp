@@ -1,5 +1,11 @@
 #include "camera.hpp"
 
+#include <Magnum/GL/AbstractFramebuffer.h>
+#include <Magnum/GL/GL.h>
+#include <Magnum/GL/PixelFormat.h>
+#include <Magnum/ImageView.h>
+#include <Magnum/PixelFormat.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -93,6 +99,32 @@ namespace robot_dart {
                     _pitchObject->setTransformation(Magnum::Matrix4{});
 
                     return *this;
+                }
+
+                void Camera::transformLights(std::vector<gs::Light>& lights) const
+                {
+                    /* Update lights transformations */
+                    for (size_t i = 0; i < lights.size(); i++) {
+                        Magnum::Vector4 old_pos = lights[i].position();
+                        Magnum::Vector3 pos;
+                        /* Directional lights need only rotational transformation */
+                        if (lights[i].position().w() == 0.f)
+                            pos = _camera->cameraMatrix().transformVector(old_pos.xyz());
+                        /* Other light types, need full transformation */
+                        else
+                            pos = _camera->cameraMatrix().transformPoint(old_pos.xyz());
+                        lights[i].setTransformedPosition(Magnum::Vector4{pos, old_pos.w()});
+                        /* Transform spotlight direction */
+                        lights[i].setTransformedSpotDirection(_camera->cameraMatrix().transformVector(lights[i].spotDirection()));
+                    }
+                }
+
+                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
+                {
+                    _camera->draw(drawables);
+                    if (_recording) {
+                        _image = framebuffer.read(framebuffer.viewport(), {format});
+                    }
                 }
             } // namespace gs
         } // namespace magnum

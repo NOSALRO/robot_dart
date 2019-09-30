@@ -1,4 +1,4 @@
-#include "glx_application.hpp"
+#include "camera_osr.hpp"
 
 // #include <Magnum/DebugTools/Screenshot.h>
 #include <Magnum/GL/Renderbuffer.h>
@@ -8,27 +8,31 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            GLXApplication::GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title)
-                : BaseApplication(), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
+            CameraOSR::CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height)
+                : Base(nullptr), _magnum_app(app), _enabled(true), _done(false)
             {
-                /* Assume context is given externally, if not create it */
-                if (!Magnum::GL::Context::hasCurrent()) {
-                    Corrade::Utility::Debug{} << "GL::Context not provided. Creating...";
-                    if (!tryCreateContext(Configuration())) {
-                        Corrade::Utility::Error{} << "Could not create context!";
-                        return;
-                    }
-                }
-                // else
-                // Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
+                /* Camera setup */
+                _camera.reset(
+                    new gs::Camera(app->scene(), static_cast<int>(width), static_cast<int>(height)));
 
-                record(true);
+                set_render_period(world->getTimeStep());
+
+                /* Assume context is given externally, if not, we cannot have a camera */
+                if (!Magnum::GL::Context::hasCurrent()) {
+                    Corrade::Utility::Error{} << "GL::Context not provided.. Cannot use this camera!";
+                    set_recording(false);
+                    _done = true;
+                    return;
+                }
+                else
+                    set_recording(true);
 
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
                 _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
                 Magnum::GL::Renderbuffer color, depth;
                 color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
+                // color.setStorageMultisample(8, Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
                 depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
                 _format = Magnum::PixelFormat::RGBA8Unorm;
@@ -37,17 +41,9 @@ namespace robot_dart {
                     Magnum::GL::Framebuffer::ColorAttachment(0), color);
                 _framebuffer.attachRenderbuffer(
                     Magnum::GL::Framebuffer::BufferAttachment::Depth, depth);
-
-                /* Initialize DART world */
-                init(world, width, height);
             }
 
-            GLXApplication::~GLXApplication()
-            {
-                GLCleanUp();
-            }
-
-            void GLXApplication::render()
+            void CameraOSR::render()
             {
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
@@ -61,18 +57,11 @@ namespace robot_dart {
                 _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                 /* Update graphic meshes/materials and render */
-                updateGraphics();
+                _magnum_app->updateGraphics();
                 /* Update lights transformations */
-                updateLights(*_camera);
-                /* Draw with main camera */
-                _camera->draw(_drawables, _framebuffer, _format);
-
-                // if (_index % 10 == 0) {
-                //     intptr_t tt = (intptr_t)_glx_context;
-                //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(tt) + "_" + std::to_string(_index) + ".png");
-                // }
-
-                // _index++;
+                _magnum_app->updateLights(*_camera);
+                /* Draw with this camera */
+                _camera->draw(_magnum_app->drawables(), _framebuffer, _format);
             }
         } // namespace magnum
     } // namespace gui
