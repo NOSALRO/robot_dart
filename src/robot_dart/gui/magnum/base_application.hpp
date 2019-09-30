@@ -10,8 +10,6 @@
 
 #include <dart/simulation/World.hpp>
 
-#include <Corrade/Utility/Directory.h>
-
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
