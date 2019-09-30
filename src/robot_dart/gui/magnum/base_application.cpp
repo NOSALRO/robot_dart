@@ -334,6 +334,7 @@ namespace robot_dart {
             Corrade::Containers::Optional<Magnum::PixelFormat> BaseApplication::getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer)
             {
                 /* Get the implementation-specific color read format for given framebuffer */
+                /* TO-DO: This is not working as it should if more than one framebuffers are there! */
                 const Magnum::GL::PixelFormat format = framebuffer.implementationColorReadFormat();
                 const Magnum::GL::PixelType type = framebuffer.implementationColorReadType();
                 // clang-format off

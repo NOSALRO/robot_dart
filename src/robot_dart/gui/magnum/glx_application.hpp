@@ -4,6 +4,7 @@
 #include <robot_dart/gui/magnum/base_application.hpp>
 
 #include <Magnum/GL/Framebuffer.h>
+#include <Magnum/PixelFormat.h>
 
 namespace robot_dart {
     namespace gui {
@@ -17,6 +18,7 @@ namespace robot_dart {
 
             protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
+                Magnum::PixelFormat _format;
                 // size_t _index = 0;
 
                 virtual int exec() override { return 0; }
