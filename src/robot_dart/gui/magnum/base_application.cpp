@@ -9,6 +9,12 @@
 #include <Magnum/GL/Texture.h>
 #include <Magnum/Trade/PhongMaterialData.h>
 
+#include <Magnum/GL/AbstractFramebuffer.h>
+#include <Magnum/GL/GL.h>
+#include <Magnum/GL/PixelFormat.h>
+#include <Magnum/ImageView.h>
+#include <Magnum/PixelFormat.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -323,6 +329,31 @@ namespace robot_dart {
                     _color_shader->setLight(i, _lights[i]);
                     _texture_shader->setLight(i, _lights[i]);
                 }
+            }
+
+            Corrade::Containers::Optional<Magnum::PixelFormat> BaseApplication::getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer)
+            {
+                /* Get the implementation-specific color read format for given framebuffer */
+                const Magnum::GL::PixelFormat format = framebuffer.implementationColorReadFormat();
+                const Magnum::GL::PixelType type = framebuffer.implementationColorReadType();
+                // clang-format off
+                auto genericFormat = [](Magnum::GL::PixelFormat format, Magnum::GL::PixelType type) -> Corrade::Containers::Optional<Magnum::PixelFormat> {
+                    #define _c(generic, glFormat, glType, glTextureFormat)                                        \
+                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
+                            return Magnum::PixelFormat::generic;
+                    #define _n(generic, glFormat, glType)                                                         \
+                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
+                            return Magnum::PixelFormat::generic;
+                    #define _s(generic) return {};
+                    #include "pixel_format_mapping.hpp"
+                    #undef _c
+                    #undef _n
+                    #undef _s
+                    return {};
+                }(format, type);
+                // clang-format on
+
+                return genericFormat;
             }
         } // namespace magnum
     } // namespace gui

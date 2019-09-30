@@ -10,6 +10,8 @@
 
 #include <dart/simulation/World.hpp>
 
+#include <Corrade/Containers/Optional.h>
+#include <Magnum/Image.h>
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -114,6 +116,11 @@ namespace robot_dart {
 
                 virtual void render() {}
 
+                void record(bool recording) { _recording = recording; }
+                bool isRecording() { return _recording; }
+
+                Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
+
             protected:
                 /* Magnum */
                 Scene3D _scene;
@@ -121,8 +128,9 @@ namespace robot_dart {
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
+                Corrade::Containers::Optional<Magnum::Image2D> _image;
 
-                bool _done = false;
+                bool _done = false, _recording = false;
 
                 /* DART */
                 std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
@@ -134,6 +142,8 @@ namespace robot_dart {
 
                 void updateGraphics();
                 void updateLights();
+
+                Corrade::Containers::Optional<Magnum::PixelFormat> getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer);
             };
 
             template <typename T>

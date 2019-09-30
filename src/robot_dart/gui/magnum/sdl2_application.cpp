@@ -68,6 +68,12 @@ namespace robot_dart {
 
                 swapBuffers();
 
+                if (_recording) {
+                    auto format = getPixelFormat(Magnum::GL::defaultFramebuffer);
+                    if (format)
+                        _image = Magnum::GL::defaultFramebuffer.read(Magnum::GL::defaultFramebuffer.viewport(), {*format});
+                }
+
                 redraw();
             }
 
