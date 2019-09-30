@@ -127,6 +127,10 @@ void main() {
     for(int i = 0; i != LIGHT_COUNT; ++i) {
         highp vec3 lightDirection;
         highp float attenuation;
+        bool spec = any(greaterThan(lights[i].specular.rgb, vec3(0.0)));
+
+         if(!any(greaterThan(lights[i].diffuse.rgb, vec3(0.0))) && !spec)
+            continue;
 
         /* Directional light */
         if(lights[i].position.w == 0.0) {
@@ -140,7 +144,7 @@ void main() {
 
             highp float distance = length(lightDirection);
 
-            attenuation = lights[i].intensity / (lights[i].constantAttenuation + 
+            attenuation = lights[i].intensity / (lights[i].constantAttenuation +
                                                     distance * (lights[i].linearAttenuation + distance * lights[i].quadraticAttenuation));
 
             lightDirection = normalize(lightDirection);
@@ -161,12 +165,12 @@ void main() {
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
 
         /* Diffuse color */
-        highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);  
+        highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);
 
         highp vec4 specularReflection = vec4(0.0, 0.0, 0.0, 1.0);
 
         /* Specular color if needed */
-        if(intensity > 0.0) {
+        if(intensity > 0.0 && spec) {
             highp vec3 reflection = reflect(-lightDirection, normalizedTransformedNormal);
             highp float specularity = pow(max(0.0, dot(normalize(cameraDirection), reflection)), shininess + 1e-8);
             specularReflection = attenuation * lights[i].specular * finalSpecularColor * specularity;
