@@ -127,12 +127,19 @@ def build(bld):
     path = bld.path.abspath() + '/res'
 
     files = []
+    magnum_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.cpp'):
-            files.append(os.path.join(root, filename))
+            ffile = os.path.join(root, filename)
+            if 'robot_dart/gui/magnum' in ffile:
+                magnum_files.append(ffile)
+            else:
+                files.append(ffile)
 
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
+    magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
+    robot_dart_magnum_srcs = " ".join(magnum_files)
 
     libs = 'BOOST EIGEN DART'
     libs_graphics = libs + ' DART_GRAPHIC'
@@ -143,6 +150,13 @@ def build(bld):
                 uselib = libs,
                 target = 'RobotDARTSimu')
 
+    bld.program(features = 'cxx ' + bld.env['lib_type'],
+                source = robot_dart_magnum_srcs,
+                includes = './src',
+                uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                use = 'RobotDARTSimu',
+                target = 'RobotDARTMagnum')
+
     if bld.get_env()['BUILD_MAGNUM'] == True and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
         shaders_resource = corrade.corrade_add_resource(bld, name = 'shaders_resource', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
 
@@ -151,7 +165,7 @@ def build(bld):
                       source = 'src/examples/magnum.cpp ' + shaders_resource,
                       includes = './src',
                       uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
-                      use = 'RobotDARTSimu',
+                      use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['GRAPHIC'],
                       target = 'magnum')
 
