@@ -52,6 +52,21 @@ inline dart::dynamics::SkeletonPtr createCone(const std::string& name = "cone", 
     return box;
 }
 
+class MyApp : public robot_dart::gui::magnum::Sdl2Application {
+public:
+    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART") : Sdl2Application(argc, argv, world, width, height, title) {}
+
+protected:
+    void keyPressEvent(KeyEvent& event) override
+    {
+        // One can customize their key/mouse events by inheriting Sdl2Application
+        // if (event.key() == KeyEvent::Key::Right) {
+        // }
+
+        robot_dart::gui::magnum::Sdl2Application::keyPressEvent(event);
+    }
+};
+
 int main()
 {
     std::srand(std::time(NULL));
@@ -85,7 +100,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world(), 1024, 768);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(simu.world(), 1024, 768);
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
