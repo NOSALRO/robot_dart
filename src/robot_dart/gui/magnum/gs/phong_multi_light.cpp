@@ -1,4 +1,5 @@
 #include "phong_multi_light.hpp"
+#include "create_compatibility_shader.hpp"
 
 #include <Magnum/GL/Texture.h>
 

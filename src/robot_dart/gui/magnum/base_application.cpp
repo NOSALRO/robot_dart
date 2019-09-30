@@ -142,12 +142,12 @@ namespace robot_dart {
             }
 
             // BaseApplication
-            void BaseApplication::init(const dart::simulation::WorldPtr& world)
+            void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)
             {
                 /* Anything not related to GL */
                 /* Camera setup */
                 _camera.reset(
-                    new gs::Camera(_scene, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]));
+                    new gs::Camera(_scene, static_cast<int>(width), static_cast<int>(height)));
 
                 /* Create our DARTIntegration object/world */
                 GlobalData::instance()->mutex().lock(); /* Need to lock for plugin manager not being thread-safe */
