@@ -3,6 +3,8 @@
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Renderer.h>
 
+#include <Magnum/PixelFormat.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -54,6 +56,7 @@ namespace robot_dart {
 
             void Sdl2Application::drawEvent()
             {
+                Magnum::GL::defaultFramebuffer.bind();
                 Magnum::GL::defaultFramebuffer.clear(
                     Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
@@ -69,9 +72,10 @@ namespace robot_dart {
                 swapBuffers();
 
                 if (_recording) {
-                    auto format = getPixelFormat(Magnum::GL::defaultFramebuffer);
-                    if (format)
-                        _image = Magnum::GL::defaultFramebuffer.read(Magnum::GL::defaultFramebuffer.viewport(), {*format});
+                    // auto format = getPixelFormat(Magnum::GL::defaultFramebuffer);
+                    // if (format) {
+                    _image = Magnum::GL::defaultFramebuffer.read(Magnum::GL::defaultFramebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
+                    // }
                 }
 
                 redraw();

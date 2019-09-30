@@ -31,6 +31,8 @@ namespace robot_dart {
                 color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
                 depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
+                _format = Magnum::PixelFormat::RGBA8Unorm;
+
                 _framebuffer.attachRenderbuffer(
                     Magnum::GL::Framebuffer::ColorAttachment(0), color);
                 _framebuffer.attachRenderbuffer(
@@ -53,10 +55,10 @@ namespace robot_dart {
 
             void GLXApplication::render()
             {
-                /* Clear framebuffer */
-                _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
                 /* Bind the framebuffer */
                 _framebuffer.bind();
+                /* Clear framebuffer */
+                _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                 /* Update graphic meshes/materials and render */
                 updateGraphics();
@@ -65,9 +67,9 @@ namespace robot_dart {
                 _camera->camera().draw(_drawables);
 
                 if (_recording) {
-                    auto format = getPixelFormat(_framebuffer);
-                    if (format)
-                        _image = _framebuffer.read(_framebuffer.viewport(), {*format});
+                    // auto format = getPixelFormat(_framebuffer);
+                    // if (format)
+                    _image = _framebuffer.read(_framebuffer.viewport(), {_format});
                 }
 
                 // if (_index % 10 == 0) {
