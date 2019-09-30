@@ -5,12 +5,6 @@
 #include <Magnum/GL/RenderbufferFormat.h>
 #include <Magnum/GL/Renderer.h>
 
-#include <Magnum/GL/AbstractFramebuffer.h>
-#include <Magnum/GL/GL.h>
-#include <Magnum/GL/PixelFormat.h>
-#include <Magnum/ImageView.h>
-#include <Magnum/PixelFormat.h>
-
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -27,6 +21,8 @@ namespace robot_dart {
                 }
                 // else
                 // Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
+
+                _recording = true;
 
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
@@ -68,9 +64,11 @@ namespace robot_dart {
                 updateLights();
                 _camera->camera().draw(_drawables);
 
-                auto format = _getPixelFormat(_framebuffer);
-                if (format)
-                    _image = _framebuffer.read(_framebuffer.viewport(), {*format});
+                if (_recording) {
+                    auto format = getPixelFormat(_framebuffer);
+                    if (format)
+                        _image = _framebuffer.read(_framebuffer.viewport(), {*format});
+                }
 
                 // if (_index % 10 == 0) {
                 //     intptr_t tt = (intptr_t)_glx_context;
@@ -78,31 +76,6 @@ namespace robot_dart {
                 // }
 
                 // _index++;
-            }
-
-            Corrade::Containers::Optional<Magnum::PixelFormat> GLXApplication::_getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer)
-            {
-                /* Get the implementation-specific color read format for given framebuffer */
-                const Magnum::GL::PixelFormat format = framebuffer.implementationColorReadFormat();
-                const Magnum::GL::PixelType type = framebuffer.implementationColorReadType();
-                // clang-format off
-                auto genericFormat = [](Magnum::GL::PixelFormat format, Magnum::GL::PixelType type) -> Corrade::Containers::Optional<Magnum::PixelFormat> {
-                    #define _c(generic, glFormat, glType, glTextureFormat)                                        \
-                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
-                            return Magnum::PixelFormat::generic;
-                    #define _n(generic, glFormat, glType)                                                         \
-                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
-                            return Magnum::PixelFormat::generic;
-                    #define _s(generic) return {};
-                    #include "pixel_format_mapping.hpp"
-                    #undef _c
-                    #undef _n
-                    #undef _s
-                    return {};
-                }(format, type);
-                // clang-format on
-
-                return genericFormat;
             }
         } // namespace magnum
     } // namespace gui

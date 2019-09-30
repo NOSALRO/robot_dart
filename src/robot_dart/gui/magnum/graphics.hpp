@@ -75,6 +75,16 @@ namespace robot_dart {
                     return _magnum_app->light(i);
                 }
 
+                void set_recording(bool recording) { _magnum_app->record(recording); }
+                bool recording() { return _magnum_app->isRecording(); }
+
+                Magnum::Image2D* image()
+                {
+                    if (_magnum_app->image())
+                        return &(*_magnum_app->image());
+                    return nullptr;
+                }
+
             protected:
                 dart::simulation::WorldPtr _world;
                 size_t _render_period, _width, _height, _frame_counter;
