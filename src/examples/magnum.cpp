@@ -4,9 +4,9 @@
 #include <robot_dart/control/hexa_control.hpp>
 #include <robot_dart/control/pd_control.hpp>
 
-#ifdef GRAPHIC
+#include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
-#endif
+#include <robot_dart/gui/magnum/gs/helper.hpp>
 
 #include <dart/collision/bullet/BulletCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
@@ -69,6 +69,7 @@ protected:
 
 int main()
 {
+    CORRADE_RESOURCE_INITIALIZE(RobotDARTShaders);
     std::srand(std::time(NULL));
     auto global_robot = std::make_shared<robot_dart::Robot>("res/models/pexod.urdf");
 
@@ -99,16 +100,40 @@ int main()
     // auto skel_robot = robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose);
 
     robot_dart::RobotDARTSimu simu(0.001);
-#ifdef GRAPHIC
+
+    // Magnum graphics
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(simu.world(), 1024, 768);
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
-#endif
+
+    // record images
+    graphics->set_recording(true);
+
+    // Add camera
+    auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(simu.world(), graphics->magnum_app(), 256, 256);
+    camera->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+    simu.add_camera(camera); // cameras are recording by default
+
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::BulletCollisionDetector::create());
     simu.add_floor();
     simu.add_robot(g_robot);
     simu.add_robot(skel_robot);
     simu.run(6);
+
+    // #ifdef GRAPHIC
+    auto gimage = graphics->image();
+    auto cimage = camera->image();
+    // if (image) {
+    //     // std::cout << "There is an image" << std::endl;
+    //     // Corrade::Utility::Debug{} << image->size();
+    // auto pixels = cimage->pixels<Magnum::Color4ub>();
+    // Corrade::Utility::Debug{} << pixels.size();
+    //     // Corrade::Utility::Debug{} << pixels.size();
+    // auto rgb = robot_dart::gui::magnum::gs::rgb_from_image(cimage);
+    // std::cout << static_cast<int>(rgb[0][0][0]) << std::endl;
+    // }
+    // #endif
+    robot_dart::gui::magnum::gs::save_image("test.png", robot_dart::gui::magnum::gs::rgb_from_image(cimage));
 
     std::cout << g_robot->skeleton()->getPositions().head(6).tail(3).transpose() << std::endl;
 
