@@ -273,7 +273,7 @@ def build(bld):
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.hpp'):
-            if filename in ["pixel_format_mapping.hpp", "create_compatibility_shader.hpp"]:
+            if filename in ["stb_image_write.h", "create_compatibility_shader.hpp"]:
                 continue
             install_files.append(os.path.join(root, filename))
     install_files = [f[len(bld.path.abspath())+1:] for f in install_files]
