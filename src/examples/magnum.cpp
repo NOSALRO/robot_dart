@@ -4,6 +4,7 @@
 #include <robot_dart/control/hexa_control.hpp>
 #include <robot_dart/control/pd_control.hpp>
 
+#include <robot_dart/gui/helper.hpp>
 #include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
 #include <robot_dart/gui/magnum/gs/helper.hpp>
@@ -120,10 +121,14 @@ int main()
     simu.add_robot(skel_robot);
     simu.run(6);
 
+    // a pointer to the last image taken cam be found
     auto gimage = graphics->image();
     auto cimage = camera->image();
-    robot_dart::gui::magnum::gs::save_image("camera-small.png", robot_dart::gui::magnum::gs::rgb_from_image(cimage));
-    robot_dart::gui::magnum::gs::save_image("camera-main.png", robot_dart::gui::magnum::gs::rgb_from_image(gimage));
+
+    // we can also get a nested std::vector (w*h*3) from the images
+    // and save them to png
+    robot_dart::gui::save_png_image("camera-small.png", robot_dart::gui::magnum::gs::rgb_from_image(cimage));
+    robot_dart::gui::save_png_image("camera-main.png", robot_dart::gui::magnum::gs::rgb_from_image(gimage));
 
     std::cout << g_robot->skeleton()->getPositions().head(6).tail(3).transpose() << std::endl;
 
