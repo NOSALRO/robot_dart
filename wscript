@@ -159,14 +159,26 @@ def build(bld):
                 use = 'RobotDARTSimu',
                 target = 'RobotDARTMagnum')
 
-    if bld.get_env()['BUILD_MAGNUM'] == True and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+    if bld.get_env()['BUILD_MAGNUM'] == True:
         bld.program(features = 'cxx',
                       install_path = None,
                       source = 'src/examples/magnum.cpp',
                       includes = './src',
                       uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['RESPATH="' + path + '"'],
                       target = 'magnum')
+
+        bld.env.LIB_PTHREAD = ['pthread']
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/magnum_contexts.cpp',
+                      includes = './src',
+                      uselib = 'PTHREAD ' + magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['RESPATH="' + path + '"'],
+                      target = 'magnum_contexts')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
