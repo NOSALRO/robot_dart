@@ -2,11 +2,6 @@
 
 #include <Corrade/Containers/StridedArrayView.h>
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
-
-#include <iostream>
-
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -33,28 +28,6 @@ namespace robot_dart {
                     }
 
                     return data;
-                }
-
-                void save_image(const std::string& filename, const std::vector<std::vector<std::vector<uint8_t>>>& rgb)
-                {
-                    size_t width = rgb.size();
-                    size_t height = rgb[0].size();
-                    size_t p = 3; //rgb[0][0].size();
-
-                    // TO-DO: Make this more performant
-                    size_t len = width * height * p;
-                    std::vector<uint8_t> data;
-                    data.resize(len);
-                    for (size_t w = 0; w < width; w++) {
-                        for (size_t h = 0; h < height; h++) {
-                            for (size_t i = 0; i < p; i++) {
-                                int id = w + h * width;
-                                data[id * p + i] = rgb[w][h][i];
-                            }
-                        }
-                    }
-
-                    stbi_write_png(filename.c_str(), width, height, p, data.data(), width * p);
                 }
             } // namespace gs
         } // namespace magnum

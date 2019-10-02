@@ -1,5 +1,6 @@
 #ifndef ROBOT_DART_GUI_OSG_CAMERA_OSR_HPP
 #define ROBOT_DART_GUI_OSG_CAMERA_OSR_HPP
+
 #include <unistd.h>
 
 #include <robot_dart/gui/base.hpp>
@@ -77,7 +78,7 @@ namespace robot_dart {
                             _osg_world_node->setShadowTechnique(dart::gui::osg::WorldNode::createDefaultShadowTechnique(_osg_viewer));
                         set_render_period(world->getTimeStep());
                         _osg_viewer->addWorldNode(_osg_world_node);
-                        _osg_viewer->switchHeadlights(true);
+                        // _osg_viewer->switchHeadlights(true);
                         _osg_viewer->getCamera()->setFinalDrawCallback(new GetScreen<CameraOSR>(this, _osg_viewer->getCamera()));
                     }
                     else {

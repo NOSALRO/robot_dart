@@ -5,8 +5,10 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
+#include <robot_dart/gui/helper.hpp>
 #include <robot_dart/gui/osg/camera_osr.hpp>
 #include <robot_dart/gui/osg/graphics.hpp>
+#include <robot_dart/gui/osg/helper.hpp>
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
@@ -72,17 +74,21 @@ int main()
     cam2->set_enable(false);
 
     // The usual graphics can be also added
-    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
+    auto graphics = std::make_shared<robot_dart::gui::osg::Graphics>(simu.world());
+    simu.set_graphics(graphics);
+    graphics->look_at({0.0, 1.75, 0.45}, {0.0, 0.0, 0.45});
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
     simu.run(1.);
 
+#ifdef GRAPHIC
     // a pointer to the last image taken cam be found here:
     auto image_cam1 = cam1->image();
     std::cout << "Cam1: " << image_cam1->s() << "x" << image_cam1->t() << std::endl;
-
-#ifdef GRAPHIC
+    // we can also get a nested std::vector (w*h*3) from the images
+    // and save them to png
+    robot_dart::gui::save_png_image("cam1-save.png", robot_dart::gui::osg::rgb_from_image(image_cam1));
     // we can take a single shot with a camera:
     cam2->take_single_shot();
 #endif
