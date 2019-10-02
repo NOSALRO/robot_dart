@@ -326,32 +326,6 @@ namespace robot_dart {
                 _dartObjs.clear();
                 _lights.clear();
             }
-
-            Corrade::Containers::Optional<Magnum::PixelFormat> BaseApplication::getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer)
-            {
-                /* Get the implementation-specific color read format for given framebuffer */
-                /* TO-DO: This is not working as it should if more than one framebuffers are there! */
-                const Magnum::GL::PixelFormat format = framebuffer.implementationColorReadFormat();
-                const Magnum::GL::PixelType type = framebuffer.implementationColorReadType();
-                // clang-format off
-                auto genericFormat = [](Magnum::GL::PixelFormat format, Magnum::GL::PixelType type) -> Corrade::Containers::Optional<Magnum::PixelFormat> {
-                    #define _c(generic, glFormat, glType, glTextureFormat)                                        \
-                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
-                            return Magnum::PixelFormat::generic;
-                    #define _n(generic, glFormat, glType)                                                         \
-                        if (format == Magnum::GL::PixelFormat::glFormat && type == Magnum::GL::PixelType::glType) \
-                            return Magnum::PixelFormat::generic;
-                    #define _s(generic) return {};
-                    #include "pixel_format_mapping.hpp"
-                    #undef _c
-                    #undef _n
-                    #undef _s
-                    return {};
-                }(format, type);
-                // clang-format on
-
-                return genericFormat;
-            }
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart

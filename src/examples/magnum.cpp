@@ -120,20 +120,10 @@ int main()
     simu.add_robot(skel_robot);
     simu.run(6);
 
-    // #ifdef GRAPHIC
     auto gimage = graphics->image();
     auto cimage = camera->image();
-    // if (image) {
-    //     // std::cout << "There is an image" << std::endl;
-    //     // Corrade::Utility::Debug{} << image->size();
-    // auto pixels = cimage->pixels<Magnum::Color4ub>();
-    // Corrade::Utility::Debug{} << pixels.size();
-    //     // Corrade::Utility::Debug{} << pixels.size();
-    // auto rgb = robot_dart::gui::magnum::gs::rgb_from_image(cimage);
-    // std::cout << static_cast<int>(rgb[0][0][0]) << std::endl;
-    // }
-    // #endif
-    robot_dart::gui::magnum::gs::save_image("test.png", robot_dart::gui::magnum::gs::rgb_from_image(cimage));
+    robot_dart::gui::magnum::gs::save_image("camera-small.png", robot_dart::gui::magnum::gs::rgb_from_image(cimage));
+    robot_dart::gui::magnum::gs::save_image("camera-main.png", robot_dart::gui::magnum::gs::rgb_from_image(gimage));
 
     std::cout << g_robot->skeleton()->getPositions().head(6).tail(3).transpose() << std::endl;
 

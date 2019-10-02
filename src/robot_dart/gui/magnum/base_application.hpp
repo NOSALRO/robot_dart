@@ -143,8 +143,6 @@ namespace robot_dart {
                 std::vector<gs::Light> _lights;
 
                 void GLCleanUp();
-
-                Corrade::Containers::Optional<Magnum::PixelFormat> getPixelFormat(Magnum::GL::AbstractFramebuffer& framebuffer);
             };
 
             template <typename T>
