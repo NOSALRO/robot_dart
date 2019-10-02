@@ -22,8 +22,6 @@ namespace robot_dart {
                 // else
                 // Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
 
-                record(true);
-
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
                 _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
@@ -40,6 +38,8 @@ namespace robot_dart {
 
                 /* Initialize DART world */
                 init(world, width, height);
+
+                record(true);
             }
 
             GLXApplication::~GLXApplication()
