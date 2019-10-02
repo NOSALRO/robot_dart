@@ -22,6 +22,7 @@ namespace robot_dart {
                     Magnum::Vector3 camera{0., 2., 1.};
                     _front = (center - camera).normalized();
                     _up = Magnum::Vector3::zAxis();
+                    _right = Magnum::Math::cross(_front, _up).normalized();
 
                     _cameraObject = new Object3D{_pitchObject};
                     _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, center, _up));
@@ -63,8 +64,8 @@ namespace robot_dart {
                 {
                     Magnum::Vector2 s = Magnum::Vector2{shift} * _speed;
 
-                    _yawObject->rotate(Magnum::Rad(s.x()), Magnum::Vector3::zAxis());
-                    _pitchObject->rotate(Magnum::Rad(s.y()), Magnum::Vector3::xAxis());
+                    _yawObject->rotate(Magnum::Rad(s.x()), _up);
+                    _pitchObject->rotate(Magnum::Rad(s.y()), _right);
 
                     return *this;
                 }
@@ -78,7 +79,7 @@ namespace robot_dart {
 
                 Camera& Camera::strafe(Magnum::Float speed)
                 {
-                    _cameraObject->translate(speed * Magnum::Math::cross(_front, _up).normalized());
+                    _cameraObject->translate(speed * _right);
 
                     return *this;
                 }
@@ -93,6 +94,7 @@ namespace robot_dart {
                 {
                     _front = (center - camera).normalized();
                     _up = up;
+                    _right = Magnum::Math::cross(_front, _up).normalized();
 
                     _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, center, up));
                     _yawObject->setTransformation(Magnum::Matrix4{});

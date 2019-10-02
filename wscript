@@ -150,23 +150,22 @@ def build(bld):
                 uselib = libs,
                 target = 'RobotDARTSimu')
 
+    shaders_resource = corrade.corrade_add_resource(bld, name = 'RobotDARTShaders', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
+
     bld.program(features = 'cxx ' + bld.env['lib_type'],
-                source = robot_dart_magnum_srcs,
+                source = robot_dart_magnum_srcs + ' ' + shaders_resource,
                 includes = './src',
                 uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                 use = 'RobotDARTSimu',
                 target = 'RobotDARTMagnum')
 
     if bld.get_env()['BUILD_MAGNUM'] == True and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
-        shaders_resource = corrade.corrade_add_resource(bld, name = 'shaders_resource', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
-
         bld.program(features = 'cxx',
                       install_path = None,
-                      source = 'src/examples/magnum.cpp ' + shaders_resource,
+                      source = 'src/examples/magnum.cpp',
                       includes = './src',
                       uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
                       target = 'magnum')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
@@ -286,5 +285,7 @@ def build(bld):
         bld.install_files('${PREFIX}/include/' + f[4:end_index], f)
     if bld.env['lib_type'] == 'cxxstlib':
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.a')
     else:
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.so')

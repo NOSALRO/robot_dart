@@ -45,7 +45,7 @@ namespace robot_dart {
                     Camera3D* _camera;
                     Magnum::Vector2 _speed{-0.01f, 0.01f};
 
-                    Magnum::Vector3 _up, _front;
+                    Magnum::Vector3 _up, _front, _right;
                     Magnum::Float _aspectRatio, _nearPlane, _farPlane;
                     Magnum::Rad _fov;
 

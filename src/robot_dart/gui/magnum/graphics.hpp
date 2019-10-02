@@ -4,6 +4,9 @@
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/gui/magnum/sdl2_application.hpp>
 
+// We need this for CORRADE_RESOURCE_INITIALIZE
+#include <Corrade/Utility/Resource.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {

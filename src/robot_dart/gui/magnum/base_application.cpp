@@ -130,10 +130,10 @@ namespace robot_dart {
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
                     bool isColor = !_materials[i].hasDiffuseTexture();
                     if (isColor) {
-                        _color_shader.get().setMaterial(_materials[i]).setTransformationMatrix(transformationMatrix * scalingMatrix).setNormalMatrix((transformationMatrix * scalingMatrix).rotation()).setProjectionMatrix(camera.projectionMatrix());
+                        _color_shader.get().setMaterial(_materials[i]).setTransformationMatrix(transformationMatrix * scalingMatrix).setNormalMatrix((transformationMatrix * scalingMatrix).rotationScaling()).setProjectionMatrix(camera.projectionMatrix());
                     }
                     else {
-                        _texture_shader.get().setMaterial(_materials[i]).setTransformationMatrix(transformationMatrix * scalingMatrix).setNormalMatrix((transformationMatrix * scalingMatrix).rotation()).setProjectionMatrix(camera.projectionMatrix());
+                        _texture_shader.get().setMaterial(_materials[i]).setTransformationMatrix(transformationMatrix * scalingMatrix).setNormalMatrix((transformationMatrix * scalingMatrix).rotationScaling()).setProjectionMatrix(camera.projectionMatrix());
                     }
 
                     if (_isSoftBody[i])
