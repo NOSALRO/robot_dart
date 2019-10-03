@@ -28,7 +28,7 @@ namespace robot_dart {
                     _cameraObject->setTransformation(Magnum::Matrix4::lookAt(camera, center, _up));
 
                     _fov = Magnum::Deg(60.0f);
-                    _aspectRatio = 4.0f / 3.0f;
+                    _aspectRatio = width / static_cast<Magnum::Float>(height);
                     _nearPlane = 0.01f;
                     _farPlane = 200.f;
 
