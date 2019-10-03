@@ -3,6 +3,7 @@
 
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/gui/magnum/base_application.hpp>
+#include <robot_dart/gui/magnum/gs/helper.hpp>
 
 #include <Magnum/GL/Framebuffer.h>
 #include <Magnum/PixelFormat.h>
@@ -70,11 +71,19 @@ namespace robot_dart {
                 void set_recording(bool recording) { _camera->record(recording); }
                 bool recording() { return _camera->isRecording(); }
 
-                Magnum::Image2D* image()
+                Magnum::Image2D* magnum_image()
                 {
                     if (_camera->image())
                         return &(*_camera->image());
                     return nullptr;
+                }
+
+                Image image() override
+                {
+                    auto image = magnum_image();
+                    if (image)
+                        return gs::rgb_from_image(image);
+                    return Image();
                 }
 
             protected:

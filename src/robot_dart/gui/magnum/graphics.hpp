@@ -2,10 +2,16 @@
 #define ROBOT_DART_GUI_MAGNUM_GRAPHICS_HPP
 
 #include <robot_dart/gui/base.hpp>
+#include <robot_dart/gui/magnum/gs/helper.hpp>
 #include <robot_dart/gui/magnum/sdl2_application.hpp>
 
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
+
+static void robot_dart_initialize_magnum_resources()
+{
+    CORRADE_RESOURCE_INITIALIZE(RobotDARTShaders);
+}
 
 namespace robot_dart {
     namespace gui {
@@ -16,6 +22,8 @@ namespace robot_dart {
                 Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, const std::string& title = "DART")
                     : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
                 {
+                    Corrade::Utility::Debug magnum_silence_output{nullptr};
+                    robot_dart_initialize_magnum_resources();
                     _magnum_app.reset(make_application<T>(world, width, height, title));
                     set_render_period(world->getTimeStep());
                 }
@@ -86,11 +94,19 @@ namespace robot_dart {
                 void set_recording(bool recording) { _magnum_app->record(recording); }
                 bool recording() { return _magnum_app->isRecording(); }
 
-                Magnum::Image2D* image()
+                Magnum::Image2D* magnum_image()
                 {
                     if (_magnum_app->image())
                         return &(*_magnum_app->image());
                     return nullptr;
+                }
+
+                Image image() override
+                {
+                    auto image = magnum_image();
+                    if (image)
+                        return gs::rgb_from_image(image);
+                    return Image();
                 }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }

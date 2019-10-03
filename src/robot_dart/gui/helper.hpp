@@ -6,7 +6,8 @@
 
 namespace robot_dart {
     namespace gui {
-        void save_png_image(const std::string& filename, const std::vector<std::vector<std::vector<uint8_t>>>& rgb);
+        using Image = std::vector<std::vector<std::vector<uint8_t>>>;
+        void save_png_image(const std::string& filename, const Image& rgb);
     } // namespace gui
 } // namespace robot_dart
 
