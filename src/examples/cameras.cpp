@@ -5,7 +5,6 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/gui/helper.hpp>
 #include <robot_dart/gui/osg/camera_osr.hpp>
 #include <robot_dart/gui/osg/graphics.hpp>
 #include <robot_dart/gui/osg/helper.hpp>
@@ -83,12 +82,10 @@ int main()
     simu.run(1.);
 
 #ifdef GRAPHIC
-    // a pointer to the last image taken cam be found here:
+    // a nested std::vector (w*h*3) of the last image taken can be retrieved
     auto image_cam1 = cam1->image();
-    std::cout << "Cam1: " << image_cam1->s() << "x" << image_cam1->t() << std::endl;
-    // we can also get a nested std::vector (w*h*3) from the images
-    // and save them to png
-    robot_dart::gui::save_png_image("cam1-save.png", robot_dart::gui::osg::rgb_from_image(image_cam1));
+    // we can also save it to png
+    robot_dart::gui::save_png_image("cam1-save.png", image_cam1);
     // we can take a single shot with a camera:
     cam2->take_single_shot();
 #endif

@@ -2,6 +2,7 @@
 #define ROBOT_DART_GUI_MAGNUM_BASE_APPLICATION_HPP
 
 #include <mutex>
+#include <unistd.h>
 #include <unordered_map>
 
 #include <robot_dart/gui/magnum/gs/camera.hpp>
@@ -16,14 +17,23 @@
 
 #include <Magnum/DartIntegration/World.h>
 
-#define get_glx_context(name)                                                     \
+#define get_glx_context_with_sleep(name, ms_sleep)                                \
     /* Create/Get GLContext */                                                    \
+    Corrade::Utility::Debug name##_magnum_silence_output{nullptr};                \
     Magnum::Platform::WindowlessGLContext* name = nullptr;                        \
-    while (name == nullptr)                                                       \
+    while (name == nullptr) {                                                     \
         name = robot_dart::gui::magnum::GlobalData::instance()->get_gl_context(); \
-    while (!name->makeCurrent()) {}                                               \
+        /* Sleep for some ms */                                                   \
+        usleep(ms_sleep * 1000);                                                  \
+    }                                                                             \
+    while (!name->makeCurrent()) {                                                \
+        /* Sleep for some ms */                                                   \
+        usleep(ms_sleep * 1000);                                                  \
+    }                                                                             \
                                                                                   \
     Magnum::Platform::GLContext name##_magnum_context;
+
+#define get_glx_context(name) get_glx_context_with_sleep(name, 0)
 
 #define release_glx_context(name) robot_dart::gui::magnum::GlobalData::instance()->free_gl_context(name);
 

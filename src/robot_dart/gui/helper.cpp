@@ -5,7 +5,7 @@
 
 namespace robot_dart {
     namespace gui {
-        void save_png_image(const std::string& filename, const std::vector<std::vector<std::vector<uint8_t>>>& rgb)
+        void save_png_image(const std::string& filename, const Image& rgb)
         {
             auto ends_with = [](const std::string& value, const std::string& ending) {
                 if (ending.size() > value.size())

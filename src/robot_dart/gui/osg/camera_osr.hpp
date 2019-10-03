@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include <robot_dart/gui/base.hpp>
+#include <robot_dart/gui/osg/helper.hpp>
 #include <robot_dart/gui/osg/pbuffer_manager.hpp>
 #include <robot_dart/utils.hpp>
 
@@ -32,11 +33,11 @@ namespace robot_dart {
                     width = vp->width();
                     height = vp->height();
 
-                    _viewer->image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
+                    _viewer->osg_image()->readPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE);
 
                     if (_viewer->recording()) {
                         if (!_viewer->filename().empty()) {
-                            bool saved = ::osgDB::writeImageFile(*_viewer->image(), _viewer->filename());
+                            bool saved = ::osgDB::writeImageFile(*_viewer->osg_image(), _viewer->filename());
                             ROBOT_DART_WARNING(!saved, "GetScreen unable to save image to file '" + _viewer->filename() + "'");
                         }
                     }
@@ -174,7 +175,14 @@ namespace robot_dart {
                 bool recording() { return _recording; }
                 bool valid() { return _buffer_valid; }
 
-                ::osg::ref_ptr<::osg::Image> image() { return _image; }
+                ::osg::ref_ptr<::osg::Image> osg_image() { return _image; }
+
+                Image image() override
+                {
+                    if (_image)
+                        return rgb_from_image(_image);
+                    return Image();
+                }
 
             protected:
                 Eigen::Vector3d _look_at;
