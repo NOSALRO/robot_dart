@@ -50,11 +50,20 @@ int main()
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(simu.world(), graphics->magnum_app(), 256, 256);
-    camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
-    simu.add_camera(camera); // cameras are recording by default
+    // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
+    Eigen::Isometry3d tf;
+    // tf.setIdentity();
+    tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
+    tf.translation() = Eigen::Vector3d(0., 0., 0.1);
+    camera->attach_to("iiwa_link_ee", tf); // cameras are looking towards -z by default
 
     simu.add_floor();
     simu.add_robot(global_robot);
+    Eigen::Vector6d pose;
+    pose << 0., 0., 0., 1.5, 0., 0.1;
+    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    simu.add_camera(camera); // cameras are recording by default
+
     simu.run(6);
 
     // a nested std::vector (w*h*3) of the last image taken can be retrieved

@@ -130,6 +130,7 @@ namespace robot_dart {
 
                 void updateLights(const gs::Camera& camera);
                 void updateGraphics();
+                bool attachCamera(gs::Camera& camera, const std::string& name);
 
                 void record(bool recording) { _camera->record(recording); }
                 bool isRecording() { return _camera->isRecording(); }
