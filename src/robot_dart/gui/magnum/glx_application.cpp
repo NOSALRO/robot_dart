@@ -49,6 +49,11 @@ namespace robot_dart {
 
             void GLXApplication::render()
             {
+                /* Update graphic meshes/materials and render */
+                updateGraphics();
+                /* Update lights transformations */
+                updateLights(*_camera);
+
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
 
@@ -60,10 +65,6 @@ namespace robot_dart {
                 /* Clear framebuffer */
                 _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
-                /* Update graphic meshes/materials and render */
-                updateGraphics();
-                /* Update lights transformations */
-                updateLights(*_camera);
                 /* Draw with main camera */
                 _camera->draw(_drawables, _framebuffer, _format);
 

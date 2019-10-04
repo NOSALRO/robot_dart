@@ -86,13 +86,19 @@ uniform lowp vec4 specularColor
     #endif
     ;
 
+#ifdef EXPLICIT_TEXTURE_LAYER
+layout(binding = 3)
+#endif
+uniform lowp sampler2D shadowTextures[LIGHT_COUNT];
+
 #ifdef EXPLICIT_UNIFORM_LOCATION
-layout(location = 7)
+layout(location = 8)
 #endif
 uniform lightSource lights[LIGHT_COUNT];
 
 in mediump vec3 transformedNormal;
 in highp vec3 cameraDirection;
+in highp vec4 lightSpacePositions[LIGHT_COUNT];
 
 #if defined(AMBIENT_TEXTURE) || defined(DIFFUSE_TEXTURE) || defined(SPECULAR_TEXTURE)
 in mediump vec2 interpolatedTextureCoords;
@@ -101,6 +107,27 @@ in mediump vec2 interpolatedTextureCoords;
 #ifdef NEW_GLSL
 out lowp vec4 color;
 #endif
+
+float ShadowCalculation(int index, float bias)
+{
+    vec4 fragPosLightSpace = lightSpacePositions[index];
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(shadowTextures[index], projCoords.xy).r;
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    // return 1-closestDepth;
+    // if(closestDepth < 1.0)
+    //     return 0.;
+    // else return 1.;
+    // check whether current frag pos is in shadow
+    float shadow = (currentDepth-bias) > closestDepth  ? 0.9 : 0.;
+
+    return shadow;
+}
 
 void main() {
     lowp const vec4 finalAmbientColor =
@@ -163,6 +190,8 @@ void main() {
         }
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
+        float bias = max(0.05 * (1.0 - intensity), 0.005);
+        float shadow = ShadowCalculation(i, bias);
 
         /* Diffuse color */
         highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);
@@ -176,6 +205,6 @@ void main() {
             specularReflection = attenuation * lights[i].specular * finalSpecularColor * specularity;
         }
 
-        color += diffuseReflection + specularReflection;
+        color += (diffuseReflection + specularReflection) * (1. - shadow);
     }
 }

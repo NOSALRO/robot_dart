@@ -3,6 +3,8 @@
 
 #include <robot_dart/gui/magnum/gs/material.hpp>
 
+#include <Magnum/Math/Matrix4.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -37,6 +39,8 @@ namespace robot_dart {
                     Magnum::Vector4& attenuation();
                     Magnum::Vector4 attenuation() const;
 
+                    Magnum::Matrix4 shadowMatrix() const;
+
                     Light& setPosition(const Magnum::Vector4& position);
                     Light& setTransformedPosition(const Magnum::Vector4& transformedPosition);
 
@@ -48,6 +52,8 @@ namespace robot_dart {
                     Light& setSpotCutOff(Magnum::Float spotCutOff);
 
                     Light& setAttenuation(const Magnum::Vector4& attenuation);
+
+                    Light& setShadowMatrix(const Magnum::Matrix4& shadowTransform);
 
                 protected:
                     // Position for point-lights and spot-lights
@@ -66,6 +72,9 @@ namespace robot_dart {
                     //
                     // (constant,linear,quadratic,intensity)
                     Magnum::Vector4 _attenuation;
+
+                    // Shadow-Matrix
+                    Magnum::Matrix4 _shadowTransform{};
                 };
 
                 // Helpers for creating lights
