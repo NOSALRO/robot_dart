@@ -26,6 +26,10 @@ namespace robot_dart {
                     if (!_enabled)
                         return;
 
+                    if (_attaching && !_attached) {
+                        attach_to(_attach_to, _attached_tf);
+                    }
+
                     // process next frame
                     if (_frame_counter % _render_period == 0)
                         render();
@@ -86,6 +90,40 @@ namespace robot_dart {
                     return Image();
                 }
 
+                void attach_to(const std::string& name, const Eigen::Isometry3d& tf)
+                {
+                    _attach_to = name;
+                    _attaching = true;
+                    _attached = false;
+                    _attached_tf = tf;
+
+                    _attached = _magnum_app->attachCamera(*_camera, name);
+                    if (_attached) {
+                        _attaching = false;
+
+                        Eigen::Quaterniond quat(tf.linear());
+                        Eigen::Vector3d axis(quat.x(), quat.y(), quat.z());
+                        double angle = 2. * std::acos(quat.w());
+                        if (std::abs(angle) > 1e-5) {
+                            axis = axis.array() / std::sqrt(1 - quat.w() * quat.w());
+                            axis.normalize();
+                        }
+                        else
+                            axis(0) = 1.;
+
+                        Eigen::Vector3d T = tf.translation();
+
+                        /* Convert it to axis-angle representation */
+                        Magnum::Math::Vector3<Magnum::Float> t(T[0], T[1], T[2]);
+                        Magnum::Math::Vector3<Magnum::Float> u(axis(0), axis(1), axis(2));
+                        Magnum::Rad theta(angle);
+
+                        /* Pass it to Magnum */
+                        _camera->cameraObject().setTransformation({});
+                        _camera->cameraObject().rotate(theta, u).translate(t);
+                    }
+                }
+
             protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;
@@ -93,6 +131,9 @@ namespace robot_dart {
                 BaseApplication* _magnum_app;
                 size_t _render_period, _width, _height, _frame_counter;
                 bool _enabled, _done;
+                bool _attaching = false, _attached = false;
+                std::string _attach_to;
+                Eigen::Isometry3d _attached_tf;
 
                 std::unique_ptr<gs::Camera> _camera;
             };

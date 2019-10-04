@@ -15,6 +15,8 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
+#include <iostream>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -311,6 +313,22 @@ namespace robot_dart {
                 }
 
                 _dartWorld->clearUpdatedShapeObjects();
+            }
+
+            bool BaseApplication::attachCamera(gs::Camera& camera, const std::string& name)
+            {
+                for (Magnum::DartIntegration::Object& object : _dartWorld->objects()) {
+                    if (object.bodyNode() && object.bodyNode()->getName() == name) {
+                        camera.cameraObject().setParent(static_cast<Object3D*>(&object.object()));
+                        return true;
+                    }
+                    if (object.shapeNode() && object.shapeNode()->getName() == name) {
+                        camera.cameraObject().setParent(static_cast<Object3D*>(&object.object()));
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
             void BaseApplication::GLCleanUp()

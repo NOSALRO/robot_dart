@@ -9,7 +9,7 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             CameraOSR::CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height)
-                : Base(nullptr), _magnum_app(app), _enabled(true), _done(false)
+                : Base(), _magnum_app(app), _enabled(true), _done(false)
             {
                 /* Camera setup */
                 _camera.reset(
