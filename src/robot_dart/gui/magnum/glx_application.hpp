@@ -3,7 +3,6 @@
 
 #include <robot_dart/gui/magnum/base_application.hpp>
 
-#include <Magnum/GL/Framebuffer.h>
 #include <Magnum/PixelFormat.h>
 
 namespace robot_dart {

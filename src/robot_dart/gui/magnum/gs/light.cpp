@@ -47,6 +47,8 @@ namespace robot_dart {
                 Magnum::Vector4& Light::attenuation() { return _attenuation; }
                 Magnum::Vector4 Light::attenuation() const { return _attenuation; }
 
+                Magnum::Matrix4 Light::shadowMatrix() const { return _shadowTransform; }
+
                 Light& Light::setPosition(const Magnum::Vector4& position)
                 {
                     _position = position;
@@ -94,6 +96,12 @@ namespace robot_dart {
                 Light& Light::setAttenuation(const Magnum::Vector4& attenuation)
                 {
                     _attenuation = attenuation;
+                    return *this;
+                }
+
+                Light& Light::setShadowMatrix(const Magnum::Matrix4& shadowTransform)
+                {
+                    _shadowTransform = shadowTransform;
                     return *this;
                 }
             } // namespace gs

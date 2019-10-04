@@ -7,10 +7,12 @@
 
 #include <robot_dart/gui/magnum/gs/camera.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
+#include <robot_dart/gui/magnum/gs/shadow_map.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
 #include <dart/simulation/World.hpp>
 
+#include <Magnum/GL/Framebuffer.h>
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -104,6 +106,30 @@ namespace robot_dart {
                 std::vector<bool> _isSoftBody;
             };
 
+            class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit ShadowedObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::ShadowMap> shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::ShadowMap> _shader;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
+            struct ShadowData {
+                Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
+                Magnum::GL::Texture2D* shadowTexture;
+            };
+
             class BaseApplication {
             public:
                 BaseApplication() {}
@@ -130,6 +156,7 @@ namespace robot_dart {
 
                 void updateLights(const gs::Camera& camera);
                 void updateGraphics();
+                void renderShadows();
                 bool attachCamera(gs::Camera& camera, const std::string& name);
 
                 void record(bool recording) { _camera->record(recording); }
@@ -140,7 +167,7 @@ namespace robot_dart {
             protected:
                 /* Magnum */
                 Scene3D _scene;
-                Magnum::SceneGraph::DrawableGroup3D _drawables;
+                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables;
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
@@ -152,6 +179,13 @@ namespace robot_dart {
                 std::unordered_map<Magnum::DartIntegration::Object*, DrawableObject*> _drawableObjects;
                 std::vector<Object3D*> _dartObjs;
                 std::vector<gs::Light> _lights;
+
+                /* Shadows */
+                std::unique_ptr<gs::ShadowMap> _shadow_shader;
+                std::vector<ShadowData> _shadowData;
+                int _shadowMapSize = 1024;
+                std::unique_ptr<Camera3D> _shadowCamera;
+                Object3D* _shadowCameraObject;
 
                 void GLCleanUp();
             };

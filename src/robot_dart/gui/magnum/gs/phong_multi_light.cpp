@@ -24,15 +24,19 @@ namespace robot_dart {
                     Magnum::GL::Shader frag = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
-                    std::string definesFrag = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
+                    std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
+                    // TO-DO: Fix this
+                    _lightsMatricesUniform = _maxLights * 11 + 9;
+                    defines += "#define LOC " + std::to_string(_lightsMatricesUniform) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
+                        .addSource(defines)
                         .addSource(rs_shaders.get("generic.glsl"))
                         .addSource(rs_shaders.get("PhongMultiLight.vert"));
                     frag.addSource(flags & Flag::AmbientTexture ? "#define AMBIENT_TEXTURE\n" : "")
                         .addSource(flags & Flag::DiffuseTexture ? "#define DIFFUSE_TEXTURE\n" : "")
                         .addSource(flags & Flag::SpecularTexture ? "#define SPECULAR_TEXTURE\n" : "")
-                        .addSource(definesFrag)
+                        .addSource(defines)
                         .addSource(rs_shaders.get("PhongMultiLight.frag"));
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(Magnum::GL::Shader::compile({vert, frag}));
@@ -61,8 +65,10 @@ namespace robot_dart {
                     {
                         _transformationMatrixUniform = uniformLocation("transformationMatrix");
                         _projectionMatrixUniform = uniformLocation("projectionMatrix");
+                        _cameraMatrixUniform = uniformLocation("cameraMatrix");
                         _normalMatrixUniform = uniformLocation("normalMatrix");
                         _lightsUniform = uniformLocation("lights[0].position");
+                        _lightsMatricesUniform = uniformLocation("lightMatrices[0]");
                         _ambientColorUniform = uniformLocation("ambientColor");
                         _diffuseColorUniform = uniformLocation("diffuseColor");
                         _specularColorUniform = uniformLocation("specularColor");
@@ -168,12 +174,20 @@ namespace robot_dart {
                     // quadratic attenuation term
                     setUniform(_lightsUniform + i * locSize + 10, attenuation[2]);
 
+                    setUniform(_lightsMatricesUniform + i, light.shadowMatrix());
+
                     return *this;
                 }
 
                 PhongMultiLight& PhongMultiLight::setTransformationMatrix(const Magnum::Matrix4& matrix)
                 {
                     setUniform(_transformationMatrixUniform, matrix);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::setCameraMatrix(const Magnum::Matrix4& matrix)
+                {
+                    setUniform(_cameraMatrixUniform, matrix);
                     return *this;
                 }
 
@@ -186,6 +200,12 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setProjectionMatrix(const Magnum::Matrix4& matrix)
                 {
                     setUniform(_projectionMatrixUniform, matrix);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::Int i, Magnum::GL::Texture2D& texture)
+                {
+                    texture.bind(_shadowTexturesLocation + i);
                     return *this;
                 }
 
