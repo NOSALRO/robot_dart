@@ -89,7 +89,7 @@ uniform lowp vec4 specularColor
 #ifdef EXPLICIT_TEXTURE_LAYER
 layout(binding = 3)
 #endif
-uniform lowp sampler2D shadowTextures[LIGHT_COUNT];
+uniform sampler2DArrayShadow shadowTextures;
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 8)
@@ -114,19 +114,20 @@ float ShadowCalculation(int index, float bias)
     // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
     // transform to [0,1] range
-    projCoords = projCoords * 0.5 + 0.5;
-    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    float closestDepth = texture(shadowTextures[index], projCoords.xy).r;
+    // projCoords = projCoords * 0.5 + 0.5;
     // get depth of current fragment from light's perspective
     float currentDepth = projCoords.z;
-    // return 1-closestDepth;
-    // if(closestDepth < 1.0)
-    //     return 0.;
-    // else return 1.;
-    // check whether current frag pos is in shadow
-    float shadow = (currentDepth-bias) > closestDepth  ? 0.9 : 0.;
+    if(currentDepth > 1.)// || projCoords.x < 0. || projCoords.x >= 1. || projCoords.y < 0. || projCoords.y >= 1.)
+        return 1.;
+    // float inverseShadow = texture(shadowTextures, vec4(projCoords.xy, index, currentDepth - bias));
+    float inverseShadow = 0.;
+    vec2 texelSize = 1. / textureSize(shadowTextures, 0).xy;
+    for(int x = -1; x <= 1; ++x)
+        for(int y = -1; y <= 1; ++y)
+            inverseShadow += texture(shadowTextures, vec4(projCoords.xy + vec2(x, y) * texelSize, index, currentDepth - bias));
+    inverseShadow /= 9.0;
 
-    return shadow;
+    return inverseShadow;
 }
 
 void main() {
@@ -161,7 +162,7 @@ void main() {
 
         /* Directional light */
         if(lights[i].position.w == 0.0) {
-            attenuation = 1.0;
+            attenuation = lights[i].intensity;
             lightDirection = normalize(-vec3(lights[i].position));
         }
         /* Pointlight or Spotlight */
@@ -190,8 +191,8 @@ void main() {
         }
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
-        float bias = max(0.05 * (1.0 - intensity), 0.005);
-        float shadow = ShadowCalculation(i, bias);
+        float bias = 0.0001;// max(0.05 * (1.0 - intensity), 0.005);
+        float visibility = ShadowCalculation(i, bias);
 
         /* Diffuse color */
         highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);
@@ -205,6 +206,6 @@ void main() {
             specularReflection = attenuation * lights[i].specular * finalSpecularColor * specularity;
         }
 
-        color += (diffuseReflection + specularReflection) * (1. - shadow);
+        color += (diffuseReflection + specularReflection) * visibility;
     }
 }

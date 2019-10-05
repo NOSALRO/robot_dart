@@ -2,6 +2,7 @@
 #include "create_compatibility_shader.hpp"
 
 #include <Magnum/GL/Texture.h>
+#include <Magnum/GL/TextureArray.h>
 
 namespace robot_dart {
     namespace gui {
@@ -203,9 +204,9 @@ namespace robot_dart {
                     return *this;
                 }
 
-                PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::Int i, Magnum::GL::Texture2D& texture)
+                PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::GL::Texture2DArray& texture)
                 {
-                    texture.bind(_shadowTexturesLocation + i);
+                    texture.bind(_shadowTexturesLocation);
                     return *this;
                 }
 

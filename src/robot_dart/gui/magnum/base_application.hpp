@@ -13,6 +13,7 @@
 #include <dart/simulation/World.hpp>
 
 #include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -127,7 +128,6 @@ namespace robot_dart {
 
             struct ShadowData {
                 Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
-                Magnum::GL::Texture2D* shadowTexture;
             };
 
             class BaseApplication {
@@ -183,7 +183,9 @@ namespace robot_dart {
                 /* Shadows */
                 std::unique_ptr<gs::ShadowMap> _shadow_shader;
                 std::vector<ShadowData> _shadowData;
+                std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture;
                 int _shadowMapSize = 1024;
+                int _maxLights = 10;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
 

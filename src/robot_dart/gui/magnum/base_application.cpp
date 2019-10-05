@@ -202,10 +202,16 @@ namespace robot_dart {
                 /* Shadow camera */
                 _shadowCameraObject = new Object3D{&_scene};
                 _shadowCamera.reset(new Camera3D{*_shadowCameraObject});
-                (*_shadowCamera)
-                    // .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
-                    .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({20.f, 20.f}, 0.01f, 20.f))
-                    .setViewport({_shadowMapSize, _shadowMapSize});
+
+                /* Shadow Textures */
+                _shadowTexture.reset(new Magnum::GL::Texture2DArray{});
+                _shadowTexture->setImage(0, Magnum::GL::TextureFormat::DepthComponent, Magnum::ImageView3D{Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float, {_shadowMapSize, _shadowMapSize, _maxLights}})
+                    .setMaxLevel(0)
+                    .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
+                    .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
+                    .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
+                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToBorder);
 
                 /* Create our DARTIntegration object/world */
                 GlobalData::instance()->mutex().lock(); /* Need to lock for plugin manager not being thread-safe */
@@ -214,10 +220,10 @@ namespace robot_dart {
                 GlobalData::instance()->mutex().unlock();
 
                 /* Phong shaders */
-                _color_shader.reset(new gs::PhongMultiLight{{}, 10});
-                _texture_shader.reset(new gs::PhongMultiLight{{gs::PhongMultiLight::Flag::DiffuseTexture}, 10});
+                _color_shader.reset(new gs::PhongMultiLight{{}, _maxLights});
+                _texture_shader.reset(new gs::PhongMultiLight{{gs::PhongMultiLight::Flag::DiffuseTexture}, _maxLights});
 
-                /* Shade shaders */
+                /* Shadow shader */
                 _shadow_shader.reset(new gs::ShadowMap());
 
                 /* Add default lights (2 directional lights) */
@@ -227,12 +233,20 @@ namespace robot_dart {
                 // gs::Light light = gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
                 // gs::Light light = gs::createSpotLight(
                 //     {0.f, 0.f, 3.f}, mat, {0.f, 0.f, -1.f}, 1.f, Magnum::Math::Constants<Magnum::Float>::piHalf() / 5.f, 2.f, {0.f, 0.f, 1.f});
-                Magnum::Vector3 dir = {-1.f, -1.f, -1.f};
+                Magnum::Vector3 dir = {-0.5f, -0.5f, -0.8f};
                 gs::Light light = gs::createDirectionalLight(dir, mat);
-                // _lights.push_back(light);
-                // dir = {1.f, 1.f, -1.f};
-                light = gs::createDirectionalLight(dir, mat);
                 _lights.push_back(light);
+                // dir = {0.5f, 0.5f, -0.8f};
+                // light = gs::createDirectionalLight(dir, mat);
+                // _lights.push_back(light);
+                Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
+                Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
+                Magnum::Float lexp = 1.f;
+                Magnum::Float lspot = M_PI / 3.;
+                Magnum::Float lint = 1.f;
+                Magnum::Vector3 latt = {0.f, 0.f, 1.f};
+                light = gs::createSpotLight(lpos, mat, ldir, lexp, lspot, lint, latt);
+                // _lights.push_back(light);
             }
 
             void BaseApplication::clearLights()
@@ -306,11 +320,10 @@ namespace robot_dart {
                 for (size_t i = 0; i < _lights.size(); i++) {
                     _color_shader->setLight(i, _lights[i]);
                     _texture_shader->setLight(i, _lights[i]);
-                    if (_shadowData.size() > i) {
-                        _color_shader->bindShadowTexture(i, *_shadowData[i].shadowTexture);
-                        _texture_shader->bindShadowTexture(i, *_shadowData[i].shadowTexture);
-                    }
                 }
+
+                _color_shader->bindShadowTexture(*_shadowTexture);
+                _texture_shader->bindShadowTexture(*_shadowTexture);
             }
 
             void BaseApplication::updateGraphics()
@@ -384,56 +397,56 @@ namespace robot_dart {
                     /* There's no shadow texture/framebuffer for this light */
                     if (_shadowData.size() <= i) {
                         _shadowData.push_back({});
-                        _shadowData[i].shadowTexture = new Magnum::GL::Texture2D{};
-                        (*_shadowData[i].shadowTexture)
-                            .setImage(0, Magnum::GL::TextureFormat::DepthComponent, Magnum::ImageView2D{Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float, {_shadowMapSize, _shadowMapSize}})
-                            .setMinificationFilter(Magnum::GL::SamplerFilter::Nearest)
-                            .setMagnificationFilter(Magnum::GL::SamplerFilter::Nearest)
-                            .setWrapping(Magnum::GL::SamplerWrapping::Repeat);
-                        // .setMaxLevel(0)
-                        // .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
-                        // .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
-                        // .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
-                        // .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
 
                         _shadowData[i].shadowFramebuffer = Magnum::GL::Framebuffer({{}, {_shadowMapSize, _shadowMapSize}});
 
                         (_shadowData[i].shadowFramebuffer)
-                            .attachTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *(_shadowData[i].shadowTexture), 0)
+                            .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
                             .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
                         // .bind();
                         // CORRADE_INTERNAL_ASSERT(shadowFramebuffer.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
                     }
 
-                    /* Assume only directional lights for now */
-                    // Magnum::Matrix4 cameraMatrix = Magnum::Matrix4::lookAt({}, -_lights[i].position().xyz().normalized(), Magnum::Vector3::yAxis());//.inverted(); //(Magnum::Matrix4::lookAt({}, -_lights[i].position().xyz().normalized(), Magnum::Vector3::zAxis())).inverted();
-                    // Magnum::Matrix4 cameraMatrix = (Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized(), {}, Magnum::Vector3::yAxis())); //.inverted();
+                    bool cullFront = false;
+                    Magnum::Matrix4 cameraMatrix;
+                    Magnum::Float farPlane = 20.f, nearPlane = 0.001f;
+                    /* Directional lights */
+                    if (_lights[i].position().w() == 0.f) {
+                        cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized(), {}, Magnum::Vector3::zAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
 
-                    // Magnum::Matrix4 mat = Magnum::Matrix4::lookAt(_lights[i].position().xyz().normalized(), Magnum::Vector3{0.f, 0.f, 0.f}, Magnum::Vector3::zAxis());
-                    // auto backward = (_lights[i].position().xyz().normalized() - Magnum::Vector3{0.f, 0.f, 0.f}).normalized();
-                    // auto right = Magnum::Math::cross(Magnum::Vector3::zAxis(), backward).normalized();
-                    // auto realUp = Magnum::Math::cross(backward, right);
-                    // Corrade::Utility::Debug{} << backward;
-                    // Corrade::Utility::Debug{} << right;
-                    // Corrade::Utility::Debug{} << realUp;
+                        (*_shadowCamera)
+                            .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::NotPreserved)
+                            .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({10.f, 10.f}, nearPlane, farPlane))
+                            .setViewport({_shadowMapSize, _shadowMapSize});
+                        cullFront = true;
+                    }
+                    /* Spotlights */
+                    else if (_lights[i].spotCutOff() < M_PI / 2.0) {
+                        Magnum::Vector3 position = _lights[i].position().xyz();
+                        cameraMatrix = Magnum::Matrix4::lookAt(position, position + _lights[i].spotDirection().normalized(), Magnum::Vector3::xAxis());
 
-                    Magnum::Matrix4 cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz(), {}, Magnum::Vector3::yAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
+                        (*_shadowCamera)
+                            .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
+                            .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(Magnum::Rad(_lights[i].spotCutOff() * 2.f), 1.f, nearPlane, farPlane))
+                            .setViewport({_shadowMapSize, _shadowMapSize});
+                    }
 
                     _shadowCameraObject->setTransformation(cameraMatrix);
-                    // Magnum::Matrix4 bias{{0.5f, 0.0f, 0.0f, 0.0f},
-                    //     {0.0f, 0.5f, 0.0f, 0.0f},
-                    //     {0.0f, 0.0f, 0.5f, 0.0f},
-                    //     {0.5f, 0.5f, 0.5f, 1.0f}};
-                    _lights[i].setShadowMatrix(_shadowCamera->projectionMatrix() * cameraMatrix);
+                    Magnum::Matrix4 bias{{0.5f, 0.0f, 0.0f, 0.0f},
+                        {0.0f, 0.5f, 0.0f, 0.0f},
+                        {0.0f, 0.0f, 0.5f, 0.0f},
+                        {0.5f, 0.5f, 0.5f, 1.0f}};
+                    _lights[i].setShadowMatrix(bias * _shadowCamera->projectionMatrix() * cameraMatrix.invertedRigid());
 
                     Magnum::GL::Renderer::setDepthMask(true);
                     Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
-                    // Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
-                    // Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
+                    if (cullFront)
+                        Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
                     _shadowData[i].shadowFramebuffer.bind();
                     _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
                     _shadowCamera->draw(_shadowed_drawables);
-                    // Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
+                    if (cullFront)
+                        Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
                 }
             }
 
@@ -456,13 +469,10 @@ namespace robot_dart {
             void BaseApplication::GLCleanUp()
             {
                 /* Clean up GL because of destructor order */
-                for (size_t i = 0; i < _shadowData.size(); i++) {
-                    delete _shadowData[i].shadowTexture;
-                }
-
                 _color_shader.reset();
                 _texture_shader.reset();
                 _shadow_shader.reset();
+                _shadowTexture.reset();
 
                 _camera.reset();
                 _shadowCamera.reset();
