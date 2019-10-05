@@ -50,7 +50,7 @@ namespace robot_dart {
                     PhongMultiLight& setNormalMatrix(const Magnum::Matrix3x3& matrix);
                     PhongMultiLight& setProjectionMatrix(const Magnum::Matrix4& matrix);
 
-                    PhongMultiLight& bindShadowTexture(Magnum::Int i, Magnum::GL::Texture2D& texture);
+                    PhongMultiLight& bindShadowTexture(Magnum::GL::Texture2DArray& texture);
 
                     Magnum::Int maxLights() const;
 
