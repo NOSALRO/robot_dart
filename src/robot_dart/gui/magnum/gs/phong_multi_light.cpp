@@ -22,8 +22,8 @@ namespace robot_dart {
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
                     std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
-                    // TO-DO: Fix this
-                    _lightsMatricesUniform = _maxLights * 12 + 11;
+                    // TO-DO: Fix this?
+                    _lightsMatricesUniform = _maxLights * _lightLocSize + _lightsUniform + 1;
                     defines += "#define LOC " + std::to_string(_lightsMatricesUniform) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
@@ -151,29 +151,28 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setLight(Magnum::Int i, const Light& light)
                 {
                     CORRADE_INTERNAL_ASSERT(i >= 0 && i < _maxLights);
-                    Magnum::Int locSize = 12;
                     Magnum::Vector4 attenuation = light.attenuation();
 
                     // light position
-                    setUniform(_lightsUniform + i * locSize, light.transformedPosition());
+                    setUniform(_lightsUniform + i * _lightLocSize, light.transformedPosition());
                     // light material
-                    setUniform(_lightsUniform + i * locSize + 1, light.material().ambientColor());
-                    setUniform(_lightsUniform + i * locSize + 2, light.material().diffuseColor());
-                    setUniform(_lightsUniform + i * locSize + 3, light.material().specularColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 1, light.material().ambientColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 2, light.material().diffuseColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 3, light.material().specularColor());
                     // spotlight properties
-                    setUniform(_lightsUniform + i * locSize + 4, light.transformedSpotDirection());
-                    setUniform(_lightsUniform + i * locSize + 5, light.spotExponent());
-                    setUniform(_lightsUniform + i * locSize + 6, light.spotCutOff());
+                    setUniform(_lightsUniform + i * _lightLocSize + 4, light.transformedSpotDirection());
+                    setUniform(_lightsUniform + i * _lightLocSize + 5, light.spotExponent());
+                    setUniform(_lightsUniform + i * _lightLocSize + 6, light.spotCutOff());
                     // intesity
-                    setUniform(_lightsUniform + i * locSize + 7, attenuation[3]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 7, attenuation[3]);
                     // constant attenuation term
-                    setUniform(_lightsUniform + i * locSize + 8, attenuation[0]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 8, attenuation[0]);
                     // linear attenuation term
-                    setUniform(_lightsUniform + i * locSize + 9, attenuation[1]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 9, attenuation[1]);
                     // quadratic attenuation term
-                    setUniform(_lightsUniform + i * locSize + 10, attenuation[2]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 10, attenuation[2]);
                     // world position
-                    setUniform(_lightsUniform + i * locSize + 11, light.position());
+                    setUniform(_lightsUniform + i * _lightLocSize + 11, light.position());
 
                     setUniform(_lightsMatricesUniform + i, light.shadowMatrix());
 
