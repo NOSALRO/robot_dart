@@ -8,8 +8,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            Sdl2Application::Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title)
-                : BaseApplication(), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
+            Sdl2Application::Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
+                : BaseApplication(isShadowed), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
             {
                 /* Try 16x MSAA */
                 Configuration conf;

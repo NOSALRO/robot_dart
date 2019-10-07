@@ -23,7 +23,7 @@ namespace robot_dart {
 
                     std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
                     // TO-DO: Fix this
-                    _lightsMatricesUniform = _maxLights * 12 + 10;
+                    _lightsMatricesUniform = _maxLights * 12 + 11;
                     defines += "#define LOC " + std::to_string(_lightsMatricesUniform) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
@@ -71,6 +71,7 @@ namespace robot_dart {
                         _specularColorUniform = uniformLocation("specularColor");
                         _shininessUniform = uniformLocation("shininess");
                         _farPlaneUniform = uniformLocation("farPlane");
+                        _isShadowedUniform = uniformLocation("isShadowed");
                     }
 
 #ifndef MAGNUM_TARGET_GLES
@@ -206,6 +207,12 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setFarPlane(Magnum::Float farPlane)
                 {
                     setUniform(_farPlaneUniform, farPlane);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::setIsShadowed(bool shadows)
+                {
+                    setUniform(_isShadowedUniform, shadows);
                     return *this;
                 }
 

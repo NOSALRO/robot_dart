@@ -24,7 +24,7 @@ namespace robot_dart {
                 {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
-                    _magnum_app.reset(make_application<T>(world, width, height, title));
+                    _magnum_app.reset(make_application<T>(world, width, height, title, shadowed));
                     set_render_period(world->getTimeStep());
                 }
 
@@ -93,6 +93,9 @@ namespace robot_dart {
 
                 void set_recording(bool recording) { _magnum_app->record(recording); }
                 bool recording() { return _magnum_app->isRecording(); }
+
+                bool is_shadowed() const { return _magnum_app->isShadowed(); }
+                void enable_shadows(bool enable = true) { _magnum_app->enableShadows(enable); }
 
                 Magnum::Image2D* magnum_image()
                 {
