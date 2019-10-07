@@ -207,7 +207,7 @@ namespace robot_dart {
                 std::vector<ShadowData> _shadowData;
                 std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture;
                 std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap;
-                int _shadowMapSize = 1024;
+                int _shadowMapSize = 512;
                 int _maxLights = 10;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;

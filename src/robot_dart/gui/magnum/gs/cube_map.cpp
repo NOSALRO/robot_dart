@@ -49,7 +49,7 @@ namespace robot_dart {
                         _shadowMatricesUniform = uniformLocation("shadowMatrices[0]");
                         _lightPositionUniform = uniformLocation("lightPosition");
                         _farPlaneUniform = uniformLocation("farPlane");
-                        _indexUniform = uniformLocation("index");
+                        _lightIndexUniform = uniformLocation("lightIndex");
                     }
                 }
 
@@ -82,7 +82,7 @@ namespace robot_dart {
 
                 CubeMap& CubeMap::setLightIndex(Magnum::Int index)
                 {
-                    setUniform(_indexUniform, index);
+                    setUniform(_lightIndexUniform, index);
                     return *this;
                 }
             } // namespace gs

@@ -133,20 +133,37 @@ float visibilityCalculation(int index, float bias)
         return 1.;
     // float visibility = texture(shadowTextures, vec4(projCoords.xy, index, currentDepth - bias));
     float visibility = 0.;
-    vec2 texelSize = 1. / textureSize(shadowTextures, 0).xy;
+    vec2 texelSize = 0.5 / textureSize(shadowTextures, 0).xy;
     for(int x = -1; x <= 1; ++x)
         for(int y = -1; y <= 1; ++y)
             visibility += texture(shadowTextures, vec4(projCoords.xy + vec2(x, y) * texelSize, index, currentDepth - bias));
-    visibility /= 9.0;
+    visibility /= 9.;
 
-    return visibility;
+    return 1. - 0.7*(1. - visibility);
 }
 
 float visibilityCalculationPointLight(int index, float bias)
 {
+    vec3 sampleOffsetDirections[20] = vec3[]
+    (
+        vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1),
+        vec3( 1,  1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+        vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
+        vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
+        vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
+    );
+
     vec3 direction = worldPosition - lights[index].worldPosition.xyz;
-    float visibility = texture(cubeMapTextures, vec4(direction, index), length(direction)/farPlane - 2*bias);
-    return visibility;
+    float depth = length(direction)/farPlane;
+    if(depth > 1.)
+        return 1.;
+    float visibility = 0.;
+    float diskRadius = 0.002;//(1.0 + (length(cameraDirection) / farPlane)) / 50.0;//0.01;
+    for(int i = 0; i < 20; ++i)
+        visibility += texture(cubeMapTextures, vec4(normalize(direction) + sampleOffsetDirections[i] * diskRadius, index), depth - bias);
+    visibility /= 20.;
+
+    return 1. - 0.7*(1. - visibility);
 }
 
 void main() {
@@ -213,12 +230,14 @@ void main() {
         }
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
-        float bias = 0.0001;// max(0.05 * (1.0 - intensity), 0.005);
+        float bias = 0.00002;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
         float visibility = 1.;
         if(!isPoint)
             visibility = visibilityCalculation(i, bias);
-        else
+        else {
+            bias = 0.002;
             visibility = visibilityCalculationPointLight(i, bias);
+        }
 
         /* Diffuse color */
         highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);

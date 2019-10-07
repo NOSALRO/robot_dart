@@ -249,7 +249,7 @@ namespace robot_dart {
 
                 _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
                 _shadowCubeMap->setImage(0, Magnum::GL::TextureFormat::DepthComponent, Magnum::ImageView3D{Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float, {_shadowMapSize, _shadowMapSize, _maxLights * 6}})
-                    .setMaxLevel(_maxLights * 6)
+                    .setMaxLevel(0)
                     .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
                     .setMinificationFilter(Magnum::GL::SamplerFilter::Nearest, Magnum::GL::SamplerMipmap::Base)
@@ -278,11 +278,11 @@ namespace robot_dart {
                 // gs::Light light = gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
                 // gs::Light light = gs::createSpotLight(
                 //     {0.f, 0.f, 3.f}, mat, {0.f, 0.f, -1.f}, 1.f, Magnum::Math::Constants<Magnum::Float>::piHalf() / 5.f, 2.f, {0.f, 0.f, 1.f});
-                Magnum::Vector3 dir = {-0.5f, -0.5f, -0.8f};
+                Magnum::Vector3 dir = {-0.5f, -0.5f, -0.5f};
                 gs::Light light = gs::createDirectionalLight(dir, mat);
-                _lights.push_back(light);
-                // dir = {0.5f, 0.5f, -0.6f};
-                // light = gs::createDirectionalLight(dir, mat);
+                // _lights.push_back(light);
+                dir = {0.5f, 0.5f, -0.5f};
+                light = gs::createDirectionalLight(dir, mat);
                 // _lights.push_back(light);
                 Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
                 Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
@@ -294,8 +294,16 @@ namespace robot_dart {
                 // _lights.push_back(light);
                 lpos = {0.5f, -0.5f, 0.6f};
                 light = gs::createPointLight(lpos, mat, lint, latt);
-                _lights.push_back(light);
+                // _lights.push_back(light);
                 lpos = {0.5f, 0.5f, 0.6f};
+                light = gs::createPointLight(lpos, mat, lint, latt);
+                // _lights.push_back(light);
+
+                lpos = {0.5f, 1.5f, 2.f};
+                latt = {1.f, 0.2f, 0.f};
+                light = gs::createPointLight(lpos, mat, lint, latt);
+                _lights.push_back(light);
+                lpos = {2.f, -1.f, 2.f};
                 light = gs::createPointLight(lpos, mat, lint, latt);
                 _lights.push_back(light);
             }
@@ -466,7 +474,7 @@ namespace robot_dart {
                                 // .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6)
                                 .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
                             // TO-DO: Missing API of Magnum
-                            glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
+                            // glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
                         }
                     }
 
@@ -533,7 +541,18 @@ namespace robot_dart {
                     if (cullFront)
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
                     _shadowData[i].shadowFramebuffer.bind();
-                    _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
+                    if (isPointLight) {
+                        for (size_t k = 0; k < 6; k++) {
+                            _shadowData[i].shadowFramebuffer.attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6 + k);
+                            _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
+                        }
+                    }
+                    else
+                        _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
+
+                    // TO-DO: Missing API of Magnum
+                    if (isPointLight)
+                        glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
                     if (!isPointLight)
                         _shadowCamera->draw(_shadowed_drawables);
                     else
