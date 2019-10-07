@@ -50,7 +50,10 @@ namespace robot_dart {
                     PhongMultiLight& setNormalMatrix(const Magnum::Matrix3x3& matrix);
                     PhongMultiLight& setProjectionMatrix(const Magnum::Matrix4& matrix);
 
+                    PhongMultiLight& setFarPlane(Magnum::Float farPlane);
+
                     PhongMultiLight& bindShadowTexture(Magnum::GL::Texture2DArray& texture);
+                    PhongMultiLight& bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture);
 
                     Magnum::Int maxLights() const;
 
@@ -59,7 +62,7 @@ namespace robot_dart {
                     Magnum::Int _maxLights = 10;
                     Magnum::Int _transformationMatrixUniform{0}, _cameraMatrixUniform{7}, _projectionMatrixUniform{1}, _normalMatrixUniform{2},
                         _shininessUniform{3}, _ambientColorUniform{4}, _diffuseColorUniform{5}, _specularColorUniform{6},
-                        _lightsUniform{8}, _lightsMatricesUniform, _shadowTexturesLocation{3};
+                        _lightsUniform{9}, _lightsMatricesUniform, _farPlaneUniform{8}, _shadowTexturesLocation{3}, _cubeMapTexturesLocation{4};
                 };
 
                 CORRADE_ENUMSET_OPERATORS(PhongMultiLight::Flags)

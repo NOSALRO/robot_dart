@@ -1,6 +1,7 @@
 #include "phong_multi_light.hpp"
 #include "create_compatibility_shader.hpp"
 
+#include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureArray.h>
 
@@ -12,13 +13,8 @@ namespace robot_dart {
                 {
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
-#ifndef MAGNUM_TARGET_GLES
                     const Magnum::GL::Version version = Magnum::GL::Context::current().supportedVersion(
-                        {Magnum::GL::Version::GL320, Magnum::GL::Version::GL310, Magnum::GL::Version::GL300, Magnum::GL::Version::GL210});
-#else
-                    const Magnum::GL::Version version
-                        = Magnum::GL::Context::current().supportedVersion({Magnum::GL::Version::GLES300, Magnum::GL::Version::GLES200});
-#endif
+                        {Magnum::GL::Version::GL400});
 
                     Magnum::GL::Shader vert = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Vertex);
@@ -27,7 +23,7 @@ namespace robot_dart {
 
                     std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
                     // TO-DO: Fix this
-                    _lightsMatricesUniform = _maxLights * 11 + 9;
+                    _lightsMatricesUniform = _maxLights * 12 + 10;
                     defines += "#define LOC " + std::to_string(_lightsMatricesUniform) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
@@ -74,6 +70,7 @@ namespace robot_dart {
                         _diffuseColorUniform = uniformLocation("diffuseColor");
                         _specularColorUniform = uniformLocation("specularColor");
                         _shininessUniform = uniformLocation("shininess");
+                        _farPlaneUniform = uniformLocation("farPlane");
                     }
 
 #ifndef MAGNUM_TARGET_GLES
@@ -153,7 +150,7 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setLight(Magnum::Int i, const Light& light)
                 {
                     CORRADE_INTERNAL_ASSERT(i >= 0 && i < _maxLights);
-                    Magnum::Int locSize = 11;
+                    Magnum::Int locSize = 12;
                     Magnum::Vector4 attenuation = light.attenuation();
 
                     // light position
@@ -174,6 +171,8 @@ namespace robot_dart {
                     setUniform(_lightsUniform + i * locSize + 9, attenuation[1]);
                     // quadratic attenuation term
                     setUniform(_lightsUniform + i * locSize + 10, attenuation[2]);
+                    // world position
+                    setUniform(_lightsUniform + i * locSize + 11, light.position());
 
                     setUniform(_lightsMatricesUniform + i, light.shadowMatrix());
 
@@ -204,9 +203,21 @@ namespace robot_dart {
                     return *this;
                 }
 
+                PhongMultiLight& PhongMultiLight::setFarPlane(Magnum::Float farPlane)
+                {
+                    setUniform(_farPlaneUniform, farPlane);
+                    return *this;
+                }
+
                 PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::GL::Texture2DArray& texture)
                 {
                     texture.bind(_shadowTexturesLocation);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture)
+                {
+                    texture.bind(_cubeMapTexturesLocation);
                     return *this;
                 }
 

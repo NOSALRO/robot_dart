@@ -11,7 +11,7 @@ namespace robot_dart {
                                  _material(Material()),
                                  _spotDirection(Magnum::Vector3{1.f, 0.f, 0.f}),
                                  _spotExponent(1.f),
-                                 _spotCutOff(Magnum::Math::Constants<Magnum::Float>::piHalf()),
+                                 _spotCutOff(Magnum::Math::Constants<Magnum::Float>::pi()),
                                  _attenuation(Magnum::Vector4{0.f, 0.f, 1.f, 1.f}) {}
 
                 Light::Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spotDirection,

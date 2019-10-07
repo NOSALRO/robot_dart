@@ -50,11 +50,13 @@ out mediump vec2 interpolatedTextureCoords;
 
 out mediump vec3 transformedNormal;
 out highp vec3 cameraDirection;
+out highp vec3 worldPosition;
 out highp vec4 lightSpacePositions[LIGHT_COUNT];
 
 void main() {
     /* Transformed vertex position */
     highp vec4 transformedPosition4 = transformationMatrix*position;
+    worldPosition = transformedPosition4.xyz;
     highp vec4 modelViewPosition = cameraMatrix*transformedPosition4;
     highp vec3 transformedPosition = modelViewPosition.xyz/modelViewPosition.w;
 
