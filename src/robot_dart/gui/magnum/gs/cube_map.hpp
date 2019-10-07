@@ -25,12 +25,14 @@ namespace robot_dart {
                     CubeMap& setShadowMatrices(Magnum::Matrix4 matrices[6]);
                     CubeMap& setLightPosition(const Magnum::Vector3& position);
                     CubeMap& setFarPlane(Magnum::Float farPlane);
+                    CubeMap& setLightIndex(Magnum::Int index);
 
                 private:
                     Magnum::Int _transformationMatrixUniform{0},
-                        _shadowMatricesUniform{3},
+                        _shadowMatricesUniform{4},
                         _lightPositionUniform{1},
-                        _farPlaneUniform{2};
+                        _farPlaneUniform{2},
+                        _indexUniform{3};
                 };
             } // namespace gs
         } // namespace magnum
