@@ -32,7 +32,7 @@ namespace robot_dart {
                         _shadowMatricesUniform{4},
                         _lightPositionUniform{1},
                         _farPlaneUniform{2},
-                        _indexUniform{3};
+                        _lightIndexUniform{3};
                 };
             } // namespace gs
         } // namespace magnum
