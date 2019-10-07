@@ -145,7 +145,7 @@ float visibilityCalculation(int index, float bias)
 float visibilityCalculationPointLight(int index, float bias)
 {
     vec3 direction = worldPosition - lights[index].worldPosition.xyz;
-    float visibility = texture(cubeMapTextures, vec4(direction, index * 6), length(direction)/farPlane - bias);
+    float visibility = texture(cubeMapTextures, vec4(direction, index), length(direction)/farPlane - 2*bias);
     return visibility;
 }
 
