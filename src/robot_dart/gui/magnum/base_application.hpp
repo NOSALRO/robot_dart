@@ -6,12 +6,14 @@
 #include <unordered_map>
 
 #include <robot_dart/gui/magnum/gs/camera.hpp>
+#include <robot_dart/gui/magnum/gs/cube_map.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
 #include <robot_dart/gui/magnum/gs/shadow_map.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
 #include <dart/simulation/World.hpp>
 
+#include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Framebuffer.h>
 #include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
@@ -126,6 +128,25 @@ namespace robot_dart {
                 std::vector<Magnum::Vector3> _scalings;
             };
 
+            class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit CubeMapShadowedObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::CubeMap> shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::CubeMap> _shader;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
             struct ShadowData {
                 Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
             };
@@ -167,7 +188,7 @@ namespace robot_dart {
             protected:
                 /* Magnum */
                 Scene3D _scene;
-                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables;
+                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables, _cubemap_drawables;
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
@@ -182,8 +203,10 @@ namespace robot_dart {
 
                 /* Shadows */
                 std::unique_ptr<gs::ShadowMap> _shadow_shader;
+                std::unique_ptr<gs::CubeMap> _cubemap_shader;
                 std::vector<ShadowData> _shadowData;
                 std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture;
+                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap;
                 int _shadowMapSize = 1024;
                 int _maxLights = 10;
                 std::unique_ptr<Camera3D> _shadowCamera;

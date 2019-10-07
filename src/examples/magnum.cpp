@@ -64,7 +64,7 @@ int main()
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
     simu.add_camera(camera); // cameras are recording by default
 
-    simu.run(6);
+    simu.run(20.);
 
     // a nested std::vector (w*h*3) of the last image taken can be retrieved
     auto gimage = graphics->image();
