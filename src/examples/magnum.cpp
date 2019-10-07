@@ -9,7 +9,7 @@
 
 class MyApp : public robot_dart::gui::magnum::Sdl2Application {
 public:
-    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART") : Sdl2Application(argc, argv, world, width, height, title) {}
+    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool shadowed = true) : Sdl2Application(argc, argv, world, width, height, title, shadowed) {}
 
 protected:
     void keyPressEvent(KeyEvent& event) override

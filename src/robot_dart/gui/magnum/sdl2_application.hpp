@@ -10,7 +10,7 @@ namespace robot_dart {
         namespace magnum {
             class Sdl2Application : public BaseApplication, public Magnum::Platform::Application {
             public:
-                explicit Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART");
+                explicit Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
 
                 ~Sdl2Application();
 

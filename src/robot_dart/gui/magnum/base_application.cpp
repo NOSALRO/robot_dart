@@ -437,18 +437,31 @@ namespace robot_dart {
                         shadowedObject->setScalings(scalings);
                         auto cubeMapObject = new CubeMapShadowedObject(meshes, *_cubemap_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_drawables);
                         cubeMapObject->setScalings(scalings);
-                        it.first->second = drawableObject;
+
+                        auto obj = new ObjectStruct{};
+                        obj->drawable = drawableObject;
+                        obj->shadowed = shadowedObject;
+                        obj->cubemapped = cubeMapObject;
+                        it.first->second = obj;
                     }
                     else {
                         /* Otherwise, update the mesh and the material data */
-                        it.first->second->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
-                        // TO-DO: Update the shadowed object too
+                        auto obj = it.first->second;
+
+                        // TO-DO: Do I need to re-set the shaders?!
+                        obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
+                        obj->shadowed->setMeshes(meshes).setScalings(scalings);
+                        obj->cubemapped->setMeshes(meshes).setScalings(scalings);
                     }
                 }
 
                 _dartWorld->clearUpdatedShapeObjects();
 
-                renderShadows();
+                _color_shader->setIsShadowed(_isShadowed);
+                _texture_shader->setIsShadowed(_isShadowed);
+
+                if (_isShadowed)
+                    renderShadows();
             }
 
             void BaseApplication::renderShadows()

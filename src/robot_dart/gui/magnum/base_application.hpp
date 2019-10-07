@@ -151,9 +151,15 @@ namespace robot_dart {
                 Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
             };
 
+            struct ObjectStruct {
+                DrawableObject* drawable;
+                ShadowedObject* shadowed;
+                CubeMapShadowedObject* cubemapped;
+            };
+
             class BaseApplication {
             public:
-                BaseApplication() {}
+                BaseApplication(bool isShadowed = true) : _isShadowed(isShadowed) {}
                 virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
@@ -183,6 +189,9 @@ namespace robot_dart {
                 void record(bool recording) { _camera->record(recording); }
                 bool isRecording() { return _camera->isRecording(); }
 
+                bool isShadowed() const { return _isShadowed; }
+                void enableShadows(bool enable = true) { _isShadowed = enable; }
+
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
             protected:
@@ -197,11 +206,12 @@ namespace robot_dart {
 
                 /* DART */
                 std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
-                std::unordered_map<Magnum::DartIntegration::Object*, DrawableObject*> _drawableObjects;
+                std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawableObjects;
                 std::vector<Object3D*> _dartObjs;
                 std::vector<gs::Light> _lights;
 
                 /* Shadows */
+                bool _isShadowed = true;
                 std::unique_ptr<gs::ShadowMap> _shadow_shader;
                 std::unique_ptr<gs::CubeMap> _cubemap_shader;
                 std::vector<ShadowData> _shadowData;
@@ -216,12 +226,12 @@ namespace robot_dart {
             };
 
             template <typename T>
-            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
+            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true)
             {
                 int argc = 0;
                 char** argv = NULL;
 
-                return new T(argc, argv, world, width, height, title);
+                return new T(argc, argv, world, width, height, title, isShadowed);
             }
         } // namespace magnum
     } // namespace gui

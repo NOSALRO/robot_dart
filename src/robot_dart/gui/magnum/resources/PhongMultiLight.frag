@@ -105,6 +105,11 @@ uniform float farPlane;
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 9)
 #endif
+uniform bool isShadowed;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 10)
+#endif
 uniform lightSource lights[LIGHT_COUNT];
 
 in mediump vec3 transformedNormal;
@@ -230,13 +235,15 @@ void main() {
         }
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
-        float bias = 0.00002;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
         float visibility = 1.;
-        if(!isPoint)
-            visibility = visibilityCalculation(i, bias);
-        else {
-            bias = 0.002;
-            visibility = visibilityCalculationPointLight(i, bias);
+        if(isShadowed) {
+            float bias = 0.00002;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
+            if(!isPoint)
+                visibility = visibilityCalculation(i, bias);
+            else {
+                bias = 0.002;
+                visibility = visibilityCalculationPointLight(i, bias);
+            }
         }
 
         /* Diffuse color */
