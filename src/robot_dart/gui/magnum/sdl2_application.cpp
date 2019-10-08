@@ -8,8 +8,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            Sdl2Application::Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title)
-                : BaseApplication(), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
+            Sdl2Application::Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
+                : BaseApplication(isShadowed), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
             {
                 /* Try 16x MSAA */
                 Configuration conf;
@@ -50,6 +50,11 @@ namespace robot_dart {
 
             void Sdl2Application::drawEvent()
             {
+                /* Update graphic meshes/materials and render */
+                updateGraphics();
+                /* Update lights transformations */
+                updateLights(*_camera);
+
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
 
@@ -63,10 +68,6 @@ namespace robot_dart {
                 _camera->forward(_speedMove);
                 _camera->strafe(_speedStrafe);
 
-                /* Update graphic meshes/materials and render */
-                updateGraphics();
-                /* Update lights transformations */
-                updateLights(*_camera);
                 /* Draw with main camera */
                 _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm);
 

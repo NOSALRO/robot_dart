@@ -9,6 +9,11 @@ layout(location = 0)
 uniform highp mat4 transformationMatrix;
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 7)
+#endif
+uniform highp mat4 cameraMatrix;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 1)
 #endif
 uniform highp mat4 projectionMatrix;
@@ -17,6 +22,9 @@ uniform highp mat4 projectionMatrix;
 layout(location = 2)
 #endif
 uniform mediump mat3 normalMatrix;
+
+// TO-DO: Maybe add explicit location?
+uniform highp mat4 lightMatrices[LIGHT_COUNT];
 
 #ifdef EXPLICIT_ATTRIB_LOCATION
 layout(location = POSITION_ATTRIBUTE_LOCATION)
@@ -39,11 +47,15 @@ out mediump vec2 interpolatedTextureCoords;
 
 out mediump vec3 transformedNormal;
 out highp vec3 cameraDirection;
+out highp vec3 worldPosition;
+out highp vec4 lightSpacePositions[LIGHT_COUNT];
 
 void main() {
     /* Transformed vertex position */
     highp vec4 transformedPosition4 = transformationMatrix*position;
-    highp vec3 transformedPosition = transformedPosition4.xyz/transformedPosition4.w;
+    worldPosition = transformedPosition4.xyz;
+    highp vec4 modelViewPosition = cameraMatrix*transformedPosition4;
+    highp vec3 transformedPosition = modelViewPosition.xyz/modelViewPosition.w;
 
     /* Transformed normal vector */
     transformedNormal = normalMatrix*normal;
@@ -52,7 +64,12 @@ void main() {
     cameraDirection = -transformedPosition;
 
     /* Transform the position */
-    gl_Position = projectionMatrix*transformedPosition4;
+    gl_Position = projectionMatrix*modelViewPosition;
+
+    /* Get the lights space positions */
+    for(int i = 0; i != LIGHT_COUNT; ++i) {
+        lightSpacePositions[i] = lightMatrices[i] * vec4(transformedPosition4.xyz, 1.);
+    }
 
     #ifdef TEXTURED
     /* Texture coordinates, if needed */

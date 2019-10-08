@@ -3,7 +3,6 @@
 
 #include <robot_dart/gui/magnum/base_application.hpp>
 
-#include <Magnum/GL/Framebuffer.h>
 #include <Magnum/PixelFormat.h>
 
 namespace robot_dart {
@@ -11,7 +10,7 @@ namespace robot_dart {
         namespace magnum {
             class GLXApplication : public BaseApplication, public Magnum::Platform::WindowlessApplication {
             public:
-                explicit GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART");
+                explicit GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
                 ~GLXApplication();
 
                 void render() override;

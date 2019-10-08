@@ -23,6 +23,7 @@ struct lightSource
     highp float constantAttenuation;
     highp float linearAttenuation;
     highp float quadraticAttenuation;
+    highp vec4 worldPosition;
 };
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
@@ -86,13 +87,35 @@ uniform lowp vec4 specularColor
     #endif
     ;
 
+#ifdef EXPLICIT_TEXTURE_LAYER
+layout(binding = 3)
+#endif
+uniform sampler2DArrayShadow shadowTextures;
+
+#ifdef EXPLICIT_TEXTURE_LAYER
+layout(binding = 4)
+#endif
+uniform samplerCubeArrayShadow cubeMapTextures;
+
 #ifdef EXPLICIT_UNIFORM_LOCATION
-layout(location = 7)
+layout(location = 8)
+#endif
+uniform float farPlane;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 9)
+#endif
+uniform bool isShadowed;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 10)
 #endif
 uniform lightSource lights[LIGHT_COUNT];
 
 in mediump vec3 transformedNormal;
 in highp vec3 cameraDirection;
+in highp vec3 worldPosition;
+in highp vec4 lightSpacePositions[LIGHT_COUNT];
 
 #if defined(AMBIENT_TEXTURE) || defined(DIFFUSE_TEXTURE) || defined(SPECULAR_TEXTURE)
 in mediump vec2 interpolatedTextureCoords;
@@ -101,6 +124,52 @@ in mediump vec2 interpolatedTextureCoords;
 #ifdef NEW_GLSL
 out lowp vec4 color;
 #endif
+
+float visibilityCalculation(int index, float bias)
+{
+    vec4 fragPosLightSpace = lightSpacePositions[index];
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    // transform to [0,1] range
+    // projCoords = projCoords * 0.5 + 0.5;
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+    if(currentDepth > 1.)// || projCoords.x < 0. || projCoords.x >= 1. || projCoords.y < 0. || projCoords.y >= 1.)
+        return 1.;
+    // float visibility = texture(shadowTextures, vec4(projCoords.xy, index, currentDepth - bias));
+    float visibility = 0.;
+    vec2 texelSize = 0.5 / textureSize(shadowTextures, 0).xy;
+    for(int x = -1; x <= 1; ++x)
+        for(int y = -1; y <= 1; ++y)
+            visibility += texture(shadowTextures, vec4(projCoords.xy + vec2(x, y) * texelSize, index, currentDepth - bias));
+    visibility /= 9.;
+
+    return 1. - 0.7*(1. - visibility);
+}
+
+float visibilityCalculationPointLight(int index, float bias)
+{
+    vec3 sampleOffsetDirections[20] = vec3[]
+    (
+        vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1),
+        vec3( 1,  1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+        vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
+        vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
+        vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
+    );
+
+    vec3 direction = worldPosition - lights[index].worldPosition.xyz;
+    float depth = length(direction)/farPlane;
+    if(depth > 1.)
+        return 1.;
+    float visibility = 0.;
+    float diskRadius = 0.002;//(1.0 + (length(cameraDirection) / farPlane)) / 50.0;//0.01;
+    for(int i = 0; i < 20; ++i)
+        visibility += texture(cubeMapTextures, vec4(normalize(direction) + sampleOffsetDirections[i] * diskRadius, index), depth - bias);
+    visibility /= 20.;
+
+    return 1. - 0.7*(1. - visibility);
+}
 
 void main() {
     lowp const vec4 finalAmbientColor =
@@ -128,13 +197,14 @@ void main() {
         highp vec3 lightDirection;
         highp float attenuation;
         bool spec = any(greaterThan(lights[i].specular.rgb, vec3(0.0)));
+        bool isPoint = false;
 
          if(!any(greaterThan(lights[i].diffuse.rgb, vec3(0.0))) && !spec)
             continue;
 
         /* Directional light */
         if(lights[i].position.w == 0.0) {
-            attenuation = 1.0;
+            attenuation = lights[i].intensity;
             lightDirection = normalize(-vec3(lights[i].position));
         }
         /* Pointlight or Spotlight */
@@ -160,9 +230,21 @@ void main() {
                     attenuation = attenuation * pow(clampedCosine, lights[i].spotExponent);
                 }
             }
+            else
+                isPoint = true;
         }
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
+        float visibility = 1.;
+        if(isShadowed) {
+            float bias = 0.00002;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
+            if(!isPoint)
+                visibility = visibilityCalculation(i, bias);
+            else {
+                bias = 0.002;
+                visibility = visibilityCalculationPointLight(i, bias);
+            }
+        }
 
         /* Diffuse color */
         highp vec4 diffuseReflection = attenuation * lights[i].diffuse * finalDiffuseColor * max(0.0, intensity);
@@ -176,6 +258,6 @@ void main() {
             specularReflection = attenuation * lights[i].specular * finalSpecularColor * specularity;
         }
 
-        color += diffuseReflection + specularReflection;
+        color += (diffuseReflection + specularReflection) * visibility;
     }
 }
