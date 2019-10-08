@@ -1,7 +1,9 @@
 #include "phong_multi_light.hpp"
 #include "create_compatibility_shader.hpp"
 
+#include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Texture.h>
+#include <Magnum/GL/TextureArray.h>
 
 namespace robot_dart {
     namespace gui {
@@ -11,41 +13,31 @@ namespace robot_dart {
                 {
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
-#ifndef MAGNUM_TARGET_GLES
                     const Magnum::GL::Version version = Magnum::GL::Context::current().supportedVersion(
-                        {Magnum::GL::Version::GL320, Magnum::GL::Version::GL310, Magnum::GL::Version::GL300, Magnum::GL::Version::GL210});
-#else
-                    const Magnum::GL::Version version
-                        = Magnum::GL::Context::current().supportedVersion({Magnum::GL::Version::GLES300, Magnum::GL::Version::GLES200});
-#endif
+                        {Magnum::GL::Version::GL430});
 
                     Magnum::GL::Shader vert = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Vertex);
                     Magnum::GL::Shader frag = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
-                    std::string definesFrag = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
+                    std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
+                        .addSource(defines)
                         .addSource(rs_shaders.get("generic.glsl"))
                         .addSource(rs_shaders.get("PhongMultiLight.vert"));
                     frag.addSource(flags & Flag::AmbientTexture ? "#define AMBIENT_TEXTURE\n" : "")
                         .addSource(flags & Flag::DiffuseTexture ? "#define DIFFUSE_TEXTURE\n" : "")
                         .addSource(flags & Flag::SpecularTexture ? "#define SPECULAR_TEXTURE\n" : "")
-                        .addSource(definesFrag)
+                        .addSource(defines)
                         .addSource(rs_shaders.get("PhongMultiLight.frag"));
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(Magnum::GL::Shader::compile({vert, frag}));
 
                     attachShaders({vert, frag});
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(
-                            version))
-#else
-                    if (!Magnum::GL::Context::current().isVersionSupported(Magnum::GL::Version::GLES300))
-#endif
-                    {
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(version)) {
                         bindAttributeLocation(Position::Location, "position");
                         bindAttributeLocation(Normal::Location, "normal");
                         if (flags)
@@ -54,37 +46,39 @@ namespace robot_dart {
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current()
-                             .isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version))
-#endif
-                    {
+                    /* Get light matrices uniform */
+                    _lightsMatricesUniform = uniformLocation("lightMatrices[0]");
+
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
                         _transformationMatrixUniform = uniformLocation("transformationMatrix");
                         _projectionMatrixUniform = uniformLocation("projectionMatrix");
+                        _cameraMatrixUniform = uniformLocation("cameraMatrix");
                         _normalMatrixUniform = uniformLocation("normalMatrix");
                         _lightsUniform = uniformLocation("lights[0].position");
+                        _lightsMatricesUniform = uniformLocation("lightMatrices[0]");
                         _ambientColorUniform = uniformLocation("ambientColor");
                         _diffuseColorUniform = uniformLocation("diffuseColor");
                         _specularColorUniform = uniformLocation("specularColor");
                         _shininessUniform = uniformLocation("shininess");
+                        _farPlaneUniform = uniformLocation("farPlane");
+                        _isShadowedUniform = uniformLocation("isShadowed");
                     }
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (flags
-                        && !Magnum::GL::Context::current()
-                                .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version))
-#endif
-                    {
-                        if (flags & Flag::AmbientTexture)
-                            setUniform(uniformLocation("ambientTexture"), AmbientTextureLayer);
-                        if (flags & Flag::DiffuseTexture)
-                            setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
-                        if (flags & Flag::SpecularTexture)
-                            setUniform(uniformLocation("specularTexture"), SpecularTextureLayer);
+                    if (!Magnum::GL::Context::current()
+                             .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version)) {
+                        setUniform(uniformLocation("shadowTextures"), _shadowTexturesLocation);
+                        setUniform(uniformLocation("cubeMapTextures"), _cubeMapTexturesLocation);
+                        if (flags) {
+                            if (flags & Flag::AmbientTexture)
+                                setUniform(uniformLocation("ambientTexture"), AmbientTextureLayer);
+                            if (flags & Flag::DiffuseTexture)
+                                setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
+                            if (flags & Flag::SpecularTexture)
+                                setUniform(uniformLocation("specularTexture"), SpecularTextureLayer);
+                        }
                     }
 
-/* Set defaults in OpenGL ES (for desktop they are set in shader code itself) */
-#ifdef MAGNUM_TARGET_GLES
+                    /* Set defaults (normally they are set in shader code itself, but just in case) */
                     Material material;
 
                     /* Default to fully opaque white so we can see the textures */
@@ -100,7 +94,6 @@ namespace robot_dart {
                     material.setShininess(80.0f);
 
                     setMaterial(material);
-#endif
 
                     /* Lights defaults need to be set by code */
                     /* All lights are disabled i.e., color equal to black */
@@ -146,27 +139,30 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setLight(Magnum::Int i, const Light& light)
                 {
                     CORRADE_INTERNAL_ASSERT(i >= 0 && i < _maxLights);
-                    Magnum::Int locSize = 11;
                     Magnum::Vector4 attenuation = light.attenuation();
 
                     // light position
-                    setUniform(_lightsUniform + i * locSize, light.transformedPosition());
+                    setUniform(_lightsUniform + i * _lightLocSize, light.transformedPosition());
                     // light material
-                    setUniform(_lightsUniform + i * locSize + 1, light.material().ambientColor());
-                    setUniform(_lightsUniform + i * locSize + 2, light.material().diffuseColor());
-                    setUniform(_lightsUniform + i * locSize + 3, light.material().specularColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 1, light.material().ambientColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 2, light.material().diffuseColor());
+                    setUniform(_lightsUniform + i * _lightLocSize + 3, light.material().specularColor());
                     // spotlight properties
-                    setUniform(_lightsUniform + i * locSize + 4, light.transformedSpotDirection());
-                    setUniform(_lightsUniform + i * locSize + 5, light.spotExponent());
-                    setUniform(_lightsUniform + i * locSize + 6, light.spotCutOff());
+                    setUniform(_lightsUniform + i * _lightLocSize + 4, light.transformedSpotDirection());
+                    setUniform(_lightsUniform + i * _lightLocSize + 5, light.spotExponent());
+                    setUniform(_lightsUniform + i * _lightLocSize + 6, light.spotCutOff());
                     // intesity
-                    setUniform(_lightsUniform + i * locSize + 7, attenuation[3]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 7, attenuation[3]);
                     // constant attenuation term
-                    setUniform(_lightsUniform + i * locSize + 8, attenuation[0]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 8, attenuation[0]);
                     // linear attenuation term
-                    setUniform(_lightsUniform + i * locSize + 9, attenuation[1]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 9, attenuation[1]);
                     // quadratic attenuation term
-                    setUniform(_lightsUniform + i * locSize + 10, attenuation[2]);
+                    setUniform(_lightsUniform + i * _lightLocSize + 10, attenuation[2]);
+                    // world position
+                    setUniform(_lightsUniform + i * _lightLocSize + 11, light.position());
+
+                    setUniform(_lightsMatricesUniform + i, light.shadowMatrix());
 
                     return *this;
                 }
@@ -174,6 +170,12 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setTransformationMatrix(const Magnum::Matrix4& matrix)
                 {
                     setUniform(_transformationMatrixUniform, matrix);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::setCameraMatrix(const Magnum::Matrix4& matrix)
+                {
+                    setUniform(_cameraMatrixUniform, matrix);
                     return *this;
                 }
 
@@ -186,6 +188,30 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::setProjectionMatrix(const Magnum::Matrix4& matrix)
                 {
                     setUniform(_projectionMatrixUniform, matrix);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::setFarPlane(Magnum::Float farPlane)
+                {
+                    setUniform(_farPlaneUniform, farPlane);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::setIsShadowed(bool shadows)
+                {
+                    setUniform(_isShadowedUniform, shadows);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::GL::Texture2DArray& texture)
+                {
+                    texture.bind(_shadowTexturesLocation);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture)
+                {
+                    texture.bind(_cubeMapTexturesLocation);
                     return *this;
                 }
 

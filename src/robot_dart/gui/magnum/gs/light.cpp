@@ -11,7 +11,7 @@ namespace robot_dart {
                                  _material(Material()),
                                  _spotDirection(Magnum::Vector3{1.f, 0.f, 0.f}),
                                  _spotExponent(1.f),
-                                 _spotCutOff(Magnum::Math::Constants<Magnum::Float>::piHalf()),
+                                 _spotCutOff(Magnum::Math::Constants<Magnum::Float>::pi()),
                                  _attenuation(Magnum::Vector4{0.f, 0.f, 1.f, 1.f}) {}
 
                 Light::Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spotDirection,
@@ -46,6 +46,8 @@ namespace robot_dart {
 
                 Magnum::Vector4& Light::attenuation() { return _attenuation; }
                 Magnum::Vector4 Light::attenuation() const { return _attenuation; }
+
+                Magnum::Matrix4 Light::shadowMatrix() const { return _shadowTransform; }
 
                 Light& Light::setPosition(const Magnum::Vector4& position)
                 {
@@ -94,6 +96,12 @@ namespace robot_dart {
                 Light& Light::setAttenuation(const Magnum::Vector4& attenuation)
                 {
                     _attenuation = attenuation;
+                    return *this;
+                }
+
+                Light& Light::setShadowMatrix(const Magnum::Matrix4& shadowTransform)
+                {
+                    _shadowTransform = shadowTransform;
                     return *this;
                 }
             } // namespace gs

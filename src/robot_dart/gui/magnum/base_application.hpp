@@ -6,11 +6,16 @@
 #include <unordered_map>
 
 #include <robot_dart/gui/magnum/gs/camera.hpp>
+#include <robot_dart/gui/magnum/gs/cube_map.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
+#include <robot_dart/gui/magnum/gs/shadow_map.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
 #include <dart/simulation/World.hpp>
 
+#include <Magnum/GL/CubeMapTextureArray.h>
+#include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
 #include <Magnum/Platform/WindowlessGlxApplication.h>
 #include <Magnum/SceneGraph/Drawable.h>
@@ -104,9 +109,57 @@ namespace robot_dart {
                 std::vector<bool> _isSoftBody;
             };
 
+            class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit ShadowedObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::ShadowMap> shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::ShadowMap> _shader;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
+            class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit CubeMapShadowedObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::CubeMap> shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::CubeMap> _shader;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
+            struct ShadowData {
+                Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
+            };
+
+            struct ObjectStruct {
+                DrawableObject* drawable;
+                ShadowedObject* shadowed;
+                CubeMapShadowedObject* cubemapped;
+            };
+
             class BaseApplication {
             public:
-                BaseApplication() {}
+                BaseApplication(bool isShadowed = true) : _isShadowed(isShadowed) {}
                 virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
@@ -130,17 +183,21 @@ namespace robot_dart {
 
                 void updateLights(const gs::Camera& camera);
                 void updateGraphics();
+                void renderShadows();
                 bool attachCamera(gs::Camera& camera, const std::string& name);
 
                 void record(bool recording) { _camera->record(recording); }
                 bool isRecording() { return _camera->isRecording(); }
+
+                bool isShadowed() const { return _isShadowed; }
+                void enableShadows(bool enable = true) { _isShadowed = enable; }
 
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
             protected:
                 /* Magnum */
                 Scene3D _scene;
-                Magnum::SceneGraph::DrawableGroup3D _drawables;
+                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables, _cubemap_drawables;
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
@@ -149,20 +206,32 @@ namespace robot_dart {
 
                 /* DART */
                 std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
-                std::unordered_map<Magnum::DartIntegration::Object*, DrawableObject*> _drawableObjects;
+                std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawableObjects;
                 std::vector<Object3D*> _dartObjs;
                 std::vector<gs::Light> _lights;
+
+                /* Shadows */
+                bool _isShadowed = true;
+                std::unique_ptr<gs::ShadowMap> _shadow_shader;
+                std::unique_ptr<gs::CubeMap> _cubemap_shader;
+                std::vector<ShadowData> _shadowData;
+                std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture;
+                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap;
+                int _shadowMapSize = 512;
+                int _maxLights = 10;
+                std::unique_ptr<Camera3D> _shadowCamera;
+                Object3D* _shadowCameraObject;
 
                 void GLCleanUp();
             };
 
             template <typename T>
-            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART")
+            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true)
             {
                 int argc = 0;
                 char** argv = NULL;
 
-                return new T(argc, argv, world, width, height, title);
+                return new T(argc, argv, world, width, height, title, isShadowed);
             }
         } // namespace magnum
     } // namespace gui
