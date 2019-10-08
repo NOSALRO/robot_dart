@@ -49,7 +49,7 @@ namespace robot_dart {
                 void set_render_period(double dt) override
                 {
                     // we want to display at around 60Hz of simulated time
-                    _render_period = std::floor(0.015 / dt);
+                    _render_period = std::floor((1. / 60.) / dt);
                     if (_render_period < 1)
                         _render_period = 1;
                 }
