@@ -23,10 +23,7 @@ layout(location = 2)
 #endif
 uniform mediump mat3 normalMatrix;
 
-// TO-DO: Fix this
-#ifdef EXPLICIT_UNIFORM_LOCATION
-layout(location = LOC)
-#endif
+// TO-DO: Maybe add explicit location?
 uniform highp mat4 lightMatrices[LIGHT_COUNT];
 
 #ifdef EXPLICIT_ATTRIB_LOCATION
