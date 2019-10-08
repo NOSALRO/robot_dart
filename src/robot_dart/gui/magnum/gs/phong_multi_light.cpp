@@ -22,9 +22,6 @@ namespace robot_dart {
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
                     std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
-                    // TO-DO: Fix this?
-                    _lightsMatricesUniform = _maxLights * _lightLocSize + _lightsUniform + 1;
-                    defines += "#define LOC " + std::to_string(_lightsMatricesUniform) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
                         .addSource(defines)
@@ -40,13 +37,7 @@ namespace robot_dart {
 
                     attachShaders({vert, frag});
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(
-                            version))
-#else
-                    if (!Magnum::GL::Context::current().isVersionSupported(Magnum::GL::Version::GLES300))
-#endif
-                    {
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(version)) {
                         bindAttributeLocation(Position::Location, "position");
                         bindAttributeLocation(Normal::Location, "normal");
                         if (flags)
@@ -55,11 +46,10 @@ namespace robot_dart {
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current()
-                             .isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version))
-#endif
-                    {
+                    /* Get light matrices uniform */
+                    _lightsMatricesUniform = uniformLocation("lightMatrices[0]");
+
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
                         _transformationMatrixUniform = uniformLocation("transformationMatrix");
                         _projectionMatrixUniform = uniformLocation("projectionMatrix");
                         _cameraMatrixUniform = uniformLocation("cameraMatrix");
@@ -74,22 +64,21 @@ namespace robot_dart {
                         _isShadowedUniform = uniformLocation("isShadowed");
                     }
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (flags
-                        && !Magnum::GL::Context::current()
-                                .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version))
-#endif
-                    {
-                        if (flags & Flag::AmbientTexture)
-                            setUniform(uniformLocation("ambientTexture"), AmbientTextureLayer);
-                        if (flags & Flag::DiffuseTexture)
-                            setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
-                        if (flags & Flag::SpecularTexture)
-                            setUniform(uniformLocation("specularTexture"), SpecularTextureLayer);
+                    if (!Magnum::GL::Context::current()
+                             .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version)) {
+                        setUniform(uniformLocation("shadowTextures"), _shadowTexturesLocation);
+                        setUniform(uniformLocation("cubeMapTextures"), _cubeMapTexturesLocation);
+                        if (flags) {
+                            if (flags & Flag::AmbientTexture)
+                                setUniform(uniformLocation("ambientTexture"), AmbientTextureLayer);
+                            if (flags & Flag::DiffuseTexture)
+                                setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
+                            if (flags & Flag::SpecularTexture)
+                                setUniform(uniformLocation("specularTexture"), SpecularTextureLayer);
+                        }
                     }
 
-/* Set defaults in OpenGL ES (for desktop they are set in shader code itself) */
-#ifdef MAGNUM_TARGET_GLES
+                    /* Set defaults (normally they are set in shader code itself, but just in case) */
                     Material material;
 
                     /* Default to fully opaque white so we can see the textures */
@@ -105,7 +94,6 @@ namespace robot_dart {
                     material.setShininess(80.0f);
 
                     setMaterial(material);
-#endif
 
                     /* Lights defaults need to be set by code */
                     /* All lights are disabled i.e., color equal to black */

@@ -28,23 +28,13 @@ namespace robot_dart {
 
                     attachShaders({vert, geom, frag});
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(
-                            version))
-#else
-                    if (!Magnum::GL::Context::current().isVersionSupported(Magnum::GL::Version::GLES300))
-#endif
-                    {
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(version)) {
                         bindAttributeLocation(Position::Location, "position");
                     }
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
-#ifndef MAGNUM_TARGET_GLES
-                    if (!Magnum::GL::Context::current()
-                             .isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version))
-#endif
-                    {
+                    if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
                         _transformationMatrixUniform = uniformLocation("transformationMatrix");
                         _shadowMatricesUniform = uniformLocation("shadowMatrices[0]");
                         _lightPositionUniform = uniformLocation("lightPosition");
