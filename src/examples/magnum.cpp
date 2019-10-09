@@ -74,6 +74,9 @@ int main()
     robot_dart::gui::save_png_image("camera-small.png", cimage);
     robot_dart::gui::save_png_image("camera-main.png", gimage);
 
+    auto gray_image = robot_dart::gui::convert_rgb_to_grayscale(gimage);
+    robot_dart::gui::save_png_image("camera-gray.png", gray_image);
+
     global_robot.reset();
     return 0;
 }
