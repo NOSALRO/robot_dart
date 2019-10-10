@@ -48,14 +48,11 @@ namespace robot_dart {
                     return *_cameraObject;
                 }
 
-                Camera& Camera::zoom(Magnum::Float percentage)
+                Camera& Camera::setViewport(const Magnum::Vector2i& size)
                 {
-                    Magnum::Float perc = std::max(-1.f, std::min(1.f, percentage));
-
-                    _fov += perc * _fov;
-
-                    _camera->setProjectionMatrix(
-                        Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane));
+                    _aspectRatio = size[0] / static_cast<Magnum::Float>(size[1]);
+                    _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane))
+                        .setViewport(size);
 
                     return *this;
                 }
@@ -87,6 +84,45 @@ namespace robot_dart {
                 Camera& Camera::setSpeed(const Magnum::Vector2& speed)
                 {
                     _speed = speed;
+                    return *this;
+                }
+
+                Camera& Camera::setNearPlane(Magnum::Float nearPlane)
+                {
+                    _nearPlane = nearPlane;
+                    _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane));
+
+                    return *this;
+                }
+
+                Camera& Camera::setFarPlane(Magnum::Float farPlane)
+                {
+                    _farPlane = farPlane;
+                    _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane));
+
+                    return *this;
+                }
+
+                Camera& Camera::setFOV(Magnum::Float fov)
+                {
+                    // Maximum FOV is around 170 degrees
+                    _fov = Magnum::Rad(std::max(0.f, std::min(3.f, fov)));
+                    _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane));
+
+                    return *this;
+                }
+
+                Camera& Camera::setCameraParameters(Magnum::Float nearPlane, Magnum::Float farPlane, Magnum::Float fov, Magnum::Int width, Magnum::Int height)
+                {
+                    _nearPlane = nearPlane;
+                    _farPlane = farPlane;
+                    // Maximum FOV is around 170 degrees
+                    _fov = Magnum::Rad(std::max(0.f, std::min(3.f, fov)));
+                    _aspectRatio = width / static_cast<Magnum::Float>(height);
+
+                    _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspectRatio, _nearPlane, _farPlane))
+                        .setViewport({width, height});
+
                     return *this;
                 }
 
