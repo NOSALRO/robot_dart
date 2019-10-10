@@ -96,6 +96,9 @@ def check_magnum_integration(conf, *k, **kw):
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
 
+    # OSX/Mac uses .dylib and GNU/Linux .so
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
+
     required = kw.get('required', False)
     requested_components = kw.get('components', None)
     if requested_components == None:
@@ -160,7 +163,7 @@ def check_magnum_integration(conf, *k, **kw):
             magnum_integration_component_includes[component] = magnum_integration_component_includes[component] + [include_dir]
             if component != 'Eigen':
                 lib = 'Magnum' + component_name
-                lib_dir = get_directory('lib'+lib+'.so', libs_check, True)
+                lib_dir = get_directory('lib'+lib+'.'+suffix, libs_check, True)
                 magnum_integration_libs.append(lib)
                 magnum_integration_libpaths = magnum_integration_libpaths + [lib_dir]
 
@@ -185,7 +188,7 @@ def check_magnum_integration(conf, *k, **kw):
         #         magnum_integration_includes = magnum_integration_includes + [assimp_inc]
         #         magnum_integration_component_includes[component] = magnum_integration_component_includes[component] + [assimp_inc]
 
-        #         lib_dir = get_directory('libassimp.so', libs_check)
+        #         lib_dir = get_directory('libassimp.'+suffix, libs_check)
         #         magnum_integration_libpaths = magnum_integration_libpaths + [lib_dir]
         #         magnum_integration_libs.append('assimp')
 
