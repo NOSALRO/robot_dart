@@ -149,11 +149,15 @@ def build(bld):
     libs = 'BOOST EIGEN DART'
     libs_graphics = libs + ' DART_GRAPHIC'
 
+    GLFramework = []
+    if bld.env['DEST_OS'] == 'darwin':
+        GLFramework = ["Foundation", "OpenGL"]
+
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
                 includes = './src',
                 uselib = libs,
-                framework = ["Foundation", "OpenGL"],
+                framework = GLFramework,
                 target = 'RobotDARTSimu')
 
     shaders_resource = corrade.corrade_add_resource(bld, name = 'RobotDARTShaders', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
@@ -163,7 +167,7 @@ def build(bld):
                 includes = './src',
                 uselib = magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                 use = 'RobotDARTSimu',
-                framework = ["Foundation", "OpenGL"],
+                framework = GLFramework,
                 target = 'RobotDARTMagnum')
 
     if bld.get_env()['BUILD_MAGNUM'] == True:
@@ -173,7 +177,7 @@ def build(bld):
                       includes = './src',
                       uselib = magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['RESPATH="' + path + '"'],
                       target = 'magnum')
 
@@ -185,7 +189,7 @@ def build(bld):
                       includes = './src',
                       uselib = 'PTHREAD ' + magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['RESPATH="' + path + '"'],
                       target = 'magnum_contexts')
 
@@ -196,7 +200,7 @@ def build(bld):
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['GRAPHIC'],
                       target = 'pendulum')
 
@@ -206,7 +210,7 @@ def build(bld):
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['GRAPHIC'],
                       target = 'arm')
 
@@ -216,7 +220,7 @@ def build(bld):
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['GRAPHIC'],
                       target = 'cameras')
 
@@ -226,7 +230,7 @@ def build(bld):
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['GRAPHIC'],
                       target = 'tutorial')
 
@@ -236,7 +240,7 @@ def build(bld):
                       includes = './src',
                       uselib = libs_graphics,
                       use = 'RobotDARTSimu',
-                      framework = ["Foundation", "OpenGL"],
+                      framework = GLFramework,
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'meshes')
 
@@ -248,7 +252,7 @@ def build(bld):
                         includes = './src',
                         uselib = libs_graphics + ' HEXAPOD_CONTROLLER',
                         use = 'RobotDARTSimu',
-                        framework = ["Foundation", "OpenGL"],
+                        framework = GLFramework,
                         defines = ['GRAPHIC'],
                         target = 'hexapod')
 
@@ -258,7 +262,7 @@ def build(bld):
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  framework = ["Foundation", "OpenGL"],
+                  framework = GLFramework,
                   target = 'pendulum_plain')
 
     bld.program(features = 'cxx',
@@ -267,7 +271,7 @@ def build(bld):
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  framework = ["Foundation", "OpenGL"],
+                  framework = GLFramework,
                   target = 'arm_plain')
 
     bld.program(features = 'cxx',
@@ -276,7 +280,7 @@ def build(bld):
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  framework = ["Foundation", "OpenGL"],
+                  framework = GLFramework,
                   target = 'tutorial_plain')
 
     bld.program(features = 'cxx',
@@ -285,7 +289,7 @@ def build(bld):
                   includes = './src',
                   uselib = libs,
                   use = 'RobotDARTSimu',
-                  framework = ["Foundation", "OpenGL"],
+                  framework = GLFramework,
                   defines = ['RESPATH="' + path + '"'],
                   target = 'meshes_plain')
 
@@ -297,7 +301,7 @@ def build(bld):
                     includes = './src',
                     uselib = libs + ' HEXAPOD_CONTROLLER',
                     use = 'RobotDARTSimu',
-                    framework = ["Foundation", "OpenGL"],
+                    framework = GLFramework,
                     target = 'hexapod_plain')
 
     bld.add_post_fun(summary)
