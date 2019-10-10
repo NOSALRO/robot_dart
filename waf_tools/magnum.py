@@ -109,6 +109,9 @@ def check_magnum(conf, *k, **kw):
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
+    if conf.env['DEST_OS'] == 'darwin':
+        includes_check = includes_check + ['/System/Library/Frameworks/OpenGL.framework/Headers', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/']
+        libs_check = libs_check + ['/System/Library/Frameworks/OpenGL.framework/Libraries', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/']
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
@@ -182,18 +185,12 @@ def check_magnum(conf, *k, **kw):
         if 'TARGET_GL' in magnum_config:
             # to-do: make it work for other platforms; now only for desktop and only for GL
             conf.start_msg('Magnum: Checking for OpenGL includes')
-            if conf.env['DEST_OS'] == 'darwin':
-                opengl_include_dir = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/'
-            else:
-                opengl_include_dir = get_directory('GL/gl.h', includes_check)
+            opengl_include_dir = get_directory('GL/gl.h', includes_check)
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
             conf.start_msg('Magnum: Checking for OpenGL lib')
-            if conf.env['DEST_OS'] == 'darwin':
-                opengl_lib_dir = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/'
-            else:
-                opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
+            opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
             magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
             magnum_libs = magnum_libs + ['GL']
             conf.end_msg(['GL'])
