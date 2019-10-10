@@ -1,7 +1,6 @@
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/control/hexa_control.hpp>
 #include <robot_dart/control/pd_control.hpp>
 
 #include <robot_dart/gui/magnum/camera_osr.hpp>
