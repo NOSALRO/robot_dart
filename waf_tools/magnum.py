@@ -185,7 +185,16 @@ def check_magnum(conf, *k, **kw):
         if 'TARGET_GL' in magnum_config:
             # to-do: make it work for other platforms; now only for desktop and only for GL
             conf.start_msg('Magnum: Checking for OpenGL includes')
-            opengl_include_dir = get_directory('GL/gl.h', includes_check)
+            opengl_files = ['GL/gl.h', 'gl.h']
+            gl_not_found = False
+            for gl_file in opengl_files:
+                try:
+                    opengl_include_dir = get_directory(gl_file, includes_check)
+                    break
+                except:
+                    gl_not_found = True
+            if gl_not_found:
+                conf.fatal('Not found')
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
@@ -200,6 +209,8 @@ def check_magnum(conf, *k, **kw):
             magnum_libpaths = magnum_libpaths + [gl_lib_dir]
             magnum_libs = magnum_libs + ['MagnumGL']
             conf.end_msg(['MagnumGL'])
+        else:
+            conf.fatal('At the moment only desktop OpenGL is supported by WAF')
 
         conf.start_msg('Checking for Magnum components')
         # only check for components that can exist
@@ -438,12 +449,16 @@ def check_magnum(conf, *k, **kw):
         conf.env['INCLUDES_%s' % magnum_var] = magnum_includes
         conf.env['LIBPATH_%s' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s' % magnum_var] = magnum_libs
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['LDFLAGS_%s' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
         conf.env['EXEC_%s' % magnum_var] = magnum_bins
 
         # set main Magnum component
         conf.env['INCLUDES_%s_Magnum' % magnum_var] = magnum_includes
         conf.env['LIBPATH_%s_Magnum' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s_Magnum' % magnum_var] = magnum_libs
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['LDFLAGS_%s_Magnum' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
         conf.env['EXEC_%s_Magnum' % magnum_var] = magnum_bins
 
         # Plugin directories
