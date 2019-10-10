@@ -19,12 +19,22 @@ namespace robot_dart {
                     Camera3D& camera() const;
                     Object3D& cameraObject() const;
 
-                    Camera& zoom(Magnum::Float percentage);
+                    Camera& setViewport(const Magnum::Vector2i& size);
+
                     Camera& move(const Magnum::Vector2i& shift);
                     Camera& forward(Magnum::Float speed);
                     Camera& strafe(Magnum::Float speed);
 
                     Camera& setSpeed(const Magnum::Vector2& speed);
+                    Camera& setNearPlane(Magnum::Float nearPlane);
+                    Camera& setFarPlane(Magnum::Float farPlane);
+                    Camera& setFOV(Magnum::Float fov);
+                    Camera& setCameraParameters(Magnum::Float nearPlane, Magnum::Float farPlane, Magnum::Float fov, Magnum::Int width, Magnum::Int height);
+
+                    Magnum::Vector2 speed() const { return _speed; }
+                    Magnum::Float nearPlane() const { return _nearPlane; }
+                    Magnum::Float farPlane() const { return _farPlane; }
+                    Magnum::Float fov() const { return static_cast<Magnum::Float>(_fov); }
 
                     Camera& lookAt(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 

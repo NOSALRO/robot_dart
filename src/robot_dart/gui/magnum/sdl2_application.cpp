@@ -45,7 +45,7 @@ namespace robot_dart {
             {
                 Magnum::GL::defaultFramebuffer.setViewport({{}, size});
 
-                _camera->camera().setViewport(size);
+                _camera->setViewport(size);
             }
 
             void Sdl2Application::drawEvent()
@@ -116,7 +116,7 @@ namespace robot_dart {
                 else
                     perc = -0.1f;
 
-                _camera->zoom(perc);
+                _camera->forward(perc);
 
                 event.setAccepted();
             }

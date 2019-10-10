@@ -16,59 +16,12 @@ namespace robot_dart {
                 CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height);
                 ~CameraOSR() {}
 
-                bool done() const override
-                {
-                    return _done;
-                }
+                bool done() const override { return _done; }
+                virtual void refresh() override;
+                virtual void set_render_period(double dt) override;
+                void set_enable(bool enable) override { _enabled = enable; }
 
-                void refresh() override
-                {
-                    if (!_enabled)
-                        return;
-
-                    if (_attaching && !_attached) {
-                        attach_to(_attach_to, _attached_tf);
-                    }
-
-                    // process next frame
-                    if (_frame_counter % _render_period == 0)
-                        render();
-                    _frame_counter++;
-                }
-
-                virtual void set_render_period(double dt) override
-                {
-                    // we want to display at around 60Hz of simulated time
-                    _render_period = std::floor((1. / 60.) / dt);
-                    if (_render_period < 1)
-                        _render_period = 1;
-                }
-
-                void set_enable(bool enable) override
-                {
-                    _enabled = enable;
-                }
-
-                void look_at(const Eigen::Vector3d& camera_pos,
-                    const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0),
-                    const Eigen::Vector3d& up = Eigen::Vector3d(0, 0, 1))
-                {
-                    float cx = static_cast<float>(camera_pos[0]);
-                    float cy = static_cast<float>(camera_pos[1]);
-                    float cz = static_cast<float>(camera_pos[2]);
-
-                    float lx = static_cast<float>(look_at[0]);
-                    float ly = static_cast<float>(look_at[1]);
-                    float lz = static_cast<float>(look_at[2]);
-
-                    float ux = static_cast<float>(up[0]);
-                    float uy = static_cast<float>(up[1]);
-                    float uz = static_cast<float>(up[2]);
-
-                    _camera->lookAt(Magnum::Vector3{cx, cy, cz},
-                        Magnum::Vector3{lx, ly, lz},
-                        Magnum::Vector3{ux, uy, uz});
-                }
+                void look_at(const Eigen::Vector3d& camera_pos, const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0), const Eigen::Vector3d& up = Eigen::Vector3d(0, 0, 1));
 
                 void render();
 
@@ -90,39 +43,18 @@ namespace robot_dart {
                     return Image();
                 }
 
-                void attach_to(const std::string& name, const Eigen::Isometry3d& tf)
-                {
-                    _attach_to = name;
-                    _attaching = true;
-                    _attached = false;
-                    _attached_tf = tf;
+                virtual void attach_to(const std::string& name, const Eigen::Isometry3d& tf);
 
-                    _attached = _magnum_app->attachCamera(*_camera, name);
-                    if (_attached) {
-                        _attaching = false;
+                void set_speed(const Magnum::Vector2& speed) { _camera->setSpeed(speed); }
+                void set_near_plane(double near_plane) { _camera->setNearPlane(near_plane); }
+                void set_far_plane(double far_plane) { _camera->setNearPlane(far_plane); }
+                void set_fov(double fov) { _camera->setFOV(fov); }
+                void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _camera->setCameraParameters(near_plane, far_plane, fov, width, height); }
 
-                        Eigen::Quaterniond quat(tf.linear());
-                        Eigen::Vector3d axis(quat.x(), quat.y(), quat.z());
-                        double angle = 2. * std::acos(quat.w());
-                        if (std::abs(angle) > 1e-5) {
-                            axis = axis.array() / std::sqrt(1 - quat.w() * quat.w());
-                            axis.normalize();
-                        }
-                        else
-                            axis(0) = 1.;
-
-                        Eigen::Vector3d T = tf.translation();
-
-                        /* Convert it to axis-angle representation */
-                        Magnum::Math::Vector3<Magnum::Float> t(T[0], T[1], T[2]);
-                        Magnum::Math::Vector3<Magnum::Float> u(axis(0), axis(1), axis(2));
-                        Magnum::Rad theta(angle);
-
-                        /* Pass it to Magnum */
-                        _camera->cameraObject().setTransformation({});
-                        _camera->cameraObject().rotate(theta, u).translate(t);
-                    }
-                }
+                Magnum::Vector2 speed() const { return _camera->speed(); }
+                double nearPlane() const { return _camera->nearPlane(); }
+                double farPlane() const { return _camera->farPlane(); }
+                double fov() const { return _camera->fov(); }
 
             protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
