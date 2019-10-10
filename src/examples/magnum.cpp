@@ -57,7 +57,8 @@ int main()
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
     camera->attach_to("iiwa_link_ee", tf); // cameras are looking towards -z by default
 
-    simu.add_floor();
+    // simu.add_floor(5.);
+    simu.add_checkerboard_floor(10.);
     simu.add_robot(global_robot);
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
