@@ -23,7 +23,7 @@ namespace robot_dart {
             // GlobalData
             Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& GlobalData::plugin_manager() { return _plugin_manager; }
 
-            Magnum::Platform::WindowlessGLContext* GlobalData::get_gl_context()
+            Magnum::Platform::WindowlessGLContext* GlobalData::gl_context()
             {
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 if (_gl_contexts.size() == 0)

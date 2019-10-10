@@ -472,6 +472,10 @@ def check_magnum(conf, *k, **kw):
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_IMAGECONVERTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_imageconverter_dir))
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_IMPORTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_importer_dir))
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_AUDIOIMPORTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_audioimporter_dir))
+        for config in magnum_config:
+            conf.env['DEFINES_%s' % magnum_var].append(config)
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['DEFINES_%s' % magnum_var].append('%s_MAC_OSX' % magnum_var.upper())
 
         # copy C++ defines to Magnum::Magnum component; we want them to be available on all Magnum builds
         conf.env['DEFINES_%s_Magnum' % magnum_var] = copy.deepcopy(conf.env['DEFINES_%s' % magnum_var])
