@@ -8,10 +8,10 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            class GLXApplication : public BaseApplication, public Magnum::Platform::WindowlessApplication {
+            class WindowlessGLApplication : public BaseApplication, public Magnum::Platform::WindowlessApplication {
             public:
-                explicit GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
-                ~GLXApplication();
+                explicit WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
+                ~WindowlessGLApplication();
 
                 void render() override;
 
