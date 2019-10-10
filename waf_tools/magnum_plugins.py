@@ -105,6 +105,9 @@ def check_magnum_plugins(conf, *k, **kw):
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
 
+    # OSX/Mac uses .dylib and GNU/Linux .so
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
+
     required = kw.get('required', False)
     requested_components = kw.get('components', None)
     if requested_components == None:
@@ -207,7 +210,7 @@ def check_magnum_plugins(conf, *k, **kw):
             lib = component
             # we need the full lib_dir in order to be able to link to the plugins
             # or not? because they are loaded dynamically
-            lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.so', libs_check, True)
+            lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+suffix, libs_check, True)
             # magnum_plugins_libs.append(lib)
             # magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
 
@@ -232,7 +235,7 @@ def check_magnum_plugins(conf, *k, **kw):
                 magnum_plugins_includes = magnum_plugins_includes + [assimp_inc]
                 magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [assimp_inc]
 
-                lib_dir = get_directory('libassimp.so', libs_check)
+                lib_dir = get_directory('libassimp.'+suffix, libs_check)
                 magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
                 magnum_plugins_libs.append('assimp')
 
@@ -270,7 +273,7 @@ def check_magnum_plugins(conf, *k, **kw):
                     qt4_inc = get_directory('qt4/'+comp, includes_check, True)
                     qt4_includes = qt4_includes + [qt4_inc]
 
-                    qt4_lib = get_directory('lib'+comp+'.so', libs_check)
+                    qt4_lib = get_directory('lib'+comp+'.'+suffix, libs_check)
                     qt4_libpaths = qt4_libpaths + [qt4_lib]
 
                 qt4_includes = list(set(qt4_includes))
@@ -303,7 +306,7 @@ def check_magnum_plugins(conf, *k, **kw):
                 magnum_plugins_includes = magnum_plugins_includes + [freetype_inc]
                 magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [freetype_inc]
 
-                lib_dir = get_directory('libfreetype.so', libs_check)
+                lib_dir = get_directory('libfreetype.'+suffix, libs_check)
                 magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
                 magnum_plugins_libs.append('freetype')
 
@@ -328,7 +331,7 @@ def check_magnum_plugins(conf, *k, **kw):
                 magnum_plugins_includes = magnum_plugins_includes + [jpeg_inc]
                 magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [jpeg_inc]
 
-                lib_dir = get_directory('libjpeg.so', libs_check)
+                lib_dir = get_directory('libjpeg.'+suffix, libs_check)
                 magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
                 magnum_plugins_libs.append('jpeg')
 
@@ -350,7 +353,7 @@ def check_magnum_plugins(conf, *k, **kw):
                 magnum_plugins_includes = magnum_plugins_includes + [png_inc]
                 magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [png_inc]
 
-                lib_dir = get_directory('libpng.so', libs_check)
+                lib_dir = get_directory('libpng.'+suffix, libs_check)
                 magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
                 magnum_plugins_libs.append('png')
 
