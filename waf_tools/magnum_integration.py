@@ -18,7 +18,7 @@ import copy
 import magnum
 
 def options(opt):
-        pass
+    opt.add_option('--magnum_integration_install_dir', type='string', help='path to magnum plugins install directory', dest='magnum_integration_install_dir')
 
 def get_magnum_integration_components():
     magnum_integration_components = ['Bullet', 'Dart', 'Eigen']
@@ -95,6 +95,14 @@ def check_magnum_integration(conf, *k, **kw):
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
+
+    # Magnum depends on several libraries and we cannot make the assumption that
+    # someone installed all of them in the same directory!
+    # to-do: a better? solution would be to create different scripts for each dependency
+    if conf.options.magnum_integration_install_dir:
+        includes_check = [conf.options.magnum_integration_install_dir + '/include'] + includes_check
+        libs_check = [conf.options.magnum_integration_install_dir + '/lib'] + libs_check
+        bins_check = [conf.options.magnum_integration_install_dir + '/bin'] + bins_check
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
