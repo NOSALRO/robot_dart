@@ -190,6 +190,7 @@ def check_magnum(conf, *k, **kw):
             for gl_file in opengl_files:
                 try:
                     opengl_include_dir = get_directory(gl_file, includes_check)
+                    gl_not_found = False
                     break
                 except:
                     gl_not_found = True
