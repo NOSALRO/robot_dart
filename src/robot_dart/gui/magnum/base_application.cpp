@@ -228,7 +228,6 @@ namespace robot_dart {
             // BaseApplication
             void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)
             {
-                /* Anything not related to GL */
                 /* Camera setup */
                 _camera.reset(
                     new gs::Camera(_scene, static_cast<int>(width), static_cast<int>(height)));
@@ -589,6 +588,59 @@ namespace robot_dart {
                 }
 
                 return false;
+            }
+
+            GrayscaleImage BaseApplication::depthImage()
+            {
+                auto& depth_image = _camera->depthImage();
+                if (!depth_image)
+                    return GrayscaleImage();
+                auto pixels = depth_image->pixels<Magnum::Float>();
+                auto sz = pixels.size();
+
+                GrayscaleImage img;
+                // TO-DO: Make this more performant
+                size_t width = sz[1];
+                size_t height = sz[0];
+                img.resize(width);
+                for (size_t w = 0; w < width; w++) {
+                    img[w].resize(height);
+                    for (size_t h = 0; h < height; h++) {
+                        Magnum::Float depth = pixels[height - 1 - h][w];
+
+                        /* Linearize depth for visualization */
+                        Magnum::Float zNear = _camera->nearPlane();
+                        Magnum::Float zFar = _camera->farPlane();
+                        Magnum::Float val = (2.f * zNear) / (zFar + zNear - depth * (zFar - zNear));
+                        img[w][h] = val * 255.f;
+                    }
+                }
+
+                return img;
+            }
+
+            GrayscaleImage BaseApplication::rawDepthImage()
+            {
+                auto& depth_image = _camera->depthImage();
+                if (!depth_image)
+                    return GrayscaleImage();
+                auto pixels = depth_image->pixels<Magnum::Float>();
+                auto sz = pixels.size();
+
+                GrayscaleImage img;
+                // TO-DO: Make this more performant
+                size_t width = sz[1];
+                size_t height = sz[0];
+                img.resize(width);
+                for (size_t w = 0; w < width; w++) {
+                    img[w].resize(height);
+                    for (size_t h = 0; h < height; h++) {
+                        Magnum::Float depth = pixels[height - 1 - h][w];
+                        img[w][h] = depth * 255.f;
+                    }
+                }
+
+                return img;
             }
 
             void BaseApplication::GLCleanUp()

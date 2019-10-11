@@ -1,9 +1,13 @@
 #include "camera_osr.hpp"
 
 // #include <Magnum/DebugTools/Screenshot.h>
+#include <Magnum/GL/PixelFormat.h>
 #include <Magnum/GL/Renderbuffer.h>
 #include <Magnum/GL/RenderbufferFormat.h>
 #include <Magnum/GL/Renderer.h>
+#include <Magnum/GL/TextureFormat.h>
+#include <Magnum/ImageView.h>
+#include <Magnum/PixelFormat.h>
 
 namespace robot_dart {
     namespace gui {
@@ -60,8 +64,8 @@ namespace robot_dart {
 
             void CameraOSR::set_render_period(double dt)
             {
-                // we want to display at around 60Hz of simulated time
-                _render_period = std::floor((1. / 60.) / dt);
+                // cameras usually operate at around 30Hz (of simulated time)
+                _render_period = std::floor((1. / 30.) / dt);
                 if (_render_period < 1)
                     _render_period = 1;
             }
@@ -106,6 +110,88 @@ namespace robot_dart {
                 /* Draw with this camera */
                 _camera->draw(_magnum_app->drawables(), _framebuffer, _format);
             }
+
+            GrayscaleImage CameraOSR::depth_image()
+            {
+                auto& depth_image = _camera->depthImage();
+                if (!depth_image)
+                    return GrayscaleImage();
+                auto pixels = depth_image->pixels<Magnum::Float>();
+                auto sz = pixels.size();
+
+                GrayscaleImage img;
+                // TO-DO: Make this more performant
+                size_t width = sz[1];
+                size_t height = sz[0];
+                img.resize(width);
+                for (size_t w = 0; w < width; w++) {
+                    img[w].resize(height);
+                    for (size_t h = 0; h < height; h++) {
+                        Magnum::Float depth = pixels[height - 1 - h][w];
+
+                        /* Linearize depth for visualization */
+                        Magnum::Float zNear = _camera->nearPlane();
+                        Magnum::Float zFar = _camera->farPlane();
+                        Magnum::Float val = (2.f * zNear) / (zFar + zNear - depth * (zFar - zNear));
+                        img[w][h] = val * 255.f;
+                    }
+                }
+
+                return img;
+            }
+
+            GrayscaleImage CameraOSR::raw_depth_image()
+            {
+                auto& depth_image = _camera->depthImage();
+                if (!depth_image)
+                    return GrayscaleImage();
+                auto pixels = depth_image->pixels<Magnum::Float>();
+                auto sz = pixels.size();
+
+                GrayscaleImage img;
+                // TO-DO: Make this more performant
+                size_t width = sz[1];
+                size_t height = sz[0];
+                img.resize(width);
+                for (size_t w = 0; w < width; w++) {
+                    img[w].resize(height);
+                    for (size_t h = 0; h < height; h++) {
+                        Magnum::Float depth = pixels[height - 1 - h][w];
+                        img[w][h] = depth * 255.f;
+                    }
+                }
+
+                return img;
+            }
+
+            // std::vector<Eigen::Vector3d> CameraOSR::point_cloud()
+            // {
+            //     Magnum::Image2D depth_image = _camera->depthImage();
+            //     auto pixels = depth_image.pixels<Magnum::Float>();
+            //     auto sz = pixels.size();
+
+            //     auto inv_cam_proj = _camera->camera().projectionMatrix().inverted();
+
+            //     std::vector<Eigen::Vector3d> points;
+            //     // TO-DO: Make this more performant
+            //     size_t width = sz[1];
+            //     size_t height = sz[0];
+            //     for (size_t w = 0; w < width; w++) {
+            //         for (size_t h = 0; h < height; h++) {
+            //             Magnum::Float depth = pixels[height - 1 - h][w];
+            //             Magnum::Float tX = 2.f * (w / Magnum::Float(width - 1)) - 1.f;
+            //             Magnum::Float tY = 2.f * (h / Magnum::Float(height - 1)) - 1.f;
+            //             Magnum::Float tZ = 2.f * depth - 1.f;
+            //             Magnum::Vector4 vec{tX, tY, tZ, 1.f};
+            //             Magnum::Vector4 v = (inv_cam_proj * vec);
+            //             Magnum::Vector3 point = v.xyz() / v.w();
+
+            //             points.push_back(Eigen::Vector3d(point.x(), point.y(), point.z()));
+            //         }
+            //     }
+
+            //     return points;
+            // }
 
             void CameraOSR::attach_to(const std::string& name, const Eigen::Isometry3d& tf)
             {

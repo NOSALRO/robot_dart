@@ -163,6 +163,10 @@ namespace robot_dart {
                     if (_recording) {
                         _image = framebuffer.read(framebuffer.viewport(), {format});
                     }
+
+                    if (_recording_depth) {
+                        _depth_image = framebuffer.read(framebuffer.viewport(), {Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float});
+                    }
                 }
             } // namespace gs
         } // namespace magnum
