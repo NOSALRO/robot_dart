@@ -223,35 +223,55 @@ namespace robot_dart {
     void Robot::set_position_enforced(size_t dof, bool enforced)
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+        _skeleton->getDof(dof)->getJoint()->setLimitEnforcement(enforced);
+#else
         _skeleton->getDof(dof)->getJoint()->setPositionLimitEnforced(enforced);
+#endif
     }
 
     void Robot::set_position_enforced(const std::vector<bool>& enforced)
     {
         ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(), "Position enforced vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+            _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced[i]);
+#else
             _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced[i]);
+#endif
         }
     }
 
     void Robot::set_position_enforced(bool enforced)
     {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+            _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced);
+#else
             _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced);
+#endif
         }
     }
 
     bool Robot::position_enforced(size_t dof) const
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", false);
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+        return _skeleton->getDof(dof)->getJoint()->areLimitsEnforced();
+#else
         return _skeleton->getDof(dof)->getJoint()->isPositionLimitEnforced();
+#endif
     }
 
     std::vector<bool> Robot::position_enforced() const
     {
         std::vector<bool> pos;
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+            pos.push_back(_skeleton->getDof(i)->getJoint()->areLimitsEnforced());
+#else
             pos.push_back(_skeleton->getDof(i)->getJoint()->isPositionLimitEnforced());
+#endif
         }
 
         return pos;
@@ -397,7 +417,11 @@ namespace robot_dart {
         tmp_skel->setName(_robot_name);
         // Set joint limits
         for (size_t i = 0; i < tmp_skel->getNumJoints(); ++i) {
+#if DART_VERSION_AT_LEAST(6, 1, 0)
+            tmp_skel->getJoint(i)->setLimitEnforcement(true);
+#else
             tmp_skel->getJoint(i)->setPositionLimitEnforced(true);
+#endif
         }
 
         _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, tmp_skel);
