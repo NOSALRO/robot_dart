@@ -25,8 +25,9 @@ namespace robot_dart {
 
                 void render();
 
-                void set_recording(bool recording) { _camera->record(recording); }
+                void set_recording(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
                 bool recording() { return _camera->isRecording(); }
+                bool recordingDepth() { return _camera->isDepthRecording(); }
 
                 Magnum::Image2D* magnum_image()
                 {
@@ -43,11 +44,28 @@ namespace robot_dart {
                     return Image();
                 }
 
+                Magnum::Image2D* magnum_depth_image()
+                {
+                    if (_camera->depthImage())
+                        return &(*_camera->depthImage());
+                    return nullptr;
+                }
+
+                // This is for visualization purposes
+                GrayscaleImage depth_image();
+
+                // Image filled with depth buffer values
+                GrayscaleImage raw_depth_image();
+
+                // // Point-cloud made from each pixel in depth image
+                // // all transformations are according to the camera frame
+                // std::vector<Eigen::Vector3d> point_cloud();
+
                 virtual void attach_to(const std::string& name, const Eigen::Isometry3d& tf);
 
                 void set_speed(const Magnum::Vector2& speed) { _camera->setSpeed(speed); }
                 void set_near_plane(double near_plane) { _camera->setNearPlane(near_plane); }
-                void set_far_plane(double far_plane) { _camera->setNearPlane(far_plane); }
+                void set_far_plane(double far_plane) { _camera->setFarPlane(far_plane); }
                 void set_fov(double fov) { _camera->setFOV(fov); }
                 void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _camera->setCameraParameters(near_plane, far_plane, fov, width, height); }
 

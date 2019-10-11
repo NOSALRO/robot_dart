@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <unordered_map>
 
+#include <robot_dart/gui/helper.hpp>
 #include <robot_dart/gui/magnum/gs/camera.hpp>
 #include <robot_dart/gui/magnum/gs/cube_map.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
@@ -187,13 +188,20 @@ namespace robot_dart {
                 void renderShadows();
                 bool attachCamera(gs::Camera& camera, const std::string& name);
 
-                void record(bool recording) { _camera->record(recording); }
+                void record(bool recording, bool depthRecording = false) { _camera->record(recording, depthRecording); }
                 bool isRecording() { return _camera->isRecording(); }
+                bool isDepthRecording() { return _camera->isDepthRecording(); }
 
                 bool isShadowed() const { return _isShadowed; }
                 void enableShadows(bool enable = true) { _isShadowed = enable; }
 
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
+
+                // This is for visualization purposes
+                GrayscaleImage depthImage();
+
+                // Image filled with depth buffer values
+                GrayscaleImage rawDepthImage();
 
             protected:
                 /* Magnum */

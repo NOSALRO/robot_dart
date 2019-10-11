@@ -50,6 +50,8 @@ int main()
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(simu.world(), graphics->magnum_app(), 256, 256);
+    camera->set_far_plane(5.f);
+    camera->set_recording(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
     Eigen::Isometry3d tf;
     // tf.setIdentity();
@@ -63,7 +65,7 @@ int main()
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
-    simu.add_camera(camera); // cameras are recording by default
+    simu.add_camera(camera);
 
     simu.run(20.);
 
@@ -75,8 +77,15 @@ int main()
     robot_dart::gui::save_png_image("camera-small.png", cimage);
     robot_dart::gui::save_png_image("camera-main.png", gimage);
 
+    // convert an rgb image to grayscale (useful in some cases)
     auto gray_image = robot_dart::gui::convert_rgb_to_grayscale(gimage);
     robot_dart::gui::save_png_image("camera-gray.png", gray_image);
+
+    // get the depth image from a camera
+    // with a version for visualization or bigger differences in the output
+    robot_dart::gui::save_png_image("camera-depth.png", camera->depth_image());
+    // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
+    robot_dart::gui::save_png_image("camera-depth-raw.png", camera->raw_depth_image());
 
     global_robot.reset();
     return 0;

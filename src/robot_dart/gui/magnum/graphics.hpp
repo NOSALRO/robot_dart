@@ -91,8 +91,9 @@ namespace robot_dart {
                     return _magnum_app->light(i);
                 }
 
-                void set_recording(bool recording) { _magnum_app->record(recording); }
+                void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
                 bool recording() { return _magnum_app->isRecording(); }
+                bool recordingDepth() { return _magnum_app->isDepthRecording(); }
 
                 bool is_shadowed() const { return _magnum_app->isShadowed(); }
                 void enable_shadows(bool enable = true) { _magnum_app->enableShadows(enable); }
@@ -111,6 +112,9 @@ namespace robot_dart {
                         return gs::rgb_from_image(image);
                     return Image();
                 }
+
+                GrayscaleImage depth_image() override { return _magnum_app->depthImage(); }
+                GrayscaleImage raw_depth_image() override { return _magnum_app->rawDepthImage(); }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }
 

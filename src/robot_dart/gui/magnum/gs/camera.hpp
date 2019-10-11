@@ -35,15 +35,24 @@ namespace robot_dart {
                     Magnum::Float nearPlane() const { return _nearPlane; }
                     Magnum::Float farPlane() const { return _farPlane; }
                     Magnum::Float fov() const { return static_cast<Magnum::Float>(_fov); }
+                    Magnum::Int width() const { return _camera->viewport()[0]; }
+                    Magnum::Int height() const { return _camera->viewport()[1]; }
 
                     Camera& lookAt(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 
                     void transformLights(std::vector<gs::Light>& lights) const;
 
-                    void record(bool recording) { _recording = recording; }
+                    void record(bool recording, bool depthRecording = false)
+                    {
+                        _recording = recording;
+                        _recording_depth = depthRecording;
+                    }
+
                     bool isRecording() { return _recording; }
+                    bool isDepthRecording() { return _recording_depth; }
 
                     Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
+                    Corrade::Containers::Optional<Magnum::Image2D>& depthImage() { return _depth_image; }
 
                     void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format);
 
@@ -59,8 +68,8 @@ namespace robot_dart {
                     Magnum::Float _aspectRatio, _nearPlane, _farPlane;
                     Magnum::Rad _fov;
 
-                    bool _recording = false;
-                    Corrade::Containers::Optional<Magnum::Image2D> _image;
+                    bool _recording = false, _recording_depth = false;
+                    Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
                 };
             } // namespace gs
         } // namespace magnum
