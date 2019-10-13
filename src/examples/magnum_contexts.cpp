@@ -3,11 +3,10 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/control/hexa_control.hpp>
 #include <robot_dart/control/pd_control.hpp>
 
-#include <robot_dart/gui/magnum/glx_application.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
+#include <robot_dart/gui/magnum/windowless_gl_application.hpp>
 
 int main()
 {
@@ -38,8 +37,8 @@ int main()
 
             // Get the GL context -- this is a blocking call
             // will wait until one GL context is available
-            // get_glx_context(glx_context); // this call will not sleep between failed queries
-            get_glx_context_with_sleep(glx_context, 20); // this call will sleep 20ms between each failed query
+            // get_gl_context(gl_context); // this call will not sleep between failed queries
+            get_gl_context_with_sleep(gl_context, 20); // this call will sleep 20ms between each failed query
 
             // Do the simulation
             auto g_robot = global_robot->clone();
@@ -53,12 +52,12 @@ int main()
             std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(300., 50.);
 
             // Magnum graphics
-            auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<robot_dart::gui::magnum::GLXApplication>>(simu.world(), 1024, 768);
+            auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<robot_dart::gui::magnum::WindowlessGLApplication>>(simu.world(), 1024, 768);
             simu.set_graphics(graphics);
             // Position the camera differently for each thread to visualize the difference
             graphics->look_at({0.4 * index, 3.5 - index * 0.1, 2.}, {0., 0., 0.25});
             // record images from main camera/graphics
-            // graphics->set_recording(true); // GLXApplication records images by default
+            // graphics->set_recording(true); // WindowlessGLApplication records images by default
 
             simu.add_robot(g_robot);
             simu.run(6);
@@ -67,7 +66,7 @@ int main()
             robot_dart::gui::save_png_image("camera_" + std::to_string(index) + ".png", graphics->image());
 
             // Release the GL context for another thread to use
-            release_glx_context(glx_context);
+            release_gl_context(gl_context);
         }));
     }
 

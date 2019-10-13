@@ -18,30 +18,34 @@
 #include <Magnum/GL/Framebuffer.h>
 #include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
+#ifndef MAGNUM_MAC_OSX
 #include <Magnum/Platform/WindowlessGlxApplication.h>
+#else
+#include <Magnum/Platform/WindowlessCglApplication.h>
+#endif
 #include <Magnum/SceneGraph/Drawable.h>
 
 #include <Magnum/DartIntegration/World.h>
 
-#define get_glx_context_with_sleep(name, ms_sleep)                                \
-    /* Create/Get GLContext */                                                    \
-    Corrade::Utility::Debug name##_magnum_silence_output{nullptr};                \
-    Magnum::Platform::WindowlessGLContext* name = nullptr;                        \
-    while (name == nullptr) {                                                     \
-        name = robot_dart::gui::magnum::GlobalData::instance()->get_gl_context(); \
-        /* Sleep for some ms */                                                   \
-        usleep(ms_sleep * 1000);                                                  \
-    }                                                                             \
-    while (!name->makeCurrent()) {                                                \
-        /* Sleep for some ms */                                                   \
-        usleep(ms_sleep * 1000);                                                  \
-    }                                                                             \
-                                                                                  \
+#define get_gl_context_with_sleep(name, ms_sleep)                             \
+    /* Create/Get GLContext */                                                \
+    Corrade::Utility::Debug name##_magnum_silence_output{nullptr};            \
+    Magnum::Platform::WindowlessGLContext* name = nullptr;                    \
+    while (name == nullptr) {                                                 \
+        name = robot_dart::gui::magnum::GlobalData::instance()->gl_context(); \
+        /* Sleep for some ms */                                               \
+        usleep(ms_sleep * 1000);                                              \
+    }                                                                         \
+    while (!name->makeCurrent()) {                                            \
+        /* Sleep for some ms */                                               \
+        usleep(ms_sleep * 1000);                                              \
+    }                                                                         \
+                                                                              \
     Magnum::Platform::GLContext name##_magnum_context;
 
-#define get_glx_context(name) get_glx_context_with_sleep(name, 0)
+#define get_gl_context(name) get_gl_context_with_sleep(name, 0)
 
-#define release_glx_context(name) robot_dart::gui::magnum::GlobalData::instance()->free_gl_context(name);
+#define release_gl_context(name) robot_dart::gui::magnum::GlobalData::instance()->free_gl_context(name);
 
 namespace robot_dart {
     namespace gui {
@@ -57,27 +61,21 @@ namespace robot_dart {
                 GlobalData(const GlobalData&) = delete;
                 void operator=(const GlobalData&) = delete;
 
-                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& plugin_manager();
-
-                Magnum::Platform::WindowlessGLContext* get_gl_context();
+                Magnum::Platform::WindowlessGLContext* gl_context();
                 void free_gl_context(Magnum::Platform::WindowlessGLContext* context);
-
-                std::mutex& mutex();
 
                 /* You should call this before starting to draw or after finished */
                 void set_max_contexts(size_t N);
 
             private:
-                GlobalData() {}
-                ~GlobalData() {}
+                GlobalData() = default;
+                ~GlobalData() = default;
 
                 void _create_contexts();
 
-                // ViewerResourceManager _resourceManager;
-                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _plugin_manager;
                 std::vector<Magnum::Platform::WindowlessGLContext> _gl_contexts;
                 std::vector<bool> _used;
-                std::mutex _mutex, _context_mutex;
+                std::mutex _context_mutex;
                 size_t _max_contexts = 4;
             };
 
@@ -230,6 +228,7 @@ namespace robot_dart {
                 int _maxLights = 10;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
+                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
 
                 void GLCleanUp();
             };

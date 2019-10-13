@@ -109,6 +109,12 @@ def check_magnum(conf, *k, **kw):
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
+    if conf.env['DEST_OS'] == 'darwin':
+        includes_check = includes_check + ['/System/Library/Frameworks/OpenGL.framework/Headers', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/']
+        libs_check = libs_check + ['/System/Library/Frameworks/OpenGL.framework/Libraries', '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/']
+
+    # OSX/Mac uses .dylib and GNU/Linux .so
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
 
     # Magnum depends on several libraries and we cannot make the assumption that
     # someone installed all of them in the same directory!
@@ -161,7 +167,7 @@ def check_magnum(conf, *k, **kw):
         conf.end_msg(magnum_include_dir)
 
         conf.start_msg('Checking for Magnum lib')
-        magnum_lib_path = get_directory('libMagnum.so', libs_check)
+        magnum_lib_path = get_directory('libMagnum.'+suffix, libs_check)
         magnum_libpaths = magnum_libpaths + [magnum_lib_path]
         magnum_libs = magnum_libs + ['Magnum']
         conf.end_msg(['Magnum'])
@@ -179,21 +185,33 @@ def check_magnum(conf, *k, **kw):
         if 'TARGET_GL' in magnum_config:
             # to-do: make it work for other platforms; now only for desktop and only for GL
             conf.start_msg('Magnum: Checking for OpenGL includes')
-            opengl_include_dir = get_directory('GL/gl.h', includes_check)
+            opengl_files = ['GL/gl.h', 'gl.h']
+            gl_not_found = False
+            for gl_file in opengl_files:
+                try:
+                    opengl_include_dir = get_directory(gl_file, includes_check)
+                    gl_not_found = False
+                    break
+                except:
+                    gl_not_found = True
+            if gl_not_found:
+                conf.fatal('Not found')
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
             conf.start_msg('Magnum: Checking for OpenGL lib')
-            opengl_lib_dir = get_directory('libGL.so', libs_check)
+            opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
             magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
             magnum_libs = magnum_libs + ['GL']
             conf.end_msg(['GL'])
 
             conf.start_msg('Magnum: Checking for MagnumGL lib')
-            gl_lib_dir = get_directory('libMagnumGL.so', libs_check)
+            gl_lib_dir = get_directory('libMagnumGL.'+suffix, libs_check)
             magnum_libpaths = magnum_libpaths + [gl_lib_dir]
             magnum_libs = magnum_libs + ['MagnumGL']
             conf.end_msg(['MagnumGL'])
+        else:
+            conf.fatal('At the moment only desktop OpenGL is supported by WAF')
 
         conf.start_msg('Checking for Magnum components')
         # only check for components that can exist
@@ -224,7 +242,7 @@ def check_magnum(conf, *k, **kw):
                 if component == 'TextureTools':
                     component_file = 'Atlas'
 
-                lib_type = 'so'
+                lib_type = suffix
                 include_prefix = component
                 # Applications
                 if re.match(pat_app, component):
@@ -254,7 +272,7 @@ def check_magnum(conf, *k, **kw):
                         glfw_found = False
                         for lib_glfw in libs_glfw:
                             try:
-                                lib_dir = get_directory('lib'+lib_glfw+'.so', libs_check)
+                                lib_dir = get_directory('lib'+lib_glfw+'.'+suffix, libs_check)
                                 glfw_found = True
 
                                 magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
@@ -277,7 +295,7 @@ def check_magnum(conf, *k, **kw):
                         glut_found = False
                         for lib_glut in libs_glut:
                             try:
-                                lib_dir = get_directory('lib'+lib_glut+'.so', libs_check)
+                                lib_dir = get_directory('lib'+lib_glut+'.'+suffix, libs_check)
                                 glut_found = True
 
                                 magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
@@ -374,7 +392,7 @@ def check_magnum(conf, *k, **kw):
                     openal_found = False
                     for lib_audio in libs_audio:
                         try:
-                            lib_dir = get_directory('lib'+lib_audio+'.so', libs_check)
+                            lib_dir = get_directory('lib'+lib_audio+'.'+suffix, libs_check)
                             openal_found = True
 
                             magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
@@ -415,7 +433,7 @@ def check_magnum(conf, *k, **kw):
                 # we need the full lib_dir in order to be able to link to the plugins
                 # or not? because they are loaded dynamically
                 # we need to set the libpath for the static plugins only
-                lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.so', libs_check, True)
+                lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+suffix, libs_check, True)
 
                 magnum_component_includes[component] = magnum_component_includes[component] + [include_dir]
                 # magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
@@ -432,12 +450,16 @@ def check_magnum(conf, *k, **kw):
         conf.env['INCLUDES_%s' % magnum_var] = magnum_includes
         conf.env['LIBPATH_%s' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s' % magnum_var] = magnum_libs
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['LDFLAGS_%s' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
         conf.env['EXEC_%s' % magnum_var] = magnum_bins
 
         # set main Magnum component
         conf.env['INCLUDES_%s_Magnum' % magnum_var] = magnum_includes
         conf.env['LIBPATH_%s_Magnum' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s_Magnum' % magnum_var] = magnum_libs
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['LDFLAGS_%s_Magnum' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
         conf.env['EXEC_%s_Magnum' % magnum_var] = magnum_bins
 
         # Plugin directories
@@ -463,6 +485,10 @@ def check_magnum(conf, *k, **kw):
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_IMAGECONVERTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_imageconverter_dir))
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_IMPORTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_importer_dir))
         conf.env['DEFINES_%s' % magnum_var].append('%s_PLUGINS_AUDIOIMPORTER_DIR="%s"' % (magnum_var.upper(), magnum_plugins_audioimporter_dir))
+        for config in magnum_config:
+            conf.env['DEFINES_%s' % magnum_var].append(config)
+        if conf.env['DEST_OS'] == 'darwin':
+            conf.env['DEFINES_%s' % magnum_var].append('%s_MAC_OSX' % magnum_var.upper())
 
         # copy C++ defines to Magnum::Magnum component; we want them to be available on all Magnum builds
         conf.env['DEFINES_%s_Magnum' % magnum_var] = copy.deepcopy(conf.env['DEFINES_%s' % magnum_var])

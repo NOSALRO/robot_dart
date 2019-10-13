@@ -34,6 +34,9 @@ def check_corrade(conf, *k, **kw):
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
     bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
 
+    # OSX/Mac uses .dylib and GNU/Linux .so
+    suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
+
     if conf.options.corrade_install_dir:
         includes_check = [conf.options.corrade_install_dir + '/include']
         libs_check = [conf.options.corrade_install_dir + '/lib']
@@ -138,7 +141,7 @@ def check_corrade(conf, *k, **kw):
                 include_dir = get_directory('Corrade/'+component+'/'+component+'.h', includes_check)
                 corrade_includes = corrade_includes + [include_dir]
                 lib = 'Corrade'+component
-                lib_dir = get_directory('lib'+lib+'.so', libs_check)
+                lib_dir = get_directory('lib'+lib+'.'+suffix, libs_check)
                 corrade_libs.append(lib)
                 corrade_libpaths = corrade_libpaths + [lib_dir]
 
@@ -147,7 +150,7 @@ def check_corrade(conf, *k, **kw):
                 if component == 'PluginManager':
                     # PluginManager needs the libdl.so library
                     try:
-                        lib_dir = get_directory('libdl.so', libs_check)
+                        lib_dir = get_directory('libdl.'+suffix, libs_check)
                         corrade_libs.append('dl')
                         corrade_libpaths = corrade_libpaths + [lib_dir]
                         corrade_component_libpaths[component] = corrade_component_libpaths[component] + [lib_dir]
@@ -320,7 +323,7 @@ def corrade_add_plugin(bld, name, config_file, source, use='', uselib='', includ
                                 cxxflags=bld.env['CXXFLAGS'] + cxxflags.split(),
                                 defines=defines.split() + ['CORRADE_DYNAMIC_PLUGIN'],
                                 target=name)
-    plugin_lib.env.cxxshlib_PATTERN = '%s.so'
+    plugin_lib.env.cxxshlib_PATTERN = '%s.'+suffix
     bld(rule='cp ${SRC} ${TGT}', source=bld.path.make_node(config_file), target=bld.path.get_bld().make_node(config_file[config_file.rfind('/') + 1:]))
 
     # to-do: add installation
