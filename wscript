@@ -59,7 +59,12 @@ def configure(conf):
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
     conf.check_corrade(components='Utility PluginManager')
-    conf.check_magnum(components='MeshTools Primitives Shaders Sdl2Application SceneGraph WindowlessGlxApplication DebugTools')
+    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph Sdl2Application'
+    if conf.env['DEST_OS'] == 'darwin':
+        conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
+    else:
+        conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
+    conf.check_magnum(components=conf.env['magnum_dep_libs'])
     conf.check_magnum_integration(components='Dart')
 
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
@@ -155,7 +160,7 @@ def build(bld):
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_magnum_srcs + ' ' + shaders_resource,
                 includes = './src',
-                uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                uselib = magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                 use = 'RobotDARTSimu',
                 target = 'RobotDARTMagnum')
 
@@ -164,7 +169,7 @@ def build(bld):
                       install_path = None,
                       source = 'src/examples/magnum.cpp',
                       includes = './src',
-                      uselib = magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                      uselib = magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['RESPATH="' + path + '"'],
                       target = 'magnum')
@@ -175,7 +180,7 @@ def build(bld):
                       install_path = None,
                       source = 'src/examples/magnum_contexts.cpp',
                       includes = './src',
-                      uselib = 'PTHREAD ' + magnum.get_magnum_dependency_libs(bld, 'DebugTools WindowlessGlxApplication Sdl2Application Shaders') + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
+                      uselib = 'PTHREAD ' + magnum.get_magnum_dependency_libs(bld, bld.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(bld, 'Dart') + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['RESPATH="' + path + '"'],
                       target = 'magnum_contexts')

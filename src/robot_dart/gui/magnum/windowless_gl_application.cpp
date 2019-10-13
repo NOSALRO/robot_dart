@@ -1,4 +1,4 @@
-#include "glx_application.hpp"
+#include "windowless_gl_application.hpp"
 
 // #include <Magnum/DebugTools/Screenshot.h>
 #include <Magnum/GL/Renderbuffer.h>
@@ -8,7 +8,7 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            GLXApplication::GLXApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
+            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
                 : BaseApplication(isShadowed), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
             {
                 /* Assume context is given externally, if not create it */
@@ -42,12 +42,12 @@ namespace robot_dart {
                 record(true);
             }
 
-            GLXApplication::~GLXApplication()
+            WindowlessGLApplication::~WindowlessGLApplication()
             {
                 GLCleanUp();
             }
 
-            void GLXApplication::render()
+            void WindowlessGLApplication::render()
             {
                 /* Update graphic meshes/materials and render */
                 updateGraphics();
