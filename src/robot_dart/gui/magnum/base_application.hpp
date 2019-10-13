@@ -60,27 +60,21 @@ namespace robot_dart {
                 GlobalData(const GlobalData&) = delete;
                 void operator=(const GlobalData&) = delete;
 
-                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& plugin_manager();
-
                 Magnum::Platform::WindowlessGLContext* gl_context();
                 void free_gl_context(Magnum::Platform::WindowlessGLContext* context);
-
-                std::mutex& mutex();
 
                 /* You should call this before starting to draw or after finished */
                 void set_max_contexts(size_t N);
 
             private:
-                GlobalData() {}
-                ~GlobalData() {}
+                GlobalData() = default;
+                ~GlobalData() = default;
 
                 void _create_contexts();
 
-                // ViewerResourceManager _resourceManager;
-                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _plugin_manager;
                 std::vector<Magnum::Platform::WindowlessGLContext> _gl_contexts;
                 std::vector<bool> _used;
-                std::mutex _mutex, _context_mutex;
+                std::mutex _context_mutex;
                 size_t _max_contexts = 4;
             };
 
@@ -225,6 +219,7 @@ namespace robot_dart {
                 int _maxLights = 10;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
+                Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
 
                 void GLCleanUp();
             };
