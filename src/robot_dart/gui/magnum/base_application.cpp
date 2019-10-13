@@ -21,8 +21,6 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             // GlobalData
-            Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter>& GlobalData::plugin_manager() { return _plugin_manager; }
-
             Magnum::Platform::WindowlessGLContext* GlobalData::gl_context()
             {
                 std::lock_guard<std::mutex> lg(_context_mutex);
@@ -49,8 +47,6 @@ namespace robot_dart {
                     }
                 }
             }
-
-            std::mutex& GlobalData::mutex() { return _mutex; }
 
             void GlobalData::set_max_contexts(size_t N)
             {
@@ -258,10 +254,8 @@ namespace robot_dart {
                     .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
 
                 /* Create our DARTIntegration object/world */
-                GlobalData::instance()->mutex().lock(); /* Need to lock for plugin manager not being thread-safe */
                 auto dartObj = new Object3D{&_scene};
-                _dartWorld.reset(new Magnum::DartIntegration::World(GlobalData::instance()->plugin_manager(), *dartObj, *world));
-                GlobalData::instance()->mutex().unlock();
+                _dartWorld.reset(new Magnum::DartIntegration::World(_importer_manager, *dartObj, *world)); /* Plugin manager is now thread-safe */
 
                 /* Phong shaders */
                 _color_shader.reset(new gs::PhongMultiLight{{}, _maxLights});
@@ -605,6 +599,8 @@ namespace robot_dart {
                 _shadowCamera.reset();
 
                 _dartWorld.reset();
+                for (auto& it : _drawableObjects)
+                    delete it.second;
                 _drawableObjects.clear();
                 _dartObjs.clear();
                 _lights.clear();
