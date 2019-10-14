@@ -451,7 +451,7 @@ def check_magnum(conf, *k, **kw):
         conf.env['LIBPATH_%s' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s' % magnum_var] = magnum_libs
         if conf.env['DEST_OS'] == 'darwin':
-            conf.env['LDFLAGS_%s' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
+            conf.env['FRAMEWORK_%s_Magnum' % magnum_var] = ['OpenGL', 'Foundation']
         conf.env['EXEC_%s' % magnum_var] = magnum_bins
 
         # set main Magnum component
@@ -459,7 +459,7 @@ def check_magnum(conf, *k, **kw):
         conf.env['LIBPATH_%s_Magnum' % magnum_var] = magnum_libpaths
         conf.env['LIB_%s_Magnum' % magnum_var] = magnum_libs
         if conf.env['DEST_OS'] == 'darwin':
-            conf.env['LDFLAGS_%s_Magnum' % magnum_var] = ['-framework OpenGL', '-framework Foundation']
+            conf.env['FRAMEWORK_%s_Magnum' % magnum_var] = ['OpenGL', 'Foundation']
         conf.env['EXEC_%s_Magnum' % magnum_var] = magnum_bins
 
         # Plugin directories
