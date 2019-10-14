@@ -28,8 +28,8 @@ namespace robot_dart {
                 virtual void keyReleaseEvent(KeyEvent& event) override;
                 virtual void keyPressEvent(KeyEvent& event) override;
 
-                virtual void mouseScrollEvent(MouseScrollEvent& event);
-                virtual void mouseMoveEvent(MouseMoveEvent& event);
+                virtual void mouseScrollEvent(MouseScrollEvent& event) override;
+                virtual void mouseMoveEvent(MouseMoveEvent& event) override;
 
                 void exitEvent(ExitEvent& event) override;
             };

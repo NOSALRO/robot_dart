@@ -62,7 +62,7 @@ namespace robot_dart {
                 _gl_contexts.reserve(_max_contexts);
                 for (size_t i = 0; i < _max_contexts; i++) {
                     _used.push_back(false);
-                    _gl_contexts.push_back(std::move(Magnum::Platform::WindowlessGLContext{{}}));
+                    _gl_contexts.emplace_back(Magnum::Platform::WindowlessGLContext{{}});
                 }
             }
 
