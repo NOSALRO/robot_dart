@@ -52,10 +52,10 @@ namespace robot_dart {
                 }
 
                 // This is for visualization purposes
-                GrayscaleImage depth_image();
+                GrayscaleImage depth_image() override;
 
                 // Image filled with depth buffer values
-                GrayscaleImage raw_depth_image();
+                GrayscaleImage raw_depth_image() override;
 
                 // // Point-cloud made from each pixel in depth image
                 // // all transformations are according to the camera frame
