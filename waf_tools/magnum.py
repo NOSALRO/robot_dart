@@ -101,10 +101,17 @@ def check_magnum(conf, *k, **kw):
         return res[:res.rfind('/')]
     def find_in_string(data, text):
         return data.find(text)
+    def fatal(required, msg):
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+
+    required = kw.get('required', False)
 
     # Check compiler version (for gcc); I am being a bit more strong (Magnum could be built with 4.7 but needs adjustment)
     if conf.env.CXX_NAME in ["gcc", "g++"] and int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1]) < 48:
-        conf.fatal('Magnum cannot be setup with GCC < 4.8!')
+        fatal(required, 'Magnum cannot be setup with GCC < 4.8!')
+        return
 
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
@@ -124,7 +131,6 @@ def check_magnum(conf, *k, **kw):
         libs_check = [conf.options.magnum_install_dir + '/lib'] + libs_check
         bins_check = [conf.options.magnum_install_dir + '/bin'] + bins_check
 
-    required = kw.get('required', False)
     requested_components = kw.get('components', None)
     if requested_components == None:
         requested_components = []
@@ -135,11 +141,14 @@ def check_magnum(conf, *k, **kw):
 
     # Magnum requires Corrade
     if not conf.env['INCLUDES_%s' % corrade_var]:
-        conf.fatal('Magnum requires Corrade! Cannot proceed!')
+        fatal(required, 'Magnum requires Corrade! Cannot proceed!')
+        return
     if not conf.env['INCLUDES_%s_Utility' % corrade_var]:
-        conf.fatal('Magnum requires Corrade Utility library! Cannot proceed!')
+        fatal(required, 'Magnum requires Corrade Utility library! Cannot proceed!')
+        return
     if not conf.env['INCLUDES_%s_PluginManager' % corrade_var]:
-        conf.fatal('Magnum requires Corrade PluginManager library! Cannot proceed!')
+        fatal(required, 'Magnum requires Corrade PluginManager library! Cannot proceed!')
+        return
 
     magnum_includes = []
     magnum_libpaths = []
@@ -195,7 +204,8 @@ def check_magnum(conf, *k, **kw):
                 except:
                     gl_not_found = True
             if gl_not_found:
-                conf.fatal('Not found')
+                fatal(required, 'Not found')
+                return
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
@@ -211,7 +221,8 @@ def check_magnum(conf, *k, **kw):
             magnum_libs = magnum_libs + ['MagnumGL']
             conf.end_msg(['MagnumGL'])
         else:
-            conf.fatal('At the moment only desktop OpenGL is supported by WAF')
+            fatal(required, 'At the moment only desktop OpenGL is supported by WAF')
+            return
 
         conf.start_msg('Checking for Magnum components')
         # only check for components that can exist
@@ -282,7 +293,8 @@ def check_magnum(conf, *k, **kw):
                                 glfw_found = False
 
                         if not glfw_found:
-                            conf.fatal('Not found')
+                            fatal(required, 'Not found')
+                            return
                     elif component == 'GlutApplication':
                         # GlutApplication requires GLUT
                         # conf.start_msg('Magnum: Checking for GLUT includes')
@@ -305,7 +317,8 @@ def check_magnum(conf, *k, **kw):
                                 glut_found = False
 
                         if not glut_found:
-                            conf.fatal('Not found')
+                            fatal(required, 'Not found')
+                            return
                     elif component == 'Sdl2Application':
                         # Sdl2Application requires SDL2
                         conf.check_cfg(path='sdl2-config', args='--cflags --libs', package='', uselib_store='MAGNUM_SDL')
@@ -334,7 +347,8 @@ def check_magnum(conf, *k, **kw):
                                 egl_found = False
 
                         if not egl_found:
-                            conf.fatal('Not found')
+                            fatal(required, 'Not found')
+                            return
                     elif component == 'WindowlessGlxApplication':
                         # WindowlessGlxApplication requires GLX. X11
                         egl_inc = get_directory('GL/glx.h', includes_check)
@@ -355,18 +369,19 @@ def check_magnum(conf, *k, **kw):
                                 glx_found = False
 
                         if not glx_found:
-                            conf.fatal('Not found')
+                            fatal(required, 'Not found')
+                            return
                     elif component not in ['WindowlessCglApplication', 'WindowlessWglApplication']:
                         # to-do: support all other applications
                         msg = 'Component ' + component + ' is not yet supported by WAF'
-                        Logs.pprint('RED', msg)
-                        conf.fatal(msg)
+                        fatal(required, msg)
+                        return
 
                 if re.match(pat_context, component) and component not in ['CglContext', 'WglContext']:
                     # to-do: support all other contexts
                     msg = 'Component ' + component + ' is not yet supported by WAF'
-                    Logs.pprint('RED', msg)
-                    conf.fatal(msg)
+                    fatal(required, msg)
+                    return
 
                 # Audio lib required OpenAL
                 if component == 'Audio':
@@ -385,7 +400,8 @@ def check_magnum(conf, *k, **kw):
                             openal_found = False
 
                     if not openal_found:
-                        conf.fatal('Not found')
+                        fatal(required, 'Not found')
+                        return
 
                     # conf.start_msg('Magnum: Checking for OpenAL lib')
                     libs_audio = ['OpenAL', 'al', 'openal', 'OpenAL32']
@@ -402,7 +418,8 @@ def check_magnum(conf, *k, **kw):
                             openal_found = False
 
                     if not openal_found:
-                        conf.fatal('Not found')
+                        fatal(required, 'Not found')
+                        return
             elif component_type == 'plugin':
                 pat_audio = re.compile('.+AudioImporter$')
                 pat_importer = re.compile('.+Importer$')

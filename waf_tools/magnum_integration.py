@@ -118,7 +118,11 @@ def check_magnum_integration(conf, *k, **kw):
 
     # MagnumIntegration require Magnum
     if not conf.env['INCLUDES_%s' % magnum_var]:
-        conf.fatal('Magnum needs to be configured! Cannot proceed!')
+        msg = 'Magnum needs to be configured! Cannot proceed!'
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+        return
 
     magnum_integration_var = kw.get('uselib_store', 'MagnumIntegration')
     # to-do: enforce C++11/14
