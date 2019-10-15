@@ -93,7 +93,7 @@ namespace robot_dart {
 
                 void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
                 bool recording() { return _magnum_app->isRecording(); }
-                bool recordingDepth() { return _magnum_app->isDepthRecording(); }
+                bool recording_depth() { return _magnum_app->isDepthRecording(); }
 
                 bool is_shadowed() const { return _magnum_app->isShadowed(); }
                 void enable_shadows(bool enable = true) { _magnum_app->enableShadows(enable); }
@@ -115,6 +115,17 @@ namespace robot_dart {
 
                 GrayscaleImage depth_image() override { return _magnum_app->depthImage(); }
                 GrayscaleImage raw_depth_image() override { return _magnum_app->rawDepthImage(); }
+
+                void set_speed(const Magnum::Vector2& speed) { _magnum_app->camera().setSpeed(speed); }
+                void set_near_plane(double near_plane) { _magnum_app->camera().setNearPlane(near_plane); }
+                void set_far_plane(double far_plane) { _magnum_app->camera().setFarPlane(far_plane); }
+                void set_fov(double fov) { _magnum_app->camera().setFOV(fov); }
+                void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _magnum_app->camera().setCameraParameters(near_plane, far_plane, fov, width, height); }
+
+                Magnum::Vector2 speed() const { return _magnum_app->camera().speed(); }
+                double near_plane() const { return _magnum_app->camera().nearPlane(); }
+                double far_plane() const { return _magnum_app->camera().farPlane(); }
+                double fov() const { return _magnum_app->camera().fov(); }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }
 

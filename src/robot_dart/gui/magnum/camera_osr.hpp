@@ -27,7 +27,7 @@ namespace robot_dart {
 
                 void set_recording(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
                 bool recording() { return _camera->isRecording(); }
-                bool recordingDepth() { return _camera->isDepthRecording(); }
+                bool recording_depth() { return _camera->isDepthRecording(); }
 
                 Magnum::Image2D* magnum_image()
                 {
@@ -70,8 +70,8 @@ namespace robot_dart {
                 void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _camera->setCameraParameters(near_plane, far_plane, fov, width, height); }
 
                 Magnum::Vector2 speed() const { return _camera->speed(); }
-                double nearPlane() const { return _camera->nearPlane(); }
-                double farPlane() const { return _camera->farPlane(); }
+                double near_plane() const { return _camera->nearPlane(); }
+                double far_plane() const { return _camera->farPlane(); }
                 double fov() const { return _camera->fov(); }
 
             protected:
