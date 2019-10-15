@@ -22,13 +22,12 @@ def options(opt):
     opt.add_option('--magnum_plugins_install_dir', type='string', help='path to magnum plugins install directory', dest='magnum_plugins_install_dir')
 
 def get_magnum_plugins_components():
-    magnum_plugins_components = ['AnyAudioImporter', 'AnyImageConverter', 'AnyImageImporter', 'AnySceneImporter', 'AssimpImporter', 'ColladaImporter', 'DdsImporter', 'DevIlImageImporter', 'DrFlacAudioImporter', 'DrWavAudioImporter', 'FreeTypeFont', 'HarfBuzzFont', 'JpegImporter', 'MiniExrImageConverter', 'OpenGexImporter', 'PngImageConverter', 'PngImporter', 'StanfordImporter', 'StbImageConverter', 'StbImageImporter', 'StbTrueTypeFont', 'StbVorbisAudioImporter']
+    magnum_plugins_components = ['AnyAudioImporter', 'AnyImageConverter', 'AnyImageImporter', 'AnySceneImporter', 'AssimpImporter', 'DdsImporter', 'DevIlImageImporter', 'DrFlacAudioImporter', 'DrWavAudioImporter', 'FreeTypeFont', 'HarfBuzzFont', 'JpegImporter', 'MiniExrImageConverter', 'OpenGexImporter', 'PngImageConverter', 'PngImporter', 'StanfordImporter', 'StbImageConverter', 'StbImageImporter', 'StbTrueTypeFont', 'StbVorbisAudioImporter']
 
     magnum_plugins_dependencies = {}
     for component in magnum_plugins_components:
         magnum_plugins_dependencies[component] = []
     magnum_plugins_dependencies['AssimpImporter'] = ['AnyImageImporter']
-    magnum_plugins_dependencies['ColladaImporter'] = ['AnyImageImporter']
     magnum_plugins_dependencies['OpenGexImporter'] = ['AnyImageImporter']
     magnum_plugins_dependencies['HarfBuzzFont'] = ['FreeTypeFont']
 
@@ -41,8 +40,6 @@ def get_magnum_plugins_components():
             magnum_plugins_magnum_dependencies[component] += ['Audio']
         elif re.match(pat_all_fonts, component):
             magnum_plugins_magnum_dependencies[component] += ['Text']
-        elif component == 'ColladaImporter':
-            magnum_plugins_magnum_dependencies[component] += ['MeshTools']
 
     return magnum_plugins_components, magnum_plugins_dependencies, magnum_plugins_magnum_dependencies
 
@@ -127,7 +124,11 @@ def check_magnum_plugins(conf, *k, **kw):
 
     # MagnumPlugins require Magnum
     if not conf.env['INCLUDES_%s' % magnum_var]:
-        conf.fatal('Magnum needs to be configured! Cannot proceed!')
+        msg = 'Magnum needs to be configured! Cannot proceed!'
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+        return
 
     magnum_plugins_var = kw.get('uselib_store', 'MagnumPlugins')
     # to-do: enforce C++11/14
@@ -199,7 +200,11 @@ def check_magnum_plugins(conf, *k, **kw):
         if re.match(pat_all_fonts, component):
             # check if Magnum Text is available
             if not conf.env['INCLUDES_%s_Text' % magnum_var]:
-                conf.fatal('Font and FontConverter plugins require Magnum Text! Cannot proceed!')
+                msg = 'Font and FontConverter plugins require Magnum Text! Cannot proceed!'
+                if required:
+                    conf.fatal(msg)
+                Logs.pprint('RED', msg)
+                return
             # add includes/paths/libs
             # magnum_plugins_includes = magnum_plugins_includes + conf.env['INCLUDES_%s_Text' % magnum_var]
             # magnum_plugins_libpaths = magnum_plugins_libpaths + conf.env['LIBPATH_%s_Text' % magnum_var]
@@ -256,52 +261,6 @@ def check_magnum_plugins(conf, *k, **kw):
                 # if optional, continue?
                 continue
             conf.end_msg(assimp_inc)
-        elif component == 'ColladaImporter':
-            # ColladaImporter requires Magnum MeshTools
-            # check if Magnum MeshTools is available
-            if not conf.env['INCLUDES_%s_MeshTools' % magnum_var]:
-                conf.fatal('ColladaImporter requires Magnum MeshTools! Cannot proceed!')
-            # add includes/paths/libs
-            # magnum_plugins_includes = magnum_plugins_includes + conf.env['INCLUDES_%s_MeshTools' % magnum_var]
-            # magnum_plugins_libpaths = magnum_plugins_libpaths + conf.env['LIBPATH_%s_MeshTools' % magnum_var]
-            # magnum_plugins_libs = magnum_plugins_libs + conf.env['LIB_%s_MeshTools' % magnum_var]
-
-            # magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + conf.env['INCLUDES_%s_MeshTools' % magnum_var]
-            # magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + conf.env['LIBPATH_%s_MeshTools' % magnum_var]
-            # magnum_plugins_component_libs[component] = magnum_plugins_component_libs[component] + conf.env['LIB_%s_MeshTools' % magnum_var]
-
-            # ColladaImporter requires Qt4
-            # QtCore and QtXmlPatterns only
-            qt4_components = ['QtCore', 'QtXmlPatterns']
-            conf.start_msg(component + ': Checking for Qt4 (QtCore and QtXmlPatterns')
-            try:
-                qt4_includes = []
-                qt4_libpaths = []
-                for comp in qt4_components:
-                    qt4_inc = get_directory('qt4/'+comp, includes_check, True)
-                    qt4_includes = qt4_includes + [qt4_inc]
-
-                    qt4_lib = get_directory('lib'+comp+'.'+suffix, libs_check)
-                    qt4_libpaths = qt4_libpaths + [qt4_lib]
-
-                qt4_includes = list(set(qt4_includes))
-                qt4_libpaths = list(set(qt4_libpaths))
-
-                magnum_plugins_includes = magnum_plugins_includes + qt4_includes
-                magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + qt4_includes
-
-                magnum_plugins_libpaths = magnum_plugins_libpaths + qt4_libpaths
-                magnum_plugins_libs = magnum_plugins_libs + qt4_components
-
-                magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + qt4_libpaths
-                magnum_plugins_component_libs[component] = magnum_plugins_component_libs[component] + qt4_components
-            except:
-                if required:
-                    conf.fatal('Not found')
-                conf.end_msg('Not found', 'RED')
-                # if optional, continue?
-                continue
-            conf.end_msg(qt4_includes)
         elif component == 'DevIlImageImporter':
             # DevIlImageImporter requires DevIl
             conf.fatal(component + ' is not supported with WAF')
