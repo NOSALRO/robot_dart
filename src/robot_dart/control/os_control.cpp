@@ -19,7 +19,7 @@ namespace robot_dart {
 
             bool is_end_effector_invalid = (robot->skeleton()->getBodyNode(_end_effector) == nullptr);
             if (is_end_effector_invalid) {
-                ROBOT_DART_WARNING(is_end_effector_invalid, "End-effector body node does not exist! OSControl is not actived.");
+                ROBOT_DART_WARNING(is_end_effector_invalid, "End-effector body node does not exist! OSControl is not activated.");
                 _active = false;
             }
 
@@ -84,7 +84,6 @@ namespace robot_dart {
 
         void OSControl::set_pd(double Kp, double Kd)
         {
-            ROBOT_DART_WARNING(_ctrl.size() != 1, "OSControl: Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
             _Kp = Eigen::VectorXd::Constant(_ctrl.size(), Kp);
             _Kd = Eigen::VectorXd::Constant(_ctrl.size(), Kd);
         }
