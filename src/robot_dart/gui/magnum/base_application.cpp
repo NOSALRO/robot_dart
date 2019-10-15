@@ -236,8 +236,7 @@ namespace robot_dart {
 
                 /* Shadow Textures */
                 _shadowTexture.reset(new Magnum::GL::Texture2DArray{});
-                _shadowTexture->setImage(0, Magnum::GL::TextureFormat::DepthComponent, Magnum::ImageView3D{Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float, {_shadowMapSize, _shadowMapSize, _maxLights}})
-                    .setMaxLevel(0)
+                _shadowTexture->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights})
                     .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
                     .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
@@ -245,8 +244,7 @@ namespace robot_dart {
                 // .setWrapping(Magnum::GL::SamplerWrapping::ClampToBorder);
 
                 _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
-                _shadowCubeMap->setImage(0, Magnum::GL::TextureFormat::DepthComponent, Magnum::ImageView3D{Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float, {_shadowMapSize, _shadowMapSize, _maxLights * 6}})
-                    .setMaxLevel(0)
+                _shadowCubeMap->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
                     .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
                     .setMinificationFilter(Magnum::GL::SamplerFilter::Nearest, Magnum::GL::SamplerMipmap::Base)
