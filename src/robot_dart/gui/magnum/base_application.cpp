@@ -671,11 +671,12 @@ namespace robot_dart {
                                 .attachLayeredTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0)
                                 .bind();
                         }
-                    }
 
-                    if (!(_shadowData[i].shadowFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete)) {
-                        _isShadowed = false;
-                        break;
+                        /* Check if the creation of the framebuffer was successful */
+                        if (!(_shadowData[i].shadowFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete)) {
+                            _isShadowed = false;
+                            break;
+                        }
                     }
                 }
 
