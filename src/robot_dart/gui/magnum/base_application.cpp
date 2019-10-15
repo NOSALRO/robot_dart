@@ -536,12 +536,13 @@ namespace robot_dart {
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
                     _shadowData[i].shadowFramebuffer.bind();
                     if (isPointLight) {
+                        /* Clear layer-by-layer of the cube-map texture array */
                         for (size_t k = 0; k < 6; k++) {
                             _shadowData[i].shadowFramebuffer.attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6 + k);
                             _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
                         }
-                        // TO-DO: Missing API of Magnum
-                        glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
+                        /* Attach again the full texture */
+                        _shadowData[i].shadowFramebuffer.attachLayeredTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0);
                     }
                     else
                         _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
@@ -663,13 +664,12 @@ namespace robot_dart {
                                 .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
                                 .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None)
                                 .bind();
-                            // CORRADE_INTERNAL_ASSERT(shadowFramebuffer.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
                         }
                         else {
-                            _shadowData[i].shadowFramebuffer.mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
-                            // TO-DO: Missing API of Magnum
-                            glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
-                            _shadowData[i].shadowFramebuffer.bind();
+                            (_shadowData[i].shadowFramebuffer)
+                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None)
+                                .attachLayeredTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0)
+                                .bind();
                         }
                     }
 
