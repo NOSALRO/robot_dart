@@ -1,5 +1,7 @@
 #include "base_application.hpp"
 
+#include <robot_dart/utils.hpp>
+
 #include <dart/dynamics/SoftBodyNode.hpp>
 #include <dart/dynamics/SoftMeshShape.hpp>
 
@@ -449,6 +451,11 @@ namespace robot_dart {
                 }
 
                 _dartWorld->clearUpdatedShapeObjects();
+
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_WARNING(_isShadowed, "Shadows are not supported in Mac! Disabling them!");
+                _isShadowed = false;
+#endif
 
                 _color_shader->setIsShadowed(_isShadowed);
                 _texture_shader->setIsShadowed(_isShadowed);
