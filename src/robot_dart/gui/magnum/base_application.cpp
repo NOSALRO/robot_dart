@@ -666,11 +666,10 @@ namespace robot_dart {
                             // CORRADE_INTERNAL_ASSERT(shadowFramebuffer.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
                         }
                         else {
-                            (_shadowData[i].shadowFramebuffer)
-                                // .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6)
-                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
+                            _shadowData[i].shadowFramebuffer.mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
                             // TO-DO: Missing API of Magnum
                             glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
+                            _shadowData[i].shadowFramebuffer.bind();
                         }
                     }
 
