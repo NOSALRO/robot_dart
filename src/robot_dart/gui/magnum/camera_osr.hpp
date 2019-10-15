@@ -6,6 +6,7 @@
 #include <robot_dart/gui/magnum/gs/helper.hpp>
 
 #include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/Renderbuffer.h>
 #include <Magnum/PixelFormat.h>
 
 namespace robot_dart {
@@ -77,6 +78,7 @@ namespace robot_dart {
             protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;
+                Magnum::GL::Renderbuffer _color, _depth;
 
                 BaseApplication* _magnum_app;
                 size_t _render_period, _width, _height, _frame_counter;

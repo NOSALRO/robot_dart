@@ -2,7 +2,6 @@
 
 // #include <Magnum/DebugTools/Screenshot.h>
 #include <Magnum/GL/PixelFormat.h>
-#include <Magnum/GL/Renderbuffer.h>
 #include <Magnum/GL/RenderbufferFormat.h>
 #include <Magnum/GL/Renderer.h>
 #include <Magnum/GL/TextureFormat.h>
@@ -34,17 +33,16 @@ namespace robot_dart {
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
                 _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
-                Magnum::GL::Renderbuffer color, depth;
-                color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
-                // color.setStorageMultisample(8, Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
-                depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
+                _color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
+                // _color.setStorageMultisample(8, Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
+                _depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
                 _format = Magnum::PixelFormat::RGBA8Unorm;
 
                 _framebuffer.attachRenderbuffer(
-                    Magnum::GL::Framebuffer::ColorAttachment(0), color);
+                    Magnum::GL::Framebuffer::ColorAttachment(0), _color);
                 _framebuffer.attachRenderbuffer(
-                    Magnum::GL::Framebuffer::BufferAttachment::Depth, depth);
+                    Magnum::GL::Framebuffer::BufferAttachment::Depth, _depth);
             }
 
             void CameraOSR::refresh()
