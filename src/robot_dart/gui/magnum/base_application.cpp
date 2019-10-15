@@ -450,11 +450,6 @@ namespace robot_dart {
 
                 _dartWorld->clearUpdatedShapeObjects();
 
-#ifdef MAGNUM_MAC_OSX
-                ROBOT_DART_WARNING(_isShadowed, "Shadows are not supported in Mac! Disabling them!");
-                _isShadowed = false;
-#endif
-
                 if (_isShadowed)
                     prepareShadows();
 
