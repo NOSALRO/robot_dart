@@ -457,6 +457,9 @@ namespace robot_dart {
                 _isShadowed = false;
 #endif
 
+                if (_isShadowed)
+                    prepareShadows();
+
                 _color_shader->setIsShadowed(_isShadowed);
                 _texture_shader->setIsShadowed(_isShadowed);
 
@@ -469,28 +472,6 @@ namespace robot_dart {
                 /* For each light */
                 for (size_t i = 0; i < _lights.size(); i++) {
                     bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spotCutOff() >= M_PI / 2.0);
-                    /* There's no shadow texture/framebuffer for this light */
-                    if (_shadowData.size() <= i) {
-                        _shadowData.push_back({});
-
-                        _shadowData[i].shadowFramebuffer = Magnum::GL::Framebuffer({{}, {_shadowMapSize, _shadowMapSize}});
-
-                        if (!isPointLight) {
-                            (_shadowData[i].shadowFramebuffer)
-                                .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
-                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
-                            // .bind();
-                            // CORRADE_INTERNAL_ASSERT(shadowFramebuffer.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
-                        }
-                        else {
-                            (_shadowData[i].shadowFramebuffer)
-                                // .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6)
-                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
-                            // TO-DO: Missing API of Magnum
-                            // glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
-                        }
-                    }
-
                     bool cullFront = false;
                     Magnum::Matrix4 cameraMatrix;
                     Magnum::Float farPlane = 20.f, nearPlane = 0.001f;
@@ -559,13 +540,12 @@ namespace robot_dart {
                             _shadowData[i].shadowFramebuffer.attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6 + k);
                             _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
                         }
+                        // TO-DO: Missing API of Magnum
+                        glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
                     }
                     else
                         _shadowData[i].shadowFramebuffer.clear(Magnum::GL::FramebufferClear::Depth);
 
-                    // TO-DO: Missing API of Magnum
-                    if (isPointLight)
-                        glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
                     if (!isPointLight)
                         _shadowCamera->draw(_shadowed_drawables);
                     else
@@ -664,6 +644,43 @@ namespace robot_dart {
                 _dartObjs.clear();
                 _lights.clear();
                 _shadowData.clear();
+            }
+
+            void BaseApplication::prepareShadows()
+            {
+                /* For each light */
+                for (size_t i = 0; i < _lights.size(); i++) {
+                    /* There's no shadow texture/framebuffer for this light */
+                    if (_shadowData.size() <= i) {
+                        bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spotCutOff() >= M_PI / 2.0);
+
+                        _shadowData.push_back({});
+
+                        _shadowData[i].shadowFramebuffer = Magnum::GL::Framebuffer({{}, {_shadowMapSize, _shadowMapSize}});
+
+                        if (!isPointLight) {
+                            (_shadowData[i].shadowFramebuffer)
+                                .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
+                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None)
+                                .bind();
+                            // CORRADE_INTERNAL_ASSERT(shadowFramebuffer.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
+                        }
+                        else {
+                            (_shadowData[i].shadowFramebuffer)
+                                // .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6)
+                                .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None);
+                            // TO-DO: Missing API of Magnum
+                            glNamedFramebufferTexture(_shadowData[i].shadowFramebuffer.id(), GL_DEPTH_ATTACHMENT, _shadowCubeMap->id(), 0); // we choose the layer inside the shader
+                        }
+                    }
+
+                    if (!(_shadowData[i].shadowFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete)) {
+                        _isShadowed = false;
+                        break;
+                    }
+                }
+
+                ROBOT_DART_WARNING(!_isShadowed, "Something bad happened when configuring shadows! Disabling them!");
             }
         } // namespace magnum
     } // namespace gui
