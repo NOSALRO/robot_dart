@@ -231,6 +231,7 @@ namespace robot_dart {
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
 
                 void GLCleanUp();
+                void prepareShadows();
             };
 
             template <typename T>
