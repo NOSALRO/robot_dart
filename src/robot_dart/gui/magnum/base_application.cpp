@@ -224,6 +224,11 @@ namespace robot_dart {
             }
 
             // BaseApplication
+            BaseApplication::BaseApplication(bool isShadowed)
+            {
+                enableShadows(isShadowed);
+            }
+
             void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)
             {
                 /* Camera setup */
@@ -563,6 +568,14 @@ namespace robot_dart {
                 }
 
                 return false;
+            }
+
+            void BaseApplication::enableShadows(bool enable)
+            {
+                _isShadowed = enable;
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_WARNING(_isShadowed, "Shadows are not working properly on Mac! Disable them if you experience unexpected behavior..");
+#endif
             }
 
             GrayscaleImage BaseApplication::depthImage()

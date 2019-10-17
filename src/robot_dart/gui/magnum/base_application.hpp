@@ -158,7 +158,7 @@ namespace robot_dart {
 
             class BaseApplication {
             public:
-                BaseApplication(bool isShadowed = true) : _isShadowed(isShadowed) {}
+                BaseApplication(bool isShadowed = true);
                 virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
@@ -191,7 +191,7 @@ namespace robot_dart {
                 bool isDepthRecording() { return _camera->isDepthRecording(); }
 
                 bool isShadowed() const { return _isShadowed; }
-                void enableShadows(bool enable = true) { _isShadowed = enable; }
+                void enableShadows(bool enable = true);
 
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
