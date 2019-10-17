@@ -112,6 +112,7 @@ def check_magnum_plugins(conf, *k, **kw):
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
+    modules_suffix = 'so'
 
     required = kw.get('required', False)
     requested_components = kw.get('components', None)
@@ -223,7 +224,7 @@ def check_magnum_plugins(conf, *k, **kw):
             lib = component
             # we need the full lib_dir in order to be able to link to the plugins
             # or not? because they are loaded dynamically
-            lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+suffix, libs_check, True)
+            lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+modules_suffix, libs_check, True)
             # magnum_plugins_libs.append(lib)
             # magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
 
