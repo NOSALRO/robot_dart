@@ -236,8 +236,8 @@ def build(bld):
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'meshes')
 
-        # if we found the hexapod controller includes and Bullet collision
-        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+        # if we found the hexapod controller includes
+        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
             bld.program(features = 'cxx',
                         install_path = None,
                         source = 'src/examples/hexapod.cpp',
@@ -280,8 +280,8 @@ def build(bld):
                   defines = ['RESPATH="' + path + '"'],
                   target = 'meshes_plain')
 
-    # if we found the hexapod controller includes and Bullet collision
-    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+    # if we found the hexapod controller includes
+    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
         bld.program(features = 'cxx',
                     install_path = None,
                     source = 'src/examples/hexapod.cpp',
