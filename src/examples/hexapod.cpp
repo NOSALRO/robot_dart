@@ -7,7 +7,7 @@
 #include <robot_dart/gui/osg/graphics.hpp>
 #endif
 
-#include <dart/collision/bullet/BulletCollisionDetector.hpp>
+#include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 
 int main()
@@ -36,7 +36,7 @@ int main()
     simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
     std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
-    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::BulletCollisionDetector::create());
+    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
     simu.add_floor();
     simu.add_robot(g_robot);
     simu.run(3);
