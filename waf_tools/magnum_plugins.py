@@ -96,7 +96,11 @@ def check_magnum_plugins(conf, *k, **kw):
 
     # Check compiler version (for gcc); I am being a bit more strong (Magnum could be built with 4.7 but needs adjustment)
     if conf.env.CXX_NAME in ["gcc", "g++"] and int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1]) < 48:
-        conf.fatal('MagnumPlugins cannot be setup with GCC < 4.8!')
+        msg = 'MagnumPlugins cannot be setup with GCC < 4.8!'
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+        return
 
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
@@ -180,7 +184,11 @@ def check_magnum_plugins(conf, *k, **kw):
 
             # check if Magnum Audio is available
             if not conf.env['INCLUDES_%s_Audio' % magnum_var]:
-                conf.fatal('AudioImporters require Magnum Audio! Cannot proceed!')
+                msg = 'AudioImporters require Magnum Audio! Cannot proceed!'
+                if required:
+                    conf.fatal(msg)
+                Logs.pprint('RED', msg)
+                return
             # add includes/paths/libs
             # magnum_plugins_includes = magnum_plugins_includes + conf.env['INCLUDES_%s_Audio' % magnum_var]
             # magnum_plugins_libpaths = magnum_plugins_libpaths + conf.env['LIBPATH_%s_Audio' % magnum_var]
@@ -264,7 +272,10 @@ def check_magnum_plugins(conf, *k, **kw):
             conf.end_msg(assimp_inc)
         elif component == 'DevIlImageImporter':
             # DevIlImageImporter requires DevIl
-            conf.fatal(component + ' is not supported with WAF')
+            msg = component + ' is not supported with WAF'
+            if required:
+                conf.fatal(msg)
+            conf.end_msg(msg, 'RED')
         elif component == 'FreeTypeFont':
             # FreeTypeFont requires FreeType2?
             conf.start_msg(component + ': Checking for FreeType')
@@ -289,7 +300,10 @@ def check_magnum_plugins(conf, *k, **kw):
             conf.end_msg(freetype_inc)
         elif component == 'HarfBuzzFont':
             # HarfBuzzFont requires FreeType and HarfBuzz
-            conf.fatal(component + ' is not supported with WAF')
+            msg = component + ' is not supported with WAF'
+            if required:
+                conf.fatal(msg)
+            conf.end_msg(msg, 'RED')
         elif component == 'JpegImporter':
             # JpegImporter requires JPEG
             conf.start_msg(component + ': Checking for JPEG')

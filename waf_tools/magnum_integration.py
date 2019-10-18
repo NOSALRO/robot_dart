@@ -90,7 +90,11 @@ def check_magnum_integration(conf, *k, **kw):
 
     # Check compiler version (for gcc); I am being a bit more strong (Magnum could be built with 4.7 but needs adjustment)
     if conf.env.CXX_NAME in ["gcc", "g++"] and int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1]) < 48:
-        conf.fatal('MagnumIntegration cannot be setup with GCC < 4.8!')
+        msg = 'MagnumIntegration cannot be setup with GCC < 4.8!'
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+        return
 
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
