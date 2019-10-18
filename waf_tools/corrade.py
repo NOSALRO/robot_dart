@@ -26,9 +26,15 @@ def check_corrade(conf, *k, **kw):
     def find_in_string(data, text):
         return data.find(text)
 
+    required = kw.get('required', False)
+
     # Check compiler version (for gcc); I am being a bit more strong (Corrade could be built with 4.7 but needs adjustment)
     if conf.env.CXX_NAME in ["gcc", "g++"] and int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1]) < 48:
-        conf.fatal('Corrade cannot be setup with GCC < 4.8!')
+        msg = 'Corrade cannot be setup with GCC < 4.8!'
+        if required:
+            conf.fatal(msg)
+        Logs.pprint('RED', msg)
+        return
 
     includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
     libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
@@ -42,7 +48,6 @@ def check_corrade(conf, *k, **kw):
         libs_check = [conf.options.corrade_install_dir + '/lib']
         bins_check = [conf.options.corrade_install_dir + '/bin']
 
-    required = kw.get('required', False)
     requested_components = kw.get('components', None)
     if requested_components == None:
         requested_components = []
