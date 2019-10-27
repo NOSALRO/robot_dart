@@ -1,29 +1,13 @@
 #ifndef ROBOT_DART_GRAPHICS_BASE_GRAPHICS_HPP
 #define ROBOT_DART_GRAPHICS_BASE_GRAPHICS_HPP
 
-#include <dart/simulation/World.hpp>
+#include <robot_dart/gui/base.hpp>
+
+#warning This file is deprecated! Please use robot_dart/gui/osg/graphics.hpp instead
 
 namespace robot_dart {
     namespace graphics {
-        class BaseGraphics {
-        public:
-            BaseGraphics() {}
-
-            BaseGraphics(const dart::simulation::WorldPtr&) {}
-
-            virtual ~BaseGraphics() {}
-
-            virtual bool done() const
-            {
-                return false;
-            }
-
-            virtual void refresh() {}
-
-            virtual void set_render_period(double) {}
-
-            virtual void set_enable(bool) {}
-        };
+        using BaseGraphics = gui::Base;
     } // namespace graphics
 } // namespace robot_dart
 

@@ -34,7 +34,6 @@ namespace robot_dart {
 
         void PDControl::set_pd(double Kp, double Kd)
         {
-            ROBOT_DART_WARNING(_control_dof != 1, "PDControl: Setting all the gains to Kp = " << Kp << " and Kd = " << Kd);
             _Kp = Eigen::VectorXd::Constant(_control_dof, Kp);
             _Kd = Eigen::VectorXd::Constant(_control_dof, Kd);
         }

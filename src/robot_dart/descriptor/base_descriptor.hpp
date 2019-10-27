@@ -13,6 +13,7 @@ namespace robot_dart {
         struct BaseDescriptor {
         public:
             BaseDescriptor(RobotDARTSimu& simu, size_t desc_dump = 1);
+            virtual ~BaseDescriptor() {}
 
             virtual void operator()() = 0;
 
