@@ -8,6 +8,10 @@
 - Boost (needed by DART)
 - DART, http://dartsim.github.io/
 
+#### Optional
+- Open Scene Graph (for graphics -- this is the built-in integration provided by DART)
+- Magnum (for graphics), https://github.com/mosra/magnum
+
 ### Installation of the dependencies
 
 #### Installing Boost and Eigen3
@@ -47,7 +51,7 @@ sudo apt-get update
 
 sudo apt-get install build-essential cmake pkg-config git
 sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
-sudo apt-get install libopenscenegraph-dev
+sudo apt-get install libopenscenegraph-dev # you can skip this if you do not want graphics with OSG
 
 sudo apt-get install libtinyxml-dev libtinyxml2-dev
 sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
@@ -74,7 +78,7 @@ brew install assimp
 brew install libccd
 brew install dartsim/dart/fcl04
 brew install boost
-brew install open-scene-graph
+brew install open-scene-graph # you can skip this if you do not want graphics with OSG
 
 brew install tinyxml
 brew install tinyxml2
@@ -89,6 +93,57 @@ mkdir build
 cd build
 cmake -DDART_ENABLE_SIMD=ON ..
 make -j4
+sudo make install
+```
+
+#### Installing Magnum
+
+Magnum depends on [Corrade](https://github.com/mosra/corrade) and we are going to use a few plugins and extras from the library. We are also going to use SDL2 for the back-end. Follow the instrutions below:
+
+```bash
+#installation of SDL2
+# Ubuntu
+sudo apt-get install libsdl2-dev
+# Mac OSX
+brew install sdl2
+
+# installation of Corrade
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/corrade.git
+cd corrade
+mkdir build && cd build
+cmake ..
+make -j
+sudo make install
+
+# installation of Magnum
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum.git
+cd magnum
+mkdir build && cd build
+# Ubuntu
+cmake -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_SDL2APPLICATION=ON -DWITH_WINDOWLESSGLXAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+# Mac OSX
+cmake -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_SDL2APPLICATION=ON -DWITH_WINDOWLESSCGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+make -j
+sudo make install
+
+# installation of Magnum Plugins
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum-plugins.git
+cd magnum-plugins
+mkdir build && cd build
+cmake -DWITH_ASSIMPIMPORTER=ON -DWITH_DDSIMPORTER=ON -DWITH_JPEGIMPORTER=ON -DWITH_OPENGEXIMPORTER=ON -DWITH_PNGIMPORTER=ON -DWITH_TINYGLTFIMPORTER=ON .. # this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+make -j
+sudo make install
+
+# installation of Magnum DART Integration (DART needs to be installed)
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum-integration.git
+cd magnum-integration
+mkdir build && cd build
+cmake -DWITH_DART=ON ..
+make -j
 sudo make install
 ```
 

@@ -19,6 +19,10 @@ import dart
 import boost
 import eigen
 import hexapod_controller
+import corrade
+import magnum
+import magnum_integration
+import magnum_plugins
 
 
 def options(opt):
@@ -28,6 +32,10 @@ def options(opt):
     opt.load('eigen')
     opt.load('dart')
     opt.load('hexapod_controller')
+    opt.load('corrade')
+    opt.load('magnum')
+    opt.load('magnum_integration')
+    opt.load('magnum_plugins')
 
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
@@ -44,11 +52,28 @@ def configure(conf):
     conf.load('dart')
     conf.load('hexapod_controller')
     conf.load('avx')
+    conf.load('corrade')
+    conf.load('magnum')
+    conf.load('magnum_integration')
+    conf.load('magnum_plugins')
 
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
+    conf.check_corrade(components='Utility PluginManager', required=False)
+    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph Sdl2Application'
+    if conf.env['DEST_OS'] == 'darwin':
+        conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
+    else:
+        conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
+    conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
+    conf.check_magnum_plugins(components='AssimpImporter', required=False)
+    conf.check_magnum_integration(components='Dart', required=False)
+
+    if len(conf.env.INCLUDES_MagnumIntegration) > 0:
+        conf.get_env()['BUILD_MAGNUM'] = True
+        conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart')
 
     avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
 
@@ -112,12 +137,19 @@ def build(bld):
     path = bld.path.abspath() + '/res'
 
     files = []
+    magnum_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.cpp'):
-            files.append(os.path.join(root, filename))
+            ffile = os.path.join(root, filename)
+            if 'robot_dart/gui/magnum' in ffile:
+                magnum_files.append(ffile)
+            else:
+                files.append(ffile)
 
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
+    magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
+    robot_dart_magnum_srcs = " ".join(magnum_files)
 
     libs = 'BOOST EIGEN DART'
     libs_graphics = libs + ' DART_GRAPHIC'
@@ -127,6 +159,36 @@ def build(bld):
                 includes = './src',
                 uselib = libs,
                 target = 'RobotDARTSimu')
+
+    if bld.get_env()['BUILD_MAGNUM'] == True:
+        shaders_resource = corrade.corrade_add_resource(bld, name = 'RobotDARTShaders', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
+
+        bld.program(features = 'cxx ' + bld.env['lib_type'],
+                    source = robot_dart_magnum_srcs + ' ' + shaders_resource,
+                    includes = './src',
+                    uselib = bld.env['magnum_libs'] + libs,
+                    use = 'RobotDARTSimu',
+                    target = 'RobotDARTMagnum')
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/magnum.cpp',
+                      includes = './src',
+                      uselib = bld.env['magnum_libs'] + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['RESPATH="' + path + '"'],
+                      target = 'magnum')
+
+        bld.env.LIB_PTHREAD = ['pthread']
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/magnum_contexts.cpp',
+                      includes = './src',
+                      uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['RESPATH="' + path + '"'],
+                      target = 'magnum_contexts')
 
     if bld.get_env()['BUILD_GRAPHIC'] == True:
         bld.program(features = 'cxx',
@@ -174,8 +236,8 @@ def build(bld):
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'meshes')
 
-        # if we found the hexapod controller includes and Bullet collision
-        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+        # if we found the hexapod controller includes
+        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
             bld.program(features = 'cxx',
                         install_path = None,
                         source = 'src/examples/hexapod.cpp',
@@ -218,8 +280,8 @@ def build(bld):
                   defines = ['RESPATH="' + path + '"'],
                   target = 'meshes_plain')
 
-    # if we found the hexapod controller includes and Bullet collision
-    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0 and 'BulletCollision' in bld.env.LIB_DART:
+    # if we found the hexapod controller includes
+    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
         bld.program(features = 'cxx',
                     install_path = None,
                     source = 'src/examples/hexapod.cpp',
@@ -233,6 +295,8 @@ def build(bld):
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.hpp'):
+            if filename in ["stb_image_write.h", "create_compatibility_shader.hpp"]:
+                continue
             install_files.append(os.path.join(root, filename))
     install_files = [f[len(bld.path.abspath())+1:] for f in install_files]
 
@@ -243,5 +307,9 @@ def build(bld):
         bld.install_files('${PREFIX}/include/' + f[4:end_index], f)
     if bld.env['lib_type'] == 'cxxstlib':
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.a')
+        if bld.get_env()['BUILD_MAGNUM'] == True:
+            bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.a')
     else:
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')
+        if bld.get_env()['BUILD_MAGNUM'] == True:
+            bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.so')

@@ -1,10 +1,10 @@
 #include <cstdlib>
 #include <iostream>
-#include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/control/simple_control.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics/graphics.hpp>
+#include <robot_dart/gui/osg/graphics.hpp>
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
@@ -53,7 +53,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
 #endif
     // <Type>(desc_period)
     simu.add_descriptor<StateDesc>(2);
@@ -71,5 +71,4 @@ int main()
     g_robot.reset();
     global_robot.reset();
     return 0;
-
 }

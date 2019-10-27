@@ -17,6 +17,7 @@ namespace robot_dart {
         public:
             RobotControl();
             RobotControl(const std::vector<double>& ctrl, bool full_control = false);
+            virtual ~RobotControl() {}
 
             void set_parameters(const std::vector<double>& ctrl);
             std::vector<double> parameters() const;
