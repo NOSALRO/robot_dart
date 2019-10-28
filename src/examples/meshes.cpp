@@ -8,7 +8,7 @@
 #include <dart/constraint/ConstraintSolver.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/gui/osg/graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 int main()
@@ -34,12 +34,11 @@ int main()
     robot_dart::RobotDARTSimu simu(0.001);
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
-    std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->look_at({0., 3.5, 2.}, {0., 0., 0.25});
-#if DART_VERSION_AT_LEAST(6, 8, 0) // GridShape for OSG is available only for DART version >=6.8.0
-    std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->add_grid(0.25, 20); // adds a 20x20 grid with 25cm tiles
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    simu.set_graphics(graphics);
+    graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
-#endif
+    simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
     simu.run(20.);
 

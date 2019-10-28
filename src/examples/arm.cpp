@@ -5,7 +5,7 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics/graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
@@ -42,7 +42,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world()));
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
