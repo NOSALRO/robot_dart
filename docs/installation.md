@@ -9,7 +9,6 @@
 - DART, http://dartsim.github.io/
 
 #### Optional
-- Open Scene Graph (for graphics -- this is the built-in integration provided by DART)
 - Magnum (for graphics), https://github.com/mosra/magnum
 
 ### Installation of the dependencies
@@ -34,7 +33,7 @@ brew install boost
 
 Of course in order to use robot\_dart, you need to install [DART](http://dartsim.github.io/) (from source).
 
-For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you need to enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependencies: **DART Parsers** and **OpenSceneGraph GUI**. Lastly, it is recommended to use either the `master` or `release-6.7` branch (and not the one provided in DART's documentation). In short you should do the following:
+For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you need to enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependency: **DART Parsers**. Lastly, it is recommended to use either the `master` or `release-6.7` branch (and not the one provided in DART's documentation). In short you should do the following:
 
 **Ubuntu <= 14.04 only**
 
@@ -51,7 +50,6 @@ sudo apt-get update
 
 sudo apt-get install build-essential cmake pkg-config git
 sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
-sudo apt-get install libopenscenegraph-dev # you can skip this if you do not want graphics with OSG
 
 sudo apt-get install libtinyxml-dev libtinyxml2-dev
 sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
@@ -78,7 +76,6 @@ brew install assimp
 brew install libccd
 brew install dartsim/dart/fcl04
 brew install boost
-brew install open-scene-graph # you can skip this if you do not want graphics with OSG
 
 brew install tinyxml
 brew install tinyxml2

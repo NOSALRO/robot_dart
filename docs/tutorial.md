@@ -1,6 +1,6 @@
 ## robot_dart tutorial
 
-This tutorial aims at providing a gentle introduction to the robot\_dart library.
+This tutorial aims at providing a gentle and quick introduction to the robot\_dart library.
 
 ### Base skeleton of the code
 
@@ -10,9 +10,9 @@ Here's the basic skeleton of the code:
 // basic includes
 #include <robot_dart/robot_dart_simu.hpp>
 
-// if we want graphics with DART's built-in Open Scene Graph integration, include the appropriate file
+// if we want graphics, include the appropriate file
 #ifdef GRAPHIC
-#include <robot_dart/gui/osg/graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 // ....
@@ -65,9 +65,10 @@ std::srand(std::time(NULL));
 // choose time step of 0.001 seconds
 robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
+auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+simu.set_graphics(graphics);
 // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
-std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->look_at({0., 3., 1.}, {0., 0., 0.});
+graphics->look_at({0., 3., 1.}, {0., 0., 0.});
 #endif
 
 // add floor of square size of 10 meters and height of 0.2 meters
