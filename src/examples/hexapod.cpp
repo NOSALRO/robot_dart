@@ -40,7 +40,7 @@ int main()
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
     simu.add_floor();
     simu.add_robot(g_robot);
-    simu.run(3);
+    simu.run(10.);
 
     std::cout << g_robot->skeleton()->getPositions().head(6).tail(3).transpose() << std::endl;
 
