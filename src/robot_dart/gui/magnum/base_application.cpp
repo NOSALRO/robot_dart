@@ -246,14 +246,14 @@ namespace robot_dart {
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
                     .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
                     .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
-                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToBorder);
+                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge);
 
                 _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
                 _shadowCubeMap->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
                     .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
-                    .setMinificationFilter(Magnum::GL::SamplerFilter::Nearest, Magnum::GL::SamplerMipmap::Base)
-                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Nearest)
+                    .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
                     .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge)
                     .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
 

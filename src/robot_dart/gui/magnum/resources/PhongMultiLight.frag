@@ -139,16 +139,23 @@ float visibilityCalculation(int index, float bias)
     // float visibility = texture(shadowTextures, vec4(projCoords.xy, index, currentDepth - bias));
     float visibility = 0.;
     vec2 texelSize = 0.5 / textureSize(shadowTextures, 0).xy;
-    for(int x = -1; x <= 1; ++x)
-        for(int y = -1; y <= 1; ++y)
+    for(int x = -2; x <= 2; ++x)
+        for(int y = -2; y <= 2; ++y)
             visibility += texture(shadowTextures, vec4(projCoords.xy + vec2(x, y) * texelSize, index, currentDepth - bias));
-    visibility /= 9.;
+    visibility /= 16.;
 
-    return 1. - 0.7*(1. - visibility);
+    // return 1. - 0.7 * (1. - visibility);
+    return visibility;
 }
 
 float visibilityCalculationPointLight(int index, float bias)
 {
+    vec3 direction = worldPosition - lights[index].worldPosition.xyz;
+    float depth = length(direction) / farPlane;
+    if(depth > 1.)
+        return 1.;
+    float visibility = 0.;
+
     vec3 sampleOffsetDirections[20] = vec3[]
     (
         vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1),
@@ -158,17 +165,27 @@ float visibilityCalculationPointLight(int index, float bias)
         vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
     );
 
-    vec3 direction = worldPosition - lights[index].worldPosition.xyz;
-    float depth = length(direction)/farPlane;
-    if(depth > 1.)
-        return 1.;
-    float visibility = 0.;
-    float diskRadius = 0.002;//(1.0 + (length(cameraDirection) / farPlane)) / 50.0;//0.01;
+    float diskRadius = 0.003; //(1.0 + (length(cameraDirection) / farPlane)) / 50.0;//0.01;
     for(int i = 0; i < 20; ++i)
         visibility += texture(cubeMapTextures, vec4(normalize(direction) + sampleOffsetDirections[i] * diskRadius, index), depth - bias);
     visibility /= 20.;
 
-    return 1. - 0.7*(1. - visibility);
+    // float samples = 4.0;
+    // float offset = 0.005;
+    // for(float x = -offset; x < offset; x += offset / (samples * 0.5))
+    // {
+    //     for(float y = -offset; y < offset; y += offset / (samples * 0.5))
+    //     {
+    //         for(float z = -offset; z < offset; z += offset / (samples * 0.5))
+    //         {
+    //             visibility += texture(cubeMapTextures, vec4(normalize(direction) + vec3(x, y, z), index), depth - bias);
+    //         }
+    //     }
+    // }
+    // visibility /= (samples * samples * samples);
+
+    // return 1. - 0.7 * (1. - visibility);
+    return visibility;
 }
 
 void main() {
