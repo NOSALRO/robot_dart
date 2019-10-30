@@ -220,6 +220,15 @@ def build(bld):
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'meshes')
+        
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/cameras.cpp',
+                      includes = './src',
+                      uselib = bld.env['magnum_libs'] + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
+                      target = 'cameras')
 
         # if we found the hexapod controller includes
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
