@@ -1,3 +1,5 @@
+#extension GL_ARB_texture_cube_map_array : require
+
 #ifndef NEW_GLSL
 #define in varying
 #define color gl_FragColor
