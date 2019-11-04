@@ -292,6 +292,14 @@ def check_magnum(conf, *k, **kw):
                             except:
                                 glfw_found = False
 
+                        # GlfwApplication needs the libdl.so library
+                        try:
+                            lib_dir = get_directory('libdl.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                            magnum_component_libs[component].append('dl')
+                        except:
+                            glfw_found = False
+
                         if not glfw_found:
                             fatal(required, 'Not found')
                             return
@@ -326,6 +334,14 @@ def check_magnum(conf, *k, **kw):
                         magnum_component_includes[component] = magnum_component_includes[component] + conf.env['INCLUDES_MAGNUM_SDL']
                         magnum_component_libpaths[component] = magnum_component_libpaths[component] + conf.env['LIBPATH_MAGNUM_SDL']
                         magnum_component_libs[component] = magnum_component_libs[component] + conf.env['LIB_MAGNUM_SDL']
+                        # Sdl2Application needs the libdl.so library
+                        try:
+                            lib_dir = get_directory('libdl.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                            magnum_component_libs[component].append('dl')
+                        except:
+                            fatal(required, 'Not found')
+                            return
                         # to-do: maybe copy flags?
                     elif component == 'WindowlessEglApplication':
                         # WindowlessEglApplication requires EGL
