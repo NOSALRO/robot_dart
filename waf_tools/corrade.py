@@ -152,12 +152,10 @@ def check_corrade(conf, *k, **kw):
 
                 corrade_component_libpaths[component] = corrade_component_libpaths[component] + [lib_dir]
                 corrade_component_libs[component].append(lib)
-                if component == 'PluginManager':
-                    # PluginManager needs the libdl.so library
+                if component == 'PluginManager' or component == 'Utility':
+                    # PluginManager/Utility need the libdl.so library
                     try:
                         lib_dir = get_directory('libdl.'+suffix, libs_check)
-                        corrade_libs.append('dl')
-                        corrade_libpaths = corrade_libpaths + [lib_dir]
                         corrade_component_libpaths[component] = corrade_component_libpaths[component] + [lib_dir]
                         corrade_component_libs[component].append('dl')
                     except:
@@ -173,6 +171,7 @@ def check_corrade(conf, *k, **kw):
         #remove duplicates
         corrade_includes = list(set(corrade_includes))
         corrade_libpaths = list(set(corrade_libpaths))
+        corrade_libs = list(set(corrade_libs))
         conf.end_msg(corrade_libs + corrade_bins)
 
         # set environmental variables
