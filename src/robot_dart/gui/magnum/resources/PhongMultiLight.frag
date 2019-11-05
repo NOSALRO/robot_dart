@@ -256,7 +256,7 @@ void main() {
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
         float visibility = 1.;
         if(isShadowed) {
-            float bias = 0.00002;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
+            float bias = 0.00005;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
             if(!isPoint)
                 visibility = visibilityCalculation(i, bias);
             else {
