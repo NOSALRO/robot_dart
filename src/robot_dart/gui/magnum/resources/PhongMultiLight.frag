@@ -145,6 +145,7 @@ float visibilityCalculation(int index, float bias)
         for(int y = -2; y <= 2; ++y)
             visibility += texture(shadowTextures, vec4(projCoords.xy + vec2(x, y) * texelSize, index, currentDepth - bias));
     visibility /= 16.;
+    visibility = clamp(visibility, 0., 1.);
 
     // return 1. - 0.7 * (1. - visibility);
     return visibility;
@@ -186,6 +187,7 @@ float visibilityCalculationPointLight(int index, float bias)
     // }
     // visibility /= (samples * samples * samples);
 
+    visibility = clamp(visibility, 0., 1.);
     // return 1. - 0.7 * (1. - visibility);
     return visibility;
 }

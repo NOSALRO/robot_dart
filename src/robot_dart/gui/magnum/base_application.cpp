@@ -271,7 +271,7 @@ namespace robot_dart {
 
                 /* Add default lights (2 directional lights) */
                 gs::Material mat;
-                mat.diffuseColor() = {0.5f, 0.5f, 0.5f, 1.f};
+                mat.diffuseColor() = {0.8f, 0.8f, 0.8f, 1.f};
                 mat.specularColor() = {1.f, 1.f, 1.f, 1.f};
                 // gs::Light light = gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
                 // gs::Light light = gs::createSpotLight(
