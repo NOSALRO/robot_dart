@@ -1,11 +1,7 @@
-#ifndef NEW_GLSL
-#define in varying
-#define depth gl_FragDepth
+#ifdef EXPLICIT_ATTRIB_LOCATION
+layout(location = 0)
 #endif
-
-#ifdef NEW_GLSL
-layout(location = 0) out float depth;
-#endif
+out float depth;
 
 void main() {
     depth = gl_FragCoord.z;
