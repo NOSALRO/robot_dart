@@ -1,15 +1,5 @@
 #extension GL_ARB_texture_cube_map_array : require
 
-#ifndef NEW_GLSL
-#define in varying
-#define color gl_FragColor
-#define texture texture2D
-#endif
-
-#ifndef RUNTIME_CONST
-#define const
-#endif
-
 #define M_PI 3.1415926535897932384626433832795
 
 struct lightSource

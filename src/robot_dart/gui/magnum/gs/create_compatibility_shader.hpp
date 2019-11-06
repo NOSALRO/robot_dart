@@ -27,15 +27,6 @@
 #include <Magnum/GL/Extensions.h>
 #include <Magnum/GL/Shader.h>
 
-/* Enable only when compiling Shaders library and thus work around
-   "static symbol not used" warning when using this file for TextureTools */
-#if defined(MAGNUM_BUILD_STATIC) && defined(MAGNUM_SHADERS_EXPORT)
-static void importShaderResources()
-{
-    CORRADE_RESOURCE_INITIALIZE(MagnumShaders_RCS)
-}
-#endif
-
 namespace Magnum {
     namespace Shaders {
         namespace Implementation {
