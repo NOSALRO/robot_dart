@@ -62,7 +62,7 @@ def configure(conf):
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
     conf.check_corrade(components='Utility PluginManager', required=False)
-    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph Sdl2Application'
+    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication'
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:

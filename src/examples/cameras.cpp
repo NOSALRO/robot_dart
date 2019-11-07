@@ -6,18 +6,19 @@
 #include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
 
-class MyApp : public robot_dart::gui::magnum::Sdl2Application {
+class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
-    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool shadowed = true) : Sdl2Application(argc, argv, world, width, height, title, shadowed) {}
+    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool shadowed = true)
+        : GlfwApplication(argc, argv, world, width, height, title, shadowed) {}
 
 protected:
     void keyPressEvent(KeyEvent& event) override
     {
-        // One can customize their key/mouse events by inheriting Sdl2Application
+        // One can customize their key/mouse events by inheriting GlfwApplication
         // if (event.key() == KeyEvent::Key::Right) {
         // }
 
-        robot_dart::gui::magnum::Sdl2Application::keyPressEvent(event);
+        robot_dart::gui::magnum::GlfwApplication::keyPressEvent(event);
     }
 };
 
