@@ -1,4 +1,4 @@
-#include "sdl2_application.hpp"
+#include "glfw_application.hpp"
 
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Renderer.h>
@@ -8,7 +8,7 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            Sdl2Application::Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
+            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
                 : BaseApplication(isShadowed), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
             {
                 /* Try 16x MSAA */
@@ -26,29 +26,28 @@ namespace robot_dart {
 
                 /* Loop at 60 Hz max */
                 setSwapInterval(1);
-                setMinimalLoopPeriod(16);
 
                 redraw();
             }
 
-            Sdl2Application::~Sdl2Application()
+            GlfwApplication::~GlfwApplication()
             {
                 GLCleanUp();
             }
 
-            void Sdl2Application::render()
+            void GlfwApplication::render()
             {
                 mainLoopIteration();
             }
 
-            void Sdl2Application::viewportEvent(const Magnum::Vector2i& size)
+            void GlfwApplication::viewportEvent(const Magnum::Vector2i& size)
             {
                 Magnum::GL::defaultFramebuffer.setViewport({{}, size});
 
                 _camera->setViewport(size);
             }
 
-            void Sdl2Application::drawEvent()
+            void GlfwApplication::drawEvent()
             {
                 /* Update graphic meshes/materials and render */
                 updateGraphics();
@@ -76,7 +75,7 @@ namespace robot_dart {
                 redraw();
             }
 
-            void Sdl2Application::keyReleaseEvent(KeyEvent& event)
+            void GlfwApplication::keyReleaseEvent(KeyEvent& event)
             {
                 _speedMove = 0.f;
                 _speedStrafe = 0.f;
@@ -84,7 +83,7 @@ namespace robot_dart {
                 event.setAccepted();
             }
 
-            void Sdl2Application::keyPressEvent(KeyEvent& event)
+            void GlfwApplication::keyPressEvent(KeyEvent& event)
             {
                 if (event.key() == KeyEvent::Key::W) {
                     _speedMove = _speed;
@@ -105,7 +104,7 @@ namespace robot_dart {
                 event.setAccepted();
             }
 
-            void Sdl2Application::mouseScrollEvent(MouseScrollEvent& event)
+            void GlfwApplication::mouseScrollEvent(MouseScrollEvent& event)
             {
                 if (!event.offset().y())
                     return;
@@ -121,7 +120,7 @@ namespace robot_dart {
                 event.setAccepted();
             }
 
-            void Sdl2Application::mouseMoveEvent(MouseMoveEvent& event)
+            void GlfwApplication::mouseMoveEvent(MouseMoveEvent& event)
             {
                 if (event.buttons() == MouseMoveEvent::Button::Left) {
                     _camera->move(event.relativePosition());
@@ -130,7 +129,7 @@ namespace robot_dart {
                 event.setAccepted();
             }
 
-            void Sdl2Application::exitEvent(ExitEvent& event)
+            void GlfwApplication::exitEvent(ExitEvent& event)
             {
                 _done = true;
                 event.setAccepted();
