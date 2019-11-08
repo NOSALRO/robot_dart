@@ -2,8 +2,8 @@
 #define ROBOT_DART_GUI_MAGNUM_GRAPHICS_HPP
 
 #include <robot_dart/gui/base.hpp>
+#include <robot_dart/gui/magnum/glfw_application.hpp>
 #include <robot_dart/gui/magnum/gs/helper.hpp>
-#include <robot_dart/gui/magnum/sdl2_application.hpp>
 
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
@@ -16,7 +16,7 @@ static void robot_dart_initialize_magnum_resources()
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            template <typename T = Sdl2Application>
+            template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
                 Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, const std::string& title = "DART")
