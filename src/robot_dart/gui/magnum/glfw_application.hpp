@@ -1,18 +1,24 @@
-#ifndef ROBOT_DART_GUI_MAGNUM_SDL2_APPLICATION_HPP
-#define ROBOT_DART_GUI_MAGNUM_SDL2_APPLICATION_HPP
+#ifndef ROBOT_DART_GUI_MAGNUM_GLFW_APPLICATION_HPP
+#define ROBOT_DART_GUI_MAGNUM_GLFW_APPLICATION_HPP
 
 #include <robot_dart/gui/magnum/base_application.hpp>
 
-#include <Magnum/Platform/Sdl2Application.h>
+// Workaround for X11lib defines
+#undef Button1
+#undef Button2
+#undef Button3
+#undef Button4
+#undef Button5
+#include <Magnum/Platform/GlfwApplication.h>
 
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            class Sdl2Application : public BaseApplication, public Magnum::Platform::Application {
+            class GlfwApplication : public BaseApplication, public Magnum::Platform::Application {
             public:
-                explicit Sdl2Application(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
+                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true);
 
-                ~Sdl2Application();
+                ~GlfwApplication();
 
                 void render() override;
 

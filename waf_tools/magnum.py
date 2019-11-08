@@ -279,7 +279,7 @@ def check_magnum(conf, *k, **kw):
                         magnum_component_includes[component] = magnum_component_includes[component] + [glfw_inc]
 
                         # conf.start_msg('Magnum: Checking for GLFW3 lib')
-                        libs_glfw = ['glfw', 'glfw3']
+                        libs_glfw = ['glfw3', 'glfw']
                         glfw_found = False
                         for lib_glfw in libs_glfw:
                             try:
@@ -365,11 +365,11 @@ def check_magnum(conf, *k, **kw):
                         if not egl_found:
                             fatal(required, 'Not found')
                             return
-                    elif component == 'WindowlessGlxApplication':
-                        # WindowlessGlxApplication requires GLX. X11
-                        egl_inc = get_directory('GL/glx.h', includes_check)
+                    elif component == 'WindowlessGlxApplication' or component == 'GlxApplication':
+                        # [Windowless]GlxApplication requires GLX. X11
+                        glx_inc = get_directory('GL/glx.h', includes_check)
 
-                        magnum_component_includes[component] = magnum_component_includes[component] + [egl_inc]
+                        magnum_component_includes[component] = magnum_component_includes[component] + [glx_inc]
 
                         libs_glx = ['GLX', 'X11']
                         glx_found = False
