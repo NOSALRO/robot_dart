@@ -183,17 +183,17 @@ float visibilityCalculationPointLight(int index, float bias)
 }
 
 void main() {
-    lowp const vec4 finalAmbientColor =
+    lowp vec4 finalAmbientColor =
         #ifdef AMBIENT_TEXTURE
         texture(ambientTexture, interpolatedTextureCoords)*
         #endif
         ambientColor;
-    lowp const vec4 finalDiffuseColor =
+    lowp vec4 finalDiffuseColor =
         #ifdef DIFFUSE_TEXTURE
         texture(diffuseTexture, interpolatedTextureCoords)*
         #endif
         diffuseColor;
-    lowp const vec4 finalSpecularColor =
+    lowp vec4 finalSpecularColor =
         #ifdef SPECULAR_TEXTURE
         texture(specularTexture, interpolatedTextureCoords)*
         #endif
