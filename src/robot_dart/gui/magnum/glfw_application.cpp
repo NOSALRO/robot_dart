@@ -2,6 +2,7 @@
 
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Renderer.h>
+#include <Magnum/GL/Version.h>
 
 #include <Magnum/PixelFormat.h>
 
@@ -18,6 +19,7 @@ namespace robot_dart {
                 conf.setSize({static_cast<int>(width), static_cast<int>(height)});
                 conf.setWindowFlags(Configuration::WindowFlag::Resizable);
                 glConf.setSampleCount(8);
+                glConf.setVersion(Magnum::GL::Version::GL320);
                 if (!tryCreate(conf, glConf))
                     create(conf, glConf.setSampleCount(0));
 
