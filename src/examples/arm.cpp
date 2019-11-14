@@ -5,7 +5,7 @@
 #include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/graphics/graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
@@ -42,17 +42,17 @@ int main()
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::graphics::Graphics>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world()));
 #endif
     simu.add_descriptor(std::make_shared<StateDesc>(simu));
     simu.add_robot(g_robot);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
-    simu.run(2);
+    simu.run(2.5);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
     ctrl = {0.0, -1.0, 1.5, -1.0};
     g_robot->controllers()[0]->set_parameters(ctrl);
     std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(20., 0.);
-    simu.run(2);
+    simu.run(2.5);
     std::cout << (g_robot->body_trans("arm_link_5") * size).transpose() << std::endl;
 
     std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;

@@ -1,8 +1,3 @@
-#ifndef NEW_GLSL
-#define in attribute
-#define out varying
-#endif
-
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 0)
 #endif
