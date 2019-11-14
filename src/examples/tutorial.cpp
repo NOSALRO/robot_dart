@@ -4,7 +4,7 @@
 #include <robot_dart/control/pd_control.hpp>
 
 #ifdef GRAPHIC
-#include <robot_dart/gui/osg/graphics.hpp>
+#include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
 std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
@@ -35,9 +35,10 @@ int main()
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
-    std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->look_at({0., 3., 1.}, {0., 0., 0.});
+    graphics->look_at({0., 3., 1.}, {0., 0., 0.});
 #endif
 
     // add floor of square size of 10 meters and height of 0.2 meters
@@ -65,6 +66,6 @@ int main()
     simu.add_robot(arm_robot);
 
     // run the simulator for 5 seconds
-    simu.run(5.);
+    simu.run(10.);
     return 0;
 }

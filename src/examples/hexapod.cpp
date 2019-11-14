@@ -3,12 +3,12 @@
 
 #include <robot_dart/control/hexa_control.hpp>
 
-#ifdef GRAPHIC
-#include <robot_dart/gui/osg/graphics.hpp>
-#endif
-
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
+
+#ifdef GRAPHIC
+#include <robot_dart/gui/magnum/graphics.hpp>
+#endif
 
 int main()
 {
@@ -33,13 +33,14 @@ int main()
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::gui::osg::Graphics>(simu.world()));
-    std::static_pointer_cast<robot_dart::gui::osg::Graphics>(simu.graphics())->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    simu.set_graphics(graphics);
+    graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
     simu.add_floor();
     simu.add_robot(g_robot);
-    simu.run(3);
+    simu.run(10.);
 
     std::cout << g_robot->skeleton()->getPositions().head(6).tail(3).transpose() << std::endl;
 

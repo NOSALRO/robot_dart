@@ -246,14 +246,14 @@ namespace robot_dart {
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
                     .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
                     .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
-                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToBorder);
+                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge);
 
                 _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
                 _shadowCubeMap->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
                     .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
                     .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
-                    .setMinificationFilter(Magnum::GL::SamplerFilter::Nearest, Magnum::GL::SamplerMipmap::Base)
-                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Nearest)
+                    .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
                     .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge)
                     .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
 
@@ -271,39 +271,39 @@ namespace robot_dart {
 
                 /* Add default lights (2 directional lights) */
                 gs::Material mat;
-                mat.diffuseColor() = {1.f, 1.f, 1.f, 1.f};
+                mat.diffuseColor() = {0.8f, 0.8f, 0.8f, 1.f};
                 mat.specularColor() = {1.f, 1.f, 1.f, 1.f};
                 // gs::Light light = gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
                 // gs::Light light = gs::createSpotLight(
                 //     {0.f, 0.f, 3.f}, mat, {0.f, 0.f, -1.f}, 1.f, Magnum::Math::Constants<Magnum::Float>::piHalf() / 5.f, 2.f, {0.f, 0.f, 1.f});
                 Magnum::Vector3 dir = {-0.5f, -0.5f, -0.5f};
                 gs::Light light = gs::createDirectionalLight(dir, mat);
-                // _lights.push_back(light);
+                _lights.push_back(light);
                 dir = {0.5f, 0.5f, -0.5f};
                 light = gs::createDirectionalLight(dir, mat);
-                // _lights.push_back(light);
-                Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
-                Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
-                Magnum::Float lexp = 1.f;
-                Magnum::Float lspot = M_PI / 3.;
-                Magnum::Float lint = 1.f;
-                Magnum::Vector3 latt = {0.f, 0.f, 1.f};
-                light = gs::createSpotLight(lpos, mat, ldir, lexp, lspot, lint, latt);
-                // _lights.push_back(light);
-                lpos = {0.5f, -0.5f, 0.6f};
-                light = gs::createPointLight(lpos, mat, lint, latt);
-                // _lights.push_back(light);
-                lpos = {0.5f, 0.5f, 0.6f};
-                light = gs::createPointLight(lpos, mat, lint, latt);
-                // _lights.push_back(light);
+                _lights.push_back(light);
+                // Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
+                // Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
+                // Magnum::Float lexp = 1.f;
+                // Magnum::Float lspot = M_PI / 3.;
+                // Magnum::Float lint = 1.f;
+                // Magnum::Vector3 latt = {0.f, 0.f, 1.f};
+                // light = gs::createSpotLight(lpos, mat, ldir, lexp, lspot, lint, latt);
+                // // _lights.push_back(light);
+                // lpos = {0.5f, -0.5f, 0.6f};
+                // light = gs::createPointLight(lpos, mat, lint, latt);
+                // // _lights.push_back(light);
+                // lpos = {0.5f, 0.5f, 0.6f};
+                // light = gs::createPointLight(lpos, mat, lint, latt);
+                // // _lights.push_back(light);
 
-                lpos = {0.5f, 1.5f, 2.f};
-                latt = {1.f, 0.2f, 0.f};
-                light = gs::createPointLight(lpos, mat, lint, latt);
-                _lights.push_back(light);
-                lpos = {2.f, -1.f, 2.f};
-                light = gs::createPointLight(lpos, mat, lint, latt);
-                _lights.push_back(light);
+                // lpos = {0.5f, 1.5f, 2.f};
+                // latt = {1.f, 0.2f, 0.f};
+                // light = gs::createPointLight(lpos, mat, lint, latt);
+                // // _lights.push_back(light);
+                // lpos = {2.f, -1.f, 2.f};
+                // light = gs::createPointLight(lpos, mat, lint, latt);
+                // // _lights.push_back(light);
             }
 
             void BaseApplication::clearLights()
@@ -476,10 +476,10 @@ namespace robot_dart {
                     if (!isPointLight) {
                         /* Directional lights */
                         if (_lights[i].position().w() == 0.f) {
-                            cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized(), {}, Magnum::Vector3::yAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
+                            cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized() * (farPlane - nearPlane) / 2.f, {}, Magnum::Vector3::yAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
 
                             (*_shadowCamera)
-                                .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::NotPreserved)
+                                .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
                                 .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({10.f, 10.f}, nearPlane, farPlane))
                                 .setViewport({_shadowMapSize, _shadowMapSize});
                             cullFront = true;

@@ -13,8 +13,7 @@ namespace robot_dart {
                 {
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
-                    const Magnum::GL::Version version = Magnum::GL::Context::current().supportedVersion(
-                        {Magnum::GL::Version::GL400});
+                    const Magnum::GL::Version version = Magnum::GL::Version::GL320;
 
                     Magnum::GL::Shader vert = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Vertex);

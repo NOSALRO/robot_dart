@@ -279,7 +279,7 @@ def check_magnum(conf, *k, **kw):
                         magnum_component_includes[component] = magnum_component_includes[component] + [glfw_inc]
 
                         # conf.start_msg('Magnum: Checking for GLFW3 lib')
-                        libs_glfw = ['glfw', 'glfw3']
+                        libs_glfw = ['glfw3', 'glfw']
                         glfw_found = False
                         for lib_glfw in libs_glfw:
                             try:
@@ -291,6 +291,14 @@ def check_magnum(conf, *k, **kw):
                                 break
                             except:
                                 glfw_found = False
+
+                        # GlfwApplication needs the libdl.so library
+                        try:
+                            lib_dir = get_directory('libdl.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                            magnum_component_libs[component].append('dl')
+                        except:
+                            glfw_found = False
 
                         if not glfw_found:
                             fatal(required, 'Not found')
@@ -326,6 +334,14 @@ def check_magnum(conf, *k, **kw):
                         magnum_component_includes[component] = magnum_component_includes[component] + conf.env['INCLUDES_MAGNUM_SDL']
                         magnum_component_libpaths[component] = magnum_component_libpaths[component] + conf.env['LIBPATH_MAGNUM_SDL']
                         magnum_component_libs[component] = magnum_component_libs[component] + conf.env['LIB_MAGNUM_SDL']
+                        # Sdl2Application needs the libdl.so library
+                        try:
+                            lib_dir = get_directory('libdl.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                            magnum_component_libs[component].append('dl')
+                        except:
+                            fatal(required, 'Not found')
+                            return
                         # to-do: maybe copy flags?
                     elif component == 'WindowlessEglApplication':
                         # WindowlessEglApplication requires EGL
@@ -349,11 +365,11 @@ def check_magnum(conf, *k, **kw):
                         if not egl_found:
                             fatal(required, 'Not found')
                             return
-                    elif component == 'WindowlessGlxApplication':
-                        # WindowlessGlxApplication requires GLX. X11
-                        egl_inc = get_directory('GL/glx.h', includes_check)
+                    elif component == 'WindowlessGlxApplication' or component == 'GlxApplication':
+                        # [Windowless]GlxApplication requires GLX. X11
+                        glx_inc = get_directory('GL/glx.h', includes_check)
 
-                        magnum_component_includes[component] = magnum_component_includes[component] + [egl_inc]
+                        magnum_component_includes[component] = magnum_component_includes[component] + [glx_inc]
 
                         libs_glx = ['GLX', 'X11']
                         glx_found = False

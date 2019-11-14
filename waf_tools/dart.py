@@ -82,23 +82,6 @@ def check_dart(conf, *k, **kw):
     except:
         ode_found = False
 
-    # DART requires OSG library for their graphic version
-    osg_include = []
-    osg_lib = []
-    osg_check = ['/usr/local/include', '/usr/include']
-    osg_libs = ['/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
-    osg_found = False
-    osg_comp = ['osg', 'osgViewer', 'osgManipulator', 'osgGA', 'osgDB', 'osgShadow', 'OpenThreads']
-    try:
-        for f in osg_comp:
-            osg_include = [get_directory(f + '/Version', osg_check)]
-            osg_lib = [get_directory('lib' + f + '.' + suffix, osg_libs)]
-            osg_found = True
-        osg_include = list(set(osg_include))
-        osg_lib = list(set(osg_lib))
-    except:
-        osg_found = False
-
     dart_load_prefix = 'utils'
     dart_include = []
     dart_major = -1
@@ -138,19 +121,7 @@ def check_dart(conf, *k, **kw):
         dart_include = list(set(dart_include))
         conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_include[0])
 
-        gui_include = []
-        try:
-            conf.start_msg('Checking for DART gui includes')
-            gui_include.append(get_directory('dart/gui/gui.hpp', includes_check))
-            gui_include.append(get_directory('dart/gui/osg/osg.hpp', includes_check))
-            gui_include = list(set(gui_include))
-            conf.end_msg(gui_include[0])
-        except:
-            conf.end_msg('Not found', 'RED')
-
         more_includes = []
-        if osg_found:
-            more_includes += osg_include
         if assimp_found:
             more_includes += assimp_include
 
@@ -206,32 +177,6 @@ def check_dart(conf, *k, **kw):
         # remove duplicates
         conf.env.INCLUDES_DART = list(set(conf.env.INCLUDES_DART))
         conf.env.LIBPATH_DART = list(set(conf.env.LIBPATH_DART))
-
-        try:
-            conf.start_msg('DART: Checking for gui libs')
-            dart_gui_lib = []
-            dart_gui_lib.append(get_directory('libdart-gui.' + suffix, libs_check))
-            dart_gui_lib.append(get_directory('libdart-gui-osg.' + suffix, libs_check))
-
-            conf.env.INCLUDES_DART_GRAPHIC = deepcopy(conf.env.INCLUDES_DART)
-            conf.env.LIBPATH_DART_GRAPHIC = deepcopy(conf.env.LIBPATH_DART) + dart_gui_lib
-            conf.env.LIB_DART_GRAPHIC = deepcopy(conf.env.LIB_DART) + ['dart-gui', 'dart-gui-osg']
-            conf.end_msg(conf.env.LIB_DART_GRAPHIC[-2:])
-            conf.start_msg('DART: Checking for OSG (optional)')
-            if osg_found:
-                conf.env.INCLUDES_DART_GRAPHIC += osg_include
-                conf.env.LIBPATH_DART_GRAPHIC += osg_lib
-                conf.env.LIB_DART_GRAPHIC += osg_comp
-                conf.end_msg(osg_comp)
-            else:
-                conf.end_msg('Not found - Your graphical programs may not compile/link', 'RED')
-            conf.get_env()['BUILD_GRAPHIC'] = True
-
-            # remove duplicates
-            conf.env.INCLUDES_DART_GRAPHIC = list(set(conf.env.INCLUDES_DART_GRAPHIC))
-            conf.env.LIBPATH_DART_GRAPHIC = list(set(conf.env.LIBPATH_DART_GRAPHIC))
-        except:
-            conf.end_msg('Not found', 'RED')
     except:
         if dart_major < 6 and dart_major > -1:
             fail('We need DART >= 6.0.0', required)
