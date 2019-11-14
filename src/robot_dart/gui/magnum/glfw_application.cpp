@@ -1,4 +1,5 @@
 #include "glfw_application.hpp"
+#include "robot_dart/utils.hpp"
 
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Renderer.h>
@@ -19,9 +20,9 @@ namespace robot_dart {
                 conf.setSize({static_cast<int>(width), static_cast<int>(height)});
                 conf.setWindowFlags(Configuration::WindowFlag::Resizable);
                 glConf.setSampleCount(8);
-                glConf.setVersion(Magnum::GL::Version::GL320);
                 if (!tryCreate(conf, glConf))
                     create(conf, glConf.setSampleCount(0));
+                ROBOT_DART_EXCEPTION_ASSERT(Magnum::GL::Context::current().version() >= Magnum::GL::Version::GL320, "robot_dart requires at least OpenGL 3.2 for rendering!");
 
                 /* Initialize DART world */
                 init(world, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
