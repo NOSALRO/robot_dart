@@ -6,6 +6,8 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
+#include <algorithm>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -159,7 +161,20 @@ namespace robot_dart {
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
                 {
-                    _camera->draw(drawables);
+                    // TO-DO: Maybe check if world moved?
+                    // TO-DO: Sort only transparent, draw first the opaque ones for faster rendering
+                    // Sort drawables for proper transparency
+                    std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
+                        drawableTransformations = _camera->drawableTransformations(drawables);
+
+                    std::sort(drawableTransformations.begin(), drawableTransformations.end(),
+                        [](const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& a,
+                            const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& b) {
+                            return a.second.translation().z() < b.second.translation().z();
+                        });
+
+                    _camera->draw(drawableTransformations);
+
                     if (_recording) {
                         _image = framebuffer.read(framebuffer.viewport(), {format});
                     }
