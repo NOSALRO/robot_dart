@@ -171,6 +171,7 @@ namespace robot_dart {
             ShadowedObject& ShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
+                _enabled.resize(_meshes.size(), true);
                 return *this;
             }
 
@@ -182,9 +183,9 @@ namespace robot_dart {
 
             void ShadowedObject::draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera)
             {
-                if (!_enabled)
-                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
+                    if (_enabled.size() == _meshes.size() && !_enabled[i])
+                        continue;
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
                     _shader.get().setTransformationMatrix(transformationMatrix * scalingMatrix).setProjectionMatrix(camera.projectionMatrix());
@@ -206,6 +207,7 @@ namespace robot_dart {
             CubeMapShadowedObject& CubeMapShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
+                _enabled.resize(_meshes.size(), true);
                 return *this;
             }
 
@@ -217,9 +219,9 @@ namespace robot_dart {
 
             void CubeMapShadowedObject::draw(const Magnum::Matrix4&, Magnum::SceneGraph::Camera3D&)
             {
-                if (!_enabled)
-                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
+                    if (_enabled.size() == _meshes.size() && !_enabled[i])
+                        continue;
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
                     _shader.get().setTransformationMatrix(absoluteTransformation() * scalingMatrix);
@@ -397,7 +399,7 @@ namespace robot_dart {
                     /* Get material information */
                     std::vector<gs::Material> materials;
                     std::vector<std::reference_wrapper<Magnum::GL::Mesh>> meshes;
-                    std::vector<bool> isSoftBody;
+                    std::vector<bool> isSoftBody, enables;
                     // std::vector<Containers::Optional<GL::Texture2D>> textures;
                     std::vector<Magnum::Vector3> scalings;
 
@@ -426,6 +428,11 @@ namespace robot_dart {
                             isSoftBody.push_back(true);
                         else
                             isSoftBody.push_back(false);
+                        /* Transparent objects do not cast normal shadows */
+                        if (isColor && materials[i].diffuseColor().a() != 1.f)
+                            enables.push_back(false);
+                        else
+                            enables.push_back(true);
                     }
 
                     /* Check if we already have it */
@@ -456,20 +463,9 @@ namespace robot_dart {
                         obj->cubemapped->setMeshes(meshes).setScalings(scalings);
                     }
 
-                    /* Transparent objects do not cast normal shadows */
-                    for (size_t i = 0; i < materials.size(); i++) {
-                        bool isTextured = materials[i].hasDiffuseTexture();
-                        if (isTextured || materials[i].diffuseColor().a() == 1.f) {
-                            auto obj = it.first->second;
-                            obj->shadowed->enable(true);
-                            obj->cubemapped->enable(true);
-                        }
-                        else {
-                            auto obj = it.first->second;
-                            obj->shadowed->enable(false);
-                            obj->cubemapped->enable(false);
-                        }
-                    }
+                    auto obj = it.first->second;
+                    obj->shadowed->enable(enables);
+                    obj->cubemapped->enable(enables);
                 }
 
                 _dartWorld->clearUpdatedShapeObjects();

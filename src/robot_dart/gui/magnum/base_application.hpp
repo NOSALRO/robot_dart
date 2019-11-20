@@ -121,9 +121,9 @@ namespace robot_dart {
                 ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
                 ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
-                ShadowedObject& enable(bool enable = true)
+                ShadowedObject& enable(const std::vector<bool>& enables)
                 {
-                    _enabled = enable;
+                    _enabled = enables;
                     return *this;
                 }
 
@@ -133,7 +133,7 @@ namespace robot_dart {
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::ShadowMap> _shader;
                 std::vector<Magnum::Vector3> _scalings;
-                bool _enabled = true;
+                std::vector<bool> _enabled;
             };
 
             class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -147,9 +147,9 @@ namespace robot_dart {
                 CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
                 CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
-                CubeMapShadowedObject& enable(bool enable = true)
+                CubeMapShadowedObject& enable(const std::vector<bool>& enables)
                 {
-                    _enabled = enable;
+                    _enabled = enables;
                     return *this;
                 }
 
@@ -159,7 +159,7 @@ namespace robot_dart {
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::CubeMap> _shader;
                 std::vector<Magnum::Vector3> _scalings;
-                bool _enabled = true;
+                std::vector<bool> _enabled;
             };
 
             struct ShadowData {
