@@ -1,4 +1,5 @@
 #include "camera.hpp"
+#include "robot_dart/gui/magnum/base_application.hpp"
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
@@ -162,18 +163,37 @@ namespace robot_dart {
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
                 {
                     // TO-DO: Maybe check if world moved?
-                    // TO-DO: Sort only transparent, draw first the opaque ones for faster rendering
-                    // Sort drawables for proper transparency
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
                         drawableTransformations = _camera->drawableTransformations(drawables);
 
-                    std::sort(drawableTransformations.begin(), drawableTransformations.end(),
+                    std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>> opaque, transparent;
+                    for (size_t i = 0; i < drawableTransformations.size(); i++) {
+                        auto& obj = static_cast<DrawableObject&>(drawableTransformations[i].first.get().object());
+                        auto& mats = obj.materials();
+                        bool any = false;
+                        for (size_t j = 0; j < mats.size(); j++) {
+                            // Assume textures are transparent objects so that everything gets drawn better
+                            // TO-DO: Check if this is okay to do?
+                            bool isTextured = mats[j].hasDiffuseTexture();
+                            if (isTextured || mats[j].diffuseColor().a() != 1.f) {
+                                any = true;
+                                break;
+                            }
+                        }
+                        if (!any)
+                            opaque.push_back(drawableTransformations[i]);
+                        else
+                            transparent.push_back(drawableTransformations[i]);
+                    }
+
+                    std::sort(transparent.begin(), transparent.end(),
                         [](const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& a,
                             const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& b) {
                             return a.second.translation().z() < b.second.translation().z();
                         });
 
-                    _camera->draw(drawableTransformations);
+                    _camera->draw(opaque);
+                    _camera->draw(transparent);
 
                     if (_recording) {
                         _image = framebuffer.read(framebuffer.viewport(), {format});

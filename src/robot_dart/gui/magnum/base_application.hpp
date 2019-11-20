@@ -97,6 +97,8 @@ namespace robot_dart {
                 DrawableObject& setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader);
                 DrawableObject& setTextureShader(std::reference_wrapper<gs::PhongMultiLight> shader);
 
+                const std::vector<gs::Material>& materials() const { return _materials; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
@@ -119,12 +121,19 @@ namespace robot_dart {
                 ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
                 ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
+                ShadowedObject& enable(bool enable = true)
+                {
+                    _enabled = enable;
+                    return *this;
+                }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::ShadowMap> _shader;
                 std::vector<Magnum::Vector3> _scalings;
+                bool _enabled = true;
             };
 
             class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -138,12 +147,19 @@ namespace robot_dart {
                 CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
                 CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
+                CubeMapShadowedObject& enable(bool enable = true)
+                {
+                    _enabled = enable;
+                    return *this;
+                }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::CubeMap> _shader;
                 std::vector<Magnum::Vector3> _scalings;
+                bool _enabled = true;
             };
 
             struct ShadowData {
