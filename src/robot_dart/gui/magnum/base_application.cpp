@@ -182,6 +182,8 @@ namespace robot_dart {
 
             void ShadowedObject::draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera)
             {
+                if (!_enabled)
+                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
@@ -215,6 +217,8 @@ namespace robot_dart {
 
             void CubeMapShadowedObject::draw(const Magnum::Matrix4&, Magnum::SceneGraph::Camera3D&)
             {
+                if (!_enabled)
+                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
@@ -450,6 +454,21 @@ namespace robot_dart {
                         obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
                         obj->shadowed->setMeshes(meshes).setScalings(scalings);
                         obj->cubemapped->setMeshes(meshes).setScalings(scalings);
+                    }
+
+                    /* Transparent objects do not cast normal shadows */
+                    for (size_t i = 0; i < materials.size(); i++) {
+                        bool isTextured = materials[i].hasDiffuseTexture();
+                        if (isTextured || materials[i].diffuseColor().a() == 1.f) {
+                            auto obj = it.first->second;
+                            obj->shadowed->enable(true);
+                            obj->cubemapped->enable(true);
+                        }
+                        else {
+                            auto obj = it.first->second;
+                            obj->shadowed->enable(false);
+                            obj->cubemapped->enable(false);
+                        }
                     }
                 }
 
