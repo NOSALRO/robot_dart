@@ -280,7 +280,7 @@ class readFile(Task):
                 filename = results.group(1).strip()
                 if filename[0] != '/':
                     filename = config_file_path + '/' + filename
-                filename = filename.encode('ascii','ignore')
+                filename = str(filename)
                 dependencies.append(self.generator.bld.root.find_node(filename))
         return (dependencies, time.time())
 
