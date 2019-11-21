@@ -7,6 +7,7 @@ Quick n dirty Corrade detection
 """
 
 import os
+import io
 from waflib import Utils, Logs
 from waflib.Configure import conf
 import copy
@@ -112,7 +113,7 @@ def check_corrade(conf, *k, **kw):
 
         conf.start_msg('Getting Corrade configuration')
         config_file = conf.find_file('Corrade/configure.h', includes_check)
-        with open(config_file) as f:
+        with io.open(config_file, errors = 'ignore') as f:
             config_content = f.read()
         for config in corrade_possible_configs:
             index = find_in_string(config_content, '#define CORRADE_' + config)
@@ -263,7 +264,7 @@ class readFile(Task):
         config_file = self.inputs[0]
         config_file_path = config_file.abspath()[:config_file.abspath().rfind('/')]
         try:
-            with open(config_file.abspath()) as f:
+            with io.open(config_file.abspath(), errors = 'ignore') as f:
                 config_content = f.readlines()
         except:
             self.fatal('Could not load file \'' + config_file.abspath() + '\'')
