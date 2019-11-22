@@ -7,6 +7,7 @@ Quick n dirty Magnum detection
 """
 
 import os
+import io
 import re
 from waflib import Utils, Logs
 from waflib.Configure import conf
@@ -183,7 +184,7 @@ def check_magnum(conf, *k, **kw):
 
         conf.start_msg('Getting Magnum configuration')
         config_file = conf.find_file('Magnum/configure.h', includes_check)
-        with open(config_file) as f:
+        with io.open(config_file, errors = 'ignore') as f:
             config_content = f.read()
         for config in magnum_possible_configs:
             index = find_in_string(config_content, '#define MAGNUM_' + config)
