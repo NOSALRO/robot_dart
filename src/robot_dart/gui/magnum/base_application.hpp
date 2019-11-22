@@ -95,11 +95,13 @@ namespace robot_dart {
                 DrawableObject& setMaterials(const std::vector<gs::Material>& materials);
                 DrawableObject& setSoftBodies(const std::vector<bool>& softBody);
                 DrawableObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                DrawableObject& setTransparent(bool transparent = true);
 
                 DrawableObject& setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader);
                 DrawableObject& setTextureShader(std::reference_wrapper<gs::PhongMultiLight> shader);
 
                 const std::vector<gs::Material>& materials() const { return _materials; }
+                bool isTransparent() const { return _isTransparent; }
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -110,6 +112,7 @@ namespace robot_dart {
                 std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
                 std::vector<bool> _isSoftBody;
+                bool _isTransparent;
             };
 
             class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -277,6 +280,7 @@ namespace robot_dart {
 
                 /* Shadows */
                 bool _isShadowed = true, _drawTransparentShadows = false;
+                int _transparentSize = 0;
                 std::unique_ptr<gs::ShadowMap> _shadow_shader, _shadow_texture_shader;
                 std::unique_ptr<gs::ShadowMapColor> _shadow_color_shader, _shadow_texture_color_shader;
                 std::unique_ptr<gs::CubeMap> _cubemap_shader, _cubemap_texture_shader;
@@ -285,7 +289,7 @@ namespace robot_dart {
                 std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture, _shadowColorTexture;
                 std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap, _shadowColorCubeMap;
                 int _shadowMapSize = 512;
-                int _maxLights = 10;
+                int _maxLights = 5;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
