@@ -1,7 +1,7 @@
 #ifdef EXPLICIT_ATTRIB_LOCATION
 layout(location = 0)
 #endif
-out float depth;
+out lowp vec4 color;
 
 #ifdef TEXTURED
 #ifdef EXPLICIT_TEXTURE_LAYER
@@ -29,9 +29,10 @@ void main() {
         texture(diffuseTexture, interpolatedTextureCoords)*
         #endif
         diffuseColor;
-
-    /* Ignore transparent pixels */
-    if(finalDiffuseColor.a < 1.)
+    /* Ignore opaque pixels */
+    if(finalDiffuseColor.a == 1.)
         discard;
-    depth = gl_FragCoord.z;
+
+    color = finalDiffuseColor;
+    color.rgb *= (1. - finalDiffuseColor.a);
 }

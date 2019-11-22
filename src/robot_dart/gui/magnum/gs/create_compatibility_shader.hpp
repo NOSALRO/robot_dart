@@ -27,6 +27,20 @@
 #include <Magnum/GL/Extensions.h>
 #include <Magnum/GL/Shader.h>
 
+namespace robot_dart {
+    namespace gui {
+        namespace magnum {
+            namespace gs {
+                namespace {
+                    enum : Magnum::Int { AmbientTextureLayer = 0,
+                        DiffuseTextureLayer = 1,
+                        SpecularTextureLayer = 2 };
+                }
+            } // namespace gs
+        } // namespace magnum
+    } // namespace gui
+} // namespace robot_dart
+
 namespace Magnum {
     namespace Shaders {
         namespace Implementation {

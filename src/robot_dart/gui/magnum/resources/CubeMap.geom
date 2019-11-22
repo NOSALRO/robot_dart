@@ -2,7 +2,7 @@ layout (triangles) in;
 layout (triangle_strip, max_vertices=18) out;
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
-layout(location = 4)
+layout(location = 5)
 #endif
 uniform highp mat4 shadowMatrices[6];
 
@@ -12,6 +12,12 @@ layout(location = 3)
 uniform int lightIndex;
 
 out highp vec4 worldPosition; // FragPos from GS (output per emitvertex)
+out flat int lightNumber;
+
+#ifdef TEXTURED
+in mediump vec2 interTextureCoords[];
+out mediump vec2 interpolatedTextureCoords;
+#endif
 
 void main()
 {
@@ -22,6 +28,11 @@ void main()
         {
             worldPosition = gl_in[i].gl_Position;
             gl_Position = shadowMatrices[face] * worldPosition;
+            #ifdef TEXTURED
+            /* Texture coordinates, if needed */
+            interpolatedTextureCoords = interTextureCoords[i];
+            #endif
+            lightNumber = lightIndex;
             EmitVertex();
         }    
         EndPrimitive();
