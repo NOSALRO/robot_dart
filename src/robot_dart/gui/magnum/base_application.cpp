@@ -111,6 +111,12 @@ namespace robot_dart {
                 return *this;
             }
 
+            DrawableObject& DrawableObject::setTransparent(bool transparent)
+            {
+                _isTransparent = transparent;
+                return *this;
+            }
+
             DrawableObject& DrawableObject::setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader)
             {
                 _color_shader = shader;
@@ -547,6 +553,7 @@ namespace robot_dart {
                     std::vector<bool> isSoftBody;
                     // std::vector<Containers::Optional<GL::Texture2D>> textures;
                     std::vector<Magnum::Vector3> scalings;
+                    bool transparent = false;
 
                     for (size_t i = 0; i < object.drawData().meshes.size(); i++) {
                         bool isColor = true;
@@ -559,6 +566,8 @@ namespace robot_dart {
                         mat.ambientColor() = object.drawData().materials[i].ambientColor();
                         if (isColor)
                             mat.diffuseColor() = object.drawData().materials[i].diffuseColor();
+                        if (!isColor || mat.diffuseColor().a() != 1.f)
+                            transparent = true;
                         mat.specularColor() = object.drawData().materials[i].specularColor();
                         mat.shininess() = object.drawData().materials[i].shininess();
 
@@ -582,6 +591,7 @@ namespace robot_dart {
                         auto drawableObject = new DrawableObject(meshes, materials, *_color_shader, *_texture_shader, static_cast<Object3D*>(&(object.object())), &_drawables);
                         drawableObject->setSoftBodies(isSoftBody);
                         drawableObject->setScalings(scalings);
+                        drawableObject->setTransparent(transparent);
                         auto shadowedObject = new ShadowedObject(meshes, *_shadow_shader, *_shadow_texture_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_drawables);
                         shadowedObject->setScalings(scalings);
                         shadowedObject->setMaterials(materials);
@@ -602,13 +612,35 @@ namespace robot_dart {
                         obj->shadowed_color = shadowedColorObject;
                         obj->cubemapped_color = cubeMapColorObject;
                         it.first->second = obj;
+                        _transparentSize++;
                     }
                     else {
                         /* Otherwise, update the mesh and the material data */
                         auto obj = it.first->second;
 
+                        if (_drawTransparentShadows) {
+                            /* Check if it was transparent before */
+                            auto& mats = obj->drawable->materials();
+                            bool any = false;
+                            for (size_t j = 0; j < mats.size(); j++) {
+                                // Assume textures are transparent objects so that everything gets drawn better
+                                // TO-DO: Check if this is okay to do?
+                                bool isTextured = mats[j].hasDiffuseTexture();
+                                if (isTextured || mats[j].diffuseColor().a() != 1.f) {
+                                    any = true;
+                                    break;
+                                }
+                            }
+                            /* if it wasn't transparent and now it is, increase number */
+                            if (!any && transparent)
+                                _transparentSize++;
+                            /* else if it was transparent and now it isn't, decrease number */
+                            else if (any && !transparent)
+                                _transparentSize--;
+                        }
+
                         // TO-DO: Do I need to re-set the shaders?!
-                        obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
+                        obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setTransparent(transparent).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
                         obj->shadowed->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
                         obj->cubemapped->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
                         obj->shadowed_color->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
@@ -623,8 +655,8 @@ namespace robot_dart {
 
                 _color_shader->setIsShadowed(_isShadowed);
                 _texture_shader->setIsShadowed(_isShadowed);
-                _color_shader->setTransparentShadows(_drawTransparentShadows);
-                _texture_shader->setTransparentShadows(_drawTransparentShadows);
+                _color_shader->setTransparentShadows(_drawTransparentShadows && _transparentSize > 0);
+                _texture_shader->setTransparentShadows(_drawTransparentShadows && _transparentSize > 0);
 
                 if (_isShadowed)
                     renderShadows();
@@ -686,19 +718,21 @@ namespace robot_dart {
                         _cubemap_texture_shader->setFarPlane(farPlane);
                         _cubemap_texture_shader->setLightIndex(i);
 
-                        _cubemap_color_shader->setShadowMatrices(matrices);
-                        _cubemap_color_shader->setLightPosition(lightPos);
-                        _cubemap_color_shader->setFarPlane(farPlane);
-                        _cubemap_color_shader->setLightIndex(i);
+                        if (_drawTransparentShadows) {
+                            _cubemap_color_shader->setShadowMatrices(matrices);
+                            _cubemap_color_shader->setLightPosition(lightPos);
+                            _cubemap_color_shader->setFarPlane(farPlane);
+                            _cubemap_color_shader->setLightIndex(i);
 
-                        _cubemap_texture_color_shader->setShadowMatrices(matrices);
-                        _cubemap_texture_color_shader->setLightPosition(lightPos);
-                        _cubemap_texture_color_shader->setFarPlane(farPlane);
-                        _cubemap_texture_color_shader->setLightIndex(i);
+                            _cubemap_texture_color_shader->setShadowMatrices(matrices);
+                            _cubemap_texture_color_shader->setLightPosition(lightPos);
+                            _cubemap_texture_color_shader->setFarPlane(farPlane);
+                            _cubemap_texture_color_shader->setLightIndex(i);
 
-                        if (_shadowCubeMap) {
-                            _cubemap_color_shader->bindCubeMapTexture(*_shadowCubeMap);
-                            _cubemap_texture_color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                            if (_shadowCubeMap) {
+                                _cubemap_color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                                _cubemap_texture_color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                            }
                         }
 
                         _color_shader->setFarPlane(farPlane);
@@ -739,7 +773,7 @@ namespace robot_dart {
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
 
                     /* Transparent color shadow: main ideas taken from https://wickedengine.net/2018/01/18/easy-transparent-shadow-maps/ */
-                    if (_drawTransparentShadows) {
+                    if (_drawTransparentShadows && _transparentSize > 0) {
                         Magnum::GL::Renderer::setDepthMask(false);
                         Magnum::GL::Renderer::setColorMask(true, true, true, true);
                         Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
@@ -792,7 +826,8 @@ namespace robot_dart {
                                 transparent.push_back(drawableTransformations[i]);
                         }
 
-                        _shadowCamera->draw(transparent);
+                        if (transparent.size() > 0)
+                            _shadowCamera->draw(transparent);
 
                         if (cullFront)
                             Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
