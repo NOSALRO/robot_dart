@@ -89,6 +89,16 @@ layout(binding = 4)
 #endif
 uniform samplerCubeArrayShadow cubeMapTextures;
 
+#ifdef EXPLICIT_TEXTURE_LAYER
+layout(binding = 5)
+#endif
+uniform sampler2DArray shadowColorTextures;
+
+#ifdef EXPLICIT_TEXTURE_LAYER
+layout(binding = 6)
+#endif
+uniform samplerCubeArray cubeMapColorTextures;
+
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 8)
 #endif
@@ -101,6 +111,11 @@ uniform bool isShadowed;
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 10)
+#endif
+uniform bool drawTransparentShadows;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 11)
 #endif
 uniform lightSource lights[LIGHT_COUNT];
 
@@ -141,6 +156,22 @@ float visibilityCalculation(int index, float bias)
     return visibility;
 }
 
+vec3 shadowColorCalculation(int index)
+{
+    vec4 fragPosLightSpace = lightSpacePositions[index];
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+    vec3 colorShadow = vec3(0.);
+    vec2 texelSize = 0.5 / textureSize(shadowColorTextures, 0).xy;
+    for(int x = -2; x <= 2; ++x)
+        for(int y = -2; y <= 2; ++y)
+            colorShadow += texture(shadowColorTextures, vec3(projCoords.xy + vec2(x, y) * texelSize, index)).rgb;
+    colorShadow /= 16.;
+    colorShadow = clamp(colorShadow, vec3(0.), vec3(1.));
+
+    return colorShadow;
+}
+
 float visibilityCalculationPointLight(int index, float bias)
 {
     vec3 direction = worldPosition - lights[index].worldPosition.xyz;
@@ -158,7 +189,7 @@ float visibilityCalculationPointLight(int index, float bias)
         vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
     );
 
-    float diskRadius = 0.003; //(1.0 + (length(cameraDirection) / farPlane)) / 50.0;//0.01;
+    float diskRadius = (1.0 + (length(cameraDirection) / farPlane)) / 400.0;//0.01;
     for(int i = 0; i < 20; ++i)
         visibility += texture(cubeMapTextures, vec4(normalize(direction) + sampleOffsetDirections[i] * diskRadius, index), depth - bias);
     visibility /= 20.;
@@ -180,6 +211,29 @@ float visibilityCalculationPointLight(int index, float bias)
     visibility = clamp(visibility, 0., 1.);
     // return 1. - 0.7 * (1. - visibility);
     return visibility;
+}
+
+vec3 shadowColorCalculationPointLight(int index)
+{
+    vec3 direction = worldPosition - lights[index].worldPosition.xyz;
+    vec3 colorShadow = vec3(0.);
+
+    vec3 sampleOffsetDirections[20] = vec3[]
+    (
+        vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1),
+        vec3( 1,  1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+        vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
+        vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
+        vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
+    );
+
+    float diskRadius = (1.0 + (length(cameraDirection) / farPlane)) / 400.0;//0.01;
+    for(int i = 0; i < 20; ++i)
+        colorShadow += texture(cubeMapColorTextures, vec4(normalize(direction) + sampleOffsetDirections[i] * diskRadius, index)).rgb;
+    colorShadow /= 20.;
+    colorShadow = clamp(colorShadow, vec3(0.), vec3(1.));
+
+    return colorShadow;
 }
 
 void main() {
@@ -247,13 +301,23 @@ void main() {
 
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
         float visibility = 1.;
+        vec3 colorShadow = vec3(1.);
         if(isShadowed) {
             float bias = 0.00005;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
-            if(!isPoint)
+            if(!isPoint) {
                 visibility = visibilityCalculation(i, bias);
+
+                if(drawTransparentShadows && visibility > 0. && finalDiffuseColor.a == 1.) {
+                    colorShadow = shadowColorCalculation(i);
+                }
+            }
             else {
-                bias = 0.002;
+                bias = 0.003;
                 visibility = visibilityCalculationPointLight(i, bias);
+
+                if(drawTransparentShadows && visibility > 0. && finalDiffuseColor.a == 1.) {
+                    colorShadow = shadowColorCalculationPointLight(i);
+                }
             }
         }
 
@@ -269,7 +333,7 @@ void main() {
             specularReflection = attenuation * lights[i].specular.rgb * finalSpecularColor.rgb * specularity;
         }
 
-        color.rgb += (diffuseReflection + specularReflection) * visibility;
+        color.rgb += (diffuseReflection + specularReflection) * visibility * colorShadow;
     }
 
     color.a = finalDiffuseColor.a;

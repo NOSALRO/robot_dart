@@ -40,7 +40,7 @@ namespace robot_dart {
                         bindAttributeLocation(Position::Location, "position");
                         bindAttributeLocation(Normal::Location, "normal");
                         if (flags)
-                            bindAttributeLocation(TextureCoordinates::Location, "textureCoordinates");
+                            bindAttributeLocation(TextureCoordinates::Location, "textureCoords");
                     }
 
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
@@ -61,12 +61,15 @@ namespace robot_dart {
                         _shininessUniform = uniformLocation("shininess");
                         _farPlaneUniform = uniformLocation("farPlane");
                         _isShadowedUniform = uniformLocation("isShadowed");
+                        _drawTransparentShadowsUniform = uniformLocation("drawTransparentShadowsUniform");
                     }
 
                     if (!Magnum::GL::Context::current()
                              .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version)) {
                         setUniform(uniformLocation("shadowTextures"), _shadowTexturesLocation);
                         setUniform(uniformLocation("cubeMapTextures"), _cubeMapTexturesLocation);
+                        setUniform(uniformLocation("shadowColorTextures"), _shadowColorTexturesLocation);
+                        setUniform(uniformLocation("cubeMapColorTextures"), _cubeMapColorTexturesLocation);
                         if (flags) {
                             if (flags & Flag::AmbientTexture)
                                 setUniform(uniformLocation("ambientTexture"), AmbientTextureLayer);
@@ -202,15 +205,33 @@ namespace robot_dart {
                     return *this;
                 }
 
+                PhongMultiLight& PhongMultiLight::setTransparentShadows(bool shadows)
+                {
+                    setUniform(_drawTransparentShadowsUniform, shadows);
+                    return *this;
+                }
+
                 PhongMultiLight& PhongMultiLight::bindShadowTexture(Magnum::GL::Texture2DArray& texture)
                 {
                     texture.bind(_shadowTexturesLocation);
                     return *this;
                 }
 
+                PhongMultiLight& PhongMultiLight::bindShadowColorTexture(Magnum::GL::Texture2DArray& texture)
+                {
+                    texture.bind(_shadowColorTexturesLocation);
+                    return *this;
+                }
+
                 PhongMultiLight& PhongMultiLight::bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture)
                 {
                     texture.bind(_cubeMapTexturesLocation);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::bindCubeMapColorTexture(Magnum::GL::CubeMapTextureArray& texture)
+                {
+                    texture.bind(_cubeMapColorTexturesLocation);
                     return *this;
                 }
 

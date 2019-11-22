@@ -19,12 +19,12 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
-                Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, const std::string& title = "DART")
+                Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, bool transparent_shadows = true, const std::string& title = "DART")
                     : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
                 {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
-                    _magnum_app.reset(make_application<T>(world, width, height, title, shadowed));
+                    _magnum_app.reset(make_application<T>(world, width, height, title, shadowed, transparent_shadows));
                     set_render_period(world->getTimeStep());
                 }
 

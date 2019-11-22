@@ -7,8 +7,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
-                : BaseApplication(isShadowed), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
+            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed, bool drawTransparentShadows)
+                : BaseApplication(isShadowed, drawTransparentShadows), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
             {
                 /* Assume context is given externally, if not create it */
                 if (!Magnum::GL::Context::hasCurrent()) {
