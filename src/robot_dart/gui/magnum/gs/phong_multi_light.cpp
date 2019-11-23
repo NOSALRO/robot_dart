@@ -61,7 +61,7 @@ namespace robot_dart {
                         _shininessUniform = uniformLocation("shininess");
                         _farPlaneUniform = uniformLocation("farPlane");
                         _isShadowedUniform = uniformLocation("isShadowed");
-                        _drawTransparentShadowsUniform = uniformLocation("drawTransparentShadowsUniform");
+                        _drawTransparentShadowsUniform = uniformLocation("drawTransparentShadows");
                     }
 
                     if (!Magnum::GL::Context::current()
