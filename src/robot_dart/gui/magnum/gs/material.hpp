@@ -38,9 +38,9 @@ namespace robot_dart {
                     Magnum::GL::Texture2D* diffuseTexture();
                     Magnum::GL::Texture2D* specularTexture();
 
-                    bool hasAmbientTexture();
-                    bool hasDiffuseTexture();
-                    bool hasSpecularTexture();
+                    bool hasAmbientTexture() const;
+                    bool hasDiffuseTexture() const;
+                    bool hasSpecularTexture() const;
 
                     Material& setAmbientColor(const Magnum::Color4& ambient);
                     Material& setDiffuseColor(const Magnum::Color4& diffuse);

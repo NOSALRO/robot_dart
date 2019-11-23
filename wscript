@@ -220,7 +220,7 @@ def build(bld):
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'meshes')
-        
+
         bld.program(features = 'cxx',
                       install_path = None,
                       source = 'src/examples/cameras.cpp',
@@ -229,6 +229,15 @@ def build(bld):
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
                       target = 'cameras')
+
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/transparent.cpp',
+                      includes = './src',
+                      uselib = bld.env['magnum_libs'] + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['GRAPHIC'],
+                      target = 'transparent')
 
         # if we found the hexapod controller includes
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
@@ -273,6 +282,14 @@ def build(bld):
                   use = 'RobotDARTSimu',
                   defines = ['RESPATH="' + path + '"'],
                   target = 'meshes_plain')
+
+    bld.program(features = 'cxx',
+                  install_path = None,
+                  source = 'src/examples/transparent.cpp',
+                  includes = './src',
+                  uselib = libs,
+                  use = 'RobotDARTSimu',
+                  target = 'transparent_plain')
 
     # if we found the hexapod controller includes
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:

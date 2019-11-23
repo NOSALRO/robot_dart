@@ -1,4 +1,4 @@
-#include "cube_map.hpp"
+#include "shadow_map_color.hpp"
 #include "create_compatibility_shader.hpp"
 
 #include <Magnum/GL/Texture.h>
@@ -7,7 +7,7 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
-                CubeMap::CubeMap(CubeMap::Flags flags) : _flags(flags)
+                ShadowMapColor::ShadowMapColor(ShadowMapColor::Flags flags) : _flags(flags)
                 {
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
@@ -15,22 +15,18 @@ namespace robot_dart {
 
                     Magnum::GL::Shader vert = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Vertex);
-                    Magnum::GL::Shader geom = Magnum::Shaders::Implementation::createCompatibilityShader(
-                        rs_shaders, version, Magnum::GL::Shader::Type::Geometry);
                     Magnum::GL::Shader frag = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
                         .addSource(rs_shaders.get("generic.glsl"))
-                        .addSource(rs_shaders.get("CubeMap.vert"));
-                    geom.addSource(flags ? "#define TEXTURED\n" : "")
-                        .addSource(rs_shaders.get("CubeMap.geom"));
+                        .addSource(rs_shaders.get("ShadowMap.vert"));
                     frag.addSource(flags ? "#define TEXTURED\n" : "")
-                        .addSource(rs_shaders.get("CubeMap.frag"));
+                        .addSource(rs_shaders.get("ShadowMapColor.frag"));
 
-                    CORRADE_INTERNAL_ASSERT_OUTPUT(Magnum::GL::Shader::compile({vert, geom, frag}));
+                    CORRADE_INTERNAL_ASSERT_OUTPUT(Magnum::GL::Shader::compile({vert, frag}));
 
-                    attachShaders({vert, geom, frag});
+                    attachShaders({vert, frag});
 
                     if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_attrib_location>(version)) {
                         bindAttributeLocation(Position::Location, "position");
@@ -42,50 +38,34 @@ namespace robot_dart {
 
                     if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
                         _transformationMatrixUniform = uniformLocation("transformationMatrix");
-                        _shadowMatricesUniform = uniformLocation("shadowMatrices[0]");
-                        _lightPositionUniform = uniformLocation("lightPosition");
-                        _farPlaneUniform = uniformLocation("farPlane");
-                        _lightIndexUniform = uniformLocation("lightIndex");
+                        _projectionMatrixUniform = uniformLocation("projectionMatrix");
                         _diffuseColorUniform = uniformLocation("diffuseColor");
+                    }
+
+                    if (!Magnum::GL::Context::current()
+                             .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version)
+                        && flags) {
+                        setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
                     }
                 }
 
-                CubeMap::CubeMap(Magnum::NoCreateT) noexcept : Magnum::GL::AbstractShaderProgram{Magnum::NoCreate} {}
+                ShadowMapColor::ShadowMapColor(Magnum::NoCreateT) noexcept : Magnum::GL::AbstractShaderProgram{Magnum::NoCreate} {}
 
-                CubeMap::Flags CubeMap::flags() const { return _flags; }
+                ShadowMapColor::Flags ShadowMapColor::flags() const { return _flags; }
 
-                CubeMap& CubeMap::setTransformationMatrix(const Magnum::Matrix4& matrix)
+                ShadowMapColor& ShadowMapColor::setTransformationMatrix(const Magnum::Matrix4& matrix)
                 {
                     setUniform(_transformationMatrixUniform, matrix);
                     return *this;
                 }
 
-                CubeMap& CubeMap::setShadowMatrices(Magnum::Matrix4 matrices[6])
+                ShadowMapColor& ShadowMapColor::setProjectionMatrix(const Magnum::Matrix4& matrix)
                 {
-                    for (size_t i = 0; i < 6; i++)
-                        setUniform(_shadowMatricesUniform + i, matrices[i]);
+                    setUniform(_projectionMatrixUniform, matrix);
                     return *this;
                 }
 
-                CubeMap& CubeMap::setLightPosition(const Magnum::Vector3& position)
-                {
-                    setUniform(_lightPositionUniform, position);
-                    return *this;
-                }
-
-                CubeMap& CubeMap::setFarPlane(Magnum::Float farPlane)
-                {
-                    setUniform(_farPlaneUniform, farPlane);
-                    return *this;
-                }
-
-                CubeMap& CubeMap::setLightIndex(Magnum::Int index)
-                {
-                    setUniform(_lightIndexUniform, index);
-                    return *this;
-                }
-
-                CubeMap& CubeMap::setMaterial(Material& material)
+                ShadowMapColor& ShadowMapColor::setMaterial(Material& material)
                 {
                     if (material.hasDiffuseTexture() && (_flags & Flag::DiffuseTexture)) {
                         (*material.diffuseTexture()).bind(DiffuseTextureLayer);

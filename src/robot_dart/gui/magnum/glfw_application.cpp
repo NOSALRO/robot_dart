@@ -10,8 +10,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed)
-                : BaseApplication(isShadowed), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
+            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed, bool drawTransparentShadows)
+                : BaseApplication(isShadowed, drawTransparentShadows), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
             {
                 /* Try 16x MSAA */
                 Configuration conf;
@@ -59,6 +59,9 @@ namespace robot_dart {
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
+                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::Blending);
+                Magnum::GL::Renderer::setBlendFunction(Magnum::GL::Renderer::BlendFunction::SourceAlpha, Magnum::GL::Renderer::BlendFunction::OneMinusSourceAlpha);
+                Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
 
                 /* Change default clear color to black */
                 Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
