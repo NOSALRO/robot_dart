@@ -16,13 +16,6 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
-
-                namespace {
-                    enum : Magnum::Int { AmbientTextureLayer = 0,
-                        DiffuseTextureLayer = 1,
-                        SpecularTextureLayer = 2 };
-                }
-
                 class PhongMultiLight : public Magnum::GL::AbstractShaderProgram {
                 public:
                     using Position = Magnum::Shaders::Generic3D::Position;
@@ -52,9 +45,12 @@ namespace robot_dart {
 
                     PhongMultiLight& setFarPlane(Magnum::Float farPlane);
                     PhongMultiLight& setIsShadowed(bool shadows);
+                    PhongMultiLight& setTransparentShadows(bool shadows);
 
                     PhongMultiLight& bindShadowTexture(Magnum::GL::Texture2DArray& texture);
+                    PhongMultiLight& bindShadowColorTexture(Magnum::GL::Texture2DArray& texture);
                     PhongMultiLight& bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture);
+                    PhongMultiLight& bindCubeMapColorTexture(Magnum::GL::CubeMapTextureArray& texture);
 
                     Magnum::Int maxLights() const;
 
@@ -63,7 +59,8 @@ namespace robot_dart {
                     Magnum::Int _maxLights = 10;
                     Magnum::Int _transformationMatrixUniform{0}, _cameraMatrixUniform{7}, _projectionMatrixUniform{1}, _normalMatrixUniform{2},
                         _shininessUniform{3}, _ambientColorUniform{4}, _diffuseColorUniform{5}, _specularColorUniform{6},
-                        _lightsUniform{10}, _lightsMatricesUniform, _farPlaneUniform{8}, _isShadowedUniform{9}, _shadowTexturesLocation{3}, _cubeMapTexturesLocation{4};
+                        _lightsUniform{11}, _lightsMatricesUniform, _farPlaneUniform{8}, _isShadowedUniform{9}, _drawTransparentShadowsUniform{10},
+                        _shadowTexturesLocation{3}, _cubeMapTexturesLocation{4}, _shadowColorTexturesLocation{5}, _cubeMapColorTexturesLocation{6};
                     const Magnum::Int _lightLocSize = 12;
                 };
 

@@ -1,10 +1,13 @@
 #include "camera.hpp"
+#include "robot_dart/gui/magnum/base_application.hpp"
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
+
+#include <algorithm>
 
 namespace robot_dart {
     namespace gui {
@@ -159,7 +162,30 @@ namespace robot_dart {
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
                 {
-                    _camera->draw(drawables);
+                    // TO-DO: Maybe check if world moved?
+                    std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
+                        drawableTransformations = _camera->drawableTransformations(drawables);
+
+                    std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>> opaque, transparent;
+                    for (size_t i = 0; i < drawableTransformations.size(); i++) {
+                        auto& obj = static_cast<DrawableObject&>(drawableTransformations[i].first.get().object());
+                        if (obj.isTransparent())
+                            transparent.emplace_back(drawableTransformations[i]);
+                        else
+                            opaque.emplace_back(drawableTransformations[i]);
+                    }
+
+                    _camera->draw(opaque);
+                    if (transparent.size() > 0) {
+                        std::sort(transparent.begin(), transparent.end(),
+                            [](const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& a,
+                                const std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>& b) {
+                                return a.second.translation().z() < b.second.translation().z();
+                            });
+
+                        _camera->draw(transparent);
+                    }
+
                     if (_recording) {
                         _image = framebuffer.read(framebuffer.viewport(), {format});
                     }

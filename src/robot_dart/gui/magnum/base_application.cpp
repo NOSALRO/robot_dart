@@ -111,6 +111,12 @@ namespace robot_dart {
                 return *this;
             }
 
+            DrawableObject& DrawableObject::setTransparent(bool transparent)
+            {
+                _isTransparent = transparent;
+                return *this;
+            }
+
             DrawableObject& DrawableObject::setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader)
             {
                 _color_shader = shader;
@@ -161,16 +167,24 @@ namespace robot_dart {
             ShadowedObject::ShadowedObject(
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 std::reference_wrapper<gs::ShadowMap> shader,
+                std::reference_wrapper<gs::ShadowMap> texture_shader,
                 Object3D* parent,
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
                   _meshes{meshes},
-                  _shader{shader} {}
+                  _shader{shader},
+                  _texture_shader(texture_shader) {}
 
             ShadowedObject& ShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
+                return *this;
+            }
+
+            ShadowedObject& ShadowedObject::setMaterials(const std::vector<gs::Material>& materials)
+            {
+                _materials = materials;
                 return *this;
             }
 
@@ -185,8 +199,75 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    _shader.get().setTransformationMatrix(transformationMatrix * scalingMatrix).setProjectionMatrix(camera.projectionMatrix());
-                    mesh.draw(_shader);
+                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    if (isColor) {
+                        (_shader.get())
+                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                            .setProjectionMatrix(camera.projectionMatrix())
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_shader);
+                    }
+                    else {
+                        (_texture_shader.get())
+                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                            .setProjectionMatrix(camera.projectionMatrix())
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_texture_shader);
+                    }
+                }
+            }
+
+            // ShadowedColorObject
+            ShadowedColorObject::ShadowedColorObject(
+                const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                std::reference_wrapper<gs::ShadowMapColor> shader,
+                std::reference_wrapper<gs::ShadowMapColor> texture_shader,
+                Object3D* parent,
+                Magnum::SceneGraph::DrawableGroup3D* group)
+                : Object3D{parent},
+                  Magnum::SceneGraph::Drawable3D{*this, group},
+                  _meshes{meshes},
+                  _shader{shader},
+                  _texture_shader(texture_shader) {}
+
+            ShadowedColorObject& ShadowedColorObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            {
+                _meshes = meshes;
+                return *this;
+            }
+
+            ShadowedColorObject& ShadowedColorObject::setMaterials(const std::vector<gs::Material>& materials)
+            {
+                _materials = materials;
+                return *this;
+            }
+
+            ShadowedColorObject& ShadowedColorObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            {
+                _scalings = scalings;
+                return *this;
+            }
+
+            void ShadowedColorObject::draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera)
+            {
+                for (size_t i = 0; i < _meshes.size(); i++) {
+                    Magnum::GL::Mesh& mesh = _meshes[i];
+                    Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
+                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    if (isColor) {
+                        (_shader.get())
+                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                            .setProjectionMatrix(camera.projectionMatrix())
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_shader);
+                    }
+                    else {
+                        (_texture_shader.get())
+                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
+                            .setProjectionMatrix(camera.projectionMatrix())
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_texture_shader);
+                    }
                 }
             }
 
@@ -194,16 +275,24 @@ namespace robot_dart {
             CubeMapShadowedObject::CubeMapShadowedObject(
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 std::reference_wrapper<gs::CubeMap> shader,
+                std::reference_wrapper<gs::CubeMap> texture_shader,
                 Object3D* parent,
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
                   _meshes{meshes},
-                  _shader{shader} {}
+                  _shader{shader},
+                  _texture_shader(texture_shader) {}
 
             CubeMapShadowedObject& CubeMapShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
+                return *this;
+            }
+
+            CubeMapShadowedObject& CubeMapShadowedObject::setMaterials(const std::vector<gs::Material>& materials)
+            {
+                _materials = materials;
                 return *this;
             }
 
@@ -218,15 +307,78 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    _shader.get().setTransformationMatrix(absoluteTransformation() * scalingMatrix);
-                    mesh.draw(_shader);
+                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    if (isColor) {
+                        (_shader.get())
+                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_shader);
+                    }
+                    else {
+                        (_texture_shader.get())
+                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_texture_shader);
+                    }
+                }
+            }
+
+            // CubeMapShadowedColorObject
+            CubeMapShadowedColorObject::CubeMapShadowedColorObject(
+                const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                std::reference_wrapper<gs::CubeMapColor> shader,
+                std::reference_wrapper<gs::CubeMapColor> texture_shader,
+                Object3D* parent,
+                Magnum::SceneGraph::DrawableGroup3D* group)
+                : Object3D{parent},
+                  Magnum::SceneGraph::Drawable3D{*this, group},
+                  _meshes{meshes},
+                  _shader{shader},
+                  _texture_shader(texture_shader) {}
+
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            {
+                _meshes = meshes;
+                return *this;
+            }
+
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setMaterials(const std::vector<gs::Material>& materials)
+            {
+                _materials = materials;
+                return *this;
+            }
+
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            {
+                _scalings = scalings;
+                return *this;
+            }
+
+            void CubeMapShadowedColorObject::draw(const Magnum::Matrix4&, Magnum::SceneGraph::Camera3D&)
+            {
+                for (size_t i = 0; i < _meshes.size(); i++) {
+                    Magnum::GL::Mesh& mesh = _meshes[i];
+                    Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
+                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    if (isColor) {
+                        (_shader.get())
+                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_shader);
+                    }
+                    else {
+                        (_texture_shader.get())
+                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
+                            .setMaterial(_materials[i]);
+                        mesh.draw(_texture_shader);
+                    }
                 }
             }
 
             // BaseApplication
-            BaseApplication::BaseApplication(bool isShadowed)
+            BaseApplication::BaseApplication(bool isShadowed, bool drawTransparentShadows)
             {
-                enableShadows(isShadowed);
+                enableShadows(isShadowed, drawTransparentShadows);
             }
 
             void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)
@@ -239,24 +391,6 @@ namespace robot_dart {
                 _shadowCameraObject = new Object3D{&_scene};
                 _shadowCamera.reset(new Camera3D{*_shadowCameraObject});
 
-                /* Shadow Textures */
-                _shadowTexture.reset(new Magnum::GL::Texture2DArray{});
-                _shadowTexture->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights})
-                    .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
-                    .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
-                    .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
-                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
-                // .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge);
-
-                _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
-                _shadowCubeMap->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
-                    .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
-                    .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
-                    .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
-                    .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
-                    .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge)
-                    .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
-
                 /* Create our DARTIntegration object/world */
                 auto dartObj = new Object3D{&_scene};
                 _dartWorld.reset(new Magnum::DartIntegration::World(_importer_manager, *dartObj, *world)); /* Plugin manager is now thread-safe */
@@ -267,7 +401,15 @@ namespace robot_dart {
 
                 /* Shadow shaders */
                 _shadow_shader.reset(new gs::ShadowMap());
+                _shadow_texture_shader.reset(new gs::ShadowMap(gs::ShadowMap::Flag::DiffuseTexture));
                 _cubemap_shader.reset(new gs::CubeMap());
+                _cubemap_texture_shader.reset(new gs::CubeMap(gs::CubeMap::Flag::DiffuseTexture));
+
+                _shadow_color_shader.reset(new gs::ShadowMapColor());
+                _shadow_texture_color_shader.reset(new gs::ShadowMapColor(gs::ShadowMapColor::Flag::DiffuseTexture));
+
+                _cubemap_color_shader.reset(new gs::CubeMapColor());
+                _cubemap_texture_color_shader.reset(new gs::CubeMapColor(gs::CubeMapColor::Flag::DiffuseTexture));
 
                 /* Add default lights (2 directional lights) */
                 gs::Material mat;
@@ -300,10 +442,10 @@ namespace robot_dart {
                 // lpos = {0.5f, 1.5f, 2.f};
                 // latt = {1.f, 0.2f, 0.f};
                 // light = gs::createPointLight(lpos, mat, lint, latt);
-                // // _lights.push_back(light);
-                // lpos = {2.f, -1.f, 2.f};
+                // _lights.push_back(light);
+                // lpos = {-2.f, -1.f, 2.f};
                 // light = gs::createPointLight(lpos, mat, lint, latt);
-                // // _lights.push_back(light);
+                // _lights.push_back(light);
             }
 
             void BaseApplication::clearLights()
@@ -377,10 +519,25 @@ namespace robot_dart {
                     _texture_shader->setLight(i, _lights[i]);
                 }
 
-                _color_shader->bindShadowTexture(*_shadowTexture);
-                _texture_shader->bindShadowTexture(*_shadowTexture);
-                _color_shader->bindCubeMapTexture(*_shadowCubeMap);
-                _texture_shader->bindCubeMapTexture(*_shadowCubeMap);
+                if (_shadowTexture) {
+                    _color_shader->bindShadowTexture(*_shadowTexture);
+                    _texture_shader->bindShadowTexture(*_shadowTexture);
+                }
+
+                if (_shadowColorTexture) {
+                    _color_shader->bindShadowColorTexture(*_shadowColorTexture);
+                    _texture_shader->bindShadowColorTexture(*_shadowColorTexture);
+                }
+
+                if (_shadowCubeMap) {
+                    _color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                    _texture_shader->bindCubeMapTexture(*_shadowCubeMap);
+                }
+
+                if (_shadowColorCubeMap) {
+                    _color_shader->bindCubeMapColorTexture(*_shadowColorCubeMap);
+                    _texture_shader->bindCubeMapColorTexture(*_shadowColorCubeMap);
+                }
             }
 
             void BaseApplication::updateGraphics()
@@ -396,6 +553,7 @@ namespace robot_dart {
                     std::vector<bool> isSoftBody;
                     // std::vector<Containers::Optional<GL::Texture2D>> textures;
                     std::vector<Magnum::Vector3> scalings;
+                    bool transparent = false;
 
                     for (size_t i = 0; i < object.drawData().meshes.size(); i++) {
                         bool isColor = true;
@@ -408,6 +566,8 @@ namespace robot_dart {
                         mat.ambientColor() = object.drawData().materials[i].ambientColor();
                         if (isColor)
                             mat.diffuseColor() = object.drawData().materials[i].diffuseColor();
+                        if (!isColor || mat.diffuseColor().a() != 1.f)
+                            transparent = true;
                         mat.specularColor() = object.drawData().materials[i].specularColor();
                         mat.shininess() = object.drawData().materials[i].shininess();
 
@@ -431,25 +591,60 @@ namespace robot_dart {
                         auto drawableObject = new DrawableObject(meshes, materials, *_color_shader, *_texture_shader, static_cast<Object3D*>(&(object.object())), &_drawables);
                         drawableObject->setSoftBodies(isSoftBody);
                         drawableObject->setScalings(scalings);
-                        auto shadowedObject = new ShadowedObject(meshes, *_shadow_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_drawables);
+                        drawableObject->setTransparent(transparent);
+                        auto shadowedObject = new ShadowedObject(meshes, *_shadow_shader, *_shadow_texture_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_drawables);
                         shadowedObject->setScalings(scalings);
-                        auto cubeMapObject = new CubeMapShadowedObject(meshes, *_cubemap_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_drawables);
+                        shadowedObject->setMaterials(materials);
+                        auto cubeMapObject = new CubeMapShadowedObject(meshes, *_cubemap_shader, *_cubemap_texture_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_drawables);
                         cubeMapObject->setScalings(scalings);
+                        cubeMapObject->setMaterials(materials);
+                        auto shadowedColorObject = new ShadowedColorObject(meshes, *_shadow_color_shader, *_shadow_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_color_drawables);
+                        shadowedColorObject->setScalings(scalings);
+                        shadowedColorObject->setMaterials(materials);
+                        auto cubeMapColorObject = new CubeMapShadowedColorObject(meshes, *_cubemap_color_shader, *_cubemap_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_color_drawables);
+                        cubeMapColorObject->setScalings(scalings);
+                        cubeMapColorObject->setMaterials(materials);
 
                         auto obj = new ObjectStruct{};
                         obj->drawable = drawableObject;
                         obj->shadowed = shadowedObject;
                         obj->cubemapped = cubeMapObject;
+                        obj->shadowed_color = shadowedColorObject;
+                        obj->cubemapped_color = cubeMapColorObject;
                         it.first->second = obj;
+                        _transparentSize++;
                     }
                     else {
                         /* Otherwise, update the mesh and the material data */
                         auto obj = it.first->second;
 
+                        if (_drawTransparentShadows) {
+                            /* Check if it was transparent before */
+                            auto& mats = obj->drawable->materials();
+                            bool any = false;
+                            for (size_t j = 0; j < mats.size(); j++) {
+                                // Assume textures are transparent objects so that everything gets drawn better
+                                // TO-DO: Check if this is okay to do?
+                                bool isTextured = mats[j].hasDiffuseTexture();
+                                if (isTextured || mats[j].diffuseColor().a() != 1.f) {
+                                    any = true;
+                                    break;
+                                }
+                            }
+                            /* if it wasn't transparent and now it is, increase number */
+                            if (!any && transparent)
+                                _transparentSize++;
+                            /* else if it was transparent and now it isn't, decrease number */
+                            else if (any && !transparent)
+                                _transparentSize--;
+                        }
+
                         // TO-DO: Do I need to re-set the shaders?!
-                        obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
-                        obj->shadowed->setMeshes(meshes).setScalings(scalings);
-                        obj->cubemapped->setMeshes(meshes).setScalings(scalings);
+                        obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setTransparent(transparent).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
+                        obj->shadowed->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
+                        obj->cubemapped->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
+                        obj->shadowed_color->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
+                        obj->cubemapped_color->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
                     }
                 }
 
@@ -460,6 +655,8 @@ namespace robot_dart {
 
                 _color_shader->setIsShadowed(_isShadowed);
                 _texture_shader->setIsShadowed(_isShadowed);
+                _color_shader->setTransparentShadows(_drawTransparentShadows && _transparentSize > 0);
+                _texture_shader->setTransparentShadows(_drawTransparentShadows && _transparentSize > 0);
 
                 if (_isShadowed)
                     renderShadows();
@@ -515,6 +712,29 @@ namespace robot_dart {
                         _cubemap_shader->setLightPosition(lightPos);
                         _cubemap_shader->setFarPlane(farPlane);
                         _cubemap_shader->setLightIndex(i);
+
+                        _cubemap_texture_shader->setShadowMatrices(matrices);
+                        _cubemap_texture_shader->setLightPosition(lightPos);
+                        _cubemap_texture_shader->setFarPlane(farPlane);
+                        _cubemap_texture_shader->setLightIndex(i);
+
+                        if (_drawTransparentShadows) {
+                            _cubemap_color_shader->setShadowMatrices(matrices);
+                            _cubemap_color_shader->setLightPosition(lightPos);
+                            _cubemap_color_shader->setFarPlane(farPlane);
+                            _cubemap_color_shader->setLightIndex(i);
+
+                            _cubemap_texture_color_shader->setShadowMatrices(matrices);
+                            _cubemap_texture_color_shader->setLightPosition(lightPos);
+                            _cubemap_texture_color_shader->setFarPlane(farPlane);
+                            _cubemap_texture_color_shader->setLightIndex(i);
+
+                            if (_shadowCubeMap) {
+                                _cubemap_color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                                _cubemap_texture_color_shader->bindCubeMapTexture(*_shadowCubeMap);
+                            }
+                        }
+
                         _color_shader->setFarPlane(farPlane);
                         _texture_shader->setFarPlane(farPlane);
 
@@ -551,6 +771,70 @@ namespace robot_dart {
                         _shadowCamera->draw(_cubemap_drawables);
                     if (cullFront)
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
+
+                    /* Transparent color shadow: main ideas taken from https://wickedengine.net/2018/01/18/easy-transparent-shadow-maps/ */
+                    if (_drawTransparentShadows && _transparentSize > 0) {
+                        Magnum::GL::Renderer::setDepthMask(false);
+                        Magnum::GL::Renderer::setColorMask(true, true, true, true);
+                        Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
+                        Magnum::GL::Renderer::setClearColor(Magnum::Color4{1.f, 1.f, 1.f, 0.f});
+                        Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::Blending);
+                        Magnum::GL::Renderer::setBlendFunction(Magnum::GL::Renderer::BlendFunction::DestinationColor, Magnum::GL::Renderer::BlendFunction::Zero);
+                        Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
+
+                        if (cullFront)
+                            Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
+                        _shadowData[i].shadowColorFramebuffer.bind();
+                        if (isPointLight) {
+                            /* Clear layer-by-layer of the cube-map texture array */
+                            for (size_t k = 0; k < 6; k++) {
+                                _shadowData[i].shadowColorFramebuffer.attachTextureLayer(Magnum::GL::Framebuffer::ColorAttachment(0), *_shadowColorCubeMap, 0, i * 6 + k);
+                                _shadowData[i].shadowColorFramebuffer.clear(Magnum::GL::FramebufferClear::Color);
+                            }
+                            /* Attach again the full texture */
+                            _shadowData[i].shadowColorFramebuffer.attachLayeredTexture(Magnum::GL::Framebuffer::ColorAttachment(0), *_shadowColorCubeMap, 0);
+                            // _shadowData[i].shadowColorFramebuffer.attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0, i * 6);
+                        }
+                        else
+                            _shadowData[i].shadowColorFramebuffer.clear(Magnum::GL::FramebufferClear::Color);
+
+                        /* Draw only transparent objects for transparent shadow color */
+                        std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
+                            drawableTransformations;
+                        if (!isPointLight)
+                            drawableTransformations = _shadowCamera->drawableTransformations(_shadowed_color_drawables);
+                        else
+                            drawableTransformations = _shadowCamera->drawableTransformations(_cubemap_color_drawables);
+
+                        std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>> opaque, transparent;
+                        for (size_t i = 0; i < drawableTransformations.size(); i++) {
+                            auto& obj = static_cast<DrawableObject&>(drawableTransformations[i].first.get().object());
+                            auto& mats = obj.materials();
+                            bool any = false;
+                            for (size_t j = 0; j < mats.size(); j++) {
+                                // Assume textures are transparent objects so that everything gets drawn better
+                                // TO-DO: Check if this is okay to do?
+                                bool isTextured = mats[j].hasDiffuseTexture();
+                                if (isTextured || mats[j].diffuseColor().a() != 1.f) {
+                                    any = true;
+                                    break;
+                                }
+                            }
+                            if (!any)
+                                opaque.push_back(drawableTransformations[i]);
+                            else
+                                transparent.push_back(drawableTransformations[i]);
+                        }
+
+                        if (transparent.size() > 0)
+                            _shadowCamera->draw(transparent);
+
+                        if (cullFront)
+                            Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
+                        Magnum::GL::Renderer::setDepthMask(true);
+                        Magnum::GL::Renderer::setColorMask(true, true, true, true);
+                        Magnum::GL::Renderer::setClearColor(Magnum::Color4{0.f, 0.f, 0.f, 0.f});
+                    }
                 }
             }
 
@@ -570,9 +854,10 @@ namespace robot_dart {
                 return false;
             }
 
-            void BaseApplication::enableShadows(bool enable)
+            void BaseApplication::enableShadows(bool enable, bool drawTransparentShadows)
             {
                 _isShadowed = enable;
+                _drawTransparentShadows = drawTransparentShadows;
 #ifdef MAGNUM_MAC_OSX
                 ROBOT_DART_WARNING(_isShadowed, "Shadows are not working properly on Mac! Disable them if you experience unexpected behavior..");
 #endif
@@ -637,9 +922,17 @@ namespace robot_dart {
                 _color_shader.reset();
                 _texture_shader.reset();
                 _shadow_shader.reset();
+                _shadow_texture_shader.reset();
+                _shadow_color_shader.reset();
+                _shadow_texture_color_shader.reset();
                 _cubemap_shader.reset();
+                _cubemap_texture_shader.reset();
+                _cubemap_color_shader.reset();
+                _cubemap_texture_color_shader.reset();
                 _shadowTexture.reset();
+                _shadowColorTexture.reset();
                 _shadowCubeMap.reset();
+                _shadowColorCubeMap.reset();
 
                 _camera.reset();
                 _shadowCamera.reset();
@@ -655,6 +948,49 @@ namespace robot_dart {
 
             void BaseApplication::prepareShadows()
             {
+                /* Shadow Textures */
+                if (!_shadowTexture) {
+                    _shadowTexture.reset(new Magnum::GL::Texture2DArray{});
+                    _shadowTexture->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights})
+                        .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
+                        .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
+                        .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                        .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear);
+                    // .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge);
+                }
+
+                if (_drawTransparentShadows && !_shadowColorTexture) {
+                    _shadowColorTexture.reset(new Magnum::GL::Texture2DArray{});
+                    _shadowColorTexture->setStorage(1, Magnum::GL::TextureFormat::RGBA32F, {_shadowMapSize, _shadowMapSize, _maxLights})
+                        .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
+                        .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
+                        .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                        .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
+                        .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
+                }
+
+                if (!_shadowCubeMap) {
+                    _shadowCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
+                    _shadowCubeMap->setStorage(1, Magnum::GL::TextureFormat::DepthComponent24, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
+                        .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
+                        .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
+                        .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                        .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
+                        .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge)
+                        .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
+                }
+
+                if (_drawTransparentShadows && !_shadowColorCubeMap) {
+                    _shadowColorCubeMap.reset(new Magnum::GL::CubeMapTextureArray{});
+                    _shadowColorCubeMap->setStorage(1, Magnum::GL::TextureFormat::RGBA32F, {_shadowMapSize, _shadowMapSize, _maxLights * 6})
+                        .setCompareFunction(Magnum::GL::SamplerCompareFunction::LessOrEqual)
+                        .setCompareMode(Magnum::GL::SamplerCompareMode::CompareRefToTexture)
+                        .setMinificationFilter(Magnum::GL::SamplerFilter::Linear, Magnum::GL::SamplerMipmap::Base)
+                        .setMagnificationFilter(Magnum::GL::SamplerFilter::Linear)
+                        .setWrapping(Magnum::GL::SamplerWrapping::ClampToEdge);
+                    // .setDepthStencilMode(Magnum::GL::SamplerDepthStencilMode::DepthComponent);
+                }
+
                 /* For each light */
                 for (size_t i = 0; i < _lights.size(); i++) {
                     /* There's no shadow texture/framebuffer for this light */
@@ -664,22 +1000,35 @@ namespace robot_dart {
                         _shadowData.push_back({});
 
                         _shadowData[i].shadowFramebuffer = Magnum::GL::Framebuffer({{}, {_shadowMapSize, _shadowMapSize}});
+                        if (_drawTransparentShadows)
+                            _shadowData[i].shadowColorFramebuffer = Magnum::GL::Framebuffer({{}, {_shadowMapSize, _shadowMapSize}});
 
                         if (!isPointLight) {
                             (_shadowData[i].shadowFramebuffer)
                                 .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
                                 .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None)
                                 .bind();
+                            if (_drawTransparentShadows)
+                                (_shadowData[i].shadowColorFramebuffer)
+                                    .attachTextureLayer(Magnum::GL::Framebuffer::ColorAttachment(0), *_shadowColorTexture, 0, i)
+                                    .attachTextureLayer(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowTexture, 0, i)
+                                    .bind();
                         }
                         else {
                             (_shadowData[i].shadowFramebuffer)
                                 .mapForDraw(Magnum::GL::Framebuffer::DrawAttachment::None)
                                 .attachLayeredTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0)
                                 .bind();
+                            if (_drawTransparentShadows)
+                                (_shadowData[i].shadowColorFramebuffer)
+                                    .attachLayeredTexture(Magnum::GL::Framebuffer::ColorAttachment(0), *_shadowColorCubeMap, 0)
+                                    // .attachLayeredTexture(Magnum::GL::Framebuffer::BufferAttachment::Depth, *_shadowCubeMap, 0)
+                                    .bind();
                         }
 
                         /* Check if the creation of the framebuffer was successful */
-                        if (!(_shadowData[i].shadowFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete)) {
+                        if (!(_shadowData[i].shadowFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete)
+                            || (_drawTransparentShadows && !(_shadowData[i].shadowColorFramebuffer.checkStatus(Magnum::GL::FramebufferTarget::Draw) == Magnum::GL::Framebuffer::Status::Complete))) {
                             _isShadowed = false;
                             break;
                         }

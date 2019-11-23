@@ -1,5 +1,5 @@
-#ifndef ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_HPP
-#define ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_HPP
+#ifndef ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_COLOR_HPP
+#define ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_COLOR_HPP
 
 #include <robot_dart/gui/magnum/gs/material.hpp>
 
@@ -16,7 +16,7 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
-                class CubeMap : public Magnum::GL::AbstractShaderProgram {
+                class CubeMapColor : public Magnum::GL::AbstractShaderProgram {
                 public:
                     using Position = Magnum::Shaders::Generic3D::Position;
                     using TextureCoordinates = Magnum::Shaders::Generic3D::TextureCoordinates;
@@ -27,17 +27,19 @@ namespace robot_dart {
 
                     using Flags = Magnum::Containers::EnumSet<Flag>;
 
-                    explicit CubeMap(Flags flags = {});
-                    explicit CubeMap(Magnum::NoCreateT) noexcept;
+                    explicit CubeMapColor(Flags flags = {});
+                    explicit CubeMapColor(Magnum::NoCreateT) noexcept;
 
                     Flags flags() const;
 
-                    CubeMap& setTransformationMatrix(const Magnum::Matrix4& matrix);
-                    CubeMap& setShadowMatrices(Magnum::Matrix4 matrices[6]);
-                    CubeMap& setLightPosition(const Magnum::Vector3& position);
-                    CubeMap& setFarPlane(Magnum::Float farPlane);
-                    CubeMap& setLightIndex(Magnum::Int index);
-                    CubeMap& setMaterial(Material& material);
+                    CubeMapColor& setTransformationMatrix(const Magnum::Matrix4& matrix);
+                    CubeMapColor& setShadowMatrices(Magnum::Matrix4 matrices[6]);
+                    CubeMapColor& setLightPosition(const Magnum::Vector3& position);
+                    CubeMapColor& setFarPlane(Magnum::Float farPlane);
+                    CubeMapColor& setLightIndex(Magnum::Int index);
+                    CubeMapColor& setMaterial(Material& material);
+
+                    CubeMapColor& bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture);
 
                 private:
                     Flags _flags;
@@ -46,10 +48,11 @@ namespace robot_dart {
                         _lightPositionUniform{1},
                         _farPlaneUniform{2},
                         _lightIndexUniform{3},
-                        _diffuseColorUniform{4};
+                        _diffuseColorUniform{4},
+                        _cubeMapTexturesLocation{2};
                 };
 
-                CORRADE_ENUMSET_OPERATORS(CubeMap::Flags)
+                CORRADE_ENUMSET_OPERATORS(CubeMapColor::Flags)
             } // namespace gs
         } // namespace magnum
     } // namespace gui

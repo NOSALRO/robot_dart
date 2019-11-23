@@ -8,8 +8,10 @@
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
-    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool shadowed = true)
-        : GlfwApplication(argc, argv, world, width, height, title, shadowed) {}
+    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world,
+        size_t width, size_t height, const std::string& title = "DART",
+        bool shadowed = true, bool transparent_shadows = true)
+        : GlfwApplication(argc, argv, world, width, height, title, shadowed, transparent_shadows) {}
 
 protected:
     void keyPressEvent(KeyEvent& event) override

@@ -8,8 +8,10 @@
 #include <robot_dart/gui/helper.hpp>
 #include <robot_dart/gui/magnum/gs/camera.hpp>
 #include <robot_dart/gui/magnum/gs/cube_map.hpp>
+#include <robot_dart/gui/magnum/gs/cube_map_color.hpp>
 #include <robot_dart/gui/magnum/gs/phong_multi_light.hpp>
 #include <robot_dart/gui/magnum/gs/shadow_map.hpp>
+#include <robot_dart/gui/magnum/gs/shadow_map_color.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
 #include <dart/simulation/World.hpp>
@@ -93,9 +95,13 @@ namespace robot_dart {
                 DrawableObject& setMaterials(const std::vector<gs::Material>& materials);
                 DrawableObject& setSoftBodies(const std::vector<bool>& softBody);
                 DrawableObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                DrawableObject& setTransparent(bool transparent = true);
 
                 DrawableObject& setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader);
                 DrawableObject& setTextureShader(std::reference_wrapper<gs::PhongMultiLight> shader);
+
+                const std::vector<gs::Material>& materials() const { return _materials; }
+                bool isTransparent() const { return _isTransparent; }
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -106,6 +112,7 @@ namespace robot_dart {
                 std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
                 std::vector<bool> _isSoftBody;
+                bool _isTransparent;
             };
 
             class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
@@ -113,17 +120,42 @@ namespace robot_dart {
                 explicit ShadowedObject(
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     std::reference_wrapper<gs::ShadowMap> shader,
+                    std::reference_wrapper<gs::ShadowMap> texture_shader,
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
                 ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedObject& setMaterials(const std::vector<gs::Material>& materials);
                 ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
-                std::reference_wrapper<gs::ShadowMap> _shader;
+                std::reference_wrapper<gs::ShadowMap> _shader, _texture_shader;
+                std::vector<gs::Material> _materials;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
+            class ShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit ShadowedColorObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::ShadowMapColor> shader,
+                    std::reference_wrapper<gs::ShadowMapColor> texture_shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                ShadowedColorObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedColorObject& setMaterials(const std::vector<gs::Material>& materials);
+                ShadowedColorObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::ShadowMapColor> _shader, _texture_shader;
+                std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
             };
 
@@ -132,33 +164,61 @@ namespace robot_dart {
                 explicit CubeMapShadowedObject(
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     std::reference_wrapper<gs::CubeMap> shader,
+                    std::reference_wrapper<gs::CubeMap> texture_shader,
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
                 CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedObject& setMaterials(const std::vector<gs::Material>& materials);
                 CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
-                std::reference_wrapper<gs::CubeMap> _shader;
+                std::reference_wrapper<gs::CubeMap> _shader, _texture_shader;
+                std::vector<gs::Material> _materials;
+                std::vector<Magnum::Vector3> _scalings;
+            };
+
+            class CubeMapShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            public:
+                explicit CubeMapShadowedColorObject(
+                    const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
+                    std::reference_wrapper<gs::CubeMapColor> shader,
+                    std::reference_wrapper<gs::CubeMapColor> texture_shader,
+                    Object3D* parent,
+                    Magnum::SceneGraph::DrawableGroup3D* group);
+
+                CubeMapShadowedColorObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedColorObject& setMaterials(const std::vector<gs::Material>& materials);
+                CubeMapShadowedColorObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+
+            private:
+                void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
+
+                std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
+                std::reference_wrapper<gs::CubeMapColor> _shader, _texture_shader;
+                std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
             };
 
             struct ShadowData {
                 Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
+                Magnum::GL::Framebuffer shadowColorFramebuffer{Magnum::NoCreate};
             };
 
             struct ObjectStruct {
                 DrawableObject* drawable;
                 ShadowedObject* shadowed;
+                ShadowedColorObject* shadowed_color;
                 CubeMapShadowedObject* cubemapped;
+                CubeMapShadowedColorObject* cubemapped_color;
             };
 
             class BaseApplication {
             public:
-                BaseApplication(bool isShadowed = true);
+                BaseApplication(bool isShadowed = true, bool drawTransparentShadows = true);
                 virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
@@ -191,7 +251,8 @@ namespace robot_dart {
                 bool isDepthRecording() { return _camera->isDepthRecording(); }
 
                 bool isShadowed() const { return _isShadowed; }
-                void enableShadows(bool enable = true);
+                bool transparentShadows() const { return _drawTransparentShadows; }
+                void enableShadows(bool enable = true, bool drawTransparentShadows = false);
 
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
@@ -204,7 +265,7 @@ namespace robot_dart {
             protected:
                 /* Magnum */
                 Scene3D _scene;
-                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables, _cubemap_drawables;
+                Magnum::SceneGraph::DrawableGroup3D _drawables, _shadowed_drawables, _shadowed_color_drawables, _cubemap_drawables, _cubemap_color_drawables;
                 std::unique_ptr<gs::PhongMultiLight> _color_shader, _texture_shader;
 
                 std::unique_ptr<gs::Camera> _camera;
@@ -218,14 +279,17 @@ namespace robot_dart {
                 std::vector<gs::Light> _lights;
 
                 /* Shadows */
-                bool _isShadowed = true;
-                std::unique_ptr<gs::ShadowMap> _shadow_shader;
-                std::unique_ptr<gs::CubeMap> _cubemap_shader;
+                bool _isShadowed = true, _drawTransparentShadows = false;
+                int _transparentSize = 0;
+                std::unique_ptr<gs::ShadowMap> _shadow_shader, _shadow_texture_shader;
+                std::unique_ptr<gs::ShadowMapColor> _shadow_color_shader, _shadow_texture_color_shader;
+                std::unique_ptr<gs::CubeMap> _cubemap_shader, _cubemap_texture_shader;
+                std::unique_ptr<gs::CubeMapColor> _cubemap_color_shader, _cubemap_texture_color_shader;
                 std::vector<ShadowData> _shadowData;
-                std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture;
-                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap;
+                std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture, _shadowColorTexture;
+                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap, _shadowColorCubeMap;
                 int _shadowMapSize = 512;
-                int _maxLights = 10;
+                int _maxLights = 5;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
@@ -235,12 +299,12 @@ namespace robot_dart {
             };
 
             template <typename T>
-            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true)
+            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true, bool drawTransparentShadows = true)
             {
                 int argc = 0;
                 char** argv = NULL;
 
-                return new T(argc, argv, world, width, height, title, isShadowed);
+                return new T(argc, argv, world, width, height, title, isShadowed, drawTransparentShadows);
             }
         } // namespace magnum
     } // namespace gui
