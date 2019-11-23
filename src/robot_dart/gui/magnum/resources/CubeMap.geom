@@ -11,8 +11,8 @@ layout(location = 3)
 #endif
 uniform int lightIndex;
 
-out highp vec4 worldPosition; // FragPos from GS (output per emitvertex)
-out flat int lightNumber;
+out highp vec4 worldPosition;
+flat out int lightNumber;
 
 #ifdef TEXTURED
 in mediump vec2 interTextureCoords[];
@@ -34,7 +34,7 @@ void main()
             #endif
             lightNumber = lightIndex;
             EmitVertex();
-        }    
+        }
         EndPrimitive();
     }
-}  
+}

@@ -1,7 +1,7 @@
 #extension GL_ARB_texture_cube_map_array : require
 
 in highp vec4 worldPosition;
-in flat int lightNumber;
+flat in int lightNumber;
 
 #ifdef EXPLICIT_ATTRIB_LOCATION
 layout(location = 0)
