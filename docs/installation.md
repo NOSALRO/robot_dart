@@ -98,11 +98,11 @@ sudo make install
 Magnum depends on [Corrade](https://github.com/mosra/corrade) and we are going to use a few plugins and extras from the library. We are also going to use Glfw and Glx for the back-end. Follow the instrutions below:
 
 ```bash
-#installation of Glfw
+#installation of Glfw and OpenAL
 # Ubuntu
-sudo apt-get install libglfw3-dev libglfw3
+sudo apt-get install libglfw3-dev libglfw3 libopenal-dev
 # Mac OSX
-brew install glfw3
+brew install glfw3 openal-soft
 
 # installation of Corrade
 cd /path/to/tmp/folder
