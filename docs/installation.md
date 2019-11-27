@@ -100,9 +100,9 @@ Magnum depends on [Corrade](https://github.com/mosra/corrade) and we are going t
 ```bash
 #installation of Glfw and OpenAL
 # Ubuntu
-sudo apt-get install libglfw3-dev libglfw3 libopenal-dev
+sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
 # Mac OSX
-brew install glfw3 openal-soft
+brew install glfw3 openal-soft assimp
 
 # installation of Corrade
 cd /path/to/tmp/folder
