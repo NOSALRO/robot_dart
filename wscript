@@ -321,6 +321,8 @@ def build(bld):
         if bld.get_env()['BUILD_MAGNUM'] == True:
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.a')
     else:
-        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.so')
+        # OSX/Mac uses .dylib and GNU/Linux .so
+        suffix = 'dylib' if bld.env['DEST_OS'] == 'darwin' else 'so'
+        bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.' + suffix)
         if bld.get_env()['BUILD_MAGNUM'] == True:
-            bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.so')
+            bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
