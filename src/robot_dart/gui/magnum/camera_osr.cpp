@@ -1,5 +1,7 @@
 #include "camera_osr.hpp"
 
+#include <Corrade/Containers/StridedArrayView.h>
+
 // #include <Magnum/DebugTools/Screenshot.h>
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/GL/RenderbufferFormat.h>

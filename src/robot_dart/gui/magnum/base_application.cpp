@@ -5,6 +5,8 @@
 #include <dart/dynamics/SoftBodyNode.hpp>
 #include <dart/dynamics/SoftMeshShape.hpp>
 
+#include <Corrade/Containers/StridedArrayView.h>
+
 #include <Magnum/GL/CubeMapTexture.h>
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/GL/Mesh.h>
