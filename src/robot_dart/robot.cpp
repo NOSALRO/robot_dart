@@ -314,6 +314,43 @@ namespace robot_dart {
         return damps;
     }
 
+    void Robot::set_cfriction_coeff(size_t dof, double cfriction)
+    {
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
+        _skeleton->getDof(dof)->setCoulombFriction(cfriction);
+    }
+
+    void Robot::set_cfriction_coeffs(const std::vector<double>& cfrictions)
+    {
+        ROBOT_DART_ASSERT(cfrictions.size() == _skeleton->getNumDofs(), "Damping coefficient vector size is not the same as the DOFs of the robot", );
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            _skeleton->getDof(i)->setCoulombFriction(cfrictions[i]);
+        }
+    }
+
+    void Robot::set_cfriction_coeffs(double cfriction)
+    {
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            _skeleton->getDof(i)->setCoulombFriction(cfriction);
+        }
+    }
+
+    double Robot::cfriction_coeff(size_t dof) const
+    {
+        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", 0.);
+        return _skeleton->getDof(dof)->getCoulombFriction();
+    }
+
+    std::vector<double> Robot::cfriction_coeffs() const
+    {
+        std::vector<double> cfrictions;
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            cfrictions.push_back(_skeleton->getDof(i)->getCoulombFriction());
+        }
+
+        return cfrictions;
+    }
+
     void Robot::set_base_pose(const Eigen::Isometry3d& tf)
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
