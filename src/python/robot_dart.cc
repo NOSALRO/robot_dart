@@ -9,7 +9,9 @@
 #include <robot_dart/control/robot_control.hpp>
 
 #ifdef GRAPHIC
+#include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
+#include <robot_dart/gui/magnum/windowless_gl_application.hpp>
 #endif
 
 namespace py = pybind11;
@@ -89,7 +91,6 @@ void py_robot(py::module& m)
 void py_simu(py::module& m)
 {
     using namespace robot_dart;
-    py::class_<dart::simulation::World, std::shared_ptr<dart::simulation::World>>(m, "DARTWorld");
     // RobotDARTSimu class
     py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
         .def(py::init<double>())
@@ -249,25 +250,165 @@ void py_gui(py::module& m)
     auto sm = m.def_submodule("gui");
 
     using namespace robot_dart;
+
+    // Helper definitions and classes
     using BaseGraphics = gui::magnum::Graphics<gui::magnum::GlfwApplication>;
-    // Graphics class
+    using BaseWindowlessGraphics = gui::magnum::Graphics<gui::magnum::WindowlessGLApplication>;
+
     class Graphics : public BaseGraphics {
     public:
         using BaseGraphics::BaseGraphics;
     };
 
+    class WindowlessGraphics : public BaseWindowlessGraphics {
+    public:
+        using BaseWindowlessGraphics::BaseWindowlessGraphics;
+    };
+
     py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
     py::class_<BaseGraphics, gui::Base, std::shared_ptr<BaseGraphics>>(sm, "BaseGraphics");
+    py::class_<BaseWindowlessGraphics, gui::Base, std::shared_ptr<BaseWindowlessGraphics>>(sm, "BaseWindowlessGraphics");
+    py::class_<gui::magnum::BaseApplication>(sm, "BaseApplication");
 
+    // Graphics class
     py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
         .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
 
-        .def("done", &Graphics::done);
+        .def("done", &Graphics::done)
+        .def("refresh", &Graphics::refresh)
+        .def("set_render_period", &Graphics::set_render_period)
+        .def("set_enable", &Graphics::set_enable)
+
+        .def("look_at", &Graphics::look_at)
+
+        .def("clear_lights", &Graphics::clear_lights)
+        .def("add_light", &Graphics::add_light)
+        .def("lights", &Graphics::lights)
+        .def("num_lights", &Graphics::num_lights)
+        .def("light", &Graphics::light)
+
+        .def("set_recording", &Graphics::set_recording)
+        .def("recording", &Graphics::recording)
+        .def("recording_depth", &Graphics::recording_depth)
+
+        .def("is_shadowed", &Graphics::is_shadowed)
+        .def("enable_shadows", &Graphics::enable_shadows)
+
+        // Magnum::Image2D* magnum_image()
+        .def("image", &Graphics::image)
+        .def("depth_image", &Graphics::depth_image)
+        .def("raw_depth_image", &Graphics::raw_depth_image)
+
+        .def("set_speed", &Graphics::set_speed)
+        .def("set_near_plane", &Graphics::set_near_plane)
+        .def("set_far_plane", &Graphics::set_far_plane)
+        .def("set_fov", &Graphics::set_fov)
+        .def("set_camera_params", &Graphics::set_camera_params)
+
+        .def("speed", &Graphics::speed)
+        .def("near_plane", &Graphics::near_plane)
+        .def("far_plane", &Graphics::far_plane)
+        .def("fov", &Graphics::fov)
+
+        .def("magnum_app", &Graphics::magnum_app, py::return_value_policy::reference);
+
+    // WindowlessGraphics class
+    py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
+        .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+
+        .def("done", &WindowlessGraphics::done)
+        .def("refresh", &WindowlessGraphics::refresh)
+        .def("set_render_period", &WindowlessGraphics::set_render_period)
+        .def("set_enable", &WindowlessGraphics::set_enable)
+
+        .def("look_at", &WindowlessGraphics::look_at)
+
+        .def("clear_lights", &WindowlessGraphics::clear_lights)
+        .def("add_light", &WindowlessGraphics::add_light)
+        .def("lights", &WindowlessGraphics::lights)
+        .def("num_lights", &WindowlessGraphics::num_lights)
+        .def("light", &WindowlessGraphics::light)
+
+        .def("set_recording", &WindowlessGraphics::set_recording)
+        .def("recording", &WindowlessGraphics::recording)
+        .def("recording_depth", &WindowlessGraphics::recording_depth)
+
+        .def("is_shadowed", &WindowlessGraphics::is_shadowed)
+        .def("enable_shadows", &WindowlessGraphics::enable_shadows)
+
+        // Magnum::Image2D* magnum_image()
+        .def("image", &WindowlessGraphics::image)
+        .def("depth_image", &WindowlessGraphics::depth_image)
+        .def("raw_depth_image", &WindowlessGraphics::raw_depth_image)
+
+        .def("set_speed", &WindowlessGraphics::set_speed)
+        .def("set_near_plane", &WindowlessGraphics::set_near_plane)
+        .def("set_far_plane", &WindowlessGraphics::set_far_plane)
+        .def("set_fov", &WindowlessGraphics::set_fov)
+        .def("set_camera_params", &WindowlessGraphics::set_camera_params)
+
+        .def("speed", &WindowlessGraphics::speed)
+        .def("near_plane", &WindowlessGraphics::near_plane)
+        .def("far_plane", &WindowlessGraphics::far_plane)
+        .def("fov", &WindowlessGraphics::fov);
+
+    // get_gl_context
+    // release_gl_context
+
+    // CameraOSR class
+    py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
+        // .def(py::init<const dart::simulation::WorldPtr&, gui::magnum::BaseApplication*, size_t, size_t>())
+        .def(py::init(+[](const dart::simulation::WorldPtr& world, Graphics& gr, size_t w, size_t h) {
+            return std::make_shared<gui::magnum::CameraOSR>(world, gr.magnum_app(), w, h);
+        }))
+        .def(py::init(+[](const dart::simulation::WorldPtr& world, WindowlessGraphics& gr, size_t w, size_t h) {
+            return std::make_shared<gui::magnum::CameraOSR>(world, gr.magnum_app(), w, h);
+        }))
+
+        .def("done", &gui::magnum::CameraOSR::done)
+        .def("refresh", &gui::magnum::CameraOSR::refresh)
+        .def("set_render_period", &gui::magnum::CameraOSR::set_render_period)
+        .def("set_enable", &gui::magnum::CameraOSR::set_enable)
+
+        .def("look_at", &gui::magnum::CameraOSR::look_at)
+
+        .def("render", &gui::magnum::CameraOSR::render)
+
+        .def("set_recording", &gui::magnum::CameraOSR::set_recording)
+        .def("recording", &gui::magnum::CameraOSR::recording)
+        .def("recording_depth", &gui::magnum::CameraOSR::recording_depth)
+
+        // Magnum::Image2D* magnum_image()
+        // Magnum::Image2D* magnum_depth_image()
+
+        .def("image", &gui::magnum::CameraOSR::image)
+        .def("depth_image", &gui::magnum::CameraOSR::depth_image)
+        .def("raw_depth_image", &gui::magnum::CameraOSR::raw_depth_image)
+
+        .def("attach_to", &gui::magnum::CameraOSR::attach_to)
+
+        .def("set_speed", &gui::magnum::CameraOSR::set_speed)
+        .def("set_near_plane", &gui::magnum::CameraOSR::set_near_plane)
+        .def("set_far_plane", &gui::magnum::CameraOSR::set_far_plane)
+        .def("set_fov", &gui::magnum::CameraOSR::set_fov)
+        .def("set_camera_params", &gui::magnum::CameraOSR::set_camera_params)
+
+        .def("speed", &gui::magnum::CameraOSR::speed)
+        .def("near_plane", &gui::magnum::CameraOSR::near_plane)
+        .def("far_plane", &gui::magnum::CameraOSR::far_plane)
+        .def("fov", &gui::magnum::CameraOSR::fov);
+
+    // Helper functions
+    sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);
+    sm.def("save_png_image", (void (*)(const std::string&, const gui::GrayscaleImage&)) & gui::save_png_image);
 }
 #endif
 
 PYBIND11_MODULE(RobotDART, m)
 {
+    // Load dartpy
+    py::module::import("dartpy");
+
     m.doc() = "RobotDART: Python API of robot_dart";
 
     py_simu(m);
