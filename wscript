@@ -192,11 +192,19 @@ def build(bld):
         build_graphic = True
 
     if bld.env['BUILD_PYTHON'] == True:
+        graphic_libs = ''
+        graphic_lib = ''
+        defines = ['']
+        if bld.get_env()['BUILD_MAGNUM'] == True:
+            graphic_libs = bld.env['magnum_libs']
+            graphic_lib = 'RobotDARTMagnum'
+            defines = ['GRAPHIC']
         bld.program(features = 'c cshlib pyext',
                     source = './src/python/robot_dart.cc',
                     includes = './src',
-                    uselib = 'PYBIND11 ' + libs,
-                    use = 'RobotDARTSimu',
+                    uselib = graphic_libs + ' PYBIND11 ' + libs,
+                    use = 'RobotDARTSimu ' + graphic_lib,
+                    defines = defines,
                     target = 'RobotDART')
 
     if build_graphic == True:

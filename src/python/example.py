@@ -28,6 +28,8 @@ print(control.get_positions())
 simu = rd.RobotDARTSimu(0.001)
 simu.add_robot(robot)
 
+simu.set_graphics(rd.gui.Graphics(simu.world(), 640, 480, True, False, "DART"))
+
 simu.run(5.)
 
 print(control.get_positions())
