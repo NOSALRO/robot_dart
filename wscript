@@ -23,6 +23,7 @@ import corrade
 import magnum
 import magnum_integration
 import magnum_plugins
+import pybind
 
 
 def options(opt):
@@ -36,9 +37,12 @@ def options(opt):
     opt.load('magnum')
     opt.load('magnum_integration')
     opt.load('magnum_plugins')
+    opt.load('python')
+    opt.load('pybind')
 
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
+    opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
 
 
 def configure(conf):
@@ -56,6 +60,9 @@ def configure(conf):
     conf.load('magnum')
     conf.load('magnum_integration')
     conf.load('magnum_plugins')
+    if conf.options.pybind:
+        conf.load('python')
+        conf.load('pybind')
 
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
     conf.check_eigen(required=True)
@@ -70,6 +77,17 @@ def configure(conf):
     conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     conf.check_magnum_plugins(components='AssimpImporter', required=False)
     conf.check_magnum_integration(components='Dart', required=False)
+
+    conf.env['py_flags'] = ''
+    conf.env['BUILD_PYTHON'] = False
+    if conf.options.pybind:
+        conf.check_python_version((2, 7))
+        conf.check_python_headers(features='pyext')
+        conf.check_python_module('numpy')
+        conf.check_pybind11(required=True)
+        conf.env['BUILD_PYTHON'] = True
+        if conf.env.CXX_NAME in ["gcc", "g++"]:
+            conf.env['py_flags'] = ' -fPIC ' # we need -fPIC in some Linux/gcc combinations
 
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
@@ -106,7 +124,7 @@ def configure(conf):
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
-    all_flags = common_flags + opt_flags
+    all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
     if len(conf.env.CXXFLAGS_DART) > 0:
         if '-std=c++11' in conf.env['CXXFLAGS']:
@@ -172,6 +190,14 @@ def build(bld):
                     target = 'RobotDARTMagnum')
 
         build_graphic = True
+
+    if bld.env['BUILD_PYTHON'] == True:
+        bld.program(features = 'c cshlib pyext',
+                    source = './src/python/robot_dart.cc',
+                    includes = './src',
+                    uselib = 'PYBIND11 ' + libs,
+                    use = 'RobotDARTSimu',
+                    target = 'RobotDART')
 
     if build_graphic == True:
         bld.env.LIB_PTHREAD = ['pthread']
