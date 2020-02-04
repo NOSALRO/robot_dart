@@ -1,4 +1,5 @@
 import numpy as np
+import dartpy
 import RobotDART as rd
 
 class MyController(rd.RobotControl):
@@ -28,8 +29,17 @@ print(control.get_positions())
 simu = rd.RobotDARTSimu(0.001)
 simu.add_robot(robot)
 
-simu.set_graphics(rd.gui.Graphics(simu.world(), 640, 480, True, False, "DART"))
+graphics = rd.gui.Graphics(simu.world(), 640, 480, True, False, "DART")
+simu.set_graphics(graphics)
+simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
+
+# camera = rd.gui.CameraOSR(simu.world(), graphics, 256, 256)
+# camera.attach_to("arm_link_5", dartpy.math.Isometry3())
+# simu.add_camera(camera)
 
 simu.run(5.)
+
+# img = camera.image()
+# rd.gui.save_png_image('test.png', img)
 
 print(control.get_positions())
