@@ -8,6 +8,10 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/control/robot_control.hpp>
 
+#ifdef GRAPHIC
+#include <robot_dart/gui/magnum/graphics.hpp>
+#endif
+
 namespace py = pybind11;
 
 void py_robot(py::module& m)
@@ -85,6 +89,7 @@ void py_robot(py::module& m)
 void py_simu(py::module& m)
 {
     using namespace robot_dart;
+    py::class_<dart::simulation::World, std::shared_ptr<dart::simulation::World>>(m, "DARTWorld");
     // RobotDARTSimu class
     py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
         .def(py::init<double>())
@@ -238,6 +243,29 @@ void py_control(py::module& m)
         .def("clone", &PDControl::clone);
 }
 
+#ifdef GRAPHIC
+void py_gui(py::module& m)
+{
+    auto sm = m.def_submodule("gui");
+
+    using namespace robot_dart;
+    using BaseGraphics = gui::magnum::Graphics<gui::magnum::GlfwApplication>;
+    // Graphics class
+    class Graphics : public BaseGraphics {
+    public:
+        using BaseGraphics::BaseGraphics;
+    };
+
+    py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
+    py::class_<BaseGraphics, gui::Base, std::shared_ptr<BaseGraphics>>(sm, "BaseGraphics");
+
+    py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
+        .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+
+        .def("done", &Graphics::done);
+}
+#endif
+
 PYBIND11_MODULE(RobotDART, m)
 {
     m.doc() = "RobotDART: Python API of robot_dart";
@@ -245,4 +273,8 @@ PYBIND11_MODULE(RobotDART, m)
     py_simu(m);
     py_robot(m);
     py_control(m);
+
+#ifdef GRAPHIC
+    py_gui(m);
+#endif
 }
