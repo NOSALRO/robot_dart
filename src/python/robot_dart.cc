@@ -350,10 +350,15 @@ void py_gui(py::module& m)
         .def("speed", &WindowlessGraphics::speed)
         .def("near_plane", &WindowlessGraphics::near_plane)
         .def("far_plane", &WindowlessGraphics::far_plane)
-        .def("fov", &WindowlessGraphics::fov);
+        .def("fov", &WindowlessGraphics::fov)
+
+        .def("magnum_app", &WindowlessGraphics::magnum_app, py::return_value_policy::reference);
 
     // get_gl_context
     // release_gl_context
+    sm.def("set_max_contexts", +[](size_t num_contexts) {
+        gui::magnum::GlobalData::instance()->set_max_contexts(num_contexts);
+    });
 
     // CameraOSR class
     py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")

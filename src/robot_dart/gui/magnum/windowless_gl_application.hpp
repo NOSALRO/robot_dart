@@ -19,7 +19,7 @@ namespace robot_dart {
             protected:
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;
-                Magnum::GL::Renderbuffer _color, _depth;
+                Magnum::GL::Renderbuffer _color{Magnum::NoCreate}, _depth{Magnum::NoCreate};
                 // size_t _index = 0;
 
                 virtual int exec() override { return 0; }
