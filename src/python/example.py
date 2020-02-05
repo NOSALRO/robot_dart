@@ -1,6 +1,7 @@
 import numpy as np
 import dartpy
 import RobotDART as rd
+# import magnum
 
 class MyController(rd.RobotControl):
     def __init__(self, ctrl, full_control):
@@ -30,16 +31,21 @@ simu = rd.RobotDARTSimu(0.001)
 simu.add_robot(robot)
 
 graphics = rd.gui.Graphics(simu.world(), 640, 480, True, False, "DART")
+# graphics.clear_lights()
+# mat = rd.gui.Material(magnum.Color4(0, 0, 0, 1), magnum.Color4(1, 1, 1, 1), magnum.Color4(1, 1, 1, 1), 80.)
+# graphics.add_light(rd.gui.createPointLight(magnum.Vector3(-1., 1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
+# graphics.add_light(rd.gui.createPointLight(magnum.Vector3(1., -1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
 simu.set_graphics(graphics)
 simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
 
-# camera = rd.gui.CameraOSR(simu.world(), graphics, 256, 256)
-# camera.attach_to("arm_link_5", dartpy.math.Isometry3())
-# simu.add_camera(camera)
+camera = rd.gui.CameraOSR(simu.world(), graphics.magnum_app(), 256, 256)
+camera.attach_to("arm_link_5", dartpy.math.Isometry3())
+simu.add_camera(camera)
+# simu.add_camera(rd.gui.CameraOSR(simu.world(), graphics.magnum_app(), 256, 256))
 
 simu.run(5.)
 
-# img = camera.image()
+# img = simu.camera(0).image()
 # rd.gui.save_png_image('test.png', img)
 
 print(control.get_positions())
