@@ -153,7 +153,7 @@ void py_control(py::module& m)
             PYBIND11_OVERLOAD_PURE(
                 void, /* Return type */
                 RobotControl, /* Parent class */
-                configure /* Name of function in C++ (must match Python name) */
+                configure, /* Name of function in C++ (must match Python name) */
             );
         }
 
@@ -171,7 +171,7 @@ void py_control(py::module& m)
             PYBIND11_OVERLOAD_PURE(
                 std::shared_ptr<RobotControl>, /* Return type */
                 RobotControl, /* Parent class */
-                clone /* Name of function in C++ (must match Python name) */
+                clone, /* Name of function in C++ (must match Python name) */
             );
         }
     };
@@ -180,6 +180,7 @@ void py_control(py::module& m)
     public:
         using RobotControl::_active;
         using RobotControl::_ctrl;
+        using RobotControl::_full_control;
         using RobotControl::_robot;
     };
 
@@ -189,6 +190,7 @@ void py_control(py::module& m)
 
         .def_readwrite("_active", &PublicistRobotControl::_active)
         .def_readwrite("_ctrl", &PublicistRobotControl::_ctrl)
+        .def_readwrite("_full_control", &PublicistRobotControl::_full_control)
         .def_readonly("_robot", &PublicistRobotControl::_robot)
 
         .def("set_parameters", &RobotControl::set_parameters)
