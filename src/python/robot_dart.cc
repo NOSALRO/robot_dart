@@ -37,7 +37,7 @@ void py_robot(py::module& m)
         .def("controllers", &Robot::controllers)
         .def("active_controllers", &Robot::active_controllers)
         .def("controller", &Robot::controller)
-        .def("add_controller", &Robot::add_controller)
+        .def("add_controller", &Robot::add_controller, py::keep_alive<2, 1>())
         .def("remove_controller", (void (Robot::*)(const std::shared_ptr<control::RobotControl>&)) & Robot::remove_controller)
         .def("remove_controller", (void (Robot::*)(size_t)) & Robot::remove_controller)
         .def("clear_controllers", &Robot::clear_controllers)
@@ -98,7 +98,7 @@ void py_simu(py::module& m)
         .def("run", &RobotDARTSimu::run)
 
         .def("graphics", &RobotDARTSimu::graphics)
-        .def("set_graphics", &RobotDARTSimu::set_graphics)
+        .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
 
         .def("world", &RobotDARTSimu::world)
 
@@ -110,7 +110,7 @@ void py_simu(py::module& m)
         // .def("remove_descriptor", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_descriptor)
         // .def("clear_descriptors", &RobotDARTSimu::clear_descriptors)
 
-        .def("add_camera", &RobotDARTSimu::add_camera)
+        .def("add_camera", &RobotDARTSimu::add_camera, py::keep_alive<2, 1>())
         .def("cameras", &RobotDARTSimu::cameras)
         .def("camera", &RobotDARTSimu::camera)
 
@@ -128,7 +128,7 @@ void py_simu(py::module& m)
         .def("robots", &RobotDARTSimu::robots)
         .def("robot", &RobotDARTSimu::robot)
 
-        .def("add_robot", &RobotDARTSimu::add_robot)
+        .def("add_robot", &RobotDARTSimu::add_robot, py::keep_alive<2, 1>())
         .def("remove_robot", (void (RobotDARTSimu::*)(const std::shared_ptr<Robot>&)) & RobotDARTSimu::remove_robot)
         .def("remove_robot", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_robot)
         .def("clear_robots", &RobotDARTSimu::clear_robots)
@@ -282,7 +282,7 @@ void py_gui(py::module& m)
         .def("look_at", &Graphics::look_at)
 
         .def("clear_lights", &Graphics::clear_lights)
-        .def("add_light", &Graphics::add_light)
+        .def("add_light", &Graphics::add_light, py::keep_alive<2, 1>())
         .def("lights", &Graphics::lights)
         .def("num_lights", &Graphics::num_lights)
         .def("light", &Graphics::light)
@@ -324,7 +324,7 @@ void py_gui(py::module& m)
         .def("look_at", &WindowlessGraphics::look_at)
 
         .def("clear_lights", &WindowlessGraphics::clear_lights)
-        .def("add_light", &WindowlessGraphics::add_light)
+        .def("add_light", &WindowlessGraphics::add_light, py::keep_alive<2, 1>())
         .def("lights", &WindowlessGraphics::lights)
         .def("num_lights", &WindowlessGraphics::num_lights)
         .def("light", &WindowlessGraphics::light)
@@ -357,13 +357,7 @@ void py_gui(py::module& m)
 
     // CameraOSR class
     py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
-        // .def(py::init<const dart::simulation::WorldPtr&, gui::magnum::BaseApplication*, size_t, size_t>())
-        .def(py::init(+[](const dart::simulation::WorldPtr& world, Graphics& gr, size_t w, size_t h) {
-            return std::make_shared<gui::magnum::CameraOSR>(world, gr.magnum_app(), w, h);
-        }))
-        .def(py::init(+[](const dart::simulation::WorldPtr& world, WindowlessGraphics& gr, size_t w, size_t h) {
-            return std::make_shared<gui::magnum::CameraOSR>(world, gr.magnum_app(), w, h);
-        }))
+        .def(py::init<const dart::simulation::WorldPtr&, gui::magnum::BaseApplication*, size_t, size_t>())
 
         .def("done", &gui::magnum::CameraOSR::done)
         .def("refresh", &gui::magnum::CameraOSR::refresh)
@@ -401,6 +395,20 @@ void py_gui(py::module& m)
     // Helper functions
     sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);
     sm.def("save_png_image", (void (*)(const std::string&, const gui::GrayscaleImage&)) & gui::save_png_image);
+
+    // Material class
+    using Material = gui::magnum::gs::Material;
+    py::class_<Material>(sm, "Material")
+        .def(py::init<const Magnum::Color4&, const Magnum::Color4&, const Magnum::Color4&, Magnum::Float>());
+    // TO-DO: Add more functions
+    using Light = gui::magnum::gs::Light;
+    py::class_<Light>(sm, "Light")
+        .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&>());
+    // TO-DO: Add more functions
+
+    sm.def("createPointLight", &gui::magnum::gs::createPointLight);
+    sm.def("createSpotLight", &gui::magnum::gs::createSpotLight);
+    sm.def("createDirectionalLight", &gui::magnum::gs::createDirectionalLight);
 }
 #endif
 
@@ -408,6 +416,8 @@ PYBIND11_MODULE(RobotDART, m)
 {
     // Load dartpy
     py::module::import("dartpy");
+    // Load magnum math
+    // py::module::import("magnum.math");
 
     m.doc() = "RobotDART: Python API of robot_dart";
 
