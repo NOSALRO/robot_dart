@@ -130,7 +130,7 @@ def configure(conf):
         if '-std=c++11' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++11')
         if '-std=c++0x' in conf.env['CXXFLAGS']:
-            conf.env['CXXFLAGS'].remove('-std=c++11')
+            conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
     print(conf.env['CXXFLAGS'])
 
