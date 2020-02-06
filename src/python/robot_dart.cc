@@ -8,6 +8,7 @@
 
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/control/robot_control.hpp>
+#include <robot_dart/control/simple_control.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/camera_osr.hpp>
@@ -245,6 +246,15 @@ void py_control(py::module& m)
         .def("pd", &PDControl::pd)
 
         .def("clone", &PDControl::clone);
+
+    // SimpleControl class
+    py::class_<SimpleControl, RobotControl, std::shared_ptr<SimpleControl>>(m, "SimpleControl")
+        .def(py::init<const std::vector<double>&, bool>())
+
+        .def("configure", &SimpleControl::configure)
+        .def("calculate", &SimpleControl::calculate)
+
+        .def("clone", &SimpleControl::clone);
 }
 
 #ifdef GRAPHIC
