@@ -22,6 +22,7 @@
 #include <Magnum/Platform/GLContext.h>
 #ifndef MAGNUM_MAC_OSX
 #include <Magnum/Platform/WindowlessGlxApplication.h>
+#undef Success
 #else
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
