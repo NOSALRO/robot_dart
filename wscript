@@ -84,6 +84,7 @@ def configure(conf):
         conf.check_python_version((2, 7))
         conf.check_python_headers(features='pyext')
         conf.check_python_module('numpy')
+        conf.check_python_module('dartpy')
         conf.check_pybind11(required=True)
         conf.env['BUILD_PYTHON'] = True
         if conf.env.CXX_NAME in ["gcc", "g++"]:
@@ -126,6 +127,7 @@ def configure(conf):
 
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
+    conf.env['CXXFLAGS'].remove('')
     if len(conf.env.CXXFLAGS_DART) > 0:
         if '-std=c++11' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++11')
