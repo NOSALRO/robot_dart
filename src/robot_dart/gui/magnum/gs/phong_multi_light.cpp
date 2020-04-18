@@ -1,6 +1,8 @@
 #include "phong_multi_light.hpp"
 #include "create_compatibility_shader.hpp"
 
+#include "../resources/generic.glsl"
+
 #include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureArray.h>
@@ -11,6 +13,10 @@ namespace robot_dart {
             namespace gs {
                 PhongMultiLight::PhongMultiLight(PhongMultiLight::Flags flags, Magnum::Int maxLights) : _flags(flags), _maxLights(maxLights)
                 {
+                    static_assert(Position::Location == POSITION_ATTRIBUTE_LOCATION, "Shader Position Attribute Location Error!");
+                    static_assert(Normal::Location == NORMAL_ATTRIBUTE_LOCATION, "Shader Normal Attribute Location Error!");
+                    static_assert(TextureCoordinates::Location == TEXTURECOORDINATES_ATTRIBUTE_LOCATION, "Shader TextureCoordinates Attribute Location Error!");
+
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
                     const Magnum::GL::Version version = Magnum::GL::Version::GL320;
