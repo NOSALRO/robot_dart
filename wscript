@@ -201,6 +201,14 @@ def build(bld):
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'
             defines = ['GRAPHIC']
+
+        # fix for native flags from pyext
+        bld.env['CXXFLAGS_PYEXT'].remove('-march=x86-64')
+        bld.env['CXXFLAGS_PYEXT'].remove('-mtune=generic')
+        for flag in bld.env['CXXFLAGS']:
+            if flag in bld.env['CXXFLAGS_PYEXT']:
+                bld.env['CXXFLAGS_PYEXT'].remove(flag)
+
         bld.program(features = 'c cshlib pyext',
                     source = './src/python/robot_dart.cc',
                     includes = './src',
