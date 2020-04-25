@@ -367,18 +367,20 @@ void py_gui(py::module& m)
 
         .def("magnum_app", &WindowlessGraphics::magnum_app, py::return_value_policy::reference);
 
-    sm.def("run_with_gl_context", +[](const std::function<void()>& func, size_t wait_ms) {
-        get_gl_context_with_sleep(my_context, wait_ms);
-        /* Acquire GIL before calling Python code */
-        py::gil_scoped_acquire acquire;
-        func();
-        py::gil_scoped_release release;
-        release_gl_context(my_context);
-    });
+    sm.def(
+        "run_with_gl_context", +[](const std::function<void()>& func, size_t wait_ms) {
+            get_gl_context_with_sleep(my_context, wait_ms);
+            /* Acquire GIL before calling Python code */
+            py::gil_scoped_acquire acquire;
+            func();
+            py::gil_scoped_release release;
+            release_gl_context(my_context);
+        });
 
-    sm.def("set_max_contexts", +[](size_t num_contexts) {
-        gui::magnum::GlobalData::instance()->set_max_contexts(num_contexts);
-    });
+    sm.def(
+        "set_max_contexts", +[](size_t num_contexts) {
+            gui::magnum::GlobalData::instance()->set_max_contexts(num_contexts);
+        });
 
     // CameraOSR class
     py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
