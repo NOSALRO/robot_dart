@@ -170,7 +170,11 @@ In short, with `--prefix` you can change the directory where the library will be
 
 ### Compiling the python bindings
 
-For the python bindings of robot_dart, we need `numpy` to be installed and the python bindings of DART (dartpy):
+For the python bindings of robot_dart, we need `numpy` to be installed, `pybind11` and the python bindings of DART (dartpy).
+
+For `numpy` one can install it with `pip` or standard packages. For `pybind11` please follow the instructions on the [dart website](http://dartsim.github.io/install_dartpy_on_ubuntu.html#install-dartpy-from-source) (focus on the pybind11 part, for the other parts follow our instructions above).
+
+For the python bindings of DART, do:
 
 ```bash
 cd dart
