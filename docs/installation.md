@@ -161,9 +161,41 @@ To install the library (assuming that you have already compiled it), you need on
 
 - `./waf install`
 
-By default the library will be installed in `/usr/lib` (for this maybe `sudo ./waf install` might be needed) and a static library will be generated. You can change the defaults as follows:
+By default the library will be installed in `/usr/local/lib` (for this maybe `sudo ./waf install` might be needed) and a static library will be generated. You can change the defaults as follows:
 
 - `./waf configure --prefix=/path/to/install/dir --shared`
 - `./waf install`
 
 In short, with `--prefix` you can change the directory where the library will be installed and if `--shared` is present a shared library will be created instead of a static one.
+
+### Compiling the python bindings
+
+For the python bindings of robot_dart, we need the python bindings of DART (dartpy):
+
+```bash
+cd dart
+
+mkdir build_py # we need a different folder
+cd build_py
+cmake -DDART_BUILD_DARTPY=ON -DDART_ENABLE_SIMD=ON ..
+make -j4
+sudo make install
+```
+
+Then the compilation of robot_dart is almost identical as before:
+
+- retrieve the code, for instance with `git clone https://github.com/resibots/robot_dart.git`
+- `cd /path/to/repo/root`
+- `./waf configure --python` (`--python` enables the python bindings)
+- `./waf`
+- Install the library (including the python bindings) as before (no change is needed)
+- Depending on your installation directory you might need to update your `PYTHONPATH`, e.g. `export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.8/site-packages/`
+
+To run the python examples (for the python examples you need to have enabled the graphics, that is, install Magnum library), run:
+
+- `cd /path/to/repo/root`
+- `python src/python/example.py` or `python src/python/example_parallel.py`
+
+#### Common Issues with Python bindings
+
+One of the most common issue with the python bindings is the fact that DART bindings might be compiled and installed for python 3 and the robot_dart ones for python 2. To force the usage of python 3 for robot_dart, you use `python3 ./waf` instead of just `./waf` in all the commands above.
