@@ -211,8 +211,17 @@ def build(bld):
             if flag in bld.env['CXXFLAGS_PYEXT']:
                 bld.env['CXXFLAGS_PYEXT'].remove(flag)
 
+        py_files = []
+        for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/python/'):
+            for filename in fnmatch.filter(filenames, '*.cpp'):
+                ffile = os.path.join(root, filename)
+                py_files.append(ffile)
+
+        py_files = [f[len(bld.path.abspath())+1:] for f in py_files]
+        py_srcs = " ".join(py_files)
+
         bld.program(features = 'c cshlib pyext',
-                    source = './src/python/robot_dart.cc',
+                    source = './src/python/robot_dart.cc ' + py_srcs,
                     includes = './src',
                     uselib = graphic_libs + ' PYBIND11 ' + libs,
                     use = 'RobotDARTSimu ' + graphic_lib,
