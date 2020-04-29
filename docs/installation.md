@@ -170,7 +170,7 @@ In short, with `--prefix` you can change the directory where the library will be
 
 ### Compiling the python bindings
 
-For the python bindings of robot_dart, we need the python bindings of DART (dartpy):
+For the python bindings of robot_dart, we need `numpy` to be installed and the python bindings of DART (dartpy):
 
 ```bash
 cd dart
