@@ -88,7 +88,7 @@ def configure(conf):
         conf.check_pybind11(required=True)
         conf.env['BUILD_PYTHON'] = True
         if conf.env.CXX_NAME in ["gcc", "g++"]:
-            conf.env['py_flags'] = ' -fPIC ' # we need -fPIC in some Linux/gcc combinations
+            conf.env['py_flags'] = ' -fPIC' # we need -fPIC in some Linux/gcc combinations
 
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
@@ -127,7 +127,7 @@ def configure(conf):
 
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
-    conf.env['CXXFLAGS'].remove('')
+
     if len(conf.env.CXXFLAGS_DART) > 0:
         if '-std=c++11' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++11')
