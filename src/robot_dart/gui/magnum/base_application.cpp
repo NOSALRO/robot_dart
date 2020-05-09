@@ -110,6 +110,17 @@ namespace robot_dart {
             DrawableObject& DrawableObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
+
+                _hasNegativeScaling.resize(_scalings.size());
+                for (size_t i = 0; i < scalings.size(); i++) {
+                    _hasNegativeScaling[i] = false;
+                    for (size_t j = 0; j < 3; j++)
+                        if (_scalings[i][j] < 0.f) {
+                            _hasNegativeScaling[i] = true;
+                            break;
+                        }
+                }
+
                 return *this;
             }
 
@@ -139,6 +150,8 @@ namespace robot_dart {
                     bool isColor = !_materials[i].hasDiffuseTexture();
                     if (_isSoftBody[i])
                         Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
+                    else if (_hasNegativeScaling[i])
+                        Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
                     if (isColor) {
                         _color_shader.get()
                             .setMaterial(_materials[i])
@@ -160,6 +173,8 @@ namespace robot_dart {
 
                     if (_isSoftBody[i])
                         Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
+                    else if (_hasNegativeScaling[i])
+                        Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
                 }
             }
 
@@ -679,7 +694,7 @@ namespace robot_dart {
                                 .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
                                 .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({10.f, 10.f}, nearPlane, farPlane))
                                 .setViewport({_shadowMapSize, _shadowMapSize});
-                            cullFront = true;
+                            cullFront = true; // if false, peter panning will be quite a bit, but has better acne
                         }
                         /* Spotlights */
                         else if (_lights[i].spotCutOff() < M_PI / 2.0) {
