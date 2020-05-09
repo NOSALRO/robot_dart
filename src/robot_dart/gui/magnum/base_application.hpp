@@ -111,6 +111,7 @@ namespace robot_dart {
                 std::reference_wrapper<gs::PhongMultiLight> _texture_shader;
                 std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
+                std::vector<bool> _hasNegativeScaling;
                 std::vector<bool> _isSoftBody;
                 bool _isTransparent;
             };
