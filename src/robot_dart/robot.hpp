@@ -84,12 +84,36 @@ namespace robot_dart {
         double cfriction_coeff(size_t dof) const;
         std::vector<double> cfriction_coeffs() const;
 
+        Eigen::Isometry3d base_pose() const;
         // Set the pose of the robot base (changes the transformation of the parent joint of the root body)
         void set_base_pose(const Eigen::Isometry3d& tf);
 
-        Eigen::Vector3d body_pos(const std::string& body_name) const;
-        Eigen::Matrix3d body_rot(const std::string& body_name) const;
-        Eigen::Isometry3d body_trans(const std::string& body_name) const;
+        Eigen::Vector3d com() const;
+        Eigen::Vector6d com_velocity() const;
+        Eigen::Vector6d com_acceleration() const;
+
+        Eigen::VectorXd positions() const;
+        void set_positions(const Eigen::VectorXd& positions);
+
+        Eigen::VectorXd velocities() const;
+        void set_velocities(const Eigen::VectorXd& velocities);
+
+        Eigen::VectorXd accelerations() const;
+        void set_accelerations(const Eigen::VectorXd& accelerations);
+
+        Eigen::Isometry3d body_pose(const std::string& body_name) const;
+        Eigen::Isometry3d body_pose(size_t body_index) const;
+
+        std::string body_name(size_t body_index) const;
+        void set_body_name(size_t body_index, const std::string& body_name);
+
+        double body_mass(const std::string& body_name) const;
+        double body_mass(size_t body_index) const;
+        void set_body_mass(const std::string& body_name, double mass);
+        void set_body_mass(size_t body_index, double mass);
+
+        std::string joint_name(size_t joint_index) const;
+        void set_joint_name(size_t joint_index, const std::string& joint_name);
 
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);

@@ -351,6 +351,13 @@ namespace robot_dart {
         return cfrictions;
     }
 
+    Eigen::Isometry3d Robot::base_pose() const
+    {
+        auto jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!", Eigen::Isometry3d::Identity());
+        return jt->getTransformFromParentBodyNode();
+    }
+
     void Robot::set_base_pose(const Eigen::Isometry3d& tf)
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
@@ -358,29 +365,112 @@ namespace robot_dart {
             jt->setTransformFromParentBodyNode(tf);
     }
 
-    Eigen::Vector3d Robot::body_pos(const std::string& body_name) const
+    Eigen::Vector3d Robot::com() const
     {
-        auto bd = _skeleton->getBodyNode(body_name);
-        if (bd)
-            return bd->getTransform().translation();
-
-        return Eigen::Vector3d::Zero();
+        return _skeleton->getCOM();
     }
 
-    Eigen::Matrix3d Robot::body_rot(const std::string& body_name) const
+    Eigen::Vector6d Robot::com_velocity() const
     {
-        auto bd = _skeleton->getBodyNode(body_name);
-        if (bd)
-            return bd->getTransform().linear();
-        return Eigen::Matrix3d::Identity();
+        return _skeleton->getCOMSpatialVelocity();
     }
 
-    Eigen::Isometry3d Robot::body_trans(const std::string& body_name) const
+    Eigen::Vector6d Robot::com_acceleration() const
+    {
+        return _skeleton->getCOMSpatialAcceleration();
+    }
+
+    Eigen::VectorXd Robot::positions() const
+    {
+        return _skeleton->getPositions();
+    }
+
+    void Robot::set_positions(const Eigen::VectorXd& positions)
+    {
+        _skeleton->setPositions(positions);
+    }
+
+    Eigen::VectorXd Robot::velocities() const
+    {
+        return _skeleton->getVelocities();
+    }
+
+    void Robot::set_velocities(const Eigen::VectorXd& velocities)
+    {
+        _skeleton->setVelocities(velocities);
+    }
+
+    Eigen::VectorXd Robot::accelerations() const
+    {
+        return _skeleton->getAccelerations();
+    }
+
+    void Robot::set_accelerations(const Eigen::VectorXd& accelerations)
+    {
+        _skeleton->setAccelerations(accelerations);
+    }
+
+    Eigen::Isometry3d Robot::body_pose(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        if (bd)
-            return bd->getTransform();
-        return Eigen::Isometry3d::Identity();
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Isometry3d::Identity());
+        return bd->getWorldTransform();
+    }
+
+    Eigen::Isometry3d Robot::body_pose(size_t body_index) const
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Isometry3d::Identity());
+        return _skeleton->getBodyNode(body_index)->getWorldTransform();
+    }
+
+    std::string Robot::body_name(size_t body_index) const
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
+        return _skeleton->getBodyNode(body_index)->getName();
+    }
+
+    void Robot::set_body_name(size_t body_index, const std::string& body_name)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        _skeleton->getBodyNode(body_index)->setName(body_name);
+    }
+
+    double Robot::body_mass(const std::string& body_name) const
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0.);
+        return bd->getMass();
+    }
+
+    double Robot::body_mass(size_t body_index) const
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
+        return _skeleton->getBodyNode(body_index)->getMass();
+    }
+
+    void Robot::set_body_mass(const std::string& body_name, double mass)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+        bd->setMass(mass); // TO-DO: Recompute inertia?
+    }
+
+    void Robot::set_body_mass(size_t body_index, double mass)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        _skeleton->getBodyNode(body_index)->setMass(mass); // TO-DO: Recompute inertia?
+    }
+
+    std::string Robot::joint_name(size_t joint_index) const
+    {
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", "");
+        return _skeleton->getJoint(joint_index)->getName();
+    }
+
+    void Robot::set_joint_name(size_t joint_index, const std::string& joint_name)
+    {
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", );
+        _skeleton->getJoint(joint_index)->setName(joint_name);
     }
 
     void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
