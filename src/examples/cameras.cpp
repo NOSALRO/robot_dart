@@ -38,7 +38,7 @@ int main()
     ctrl = {0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.};
 
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
+    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(500., 50.);
 
     robot_dart::RobotDARTSimu simu(0.001);
 
@@ -58,6 +58,7 @@ int main()
     Eigen::Isometry3d tf;
     // tf.setIdentity();
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
+    tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
     camera->attach_to("iiwa_link_ee", tf); // cameras are looking towards -z by default
 

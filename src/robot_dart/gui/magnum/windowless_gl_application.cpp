@@ -24,6 +24,8 @@ namespace robot_dart {
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
                 _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
+                _color = Magnum::GL::Renderbuffer();
+                _depth = Magnum::GL::Renderbuffer();
                 _color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
                 _depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
