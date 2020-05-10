@@ -70,9 +70,36 @@ namespace robot_dart {
 
                 .def("set_base_pose", &Robot::set_base_pose)
 
-                .def("body_pos", &Robot::body_pos)
-                .def("body_rot", &Robot::body_rot)
-                .def("body_trans", &Robot::body_trans)
+                .def("base_pose", &Robot::base_pose)
+                .def("set_base_pose", &Robot::set_base_pose)
+
+                .def("com", &Robot::com)
+                .def("com_velocity", &Robot::com_velocity)
+                .def("com_acceleration", &Robot::com_acceleration)
+
+                .def("positions", &Robot::positions)
+                .def("set_positions", &Robot::set_positions)
+
+                .def("velocities", &Robot::velocities)
+                .def("set_velocities", &Robot::set_velocities)
+
+                .def("accelerations", &Robot::accelerations)
+                .def("set_accelerations", &Robot::set_accelerations)
+
+                .def("body_pose", (Eigen::Isometry3d(Robot::*)(const std::string& body_name) const) & Robot::body_pose)
+                .def("body_pose", (Eigen::Isometry3d(Robot::*)(size_t body_index) const) & Robot::body_pose)
+
+                .def("body_name", &Robot::body_name)
+                .def("set_body_name", &Robot::set_body_name)
+
+                .def("body_mass", (double (Robot::*)(const std::string& body_name) const) & Robot::body_mass)
+                .def("body_mass", (double (Robot::*)(size_t body_index) const) & Robot::body_mass)
+
+                .def("set_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::set_body_mass)
+                .def("set_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::set_body_mass)
+
+                .def("joint_name", &Robot::joint_name)
+                .def("set_joint_name", &Robot::set_joint_name)
 
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode)) & Robot::set_color_mode)
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode, const std::string&)) & Robot::set_color_mode)
