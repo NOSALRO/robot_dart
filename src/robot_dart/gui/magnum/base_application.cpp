@@ -428,7 +428,7 @@ namespace robot_dart {
 
                 /* Add default lights (2 directional lights) */
                 gs::Material mat;
-                mat.diffuseColor() = {0.8f, 0.8f, 0.8f, 1.f};
+                mat.diffuseColor() = {1.f, 1.f, 1.f, 1.f};
                 mat.specularColor() = {1.f, 1.f, 1.f, 1.f};
                 // gs::Light light = gs::createPointLight({0.f, 0.f, 2.f}, mat, 2.f, {0.f, 0.f, 1.f});
                 // gs::Light light = gs::createSpotLight(
@@ -685,14 +685,15 @@ namespace robot_dart {
                     bool cullFront = false;
                     Magnum::Matrix4 cameraMatrix;
                     Magnum::Float farPlane = 20.f, nearPlane = 0.001f;
+                    Magnum::Float proj_size = (farPlane - nearPlane) / 2.f;
                     if (!isPointLight) {
                         /* Directional lights */
                         if (_lights[i].position().w() == 0.f) {
-                            cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized() * (farPlane - nearPlane) / 2.f, {}, Magnum::Vector3::yAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
+                            cameraMatrix = Magnum::Matrix4::lookAt(-_lights[i].position().xyz().normalized() * proj_size, {}, Magnum::Vector3::yAxis()); //_camera->cameraObject().transformation()[2].xyz()); //.invertedRigid();
 
                             (*_shadowCamera)
                                 .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
-                                .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({10.f, 10.f}, nearPlane, farPlane))
+                                .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({proj_size, proj_size}, nearPlane, farPlane))
                                 .setViewport({_shadowMapSize, _shadowMapSize});
                             cullFront = true; // if false, peter panning will be quite a bit, but has better acne
                         }
