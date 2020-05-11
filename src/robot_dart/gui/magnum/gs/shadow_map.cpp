@@ -40,9 +40,9 @@ namespace robot_dart {
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
                     if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
-                        _transformationMatrixUniform = uniformLocation("transformationMatrix");
-                        _projectionMatrixUniform = uniformLocation("projectionMatrix");
-                        _diffuseColorUniform = uniformLocation("diffuseColor");
+                        _transformation_matrix_uniform = uniformLocation("transformationMatrix");
+                        _projection_matrix_uniform = uniformLocation("projectionMatrix");
+                        _diffuse_color_uniform = uniformLocation("diffuseColor");
                     }
 
                     if (!Magnum::GL::Context::current()
@@ -56,26 +56,26 @@ namespace robot_dart {
 
                 ShadowMap::Flags ShadowMap::flags() const { return _flags; }
 
-                ShadowMap& ShadowMap::setTransformationMatrix(const Magnum::Matrix4& matrix)
+                ShadowMap& ShadowMap::set_transformation_matrix(const Magnum::Matrix4& matrix)
                 {
-                    setUniform(_transformationMatrixUniform, matrix);
+                    setUniform(_transformation_matrix_uniform, matrix);
                     return *this;
                 }
 
-                ShadowMap& ShadowMap::setProjectionMatrix(const Magnum::Matrix4& matrix)
+                ShadowMap& ShadowMap::set_projection_matrix(const Magnum::Matrix4& matrix)
                 {
-                    setUniform(_projectionMatrixUniform, matrix);
+                    setUniform(_projection_matrix_uniform, matrix);
                     return *this;
                 }
 
-                ShadowMap& ShadowMap::setMaterial(Material& material)
+                ShadowMap& ShadowMap::set_material(Material& material)
                 {
-                    if (material.hasDiffuseTexture() && (_flags & Flag::DiffuseTexture)) {
-                        (*material.diffuseTexture()).bind(DiffuseTextureLayer);
-                        setUniform(_diffuseColorUniform, Magnum::Color4{1.0f});
+                    if (material.has_diffuse_texture() && (_flags & Flag::DiffuseTexture)) {
+                        (*material.diffuse_texture()).bind(DiffuseTextureLayer);
+                        setUniform(_diffuse_color_uniform, Magnum::Color4{1.0f});
                     }
                     else
-                        setUniform(_diffuseColorUniform, material.diffuseColor());
+                        setUniform(_diffuse_color_uniform, material.diffuse_color());
 
                     return *this;
                 }

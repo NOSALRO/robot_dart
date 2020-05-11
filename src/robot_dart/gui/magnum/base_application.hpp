@@ -103,11 +103,11 @@ namespace robot_dart {
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
 
-                void clearLights();
-                void addLight(const gs::Light& light);
+                void clear_lights();
+                void add_light(const gs::Light& light);
                 gs::Light& light(size_t i);
                 std::vector<gs::Light>& lights();
-                size_t numLights() const;
+                size_t num_lights() const;
 
                 Magnum::SceneGraph::DrawableGroup3D& drawables() { return _drawables; }
                 Scene3D& scene() { return _scene; }
@@ -115,32 +115,32 @@ namespace robot_dart {
 
                 bool done() const;
 
-                void lookAt(const Eigen::Vector3d& camera_pos,
+                void look_at(const Eigen::Vector3d& camera_pos,
                     const Eigen::Vector3d& look_at,
                     const Eigen::Vector3d& up);
 
                 virtual void render() {}
 
-                void updateLights(const gs::Camera& camera);
-                void updateGraphics();
-                void renderShadows();
-                bool attachCamera(gs::Camera& camera, const std::string& name);
+                void update_lights(const gs::Camera& camera);
+                void update_graphics();
+                void render_shadows();
+                bool attach_camera(gs::Camera& camera, const std::string& name);
 
                 void record(bool recording, bool depthRecording = false) { _camera->record(recording, depthRecording); }
-                bool isRecording() { return _camera->isRecording(); }
-                bool isDepthRecording() { return _camera->isDepthRecording(); }
+                bool recording() { return _camera->recording(); }
+                bool recording_depth() { return _camera->recording_depth(); }
 
-                bool isShadowed() const { return _isShadowed; }
-                bool transparentShadows() const { return _drawTransparentShadows; }
-                void enableShadows(bool enable = true, bool drawTransparentShadows = false);
+                bool shadowed() const { return _shadowed; }
+                bool transparent_shadows() const { return _transparent_shadows; }
+                void enable_shadows(bool enable = true, bool drawTransparentShadows = false);
 
                 Corrade::Containers::Optional<Magnum::Image2D>& image() { return _camera->image(); }
 
                 // This is for visualization purposes
-                GrayscaleImage depthImage();
+                GrayscaleImage depth_image();
 
                 // Image filled with depth buffer values
-                GrayscaleImage rawDepthImage();
+                GrayscaleImage raw_depth_image();
 
             protected:
                 /* Magnum */
@@ -153,29 +153,29 @@ namespace robot_dart {
                 bool _done = false;
 
                 /* DART */
-                std::unique_ptr<Magnum::DartIntegration::World> _dartWorld;
-                std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawableObjects;
-                std::vector<Object3D*> _dartObjs;
+                std::unique_ptr<Magnum::DartIntegration::World> _dart_world;
+                std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawable_objects;
+                std::vector<Object3D*> _dart_objects;
                 std::vector<gs::Light> _lights;
 
                 /* Shadows */
-                bool _isShadowed = true, _drawTransparentShadows = false;
+                bool _shadowed = true, _transparent_shadows = false;
                 int _transparentSize = 0;
                 std::unique_ptr<gs::ShadowMap> _shadow_shader, _shadow_texture_shader;
                 std::unique_ptr<gs::ShadowMapColor> _shadow_color_shader, _shadow_texture_color_shader;
                 std::unique_ptr<gs::CubeMap> _cubemap_shader, _cubemap_texture_shader;
                 std::unique_ptr<gs::CubeMapColor> _cubemap_color_shader, _cubemap_texture_color_shader;
-                std::vector<ShadowData> _shadowData;
-                std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture, _shadowColorTexture;
-                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap, _shadowColorCubeMap;
-                int _maxLights = 5;
-                int _shadowMapSize = 512;
-                std::unique_ptr<Camera3D> _shadowCamera;
-                Object3D* _shadowCameraObject;
+                std::vector<ShadowData> _shadow_data;
+                std::unique_ptr<Magnum::GL::Texture2DArray> _shadow_texture, _shadow_color_texture;
+                std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadow_cube_map, _shadow_color_cube_map;
+                int _max_lights = 5;
+                int _shadow_map_size = 512;
+                std::unique_ptr<Camera3D> _shadow_camera;
+                Object3D* _shadow_camera_object;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
 
-                void GLCleanUp();
-                void prepareShadows();
+                void _gl_clean_up();
+                void _prepare_shadows();
             };
 
             template <typename T>

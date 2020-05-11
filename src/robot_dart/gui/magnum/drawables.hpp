@@ -26,17 +26,17 @@ namespace robot_dart {
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
-                DrawableObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
-                DrawableObject& setMaterials(const std::vector<gs::Material>& materials);
-                DrawableObject& setSoftBodies(const std::vector<bool>& softBody);
-                DrawableObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
-                DrawableObject& setTransparent(bool transparent = true);
+                DrawableObject& set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                DrawableObject& set_materials(const std::vector<gs::Material>& materials);
+                DrawableObject& set_soft_bodies(const std::vector<bool>& softBody);
+                DrawableObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
+                DrawableObject& set_transparent(bool transparent = true);
 
-                DrawableObject& setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader);
-                DrawableObject& setTextureShader(std::reference_wrapper<gs::PhongMultiLight> shader);
+                DrawableObject& set_color_shader(std::reference_wrapper<gs::PhongMultiLight> shader);
+                DrawableObject& set_texture_shader(std::reference_wrapper<gs::PhongMultiLight> shader);
 
                 const std::vector<gs::Material>& materials() const { return _materials; }
-                bool isTransparent() const { return _isTransparent; }
+                bool transparent() const { return _isTransparent; }
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -46,8 +46,8 @@ namespace robot_dart {
                 std::reference_wrapper<gs::PhongMultiLight> _texture_shader;
                 std::vector<gs::Material> _materials;
                 std::vector<Magnum::Vector3> _scalings;
-                std::vector<bool> _hasNegativeScaling;
-                std::vector<bool> _isSoftBody;
+                std::vector<bool> _has_negative_scaling;
+                std::vector<bool> _is_soft_body;
                 bool _isTransparent;
             };
 
@@ -60,9 +60,9 @@ namespace robot_dart {
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
-                ShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
-                ShadowedObject& setMaterials(const std::vector<gs::Material>& materials);
-                ShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                ShadowedObject& set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedObject& set_materials(const std::vector<gs::Material>& materials);
+                ShadowedObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -82,9 +82,9 @@ namespace robot_dart {
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
-                ShadowedColorObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
-                ShadowedColorObject& setMaterials(const std::vector<gs::Material>& materials);
-                ShadowedColorObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                ShadowedColorObject& set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                ShadowedColorObject& set_materials(const std::vector<gs::Material>& materials);
+                ShadowedColorObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -104,9 +104,9 @@ namespace robot_dart {
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
-                CubeMapShadowedObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
-                CubeMapShadowedObject& setMaterials(const std::vector<gs::Material>& materials);
-                CubeMapShadowedObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                CubeMapShadowedObject& set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedObject& set_materials(const std::vector<gs::Material>& materials);
+                CubeMapShadowedObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -126,9 +126,9 @@ namespace robot_dart {
                     Object3D* parent,
                     Magnum::SceneGraph::DrawableGroup3D* group);
 
-                CubeMapShadowedColorObject& setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
-                CubeMapShadowedColorObject& setMaterials(const std::vector<gs::Material>& materials);
-                CubeMapShadowedColorObject& setScalings(const std::vector<Magnum::Vector3>& scalings);
+                CubeMapShadowedColorObject& set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes);
+                CubeMapShadowedColorObject& set_materials(const std::vector<gs::Material>& materials);
+                CubeMapShadowedColorObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
@@ -140,8 +140,8 @@ namespace robot_dart {
             };
 
             struct ShadowData {
-                Magnum::GL::Framebuffer shadowFramebuffer{Magnum::NoCreate};
-                Magnum::GL::Framebuffer shadowColorFramebuffer{Magnum::NoCreate};
+                Magnum::GL::Framebuffer shadow_framebuffer{Magnum::NoCreate};
+                Magnum::GL::Framebuffer shadow_color_framebuffer{Magnum::NoCreate};
             };
 
             struct ObjectStruct {

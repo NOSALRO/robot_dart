@@ -45,15 +45,15 @@ namespace robot_dart {
 
             WindowlessGLApplication::~WindowlessGLApplication()
             {
-                GLCleanUp();
+                _gl_clean_up();
             }
 
             void WindowlessGLApplication::render()
             {
                 /* Update graphic meshes/materials and render */
-                updateGraphics();
+                update_graphics();
                 /* Update lights transformations */
-                updateLights(*_camera);
+                update_lights(*_camera);
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
