@@ -105,7 +105,25 @@ namespace robot_dart {
         Eigen::VectorXd accelerations() const;
         void set_accelerations(const Eigen::VectorXd& accelerations);
 
+        Eigen::VectorXd forces() const;
+        void set_forces(const Eigen::VectorXd& forces);
+
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
+
+        void set_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+
+        void set_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+
+        void clear_external_forces();
+
+        Eigen::Vector6d external_forces(const std::string& body_name) const;
+        Eigen::Vector6d external_forces(size_t body_index) const;
 
         Eigen::Isometry3d body_pose(const std::string& body_name) const;
         Eigen::Isometry3d body_pose(size_t body_index) const;

@@ -437,6 +437,16 @@ namespace robot_dart {
         _skeleton->setAccelerations(accelerations);
     }
 
+    Eigen::VectorXd Robot::forces() const
+    {
+        return _skeleton->getForces();
+    }
+
+    void Robot::set_forces(const Eigen::VectorXd& forces)
+    {
+        _skeleton->setForces(forces);
+    }
+
     std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const
     {
         ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", {});
@@ -456,6 +466,91 @@ namespace robot_dart {
         // F1 contains the force applied by the parent Link on the Joint specified in the parent Link frame
         // F2 contains the force applied by the child Link on the Joint specified in the child Link frame
         return {F1, F2};
+    }
+
+    void Robot::set_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+
+        bd->setExtForce(force, offset, force_local, offset_local);
+    }
+
+    void Robot::set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        auto bd = _skeleton->getBodyNode(body_index);
+
+        bd->setExtForce(force, offset, force_local, offset_local);
+    }
+
+    void Robot::add_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+
+        bd->addExtForce(force, offset, force_local, offset_local);
+    }
+
+    void Robot::add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        auto bd = _skeleton->getBodyNode(body_index);
+
+        bd->addExtForce(force, offset, force_local, offset_local);
+    }
+
+    void Robot::set_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+
+        bd->setExtTorque(torque, local);
+    }
+
+    void Robot::set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        auto bd = _skeleton->getBodyNode(body_index);
+
+        bd->setExtTorque(torque, local);
+    }
+
+    void Robot::add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+
+        bd->addExtTorque(torque, local);
+    }
+
+    void Robot::add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        auto bd = _skeleton->getBodyNode(body_index);
+
+        bd->addExtTorque(torque, local);
+    }
+
+    void Robot::clear_external_forces()
+    {
+        _skeleton->clearExternalForces();
+    }
+
+    Eigen::Vector6d Robot::external_forces(const std::string& body_name) const
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+
+        return bd->getExternalForceGlobal();
+    }
+
+    Eigen::Vector6d Robot::external_forces(size_t body_index) const
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
+        auto bd = _skeleton->getBodyNode(body_index);
+
+        return bd->getExternalForceGlobal();
     }
 
     Eigen::Isometry3d Robot::body_pose(const std::string& body_name) const
