@@ -183,24 +183,36 @@ namespace robot_dart {
         return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
-    void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type)
+    void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type, bool override_mimic)
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
-        _skeleton->getDof(dof)->getJoint()->setActuatorType(type);
+        auto jt = _skeleton->getDof(dof)->getJoint();
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+        if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
+#endif
+            jt->setActuatorType(type);
     }
 
-    void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types)
+    void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic)
     {
         ROBOT_DART_ASSERT(types.size() == _skeleton->getNumDofs(), "Actuator types vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->getJoint()->setActuatorType(types[i]);
+            auto jt = _skeleton->getDof(i)->getJoint();
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+            if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
+#endif
+                jt->setActuatorType(types[i]);
         }
     }
 
-    void Robot::set_actuator_types(dart::dynamics::Joint::ActuatorType type)
+    void Robot::set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic)
     {
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->getJoint()->setActuatorType(type);
+            auto jt = _skeleton->getDof(i)->getJoint();
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+            if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
+#endif
+                jt->setActuatorType(type);
         }
     }
 
