@@ -18,8 +18,11 @@ namespace robot_dart {
                     Magnum::GL::Shader frag = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
+                    std::string defines = "#define POSITION_ATTRIBUTE_LOCATION " + std::to_string(Position::Location) + "\n";
+                    defines += "#define TEXTURECOORDINATES_ATTRIBUTE_LOCATION " + std::to_string(TextureCoordinates::Location) + "\n";
+
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
-                        .addSource(rs_shaders.get("generic.glsl"))
+                        .addSource(defines)
                         .addSource(rs_shaders.get("ShadowMap.vert"));
                     frag.addSource(flags ? "#define TEXTURED\n" : "")
                         .addSource(rs_shaders.get("ShadowMapColor.frag"));
