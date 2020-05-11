@@ -150,9 +150,8 @@ namespace robot_dart {
 
             void BaseApplication::addLight(const gs::Light& light)
             {
-                if (static_cast<int>(_lights.size()) < _maxLights)
-                    _lights.push_back(light);
-                // TO-DO: Output warning
+                ROBOT_DART_ASSERT(static_cast<int>(_lights.size()) < _maxLights, "You cannot add more lights!", );
+                _lights.push_back(light);
             }
 
             gs::Light& BaseApplication::light(size_t i)
@@ -328,7 +327,6 @@ namespace robot_dart {
                                 _transparentSize--;
                         }
 
-                        // TO-DO: Do I need to re-set the shaders?!
                         obj->drawable->setMeshes(meshes).setMaterials(materials).setSoftBodies(isSoftBody).setScalings(scalings).setTransparent(transparent).setColorShader(*_color_shader).setTextureShader(*_texture_shader);
                         obj->shadowed->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
                         obj->cubemapped->setMeshes(meshes).setMaterials(materials).setScalings(scalings);
