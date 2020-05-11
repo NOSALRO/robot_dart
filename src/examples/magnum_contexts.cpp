@@ -52,7 +52,10 @@ int main()
             std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(300., 50.);
 
             // Magnum graphics
-            auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<robot_dart::gui::magnum::WindowlessGLApplication>>(simu.world(), 1024, 768);
+            robot_dart::gui::magnum::GraphicsConfiguration configuration;
+            configuration.width = 1024;
+            configuration.height = 768;
+            auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<robot_dart::gui::magnum::WindowlessGLApplication>>(simu.world(), configuration);
             simu.set_graphics(graphics);
             // Position the camera differently for each thread to visualize the difference
             graphics->look_at({0.4 * index, 3.5 - index * 0.1, 2.}, {0., 0., 0.25});

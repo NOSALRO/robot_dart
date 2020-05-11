@@ -10,14 +10,17 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed, bool drawTransparentShadows)
-                : BaseApplication(isShadowed, drawTransparentShadows), Magnum::Platform::Application({argc, argv}, Magnum::NoCreate), _speedMove(0.f), _speedStrafe(0.f)
+            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration)
+                : BaseApplication(configuration),
+                  Magnum::Platform::Application({argc, argv}, Magnum::NoCreate),
+                  _speedMove(0.f),
+                  _speedStrafe(0.f)
             {
                 /* Try 16x MSAA */
                 Configuration conf;
                 GLConfiguration glConf;
-                conf.setTitle(title);
-                conf.setSize({static_cast<int>(width), static_cast<int>(height)});
+                conf.setTitle(configuration.title);
+                conf.setSize({static_cast<int>(configuration.width), static_cast<int>(configuration.height)});
                 conf.setWindowFlags(Configuration::WindowFlag::Resizable);
                 glConf.setSampleCount(8);
                 if (!tryCreate(conf, glConf))
