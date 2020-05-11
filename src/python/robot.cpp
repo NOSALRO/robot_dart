@@ -73,6 +73,10 @@ namespace robot_dart {
                 .def("base_pose", &Robot::base_pose)
                 .def("set_base_pose", &Robot::set_base_pose)
 
+                .def("num_dofs", &Robot::num_dofs)
+                .def("num_joints", &Robot::num_joints)
+                .def("num_bodies", &Robot::num_bodies)
+
                 .def("com", &Robot::com)
                 .def("com_velocity", &Robot::com_velocity)
                 .def("com_acceleration", &Robot::com_acceleration)

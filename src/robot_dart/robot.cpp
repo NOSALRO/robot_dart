@@ -377,6 +377,21 @@ namespace robot_dart {
             jt->setTransformFromParentBodyNode(tf);
     }
 
+    size_t Robot::num_dofs() const
+    {
+        return _skeleton->getNumDofs();
+    }
+
+    size_t Robot::num_joints() const
+    {
+        _skeleton->getNumJoints();
+    }
+
+    size_t Robot::num_bodies() const
+    {
+        _skeleton->getNumBodyNodes();
+    }
+
     Eigen::Vector3d Robot::com() const
     {
         return _skeleton->getCOM();
