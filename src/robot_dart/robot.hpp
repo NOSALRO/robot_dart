@@ -88,6 +88,10 @@ namespace robot_dart {
         // Set the pose of the robot base (changes the transformation of the parent joint of the root body)
         void set_base_pose(const Eigen::Isometry3d& tf);
 
+        size_t num_dofs() const;
+        size_t num_joints() const;
+        size_t num_bodies() const;
+
         Eigen::Vector3d com() const;
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
