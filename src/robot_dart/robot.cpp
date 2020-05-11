@@ -384,12 +384,12 @@ namespace robot_dart {
 
     size_t Robot::num_joints() const
     {
-        _skeleton->getNumJoints();
+        return _skeleton->getNumJoints();
     }
 
     size_t Robot::num_bodies() const
     {
-        _skeleton->getNumBodyNodes();
+        return _skeleton->getNumBodyNodes();
     }
 
     Eigen::Vector3d Robot::com() const
@@ -435,6 +435,27 @@ namespace robot_dart {
     void Robot::set_accelerations(const Eigen::VectorXd& accelerations)
     {
         _skeleton->setAccelerations(accelerations);
+    }
+
+    std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const
+    {
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", {});
+        auto jt = _skeleton->getJoint(joint_index);
+
+        Eigen::Vector6d F1 = Eigen::Vector6d::Zero();
+        Eigen::Vector6d F2 = Eigen::Vector6d::Zero();
+        Eigen::Isometry3d T12 = jt->getRelativeTransform();
+
+        auto child_body = jt->getChildBodyNode();
+        // ROBOT_DART_ASSERT(child_body != nullptr, "Child BodyNode is nullptr", {});
+        if (child_body)
+            F2 = -dart::math::dAdT(jt->getTransformFromChildBodyNode(), child_body->getBodyForce());
+
+        F1 = -dart::math::dAdInvR(T12, F2);
+
+        // F1 contains the force applied by the parent Link on the Joint specified in the parent Link frame
+        // F2 contains the force applied by the child Link on the Joint specified in the child Link frame
+        return {F1, F2};
     }
 
     Eigen::Isometry3d Robot::body_pose(const std::string& body_name) const
@@ -486,6 +507,12 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setMass(mass); // TO-DO: Recompute inertia?
+    }
+
+    std::string Robot::dof_name(size_t dof_index) const
+    {
+        ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", "");
+        return _skeleton->getDof(dof_index)->getName();
     }
 
     std::string Robot::joint_name(size_t joint_index) const

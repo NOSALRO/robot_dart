@@ -90,6 +90,8 @@ namespace robot_dart {
                 .def("accelerations", &Robot::accelerations)
                 .def("set_accelerations", &Robot::set_accelerations)
 
+                .def("force_torque", &Robot::force_torque)
+
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(const std::string& body_name) const) & Robot::body_pose)
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(size_t body_index) const) & Robot::body_pose)
 
@@ -102,6 +104,7 @@ namespace robot_dart {
                 .def("set_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::set_body_mass)
                 .def("set_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::set_body_mass)
 
+                .def("dof_name", &Robot::dof_name)
                 .def("joint_name", &Robot::joint_name)
                 .def("set_joint_name", &Robot::set_joint_name)
 
