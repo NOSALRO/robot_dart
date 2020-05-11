@@ -96,7 +96,8 @@ namespace robot_dart {
                 bool recording_depth() { return _magnum_app->isDepthRecording(); }
 
                 bool is_shadowed() const { return _magnum_app->isShadowed(); }
-                void enable_shadows(bool enable = true) { _magnum_app->enableShadows(enable); }
+                bool transparent_shadows() const { return _magnum_app->transparentShadows(); }
+                void enable_shadows(bool enable = true, bool transparent = true) { _magnum_app->enableShadows(enable, transparent); }
 
                 Magnum::Image2D* magnum_image()
                 {
