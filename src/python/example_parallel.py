@@ -14,13 +14,13 @@ def test():
 
     # create the controller
     pdcontrol = rd.PDControl([0.0, 1.0, -1.5, 1.0], False)
-    pdcontrol.set_pd(200., 20.)
 
     # clone the robot
     grobot = robot.clone()
 
     # add the controller to the robot
     grobot.add_controller(pdcontrol, 1.)
+    pdcontrol.set_pd(200., 20.)
 
     # create the simulation object
     simu = rd.RobotDARTSimu(0.001)
