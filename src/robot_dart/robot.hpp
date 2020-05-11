@@ -105,6 +105,8 @@ namespace robot_dart {
         Eigen::VectorXd accelerations() const;
         void set_accelerations(const Eigen::VectorXd& accelerations);
 
+        std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
+
         Eigen::Isometry3d body_pose(const std::string& body_name) const;
         Eigen::Isometry3d body_pose(size_t body_index) const;
 
@@ -116,6 +118,7 @@ namespace robot_dart {
         void set_body_mass(const std::string& body_name, double mass);
         void set_body_mass(size_t body_index, double mass);
 
+        std::string dof_name(size_t dof_index) const;
         std::string joint_name(size_t joint_index) const;
         void set_joint_name(size_t joint_index, const std::string& joint_name);
 
