@@ -83,6 +83,7 @@ namespace robot_dart {
                 .def("recording_depth", &Graphics::recording_depth)
 
                 .def("is_shadowed", &Graphics::is_shadowed)
+                .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
@@ -125,6 +126,7 @@ namespace robot_dart {
                 .def("recording_depth", &WindowlessGraphics::recording_depth)
 
                 .def("is_shadowed", &WindowlessGraphics::is_shadowed)
+                .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
                 .def("enable_shadows", &WindowlessGraphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
