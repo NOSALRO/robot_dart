@@ -41,8 +41,8 @@ namespace robot_dart {
                 .def("free", &Robot::free)
 
                 .def("set_actuator_type", &Robot::set_actuator_type)
-                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&)) & Robot::set_actuator_types)
-                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType)) & Robot::set_actuator_types)
+                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool)) & Robot::set_actuator_types)
+                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool)) & Robot::set_actuator_types)
 
                 .def("actuator_type", &Robot::actuator_type)
                 .def("actuator_types", &Robot::actuator_types)
