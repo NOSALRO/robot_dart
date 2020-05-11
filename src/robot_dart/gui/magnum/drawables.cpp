@@ -27,37 +27,37 @@ namespace robot_dart {
                   _texture_shader{texture},
                   _materials(materials)
             {
-                _isSoftBody.resize(_meshes.size(), false);
+                _is_soft_body.resize(_meshes.size(), false);
             }
 
-            DrawableObject& DrawableObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            DrawableObject& DrawableObject::set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setMaterials(const std::vector<gs::Material>& materials)
+            DrawableObject& DrawableObject::set_materials(const std::vector<gs::Material>& materials)
             {
                 _materials = materials;
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setSoftBodies(const std::vector<bool>& softBody)
+            DrawableObject& DrawableObject::set_soft_bodies(const std::vector<bool>& softBody)
             {
-                _isSoftBody = softBody;
+                _is_soft_body = softBody;
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            DrawableObject& DrawableObject::set_scalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
 
-                _hasNegativeScaling.resize(_scalings.size());
+                _has_negative_scaling.resize(_scalings.size());
                 for (size_t i = 0; i < scalings.size(); i++) {
-                    _hasNegativeScaling[i] = false;
+                    _has_negative_scaling[i] = false;
                     for (size_t j = 0; j < 3; j++)
                         if (_scalings[i][j] < 0.f) {
-                            _hasNegativeScaling[i] = true;
+                            _has_negative_scaling[i] = true;
                             break;
                         }
                 }
@@ -65,19 +65,19 @@ namespace robot_dart {
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setTransparent(bool transparent)
+            DrawableObject& DrawableObject::set_transparent(bool transparent)
             {
                 _isTransparent = transparent;
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setColorShader(std::reference_wrapper<gs::PhongMultiLight> shader)
+            DrawableObject& DrawableObject::set_color_shader(std::reference_wrapper<gs::PhongMultiLight> shader)
             {
                 _color_shader = shader;
                 return *this;
             }
 
-            DrawableObject& DrawableObject::setTextureShader(std::reference_wrapper<gs::PhongMultiLight> shader)
+            DrawableObject& DrawableObject::set_texture_shader(std::reference_wrapper<gs::PhongMultiLight> shader)
             {
                 _texture_shader = shader;
                 return *this;
@@ -88,33 +88,33 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    bool isColor = !_materials[i].hasDiffuseTexture();
-                    if (_isSoftBody[i])
+                    bool isColor = !_materials[i].has_diffuse_texture();
+                    if (_is_soft_body[i])
                         Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
-                    else if (_hasNegativeScaling[i])
+                    else if (_has_negative_scaling[i])
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Front);
                     if (isColor) {
                         _color_shader.get()
-                            .setMaterial(_materials[i])
-                            .setTransformationMatrix(absoluteTransformationMatrix() * scalingMatrix)
-                            .setNormalMatrix((transformationMatrix * scalingMatrix).rotationScaling())
-                            .setCameraMatrix(camera.cameraMatrix())
-                            .setProjectionMatrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
+                            .set_transformation_matrix(absoluteTransformationMatrix() * scalingMatrix)
+                            .set_normal_matrix((transformationMatrix * scalingMatrix).rotationScaling())
+                            .set_camera_matrix(camera.cameraMatrix())
+                            .set_projection_matrix(camera.projectionMatrix())
                             .draw(mesh);
                     }
                     else {
                         _texture_shader.get()
-                            .setMaterial(_materials[i])
-                            .setTransformationMatrix(absoluteTransformationMatrix() * scalingMatrix)
-                            .setNormalMatrix((transformationMatrix * scalingMatrix).rotationScaling())
-                            .setCameraMatrix(camera.cameraMatrix())
-                            .setProjectionMatrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
+                            .set_transformation_matrix(absoluteTransformationMatrix() * scalingMatrix)
+                            .set_normal_matrix((transformationMatrix * scalingMatrix).rotationScaling())
+                            .set_camera_matrix(camera.cameraMatrix())
+                            .set_projection_matrix(camera.projectionMatrix())
                             .draw(mesh);
                     }
 
-                    if (_isSoftBody[i])
+                    if (_is_soft_body[i])
                         Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
-                    else if (_hasNegativeScaling[i])
+                    else if (_has_negative_scaling[i])
                         Magnum::GL::Renderer::setFaceCullingMode(Magnum::GL::Renderer::PolygonFacing::Back);
                 }
             }
@@ -132,19 +132,19 @@ namespace robot_dart {
                   _shader{shader},
                   _texture_shader(texture_shader) {}
 
-            ShadowedObject& ShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            ShadowedObject& ShadowedObject::set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
                 return *this;
             }
 
-            ShadowedObject& ShadowedObject::setMaterials(const std::vector<gs::Material>& materials)
+            ShadowedObject& ShadowedObject::set_materials(const std::vector<gs::Material>& materials)
             {
                 _materials = materials;
                 return *this;
             }
 
-            ShadowedObject& ShadowedObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            ShadowedObject& ShadowedObject::set_scalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
                 return *this;
@@ -155,19 +155,19 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    bool isColor = !_materials[i].has_diffuse_texture();
                     if (isColor) {
                         (_shader.get())
-                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
-                            .setProjectionMatrix(camera.projectionMatrix())
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(transformationMatrix * scalingMatrix)
+                            .set_projection_matrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                     else {
                         (_texture_shader.get())
-                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
-                            .setProjectionMatrix(camera.projectionMatrix())
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(transformationMatrix * scalingMatrix)
+                            .set_projection_matrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                 }
@@ -186,19 +186,19 @@ namespace robot_dart {
                   _shader{shader},
                   _texture_shader(texture_shader) {}
 
-            ShadowedColorObject& ShadowedColorObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            ShadowedColorObject& ShadowedColorObject::set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
                 return *this;
             }
 
-            ShadowedColorObject& ShadowedColorObject::setMaterials(const std::vector<gs::Material>& materials)
+            ShadowedColorObject& ShadowedColorObject::set_materials(const std::vector<gs::Material>& materials)
             {
                 _materials = materials;
                 return *this;
             }
 
-            ShadowedColorObject& ShadowedColorObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            ShadowedColorObject& ShadowedColorObject::set_scalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
                 return *this;
@@ -209,19 +209,19 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    bool isColor = !_materials[i].has_diffuse_texture();
                     if (isColor) {
                         (_shader.get())
-                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
-                            .setProjectionMatrix(camera.projectionMatrix())
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(transformationMatrix * scalingMatrix)
+                            .set_projection_matrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                     else {
                         (_texture_shader.get())
-                            .setTransformationMatrix(transformationMatrix * scalingMatrix)
-                            .setProjectionMatrix(camera.projectionMatrix())
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(transformationMatrix * scalingMatrix)
+                            .set_projection_matrix(camera.projectionMatrix())
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                 }
@@ -240,19 +240,19 @@ namespace robot_dart {
                   _shader{shader},
                   _texture_shader(texture_shader) {}
 
-            CubeMapShadowedObject& CubeMapShadowedObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            CubeMapShadowedObject& CubeMapShadowedObject::set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
                 return *this;
             }
 
-            CubeMapShadowedObject& CubeMapShadowedObject::setMaterials(const std::vector<gs::Material>& materials)
+            CubeMapShadowedObject& CubeMapShadowedObject::set_materials(const std::vector<gs::Material>& materials)
             {
                 _materials = materials;
                 return *this;
             }
 
-            CubeMapShadowedObject& CubeMapShadowedObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            CubeMapShadowedObject& CubeMapShadowedObject::set_scalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
                 return *this;
@@ -263,17 +263,17 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    bool isColor = !_materials[i].has_diffuse_texture();
                     if (isColor) {
                         (_shader.get())
-                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(absoluteTransformation() * scalingMatrix)
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                     else {
                         (_texture_shader.get())
-                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(absoluteTransformation() * scalingMatrix)
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                 }
@@ -292,19 +292,19 @@ namespace robot_dart {
                   _shader{shader},
                   _texture_shader(texture_shader) {}
 
-            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setMeshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::set_meshes(const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes)
             {
                 _meshes = meshes;
                 return *this;
             }
 
-            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setMaterials(const std::vector<gs::Material>& materials)
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::set_materials(const std::vector<gs::Material>& materials)
             {
                 _materials = materials;
                 return *this;
             }
 
-            CubeMapShadowedColorObject& CubeMapShadowedColorObject::setScalings(const std::vector<Magnum::Vector3>& scalings)
+            CubeMapShadowedColorObject& CubeMapShadowedColorObject::set_scalings(const std::vector<Magnum::Vector3>& scalings)
             {
                 _scalings = scalings;
                 return *this;
@@ -315,17 +315,17 @@ namespace robot_dart {
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
-                    bool isColor = !_materials[i].hasDiffuseTexture();
+                    bool isColor = !_materials[i].has_diffuse_texture();
                     if (isColor) {
                         (_shader.get())
-                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(absoluteTransformation() * scalingMatrix)
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                     else {
                         (_texture_shader.get())
-                            .setTransformationMatrix(absoluteTransformation() * scalingMatrix)
-                            .setMaterial(_materials[i])
+                            .set_transformation_matrix(absoluteTransformation() * scalingMatrix)
+                            .set_material(_materials[i])
                             .draw(mesh);
                     }
                 }

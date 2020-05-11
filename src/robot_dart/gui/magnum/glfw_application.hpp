@@ -23,7 +23,7 @@ namespace robot_dart {
                 void render() override;
 
             protected:
-                Magnum::Float _speedMove, _speedStrafe;
+                Magnum::Float _speed_move, _speed_strafe;
 
                 static constexpr Magnum::Float _speed = 0.05f;
 

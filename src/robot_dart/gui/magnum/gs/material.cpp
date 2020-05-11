@@ -17,75 +17,75 @@ namespace robot_dart {
                                                                                _specular(specular),
                                                                                _shininess(shininess) {}
 
-                Material::Material(Magnum::GL::Texture2D* ambientTexture,
-                    Magnum::GL::Texture2D* diffuseTexture,
-                    Magnum::GL::Texture2D* specularTexture, Magnum::Float shininess) : _ambient(Magnum::Color4{0.f, 0.f, 0.f, 1.f}),
+                Material::Material(Magnum::GL::Texture2D* ambient_texture,
+                    Magnum::GL::Texture2D* diffuse_texture,
+                    Magnum::GL::Texture2D* specular_texture, Magnum::Float shininess) : _ambient(Magnum::Color4{0.f, 0.f, 0.f, 1.f}),
                                                                                        _diffuse(Magnum::Color4{0.f, 0.f, 0.f, 1.f}),
                                                                                        _specular(Magnum::Color4{0.f, 0.f, 0.f, 1.f}),
                                                                                        _shininess(shininess),
-                                                                                       _ambientTexture(ambientTexture),
-                                                                                       _diffuseTexture(diffuseTexture),
-                                                                                       _specularTexture(specularTexture) {}
+                                                                                       _ambient_texture(ambient_texture),
+                                                                                       _diffuse_texture(diffuse_texture),
+                                                                                       _specular_texture(specular_texture) {}
 
-                Magnum::Color4& Material::ambientColor() { return _ambient; }
-                Magnum::Color4 Material::ambientColor() const { return _ambient; }
+                Magnum::Color4& Material::ambient_color() { return _ambient; }
+                Magnum::Color4 Material::ambient_color() const { return _ambient; }
 
-                Magnum::Color4& Material::diffuseColor() { return _diffuse; }
-                Magnum::Color4 Material::diffuseColor() const { return _diffuse; }
+                Magnum::Color4& Material::diffuse_color() { return _diffuse; }
+                Magnum::Color4 Material::diffuse_color() const { return _diffuse; }
 
-                Magnum::Color4& Material::specularColor() { return _specular; }
-                Magnum::Color4 Material::specularColor() const { return _specular; }
+                Magnum::Color4& Material::specular_color() { return _specular; }
+                Magnum::Color4 Material::specular_color() const { return _specular; }
 
                 Magnum::Float& Material::shininess() { return _shininess; }
                 Magnum::Float Material::shininess() const { return _shininess; }
 
-                Magnum::GL::Texture2D* Material::ambientTexture() { return _ambientTexture; }
-                Magnum::GL::Texture2D* Material::diffuseTexture() { return _diffuseTexture; }
-                Magnum::GL::Texture2D* Material::specularTexture() { return _specularTexture; }
+                Magnum::GL::Texture2D* Material::ambient_texture() { return _ambient_texture; }
+                Magnum::GL::Texture2D* Material::diffuse_texture() { return _diffuse_texture; }
+                Magnum::GL::Texture2D* Material::specular_texture() { return _specular_texture; }
 
-                bool Material::hasAmbientTexture() const { return _ambientTexture != NULL; }
-                bool Material::hasDiffuseTexture() const { return _diffuseTexture != NULL; }
-                bool Material::hasSpecularTexture() const { return _specularTexture != NULL; }
+                bool Material::has_ambient_texture() const { return _ambient_texture != NULL; }
+                bool Material::has_diffuse_texture() const { return _diffuse_texture != NULL; }
+                bool Material::has_specular_texture() const { return _specular_texture != NULL; }
 
-                Material& Material::setAmbientColor(const Magnum::Color4& ambient)
+                Material& Material::set_ambient_color(const Magnum::Color4& ambient)
                 {
                     _ambient = ambient;
                     return *this;
                 }
 
-                Material& Material::setDiffuseColor(const Magnum::Color4& diffuse)
+                Material& Material::set_diffuse_color(const Magnum::Color4& diffuse)
                 {
                     _diffuse = diffuse;
                     return *this;
                 }
 
-                Material& Material::setSpecularColor(const Magnum::Color4& specular)
+                Material& Material::set_specular_color(const Magnum::Color4& specular)
                 {
                     _specular = specular;
                     return *this;
                 }
 
-                Material& Material::setShininess(Magnum::Float shininess)
+                Material& Material::set_shininess(Magnum::Float shininess)
                 {
                     _shininess = shininess;
                     return *this;
                 }
 
-                Material& Material::setAmbientTexture(Magnum::GL::Texture2D* ambientTexture)
+                Material& Material::set_ambient_texture(Magnum::GL::Texture2D* ambient_texture)
                 {
-                    _ambientTexture = ambientTexture;
+                    _ambient_texture = ambient_texture;
                     return *this;
                 }
 
-                Material& Material::setDiffuseTexture(Magnum::GL::Texture2D* diffuseTexture)
+                Material& Material::set_diffuse_texture(Magnum::GL::Texture2D* diffuse_texture)
                 {
-                    _diffuseTexture = diffuseTexture;
+                    _diffuse_texture = diffuse_texture;
                     return *this;
                 }
 
-                Material& Material::setSpecularTexture(Magnum::GL::Texture2D* specularTexture)
+                Material& Material::set_specular_texture(Magnum::GL::Texture2D* specular_texture)
                 {
-                    _specularTexture = specularTexture;
+                    _specular_texture = specular_texture;
                     return *this;
                 }
             } // namespace gs

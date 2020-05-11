@@ -13,59 +13,59 @@ namespace robot_dart {
                 public:
                     Light();
 
-                    Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spotDirection,
-                        Magnum::Float spotExponent, Magnum::Float spotCutOff, const Magnum::Vector4& attenuation);
+                    Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spot_direction,
+                        Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation);
 
                     // Magnum::Vector4& position();
                     Magnum::Vector4 position() const;
-                    Magnum::Vector4& transformedPosition();
-                    Magnum::Vector4 transformedPosition() const;
+                    Magnum::Vector4& transformed_position();
+                    Magnum::Vector4 transformed_position() const;
 
                     Material& material();
                     Material material() const;
 
-                    // Magnum::Vector3& spotDirection();
-                    Magnum::Vector3 spotDirection() const;
+                    // Magnum::Vector3& spot_direction();
+                    Magnum::Vector3 spot_direction() const;
 
-                    Magnum::Vector3& transformedSpotDirection();
-                    Magnum::Vector3 transformedSpotDirection() const;
+                    Magnum::Vector3& transformed_spot_direction();
+                    Magnum::Vector3 transformed_spot_direction() const;
 
-                    Magnum::Float& spotExponent();
-                    Magnum::Float spotExponent() const;
+                    Magnum::Float& spot_exponent();
+                    Magnum::Float spot_exponent() const;
 
-                    Magnum::Float& spotCutOff();
-                    Magnum::Float spotCutOff() const;
+                    Magnum::Float& spot_cut_off();
+                    Magnum::Float spot_cut_off() const;
 
                     Magnum::Vector4& attenuation();
                     Magnum::Vector4 attenuation() const;
 
-                    Magnum::Matrix4 shadowMatrix() const;
+                    Magnum::Matrix4 shadow_matrix() const;
 
-                    Light& setPosition(const Magnum::Vector4& position);
-                    Light& setTransformedPosition(const Magnum::Vector4& transformedPosition);
+                    Light& set_position(const Magnum::Vector4& position);
+                    Light& set_transformed_position(const Magnum::Vector4& transformed_position);
 
-                    Light& setMaterial(const Material& material);
+                    Light& set_material(const Material& material);
 
-                    Light& setSpotDirection(const Magnum::Vector3& spotDirection);
-                    Light& setTransformedSpotDirection(const Magnum::Vector3& transformedSpotDirection);
-                    Light& setSpotExponent(Magnum::Float spotExponent);
-                    Light& setSpotCutOff(Magnum::Float spotCutOff);
+                    Light& set_spot_direction(const Magnum::Vector3& spot_direction);
+                    Light& set_transformed_spot_direction(const Magnum::Vector3& transformed_spot_direction);
+                    Light& set_spot_exponent(Magnum::Float spot_exponent);
+                    Light& set_spot_cut_off(Magnum::Float spot_cut_off);
 
-                    Light& setAttenuation(const Magnum::Vector4& attenuation);
+                    Light& set_attenuation(const Magnum::Vector4& attenuation);
 
-                    Light& setShadowMatrix(const Magnum::Matrix4& shadowTransform);
+                    Light& set_shadow_matrix(const Magnum::Matrix4& shadowTransform);
 
                 protected:
                     // Position for point-lights and spot-lights
                     // Direction for directional lights (if position.w == 0)
                     Magnum::Vector4 _position;
                     // TO-DO: Handle dirtiness of transformed position
-                    Magnum::Vector4 _transformedPosition;
+                    Magnum::Vector4 _transformed_position;
                     Material _material;
-                    Magnum::Vector3 _spotDirection;
+                    Magnum::Vector3 _spot_direction;
                     // TO-DO: Handle dirtiness of transformed spot direction
-                    Magnum::Vector3 _transformedSpotDirection;
-                    Magnum::Float _spotExponent, _spotCutOff;
+                    Magnum::Vector3 _transformed_spot_direction;
+                    Magnum::Float _spot_exponent, _spot_cut_off;
 
                     // Attenuation is: intensity/(constant + d * (linear + quadratic * d)
                     // where d is the distance from the light position to the vertex position.
@@ -74,35 +74,35 @@ namespace robot_dart {
                     Magnum::Vector4 _attenuation;
 
                     // Shadow-Matrix
-                    Magnum::Matrix4 _shadowTransform{};
+                    Magnum::Matrix4 _shadow_transform{};
                 };
 
                 // Helpers for creating lights
-                inline Light createPointLight(const Magnum::Vector3& position, const Material& material,
+                inline Light create_point_light(const Magnum::Vector3& position, const Material& material,
                     Magnum::Float intensity, const Magnum::Vector3& attenuationTerms)
                 {
                     Light light;
-                    light.setMaterial(material);
-                    light.setPosition(Magnum::Vector4{position, 1.f})
-                        .setAttenuation(Magnum::Vector4{attenuationTerms, intensity});
+                    light.set_material(material);
+                    light.set_position(Magnum::Vector4{position, 1.f})
+                        .set_attenuation(Magnum::Vector4{attenuationTerms, intensity});
 
                     return light;
                 }
 
-                inline Light createSpotLight(const Magnum::Vector3& position, const Material& material,
-                    const Magnum::Vector3& spotDirection, Magnum::Float spotExponent, Magnum::Float spotCutOff,
+                inline Light create_spot_light(const Magnum::Vector3& position, const Material& material,
+                    const Magnum::Vector3& spot_direction, Magnum::Float spot_exponent, Magnum::Float spot_cut_off,
                     Magnum::Float intensity, const Magnum::Vector3& attenuationTerms)
                 {
-                    return Light(Magnum::Vector4{position, 1.f}, material, spotDirection, spotExponent, spotCutOff,
+                    return Light(Magnum::Vector4{position, 1.f}, material, spot_direction, spot_exponent, spot_cut_off,
                         Magnum::Vector4{attenuationTerms, intensity});
                 }
 
-                inline Light createDirectionalLight(
+                inline Light create_directional_light(
                     const Magnum::Vector3& direction, const Material& material)
                 {
                     Light light;
-                    light.setMaterial(material);
-                    light.setPosition(Magnum::Vector4{direction, 0.f});
+                    light.set_material(material);
+                    light.set_position(Magnum::Vector4{direction, 0.f});
 
                     return light;
                 }

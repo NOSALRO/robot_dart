@@ -45,17 +45,17 @@ namespace robot_dart {
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
                     if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
-                        _transformationMatrixUniform = uniformLocation("transformationMatrix");
-                        _shadowMatricesUniform = uniformLocation("shadowMatrices[0]");
-                        _lightPositionUniform = uniformLocation("lightPosition");
-                        _farPlaneUniform = uniformLocation("farPlane");
-                        _lightIndexUniform = uniformLocation("lightIndex");
-                        _diffuseColorUniform = uniformLocation("diffuseColor");
+                        _transformation_matrix_uniform = uniformLocation("transformationMatrix");
+                        _shadow_matrices_uniform = uniformLocation("shadowMatrices[0]");
+                        _light_position_uniform = uniformLocation("lightPosition");
+                        _far_plane_uniform = uniformLocation("farPlane");
+                        _light_index_uniform = uniformLocation("lightIndex");
+                        _diffuse_color_uniform = uniformLocation("diffuseColor");
                     }
 
                     if (!Magnum::GL::Context::current()
                              .isExtensionSupported<Magnum::GL::Extensions::ARB::shading_language_420pack>(version)) {
-                        setUniform(uniformLocation("cubeMapTextures"), _cubeMapTexturesLocation);
+                        setUniform(uniformLocation("cubeMapTextures"), _cube_map_textures_location);
                         if (flags) {
                             if (flags & Flag::DiffuseTexture)
                                 setUniform(uniformLocation("diffuseTexture"), DiffuseTextureLayer);
@@ -67,52 +67,52 @@ namespace robot_dart {
 
                 CubeMapColor::Flags CubeMapColor::flags() const { return _flags; }
 
-                CubeMapColor& CubeMapColor::setTransformationMatrix(const Magnum::Matrix4& matrix)
+                CubeMapColor& CubeMapColor::set_transformation_matrix(const Magnum::Matrix4& matrix)
                 {
-                    setUniform(_transformationMatrixUniform, matrix);
+                    setUniform(_transformation_matrix_uniform, matrix);
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::setShadowMatrices(Magnum::Matrix4 matrices[6])
+                CubeMapColor& CubeMapColor::set_shadow_matrices(Magnum::Matrix4 matrices[6])
                 {
                     for (size_t i = 0; i < 6; i++)
-                        setUniform(_shadowMatricesUniform + i, matrices[i]);
+                        setUniform(_shadow_matrices_uniform + i, matrices[i]);
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::setLightPosition(const Magnum::Vector3& position)
+                CubeMapColor& CubeMapColor::set_light_position(const Magnum::Vector3& position)
                 {
-                    setUniform(_lightPositionUniform, position);
+                    setUniform(_light_position_uniform, position);
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::setFarPlane(Magnum::Float farPlane)
+                CubeMapColor& CubeMapColor::set_far_plane(Magnum::Float far_plane)
                 {
-                    setUniform(_farPlaneUniform, farPlane);
+                    setUniform(_far_plane_uniform, far_plane);
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::setLightIndex(Magnum::Int index)
+                CubeMapColor& CubeMapColor::set_light_index(Magnum::Int index)
                 {
-                    setUniform(_lightIndexUniform, index);
+                    setUniform(_light_index_uniform, index);
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::setMaterial(Material& material)
+                CubeMapColor& CubeMapColor::set_material(Material& material)
                 {
-                    if (material.hasDiffuseTexture() && (_flags & Flag::DiffuseTexture)) {
-                        (*material.diffuseTexture()).bind(DiffuseTextureLayer);
-                        setUniform(_diffuseColorUniform, Magnum::Color4{1.0f});
+                    if (material.has_diffuse_texture() && (_flags & Flag::DiffuseTexture)) {
+                        (*material.diffuse_texture()).bind(DiffuseTextureLayer);
+                        setUniform(_diffuse_color_uniform, Magnum::Color4{1.0f});
                     }
                     else
-                        setUniform(_diffuseColorUniform, material.diffuseColor());
+                        setUniform(_diffuse_color_uniform, material.diffuse_color());
 
                     return *this;
                 }
 
-                CubeMapColor& CubeMapColor::bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture)
+                CubeMapColor& CubeMapColor::bind_cube_map_texture(Magnum::GL::CubeMapTextureArray& texture)
                 {
-                    texture.bind(_cubeMapTexturesLocation);
+                    texture.bind(_cube_map_textures_location);
                     return *this;
                 }
             } // namespace gs

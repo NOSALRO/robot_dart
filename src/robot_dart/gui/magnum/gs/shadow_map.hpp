@@ -32,13 +32,13 @@ namespace robot_dart {
 
                     Flags flags() const;
 
-                    ShadowMap& setTransformationMatrix(const Magnum::Matrix4& matrix);
-                    ShadowMap& setProjectionMatrix(const Magnum::Matrix4& matrix);
-                    ShadowMap& setMaterial(Material& material);
+                    ShadowMap& set_transformation_matrix(const Magnum::Matrix4& matrix);
+                    ShadowMap& set_projection_matrix(const Magnum::Matrix4& matrix);
+                    ShadowMap& set_material(Material& material);
 
                 private:
                     Flags _flags;
-                    Magnum::Int _transformationMatrixUniform{0}, _projectionMatrixUniform{1}, _diffuseColorUniform{2};
+                    Magnum::Int _transformation_matrix_uniform{0}, _projection_matrix_uniform{1}, _diffuse_color_uniform{2};
                 };
 
                 CORRADE_ENUMSET_OPERATORS(ShadowMap::Flags)

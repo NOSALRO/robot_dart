@@ -13,8 +13,8 @@ namespace robot_dart {
             GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration)
                 : BaseApplication(configuration),
                   Magnum::Platform::Application({argc, argv}, Magnum::NoCreate),
-                  _speedMove(0.f),
-                  _speedStrafe(0.f)
+                  _speed_move(0.f),
+                  _speed_strafe(0.f)
             {
                 /* Try 16x MSAA */
                 Configuration conf;
@@ -38,7 +38,7 @@ namespace robot_dart {
 
             GlfwApplication::~GlfwApplication()
             {
-                GLCleanUp();
+                _gl_clean_up();
             }
 
             void GlfwApplication::render()
@@ -50,15 +50,15 @@ namespace robot_dart {
             {
                 Magnum::GL::defaultFramebuffer.setViewport({{}, size});
 
-                _camera->setViewport(size);
+                _camera->set_viewport(size);
             }
 
             void GlfwApplication::drawEvent()
             {
                 /* Update graphic meshes/materials and render */
-                updateGraphics();
+                update_graphics();
                 /* Update lights transformations */
-                updateLights(*_camera);
+                update_lights(*_camera);
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
@@ -73,8 +73,8 @@ namespace robot_dart {
                 Magnum::GL::defaultFramebuffer.clear(
                     Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
-                _camera->forward(_speedMove);
-                _camera->strafe(_speedStrafe);
+                _camera->forward(_speed_move);
+                _camera->strafe(_speed_strafe);
 
                 /* Draw with main camera */
                 _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm);
@@ -86,8 +86,8 @@ namespace robot_dart {
 
             void GlfwApplication::keyReleaseEvent(KeyEvent& event)
             {
-                _speedMove = 0.f;
-                _speedStrafe = 0.f;
+                _speed_move = 0.f;
+                _speed_strafe = 0.f;
 
                 event.setAccepted();
             }
@@ -95,16 +95,16 @@ namespace robot_dart {
             void GlfwApplication::keyPressEvent(KeyEvent& event)
             {
                 if (event.key() == KeyEvent::Key::W) {
-                    _speedMove = _speed;
+                    _speed_move = _speed;
                 }
                 else if (event.key() == KeyEvent::Key::S) {
-                    _speedMove = -_speed;
+                    _speed_move = -_speed;
                 }
                 else if (event.key() == KeyEvent::Key::A) {
-                    _speedStrafe = -_speed;
+                    _speed_strafe = -_speed;
                 }
                 else if (event.key() == KeyEvent::Key::D) {
-                    _speedStrafe = _speed;
+                    _speed_strafe = _speed;
                 }
                 else if (event.key() == KeyEvent::Key::Q || event.key() == KeyEvent::Key::Esc) {
                     exit();

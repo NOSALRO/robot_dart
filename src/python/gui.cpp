@@ -82,7 +82,7 @@ namespace robot_dart {
                 .def("recording", &Graphics::recording)
                 .def("recording_depth", &Graphics::recording_depth)
 
-                .def("is_shadowed", &Graphics::is_shadowed)
+                .def("shadowed", &Graphics::shadowed)
                 .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
 
@@ -125,7 +125,7 @@ namespace robot_dart {
                 .def("recording", &WindowlessGraphics::recording)
                 .def("recording_depth", &WindowlessGraphics::recording_depth)
 
-                .def("is_shadowed", &WindowlessGraphics::is_shadowed)
+                .def("shadowed", &WindowlessGraphics::shadowed)
                 .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
                 .def("enable_shadows", &WindowlessGraphics::enable_shadows)
 
@@ -213,9 +213,9 @@ namespace robot_dart {
                 .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&>());
             // TO-DO: Add more functions
 
-            sm.def("createPointLight", &gui::magnum::gs::createPointLight);
-            sm.def("createSpotLight", &gui::magnum::gs::createSpotLight);
-            sm.def("createDirectionalLight", &gui::magnum::gs::createDirectionalLight);
+            sm.def("create_point_light", &gui::magnum::gs::create_point_light);
+            sm.def("create_spot_light", &gui::magnum::gs::create_spot_light);
+            sm.def("create_directional_light", &gui::magnum::gs::create_directional_light);
         }
 #endif
     } // namespace python
