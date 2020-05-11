@@ -8,10 +8,8 @@
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
-    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world,
-        size_t width, size_t height, const std::string& title = "DART",
-        bool shadowed = true, bool transparent_shadows = true)
-        : GlfwApplication(argc, argv, world, width, height, title, shadowed, transparent_shadows) {}
+    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, const robot_dart::gui::magnum::GraphicsConfiguration& configuration = robot_dart::gui::magnum::GraphicsConfiguration())
+        : GlfwApplication(argc, argv, world, configuration) {}
 
 protected:
     void keyPressEvent(KeyEvent& event) override
@@ -43,7 +41,10 @@ int main()
     robot_dart::RobotDARTSimu simu(0.001);
 
     // Magnum graphics
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(simu.world(), 1024, 768);
+    robot_dart::gui::magnum::GraphicsConfiguration configuration;
+    configuration.width = 1024;
+    configuration.height = 768;
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(simu.world(), configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 

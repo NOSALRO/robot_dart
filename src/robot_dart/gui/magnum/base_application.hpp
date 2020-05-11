@@ -81,9 +81,24 @@ namespace robot_dart {
                 size_t _max_contexts = 4;
             };
 
+            struct GraphicsConfiguration {
+                // General
+                size_t width = 640;
+                size_t height = 480;
+                std::string title = "DART";
+
+                // Shadows
+                bool shadowed = true;
+                bool transparent_shadows = true;
+                size_t shadow_map_size = 512;
+
+                // Lights
+                size_t max_lights = 3;
+            };
+
             class BaseApplication {
             public:
-                BaseApplication(bool isShadowed = true, bool drawTransparentShadows = true);
+                BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
                 virtual ~BaseApplication() {}
 
                 void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
@@ -153,8 +168,8 @@ namespace robot_dart {
                 std::vector<ShadowData> _shadowData;
                 std::unique_ptr<Magnum::GL::Texture2DArray> _shadowTexture, _shadowColorTexture;
                 std::unique_ptr<Magnum::GL::CubeMapTextureArray> _shadowCubeMap, _shadowColorCubeMap;
-                int _shadowMapSize = 512;
                 int _maxLights = 5;
+                int _shadowMapSize = 512;
                 std::unique_ptr<Camera3D> _shadowCamera;
                 Object3D* _shadowCameraObject;
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
@@ -164,12 +179,13 @@ namespace robot_dart {
             };
 
             template <typename T>
-            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true, bool drawTransparentShadows = true)
+            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration())
             {
                 int argc = 0;
                 char** argv = NULL;
 
-                return new T(argc, argv, world, width, height, title, isShadowed, drawTransparentShadows);
+                return new T(argc, argv, world, configuration);
+                // configuration.width, configuration.height, configuration.shadowed, configuration.transparent_shadows, configuration.max_lights, configuration.shadow_map_size);
             }
         } // namespace magnum
     } // namespace gui

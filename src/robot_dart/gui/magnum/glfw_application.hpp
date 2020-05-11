@@ -16,7 +16,7 @@ namespace robot_dart {
         namespace magnum {
             class GlfwApplication : public BaseApplication, public Magnum::Platform::Application {
             public:
-                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true, bool drawTransparentShadows = true);
+                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration());
 
                 ~GlfwApplication();
 

@@ -65,9 +65,9 @@ namespace robot_dart {
             }
 
             // BaseApplication
-            BaseApplication::BaseApplication(bool isShadowed, bool drawTransparentShadows)
+            BaseApplication::BaseApplication(const GraphicsConfiguration& configuration) : _maxLights(configuration.max_lights), _shadowMapSize(configuration.shadow_map_size)
             {
-                enableShadows(isShadowed, drawTransparentShadows);
+                enableShadows(configuration.shadowed, configuration.transparent_shadows);
             }
 
             void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)

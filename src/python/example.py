@@ -36,7 +36,7 @@ print(control.get_positions())
 simu = rd.RobotDARTSimu(0.001)
 
 # Create graphics
-graphics = rd.gui.Graphics(simu.world(), 640, 480, True, False, "DART")
+graphics = rd.gui.Graphics(simu.world(), rd.gui.GraphicsConfiguration())
 # graphics.clear_lights()
 # mat = rd.gui.Material(magnum.Color4(0, 0, 0, 1), magnum.Color4(1, 1, 1, 1), magnum.Color4(1, 1, 1, 1), 80.)
 # graphics.add_light(rd.gui.createPointLight(magnum.Vector3(-1., 1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
