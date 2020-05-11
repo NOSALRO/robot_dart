@@ -1,8 +1,6 @@
 #include "phong_multi_light.hpp"
 #include "create_compatibility_shader.hpp"
 
-#include "../resources/generic.glsl"
-
 #include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureArray.h>
@@ -13,10 +11,6 @@ namespace robot_dart {
             namespace gs {
                 PhongMultiLight::PhongMultiLight(PhongMultiLight::Flags flags, Magnum::Int maxLights) : _flags(flags), _maxLights(maxLights)
                 {
-                    static_assert(Position::Location == POSITION_ATTRIBUTE_LOCATION, "Shader Position Attribute Location Error!");
-                    static_assert(Normal::Location == NORMAL_ATTRIBUTE_LOCATION, "Shader Normal Attribute Location Error!");
-                    static_assert(TextureCoordinates::Location == TEXTURECOORDINATES_ATTRIBUTE_LOCATION, "Shader TextureCoordinates Attribute Location Error!");
-
                     Corrade::Utility::Resource rs_shaders("RobotDARTShaders");
 
                     const Magnum::GL::Version version = Magnum::GL::Version::GL320;
@@ -27,10 +21,12 @@ namespace robot_dart {
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
                     std::string defines = "#define LIGHT_COUNT " + std::to_string(_maxLights) + "\n";
+                    defines += "#define POSITION_ATTRIBUTE_LOCATION " + std::to_string(Position::Location) + "\n";
+                    defines += "#define NORMAL_ATTRIBUTE_LOCATION " + std::to_string(Normal::Location) + "\n";
+                    defines += "#define TEXTURECOORDINATES_ATTRIBUTE_LOCATION " + std::to_string(TextureCoordinates::Location) + "\n";
 
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
                         .addSource(defines)
-                        .addSource(rs_shaders.get("generic.glsl"))
                         .addSource(rs_shaders.get("PhongMultiLight.vert"));
                     frag.addSource(flags & Flag::AmbientTexture ? "#define AMBIENT_TEXTURE\n" : "")
                         .addSource(flags & Flag::DiffuseTexture ? "#define DIFFUSE_TEXTURE\n" : "")
