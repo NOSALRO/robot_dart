@@ -150,11 +150,17 @@ namespace robot_dart {
 
     void Robot::fix_to_world()
     {
+        auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", );
+
         if (fixed())
             return;
+
         Eigen::Isometry3d tf(dart::math::expAngular(_skeleton->getPositions().head(3)));
         tf.translation() = _skeleton->getPositions().segment(3, 3);
-        _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>();
+        dart::dynamics::WeldJoint::Properties properties;
+        properties.mName = parent_jt->getName();
+        _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::WeldJoint>(properties);
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
@@ -163,11 +169,21 @@ namespace robot_dart {
     // pose: Orientation-Position
     void Robot::free_from_world(const Eigen::Vector6d& pose)
     {
-        if (free())
-            return;
+        auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", );
+
         Eigen::Isometry3d tf(dart::math::expAngular(pose.head(3)));
         tf.translation() = pose.segment(3, 3);
-        _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>();
+
+        // if already free, we only change the transformation
+        if (free()) {
+            parent_jt->setTransformFromParentBodyNode(tf);
+            return;
+        }
+
+        dart::dynamics::FreeJoint::Properties properties;
+        properties.mName = parent_jt->getName();
+        _skeleton->getRootBodyNode()->changeParentJointType<dart::dynamics::FreeJoint>(properties);
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
@@ -175,12 +191,16 @@ namespace robot_dart {
 
     bool Robot::fixed() const
     {
-        return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::WeldJoint::getStaticType();
+        auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        return parent_jt->getType() == dart::dynamics::WeldJoint::getStaticType();
     }
 
     bool Robot::free() const
     {
-        return _skeleton->getRootBodyNode()->getParentJoint()->getType() == dart::dynamics::FreeJoint::getStaticType();
+        auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
     void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type, bool override_mimic)
