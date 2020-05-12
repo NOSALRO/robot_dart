@@ -113,6 +113,7 @@ namespace robot_dart {
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(const std::string& body_name) const) & Robot::body_pose)
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(size_t body_index) const) & Robot::body_pose)
 
+                .def("body_names", &Robot::body_names)
                 .def("body_name", &Robot::body_name)
                 .def("set_body_name", &Robot::set_body_name)
 
@@ -121,8 +122,12 @@ namespace robot_dart {
 
                 .def("set_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::set_body_mass)
                 .def("set_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::set_body_mass)
+                .def("add_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::add_body_mass)
+                .def("add_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::add_body_mass)
 
+                .def("dof_names", &Robot::dof_names)
                 .def("dof_name", &Robot::dof_name)
+                .def("joint_names", &Robot::joint_names)
                 .def("joint_name", &Robot::joint_name)
                 .def("set_joint_name", &Robot::set_joint_name)
 
