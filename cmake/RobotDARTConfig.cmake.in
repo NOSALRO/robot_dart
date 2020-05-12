@@ -2,9 +2,12 @@
 # example:
 # find_package(RobotDART REQUIRED)
 # add_executable(robot_dart_example example.cpp)
-# target_link_libraries(robot_dart_example RobotDART::no-graphics)
+# target_link_libraries(robot_dart_example RobotDART::Simu)
 
 include(CMakeFindDependencyMacro)
+
+# CMAKE_MODULE_PATH
+set(CMAKE_MODULE_PATH "@RobotDART_CMAKE_MODULE_PATH@")
 
 find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
 find_dependency(DART REQUIRED COMPONENTS dart utils utils-urdf collision-bullet collision-ode CONFIG)
@@ -18,8 +21,8 @@ set(RobotDART_LIBRARY_DIRS "@RobotDART_LIBRARY_DIRS@")
 
 set(RobotDART_LIBRARIES "Eigen3::Eigen;${DART_LIBRARIES};${Boost_LIBRARIES}")
 
-add_library(RobotDART::no-graphics INTERFACE IMPORTED)
-set_target_properties(RobotDART::no-graphics PROPERTIES
+add_library(RobotDART::Simu INTERFACE IMPORTED)
+set_target_properties(RobotDART::Simu PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
   INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
   INTERFACE_LINK_LIBRARIES "${RobotDART_LIBRARIES};RobotDARTSimu"
@@ -31,11 +34,11 @@ set(RobotDART_USE_MAGNUM "@RobotDART_USE_MAGNUM@")
 if(RobotDART_USE_MAGNUM STREQUAL "True")
   find_dependency(Magnum REQUIRED COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
   find_dependency(MagnumIntegration REQUIRED COMPONENTS Dart Eigen CONFIG)
-  find_dependency(MagnumPlugins REQUIRED COMPONENTS AssimpImporter PngImporter CONFIG)
+  #find_dependency(MagnumPlugins REQUIRED COMPONENTS AssimpImporter PngImporter CONFIG)
   add_library(RobotDART::Magnum INTERFACE IMPORTED)
   set_target_properties(RobotDART::Magnum PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
     INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
     INTERFACE_COMPILE_DEFINITIONS "GRAPHIC;@RobotDART_MAGNUM_DEFINITIONS@"
-    INTERFACE_LINK_LIBRARIES "${RobotDART_LIBRARIES};@RobotDART_MAGNUM_LIBS@;RobotDARTMagnum")
+    INTERFACE_LINK_LIBRARIES "@RobotDART_MAGNUM_LIBS@RobotDARTMagnum")
 endif()

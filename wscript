@@ -92,7 +92,7 @@ def configure(conf):
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
         conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart')
-   
+
     avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
 
     native = ''
@@ -392,7 +392,9 @@ def build(bld):
             .replace('@RobotDART_USE_MAGNUM@', str(build_graphic)) \
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
-            .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs)
+            .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
+            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
     with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
