@@ -14,7 +14,6 @@ target_link_libraries(robot_dart_example
 )
 
 if(${RobotDART_USE_MAGNUM} STREQUAL "True")
-  message("building the graphics version")
   add_executable(robot_dart_example_graphics example.cpp)
   target_link_libraries(robot_dart_example_graphics 
     RobotDART::Magnum
