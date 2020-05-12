@@ -82,11 +82,36 @@ def check_dart(conf, *k, **kw):
     except:
         ode_found = False
 
+    # DART has some optional Octomap dependency
+    octomap_check = ['/usr/local/include', '/usr/include']
+    octomap_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    if 'ROS_DISTRO' in os.environ:
+        octomap_check.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/include')
+        octomap_libs.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/lib')
+    octomap_include = []
+    octomap_lib = []
+    octomap_found = False
+    try:
+        octomap_include = [get_directory('octomap/octomap.h', octomap_check)]
+        octomap_lib = [get_directory('liboctomap.' + suffix, octomap_libs)]
+        octomap_found = True
+    except:
+        octomap_found = False
+
     dart_load_prefix = 'utils'
     dart_include = []
     dart_major = -1
     dart_minor = -1
     dart_patch = -1
+    # DART Configurations
+    dart_have_nlopt = False
+    dart_have_ipopt = False
+    dart_have_pagmo = False
+    dart_have_snopt = False
+    dart_have_bullet = False
+    dart_have_ode = False
+    dart_have_flann = False
+    dart_have_octomap = False
 
     try:
         conf.start_msg('Checking for DART includes (including io/urdf)')
@@ -105,6 +130,40 @@ def check_dart(conf, *k, **kw):
                 dart_patch = int(line.split(' ')[-1].strip())
             if dart_major > 0 and dart_minor > 0  and dart_patch > 0:
                 break
+
+            nlopt = line.find('#define HAVE_NLOPT')
+            ipopt = line.find('#define HAVE_IPOPT')
+            pagmo = line.find('#define HAVE_PAGMO')
+            snopt = line.find('#define HAVE_SNOPT')
+            bullet = line.find('#define HAVE_BULLET')
+            ode = line.find('#define HAVE_ODE')
+            flann = line.find('#define HAVE_FLANN')
+            octomap = line.find('#define HAVE_OCTOMAP')
+
+            if nlopt > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_nlopt = (boolean == 1)
+            if ipopt > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_ipopt = (boolean == 1)
+            if pagmo > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_pagmo = (boolean == 1)
+            if snopt > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_snopt = (boolean == 1)
+            if bullet > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_bullet = (boolean == 1)
+            if ode > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_ode = (boolean == 1)
+            if flann > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_flann = (boolean == 1)
+            if octomap > -1:
+                boolean = int(line.split(' ')[-1].strip())
+                dart_have_octomap = (boolean == 1)
 
         if dart_major < 6:
             raise Exception('We need DART version at least 6.0.0')
@@ -145,34 +204,49 @@ def check_dart(conf, *k, **kw):
         else:
             conf.end_msg('Not found - Your programs may not compile', 'RED')
 
-        conf.start_msg('DART: Checking for Bullet Collision libs')
-        if bullet_found:
-            try:
-                bullet_lib.append(get_directory('libdart-collision-bullet.'+suffix, libs_check))
-                conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + bullet_include
-                conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + bullet_lib
-                conf.env.LIB_DART.append('LinearMath')
-                conf.env.LIB_DART.append('BulletCollision')
-                conf.env.LIB_DART.append('dart-collision-bullet')
-                conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
-            except:
+        if dart_have_bullet:
+            conf.start_msg('DART: Checking for Bullet Collision libs')
+            if bullet_found:
+                try:
+                    bullet_lib.append(get_directory('libdart-collision-bullet.'+suffix, libs_check))
+                    conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + bullet_include
+                    conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + bullet_lib
+                    conf.env.LIB_DART.append('LinearMath')
+                    conf.env.LIB_DART.append('BulletCollision')
+                    conf.env.LIB_DART.append('dart-collision-bullet')
+                    conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
+                except:
+                    conf.end_msg('Not found', 'RED')
+            else:
                 conf.end_msg('Not found', 'RED')
-        else:
-            conf.end_msg('Not found', 'RED')
 
-        conf.start_msg('DART: Checking for Ode Collision libs')
-        if ode_found:
-            try:
-                ode_lib.append(get_directory('libdart-collision-ode.'+suffix, libs_check))
-                conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + ode_include
-                conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + ode_lib
-                conf.env.LIB_DART.append('ode')
-                conf.env.LIB_DART.append('dart-collision-ode')
-                conf.end_msg('libs: ' + str(conf.env.LIB_DART[-2:]) + ', ode: ' + str(ode_include[0]))
-            except:
+        if dart_have_ode:
+            conf.start_msg('DART: Checking for Ode Collision libs')
+            if ode_found:
+                try:
+                    ode_lib.append(get_directory('libdart-collision-ode.'+suffix, libs_check))
+                    conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + ode_include
+                    conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + ode_lib
+                    conf.env.LIB_DART.append('ode')
+                    conf.env.LIB_DART.append('dart-collision-ode')
+                    conf.end_msg('libs: ' + str(conf.env.LIB_DART[-2:]) + ', ode: ' + str(ode_include[0]))
+                except:
+                    conf.end_msg('Not found', 'RED')
+            else:
                 conf.end_msg('Not found', 'RED')
-        else:
-            conf.end_msg('Not found', 'RED')
+
+        if dart_have_octomap:
+            conf.start_msg('DART: Checking for Octomap libs')
+            if octomap_found:
+                try:
+                    conf.env.INCLUDES_DART = conf.env.INCLUDES_DART + octomap_include
+                    conf.env.LIBPATH_DART =  conf.env.LIBPATH_DART + octomap_lib
+                    conf.env.LIB_DART.append('octomap')
+                    conf.end_msg('libs: ' + str(conf.env.LIB_DART[-1:]) + ', octomap: ' + str(octomap_include[0]))
+                except:
+                    conf.end_msg('Not found', 'RED')
+            else:
+                conf.end_msg('Not found', 'RED')
 
         # remove duplicates
         conf.env.INCLUDES_DART = list(set(conf.env.INCLUDES_DART))
