@@ -24,7 +24,6 @@ import magnum
 import magnum_integration
 import magnum_plugins
 import pybind
-import cmake
 
 def options(opt):
     opt.load('compiler_cxx')
