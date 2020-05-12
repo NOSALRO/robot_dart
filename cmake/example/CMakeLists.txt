@@ -9,6 +9,14 @@ find_package(RobotDART REQUIRED)
 
 add_executable(robot_dart_example example.cpp)
 
-target_link_libraries(robot_dart_example
+target_link_libraries(robot_dart_example 
    RobotDART::no-graphics
 )
+
+if(${RobotDART_USE_MAGNUM} STREQUAL "True")
+  message("building the graphics version")
+  add_executable(robot_dart_example_graphics example.cpp)
+  target_link_libraries(robot_dart_example_graphics 
+    RobotDART::Magnum
+  )
+endif()
