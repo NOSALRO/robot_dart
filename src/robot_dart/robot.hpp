@@ -128,6 +128,7 @@ namespace robot_dart {
         Eigen::Isometry3d body_pose(const std::string& body_name) const;
         Eigen::Isometry3d body_pose(size_t body_index) const;
 
+        std::vector<std::string> body_names() const;
         std::string body_name(size_t body_index) const;
         void set_body_name(size_t body_index, const std::string& body_name);
 
@@ -135,8 +136,12 @@ namespace robot_dart {
         double body_mass(size_t body_index) const;
         void set_body_mass(const std::string& body_name, double mass);
         void set_body_mass(size_t body_index, double mass);
+        void add_body_mass(const std::string& body_name, double mass);
+        void add_body_mass(size_t body_index, double mass);
 
+        std::vector<std::string> dof_names() const;
         std::string dof_name(size_t dof_index) const;
+        std::vector<std::string> joint_names() const;
         std::string joint_name(size_t joint_index) const;
         void set_joint_name(size_t joint_index, const std::string& joint_name);
 

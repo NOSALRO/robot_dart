@@ -566,6 +566,14 @@ namespace robot_dart {
         return _skeleton->getBodyNode(body_index)->getWorldTransform();
     }
 
+    std::vector<std::string> Robot::body_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& bd : _skeleton->getBodyNodes())
+            names.push_back(bd->getName());
+        return names;
+    }
+
     std::string Robot::body_name(size_t body_index) const
     {
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
@@ -604,10 +612,40 @@ namespace robot_dart {
         _skeleton->getBodyNode(body_index)->setMass(mass); // TO-DO: Recompute inertia?
     }
 
+    void Robot::add_body_mass(const std::string& body_name, double mass)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
+        bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
+    }
+
+    void Robot::add_body_mass(size_t body_index, double mass)
+    {
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        auto bd = _skeleton->getBodyNode(body_index);
+        bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
+    }
+
+    std::vector<std::string> Robot::dof_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& dof : _skeleton->getDofs())
+            names.push_back(dof->getName());
+        return names;
+    }
+
     std::string Robot::dof_name(size_t dof_index) const
     {
         ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", "");
         return _skeleton->getDof(dof_index)->getName();
+    }
+
+    std::vector<std::string> Robot::joint_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& jt : _skeleton->getJoints())
+            names.push_back(jt->getName());
+        return names;
     }
 
     std::string Robot::joint_name(size_t joint_index) const
