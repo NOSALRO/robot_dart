@@ -58,13 +58,13 @@ int main()
     // <Type>(desc_period)
     simu.add_descriptor<StateDesc>(2);
     simu.add_robot(g_robot);
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
+    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(2.5);
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
+    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     ctrl = {2.5};
     g_robot->controllers()[0]->set_parameters(ctrl);
     simu.run(2.5);
-    std::cout << (g_robot->body_trans("pendulum_link_1") * size).transpose() << std::endl;
+    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
 
     std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
 
