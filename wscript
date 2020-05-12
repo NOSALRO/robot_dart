@@ -383,9 +383,8 @@ def build(bld):
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
     # cmake
-    print(bld.get_env())
     prefix = bld.get_env()['PREFIX']
-    with open('cmake/RobotDartConfig.cmake.in') as f:
+    with open('cmake/RobotDARTConfig.cmake.in') as f:
         defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
         magnum_libs = ''.join('Magnum::' + x + ';' for x in bld.get_env()['magnum_dep_libs'].split(' '))
         newText=f.read() \
@@ -395,6 +394,6 @@ def build(bld):
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs)
-    with open(blddir + '/RobotDartConfig.cmake', "w") as f:
+    with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
-    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDartConfig.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
