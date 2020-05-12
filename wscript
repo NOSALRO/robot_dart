@@ -381,11 +381,12 @@ def build(bld):
         if bld.get_env()['BUILD_MAGNUM'] == True:
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
-    # cmake
+    # CMake configuration
     prefix = bld.get_env()['PREFIX']
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
-        magnum_libs = ''.join('Magnum::' + x + ';' for x in bld.get_env()['magnum_dep_libs'].split(' '))
+        magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
+        magnum_libs = magnum_libs.replace('_', '::')[:-2]
         newText=f.read() \
             .replace('@RobotDART_INCLUDE_DIRS@', prefix + "/include") \
             .replace('@RobotDART_LIBRARY_DIRS@', prefix + "/lib") \
