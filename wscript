@@ -24,7 +24,7 @@ import magnum
 import magnum_integration
 import magnum_plugins
 import pybind
-
+import cmake
 
 def options(opt):
     opt.load('compiler_cxx')
@@ -93,7 +93,7 @@ def configure(conf):
     if len(conf.env.INCLUDES_MagnumIntegration) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
         conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart')
-
+   
     avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
 
     native = ''
@@ -381,3 +381,20 @@ def build(bld):
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.' + suffix)
         if bld.get_env()['BUILD_MAGNUM'] == True:
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
+
+    # cmake
+    print(bld.get_env())
+    prefix = bld.get_env()['PREFIX']
+    with open('cmake/RobotDartConfig.cmake.in') as f:
+        defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
+        magnum_libs = ''.join('Magnum::' + x + ';' for x in bld.get_env()['magnum_dep_libs'].split(' '))
+        newText=f.read() \
+            .replace('@RobotDART_INCLUDE_DIRS@', prefix + "/include") \
+            .replace('@RobotDART_LIBRARY_DIRS@', prefix + "/lib") \
+            .replace('@RobotDART_USE_MAGNUM@', str(build_graphic)) \
+            .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
+            .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
+            .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs)
+    with open(blddir + '/RobotDartConfig.cmake', "w") as f:
+        f.write(newText)
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDartConfig.cmake')
