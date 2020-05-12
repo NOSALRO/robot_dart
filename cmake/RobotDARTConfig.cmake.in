@@ -32,7 +32,6 @@ if(RobotDART_USE_MAGNUM STREQUAL "True")
   find_dependency(Magnum REQUIRED COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
   find_dependency(MagnumIntegration REQUIRED COMPONENTS Dart Eigen CONFIG)
   find_dependency(MagnumPlugins REQUIRED COMPONENTS AssimpImporter PngImporter CONFIG)
-
   add_library(RobotDART::Magnum INTERFACE IMPORTED)
   set_target_properties(RobotDART::Magnum PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
