@@ -393,11 +393,18 @@ def build(bld):
             dart_extra_libs += ' collision-bullet '
         if 'dart-collision-ode' in bld.env.LIB_DART:
             dart_extra_libs += ' collision-ode '
+
+        cxx_flags = ''.join(x + ';' for x in bld.env['CXXFLAGS'])
+
+        lib_type = '.a'
+        if bld.env['lib_type'] == 'cxxshlib':
+            lib_type = '.so'
         newText=f.read() \
             .replace('@RobotDART_INCLUDE_DIRS@', prefix + "/include") \
             .replace('@RobotDART_LIBRARY_DIRS@', prefix + "/lib") \
             .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
-            .replace('@RobotDART_USE_MAGNUM@', str(build_graphic)) \
+            .replace('@RobotDART_CXX_FLAGS@', cxx_flags) \
+            .replace('@RobotDART_LIB_TYPE@', lib_type) \
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \

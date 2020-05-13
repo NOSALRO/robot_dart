@@ -12,17 +12,15 @@ include(FindPackageHandleStandardArgs)
 set(CMAKE_MODULE_PATH "@RobotDART_CMAKE_MODULE_PATH@")
 
 find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
-find_dependency(DART 6.0.0 REQUIRED COMPONENTS dart utils utils-urdf @DART_EXTRA_LIBS@ CONFIG)
-find_dependency(Boost 1.58.0 REQUIRED COMPONENTS regex system filesystem unit_test_framework CONFIG)
+find_dependency(DART 6.0.0 REQUIRED COMPONENTS utils-urdf @DART_EXTRA_LIBS@ CONFIG)
 
 # Look for components (ie. libraries)
+set(RobotDART_USE_MAGNUM "False")
 if( RobotDART_FIND_COMPONENTS )
     foreach(comp ${RobotDART_FIND_COMPONENTS})
        if ( ${comp} STREQUAL "Magnum")
-           message(STATUS "RobotDart: Magnum component requested")
+           message(STATUS "RobotDART: Magnum component requested")
            set(RobotDART_USE_MAGNUM "True")
-       else()
-            set(RobotDART_USE_MAGNUM "False")
        endif()
     endforeach()
 else()
@@ -33,29 +31,28 @@ endif()
 set(RobotDART_INCLUDE_DIRS "@RobotDART_INCLUDE_DIRS@")
 set(RobotDART_LIBRARY_DIRS "@RobotDART_LIBRARY_DIRS@")
 
-# we get the compilation options (AVX) from Dart (-march=native)
-set(RobotDART_LIBRARY RobotDARTSimu)
-set(RobotDART_LIBRARIES "Eigen3::Eigen;${DART_LIBRARIES};${Boost_LIBRARIES}")
+set(RobotDART_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTSimu@RobotDART_LIB_TYPE@)
+set(RobotDART_LIBRARIES "Eigen3::Eigen;${DART_LIBRARIES}")
 
 add_library(RobotDART::Simu INTERFACE IMPORTED)
 set_target_properties(RobotDART::Simu PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
   INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
-  INTERFACE_LINK_LIBRARIES "${RobotDART_LIBRARIES};${RobotDART_LIBRARY}"
-  #INTERFACE_COMPILE_OPTIONS "${RobotDART_DEFINITIONS}"
-  )
-
-#set(RobotDART_USE_MAGNUM "@RobotDART_USE_MAGNUM@")
+  INTERFACE_LINK_LIBRARIES "${RobotDART_LIBRARY};${RobotDART_LIBRARIES}"
+  INTERFACE_COMPILE_OPTIONS "@RobotDART_CXX_FLAGS@")
 
 if(RobotDART_USE_MAGNUM STREQUAL "True")
   find_dependency(Magnum REQUIRED COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
   find_dependency(MagnumIntegration REQUIRED COMPONENTS Dart CONFIG)
+
+  set(RobotDARTMagnum_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTMagnum@RobotDART_LIB_TYPE@)
+
   add_library(RobotDART::Magnum INTERFACE IMPORTED)
   set_target_properties(RobotDART::Magnum PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
     INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
     INTERFACE_COMPILE_DEFINITIONS "GRAPHIC;@RobotDART_MAGNUM_DEFINITIONS@"
-    INTERFACE_LINK_LIBRARIES "RobotDARTMagnum;@RobotDART_MAGNUM_LIBS@")
+    INTERFACE_LINK_LIBRARIES "${RobotDARTMagnum_LIBRARY};@RobotDART_MAGNUM_LIBS@")
 endif()
 
 
