@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 project(robot_dart_example)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 # we ask for Magnum because we want to build the graphics
 find_package(RobotDART REQUIRED COMPONENTS Magnum)
 
