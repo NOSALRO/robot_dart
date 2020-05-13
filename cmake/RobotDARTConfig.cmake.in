@@ -12,8 +12,8 @@ include(FindPackageHandleStandardArgs)
 set(CMAKE_MODULE_PATH "@RobotDART_CMAKE_MODULE_PATH@")
 
 find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
-find_dependency(DART REQUIRED COMPONENTS dart utils utils-urdf collision-bullet collision-ode CONFIG)
-find_dependency(Boost REQUIRED COMPONENTS iostreams filesystem thread date_time CONFIG) 
+find_dependency(DART 6.0.0 REQUIRED COMPONENTS dart utils utils-urdf @DART_EXTRA_LIBS@ CONFIG)
+find_dependency(Boost 1.58.0 REQUIRED COMPONENTS regex system filesystem unit_test_framework CONFIG)
 
 # Look for components (ie. libraries)
 if( RobotDART_FIND_COMPONENTS )
@@ -55,7 +55,7 @@ if(RobotDART_USE_MAGNUM STREQUAL "True")
     INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
     INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
     INTERFACE_COMPILE_DEFINITIONS "GRAPHIC;@RobotDART_MAGNUM_DEFINITIONS@"
-    INTERFACE_LINK_LIBRARIES "RobotDARTMagnum;@RobotDART_MAGNUM_LIBS@;${RobotDART_LIBRARIES}")
+    INTERFACE_LINK_LIBRARIES "RobotDARTMagnum;@RobotDART_MAGNUM_LIBS@)
 endif()
 
 

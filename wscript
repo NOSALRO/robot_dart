@@ -63,7 +63,7 @@ def configure(conf):
         conf.load('python')
         conf.load('pybind')
 
-    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
+    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
@@ -387,9 +387,16 @@ def build(bld):
         defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
         magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
         magnum_libs = magnum_libs.replace('_', '::')[:-2]
+
+        dart_extra_libs = ''
+        if 'dart-collision-bullet' in bld.env.LIB_DART:
+            dart_extra_libs += ' collision-bullet '
+        if 'dart-collision-ode' in bld.env.LIB_DART:
+            dart_extra_libs += ' collision-ode '
         newText=f.read() \
             .replace('@RobotDART_INCLUDE_DIRS@', prefix + "/include") \
             .replace('@RobotDART_LIBRARY_DIRS@', prefix + "/lib") \
+            .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
             .replace('@RobotDART_USE_MAGNUM@', str(build_graphic)) \
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
