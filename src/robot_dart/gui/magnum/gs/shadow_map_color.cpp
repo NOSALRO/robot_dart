@@ -18,8 +18,11 @@ namespace robot_dart {
                     Magnum::GL::Shader frag = Magnum::Shaders::Implementation::createCompatibilityShader(
                         rs_shaders, version, Magnum::GL::Shader::Type::Fragment);
 
+                    std::string defines = "#define POSITION_ATTRIBUTE_LOCATION " + std::to_string(Position::Location) + "\n";
+                    defines += "#define TEXTURECOORDINATES_ATTRIBUTE_LOCATION " + std::to_string(TextureCoordinates::Location) + "\n";
+
                     vert.addSource(flags ? "#define TEXTURED\n" : "")
-                        .addSource(rs_shaders.get("generic.glsl"))
+                        .addSource(defines)
                         .addSource(rs_shaders.get("ShadowMap.vert"));
                     frag.addSource(flags ? "#define TEXTURED\n" : "")
                         .addSource(rs_shaders.get("ShadowMapColor.frag"));
@@ -37,9 +40,9 @@ namespace robot_dart {
                     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 
                     if (!Magnum::GL::Context::current().isExtensionSupported<Magnum::GL::Extensions::ARB::explicit_uniform_location>(version)) {
-                        _transformationMatrixUniform = uniformLocation("transformationMatrix");
-                        _projectionMatrixUniform = uniformLocation("projectionMatrix");
-                        _diffuseColorUniform = uniformLocation("diffuseColor");
+                        _transformation_matrix_uniform = uniformLocation("transformationMatrix");
+                        _projection_matrix_uniform = uniformLocation("projectionMatrix");
+                        _diffuse_color_uniform = uniformLocation("diffuseColor");
                     }
 
                     if (!Magnum::GL::Context::current()
@@ -53,26 +56,26 @@ namespace robot_dart {
 
                 ShadowMapColor::Flags ShadowMapColor::flags() const { return _flags; }
 
-                ShadowMapColor& ShadowMapColor::setTransformationMatrix(const Magnum::Matrix4& matrix)
+                ShadowMapColor& ShadowMapColor::set_transformation_matrix(const Magnum::Matrix4& matrix)
                 {
-                    setUniform(_transformationMatrixUniform, matrix);
+                    setUniform(_transformation_matrix_uniform, matrix);
                     return *this;
                 }
 
-                ShadowMapColor& ShadowMapColor::setProjectionMatrix(const Magnum::Matrix4& matrix)
+                ShadowMapColor& ShadowMapColor::set_projection_matrix(const Magnum::Matrix4& matrix)
                 {
-                    setUniform(_projectionMatrixUniform, matrix);
+                    setUniform(_projection_matrix_uniform, matrix);
                     return *this;
                 }
 
-                ShadowMapColor& ShadowMapColor::setMaterial(Material& material)
+                ShadowMapColor& ShadowMapColor::set_material(Material& material)
                 {
-                    if (material.hasDiffuseTexture() && (_flags & Flag::DiffuseTexture)) {
-                        (*material.diffuseTexture()).bind(DiffuseTextureLayer);
-                        setUniform(_diffuseColorUniform, Magnum::Color4{1.0f});
+                    if (material.has_diffuse_texture() && (_flags & Flag::DiffuseTexture)) {
+                        (*material.diffuse_texture()).bind(DiffuseTextureLayer);
+                        setUniform(_diffuse_color_uniform, Magnum::Color4{1.0f});
                     }
                     else
-                        setUniform(_diffuseColorUniform, material.diffuseColor());
+                        setUniform(_diffuse_color_uniform, material.diffuse_color());
 
                     return *this;
                 }

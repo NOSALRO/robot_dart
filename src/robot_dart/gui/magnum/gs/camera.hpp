@@ -17,30 +17,30 @@ namespace robot_dart {
                     explicit Camera(Object3D& object, Magnum::Int width, Magnum::Int height);
 
                     Camera3D& camera() const;
-                    Object3D& cameraObject() const;
+                    Object3D& camera_object() const;
 
-                    Camera& setViewport(const Magnum::Vector2i& size);
+                    Camera& set_viewport(const Magnum::Vector2i& size);
 
                     Camera& move(const Magnum::Vector2i& shift);
                     Camera& forward(Magnum::Float speed);
                     Camera& strafe(Magnum::Float speed);
 
-                    Camera& setSpeed(const Magnum::Vector2& speed);
-                    Camera& setNearPlane(Magnum::Float nearPlane);
-                    Camera& setFarPlane(Magnum::Float farPlane);
-                    Camera& setFOV(Magnum::Float fov);
-                    Camera& setCameraParameters(Magnum::Float nearPlane, Magnum::Float farPlane, Magnum::Float fov, Magnum::Int width, Magnum::Int height);
+                    Camera& set_speed(const Magnum::Vector2& speed);
+                    Camera& set_near_plane(Magnum::Float near_plane);
+                    Camera& set_far_plane(Magnum::Float far_plane);
+                    Camera& set_fov(Magnum::Float fov);
+                    Camera& set_camera_params(Magnum::Float near_plane, Magnum::Float far_plane, Magnum::Float fov, Magnum::Int width, Magnum::Int height);
 
                     Magnum::Vector2 speed() const { return _speed; }
-                    Magnum::Float nearPlane() const { return _nearPlane; }
-                    Magnum::Float farPlane() const { return _farPlane; }
+                    Magnum::Float near_plane() const { return _near_plane; }
+                    Magnum::Float far_plane() const { return _far_plane; }
                     Magnum::Float fov() const { return static_cast<Magnum::Float>(_fov); }
                     Magnum::Int width() const { return _camera->viewport()[0]; }
                     Magnum::Int height() const { return _camera->viewport()[1]; }
 
-                    Camera& lookAt(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
+                    Camera& look_at(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 
-                    void transformLights(std::vector<gs::Light>& lights) const;
+                    void transform_lights(std::vector<gs::Light>& lights) const;
 
                     void record(bool recording, bool depthRecording = false)
                     {
@@ -48,24 +48,24 @@ namespace robot_dart {
                         _recording_depth = depthRecording;
                     }
 
-                    bool isRecording() { return _recording; }
-                    bool isDepthRecording() { return _recording_depth; }
+                    bool recording() { return _recording; }
+                    bool recording_depth() { return _recording_depth; }
 
                     Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
-                    Corrade::Containers::Optional<Magnum::Image2D>& depthImage() { return _depth_image; }
+                    Corrade::Containers::Optional<Magnum::Image2D>& depth_image() { return _depth_image; }
 
                     void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format);
 
                 private:
-                    Object3D* _yawObject;
-                    Object3D* _pitchObject;
-                    Object3D* _cameraObject;
+                    Object3D* _yaw_object;
+                    Object3D* _pitch_object;
+                    Object3D* _camera_object;
 
                     Camera3D* _camera;
                     Magnum::Vector2 _speed{-0.01f, 0.01f};
 
                     Magnum::Vector3 _up, _front, _right;
-                    Magnum::Float _aspectRatio, _nearPlane, _farPlane;
+                    Magnum::Float _aspect_ratio, _near_plane, _far_plane;
                     Magnum::Rad _fov;
 
                     bool _recording = false, _recording_depth = false;
