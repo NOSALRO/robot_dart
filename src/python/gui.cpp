@@ -24,6 +24,7 @@ namespace robot_dart {
             // Helper definitions and classes
             using BaseGraphics = gui::magnum::Graphics<gui::magnum::GlfwApplication>;
             using BaseWindowlessGraphics = gui::magnum::Graphics<gui::magnum::WindowlessGLApplication>;
+            using GraphicsConfiguration = gui::magnum::GraphicsConfiguration;
 
             class Graphics : public BaseGraphics {
             public:
@@ -35,6 +36,26 @@ namespace robot_dart {
                 using BaseWindowlessGraphics::BaseWindowlessGraphics;
             };
 
+            py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
+                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t>(),
+                    py::arg("width") = 640,
+                    py::arg("height") = 480,
+                    py::arg("title") = "DART",
+                    py::arg("shadowed") = true,
+                    py::arg("transparent_shadows") = true,
+                    py::arg("shadow_map_size") = 512,
+                    py::arg("max_lights") = 3)
+
+                .def_readwrite("width", &GraphicsConfiguration::width)
+                .def_readwrite("height", &GraphicsConfiguration::height)
+                .def_readwrite("title", &GraphicsConfiguration::title)
+
+                .def_readwrite("shadowed", &GraphicsConfiguration::shadowed)
+                .def_readwrite("transparent_shadows", &GraphicsConfiguration::transparent_shadows)
+                .def_readwrite("shadow_map_size", &GraphicsConfiguration::shadow_map_size)
+
+                .def_readwrite("max_lights", &GraphicsConfiguration::max_lights);
+
             py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
             py::class_<BaseGraphics, gui::Base, std::shared_ptr<BaseGraphics>>(sm, "BaseGraphics");
             py::class_<BaseWindowlessGraphics, gui::Base, std::shared_ptr<BaseWindowlessGraphics>>(sm, "BaseWindowlessGraphics");
@@ -42,7 +63,7 @@ namespace robot_dart {
 
             // Graphics class
             py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
-                .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+                .def(py::init<const dart::simulation::WorldPtr&, const GraphicsConfiguration&>())
 
                 .def("done", &Graphics::done)
                 .def("refresh", &Graphics::refresh)
@@ -61,7 +82,8 @@ namespace robot_dart {
                 .def("recording", &Graphics::recording)
                 .def("recording_depth", &Graphics::recording_depth)
 
-                .def("is_shadowed", &Graphics::is_shadowed)
+                .def("shadowed", &Graphics::shadowed)
+                .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
@@ -84,7 +106,7 @@ namespace robot_dart {
 
             // WindowlessGraphics class
             py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
-                .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+                .def(py::init<const dart::simulation::WorldPtr&, const GraphicsConfiguration&>())
 
                 .def("done", &WindowlessGraphics::done)
                 .def("refresh", &WindowlessGraphics::refresh)
@@ -103,7 +125,8 @@ namespace robot_dart {
                 .def("recording", &WindowlessGraphics::recording)
                 .def("recording_depth", &WindowlessGraphics::recording_depth)
 
-                .def("is_shadowed", &WindowlessGraphics::is_shadowed)
+                .def("shadowed", &WindowlessGraphics::shadowed)
+                .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
                 .def("enable_shadows", &WindowlessGraphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
@@ -190,9 +213,9 @@ namespace robot_dart {
                 .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&>());
             // TO-DO: Add more functions
 
-            sm.def("createPointLight", &gui::magnum::gs::createPointLight);
-            sm.def("createSpotLight", &gui::magnum::gs::createSpotLight);
-            sm.def("createDirectionalLight", &gui::magnum::gs::createDirectionalLight);
+            sm.def("create_point_light", &gui::magnum::gs::create_point_light);
+            sm.def("create_spot_light", &gui::magnum::gs::create_spot_light);
+            sm.def("create_directional_light", &gui::magnum::gs::create_directional_light);
         }
 #endif
     } // namespace python

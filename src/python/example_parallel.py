@@ -14,19 +14,19 @@ def test():
 
     # create the controller
     pdcontrol = rd.PDControl([0.0, 1.0, -1.5, 1.0], False)
-    pdcontrol.set_pd(200., 20.)
 
     # clone the robot
     grobot = robot.clone()
 
     # add the controller to the robot
     grobot.add_controller(pdcontrol, 1.)
+    pdcontrol.set_pd(200., 20.)
 
     # create the simulation object
     simu = rd.RobotDARTSimu(0.001)
 
     # set the graphics
-    graphics = rd.gui.WindowlessGraphics(simu.world(), 640, 480, True, False, "DART")
+    graphics = rd.gui.WindowlessGraphics(simu.world(), rd.gui.GraphicsConfiguration())
     graphics.look_at([0.4 * ii, 3.5 - ii * 0.1, 2.], [0., 0., 0.25], [0., 0., 1.])
     simu.set_graphics(graphics)
 

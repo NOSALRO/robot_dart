@@ -16,14 +16,14 @@ namespace robot_dart {
         namespace magnum {
             class GlfwApplication : public BaseApplication, public Magnum::Platform::Application {
             public:
-                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title = "DART", bool isShadowed = true, bool drawTransparentShadows = true);
+                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration());
 
                 ~GlfwApplication();
 
                 void render() override;
 
             protected:
-                Magnum::Float _speedMove, _speedStrafe;
+                Magnum::Float _speed_move, _speed_strafe;
 
                 static constexpr Magnum::Float _speed = 0.05f;
 
