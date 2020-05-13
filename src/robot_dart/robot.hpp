@@ -56,9 +56,9 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type);
-        void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types);
-        void set_actuator_types(dart::dynamics::Joint::ActuatorType type);
+        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false);
+        void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false);
+        void set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false);
 
         dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
         std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
@@ -84,12 +84,66 @@ namespace robot_dart {
         double cfriction_coeff(size_t dof) const;
         std::vector<double> cfriction_coeffs() const;
 
+        Eigen::Isometry3d base_pose() const;
         // Set the pose of the robot base (changes the transformation of the parent joint of the root body)
         void set_base_pose(const Eigen::Isometry3d& tf);
 
-        Eigen::Vector3d body_pos(const std::string& body_name) const;
-        Eigen::Matrix3d body_rot(const std::string& body_name) const;
-        Eigen::Isometry3d body_trans(const std::string& body_name) const;
+        size_t num_dofs() const;
+        size_t num_joints() const;
+        size_t num_bodies() const;
+
+        Eigen::Vector3d com() const;
+        Eigen::Vector6d com_velocity() const;
+        Eigen::Vector6d com_acceleration() const;
+
+        Eigen::VectorXd positions() const;
+        void set_positions(const Eigen::VectorXd& positions);
+
+        Eigen::VectorXd velocities() const;
+        void set_velocities(const Eigen::VectorXd& velocities);
+
+        Eigen::VectorXd accelerations() const;
+        void set_accelerations(const Eigen::VectorXd& accelerations);
+
+        Eigen::VectorXd forces() const;
+        void set_forces(const Eigen::VectorXd& forces);
+
+        std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
+
+        void set_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+
+        void set_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+
+        void clear_external_forces();
+
+        Eigen::Vector6d external_forces(const std::string& body_name) const;
+        Eigen::Vector6d external_forces(size_t body_index) const;
+
+        Eigen::Isometry3d body_pose(const std::string& body_name) const;
+        Eigen::Isometry3d body_pose(size_t body_index) const;
+
+        std::vector<std::string> body_names() const;
+        std::string body_name(size_t body_index) const;
+        void set_body_name(size_t body_index, const std::string& body_name);
+
+        double body_mass(const std::string& body_name) const;
+        double body_mass(size_t body_index) const;
+        void set_body_mass(const std::string& body_name, double mass);
+        void set_body_mass(size_t body_index, double mass);
+        void add_body_mass(const std::string& body_name, double mass);
+        void add_body_mass(size_t body_index, double mass);
+
+        std::vector<std::string> dof_names() const;
+        std::string dof_name(size_t dof_index) const;
+        std::vector<std::string> joint_names() const;
+        std::string joint_name(size_t joint_index) const;
+        void set_joint_name(size_t joint_index, const std::string& joint_name);
 
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
