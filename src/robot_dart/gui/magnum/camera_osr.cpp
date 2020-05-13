@@ -84,7 +84,7 @@ namespace robot_dart {
                 float uy = static_cast<float>(up[1]);
                 float uz = static_cast<float>(up[2]);
 
-                _camera->lookAt(Magnum::Vector3{cx, cy, cz},
+                _camera->look_at(Magnum::Vector3{cx, cy, cz},
                     Magnum::Vector3{lx, ly, lz},
                     Magnum::Vector3{ux, uy, uz});
             }
@@ -92,9 +92,9 @@ namespace robot_dart {
             void CameraOSR::render()
             {
                 /* Update graphic meshes/materials and render */
-                _magnum_app->updateGraphics();
+                _magnum_app->update_graphics();
                 /* Update lights transformations */
-                _magnum_app->updateLights(*_camera);
+                _magnum_app->update_lights(*_camera);
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
@@ -116,7 +116,7 @@ namespace robot_dart {
 
             GrayscaleImage CameraOSR::depth_image()
             {
-                auto& depth_image = _camera->depthImage();
+                auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
                 auto pixels = depth_image->pixels<Magnum::Float>();
@@ -133,8 +133,8 @@ namespace robot_dart {
                         Magnum::Float depth = pixels[height - 1 - h][w];
 
                         /* Linearize depth for visualization */
-                        Magnum::Float zNear = _camera->nearPlane();
-                        Magnum::Float zFar = _camera->farPlane();
+                        Magnum::Float zNear = _camera->near_plane();
+                        Magnum::Float zFar = _camera->far_plane();
                         Magnum::Float val = (2.f * zNear) / (zFar + zNear - depth * (zFar - zNear));
                         img[w][h] = val * 255.f;
                     }
@@ -145,7 +145,7 @@ namespace robot_dart {
 
             GrayscaleImage CameraOSR::raw_depth_image()
             {
-                auto& depth_image = _camera->depthImage();
+                auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
                 auto pixels = depth_image->pixels<Magnum::Float>();
@@ -169,7 +169,7 @@ namespace robot_dart {
 
             // std::vector<Eigen::Vector3d> CameraOSR::point_cloud()
             // {
-            //     Magnum::Image2D depth_image = _camera->depthImage();
+            //     Magnum::Image2D depth_image = _camera->depth_image();
             //     auto pixels = depth_image.pixels<Magnum::Float>();
             //     auto sz = pixels.size();
 
@@ -203,7 +203,7 @@ namespace robot_dart {
                 _attached = false;
                 _attached_tf = tf;
 
-                _attached = _magnum_app->attachCamera(*_camera, name);
+                _attached = _magnum_app->attach_camera(*_camera, name);
                 if (_attached) {
                     _attaching = false;
 
@@ -225,8 +225,8 @@ namespace robot_dart {
                     Magnum::Rad theta(angle);
 
                     /* Pass it to Magnum */
-                    _camera->cameraObject().setTransformation({});
-                    _camera->cameraObject().rotate(theta, u).translate(t);
+                    _camera->camera_object().setTransformation({});
+                    _camera->camera_object().rotate(theta, u).translate(t);
                 }
             }
         } // namespace magnum

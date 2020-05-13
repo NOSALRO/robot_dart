@@ -15,10 +15,7 @@ namespace robot_dart {
 
             virtual ~Base() {}
 
-            virtual bool done() const
-            {
-                return false;
-            }
+            virtual bool done() const { return false; }
 
             virtual void refresh() {}
 

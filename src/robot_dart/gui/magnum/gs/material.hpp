@@ -18,45 +18,45 @@ namespace robot_dart {
                     Material(const Magnum::Color4& ambient, const Magnum::Color4& diffuse,
                         const Magnum::Color4& specular, Magnum::Float shininess);
 
-                    Material(Magnum::GL::Texture2D* ambientTexture,
-                        Magnum::GL::Texture2D* diffuseTexture,
-                        Magnum::GL::Texture2D* specularTexture, Magnum::Float shininess);
+                    Material(Magnum::GL::Texture2D* ambient_texture,
+                        Magnum::GL::Texture2D* diffuse_texture,
+                        Magnum::GL::Texture2D* specular_texture, Magnum::Float shininess);
 
-                    Magnum::Color4& ambientColor();
-                    Magnum::Color4 ambientColor() const;
+                    Magnum::Color4& ambient_color();
+                    Magnum::Color4 ambient_color() const;
 
-                    Magnum::Color4& diffuseColor();
-                    Magnum::Color4 diffuseColor() const;
+                    Magnum::Color4& diffuse_color();
+                    Magnum::Color4 diffuse_color() const;
 
-                    Magnum::Color4& specularColor();
-                    Magnum::Color4 specularColor() const;
+                    Magnum::Color4& specular_color();
+                    Magnum::Color4 specular_color() const;
 
                     Magnum::Float& shininess();
                     Magnum::Float shininess() const;
 
-                    Magnum::GL::Texture2D* ambientTexture();
-                    Magnum::GL::Texture2D* diffuseTexture();
-                    Magnum::GL::Texture2D* specularTexture();
+                    Magnum::GL::Texture2D* ambient_texture();
+                    Magnum::GL::Texture2D* diffuse_texture();
+                    Magnum::GL::Texture2D* specular_texture();
 
-                    bool hasAmbientTexture() const;
-                    bool hasDiffuseTexture() const;
-                    bool hasSpecularTexture() const;
+                    bool has_ambient_texture() const;
+                    bool has_diffuse_texture() const;
+                    bool has_specular_texture() const;
 
-                    Material& setAmbientColor(const Magnum::Color4& ambient);
-                    Material& setDiffuseColor(const Magnum::Color4& diffuse);
-                    Material& setSpecularColor(const Magnum::Color4& specular);
-                    Material& setShininess(Magnum::Float shininess);
+                    Material& set_ambient_color(const Magnum::Color4& ambient);
+                    Material& set_diffuse_color(const Magnum::Color4& diffuse);
+                    Material& set_specular_color(const Magnum::Color4& specular);
+                    Material& set_shininess(Magnum::Float shininess);
 
-                    Material& setAmbientTexture(Magnum::GL::Texture2D* ambientTexture);
-                    Material& setDiffuseTexture(Magnum::GL::Texture2D* diffuseTexture);
-                    Material& setSpecularTexture(Magnum::GL::Texture2D* specularTexture);
+                    Material& set_ambient_texture(Magnum::GL::Texture2D* ambient_texture);
+                    Material& set_diffuse_texture(Magnum::GL::Texture2D* diffuse_texture);
+                    Material& set_specular_texture(Magnum::GL::Texture2D* specular_texture);
 
                 protected:
                     Magnum::Color4 _ambient, _diffuse, _specular;
                     Magnum::Float _shininess;
-                    Magnum::GL::Texture2D* _ambientTexture = NULL;
-                    Magnum::GL::Texture2D* _diffuseTexture = NULL;
-                    Magnum::GL::Texture2D* _specularTexture = NULL;
+                    Magnum::GL::Texture2D* _ambient_texture = NULL;
+                    Magnum::GL::Texture2D* _diffuse_texture = NULL;
+                    Magnum::GL::Texture2D* _specular_texture = NULL;
                 };
             } // namespace gs
         } // namespace magnum

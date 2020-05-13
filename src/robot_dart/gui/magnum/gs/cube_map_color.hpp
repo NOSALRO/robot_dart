@@ -32,24 +32,24 @@ namespace robot_dart {
 
                     Flags flags() const;
 
-                    CubeMapColor& setTransformationMatrix(const Magnum::Matrix4& matrix);
-                    CubeMapColor& setShadowMatrices(Magnum::Matrix4 matrices[6]);
-                    CubeMapColor& setLightPosition(const Magnum::Vector3& position);
-                    CubeMapColor& setFarPlane(Magnum::Float farPlane);
-                    CubeMapColor& setLightIndex(Magnum::Int index);
-                    CubeMapColor& setMaterial(Material& material);
+                    CubeMapColor& set_transformation_matrix(const Magnum::Matrix4& matrix);
+                    CubeMapColor& set_shadow_matrices(Magnum::Matrix4 matrices[6]);
+                    CubeMapColor& set_light_position(const Magnum::Vector3& position);
+                    CubeMapColor& set_far_plane(Magnum::Float far_plane);
+                    CubeMapColor& set_light_index(Magnum::Int index);
+                    CubeMapColor& set_material(Material& material);
 
-                    CubeMapColor& bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture);
+                    CubeMapColor& bind_cube_map_texture(Magnum::GL::CubeMapTextureArray& texture);
 
                 private:
                     Flags _flags;
-                    Magnum::Int _transformationMatrixUniform{0},
-                        _shadowMatricesUniform{5},
-                        _lightPositionUniform{1},
-                        _farPlaneUniform{2},
-                        _lightIndexUniform{3},
-                        _diffuseColorUniform{4},
-                        _cubeMapTexturesLocation{2};
+                    Magnum::Int _transformation_matrix_uniform{0},
+                        _shadow_matrices_uniform{5},
+                        _light_position_uniform{1},
+                        _far_plane_uniform{2},
+                        _light_index_uniform{3},
+                        _diffuse_color_uniform{4},
+                        _cube_map_textures_location{2};
                 };
 
                 CORRADE_ENUMSET_OPERATORS(CubeMapColor::Flags)

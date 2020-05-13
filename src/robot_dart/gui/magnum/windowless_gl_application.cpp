@@ -7,8 +7,9 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, size_t width, size_t height, const std::string& title, bool isShadowed, bool drawTransparentShadows)
-                : BaseApplication(isShadowed, drawTransparentShadows), Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
+            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration)
+                : BaseApplication(configuration),
+                  Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
             {
                 /* Assume context is given externally, if not create it */
                 if (!Magnum::GL::Context::hasCurrent()) {
@@ -22,7 +23,7 @@ namespace robot_dart {
                 // Corrade::Utility::Debug{} << "Created context with: " << Magnum::GL::Context::current().versionString();
 
                 /* Create FrameBuffer to draw */
-                int w = width, h = height;
+                int w = configuration.width, h = configuration.height;
                 _framebuffer = Magnum::GL::Framebuffer({{}, {w, h}});
                 _color = Magnum::GL::Renderbuffer();
                 _depth = Magnum::GL::Renderbuffer();
@@ -37,22 +38,22 @@ namespace robot_dart {
                     Magnum::GL::Framebuffer::BufferAttachment::Depth, _depth);
 
                 /* Initialize DART world */
-                init(world, width, height);
+                init(world, configuration.width, configuration.height);
 
                 record(true);
             }
 
             WindowlessGLApplication::~WindowlessGLApplication()
             {
-                GLCleanUp();
+                _gl_clean_up();
             }
 
             void WindowlessGLApplication::render()
             {
                 /* Update graphic meshes/materials and render */
-                updateGraphics();
+                update_graphics();
                 /* Update lights transformations */
-                updateLights(*_camera);
+                update_lights(*_camera);
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
