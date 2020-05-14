@@ -72,6 +72,9 @@ namespace robot_dart {
         void set_collision_mask(size_t robot_index, const std::string& body_name, uint16_t mask);
         void set_collision_mask(size_t robot_index, size_t body_index, uint16_t mask);
 
+        uint16_t collision_mask(size_t robot_index, const std::string& body_name);
+        uint16_t collision_mask(size_t robot_index, size_t body_index);
+
         void remove_collision_mask(size_t robot_index);
         void remove_collision_mask(size_t robot_index, const std::string& body_name);
         void remove_collision_mask(size_t robot_index, size_t body_index);
