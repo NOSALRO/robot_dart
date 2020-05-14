@@ -25,8 +25,6 @@ namespace robot_dart {
             using DartCollisionConstPtr = const dart::collision::CollisionObject*;
             using DartShapeConstPtr = const dart::dynamics::ShapeNode*;
 
-            // BitmaskContactFilter() {}
-            // BitmaskContactFilter(const std::unordered_map<DartShapeConstPtr, uint16_t>& bitmask_map) : _bitmask_map(bitmask_map) {}
             virtual ~BitmaskContactFilter() = default;
 
             // This function follows DART's coding style as it needs to override a function
@@ -85,6 +83,8 @@ namespace robot_dart {
             }
 
         private:
+            // We need ShapeNodes and not BodyNodes, since in DART collision checking is performed in ShapeNode-level
+            // in RobotDARTSimu, we only allow setting one mask per BodyNode; maybe we can improve the performance of this slightly
             std::unordered_map<DartShapeConstPtr, uint16_t> _bitmask_map;
         };
     } // namespace collision_filter
@@ -443,6 +443,35 @@ namespace robot_dart {
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
         for (auto& shape : bd->getShapeNodes())
             coll_filter->add_to_map(shape, mask);
+    }
+
+    uint16_t RobotDARTSimu::collision_mask(size_t robot_index, const std::string& body_name)
+    {
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xff);
+        auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0xff);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        uint16_t mask = 0xff;
+        for (auto& shape : bd->getShapeNodes())
+            mask &= coll_filter->mask(shape);
+
+        return mask;
+    }
+
+    uint16_t RobotDARTSimu::collision_mask(size_t robot_index, size_t body_index)
+    {
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xff);
+        auto skel = _robots[robot_index]->skeleton();
+        ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", 0xff);
+        auto bd = skel->getBodyNode(body_index);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        uint16_t mask = 0xff;
+        for (auto& shape : bd->getShapeNodes())
+            mask &= coll_filter->mask(shape);
+
+        return mask;
     }
 
     void RobotDARTSimu::remove_collision_mask(size_t robot_index)
