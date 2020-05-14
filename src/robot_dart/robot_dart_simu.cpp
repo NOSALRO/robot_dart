@@ -32,15 +32,15 @@ namespace robot_dart {
             // This function follows DART's coding style as it needs to override a function
             bool ignoresCollision(DartCollisionConstPtr object1, DartCollisionConstPtr object2) const override
             {
-                auto shapeNode1 = object1->getShapeFrame()->asShapeNode();
-                auto shapeNode2 = object2->getShapeFrame()->asShapeNode();
+                auto shape_node1 = object1->getShapeFrame()->asShapeNode();
+                auto shape_node2 = object2->getShapeFrame()->asShapeNode();
 
                 if (dart::collision::BodyNodeCollisionFilter::ignoresCollision(object1, object2))
                     return true;
 
-                auto shape1Iter = _bitmask_map.find(shapeNode1);
-                auto shape2Iter = _bitmask_map.find(shapeNode2);
-                if (shape1Iter != _bitmask_map.end() && shape2Iter != _bitmask_map.end() && ((shape1Iter->second & shape2Iter->second) == 0))
+                auto shape1_iter = _bitmask_map.find(shape_node1);
+                auto shape2_iter = _bitmask_map.find(shape_node2);
+                if (shape1_iter != _bitmask_map.end() && shape2_iter != _bitmask_map.end() && ((shape1_iter->second & shape2_iter->second) == 0))
                     return true;
 
                 return false;
@@ -61,9 +61,9 @@ namespace robot_dart {
 
             void remove_from_map(DartShapeConstPtr shape)
             {
-                auto shapeIter = _bitmask_map.find(shape);
-                if (shapeIter != _bitmask_map.end())
-                    _bitmask_map.erase(shapeIter);
+                auto shape_iter = _bitmask_map.find(shape);
+                if (shape_iter != _bitmask_map.end())
+                    _bitmask_map.erase(shape_iter);
             }
 
             void remove_from_map(dart::dynamics::SkeletonPtr skel)
@@ -78,9 +78,9 @@ namespace robot_dart {
 
             uint16_t mask(DartShapeConstPtr shape) const
             {
-                auto shapeIter = _bitmask_map.find(shape);
-                if (shapeIter != _bitmask_map.end())
-                    return shapeIter->second;
+                auto shape_iter = _bitmask_map.find(shape);
+                if (shape_iter != _bitmask_map.end())
+                    return shape_iter->second;
                 return 0xff;
             }
 
