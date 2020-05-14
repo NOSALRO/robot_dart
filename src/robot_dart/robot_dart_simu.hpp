@@ -63,10 +63,14 @@ namespace robot_dart {
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
 
+        void set_collision_detector(const std::string& collision_detector); // collision_detector can be "DART", "FCL", "Ode" or "Bullet" (case does not matter)
+        const std::string& collision_detector() const;
+
     protected:
         dart::simulation::WorldPtr _world;
         size_t _old_index;
         bool _break;
+
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
         std::vector<std::shared_ptr<gui::Base>> _cameras; // designed to include mainly graphcis::CameraOSR
         std::vector<robot_t> _robots;

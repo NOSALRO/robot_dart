@@ -53,7 +53,10 @@ namespace robot_dart {
                 .def("clear_robots", &RobotDARTSimu::clear_robots)
 
                 .def("add_floor", &RobotDARTSimu::add_floor)
-                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor);
+                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor)
+
+                .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
+                .def("collision_detector", &RobotDARTSimu::collision_detector);
         }
     } // namespace python
 } // namespace robot_dart

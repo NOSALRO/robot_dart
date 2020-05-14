@@ -2,9 +2,18 @@
 #include "utils.hpp"
 
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
+#include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
+
+#if (HAVE_BULLET == 1)
+#include <dart/collision/bullet/BulletCollisionDetector.hpp>
+#endif
+
+#if (HAVE_ODE == 1)
+#include <dart/collision/ode/OdeCollisionDetector.hpp>
+#endif
 
 namespace robot_dart {
     RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
@@ -298,4 +307,32 @@ namespace robot_dart {
             }
         }
     }
+
+    void RobotDARTSimu::set_collision_detector(const std::string& collision_detector)
+    {
+        std::string coll = collision_detector;
+        for (auto& c : coll)
+            c = tolower(c);
+
+        if (coll == "dart")
+            _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
+        else if (coll == "fcl")
+            _world->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
+        else if (coll == "bullet") {
+#if (HAVE_BULLET == 1)
+            _world->getConstraintSolver()->setCollisionDetector(dart::collision::BulletCollisionDetector::create());
+#else
+            ROBOT_DART_WARNING(true, "DART is not installed with Bullet! Cannot set BulletCollisionDetector!");
+#endif
+        }
+        else if (coll == "ode") {
+#if (HAVE_ODE == 1)
+            _world->getConstraintSolver()->setCollisionDetector(dart::collision::OdeCollisionDetector::create());
+#else
+            ROBOT_DART_WARNING(true, "DART is not installed with ODE! Cannot set OdeCollisionDetector!");
+#endif
+        }
+    }
+
+    const std::string& RobotDARTSimu::collision_detector() const { return _world->getConstraintSolver()->getCollisionDetector()->getType(); }
 } // namespace robot_dart
