@@ -96,17 +96,17 @@ namespace robot_dart {
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
 
-        Eigen::VectorXd positions() const;
-        void set_positions(const Eigen::VectorXd& positions);
+        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {});
+        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd velocities() const;
-        void set_velocities(const Eigen::VectorXd& velocities);
+        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {});
+        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd accelerations() const;
-        void set_accelerations(const Eigen::VectorXd& accelerations);
+        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {});
+        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd forces() const;
-        void set_forces(const Eigen::VectorXd& forces);
+        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
+        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
@@ -140,6 +140,7 @@ namespace robot_dart {
         void add_body_mass(size_t body_index, double mass);
 
         std::vector<std::string> dof_names() const;
+        void  update_dof_map();
         std::string dof_name(size_t dof_index) const;
         std::vector<std::string> joint_names() const;
         std::string joint_name(size_t joint_index) const;
@@ -161,10 +162,19 @@ namespace robot_dart {
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
+        Eigen::VectorXd _get_dof_data(int content, const std::vector<std::string>& dof_names = {});
+        void _set_dof_data(int content,const Eigen::VectorXd& data, const std::vector<std::string>& dof_names = {});
+
+
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;
+        std::map<std::string, size_t> _controllable_dof;
+        std::map<std::string, size_t> _mimic_dof_map;
+        std::map<std::string, size_t> _full_dof_map;
+
+
     };
 } // namespace robot_dart
 
