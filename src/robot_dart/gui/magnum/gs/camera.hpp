@@ -1,6 +1,8 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 
+#include <boost/process.hpp> // for launching ffmpeg
+
 #include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
@@ -47,7 +49,7 @@ namespace robot_dart {
                         _recording = recording;
                         _recording_depth = depthRecording;
                     }
-
+                    void record_video(const std::string& video_fname);
                     bool recording() { return _recording; }
                     bool recording_depth() { return _recording_depth; }
 
@@ -69,7 +71,12 @@ namespace robot_dart {
                     Magnum::Rad _fov;
 
                     bool _recording = false, _recording_depth = false;
+                    bool _recording_video = false;
                     Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
+
+                    // pipe to write a video
+                    boost::process::opstream _video_pipe;
+                    boost::process::child _ffmpeg_process;
                 };
             } // namespace gs
         } // namespace magnum

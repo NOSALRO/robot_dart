@@ -50,6 +50,7 @@ int main()
 
     // record images from main camera/graphics
     graphics->set_recording(true);
+    graphics->record_video("test.mp4");
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(simu.world(), graphics->magnum_app(), 256, 256);
@@ -71,7 +72,7 @@ int main()
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
     simu.add_camera(camera);
 
-    simu.run(20.);
+    simu.run(10.);
 
     // a nested std::vector (w*h*3) of the last image taken can be retrieved
     auto gimage = graphics->image();

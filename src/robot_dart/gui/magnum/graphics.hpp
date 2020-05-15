@@ -94,6 +94,7 @@ namespace robot_dart {
                 void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
                 bool recording() { return _magnum_app->recording(); }
                 bool recording_depth() { return _magnum_app->recording_depth(); }
+                void record_video(const std::string& video_fname) { _magnum_app->record_video(video_fname); }
 
                 bool shadowed() const { return _magnum_app->shadowed(); }
                 bool transparent_shadows() const { return _magnum_app->transparent_shadows(); }
