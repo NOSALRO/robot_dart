@@ -10,7 +10,7 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            GlfwApplication::GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration)
+            GlfwApplication::GlfwApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration)
                 : BaseApplication(configuration),
                   Magnum::Platform::Application({argc, argv}, Magnum::NoCreate),
                   _speed_move(0.f),
@@ -28,7 +28,7 @@ namespace robot_dart {
                 ROBOT_DART_EXCEPTION_ASSERT(Magnum::GL::Context::current().version() >= Magnum::GL::Version::GL320, "robot_dart requires at least OpenGL 3.2 for rendering!");
 
                 /* Initialize DART world */
-                init(world, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
+                init(simu, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
 
                 /* Loop at 60 Hz max */
                 setSwapInterval(1);

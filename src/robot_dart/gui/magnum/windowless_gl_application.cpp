@@ -7,7 +7,7 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration)
+            WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration)
                 : BaseApplication(configuration),
                   Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
             {
@@ -38,7 +38,7 @@ namespace robot_dart {
                     Magnum::GL::Framebuffer::BufferAttachment::Depth, _depth);
 
                 /* Initialize DART world */
-                init(world, configuration.width, configuration.height);
+                init(simu, configuration.width, configuration.height);
 
                 record(true);
             }

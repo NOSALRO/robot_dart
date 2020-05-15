@@ -11,7 +11,7 @@ namespace robot_dart {
         namespace magnum {
             class WindowlessGLApplication : public BaseApplication, public Magnum::Platform::WindowlessApplication {
             public:
-                explicit WindowlessGLApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration());
+                explicit WindowlessGLApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration());
                 ~WindowlessGLApplication();
 
                 void render() override;

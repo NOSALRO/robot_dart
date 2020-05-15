@@ -31,15 +31,20 @@ int main()
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
     std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
 
+    auto ghost = global_robot->clone_ghost();
+
     robot_dart::RobotDARTSimu simu(0.001);
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    robot_dart::gui::magnum::GraphicsConfiguration config;
+    // config.transparent_shadows = false;
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu, config);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
+    simu.add_robot(ghost);
     simu.run(20.);
 
     global_robot.reset();
