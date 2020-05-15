@@ -383,6 +383,7 @@ def build(bld):
 
     # CMake configuration
     prefix = bld.get_env()['PREFIX']
+    # config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
         magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
@@ -411,5 +412,12 @@ def build(bld):
             .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
     with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
+    # configVersion
+    with open('cmake/RobotDARTConfigVersion.cmake.in') as f:
+        newText = f.read().replace('@robot_dart_VERSION@', str(VERSION))
+    with open(blddir + '/RobotDARTConfigVersion.cmake', "w") as f:
+        f.write(newText)
+
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
