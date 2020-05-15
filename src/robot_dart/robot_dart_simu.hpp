@@ -8,6 +8,10 @@
 #include <robot_dart/robot.hpp>
 
 namespace robot_dart {
+    namespace simu {
+        struct GUIData;
+    }
+
     class RobotDARTSimu {
     public:
         using robot_t = std::shared_ptr<Robot>;
@@ -60,6 +64,8 @@ namespace robot_dart {
         void remove_robot(size_t index);
         void clear_robots();
 
+        simu::GUIData* gui_data();
+
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
 
@@ -71,6 +77,7 @@ namespace robot_dart {
         std::vector<std::shared_ptr<gui::Base>> _cameras; // designed to include mainly graphcis::CameraOSR
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
+        std::unique_ptr<simu::GUIData> _gui_data;
     };
 } // namespace robot_dart
 

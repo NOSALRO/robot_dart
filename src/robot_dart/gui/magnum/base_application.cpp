@@ -1,5 +1,6 @@
 #include "base_application.hpp"
 
+#include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
 
 #include <dart/dynamics/SoftBodyNode.hpp>
@@ -70,8 +71,9 @@ namespace robot_dart {
                 enable_shadows(configuration.shadowed, configuration.transparent_shadows);
             }
 
-            void BaseApplication::init(const dart::simulation::WorldPtr& world, size_t width, size_t height)
+            void BaseApplication::init(RobotDARTSimu* simu, size_t width, size_t height)
             {
+                _simu = simu;
                 /* Camera setup */
                 _camera.reset(
                     new gs::Camera(_scene, static_cast<int>(width), static_cast<int>(height)));
@@ -82,7 +84,7 @@ namespace robot_dart {
 
                 /* Create our DARTIntegration object/world */
                 auto dartObj = new Object3D{&_scene};
-                _dart_world.reset(new Magnum::DartIntegration::World(_importer_manager, *dartObj, *world)); /* Plugin manager is now thread-safe */
+                _dart_world.reset(new Magnum::DartIntegration::World(_importer_manager, *dartObj, *simu->world())); /* Plugin manager is now thread-safe */
 
                 /* Phong shaders */
                 _color_shader.reset(new gs::PhongMultiLight{{}, _max_lights});
@@ -276,20 +278,20 @@ namespace robot_dart {
                     auto it = _drawable_objects.insert(std::make_pair(&object, nullptr));
                     if (it.second) {
                         /* If not, create a new object and add it to our drawables list */
-                        auto drawableObject = new DrawableObject(meshes, materials, *_color_shader, *_texture_shader, static_cast<Object3D*>(&(object.object())), &_drawables);
+                        auto drawableObject = new DrawableObject(_simu, object.shapeNode(), meshes, materials, *_color_shader, *_texture_shader, static_cast<Object3D*>(&(object.object())), &_drawables);
                         drawableObject->set_soft_bodies(isSoftBody);
                         drawableObject->set_scalings(scalings);
                         drawableObject->set_transparent(transparent);
-                        auto shadowedObject = new ShadowedObject(meshes, *_shadow_shader, *_shadow_texture_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_drawables);
+                        auto shadowedObject = new ShadowedObject(_simu, object.shapeNode(), meshes, *_shadow_shader, *_shadow_texture_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_drawables);
                         shadowedObject->set_scalings(scalings);
                         shadowedObject->set_materials(materials);
-                        auto cubeMapObject = new CubeMapShadowedObject(meshes, *_cubemap_shader, *_cubemap_texture_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_drawables);
+                        auto cubeMapObject = new CubeMapShadowedObject(_simu, object.shapeNode(), meshes, *_cubemap_shader, *_cubemap_texture_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_drawables);
                         cubeMapObject->set_scalings(scalings);
                         cubeMapObject->set_materials(materials);
-                        auto shadowedColorObject = new ShadowedColorObject(meshes, *_shadow_color_shader, *_shadow_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_color_drawables);
+                        auto shadowedColorObject = new ShadowedColorObject(_simu, object.shapeNode(), meshes, *_shadow_color_shader, *_shadow_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_shadowed_color_drawables);
                         shadowedColorObject->set_scalings(scalings);
                         shadowedColorObject->set_materials(materials);
-                        auto cubeMapColorObject = new CubeMapShadowedColorObject(meshes, *_cubemap_color_shader, *_cubemap_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_color_drawables);
+                        auto cubeMapColorObject = new CubeMapShadowedColorObject(_simu, object.shapeNode(), meshes, *_cubemap_color_shader, *_cubemap_texture_color_shader, static_cast<Object3D*>(&(object.object())), &_cubemap_color_drawables);
                         cubeMapColorObject->set_scalings(scalings);
                         cubeMapColorObject->set_materials(materials);
 
@@ -300,7 +302,8 @@ namespace robot_dart {
                         obj->shadowed_color = shadowedColorObject;
                         obj->cubemapped_color = cubeMapColorObject;
                         it.first->second = obj;
-                        _transparentSize++;
+                        if (transparent)
+                            _transparentSize++;
                     }
                     else {
                         /* Otherwise, update the mesh and the material data */

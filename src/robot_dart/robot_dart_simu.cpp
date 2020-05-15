@@ -1,4 +1,5 @@
 #include "robot_dart_simu.hpp"
+#include "gui_data.hpp"
 #include "utils.hpp"
 
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
@@ -14,7 +15,9 @@ namespace robot_dart {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
         _world->setTimeStep(time_step);
         _world->setTime(0.0);
-        _graphics = std::make_shared<gui::Base>(_world);
+        _graphics = std::make_shared<gui::Base>(this);
+
+        _gui_data.reset(new simu::GUIData());
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -32,8 +35,10 @@ namespace robot_dart {
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            for (auto& robot : _robots)
+            for (auto& robot : _robots) {
                 robot->update(_world->getTime());
+                _gui_data->update_robot(robot);
+            }
 
             _world->step(false);
 
@@ -145,6 +150,8 @@ namespace robot_dart {
         if (robot->skeleton()) {
             _robots.push_back(robot);
             _world->addSkeleton(robot->skeleton());
+
+            _gui_data->update_robot(robot);
         }
     }
 
@@ -154,6 +161,8 @@ namespace robot_dart {
         if (it != _robots.end()) {
             _world->removeSkeleton(robot->skeleton());
             _robots.erase(it);
+
+            _gui_data->remove_robot(robot);
         }
     }
 
@@ -209,6 +218,8 @@ namespace robot_dart {
     {
         _cameras.clear();
     }
+
+    simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {

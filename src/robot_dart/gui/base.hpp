@@ -3,15 +3,15 @@
 
 #include <robot_dart/gui/helper.hpp>
 
-#include <dart/simulation/World.hpp>
-
 namespace robot_dart {
+    class RobotDARTSimu;
+
     namespace gui {
         class Base {
         public:
             Base() {}
 
-            Base(const dart::simulation::WorldPtr&) {}
+            Base(RobotDARTSimu*) {}
 
             virtual ~Base() {}
 

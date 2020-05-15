@@ -1,5 +1,7 @@
 #include "camera_osr.hpp"
 
+#include <robot_dart/robot_dart_simu.hpp>
+
 #include <Corrade/Containers/StridedArrayView.h>
 
 // #include <Magnum/DebugTools/Screenshot.h>
@@ -13,14 +15,14 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            CameraOSR::CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height)
+            CameraOSR::CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height)
                 : Base(), _magnum_app(app), _enabled(true), _done(false)
             {
                 /* Camera setup */
                 _camera.reset(
                     new gs::Camera(app->scene(), static_cast<int>(width), static_cast<int>(height)));
 
-                set_render_period(world->getTimeStep());
+                set_render_period(simu->world()->getTimeStep());
 
                 /* Assume context is given externally, if not, we cannot have a camera */
                 if (!Magnum::GL::Context::hasCurrent()) {

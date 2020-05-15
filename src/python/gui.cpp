@@ -63,7 +63,7 @@ namespace robot_dart {
 
             // Graphics class
             py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
-                .def(py::init<const dart::simulation::WorldPtr&, const GraphicsConfiguration&>())
+                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
 
                 .def("done", &Graphics::done)
                 .def("refresh", &Graphics::refresh)
@@ -106,7 +106,7 @@ namespace robot_dart {
 
             // WindowlessGraphics class
             py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
-                .def(py::init<const dart::simulation::WorldPtr&, const GraphicsConfiguration&>())
+                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
 
                 .def("done", &WindowlessGraphics::done)
                 .def("refresh", &WindowlessGraphics::refresh)
@@ -164,7 +164,7 @@ namespace robot_dart {
 
             // CameraOSR class
             py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
-                .def(py::init<const dart::simulation::WorldPtr&, gui::magnum::BaseApplication*, size_t, size_t>())
+                .def(py::init<RobotDARTSimu*, gui::magnum::BaseApplication*, size_t, size_t>())
 
                 .def("done", &gui::magnum::CameraOSR::done)
                 .def("refresh", &gui::magnum::CameraOSR::refresh)

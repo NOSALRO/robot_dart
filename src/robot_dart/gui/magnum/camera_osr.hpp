@@ -14,7 +14,7 @@ namespace robot_dart {
         namespace magnum {
             class CameraOSR : public Base {
             public:
-                CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height);
+                CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height);
                 ~CameraOSR() {}
 
                 bool done() const override { return _done; }

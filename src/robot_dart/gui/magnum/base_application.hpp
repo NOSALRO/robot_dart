@@ -101,7 +101,7 @@ namespace robot_dart {
                 BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
                 virtual ~BaseApplication() {}
 
-                void init(const dart::simulation::WorldPtr& world, size_t width, size_t height);
+                void init(RobotDARTSimu* simu, size_t width, size_t height);
 
                 void clear_lights();
                 void add_light(const gs::Light& light);
@@ -153,6 +153,7 @@ namespace robot_dart {
                 bool _done = false;
 
                 /* DART */
+                RobotDARTSimu* _simu;
                 std::unique_ptr<Magnum::DartIntegration::World> _dart_world;
                 std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawable_objects;
                 std::vector<Object3D*> _dart_objects;
@@ -179,12 +180,12 @@ namespace robot_dart {
             };
 
             template <typename T>
-            inline BaseApplication* make_application(const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration())
+            inline BaseApplication* make_application(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
             {
                 int argc = 0;
                 char** argv = NULL;
 
-                return new T(argc, argv, world, configuration);
+                return new T(argc, argv, simu, configuration);
                 // configuration.width, configuration.height, configuration.shadowed, configuration.transparent_shadows, configuration.max_lights, configuration.shadow_map_size);
             }
         } // namespace magnum
