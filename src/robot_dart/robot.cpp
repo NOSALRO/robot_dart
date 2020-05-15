@@ -434,7 +434,7 @@ namespace robot_dart {
         Eigen::VectorXd data;
         if(!dof_names.empty()){
             data.resize(dof_names.size());
-            for(size_t i =0; dof_names.size(); i++) {
+            for(size_t i =0; i < dof_names.size(); i++) {
                 ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i])!=_full_dof_map.end(), "_get_dof_data : " + dof_names[i] + " is not in _full_dof_map", {} );
                 if(content==0){
                     data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getPosition();
@@ -480,11 +480,11 @@ namespace robot_dart {
         if(content==0){
             _skeleton->setPositions(ordered_data);
         } else if(content==1){
-            _skeleton->setPositions(ordered_data);
+            _skeleton->setVelocities(ordered_data);
         } else if(content==2){
-            _skeleton->setPositions(ordered_data);
+            _skeleton->setAccelerations(ordered_data);
         } else if(content==3){
-            _skeleton->setPositions(ordered_data);
+            _skeleton->setForces(ordered_data);
         } 
     }
 
@@ -717,19 +717,80 @@ namespace robot_dart {
     
     void  Robot::update_dof_map()
     {
+
         _controllable_dof.clear();
-        _mimic_dof_map.clear();
         _full_dof_map.clear();
+#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+        _mimic_dof_map.clear();
+        _mimic_dofs.clear();
+#endif
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
             auto joint = _skeleton->getDof(i)->getJoint();
             if (joint->getActuatorType() != dart::dynamics::Joint::MIMIC){
                 _controllable_dof[_skeleton->getDof(i)->getName()] = i;
             }
             else{
                 _mimic_dof_map[_skeleton->getDof(i)->getName()] = i;
+                _mimic_dofs.push_back(i);
             }
+#else 
+            _controllable_dof[_skeleton->getDof(i)->getName()] = i;
+#endif
             _full_dof_map[_skeleton->getDof(i)->getName()] = i;
         }
+    }
+
+//     Eigen::VectorXd RobotControl::_get_filter_mimic(const Eigen::VectorXd& vec) const
+//     {
+// #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_control_dof);
+//         size_t k = 0;
+//         for (size_t i = _start_dof; i < _dof; i++) {
+//             auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
+//             if (it == _mimic_dofs.end())
+//                 ret(k++) = vec(i);
+//         }
+
+//         return ret;
+// #else
+//         return vec.tail(_control_dof);
+// #endif
+//     }
+
+//     Eigen::VectorXd RobotControl::_set_filter_mimic(const Eigen::VectorXd& vec, int start_dof) const
+//     {
+// #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
+//         size_t k = 0;
+//         for (size_t i = start_dof; i < _skeleton->getNumDofs(); i++) {
+//             auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
+//             if (it == _mimic_dofs.end())
+//                 ret(i) = vec(k++);
+//         }
+
+//         return ret;
+// #else
+//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
+//         ret.tail(_control_dof) = vec;
+//         return ret;
+// #endif
+//     }
+
+
+    std::map<std::string, size_t> Robot::get_controllable_dof() const
+    {
+        return _controllable_dof;
+    }
+    
+    std::map<std::string, size_t> Robot::get_mimic_dof_map() const
+    {
+        return _mimic_dof_map;
+    }
+    
+    std::map<std::string, size_t> Robot::get_full_dof_map() const
+    {
+        return _full_dof_map;
     }
 
     std::string Robot::dof_name(size_t dof_index) const

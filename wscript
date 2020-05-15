@@ -294,6 +294,15 @@ def build(bld):
                       defines = ['GRAPHIC'],
                       target = 'transparent')
 
+        bld.program(features = 'cxx',
+                      install_path = None,
+                      source = 'src/examples/talos.cpp',
+                      includes = './src',
+                      uselib = bld.env['magnum_libs'] + libs,
+                      use = 'RobotDARTSimu RobotDARTMagnum',
+                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
+                      target = 'talos')
+
         # if we found the hexapod controller includes
         if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
             bld.program(features = 'cxx',
