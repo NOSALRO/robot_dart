@@ -26,7 +26,7 @@ def test():
     simu = rd.RobotDARTSimu(0.001)
 
     # set the graphics
-    graphics = rd.gui.WindowlessGraphics(simu.world(), rd.gui.GraphicsConfiguration())
+    graphics = rd.gui.WindowlessGraphics(simu, rd.gui.GraphicsConfiguration())
     graphics.look_at([0.4 * ii, 3.5 - ii * 0.1, 2.], [0., 0., 0.25], [0., 0., 1.])
     simu.set_graphics(graphics)
 

@@ -1,4 +1,5 @@
 #include "robot_dart_simu.hpp"
+#include "gui_data.hpp"
 #include "utils.hpp"
 
 #include <dart/collision/CollisionFilter.hpp>
@@ -97,7 +98,9 @@ namespace robot_dart {
         _world->getConstraintSolver()->getCollisionOption().collisionFilter = std::make_shared<collision_filter::BitmaskContactFilter>();
         _world->setTimeStep(time_step);
         _world->setTime(0.0);
-        _graphics = std::make_shared<gui::Base>(_world);
+        _graphics = std::make_shared<gui::Base>(this);
+
+        _gui_data.reset(new simu::GUIData());
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -115,8 +118,10 @@ namespace robot_dart {
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            for (auto& robot : _robots)
+            for (auto& robot : _robots) {
                 robot->update(_world->getTime());
+                _gui_data->update_robot(robot);
+            }
 
             _world->step(false);
 
@@ -235,6 +240,37 @@ namespace robot_dart {
         if (robot->skeleton()) {
             _robots.push_back(robot);
             _world->addSkeleton(robot->skeleton());
+
+            _gui_data->update_robot(robot);
+        }
+    }
+
+    void RobotDARTSimu::add_visual_robot(const std::shared_ptr<Robot>& robot)
+    {
+        if (robot->skeleton()) {
+            // make robot a pure visual one -- assuming that the color is already set
+            // visual robots do not do physics updates
+            robot->skeleton()->setMobile(false);
+            for (auto& bd : robot->skeleton()->getBodyNodes()) {
+                // visual robots do not have collisions
+                auto& collision_shapes = bd->getShapeNodesWith<dart::dynamics::CollisionAspect>();
+                for (auto& shape : collision_shapes) {
+                    shape->removeAspect<dart::dynamics::CollisionAspect>();
+                }
+            }
+
+            // visual robots, by default, use the color from the VisualAspect
+            robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+
+            // visual robots do not cast shadows
+            robot->set_cast_shadows(false);
+            // set the ghost/visual flag
+            robot->set_ghost(true);
+
+            _robots.push_back(robot);
+            _world->addSkeleton(robot->skeleton());
+
+            _gui_data->update_robot(robot);
         }
     }
 
@@ -244,6 +280,8 @@ namespace robot_dart {
         if (it != _robots.end()) {
             _world->removeSkeleton(robot->skeleton());
             _robots.erase(it);
+
+            _gui_data->remove_robot(robot);
         }
     }
 
@@ -299,6 +337,8 @@ namespace robot_dart {
     {
         _cameras.clear();
     }
+
+    simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {

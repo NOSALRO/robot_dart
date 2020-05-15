@@ -1,5 +1,7 @@
 #include "camera_osr.hpp"
 
+#include <robot_dart/robot_dart_simu.hpp>
+
 #include <Corrade/Containers/StridedArrayView.h>
 
 // #include <Magnum/DebugTools/Screenshot.h>
@@ -13,14 +15,14 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            CameraOSR::CameraOSR(const dart::simulation::WorldPtr& world, BaseApplication* app, size_t width, size_t height)
-                : Base(), _magnum_app(app), _enabled(true), _done(false)
+            CameraOSR::CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_ghost)
+                : Base(), _magnum_app(app), _enabled(true), _done(false), _draw_ghosts(draw_ghost)
             {
                 /* Camera setup */
                 _camera.reset(
                     new gs::Camera(app->scene(), static_cast<int>(width), static_cast<int>(height)));
 
-                set_render_period(world->getTimeStep());
+                set_render_period(simu->world()->getTimeStep());
 
                 /* Assume context is given externally, if not, we cannot have a camera */
                 if (!Magnum::GL::Context::hasCurrent()) {
@@ -111,7 +113,7 @@ namespace robot_dart {
                 _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                 /* Draw with this camera */
-                _camera->draw(_magnum_app->drawables(), _framebuffer, _format);
+                _camera->draw(_magnum_app->drawables(), _framebuffer, _format, _draw_ghosts);
             }
 
             GrayscaleImage CameraOSR::depth_image()
