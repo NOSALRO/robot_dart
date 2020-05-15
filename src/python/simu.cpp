@@ -48,6 +48,7 @@ namespace robot_dart {
                 .def("robot", &RobotDARTSimu::robot)
 
                 .def("add_robot", &RobotDARTSimu::add_robot, py::keep_alive<2, 1>())
+                .def("add_visual_robot", &RobotDARTSimu::add_visual_robot, py::keep_alive<2, 1>())
                 .def("remove_robot", (void (RobotDARTSimu::*)(const std::shared_ptr<Robot>&)) & RobotDARTSimu::remove_robot)
                 .def("remove_robot", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_robot)
                 .def("clear_robots", &RobotDARTSimu::clear_robots)

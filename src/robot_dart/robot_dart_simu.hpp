@@ -60,6 +60,7 @@ namespace robot_dart {
         robot_t robot(size_t index) const;
 
         void add_robot(const robot_t& robot);
+        void add_visual_robot(const robot_t& robot);
         void remove_robot(const robot_t& robot);
         void remove_robot(size_t index);
         void clear_robots();

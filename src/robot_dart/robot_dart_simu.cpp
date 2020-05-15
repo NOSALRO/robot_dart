@@ -155,6 +155,35 @@ namespace robot_dart {
         }
     }
 
+    void RobotDARTSimu::add_visual_robot(const std::shared_ptr<Robot>& robot)
+    {
+        if (robot->skeleton()) {
+            // make robot a pure visual one -- assuming that the color is already set
+            // visual robots do not do physics updates
+            robot->skeleton()->setMobile(false);
+            for (auto& bd : robot->skeleton()->getBodyNodes()) {
+                // visual robots do not have collisions
+                auto& collision_shapes = bd->getShapeNodesWith<dart::dynamics::CollisionAspect>();
+                for (auto& shape : collision_shapes) {
+                    shape->removeAspect<dart::dynamics::CollisionAspect>();
+                }
+            }
+
+            // visual robots, by default, use the color from the VisualAspect
+            robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+
+            // visual robots do not cast shadows
+            robot->set_cast_shadows(false);
+            // set the ghost/visual flag
+            robot->set_ghost(true);
+
+            _robots.push_back(robot);
+            _world->addSkeleton(robot->skeleton());
+
+            _gui_data->update_robot(robot);
+        }
+    }
+
     void RobotDARTSimu::remove_robot(const std::shared_ptr<Robot>& robot)
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);

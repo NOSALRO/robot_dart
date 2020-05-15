@@ -95,7 +95,7 @@ namespace robot_dart {
         }
 
         // ghost robots, by default, use the color from the VisualAspect
-        robot->_set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, robot->skeleton());
+        robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
 
         // ghost robots do not cast shadows
         robot->set_cast_shadows(false);
