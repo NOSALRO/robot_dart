@@ -37,14 +37,16 @@ namespace robot_dart {
             };
 
             py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
-                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t>(),
+                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, bool, bool>(),
                     py::arg("width") = 640,
                     py::arg("height") = 480,
                     py::arg("title") = "DART",
                     py::arg("shadowed") = true,
                     py::arg("transparent_shadows") = true,
                     py::arg("shadow_map_size") = 512,
-                    py::arg("max_lights") = 3)
+                    py::arg("max_lights") = 3,
+                    py::arg("draw_main_camera") = true,
+                    py::arg("draw_ghosts") = true)
 
                 .def_readwrite("width", &GraphicsConfiguration::width)
                 .def_readwrite("height", &GraphicsConfiguration::height)

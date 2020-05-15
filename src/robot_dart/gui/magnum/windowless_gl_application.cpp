@@ -9,7 +9,9 @@ namespace robot_dart {
         namespace magnum {
             WindowlessGLApplication::WindowlessGLApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration)
                 : BaseApplication(configuration),
-                  Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate)
+                  Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate),
+                  _draw_main_camera(configuration.draw_main_camera),
+                  _draw_ghosts(configuration.draw_ghosts)
             {
                 /* Assume context is given externally, if not create it */
                 if (!Magnum::GL::Context::hasCurrent()) {
@@ -50,34 +52,36 @@ namespace robot_dart {
 
             void WindowlessGLApplication::render()
             {
-                /* Update graphic meshes/materials and render */
-                update_graphics();
-                /* Update lights transformations */
-                update_lights(*_camera);
+                if (_draw_main_camera) {
+                    /* Update graphic meshes/materials and render */
+                    update_graphics();
+                    /* Update lights transformations */
+                    update_lights(*_camera);
 
-                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
-                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
-                Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::Blending);
-                Magnum::GL::Renderer::setBlendFunction(Magnum::GL::Renderer::BlendFunction::SourceAlpha, Magnum::GL::Renderer::BlendFunction::OneMinusSourceAlpha);
-                Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
+                    Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
+                    Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
+                    Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::Blending);
+                    Magnum::GL::Renderer::setBlendFunction(Magnum::GL::Renderer::BlendFunction::SourceAlpha, Magnum::GL::Renderer::BlendFunction::OneMinusSourceAlpha);
+                    Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
 
-                /* Change default clear color to black */
-                Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
+                    /* Change default clear color to black */
+                    Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
 
-                /* Bind the framebuffer */
-                _framebuffer.bind();
-                /* Clear framebuffer */
-                _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
+                    /* Bind the framebuffer */
+                    _framebuffer.bind();
+                    /* Clear framebuffer */
+                    _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
-                /* Draw with main camera */
-                _camera->draw(_drawables, _framebuffer, _format);
+                    /* Draw with main camera */
+                    _camera->draw(_drawables, _framebuffer, _format, _draw_ghosts);
 
-                // if (_index % 10 == 0) {
-                //     intptr_t tt = (intptr_t)_glx_context;
-                //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(tt) + "_" + std::to_string(_index) + ".png");
-                // }
+                    // if (_index % 10 == 0) {
+                    //     intptr_t tt = (intptr_t)_glx_context;
+                    //     Magnum::DebugTools::screenshot(_framebuffer, "img_" + std::to_string(tt) + "_" + std::to_string(_index) + ".png");
+                    // }
 
-                // _index++;
+                    // _index++;
+                }
             }
         } // namespace magnum
     } // namespace gui
