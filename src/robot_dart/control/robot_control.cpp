@@ -139,7 +139,7 @@ namespace robot_dart {
             return coms;
         }
 
-        Eigen::VectorXd RobotControl::_get_vector_mimic(const Eigen::VectorXd& vec) const
+         Eigen::VectorXd RobotControl::_get_vector_mimic(const Eigen::VectorXd& vec) const
         {
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
             Eigen::VectorXd ret = Eigen::VectorXd::Zero(_control_dof);
