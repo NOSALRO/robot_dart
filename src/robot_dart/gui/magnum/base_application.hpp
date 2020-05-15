@@ -94,6 +94,10 @@ namespace robot_dart {
 
                 // Lights
                 size_t max_lights = 3;
+
+                // These options are only for the main camera
+                bool draw_main_camera = true;
+                bool draw_ghosts = true;
             };
 
             class BaseApplication {

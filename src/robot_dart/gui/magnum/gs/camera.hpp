@@ -54,7 +54,7 @@ namespace robot_dart {
                     Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
                     Corrade::Containers::Optional<Magnum::Image2D>& depth_image() { return _depth_image; }
 
-                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format);
+                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost = true);
 
                 private:
                     Object3D* _yaw_object;
