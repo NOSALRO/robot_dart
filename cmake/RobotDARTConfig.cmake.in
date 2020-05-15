@@ -1,0 +1,68 @@
+# - Config file for the robot_dart package
+# example:
+# find_package(RobotDART REQUIRED)
+# add_executable(robot_dart_example example.cpp)
+# target_link_libraries(robot_dart_example RobotDART::Simu)
+
+include(CMakeFindDependencyMacro)
+include(FindPackageHandleStandardArgs)
+
+
+# CMAKE_MODULE_PATH
+set(CMAKE_MODULE_PATH "@RobotDART_CMAKE_MODULE_PATH@")
+
+find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
+find_dependency(DART 6.0.0 REQUIRED COMPONENTS utils-urdf @DART_EXTRA_LIBS@ CONFIG)
+
+# Look for components (ie. libraries)
+set(RobotDART_USE_MAGNUM "False")
+if( RobotDART_FIND_COMPONENTS )
+    foreach(comp ${RobotDART_FIND_COMPONENTS})
+       if ( ${comp} STREQUAL "Magnum")
+           message(STATUS "RobotDART: Magnum component requested")
+           set(RobotDART_USE_MAGNUM "True")
+       endif()
+    endforeach()
+else()
+    message(STATUS "No RobotDART optional component specified")
+endif()
+
+# add the robot_dart paths (we get them from waf)
+set(RobotDART_INCLUDE_DIRS "@RobotDART_INCLUDE_DIRS@")
+set(RobotDART_LIBRARY_DIRS "@RobotDART_LIBRARY_DIRS@")
+
+set(RobotDART_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTSimu@RobotDART_LIB_TYPE@)
+set(RobotDART_LIBRARIES "Eigen3::Eigen;${DART_LIBRARIES}")
+
+add_library(RobotDART::Simu INTERFACE IMPORTED)
+set_target_properties(RobotDART::Simu PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
+  INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
+  INTERFACE_LINK_LIBRARIES "${RobotDART_LIBRARY};${RobotDART_LIBRARIES}"
+  INTERFACE_COMPILE_OPTIONS "@RobotDART_CXX_FLAGS@")
+
+if(RobotDART_USE_MAGNUM STREQUAL "True")
+  find_dependency(Magnum REQUIRED COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
+  find_dependency(MagnumIntegration REQUIRED COMPONENTS Dart CONFIG)
+
+  set(RobotDARTMagnum_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTMagnum@RobotDART_LIB_TYPE@)
+
+  add_library(RobotDART::Magnum INTERFACE IMPORTED)
+  set_target_properties(RobotDART::Magnum PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${RobotDART_INCLUDE_DIRS}"
+    INTERFACE_LINK_DIRECTORIES "${RobotDART_LIBRARY_DIRS}"
+    INTERFACE_COMPILE_DEFINITIONS "GRAPHIC;@RobotDART_MAGNUM_DEFINITIONS@"
+    INTERFACE_LINK_LIBRARIES "${RobotDARTMagnum_LIBRARY};@RobotDART_MAGNUM_LIBS@")
+endif()
+
+
+# Handle the QUIET and REQUIRED arguments
+find_package_handle_standard_args(
+    RobotDART #Package name
+    DEFAULT_MSG
+    # Variables required to evaluate as TRUE
+    RobotDART_LIBRARY
+    RobotDART_INCLUDE_DIRS
+    RobotDART_LIBRARY_DIRS)
+
+mark_as_advanced(RobotDART_INCLUDE_DIRS RobotDART_LIBRARY_DIRS RobotDART_LIBRARY RobotDART_FOUND)
