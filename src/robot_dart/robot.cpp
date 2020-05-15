@@ -29,15 +29,15 @@ namespace dart {
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
-    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string))
+    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
     }
 
-    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, damages) {}
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages) {}
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(skeleton)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
@@ -60,6 +60,48 @@ namespace robot_dart {
         for (auto& ctrl : _controllers) {
             robot->add_controller(ctrl->clone(), ctrl->weight());
         }
+        return robot;
+    }
+
+    std::shared_ptr<Robot> Robot::clone_ghost(const std::string& ghost_name, const Eigen::Vector4d& ghost_color) const
+    {
+        // safely clone the skeleton
+        _skeleton->getMutex().lock();
+#if DART_VERSION_AT_LEAST(6, 7, 2)
+        auto tmp_skel = _skeleton->cloneSkeleton();
+#else
+        auto tmp_skel = _skeleton->clone();
+#endif
+        _skeleton->getMutex().unlock();
+        auto robot = std::make_shared<Robot>(tmp_skel, ghost_name + "_" + _robot_name);
+        robot->_damages = _damages;
+
+        // ghost robots have no controllers
+        robot->_controllers.clear();
+        // ghost robots do not do physics updates
+        robot->skeleton()->setMobile(false);
+        for (auto& bd : robot->skeleton()->getBodyNodes()) {
+            // ghost robots do not have collisions
+            auto& collision_shapes = bd->getShapeNodesWith<dart::dynamics::CollisionAspect>();
+            for (auto& shape : collision_shapes) {
+                shape->removeAspect<dart::dynamics::CollisionAspect>();
+            }
+
+            // ghost robots have a different color (same for all bodies)
+            auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
+            for (auto& shape : visual_shapes) {
+                shape->getVisualAspect()->setRGBA(ghost_color);
+            }
+        }
+
+        // ghost robots, by default, use the color from the VisualAspect
+        robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+
+        // ghost robots do not cast shadows
+        robot->set_cast_shadows(false);
+        // set the ghost flag
+        robot->set_ghost(true);
+
         return robot;
     }
 
@@ -695,6 +737,14 @@ namespace robot_dart {
             }
         }
     }
+
+    void Robot::set_cast_shadows(bool cast_shadows) { _cast_shadows = cast_shadows; }
+
+    bool Robot::cast_shadows() const { return _cast_shadows; }
+
+    void Robot::set_ghost(bool ghost) { _is_ghost = ghost; }
+
+    bool Robot::ghost() const { return _is_ghost; }
 
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {

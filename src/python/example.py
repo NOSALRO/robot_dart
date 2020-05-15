@@ -36,7 +36,7 @@ print(control.get_positions())
 simu = rd.RobotDARTSimu(0.001)
 
 # Create graphics
-graphics = rd.gui.Graphics(simu.world(), rd.gui.GraphicsConfiguration())
+graphics = rd.gui.Graphics(simu, rd.gui.GraphicsConfiguration())
 # graphics.clear_lights()
 # mat = rd.gui.Material(magnum.Color4(0, 0, 0, 1), magnum.Color4(1, 1, 1, 1), magnum.Color4(1, 1, 1, 1), 80.)
 # graphics.add_light(rd.gui.create_point_light(magnum.Vector3(-1., 1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
@@ -48,7 +48,7 @@ simu.add_robot(robot)
 simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
 
 # Add a camera to the end-effector of the manipulator
-camera = rd.gui.CameraOSR(simu.world(), graphics.magnum_app(), 256, 256)
+camera = rd.gui.CameraOSR(simu, graphics.magnum_app(), 256, 256)
 rot = dartpy.math.AngleAxis(3.14, [1., 0., 0.]).to_rotation_matrix()
 rot = rot.dot(dartpy.math.AngleAxis(1.57, [0., 0., 1.]).to_rotation_matrix())
 camera.attach_to("arm_link_5", dartpy.math.Isometry3(rotation=rot, translation=[0., 0., 0.1]))

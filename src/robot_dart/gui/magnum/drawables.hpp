@@ -13,12 +13,22 @@
 
 #include <Magnum/SceneGraph/Drawable.h>
 
+namespace dart {
+    namespace dynamics {
+        class ShapeNode;
+    }
+} // namespace dart
+
 namespace robot_dart {
+    class RobotDARTSimu;
+
     namespace gui {
         namespace magnum {
             class DrawableObject : public Object3D, Magnum::SceneGraph::Drawable3D {
             public:
                 explicit DrawableObject(
+                    RobotDARTSimu* simu,
+                    dart::dynamics::ShapeNode* shape,
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     const std::vector<gs::Material>& materials,
                     gs::PhongMultiLight& color,
@@ -38,9 +48,14 @@ namespace robot_dart {
                 const std::vector<gs::Material>& materials() const { return _materials; }
                 bool transparent() const { return _isTransparent; }
 
+                RobotDARTSimu* simu() const { return _simu; }
+                dart::dynamics::ShapeNode* shape() const { return _shape; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
+                RobotDARTSimu* _simu;
+                dart::dynamics::ShapeNode* _shape;
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::PhongMultiLight> _color_shader;
                 std::reference_wrapper<gs::PhongMultiLight> _texture_shader;
@@ -54,6 +69,8 @@ namespace robot_dart {
             class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
             public:
                 explicit ShadowedObject(
+                    RobotDARTSimu* simu,
+                    dart::dynamics::ShapeNode* shape,
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     gs::ShadowMap& shader,
                     gs::ShadowMap& texture_shader,
@@ -64,9 +81,14 @@ namespace robot_dart {
                 ShadowedObject& set_materials(const std::vector<gs::Material>& materials);
                 ShadowedObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
+                RobotDARTSimu* simu() const { return _simu; }
+                dart::dynamics::ShapeNode* shape() const { return _shape; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
+                RobotDARTSimu* _simu;
+                dart::dynamics::ShapeNode* _shape;
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::ShadowMap> _shader, _texture_shader;
                 std::vector<gs::Material> _materials;
@@ -76,6 +98,8 @@ namespace robot_dart {
             class ShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
             public:
                 explicit ShadowedColorObject(
+                    RobotDARTSimu* simu,
+                    dart::dynamics::ShapeNode* shape,
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     gs::ShadowMapColor& shader,
                     gs::ShadowMapColor& texture_shader,
@@ -86,9 +110,14 @@ namespace robot_dart {
                 ShadowedColorObject& set_materials(const std::vector<gs::Material>& materials);
                 ShadowedColorObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
+                RobotDARTSimu* simu() const { return _simu; }
+                dart::dynamics::ShapeNode* shape() const { return _shape; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
+                RobotDARTSimu* _simu;
+                dart::dynamics::ShapeNode* _shape;
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::ShadowMapColor> _shader, _texture_shader;
                 std::vector<gs::Material> _materials;
@@ -98,6 +127,8 @@ namespace robot_dart {
             class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
             public:
                 explicit CubeMapShadowedObject(
+                    RobotDARTSimu* simu,
+                    dart::dynamics::ShapeNode* shape,
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     gs::CubeMap& shader,
                     gs::CubeMap& texture_shader,
@@ -108,9 +139,14 @@ namespace robot_dart {
                 CubeMapShadowedObject& set_materials(const std::vector<gs::Material>& materials);
                 CubeMapShadowedObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
+                RobotDARTSimu* simu() const { return _simu; }
+                dart::dynamics::ShapeNode* shape() const { return _shape; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
+                RobotDARTSimu* _simu;
+                dart::dynamics::ShapeNode* _shape;
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::CubeMap> _shader, _texture_shader;
                 std::vector<gs::Material> _materials;
@@ -120,6 +156,8 @@ namespace robot_dart {
             class CubeMapShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
             public:
                 explicit CubeMapShadowedColorObject(
+                    RobotDARTSimu* simu,
+                    dart::dynamics::ShapeNode* shape,
                     const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                     gs::CubeMapColor& shader,
                     gs::CubeMapColor& texture_shader,
@@ -130,9 +168,14 @@ namespace robot_dart {
                 CubeMapShadowedColorObject& set_materials(const std::vector<gs::Material>& materials);
                 CubeMapShadowedColorObject& set_scalings(const std::vector<Magnum::Vector3>& scalings);
 
+                RobotDARTSimu* simu() const { return _simu; }
+                dart::dynamics::ShapeNode* shape() const { return _shape; }
+
             private:
                 void draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera) override;
 
+                RobotDARTSimu* _simu;
+                dart::dynamics::ShapeNode* _shape;
                 std::vector<std::reference_wrapper<Magnum::GL::Mesh>> _meshes;
                 std::reference_wrapper<gs::CubeMapColor> _shader, _texture_shader;
                 std::vector<gs::Material> _materials;
