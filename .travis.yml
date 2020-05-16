@@ -58,6 +58,7 @@ install:
   - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
   - if [ "$DART_MASTER" = "ON" ]; then 'ci/install_dart_latest.sh' ; else 'ci/install_dart.sh' ; fi
   - if [ "$MAGNUM_GUI" = "ON" ]; then 'ci/install_magnum.sh' ; fi
+  - cat /usr/local/include/dart/config.hpp
 
 # Change this to your needs
 script:
