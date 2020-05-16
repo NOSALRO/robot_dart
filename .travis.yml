@@ -41,7 +41,7 @@ addons:
     - cmake
     - pkg-config
     - git
-    - libassimp-dev
+    - libboost-filesystem-dev
     - libboost-regex-dev
     - libboost-system-dev
     - libboost-test-dev
