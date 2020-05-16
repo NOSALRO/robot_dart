@@ -64,4 +64,4 @@ script:
   - $PYTHON ./waf configure # --python
   - $PYTHON ./waf --tests
   - sudo $PYTHON ./waf install
-  # TO-DO: Run python/cmake tests
+  - cd cmake/example && mkdir build && cd build && cmake .. && make -j4
