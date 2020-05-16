@@ -119,7 +119,6 @@ def check_dart(conf, *k, **kw):
         with open(config_file) as f:
             config_content = f.readlines()
         for line in config_content:
-            print(line)
             major = line.find('#define DART_MAJOR_VERSION')
             minor = line.find('#define DART_MINOR_VERSION')
             patch = line.find('#define DART_PATCH_VERSION')
@@ -129,8 +128,6 @@ def check_dart(conf, *k, **kw):
                 dart_minor = int(line.split(' ')[-1].strip())
             if patch > -1:
                 dart_patch = int(line.split(' ')[-1].strip())
-            if dart_major > 0 and dart_minor > 0  and dart_patch > 0:
-                break
 
             nlopt = line.find('#define HAVE_NLOPT')
             ipopt = line.find('#define HAVE_IPOPT')
