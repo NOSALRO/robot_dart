@@ -66,4 +66,4 @@ script:
   - $PYTHON ./waf configure # --python
   - $PYTHON ./waf --tests
   - sudo $PYTHON ./waf install
-  - if [ "$CMAKE" = "ON" ]; then 'cd cmake/example && mkdir build && cd build && cmake .. && make -j4' ; fi
+  - if [ "$CMAKE" = "ON" ]; then cd cmake/example && mkdir build && cd build && cmake .. && make -j4 ; fi
