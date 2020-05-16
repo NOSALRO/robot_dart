@@ -216,9 +216,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('dart-collision-bullet')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         if dart_have_ode:
             conf.start_msg('DART: Checking for Ode Collision libs')
@@ -231,9 +231,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('dart-collision-ode')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-2:]) + ', ode: ' + str(ode_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         if dart_have_octomap:
             conf.start_msg('DART: Checking for Octomap libs')
@@ -244,9 +244,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('octomap')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-1:]) + ', octomap: ' + str(octomap_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         # remove duplicates
         conf.env.INCLUDES_DART = list(set(conf.env.INCLUDES_DART))
