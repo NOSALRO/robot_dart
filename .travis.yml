@@ -1,0 +1,76 @@
+language: cpp
+
+# os:
+#   - linux
+
+# sudo: required
+
+# dist: trusty
+
+compiler:
+  - gcc
+  - clang
+
+matrix:
+  include:
+    - dist: trusty
+      sudo: required
+    - dist: xenial
+      sudo: required
+    - dist: bionic
+      sudo: required
+
+
+env:
+  global:
+    - CI_HOME=`pwd`
+  matrix:
+    # Test python3
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python3
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python3
+    # Normal Test
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python2
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=ON PYTHON=python2
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=ON PYTHON=python2
+    # Test Latest DART
+    - DART_MASTER=ON DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
+    - DART_MASTER=ON DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python2
+    # Test DART Extra libs
+    - DART_MASTER=OFF DART_EXTRA=ON MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
+
+
+addons:
+  apt:
+    packages:
+    - python
+    - python3
+    - libeigen3-dev
+    - build-essential
+    - cmake
+    - pkg-config
+    - git
+    - libassimp-dev
+    - libboost-regex-dev
+    - libboost-system-dev
+    - libboost-test-dev
+    - libtinyxml2-dev
+    - liburdfdom-dev
+    # - libccd-dev
+    # - libfcl-dev
+
+#before_install:
+#  - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
+#  - sudo rm /etc/apt/sources.list.d/mongodb-3.2.list
+
+install:
+  - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
+  - if [ "$DART_MASTER" = "ON" ]; then 'ci/install_dart_latest.sh' ; else 'ci/install_dart.sh' ; fi
+  - if [ "$MAGNUM_GUI" = "ON" ]; then 'ci/install_magnum.sh' ; fi
+
+# Change this to your needs
+script:
+  - $PYTHON ./waf configure --python
+  - $PYTHON ./waf --tests
+  - $PYTHON ./waf install
+  # TO-DO: Run python/cmake tests
