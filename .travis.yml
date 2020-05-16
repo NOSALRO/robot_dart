@@ -4,7 +4,6 @@ os:
   - linux
 
 dist:
-  # - trusty
   # - xenial
   - bionic
 
@@ -18,9 +17,9 @@ env:
   jobs:
     # Test CMake
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=ON PYTHON=python2
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=ON PYTHON=python2
     # Test python3
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python3
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python3
     # Normal Test
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python2
@@ -49,12 +48,6 @@ addons:
     - libboost-test-dev
     - libtinyxml2-dev
     - liburdfdom-dev
-    # - libccd-dev
-    # - libfcl-dev
-
-#before_install:
-#  - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
-#  - sudo rm /etc/apt/sources.list.d/mongodb-3.2.list
 
 install:
   - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
