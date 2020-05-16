@@ -1,7 +1,9 @@
-sudo apt-add-repository ppa:dartsim/ppa -y
+sudo apt-get -qq update
+sudo apt-get -y install software-properties-common
+sudo apt-add-repository -y ppa:dartsim/ppa
 sudo apt-get -qq update
 
-sudo apt-get -qq --yes --force-yes install libccd-dev libfcl-dev
+sudo apt-get -qq --yes --force-yes install libassimp-dev libccd-dev libfcl-dev
 
 git clone git://github.com/dartsim/dart.git
 cd dart
