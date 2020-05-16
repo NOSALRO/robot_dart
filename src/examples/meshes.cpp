@@ -4,9 +4,6 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
-
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
@@ -35,7 +32,7 @@ int main()
     auto ghost = global_robot->clone_ghost();
 
     robot_dart::RobotDARTSimu simu(0.001);
-    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
+    simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
