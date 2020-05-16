@@ -153,11 +153,15 @@ def check_dart(conf, *k, **kw):
                 boolean = int(line.split(' ')[-1].strip())
                 dart_have_snopt = (boolean == 1)
             if bullet > -1:
+                print('bullet: ' + line)
                 boolean = int(line.split(' ')[-1].strip())
                 dart_have_bullet = (boolean == 1)
+                print(dart_have_bullet)
             if ode > -1:
+                print('ode: ' + line)
                 boolean = int(line.split(' ')[-1].strip())
                 dart_have_ode = (boolean == 1)
+                print(dart_have_ode)
             if flann > -1:
                 boolean = int(line.split(' ')[-1].strip())
                 dart_have_flann = (boolean == 1)
