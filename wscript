@@ -385,9 +385,14 @@ def build(bld):
     prefix = bld.get_env()['PREFIX']
     # config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
-        defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
-        magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
-        magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        magnum_dep_libs = bld.get_env()['magnum_dep_libs']
+        if build_graphic == True:
+            defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
+            magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
+            magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        else:
+            defines_magnum = ''
+            magnum_libs = ''
 
         dart_extra_libs = ''
         if 'dart-collision-bullet' in bld.env.LIB_DART:
@@ -406,7 +411,7 @@ def build(bld):
             .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
             .replace('@RobotDART_CXX_FLAGS@', cxx_flags) \
             .replace('@RobotDART_LIB_TYPE@', lib_type) \
-            .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
+            .replace('@RobotDART_MAGNUM_DEP_LIBS@', magnum_dep_libs) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
             .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
