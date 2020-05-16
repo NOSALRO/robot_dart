@@ -74,8 +74,9 @@ def configure(conf):
     else:
         conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
     conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
-    conf.check_magnum_plugins(components='AssimpImporter', required=False)
-    conf.check_magnum_integration(components='Dart', required=False)
+    if len(conf.env.INCLUDES_Magnum):
+        conf.check_magnum_plugins(components='AssimpImporter', required=False)
+        conf.check_magnum_integration(components='Dart', required=False)
 
     conf.env['py_flags'] = ''
     conf.env['BUILD_PYTHON'] = False
