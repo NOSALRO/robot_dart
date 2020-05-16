@@ -16,6 +16,8 @@ env:
   global:
     - CI_HOME=`pwd`
   jobs:
+    # Test CMake
+    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=ON PYTHON=python2
     # Test python3
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python3
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python3
@@ -64,4 +66,4 @@ script:
   - $PYTHON ./waf configure # --python
   - $PYTHON ./waf --tests
   - sudo $PYTHON ./waf install
-  - cd cmake/example && mkdir build && cd build && cmake .. && make -j4
+  - if [ "$CMAKE" = "ON" ]; then 'cd cmake/example && mkdir build && cd build && cmake .. && make -j4' ; fi

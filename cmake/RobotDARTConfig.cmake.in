@@ -45,8 +45,8 @@ set_target_properties(RobotDART::Simu PROPERTIES
   INTERFACE_COMPILE_OPTIONS "@RobotDART_CXX_FLAGS@")
 
 if(RobotDART_USE_MAGNUM)
-  find_dependency(Magnum ${RobotDART_MAGNUM_REQUIRED} COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
-  find_dependency(MagnumIntegration ${RobotDART_MAGNUM_REQUIRED} COMPONENTS Dart CONFIG)
+  find_package(Magnum ${RobotDART_MAGNUM_REQUIRED} COMPONENTS @RobotDART_MAGNUM_DEP_LIBS@ CONFIG)
+  find_package(MagnumIntegration ${RobotDART_MAGNUM_REQUIRED} COMPONENTS Dart CONFIG)
 
   if(Magnum_FOUND)
     set(RobotDARTMagnum_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTMagnum@RobotDART_LIB_TYPE@)
