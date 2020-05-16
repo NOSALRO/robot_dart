@@ -119,6 +119,7 @@ def check_dart(conf, *k, **kw):
         with open(config_file) as f:
             config_content = f.readlines()
         for line in config_content:
+            print(line)
             major = line.find('#define DART_MAJOR_VERSION')
             minor = line.find('#define DART_MINOR_VERSION')
             patch = line.find('#define DART_PATCH_VERSION')
