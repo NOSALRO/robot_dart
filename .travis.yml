@@ -1,30 +1,21 @@
 language: cpp
 
-# os:
-#   - linux
+os:
+  - linux
 
-# sudo: required
-
-# dist: trusty
+dist:
+  - trusty
+  - xenial
+  - bionic
 
 compiler:
   - gcc
   - clang
 
-matrix:
-  include:
-    - dist: trusty
-      sudo: required
-    - dist: xenial
-      sudo: required
-    - dist: bionic
-      sudo: required
-
-
 env:
   global:
     - CI_HOME=`pwd`
-  matrix:
+  jobs:
     # Test python3
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python3
     - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python3
