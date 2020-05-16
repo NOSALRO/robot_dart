@@ -5,7 +5,7 @@ os:
 
 dist:
   # - trusty
-  - xenial
+  # - xenial
   - bionic
 
 compiler:
@@ -63,5 +63,5 @@ install:
 script:
   - $PYTHON ./waf configure # --python
   - $PYTHON ./waf --tests
-  - $PYTHON ./waf install
+  - sudo $PYTHON ./waf install
   # TO-DO: Run python/cmake tests
