@@ -362,7 +362,8 @@ def build(bld):
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.hpp'):
-            if build_graphic == False and 'robot_dart/gui/magnum' in filename:
+            ffile = os.path.join(root, filename)
+            if build_graphic == False and 'robot_dart/gui/magnum' in ffile:
                 continue
             if filename in ["stb_image_write.h", "create_compatibility_shader.hpp"]:
                 continue
