@@ -1,3 +1,5 @@
+#include <signal.h>
+
 #include <algorithm>
 
 #include <Magnum/GL/AbstractFramebuffer.h>
@@ -41,12 +43,20 @@ namespace robot_dart {
                         .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane))
                         .setViewport({width, height});
                 }
+                Camera::~Camera() 
+                {
+                    if (_ffmpeg_process.id() > 0) {
+                        // we let ffmpeg finish nicely by detaching it and sending the signal
+                        // terminates() send a violent SIGTERM...
+                        _ffmpeg_process.detach();
+                        kill(_ffmpeg_process.id(), SIGINT);
+                    }
+                }
 
                 Camera3D& Camera::camera() const
                 {
                     return *_camera;
                 }
-
                 Object3D& Camera::camera_object() const
                 {
                     return *_camera_object;
@@ -179,8 +189,8 @@ namespace robot_dart {
                         "-f", "rawvideo", 
                         "-vcodec", "rawvideo",
                         "-s",  std::to_string(width()) + 'x' + std::to_string(height()),
-                        "-pix_fmt", "rgb24",// RGB?
-                        "-r", "24",//24
+                        "-pix_fmt", "rgb24",
+                        "-r", "24",
                         "-i", "-",
                         "-an",
                         "-vcodec", "mpeg4",
@@ -189,7 +199,7 @@ namespace robot_dart {
                     for (int i = 0; i < args.size(); ++i)
                         std::cout<<args[i]<<" ";
                     std::cout<<std::endl;
-                    // this should run in the background
+                    // this runs in the background (in its own process)
                     _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe);
                     // if error, this will launch a  std::system_error exception
                     // c.terminate();
