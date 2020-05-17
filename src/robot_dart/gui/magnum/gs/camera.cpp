@@ -5,7 +5,7 @@
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
-
+#include <Corrade/Containers/StridedArrayView.h>
 #include "camera.hpp"
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/utils.hpp"
@@ -180,7 +180,7 @@ namespace robot_dart {
                         "-vcodec", "rawvideo",
                         "-s",  std::to_string(width()) + 'x' + std::to_string(height()),
                         "-pix_fmt", "rgb24",// RGB?
-                        "-r", "24",
+                        "-r", "24",//24
                         "-i", "-",
                         "-an",
                         "-vcodec", "mpeg4",
@@ -193,6 +193,7 @@ namespace robot_dart {
                     _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe);
                     // if error, this will launch a  std::system_error exception
                     // c.terminate();
+
                 }
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
@@ -228,10 +229,21 @@ namespace robot_dart {
                     if (_recording_depth) {
                         _depth_image = framebuffer.read(framebuffer.viewport(), {Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float});
                     }
-                    if (_recording_video) {
-                        auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});//TODO format
-                        _video_pipe << image.data();
-                        // TODO
+                    if (_recording_video) {                
+                        auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
+                        auto pixels = image.pixels();
+                        size_t width = image.size()[0];
+                        size_t height = image.size()[1];
+                        size_t p = 3;
+                        std::vector<uint8_t> data(width * height * p);
+                        size_t k = 0;
+                        for (size_t h = 0; h < height; h++)
+                            for (size_t w = 0; w < width; w++)
+                                for (size_t i = 0; i < p; i++)
+                                    data[k++] = pixels[height-h-1][w][i];                            
+
+                        _video_pipe.write((char*)data.data(), data.size());
+                        _video_pipe.flush();
                     }
                 }
             } // namespace gs
