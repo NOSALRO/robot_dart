@@ -1,4 +1,5 @@
-# robot_dart
+robot_dart [![Build Status](https://travis-ci.org/resibots/robot_dart.svg?branch=master)](https://travis-ci.org/resibots/robot_dart)
+=====================================================================================================================================
 
 #### This repo contains a generic wrapper around the [DART] simulator.
 
