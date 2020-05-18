@@ -131,8 +131,8 @@ namespace robot_dart {
                 void record(bool recording, bool depthRecording = false) { _camera->record(recording, depthRecording); }
                 bool recording() { return _camera->recording(); }
                 bool recording_depth() { return _camera->recording_depth(); }
-                // video
-                void record_video(const std::string& video_fname) { _camera->record_video(video_fname); }
+                // video (FPS is mandatory here, see the Graphics class for automatic computation)
+                void record_video(const std::string& video_fname, int fps) { _camera->record_video(video_fname, fps); }
 
                 bool shadowed() const { return _shadowed; }
                 bool transparent_shadows() const { return _transparent_shadows; }

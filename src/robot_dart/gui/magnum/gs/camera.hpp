@@ -17,7 +17,7 @@ namespace robot_dart {
                 class Camera : public Object3D {
                 public:
                     explicit Camera(Object3D& object, Magnum::Int width, Magnum::Int height);
-
+                    ~Camera();
                     Camera3D& camera() const;
                     Object3D& camera_object() const;
 
@@ -49,7 +49,8 @@ namespace robot_dart {
                         _recording = recording;
                         _recording_depth = depthRecording;
                     }
-                    void record_video(const std::string& video_fname);
+                    // FPS is mandatory here (compared to Graphics and CameraOSR)
+                    void record_video(const std::string& video_fname, int fps);
                     bool recording() { return _recording; }
                     bool recording_depth() { return _recording_depth; }
 
@@ -77,6 +78,7 @@ namespace robot_dart {
                     // pipe to write a video
                     boost::process::opstream _video_pipe;
                     boost::process::child _ffmpeg_process;
+                    int _video_fps;
                 };
             } // namespace gs
         } // namespace magnum

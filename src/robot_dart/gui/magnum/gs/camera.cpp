@@ -171,12 +171,13 @@ namespace robot_dart {
                     }
                 }
 
-                void Camera::record_video(const std::string& video_fname)
+                void Camera::record_video(const std::string& video_fname, int fps)
                 {
                     // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
                     namespace bp = boost::process;
                     // we need to record images for the video
                     _recording_video = true;
+                    _video_fps = fps;
                     // search for ffmpeg
                     boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
                     if (ffmpeg.empty()) {
@@ -190,7 +191,7 @@ namespace robot_dart {
                         "-vcodec", "rawvideo",
                         "-s",  std::to_string(width()) + 'x' + std::to_string(height()),
                         "-pix_fmt", "rgb24",
-                        "-r", "24",
+                        "-r", std::to_string(fps),
                         "-i", "-",
                         "-an",
                         "-vcodec", "mpeg4",
