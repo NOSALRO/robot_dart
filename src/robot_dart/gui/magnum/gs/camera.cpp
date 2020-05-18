@@ -7,7 +7,9 @@
 #include <algorithm>
 #include <signal.h>
 
+#include <Corrade/Containers/ArrayViewStl.h>
 #include <Corrade/Containers/StridedArrayView.h>
+#include <Corrade/Utility/Algorithms.h>
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
@@ -248,16 +250,11 @@ namespace robot_dart {
                     }
                     if (_recording_video) {
                         auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
-                        auto pixels = image.pixels();
-                        size_t width = image.size()[0];
-                        size_t height = image.size()[1];
-                        size_t p = 3;
-                        std::vector<uint8_t> data(width * height * p);
-                        size_t k = 0;
-                        for (size_t h = 0; h < height; h++)
-                            for (size_t w = 0; w < width; w++)
-                                for (size_t i = 0; i < p; i++)
-                                    data[k++] = pixels[height - h - 1][w][i];
+
+                        std::vector<uint8_t> data(image.size().product() * sizeof(Magnum::Color3ub));
+                        Corrade::Containers::StridedArrayView2D<const Magnum::Color3ub> src = image.pixels<Magnum::Color3ub>().flipped<0>();
+                        Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
+                        Corrade::Utility::copy(src, dst);
 
                         _video_pipe.write((char*)data.data(), data.size());
                         _video_pipe.flush();
