@@ -1,6 +1,9 @@
 #include <signal.h>
-
 #include <algorithm>
+
+#include "robot_dart/gui/magnum/base_application.hpp"
+#include "robot_dart/gui_data.hpp"
+#include "robot_dart/robot_dart_simu.hpp"
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
@@ -8,6 +11,7 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 #include <Corrade/Containers/StridedArrayView.h>
+
 #include "camera.hpp"
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/utils.hpp"
@@ -207,7 +211,8 @@ namespace robot_dart {
 
                 }
 
-                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format)
+
+                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost)
                 {
                     // TO-DO: Maybe check if world moved?
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
@@ -216,6 +221,8 @@ namespace robot_dart {
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>> opaque, transparent;
                     for (size_t i = 0; i < drawableTransformations.size(); i++) {
                         auto& obj = static_cast<DrawableObject&>(drawableTransformations[i].first.get().object());
+                        if (!draw_ghost && obj.simu()->gui_data()->ghost(obj.shape()))
+                            continue;
                         if (obj.transparent())
                             transparent.emplace_back(drawableTransformations[i]);
                         else

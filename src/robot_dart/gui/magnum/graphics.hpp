@@ -4,6 +4,7 @@
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/gui/magnum/glfw_application.hpp>
 #include <robot_dart/gui/magnum/gs/helper.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
@@ -19,14 +20,14 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
-                static constexpr int FPS = 40;
-                Graphics(const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration())
-                    : _world(world), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
+                static constexpr int FPS = 40;              
+                Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
+                    : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
                 {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
-                    _magnum_app.reset(make_application<T>(world, configuration));
-                    set_render_period(world->getTimeStep());
+                    _magnum_app.reset(make_application<T>(simu, configuration));
+                    set_render_period(_world->getTimeStep());
                 }
 
                 ~Graphics() {}
@@ -136,6 +137,7 @@ namespace robot_dart {
                 BaseApplication* magnum_app() { return &*_magnum_app; }
 
             protected:
+                RobotDARTSimu* _simu;
                 dart::simulation::WorldPtr _world;
                 size_t _render_period, _width, _height, _frame_counter;
                 bool _enabled;

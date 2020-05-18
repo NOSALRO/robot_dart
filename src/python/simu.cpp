@@ -46,14 +46,32 @@ namespace robot_dart {
                 .def("num_robots", &RobotDARTSimu::num_robots)
                 .def("robots", &RobotDARTSimu::robots)
                 .def("robot", &RobotDARTSimu::robot)
+                .def("robot_index", &RobotDARTSimu::robot_index)
 
                 .def("add_robot", &RobotDARTSimu::add_robot, py::keep_alive<2, 1>())
+                .def("add_visual_robot", &RobotDARTSimu::add_visual_robot, py::keep_alive<2, 1>())
                 .def("remove_robot", (void (RobotDARTSimu::*)(const std::shared_ptr<Robot>&)) & RobotDARTSimu::remove_robot)
                 .def("remove_robot", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_robot)
                 .def("clear_robots", &RobotDARTSimu::clear_robots)
 
                 .def("add_floor", &RobotDARTSimu::add_floor)
-                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor);
+                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor)
+
+                .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
+                .def("collision_detector", &RobotDARTSimu::collision_detector)
+
+                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
+                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&, uint16_t)) & RobotDARTSimu::set_collision_mask)
+                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
+
+                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_mask)
+                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_mask)
+
+                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_collision_mask)
+                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::remove_collision_mask)
+                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::remove_collision_mask)
+
+                .def("remove_all_collision_masks", &RobotDARTSimu::remove_all_collision_masks);
         }
     } // namespace python
 } // namespace robot_dart

@@ -25,7 +25,6 @@ import magnum_integration
 import magnum_plugins
 import pybind
 
-
 def options(opt):
     opt.load('compiler_cxx')
     opt.load('compiler_c')
@@ -64,7 +63,7 @@ def configure(conf):
         conf.load('python')
         conf.load('pybind')
 
-    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.46')
+    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
@@ -381,3 +380,44 @@ def build(bld):
         bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTSimu.' + suffix)
         if bld.get_env()['BUILD_MAGNUM'] == True:
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
+
+    # CMake configuration
+    prefix = bld.get_env()['PREFIX']
+    # config
+    with open('cmake/RobotDARTConfig.cmake.in') as f:
+        defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
+        magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
+        magnum_libs = magnum_libs.replace('_', '::')[:-2]
+
+        dart_extra_libs = ''
+        if 'dart-collision-bullet' in bld.env.LIB_DART:
+            dart_extra_libs += ' collision-bullet '
+        if 'dart-collision-ode' in bld.env.LIB_DART:
+            dart_extra_libs += ' collision-ode '
+
+        cxx_flags = ''.join(x + ';' for x in bld.env['CXXFLAGS'])
+
+        lib_type = '.a'
+        if bld.env['lib_type'] == 'cxxshlib':
+            lib_type = '.so'
+        newText=f.read() \
+            .replace('@RobotDART_INCLUDE_DIRS@', prefix + "/include") \
+            .replace('@RobotDART_LIBRARY_DIRS@', prefix + "/lib") \
+            .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
+            .replace('@RobotDART_CXX_FLAGS@', cxx_flags) \
+            .replace('@RobotDART_LIB_TYPE@', lib_type) \
+            .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
+            .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
+            .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
+            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
+    with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
+        f.write(newText)
+    # configVersion
+    with open('cmake/RobotDARTConfigVersion.cmake.in') as f:
+        newText = f.read().replace('@robot_dart_VERSION@', str(VERSION))
+    with open(blddir + '/RobotDARTConfigVersion.cmake', "w") as f:
+        f.write(newText)
+
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')

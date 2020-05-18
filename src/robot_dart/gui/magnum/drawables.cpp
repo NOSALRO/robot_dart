@@ -1,4 +1,6 @@
 #include <robot_dart/gui/magnum/drawables.hpp>
+#include <robot_dart/gui_data.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
 
 #include <Magnum/GL/CubeMapTexture.h>
@@ -14,6 +16,8 @@ namespace robot_dart {
         namespace magnum {
             // DrawableObject
             DrawableObject::DrawableObject(
+                RobotDARTSimu* simu,
+                dart::dynamics::ShapeNode* shape,
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 const std::vector<gs::Material>& materials,
                 gs::PhongMultiLight& color,
@@ -22,6 +26,8 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
+                  _simu(simu),
+                  _shape(shape),
                   _meshes{meshes},
                   _color_shader{color},
                   _texture_shader{texture},
@@ -121,6 +127,8 @@ namespace robot_dart {
 
             // ShadowedObject
             ShadowedObject::ShadowedObject(
+                RobotDARTSimu* simu,
+                dart::dynamics::ShapeNode* shape,
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 gs::ShadowMap& shader,
                 gs::ShadowMap& texture_shader,
@@ -128,6 +136,8 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
+                  _simu(simu),
+                  _shape(shape),
                   _meshes{meshes},
                   _shader{shader},
                   _texture_shader(texture_shader) {}
@@ -152,6 +162,8 @@ namespace robot_dart {
 
             void ShadowedObject::draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera)
             {
+                if (!_simu->gui_data()->cast_shadows(_shape))
+                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
@@ -175,6 +187,8 @@ namespace robot_dart {
 
             // ShadowedColorObject
             ShadowedColorObject::ShadowedColorObject(
+                RobotDARTSimu* simu,
+                dart::dynamics::ShapeNode* shape,
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 gs::ShadowMapColor& shader,
                 gs::ShadowMapColor& texture_shader,
@@ -182,6 +196,8 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
+                  _simu(simu),
+                  _shape(shape),
                   _meshes{meshes},
                   _shader{shader},
                   _texture_shader(texture_shader) {}
@@ -206,6 +222,8 @@ namespace robot_dart {
 
             void ShadowedColorObject::draw(const Magnum::Matrix4& transformationMatrix, Magnum::SceneGraph::Camera3D& camera)
             {
+                if (!_simu->gui_data()->cast_shadows(_shape))
+                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
@@ -229,6 +247,8 @@ namespace robot_dart {
 
             // CubeMapShadowedObject
             CubeMapShadowedObject::CubeMapShadowedObject(
+                RobotDARTSimu* simu,
+                dart::dynamics::ShapeNode* shape,
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 gs::CubeMap& shader,
                 gs::CubeMap& texture_shader,
@@ -236,6 +256,8 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
+                  _simu(simu),
+                  _shape(shape),
                   _meshes{meshes},
                   _shader{shader},
                   _texture_shader(texture_shader) {}
@@ -281,6 +303,8 @@ namespace robot_dart {
 
             // CubeMapShadowedColorObject
             CubeMapShadowedColorObject::CubeMapShadowedColorObject(
+                RobotDARTSimu* simu,
+                dart::dynamics::ShapeNode* shape,
                 const std::vector<std::reference_wrapper<Magnum::GL::Mesh>>& meshes,
                 gs::CubeMapColor& shader,
                 gs::CubeMapColor& texture_shader,
@@ -288,6 +312,8 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D* group)
                 : Object3D{parent},
                   Magnum::SceneGraph::Drawable3D{*this, group},
+                  _simu(simu),
+                  _shape(shape),
                   _meshes{meshes},
                   _shader{shader},
                   _texture_shader(texture_shader) {}
@@ -312,6 +338,8 @@ namespace robot_dart {
 
             void CubeMapShadowedColorObject::draw(const Magnum::Matrix4&, Magnum::SceneGraph::Camera3D&)
             {
+                if (!_simu->gui_data()->cast_shadows(_shape))
+                    return;
                 for (size_t i = 0; i < _meshes.size(); i++) {
                     Magnum::GL::Mesh& mesh = _meshes[i];
                     Magnum::Matrix4 scalingMatrix = Magnum::Matrix4::scaling(_scalings[i]);
