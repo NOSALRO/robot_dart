@@ -18,6 +18,7 @@ namespace robot_dart {
                 public:
                     explicit Camera(Object3D& object, Magnum::Int width, Magnum::Int height);
                     ~Camera();
+
                     Camera3D& camera() const;
                     Object3D& camera_object() const;
 

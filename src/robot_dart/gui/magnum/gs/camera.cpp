@@ -1,20 +1,19 @@
-#include <signal.h>
-#include <algorithm>
-
+#include "camera.hpp"
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/gui_data.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
+#include "robot_dart/utils.hpp"
+
+#include <algorithm>
+#include <signal.h>
+
+#include <Corrade/Containers/StridedArrayView.h>
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
-#include <Corrade/Containers/StridedArrayView.h>
-
-#include "camera.hpp"
-#include "robot_dart/gui/magnum/base_application.hpp"
-#include "robot_dart/utils.hpp"
 
 namespace robot_dart {
     namespace gui {
@@ -47,7 +46,8 @@ namespace robot_dart {
                         .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane))
                         .setViewport({width, height});
                 }
-                Camera::~Camera() 
+
+                Camera::~Camera()
                 {
                     if (_ffmpeg_process.id() > 0) {
                         // we let ffmpeg finish nicely by detaching it and sending the signal
@@ -61,6 +61,7 @@ namespace robot_dart {
                 {
                     return *_camera;
                 }
+
                 Object3D& Camera::camera_object() const
                 {
                     return *_camera_object;
@@ -180,7 +181,6 @@ namespace robot_dart {
                     // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
                     namespace bp = boost::process;
                     // we need to record images for the video
-                    _recording_video = true;
                     _video_fps = fps;
                     // search for ffmpeg
                     boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
@@ -188,29 +188,28 @@ namespace robot_dart {
                         ROBOT_DART_WARNING(ffmpeg.empty(), "ffmpeg not found in the PATH. RobotDART will not be able to record videos!");
                         return;
                     }
-                    std::cout<<"Found FFMPEG:" <<ffmpeg<<std::endl;
+                    // std::cout << "Found FFMPEG:" << ffmpeg << std::endl;
+                    _recording_video = true;
                     // list our options
-                    std::vector<std::string> args = {"-y", 
-                        "-f", "rawvideo", 
+                    std::vector<std::string> args = {"-y",
+                        "-f", "rawvideo",
                         "-vcodec", "rawvideo",
-                        "-s",  std::to_string(width()) + 'x' + std::to_string(height()),
+                        "-s", std::to_string(width()) + 'x' + std::to_string(height()),
                         "-pix_fmt", "rgb24",
                         "-r", std::to_string(fps),
                         "-i", "-",
                         "-an",
                         "-vcodec", "mpeg4",
-            		    "-vb", "20M",
+                        "-vb", "20M",
                         video_fname};
-                    for (int i = 0; i < args.size(); ++i)
-                        std::cout<<args[i]<<" ";
-                    std::cout<<std::endl;
+                    // for (size_t i = 0; i < args.size(); ++i)
+                    //     std::cout << args[i] << " ";
+                    // std::cout << std::endl;
                     // this runs in the background (in its own process)
-                    _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe);
-                    // if error, this will launch a  std::system_error exception
-                    // c.terminate();
-
+                    // clang-format off
+                    _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe, bp::std_out > "/dev/null", bp::std_err > "/dev/null");
+                    // clang-format on
                 }
-
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost)
                 {
@@ -247,7 +246,7 @@ namespace robot_dart {
                     if (_recording_depth) {
                         _depth_image = framebuffer.read(framebuffer.viewport(), {Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float});
                     }
-                    if (_recording_video) {                
+                    if (_recording_video) {
                         auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
                         auto pixels = image.pixels();
                         size_t width = image.size()[0];
@@ -258,7 +257,7 @@ namespace robot_dart {
                         for (size_t h = 0; h < height; h++)
                             for (size_t w = 0; w < width; w++)
                                 for (size_t i = 0; i < p; i++)
-                                    data[k++] = pixels[height-h-1][w][i];                            
+                                    data[k++] = pixels[height - h - 1][w][i];
 
                         _video_pipe.write((char*)data.data(), data.size());
                         _video_pipe.flush();

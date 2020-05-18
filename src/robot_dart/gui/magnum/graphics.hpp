@@ -20,7 +20,7 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
-                static constexpr int FPS = 40;              
+                static constexpr int FPS = 40;
                 Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
                     : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
                 {
@@ -96,9 +96,11 @@ namespace robot_dart {
                 void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
                 bool recording() { return _magnum_app->recording(); }
                 bool recording_depth() { return _magnum_app->recording_depth(); }
-                void record_video(const std::string& video_fname, int fps = -1) {
+
+                void record_video(const std::string& video_fname, int fps = -1)
+                {
                     int fps_computed = (fps == -1) ? FPS : fps;
-                    _magnum_app->record_video(video_fname, fps_computed); 
+                    _magnum_app->record_video(video_fname, fps_computed);
                 }
 
                 bool shadowed() const { return _magnum_app->shadowed(); }
