@@ -30,11 +30,14 @@ namespace robot_dart {
                 void set_recording(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
                 bool recording() { return _camera->recording(); }
                 bool recording_depth() { return _camera->recording_depth(); }
+
                 // this will use the default FPS of the camera if fps == -1
-                void record_video(const std::string& video_fname, int fps = -1) {
+                void record_video(const std::string& video_fname, int fps = -1)
+                {
                     int fps_computed = (fps == -1) ? FPS : fps;
-                    _magnum_app->record_video(video_fname, fps_computed); 
+                    _magnum_app->record_video(video_fname, fps_computed);
                 }
+
                 Magnum::Image2D* magnum_image()
                 {
                     if (_camera->image())
