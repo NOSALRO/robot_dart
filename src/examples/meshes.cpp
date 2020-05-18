@@ -12,18 +12,21 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "/Users/jmouret/git/resibots/robot_dart/talos_robot/talos_description/"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("talos.urdf", packages);
+    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", std::string(RESPATH) + "/models/meshes"}};
+    auto global_robot = std::make_shared<robot_dart::Robot>("res/models/iiwa14.urdf", packages);
 
+    global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
-    global_robot->skeleton()->setPosition(5, 1.2);
-    global_robot->skeleton()->setPosition(2, 1.57);
+    // Use the material information coming from the meshes instead of the URDF file
+    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR);
+    // Use the material information from the meshes only for a specific BodyNode
+    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, "iiwa_link_6");
 
-    // Set actuator types to VELOCITY motors so that they stay in position without any controller
-    global_robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
-    // First 6-DOFs should always be FORCE if robot is floating base
-    for (size_t i = 0; i < 6; i++)
-        global_robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
+    std::vector<double> ctrl;
+    ctrl = {0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.};
+
+    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
+    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
 
     // Add a ghost robot; only visuals, no dynamics, no collision
     auto ghost = global_robot->clone_ghost();
@@ -33,12 +36,10 @@ int main()
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
-    graphics->enable_shadows(false);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
-
     simu.add_robot(ghost);
     simu.run(20.);
 
