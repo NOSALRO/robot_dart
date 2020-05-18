@@ -64,6 +64,8 @@ def configure(conf):
         conf.load('pybind')
 
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
+    # we need pthread for video saving
+    conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_hexapod_controller()
@@ -170,7 +172,7 @@ def build(bld):
     magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
-    libs = 'BOOST EIGEN DART'
+    libs = 'BOOST EIGEN DART PTHREAD'
 
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
@@ -228,13 +230,11 @@ def build(bld):
                     target = 'RobotDART')
 
     if build_graphic == True:
-        bld.env.LIB_PTHREAD = ['pthread']
-
         bld.program(features = 'cxx',
                       install_path = None,
                       source = 'src/examples/magnum_contexts.cpp',
                       includes = './src',
-                      uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
+                      uselib = bld.env['magnum_libs'] + libs,
                       use = 'RobotDARTSimu RobotDARTMagnum',
                       defines = ['RESPATH="' + path + '"'],
                       target = 'magnum_contexts')
