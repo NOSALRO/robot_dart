@@ -8,8 +8,8 @@
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
-    explicit MyApp(int argc, char** argv, const dart::simulation::WorldPtr& world, const robot_dart::gui::magnum::GraphicsConfiguration& configuration = robot_dart::gui::magnum::GraphicsConfiguration())
-        : GlfwApplication(argc, argv, world, configuration) {}
+    explicit MyApp(int argc, char** argv, robot_dart::RobotDARTSimu* simu, const robot_dart::gui::magnum::GraphicsConfiguration& configuration = robot_dart::gui::magnum::GraphicsConfiguration())
+        : GlfwApplication(argc, argv, simu, configuration) {}
 
 protected:
     void keyPressEvent(KeyEvent& event) override
@@ -44,7 +44,7 @@ int main()
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1024;
     configuration.height = 768;
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(simu.world(), configuration);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(&simu, configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
@@ -53,7 +53,7 @@ int main()
     graphics->record_video("test.mp4");
 
     // Add camera
-    auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(simu.world(), graphics->magnum_app(), 256, 256);
+    auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);
     camera->set_far_plane(5.f);
     camera->set_recording(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});

@@ -19,6 +19,7 @@ namespace robot_dart {
                 .def(py::init<dart::dynamics::SkeletonPtr, const std::string&>())
 
                 .def("clone", &Robot::clone)
+                .def("clone_ghost", &Robot::clone_ghost)
                 .def("skeleton", &Robot::skeleton)
 
                 .def("name", &Robot::name)
@@ -133,6 +134,12 @@ namespace robot_dart {
 
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode)) & Robot::set_color_mode)
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode, const std::string&)) & Robot::set_color_mode)
+
+                .def("set_cast_shadows", &Robot::set_cast_shadows)
+                .def("cast_shadows", &Robot::cast_shadows)
+
+                .def("set_ghost", &Robot::set_ghost)
+                .def("ghost", &Robot::ghost)
 
                 .def_static("create_box", &Robot::create_box)
                 .def_static("create_ellipsoid", &Robot::create_ellipsoid);

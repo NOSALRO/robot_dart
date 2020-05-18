@@ -16,7 +16,7 @@ namespace robot_dart {
         namespace magnum {
             class GlfwApplication : public BaseApplication, public Magnum::Platform::Application {
             public:
-                explicit GlfwApplication(int argc, char** argv, const dart::simulation::WorldPtr& world, const GraphicsConfiguration& configuration = GraphicsConfiguration());
+                explicit GlfwApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration());
 
                 ~GlfwApplication();
 
@@ -24,6 +24,7 @@ namespace robot_dart {
 
             protected:
                 Magnum::Float _speed_move, _speed_strafe;
+                bool _draw_main_camera, _draw_ghosts;
 
                 static constexpr Magnum::Float _speed = 0.05f;
 
