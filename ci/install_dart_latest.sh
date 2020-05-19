@@ -12,7 +12,7 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
 sudo make install
-if [ "$PYTHON_TESTS" = "ON" ] then
+if [ "$PYTHON_TESTS" = "ON" ]; then
     cd ..
     mkdir build_py
     cd build_py
