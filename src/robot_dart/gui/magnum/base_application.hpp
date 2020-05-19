@@ -116,6 +116,7 @@ namespace robot_dart {
                 Magnum::SceneGraph::DrawableGroup3D& drawables() { return _drawables; }
                 Scene3D& scene() { return _scene; }
                 gs::Camera& camera() { return *_camera; }
+                const gs::Camera& camera() const { return *_camera; }
 
                 bool done() const;
 

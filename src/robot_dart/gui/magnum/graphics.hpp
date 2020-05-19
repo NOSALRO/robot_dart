@@ -118,18 +118,11 @@ namespace robot_dart {
                 GrayscaleImage depth_image() override { return _magnum_app->depth_image(); }
                 GrayscaleImage raw_depth_image() override { return _magnum_app->raw_depth_image(); }
 
-                void set_speed(const Magnum::Vector2& speed) { _magnum_app->camera().set_speed(speed); }
-                void set_near_plane(double near_plane) { _magnum_app->camera().set_near_plane(near_plane); }
-                void set_far_plane(double far_plane) { _magnum_app->camera().set_far_plane(far_plane); }
-                void set_fov(double fov) { _magnum_app->camera().set_fov(fov); }
-                void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _magnum_app->camera().set_camera_params(near_plane, far_plane, fov, width, height); }
-
-                Magnum::Vector2 speed() const { return _magnum_app->camera().speed(); }
-                double near_plane() const { return _magnum_app->camera().near_plane(); }
-                double far_plane() const { return _magnum_app->camera().far_plane(); }
-                double fov() const { return _magnum_app->camera().fov(); }
+                gs::Camera& camera() { return _magnum_app->camera(); }
+                const gs::Camera& camera() const { return _magnum_app->camera();  }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }
+                const BaseApplication* magnum_app() const { return &*_magnum_app; }
 
             protected:
                 RobotDARTSimu* _simu;
