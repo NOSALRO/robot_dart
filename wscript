@@ -324,7 +324,7 @@ def build_examples(bld):
                     uselib = libs,
                     defines = ['RESPATH="' + path + '"'],
                     use = 'RobotDARTSimu',
-                    target = basename + '_plain')            
+                    target = basename + '_plain')
             # graphics version
             if (filename not in exclude) and bld.get_env()['BUILD_MAGNUM'] == True:
                 bld.program(features = 'cxx',
