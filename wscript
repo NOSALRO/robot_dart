@@ -305,126 +305,50 @@ def build_examples(bld):
     print("Bulding examples...")
     libs = 'BOOST EIGEN DART'
     path = bld.path.abspath() + '/res'
+    bld.env.LIB_PTHREAD = ['pthread']
 
-    if bld.get_env()['BUILD_MAGNUM'] == True:
-        bld.env.LIB_PTHREAD = ['pthread']
+    # these examples should not be compiled without magnum
+    magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
+    # these examples have their own rules
+    exclude = ['hexapod.cpp']
 
+    # generic builder
+    for root, dirnames, filenames in os.walk(bld.path.abspath() + '/src/examples/'):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            ffile = os.path.join(root, filename)
+            basename = filename.replace('.cpp', '')
+            # plain version
+            if (filename not in exclude) and (filename not in magnum_only):
+                bld.program(features = 'cxx',
+                    install_path = None,
+                    source = '/src/examples/' + filename,
+                    includes = './src',
+                    uselib = libs,
+                    defines = ['RESPATH="' + path + '"'],
+                    use = 'RobotDARTSimu',
+                    target = basename + '_plain')            
+            # graphics version
+            if (filename not in exclude) and bld.get_env()['BUILD_MAGNUM'] == True:
+                bld.program(features = 'cxx',
+                            install_path = None,
+                            source = '/src/examples/' + filename,
+                            includes = './src',
+                            uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
+                            use = 'RobotDARTSimu RobotDARTMagnum',
+                            defines = ['RESPATH="' + path + '"'],
+                            target = basename  + '_graphics')
+
+    # hexapod.cpp needs the controllers (optional)
+    if bld.get_env()['BUILD_MAGNUM'] and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
         bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/magnum_contexts.cpp',
-                      includes = './src',
-                      uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['RESPATH="' + path + '"'],
-                      target = 'magnum_contexts')
+                    install_path = None,
+                    source = 'src/examples/hexapod.cpp',
+                    includes = './src',
+                    uselib = bld.env['magnum_libs'] + libs + ' HEXAPOD_CONTROLLER',
+                    use = 'RobotDARTSimu RobotDARTMagnum',
+                    defines = ['GRAPHIC'],
+                    target = 'hexapod')
 
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/pendulum.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'pendulum')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/arm.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'arm')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/tutorial.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'tutorial')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/meshes.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
-                      target = 'meshes')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/cameras.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
-                      target = 'cameras')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/transparent.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'transparent')
-
-        # if we found the hexapod controller includes
-        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
-            bld.program(features = 'cxx',
-                        install_path = None,
-                        source = 'src/examples/hexapod.cpp',
-                        includes = './src',
-                        uselib = bld.env['magnum_libs'] + libs + ' HEXAPOD_CONTROLLER',
-                        use = 'RobotDARTSimu RobotDARTMagnum',
-                        defines = ['GRAPHIC'],
-                        target = 'hexapod')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/pendulum.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'pendulum_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/arm.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'arm_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/tutorial.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'tutorial_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/meshes.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  defines = ['RESPATH="' + path + '"'],
-                  target = 'meshes_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/transparent.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'transparent_plain')
-
-    # if we found the hexapod controller includes
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
         bld.program(features = 'cxx',
                     install_path = None,
