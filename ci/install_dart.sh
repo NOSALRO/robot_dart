@@ -7,5 +7,5 @@ sudo apt-get install -y --no-install-recommends libassimp-dev libccd-dev libfcl-
 
 sudo apt-get install -y --no-install-recommends libdart6-dev libdart6-utils-urdf-dev #python3-dartpy
 
-# For some weird reason, libdart6-dev installs a config with ode and bullet on
+# libdart6-dev installs a config with ode and bullet on
 sudo apt-get install -y --no-install-recommends libdart6-collision-ode-dev libdart6-collision-bullet-dev
