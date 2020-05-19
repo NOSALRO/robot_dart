@@ -334,7 +334,7 @@ def build_examples(bld):
                             uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
                             use = 'RobotDARTSimu RobotDARTMagnum',
                             defines = ['RESPATH="' + path + '"'],
-                            target = basename  + '_graphics')
+                            target = basename)
 
     # hexapod.cpp needs the controllers (optional)
     if bld.get_env()['BUILD_MAGNUM'] and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
