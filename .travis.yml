@@ -1,9 +1,26 @@
+# travis "complains" if I do not put those
+language: cpp
+os: linux
+dist: bionic
+
 env:
   global:
     - CI_HOME=`pwd`
 
 jobs:
   include:
+    # Test python bindings
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=Off
+        - PYTHON=python3
+        - PYTHON_TESTS=ON
     # Test CMake
     - language: cpp
       os: linux
@@ -92,29 +109,7 @@ jobs:
         - MAGNUM_GUI=OFF
         - CMAKE=OFF
         - PYTHON=python2
-    ### Test with trusty and xenial
-    # Normal test
-    - language: cpp
-      os: linux
-      dist: trusty
-      compiler: gcc
-      env:
-        - DART_MASTER=OFF
-        - DART_EXTRA=OFF
-        - MAGNUM_GUI=OFF
-        - CMAKE=OFF
-        - PYTHON=python2
-    # Normal test with GUI
-    - language: cpp
-      os: linux
-      dist: trusty
-      compiler: gcc
-      env:
-        - DART_MASTER=OFF
-        - DART_EXTRA=OFF
-        - MAGNUM_GUI=ON
-        - CMAKE=OFF
-        - PYTHON=python2
+    ### Test with xenial -- trusty is not supported by DART anymore
     # Normal test
     - language: cpp
       os: linux
@@ -156,6 +151,7 @@ addons:
     - liburdfdom-dev
 
 install:
+  - if [ "$PYTHON_TESTS" = "ON" ]; then 'ci/install_pybind.sh' ; fi
   - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
   - if [ "$DART_MASTER" = "ON" ]; then 'ci/install_dart_latest.sh' ; else 'ci/install_dart.sh' ; fi
   - if [ "$MAGNUM_GUI" = "ON" ]; then 'ci/install_magnum.sh' ; fi
@@ -166,3 +162,4 @@ script:
   - $PYTHON ./waf --tests
   - sudo $PYTHON ./waf install
   - if [ "$CMAKE" = "ON" ]; then cd cmake/example && mkdir build && cd build && cmake .. && make -j4 ; fi
+  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON src/python/ci.py ; fi
