@@ -43,5 +43,8 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     cd $CI_HOME
 else
     sudo xcode-select -r
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum mosra/magnum/magnum-plugins mosra/magnum/magnum-integration
+    # We need a newer version than 2019.10 for Magnum
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum --HEAD
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum-plugins --HEAD
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum-integration --HEAD
 fi
