@@ -158,7 +158,7 @@ install:
 
 # Change this to your needs
 script:
-  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON ./waf configure --python ; else $PYTHON ./waf configure ; fi
+  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON ./waf configure --prefix=/usr --python ; else $PYTHON ./waf configure ; fi
   - $PYTHON ./waf --tests
   - sudo $PYTHON ./waf install
   - if [ "$CMAKE" = "ON" ]; then cd cmake/example && mkdir build && cd build && cmake .. && make -j4 ; fi
