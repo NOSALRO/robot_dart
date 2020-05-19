@@ -204,6 +204,7 @@ def build(bld):
             defines = ['GRAPHIC']
 
         # fix for native flags from pyext
+        print(bld.env)
         native_flags = ['-march=x86-64', '-mtune=generic']
         for flag in native_flags:
             if flag in bld.env['CXXFLAGS_PYEXT']:
