@@ -101,8 +101,8 @@ def configure(conf):
     native_icc = ''
     if avx_dart:
         conf.msg('-march=native (AVX support)', 'yes', color='GREEN')
-        native = '-march=native'
-        native_icc = 'mtune=native'
+        native = ' -march=native'
+        native_icc = ' mtune=native'
     else:
         conf.msg('-march=native (AVX support)', 'no (optional)', color='YELLOW')
 
@@ -122,7 +122,7 @@ def configure(conf):
             common_flags = "-Wall -std=c++0x"
         else:
             common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -g " + native
+        opt_flags = " -O3 -g" + native
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
@@ -197,14 +197,13 @@ def build(bld):
     if bld.env['BUILD_PYTHON'] == True:
         graphic_libs = ''
         graphic_lib = ''
-        defines = ['']
+        defines = []
         if bld.get_env()['BUILD_MAGNUM'] == True:
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'
             defines = ['GRAPHIC']
 
         # fix for native flags from pyext
-        print(bld.env)
         native_flags = ['-march=x86-64', '-mtune=generic']
         for flag in native_flags:
             if flag in bld.env['CXXFLAGS_PYEXT']:
