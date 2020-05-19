@@ -77,7 +77,10 @@ def check_dart(conf, *k, **kw):
     ode_found = False
     try:
         ode_include = [get_directory('ode/collision.h', ode_check)]
-        ode_lib = [get_directory('libode.' + suffix, ode_libs)]
+        try:
+            ode_lib = [get_directory('libode.' + suffix, ode_libs)]
+        except:
+            ode_lib = [get_directory('libode.a' , ode_libs)] 
         ode_found = True
     except:
         ode_found = False
