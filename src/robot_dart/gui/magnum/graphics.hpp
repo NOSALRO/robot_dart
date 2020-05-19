@@ -92,10 +92,6 @@ namespace robot_dart {
                     return _magnum_app->light(i);
                 }
 
-                void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
-                bool recording() { return _magnum_app->recording(); }
-                bool recording_depth() { return _magnum_app->recording_depth(); }
-
                 bool shadowed() const { return _magnum_app->shadowed(); }
                 bool transparent_shadows() const { return _magnum_app->transparent_shadows(); }
                 void enable_shadows(bool enable = true, bool transparent = true) { _magnum_app->enable_shadows(enable, transparent); }

@@ -42,7 +42,7 @@ namespace robot_dart {
                 /* Initialize DART world */
                 init(simu, configuration.width, configuration.height);
 
-                record(true);
+                _camera->record(true);
             }
 
             WindowlessGLApplication::~WindowlessGLApplication()

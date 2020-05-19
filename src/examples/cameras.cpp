@@ -49,12 +49,12 @@ int main()
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
     // record images from main camera/graphics
-    graphics->set_recording(true);
+    graphics->camera().record(true);
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);
     camera->set_far_plane(5.f);
-    camera->set_recording(true, true); // cameras are recording color images by default, enable depth images as well for this example
+    camera->record(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
     Eigen::Isometry3d tf;
     // tf.setIdentity();

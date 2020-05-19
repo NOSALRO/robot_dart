@@ -27,12 +27,12 @@ namespace robot_dart {
                 /* Assume context is given externally, if not, we cannot have a camera */
                 if (!Magnum::GL::Context::hasCurrent()) {
                     Corrade::Utility::Error{} << "GL::Context not provided.. Cannot use this camera!";
-                    set_recording(false);
+                    record(false);
                     _done = true;
                     return;
                 }
                 else
-                    set_recording(true);
+                    record(true);
 
                 /* Create FrameBuffer to draw */
                 int w = width, h = height;
