@@ -42,5 +42,5 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     sudo ldconfig
     cd $CI_HOME
 else
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install magnum magnum-plugins magnum-integration
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum mosra/magnum/magnum-plugins mosra/magnum/magnum-integration
 fi
