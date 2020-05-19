@@ -18,7 +18,7 @@ jobs:
         - DART_MASTER=ON
         - DART_EXTRA=OFF
         - MAGNUM_GUI=OFF
-        - CMAKE=Off
+        - CMAKE=OFF
         - PYTHON=python3
         - PYTHON_TESTS=ON
     # Test CMake
