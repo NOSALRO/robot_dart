@@ -1,36 +1,142 @@
-language: cpp
-
-os:
-  - linux
-
-dist:
-  # - xenial
-  - bionic
-
-compiler:
-  - gcc
-  - clang
-
 env:
   global:
     - CI_HOME=`pwd`
-  jobs:
-    # Test CMake
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=ON PYTHON=python2
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=ON PYTHON=python2
-    # Test python3
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python3
-    # Normal Test
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python2
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=ON PYTHON=python2
-    - DART_MASTER=OFF DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=ON PYTHON=python2
-    # Test Latest DART
-    - DART_MASTER=ON DART_EXTRA=OFF MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
-    - DART_MASTER=ON DART_EXTRA=OFF MAGNUM_GUI=ON CMAKE=OFF PYTHON=python2
-    # Test DART Extra libs
-    - DART_MASTER=ON DART_EXTRA=ON MAGNUM_GUI=OFF CMAKE=OFF PYTHON=python2
 
+jobs:
+  include:
+    # Test CMake
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=ON
+        - PYTHON=python2
+    # Test CMake with Magnum
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=ON
+        - PYTHON=python2
+    # Test python3
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python3
+    # Normal test
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Normal test with GUI
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Latest DART
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Latest DART with GUI
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Latest DART with extra libs
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=ON
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    ### Test with trusty and xenial
+    # Normal test
+    - language: cpp
+      os: linux
+      dist: trusty
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Normal test with GUI
+    - language: cpp
+      os: linux
+      dist: trusty
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Normal test
+    - language: cpp
+      os: linux
+      dist: xenial
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Normal test with GUI
+    - language: cpp
+      os: linux
+      dist: xenial
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
 
 addons:
   apt:
