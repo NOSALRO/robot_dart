@@ -151,7 +151,7 @@ addons:
     - liburdfdom-dev
 
 install:
-  - if [ "$PYTHON_TESTS" = "ON" ]; then 'ci/install_pybind.sh' ; fi
+  - if [ "$PYTHON_TESTS" = "ON" ]; then 'ci/install_python_deps.sh' ; fi
   - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
   - if [ "$DART_MASTER" = "ON" ]; then 'ci/install_dart_latest.sh' ; else 'ci/install_dart.sh' ; fi
   - if [ "$MAGNUM_GUI" = "ON" ]; then 'ci/install_magnum.sh' ; fi

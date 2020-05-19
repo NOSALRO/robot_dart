@@ -5,7 +5,7 @@ sudo apt-get install -y --no-install-recommends \
     lsb-release
 
 # python bindings of DART require OSG!!
-sudo apt-get install -y --no-install-recommends libopenscenegraph-dev
+sudo apt-get install -y --no-install-recommends libopenscenegraph-dev freeglut3-dev
 
 if [ $(lsb_release -sc) = "xenial" ] || [ $(lsb_release -sc) = "bionic" ]; then
     git clone https://github.com/pybind/pybind11 -b 'v2.3.0' --single-branch --depth 1
