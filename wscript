@@ -229,8 +229,6 @@ def build(bld):
                     defines = defines,
                     target = 'RobotDART')
 
-   
-
     bld.add_post_fun(summary)
 
     #### installation (waf install)
