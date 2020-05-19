@@ -9,7 +9,11 @@ if [ $(lsb_release -sc) = "xenial" ] || [ $(lsb_release -sc) = "bionic" ]; then
     cd pybind11
     mkdir build
     cd build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DPYBIND11_TEST=OFF
+    pythonVersion=python3.6
+    if [ $(lsb_release -sc) = "xenial" ]; then
+        pythonVersion=python3.5
+    fi
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=$(python-config --prefix)/bin/${pythonVersion} -DPYTHON_LIBRARY=$(python-config --prefix)/lib/lib${pythonVersion}m.so -DPYTHON_INCLUDE_DIR=$(python-config --prefix)/include/${pythonVersion}m -DPYBIND11_TEST=OFF
     make -j4
     sudo make install
     cd ../..
