@@ -42,5 +42,6 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     sudo ldconfig
     cd $CI_HOME
 else
+    sudo xcode-select -r
     HOMEBREW_NO_AUTO_UPDATE=1 brew install mosra/magnum/magnum mosra/magnum/magnum-plugins mosra/magnum/magnum-integration
 fi
