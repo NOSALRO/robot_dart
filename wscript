@@ -229,8 +229,6 @@ def build(bld):
                     defines = defines,
                     target = 'RobotDART')
 
-   
-
     bld.add_post_fun(summary)
 
     #### installation (waf install)
@@ -415,14 +413,6 @@ def build_examples(bld):
                   use = 'RobotDARTSimu',
                   defines = ['RESPATH="' + path + '"'],
                   target = 'meshes_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/transparent.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'transparent_plain')
 
     # if we found the hexapod controller includes
     if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
