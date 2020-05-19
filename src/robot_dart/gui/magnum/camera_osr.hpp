@@ -26,7 +26,7 @@ namespace robot_dart {
 
                 void render();
 
-                void set_recording(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
+                void record(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
                 bool recording() { return _camera->recording(); }
                 bool recording_depth() { return _camera->recording_depth(); }
 
