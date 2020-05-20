@@ -60,8 +60,8 @@ namespace robot_dart {
 
                 virtual void attach_to(const std::string& name, const Eigen::Isometry3d& tf);
 
-                gs::Camera& camera() { return _magnum_app->camera(); }
-                const gs::Camera& camera() const { return _magnum_app->camera(); }
+                gs::Camera& camera() { return *_camera; }
+                const gs::Camera& camera() const { return *_camera; }
 
                 bool drawing_ghosts() const { return _draw_ghosts; }
                 void draw_ghost(bool draw = true) { _draw_ghosts = draw; }
