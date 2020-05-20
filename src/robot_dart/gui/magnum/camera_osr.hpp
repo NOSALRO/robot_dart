@@ -26,10 +26,6 @@ namespace robot_dart {
 
                 void render();
 
-                void record(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
-                bool recording() { return _camera->recording(); }
-                bool recording_depth() { return _camera->recording_depth(); }
-
                 Magnum::Image2D* magnum_image()
                 {
                     if (_camera->image())
@@ -64,16 +60,8 @@ namespace robot_dart {
 
                 virtual void attach_to(const std::string& name, const Eigen::Isometry3d& tf);
 
-                void set_speed(const Magnum::Vector2& speed) { _camera->set_speed(speed); }
-                void set_near_plane(double near_plane) { _camera->set_near_plane(near_plane); }
-                void set_far_plane(double far_plane) { _camera->set_far_plane(far_plane); }
-                void set_fov(double fov) { _camera->set_fov(fov); }
-                void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _camera->set_camera_params(near_plane, far_plane, fov, width, height); }
-
-                Magnum::Vector2 speed() const { return _camera->speed(); }
-                double near_plane() const { return _camera->near_plane(); }
-                double far_plane() const { return _camera->far_plane(); }
-                double fov() const { return _camera->fov(); }
+                gs::Camera& camera() { return _magnum_app->camera(); }
+                const gs::Camera& camera() const { return _magnum_app->camera(); }
 
                 bool drawing_ghosts() const { return _draw_ghosts; }
                 void draw_ghost(bool draw = true) { _draw_ghosts = draw; }
