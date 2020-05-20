@@ -1,12 +1,8 @@
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
-
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
-#warning hexapod graphic
 #endif
 
 int main()
@@ -17,11 +13,13 @@ int main()
     global_robot->set_position_enforced(true);
 
     global_robot->set_actuator_types(dart::dynamics::Joint::SERVO);
+    // First 6-DoFs in a floating-base robot, should always be set to FORCE actuator
+    for (size_t i = 0; i < 6; i++)
+        global_robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
     global_robot->skeleton()->enableSelfCollisionCheck();
 
     auto g_robot = global_robot->clone();
-    g_robot->skeleton()->setPosition(5, 0.15);
-
+    g_robot->skeleton()->setPosition(5, 0.2);
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
@@ -29,7 +27,6 @@ int main()
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
-    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
     simu.add_floor();
     simu.add_robot(g_robot);
     simu.run(10.);
