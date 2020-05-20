@@ -35,7 +35,7 @@ namespace robot_dart {
                 void record_video(const std::string& video_fname, int fps = -1)
                 {
                     int fps_computed = (fps == -1) ? FPS : fps;
-                    _magnum_app->record_video(video_fname, fps_computed);
+                    _camera->record_video(video_fname, fps_computed);
                 }
 
                 Magnum::Image2D* magnum_image()
