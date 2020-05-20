@@ -46,8 +46,8 @@ namespace robot_dart {
             gray.height = height;
             gray.data.resize(width * height);
 
-            for (size_t w = 0; w < width; w++) {
-                for (size_t h = 0; h < height; h++) {
+            for (size_t h = 0; h < height; h++) {
+                for (size_t w = 0; w < width; w++) {
                     int id = w + h * width;
                     int id_rgb = w * rgb.channels + h * (width * rgb.channels);
                     uint8_t color = 0.3 * rgb.data[id_rgb + 0] + 0.59 * rgb.data[id_rgb + 1] + 0.11 * rgb.data[id_rgb + 2];
