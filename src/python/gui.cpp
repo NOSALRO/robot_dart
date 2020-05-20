@@ -58,6 +58,26 @@ namespace robot_dart {
                 using BaseWindowlessGraphics::BaseWindowlessGraphics;
             };
 
+            py::class_<gui::Image>(sm, "Image")
+                .def(py::init<size_t, size_t, size_t>(),
+                    py::arg("width") = 0,
+                    py::arg("height") = 0,
+                    py::arg("channels") = 3)
+
+                .def_readwrite("width", &gui::Image::width)
+                .def_readwrite("height", &gui::Image::height)
+                .def_readwrite("channels", &gui::Image::channels)
+                .def_readwrite("data", &gui::Image::data);
+
+            py::class_<gui::GrayscaleImage>(sm, "GrayscaleImage")
+                .def(py::init<size_t, size_t>(),
+                    py::arg("width") = 0,
+                    py::arg("height") = 0)
+
+                .def_readwrite("width", &gui::GrayscaleImage::width)
+                .def_readwrite("height", &gui::GrayscaleImage::height)
+                .def_readwrite("data", &gui::GrayscaleImage::data);
+
             py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
                 .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, bool, bool>(),
                     py::arg("width") = 640,

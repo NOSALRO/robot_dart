@@ -6,8 +6,16 @@
 
 namespace robot_dart {
     namespace gui {
-        using Image = std::vector<std::vector<std::vector<uint8_t>>>;
-        using GrayscaleImage = std::vector<std::vector<uint8_t>>;
+        struct Image {
+            size_t width, height;
+            size_t channels = 3;
+            std::vector<uint8_t> data;
+        };
+
+        struct GrayscaleImage {
+            size_t width, height;
+            std::vector<uint8_t> data;
+        };
 
         void save_png_image(const std::string& filename, const Image& rgb);
         void save_png_image(const std::string& filename, const GrayscaleImage& gray);
