@@ -18,7 +18,6 @@ from waflib.Tools import waf_unit_test
 import dart
 import boost
 import eigen
-import hexapod_controller
 import corrade
 import magnum
 import magnum_integration
@@ -31,7 +30,6 @@ def options(opt):
     opt.load('boost')
     opt.load('eigen')
     opt.load('dart')
-    opt.load('hexapod_controller')
     opt.load('corrade')
     opt.load('magnum')
     opt.load('magnum_integration')
@@ -53,7 +51,6 @@ def configure(conf):
     conf.load('boost')
     conf.load('eigen')
     conf.load('dart')
-    conf.load('hexapod_controller')
     conf.load('avx')
     conf.load('corrade')
     conf.load('magnum')
@@ -68,16 +65,17 @@ def configure(conf):
     conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
-    conf.check_hexapod_controller()
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication'
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
         conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
-    conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
-    conf.check_magnum_plugins(components='AssimpImporter', required=False)
-    conf.check_magnum_integration(components='Dart', required=False)
+    if len(conf.env.INCLUDES_Corrade):
+        conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
+    if len(conf.env.INCLUDES_Magnum):
+        conf.check_magnum_plugins(components='AssimpImporter', required=False)
+        conf.check_magnum_integration(components='Dart', required=False)
 
     conf.env['py_flags'] = ''
     conf.env['BUILD_PYTHON'] = False
@@ -101,8 +99,8 @@ def configure(conf):
     native_icc = ''
     if avx_dart:
         conf.msg('-march=native (AVX support)', 'yes', color='GREEN')
-        native = '-march=native'
-        native_icc = 'mtune=native'
+        native = ' -march=native'
+        native_icc = ' mtune=native'
     else:
         conf.msg('-march=native (AVX support)', 'no (optional)', color='YELLOW')
 
@@ -122,7 +120,7 @@ def configure(conf):
             common_flags = "-Wall -std=c++0x"
         else:
             common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -g " + native
+        opt_flags = " -O3 -g" + native
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
@@ -155,8 +153,8 @@ def build(bld):
     if bld.options.tests:
         bld.recurse('src/tests')
 
+    #### compilation of RobotDARTSimu
     path = bld.path.abspath() + '/res'
-
     files = []
     magnum_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
@@ -182,6 +180,7 @@ def build(bld):
 
     build_graphic = False
 
+    #### compilation of RobotDARTMagnum
     if bld.get_env()['BUILD_MAGNUM'] == True:
         shaders_resource = corrade.corrade_add_resource(bld, name = 'RobotDARTShaders', config_file = 'src/robot_dart/gui/magnum/resources/resources.conf')
 
@@ -194,10 +193,11 @@ def build(bld):
 
         build_graphic = True
 
+    #### compilation of the Python3 bindings
     if bld.env['BUILD_PYTHON'] == True:
         graphic_libs = ''
         graphic_lib = ''
-        defines = ['']
+        defines = []
         if bld.get_env()['BUILD_MAGNUM'] == True:
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'
@@ -229,137 +229,15 @@ def build(bld):
                     defines = defines,
                     target = 'RobotDART')
 
-    if build_graphic == True:
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/magnum_contexts.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['RESPATH="' + path + '"'],
-                      target = 'magnum_contexts')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/pendulum.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'pendulum')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/arm.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'arm')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/tutorial.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'tutorial')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/meshes.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
-                      target = 'meshes')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/cameras.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC', 'RESPATH="' + path + '"'],
-                      target = 'cameras')
-
-        bld.program(features = 'cxx',
-                      install_path = None,
-                      source = 'src/examples/transparent.cpp',
-                      includes = './src',
-                      uselib = bld.env['magnum_libs'] + libs,
-                      use = 'RobotDARTSimu RobotDARTMagnum',
-                      defines = ['GRAPHIC'],
-                      target = 'transparent')
-
-        # if we found the hexapod controller includes
-        if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
-            bld.program(features = 'cxx',
-                        install_path = None,
-                        source = 'src/examples/hexapod.cpp',
-                        includes = './src',
-                        uselib = bld.env['magnum_libs'] + libs + ' HEXAPOD_CONTROLLER',
-                        use = 'RobotDARTSimu RobotDARTMagnum',
-                        defines = ['GRAPHIC'],
-                        target = 'hexapod')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/pendulum.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'pendulum_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/arm.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'arm_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/tutorial.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'tutorial_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/meshes.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  defines = ['RESPATH="' + path + '"'],
-                  target = 'meshes_plain')
-
-    bld.program(features = 'cxx',
-                  install_path = None,
-                  source = 'src/examples/transparent.cpp',
-                  includes = './src',
-                  uselib = libs,
-                  use = 'RobotDARTSimu',
-                  target = 'transparent_plain')
-
-    # if we found the hexapod controller includes
-    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
-        bld.program(features = 'cxx',
-                    install_path = None,
-                    source = 'src/examples/hexapod.cpp',
-                    includes = './src',
-                    uselib = libs + ' HEXAPOD_CONTROLLER',
-                    use = 'RobotDARTSimu',
-                    target = 'hexapod_plain')
-
     bld.add_post_fun(summary)
 
+    #### installation (waf install)
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.hpp'):
+            ffile = os.path.join(root, filename)
+            if build_graphic == False and 'robot_dart/gui/magnum' in ffile:
+                continue
             if filename in ["stb_image_write.h", "create_compatibility_shader.hpp"]:
                 continue
             install_files.append(os.path.join(root, filename))
@@ -381,13 +259,18 @@ def build(bld):
         if bld.get_env()['BUILD_MAGNUM'] == True:
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
-    # CMake configuration
+    #### installation of the cmake config (waf install)
     prefix = bld.get_env()['PREFIX']
-    # config
+    # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
-        defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
-        magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
-        magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        magnum_dep_libs = bld.get_env()['magnum_dep_libs']
+        if build_graphic == True:
+            defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
+            magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
+            magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        else:
+            defines_magnum = ''
+            magnum_libs = ''
 
         dart_extra_libs = ''
         if 'dart-collision-bullet' in bld.env.LIB_DART:
@@ -406,13 +289,13 @@ def build(bld):
             .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
             .replace('@RobotDART_CXX_FLAGS@', cxx_flags) \
             .replace('@RobotDART_LIB_TYPE@', lib_type) \
-            .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
+            .replace('@RobotDART_MAGNUM_DEP_LIBS@', magnum_dep_libs) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
             .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
     with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
-    # configVersion
+    # CMAKE configVersion
     with open('cmake/RobotDARTConfigVersion.cmake.in') as f:
         newText = f.read().replace('@robot_dart_VERSION@', str(VERSION))
     with open(blddir + '/RobotDARTConfigVersion.cmake', "w") as f:
@@ -421,3 +304,47 @@ def build(bld):
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
+
+def build_examples(bld):
+    # we first build the library
+    build(bld)
+    print("Bulding examples...")
+    libs = 'BOOST EIGEN DART'
+    path = bld.path.abspath() + '/res'
+    bld.env.LIB_PTHREAD = ['pthread']
+
+    # these examples should not be compiled without magnum
+    magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
+    # these examples have their own rules
+    exclude = []
+
+    # generic builder
+    for root, dirnames, filenames in os.walk(bld.path.abspath() + '/src/examples/'):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            ffile = os.path.join(root, filename)
+            basename = filename.replace('.cpp', '')
+            # plain version
+            if (filename not in exclude) and (filename not in magnum_only):
+                bld.program(features = 'cxx',
+                    install_path = None,
+                    source = '/src/examples/' + filename,
+                    includes = './src',
+                    uselib = libs,
+                    defines = ['RESPATH="' + path + '"'],
+                    use = 'RobotDARTSimu',
+                    target = basename + '_plain')
+            # graphics version
+            if (filename not in exclude) and bld.get_env()['BUILD_MAGNUM'] == True:
+                bld.program(features = 'cxx',
+                            install_path = None,
+                            source = '/src/examples/' + filename,
+                            includes = './src',
+                            uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
+                            use = 'RobotDARTSimu RobotDARTMagnum',
+                            defines = ['RESPATH="' + path + '"', 'GRAPHIC'],
+                            target = basename)
+
+
+class BuildExamples(BuildContext):
+    cmd = 'examples'
+    fun = 'build_examples'
