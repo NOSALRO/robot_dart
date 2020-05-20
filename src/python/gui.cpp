@@ -122,6 +122,10 @@ namespace robot_dart {
                 .def("num_lights", &Graphics::num_lights)
                 .def("light", &Graphics::light)
 
+                .def("record_video", &Graphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
+
                 .def("shadowed", &Graphics::shadowed)
                 .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
@@ -151,6 +155,10 @@ namespace robot_dart {
                 .def("lights", &WindowlessGraphics::lights)
                 .def("num_lights", &WindowlessGraphics::num_lights)
                 .def("light", &WindowlessGraphics::light)
+
+                .def("record_video", &WindowlessGraphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
                 .def("shadowed", &WindowlessGraphics::shadowed)
                 .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
@@ -192,6 +200,10 @@ namespace robot_dart {
                 .def("look_at", &gui::magnum::CameraOSR::look_at)
 
                 .def("render", &gui::magnum::CameraOSR::render)
+
+                .def("record_video", &gui::magnum::CameraOSR::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
                 // Magnum::Image2D* magnum_image()
                 // Magnum::Image2D* magnum_depth_image()

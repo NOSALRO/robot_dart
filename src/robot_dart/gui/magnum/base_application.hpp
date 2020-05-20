@@ -131,6 +131,8 @@ namespace robot_dart {
                 void render_shadows();
                 bool attach_camera(gs::Camera& camera, const std::string& name);
 
+                // video (FPS is mandatory here, see the Graphics class for automatic computation)
+                void record_video(const std::string& video_fname, int fps) { _camera->record_video(video_fname, fps); }
 
                 bool shadowed() const { return _shadowed; }
                 bool transparent_shadows() const { return _transparent_shadows; }

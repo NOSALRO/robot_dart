@@ -61,6 +61,8 @@ def configure(conf):
         conf.load('pybind')
 
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
+    # we need pthread for video saving
+    conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
     conf.check_corrade(components='Utility PluginManager', required=False)
@@ -69,9 +71,11 @@ def configure(conf):
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
         conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
-    conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
-    conf.check_magnum_plugins(components='AssimpImporter', required=False)
-    conf.check_magnum_integration(components='Dart', required=False)
+    if len(conf.env.INCLUDES_Corrade):
+        conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
+    if len(conf.env.INCLUDES_Magnum):
+        conf.check_magnum_plugins(components='AssimpImporter', required=False)
+        conf.check_magnum_integration(components='Dart', required=False)
 
     conf.env['py_flags'] = ''
     conf.env['BUILD_PYTHON'] = False
@@ -95,8 +99,8 @@ def configure(conf):
     native_icc = ''
     if avx_dart:
         conf.msg('-march=native (AVX support)', 'yes', color='GREEN')
-        native = '-march=native'
-        native_icc = 'mtune=native'
+        native = ' -march=native'
+        native_icc = ' mtune=native'
     else:
         conf.msg('-march=native (AVX support)', 'no (optional)', color='YELLOW')
 
@@ -116,7 +120,7 @@ def configure(conf):
             common_flags = "-Wall -std=c++0x"
         else:
             common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -g " + native
+        opt_flags = " -O3 -g" + native
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
@@ -166,7 +170,7 @@ def build(bld):
     magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
-    libs = 'BOOST EIGEN DART'
+    libs = 'BOOST EIGEN DART PTHREAD'
 
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
@@ -193,7 +197,7 @@ def build(bld):
     if bld.env['BUILD_PYTHON'] == True:
         graphic_libs = ''
         graphic_lib = ''
-        defines = ['']
+        defines = []
         if bld.get_env()['BUILD_MAGNUM'] == True:
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'
@@ -231,6 +235,9 @@ def build(bld):
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
         for filename in fnmatch.filter(filenames, '*.hpp'):
+            ffile = os.path.join(root, filename)
+            if build_graphic == False and 'robot_dart/gui/magnum' in ffile:
+                continue
             if filename in ["stb_image_write.h", "create_compatibility_shader.hpp"]:
                 continue
             install_files.append(os.path.join(root, filename))
@@ -256,9 +263,14 @@ def build(bld):
     prefix = bld.get_env()['PREFIX']
     # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
-        defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
-        magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
-        magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        magnum_dep_libs = bld.get_env()['magnum_dep_libs']
+        if build_graphic == True:
+            defines_magnum = ''.join((x + ';').replace('"', '\\"') for x in bld.get_env()['DEFINES_Magnum'])
+            magnum_libs = ''.join(x + ';' for x in bld.env['magnum_libs'].split(' '))
+            magnum_libs = magnum_libs.replace('_', '::')[:-2]
+        else:
+            defines_magnum = ''
+            magnum_libs = ''
 
         dart_extra_libs = ''
         if 'dart-collision-bullet' in bld.env.LIB_DART:
@@ -277,7 +289,7 @@ def build(bld):
             .replace('@DART_EXTRA_LIBS@', dart_extra_libs) \
             .replace('@RobotDART_CXX_FLAGS@', cxx_flags) \
             .replace('@RobotDART_LIB_TYPE@', lib_type) \
-            .replace('@RobotDART_MAGNUM_DEP_LIBS@', bld.get_env()['magnum_dep_libs']) \
+            .replace('@RobotDART_MAGNUM_DEP_LIBS@', magnum_dep_libs) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
             .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")

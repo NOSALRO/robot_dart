@@ -20,6 +20,7 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
+                static constexpr int FPS = 40;
                 Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
                     : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
                 {
@@ -50,7 +51,7 @@ namespace robot_dart {
                 void set_render_period(double dt) override
                 {
                     // we want to display at around 40Hz of simulated time
-                    _render_period = std::floor((1. / 40.) / dt);
+                    _render_period = std::floor((1. / FPS) / dt);
                     if (_render_period < 1)
                         _render_period = 1;
                 }
@@ -90,6 +91,12 @@ namespace robot_dart {
                 magnum::gs::Light& light(size_t i)
                 {
                     return _magnum_app->light(i);
+                }
+
+                void record_video(const std::string& video_fname, int fps = -1)
+                {
+                    int fps_computed = (fps == -1) ? FPS : fps;
+                    _magnum_app->record_video(video_fname, fps_computed);
                 }
 
                 bool shadowed() const { return _magnum_app->shadowed(); }
