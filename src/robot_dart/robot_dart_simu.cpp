@@ -6,6 +6,7 @@
 #include <dart/collision/CollisionObject.hpp>
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
+#include <dart/config.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>

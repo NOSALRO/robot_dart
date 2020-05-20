@@ -1,0 +1,176 @@
+# travis "complains" if I do not put those
+language: cpp
+os: linux
+dist: bionic
+
+env:
+  global:
+    - CI_HOME=`pwd`
+
+jobs:
+  include:
+    # MacOS
+    - language: cpp
+      os: osx
+      osx_image: xcode11.4
+      compiler: clang
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    - language: cpp
+      os: osx
+      # osx_image: xcode11.4
+      compiler: clang
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Test python bindings
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python3
+        - PYTHON_TESTS=ON
+    # Test CMake
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=ON
+        - PYTHON=python2
+    # Test CMake with Magnum
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=ON
+        - PYTHON=python2
+    # # Normal test
+    # - language: cpp
+    #   os: linux
+    #   dist: bionic
+    #   compiler: gcc
+    #   env:
+    #     - DART_MASTER=OFF
+    #     - DART_EXTRA=OFF
+    #     - MAGNUM_GUI=OFF
+    #     - CMAKE=OFF
+    #     - PYTHON=python2
+    # # Normal test with GUI
+    # - language: cpp
+    #   os: linux
+    #   dist: bionic
+    #   compiler: gcc
+    #   env:
+    #     - DART_MASTER=OFF
+    #     - DART_EXTRA=OFF
+    #     - MAGNUM_GUI=ON
+    #     - CMAKE=OFF
+    #     - PYTHON=python2
+    # Latest DART
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Latest DART with GUI
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Latest DART with extra libs
+    - language: cpp
+      os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=ON
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    ### Test with xenial -- trusty is not supported by DART anymore
+    # Normal test
+    - language: cpp
+      os: linux
+      dist: xenial
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python2
+    # Normal test with GUI
+    - language: cpp
+      os: linux
+      dist: xenial
+      compiler: gcc
+      env:
+        - DART_MASTER=OFF
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=ON
+        - CMAKE=OFF
+        - PYTHON=python2
+
+addons:
+  apt:
+    packages:
+    - python
+    - python3
+    - libeigen3-dev
+    - build-essential
+    - cmake
+    - pkg-config
+    - git
+    - libboost-filesystem-dev
+    - libboost-regex-dev
+    - libboost-system-dev
+    - libboost-test-dev
+    - libtinyxml2-dev
+    - liburdfdom-dev
+
+install:
+  - if [ "$PYTHON_TESTS" = "ON" ]; then 'ci/install_python_deps.sh' ; fi
+  - if [ "$DART_EXTRA" = "ON" ]; then 'ci/install_dart_extra_deps.sh' ; fi
+  - if [ "$DART_MASTER" = "ON" ]; then 'ci/install_dart_latest.sh' ; else 'ci/install_dart.sh' ; fi
+  - if [ "$MAGNUM_GUI" = "ON" ]; then 'ci/install_magnum.sh' ; fi
+
+# Change this to your needs
+script:
+  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON ./waf configure --prefix=/usr --python ; else $PYTHON ./waf configure ; fi
+  - $PYTHON ./waf --tests
+  - $PYTHON ./waf examples
+  - sudo $PYTHON ./waf install
+  - if [ "$CMAKE" = "ON" ]; then cd cmake/example && mkdir build && cd build && cmake .. && make -j4 ; fi
+  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON src/python/ci.py ; fi

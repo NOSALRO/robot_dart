@@ -77,7 +77,10 @@ def check_dart(conf, *k, **kw):
     ode_found = False
     try:
         ode_include = [get_directory('ode/collision.h', ode_check)]
-        ode_lib = [get_directory('libode.' + suffix, ode_libs)]
+        try:
+            ode_lib = [get_directory('libode.' + suffix, ode_libs)]
+        except:
+            ode_lib = [get_directory('libode.a' , ode_libs)] 
         ode_found = True
     except:
         ode_found = False
@@ -128,8 +131,6 @@ def check_dart(conf, *k, **kw):
                 dart_minor = int(line.split(' ')[-1].strip())
             if patch > -1:
                 dart_patch = int(line.split(' ')[-1].strip())
-            if dart_major > 0 and dart_minor > 0  and dart_patch > 0:
-                break
 
             nlopt = line.find('#define HAVE_NLOPT')
             ipopt = line.find('#define HAVE_IPOPT')
@@ -216,9 +217,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('dart-collision-bullet')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-3:]) + ', bullet: ' + str(bullet_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         if dart_have_ode:
             conf.start_msg('DART: Checking for Ode Collision libs')
@@ -231,9 +232,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('dart-collision-ode')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-2:]) + ', ode: ' + str(ode_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         if dart_have_octomap:
             conf.start_msg('DART: Checking for Octomap libs')
@@ -244,9 +245,9 @@ def check_dart(conf, *k, **kw):
                     conf.env.LIB_DART.append('octomap')
                     conf.end_msg('libs: ' + str(conf.env.LIB_DART[-1:]) + ', octomap: ' + str(octomap_include[0]))
                 except:
-                    conf.end_msg('Not found', 'RED')
+                    fail('Not found', required)
             else:
-                conf.end_msg('Not found', 'RED')
+                fail('Not found', required)
 
         # remove duplicates
         conf.env.INCLUDES_DART = list(set(conf.env.INCLUDES_DART))

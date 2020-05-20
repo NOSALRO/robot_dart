@@ -1,4 +1,5 @@
-# robot_dart
+robot_dart [![Build Status](https://travis-ci.org/resibots/robot_dart.svg?branch=master)](https://travis-ci.org/resibots/robot_dart)
+=====================================================================================================================================
 
 ### CAUTION: The library is under-going a serious re-structure and development. Expect breaking of API/ABI, and out-of-date guides. We will soon provide a new release with many new features and a proper documentation.
 
