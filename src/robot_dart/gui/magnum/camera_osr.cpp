@@ -2,7 +2,9 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <Corrade/Containers/ArrayViewStl.h>
 #include <Corrade/Containers/StridedArrayView.h>
+#include <Corrade/Utility/Algorithms.h>
 
 // #include <Magnum/DebugTools/Screenshot.h>
 #include <Magnum/GL/PixelFormat.h>
@@ -41,7 +43,7 @@ namespace robot_dart {
                 // _color.setStorageMultisample(8, Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
                 _depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
-                _format = Magnum::PixelFormat::RGBA8Unorm;
+                _format = Magnum::PixelFormat::RGB8Unorm;
 
                 _framebuffer.attachRenderbuffer(
                     Magnum::GL::Framebuffer::ColorAttachment(0), _color);
@@ -121,28 +123,8 @@ namespace robot_dart {
                 auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
-                auto pixels = depth_image->pixels<Magnum::Float>();
-                auto sz = pixels.size();
 
-                GrayscaleImage img;
-                // TO-DO: Make this more performant
-                size_t width = sz[1];
-                size_t height = sz[0];
-                img.resize(width);
-                for (size_t w = 0; w < width; w++) {
-                    img[w].resize(height);
-                    for (size_t h = 0; h < height; h++) {
-                        Magnum::Float depth = pixels[height - 1 - h][w];
-
-                        /* Linearize depth for visualization */
-                        Magnum::Float zNear = _camera->near_plane();
-                        Magnum::Float zFar = _camera->far_plane();
-                        Magnum::Float val = (2.f * zNear) / (zFar + zNear - depth * (zFar - zNear));
-                        img[w][h] = val * 255.f;
-                    }
-                }
-
-                return img;
+                return gs::depth_from_image(&*depth_image, true, _camera->near_plane(), _camera->far_plane());
             }
 
             GrayscaleImage CameraOSR::raw_depth_image()
@@ -150,23 +132,8 @@ namespace robot_dart {
                 auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
-                auto pixels = depth_image->pixels<Magnum::Float>();
-                auto sz = pixels.size();
 
-                GrayscaleImage img;
-                // TO-DO: Make this more performant
-                size_t width = sz[1];
-                size_t height = sz[0];
-                img.resize(width);
-                for (size_t w = 0; w < width; w++) {
-                    img[w].resize(height);
-                    for (size_t h = 0; h < height; h++) {
-                        Magnum::Float depth = pixels[height - 1 - h][w];
-                        img[w][h] = depth * 255.f;
-                    }
-                }
-
-                return img;
+                return gs::depth_from_image(&*depth_image);
             }
 
             // std::vector<Eigen::Vector3d> CameraOSR::point_cloud()

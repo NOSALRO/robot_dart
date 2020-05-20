@@ -83,9 +83,9 @@ namespace robot_dart {
                     _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _draw_ghosts);
 
                     swapBuffers();
-
-                    redraw();
                 }
+
+                redraw();
             }
 
             void GlfwApplication::keyReleaseEvent(KeyEvent& event)
