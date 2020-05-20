@@ -51,11 +51,12 @@ namespace robot_dart {
 
                     void transform_lights(std::vector<gs::Light>& lights) const;
 
-                    void record(bool recording, bool depthRecording = false)
+                    void record(bool recording, bool recording_depth = false)
                     {
                         _recording = recording;
-                        _recording_depth = depthRecording;
+                        _recording_depth = recording_depth;
                     }
+
                     // FPS is mandatory here (compared to Graphics and CameraOSR)
                     void record_video(const std::string& video_fname, int fps);
                     bool recording() { return _recording; }

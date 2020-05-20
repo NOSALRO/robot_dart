@@ -85,7 +85,7 @@ namespace robot_dart {
                     py::arg("title") = "DART",
                     py::arg("shadowed") = true,
                     py::arg("transparent_shadows") = true,
-                    py::arg("shadow_map_size") = 512,
+                    py::arg("shadow_map_size") = 1024,
                     py::arg("max_lights") = 3,
                     py::arg("draw_main_camera") = true,
                     py::arg("draw_ghosts") = true)
