@@ -1,10 +1,16 @@
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_CAMERA_HPP
 
-#include <boost/process.hpp> // for launching ffmpeg
-
 #include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
+
+#include <boost/version.hpp>
+#if ((BOOST_VERSION / 100000) > 1) || ((BOOST_VERSION / 100000) == 1 && ((BOOST_VERSION / 100 % 1000) >= 64))
+#include <boost/process.hpp> // for launching ffmpeg
+#define ROBOT_DART_HAS_BOOST_PROCESS
+#else
+#warning Boost.process is not supported. Will not be able to record videos.
+#endif
 
 #include <Corrade/Containers/Optional.h>
 #include <Magnum/Image.h>
@@ -76,10 +82,11 @@ namespace robot_dart {
                     bool _recording_video = false;
                     Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
 
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
                     // pipe to write a video
                     boost::process::opstream _video_pipe;
                     boost::process::child _ffmpeg_process;
-                    int _video_fps;
+#endif
                 };
             } // namespace gs
         } // namespace magnum

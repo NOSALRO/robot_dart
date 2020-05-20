@@ -51,12 +51,14 @@ namespace robot_dart {
 
                 Camera::~Camera()
                 {
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
                     if (_ffmpeg_process.id() > 0) {
                         // we let ffmpeg finish nicely by detaching it and sending the signal
                         // terminates() send a violent SIGTERM...
                         _ffmpeg_process.detach();
                         kill(_ffmpeg_process.id(), SIGINT);
                     }
+#endif
                 }
 
                 Camera3D& Camera::camera() const
@@ -180,10 +182,9 @@ namespace robot_dart {
 
                 void Camera::record_video(const std::string& video_fname, int fps)
                 {
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
                     // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
                     namespace bp = boost::process;
-                    // we need to record images for the video
-                    _video_fps = fps;
                     // search for ffmpeg
                     boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
                     if (ffmpeg.empty()) {
@@ -211,6 +212,10 @@ namespace robot_dart {
                     // clang-format off
                     _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe, bp::std_out > "/dev/null", bp::std_err > "/dev/null");
                     // clang-format on
+
+#else
+                    ROBOT_DART_WARNING(true, "Boost version does not support 'boost.process'. Cannot record video!");
+#endif
                 }
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost)
@@ -248,6 +253,8 @@ namespace robot_dart {
                     if (_recording_depth) {
                         _depth_image = framebuffer.read(framebuffer.viewport(), {Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float});
                     }
+
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
                     if (_recording_video) {
                         auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
 
@@ -259,6 +266,7 @@ namespace robot_dart {
                         _video_pipe.write((char*)data.data(), data.size());
                         _video_pipe.flush();
                     }
+#endif
                 }
             } // namespace gs
         } // namespace magnum
