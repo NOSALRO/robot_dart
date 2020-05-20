@@ -1,5 +1,6 @@
 #include "base_application.hpp"
 
+#include <robot_dart/gui/magnum/gs/helper.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
 
@@ -228,6 +229,17 @@ namespace robot_dart {
                     _color_shader->bind_cube_map_color_texture(*_shadow_color_cube_map);
                     _texture_shader->bind_cube_map_color_texture(*_shadow_color_cube_map);
                 }
+
+                if (_shadowed)
+                    _prepare_shadows();
+
+                _color_shader->set_is_shadowed(_shadowed);
+                _texture_shader->set_is_shadowed(_shadowed);
+                _color_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
+                _texture_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
+
+                if (_shadowed)
+                    render_shadows();
             }
 
             void BaseApplication::update_graphics()
@@ -339,17 +351,6 @@ namespace robot_dart {
                 }
 
                 _dart_world->clearUpdatedShapeObjects();
-
-                if (_shadowed)
-                    _prepare_shadows();
-
-                _color_shader->set_is_shadowed(_shadowed);
-                _texture_shader->set_is_shadowed(_shadowed);
-                _color_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
-                _texture_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
-
-                if (_shadowed)
-                    render_shadows();
             }
 
             void BaseApplication::render_shadows()
@@ -559,28 +560,8 @@ namespace robot_dart {
                 auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
-                auto pixels = depth_image->pixels<Magnum::Float>();
-                auto sz = pixels.size();
 
-                GrayscaleImage img;
-                // TO-DO: Make this more performant
-                size_t width = sz[1];
-                size_t height = sz[0];
-                img.resize(width);
-                for (size_t w = 0; w < width; w++) {
-                    img[w].resize(height);
-                    for (size_t h = 0; h < height; h++) {
-                        Magnum::Float depth = pixels[height - 1 - h][w];
-
-                        /* Linearize depth for visualization */
-                        Magnum::Float zNear = _camera->near_plane();
-                        Magnum::Float zFar = _camera->far_plane();
-                        Magnum::Float val = (2.f * zNear) / (zFar + zNear - depth * (zFar - zNear));
-                        img[w][h] = val * 255.f;
-                    }
-                }
-
-                return img;
+                return gs::depth_from_image(&*depth_image, true, _camera->near_plane(), _camera->far_plane());
             }
 
             GrayscaleImage BaseApplication::raw_depth_image()
@@ -588,23 +569,8 @@ namespace robot_dart {
                 auto& depth_image = _camera->depth_image();
                 if (!depth_image)
                     return GrayscaleImage();
-                auto pixels = depth_image->pixels<Magnum::Float>();
-                auto sz = pixels.size();
 
-                GrayscaleImage img;
-                // TO-DO: Make this more performant
-                size_t width = sz[1];
-                size_t height = sz[0];
-                img.resize(width);
-                for (size_t w = 0; w < width; w++) {
-                    img[w].resize(height);
-                    for (size_t h = 0; h < height; h++) {
-                        Magnum::Float depth = pixels[height - 1 - h][w];
-                        img[w][h] = depth * 255.f;
-                    }
-                }
-
-                return img;
+                return gs::depth_from_image(&*depth_image);
             }
 
             void BaseApplication::_gl_clean_up()

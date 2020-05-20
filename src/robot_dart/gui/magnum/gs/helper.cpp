@@ -1,33 +1,54 @@
 #include "helper.hpp"
 
+#include <Corrade/Containers/ArrayViewStl.h>
 #include <Corrade/Containers/StridedArrayView.h>
+#include <Corrade/Utility/Algorithms.h>
+
+#include <Magnum/Math/Color.h>
+#include <Magnum/Math/PackingBatch.h>
 
 namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
-                std::vector<std::vector<std::vector<uint8_t>>> rgb_from_image(Magnum::Image2D* image)
+                Image rgb_from_image(Magnum::Image2D* image)
                 {
-                    auto pixels = image->pixels();
-                    auto sz = pixels.size();
-                    std::vector<std::vector<std::vector<uint8_t>>> data;
+                    Image img;
 
-                    // TO-DO: Make this more performant
-                    size_t width = sz[1];
-                    size_t height = sz[0];
-                    size_t p = 3;
-                    data.resize(width);
-                    for (size_t w = 0; w < width; w++) {
-                        data[w].resize(height);
-                        for (size_t h = 0; h < height; h++) {
-                            data[w][h].resize(p);
-                            for (size_t i = 0; i < p; i++) {
-                                data[w][h][i] = pixels[height - 1 - h][w][i];
-                            }
-                        }
+                    img.width = image->size().x();
+                    img.height = image->size().y();
+                    img.channels = 3;
+                    img.data.resize(image->size().product() * sizeof(Magnum::Color3ub));
+                    Corrade::Containers::StridedArrayView2D<const Magnum::Color3ub> src = image->pixels<Magnum::Color3ub>().flipped<0>();
+                    Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(img.data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
+                    Corrade::Utility::copy(src, dst);
+
+                    return img;
+                }
+
+                GrayscaleImage depth_from_image(Magnum::Image2D* image, bool linearize, Magnum::Float near_plane, Magnum::Float far_plane)
+                {
+                    GrayscaleImage img;
+
+                    img.width = image->size().x();
+                    img.height = image->size().y();
+                    img.data.resize(image->size().product() * sizeof(uint8_t));
+
+                    std::vector<Magnum::Float> data = std::vector<Magnum::Float>(image->size().product() * sizeof(Magnum::Float));
+                    Corrade::Containers::StridedArrayView2D<const Magnum::Float> src = image->pixels<Magnum::Float>().flipped<0>();
+                    Corrade::Containers::StridedArrayView2D<Magnum::Float> dst{Corrade::Containers::arrayCast<Magnum::Float>(Corrade::Containers::arrayView(data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
+                    Corrade::Utility::copy(src, dst);
+
+                    if (linearize) {
+                        for (auto& depth : data)
+                            depth = (2.f * near_plane) / (far_plane + near_plane - depth * (far_plane - near_plane));
                     }
 
-                    return data;
+                    Corrade::Containers::StridedArrayView2D<uint8_t> new_dst{Corrade::Containers::arrayCast<uint8_t>(Corrade::Containers::arrayView(img.data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
+
+                    Magnum::Math::packInto(dst, new_dst);
+
+                    return img;
                 }
             } // namespace gs
         } // namespace magnum

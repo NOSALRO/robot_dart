@@ -60,7 +60,7 @@ namespace robot_dart {
                 if (_draw_main_camera) {
                     /* Update graphic meshes/materials and render */
                     update_graphics();
-                    /* Update lights transformations */
+                    /* Update lights transformations --- this also draws the shadows if enabled */
                     update_lights(*_camera);
 
                     Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
@@ -83,9 +83,9 @@ namespace robot_dart {
                     _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _draw_ghosts);
 
                     swapBuffers();
-
-                    redraw();
                 }
+
+                redraw();
             }
 
             void GlfwApplication::keyReleaseEvent(KeyEvent& event)
