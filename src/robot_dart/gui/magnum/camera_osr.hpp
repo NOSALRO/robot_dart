@@ -14,6 +14,7 @@ namespace robot_dart {
         namespace magnum {
             class CameraOSR : public Base {
             public:
+                static constexpr int FPS = 30;
                 CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_ghost = false);
                 ~CameraOSR() {}
 
@@ -29,6 +30,13 @@ namespace robot_dart {
                 void set_recording(bool recording, bool recording_depth = false) { _camera->record(recording, recording_depth); }
                 bool recording() { return _camera->recording(); }
                 bool recording_depth() { return _camera->recording_depth(); }
+
+                // this will use the default FPS of the camera if fps == -1
+                void record_video(const std::string& video_fname, int fps = -1)
+                {
+                    int fps_computed = (fps == -1) ? FPS : fps;
+                    _camera->record_video(video_fname, fps_computed);
+                }
 
                 Magnum::Image2D* magnum_image()
                 {

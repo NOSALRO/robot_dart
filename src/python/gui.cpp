@@ -84,6 +84,10 @@ namespace robot_dart {
                 .def("recording", &Graphics::recording)
                 .def("recording_depth", &Graphics::recording_depth)
 
+                .def("record_video", &Graphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
+
                 .def("shadowed", &Graphics::shadowed)
                 .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
@@ -126,6 +130,10 @@ namespace robot_dart {
                 .def("set_recording", &WindowlessGraphics::set_recording)
                 .def("recording", &WindowlessGraphics::recording)
                 .def("recording_depth", &WindowlessGraphics::recording_depth)
+
+                .def("record_video", &WindowlessGraphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
                 .def("shadowed", &WindowlessGraphics::shadowed)
                 .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
@@ -180,6 +188,10 @@ namespace robot_dart {
                 .def("set_recording", &gui::magnum::CameraOSR::set_recording)
                 .def("recording", &gui::magnum::CameraOSR::recording)
                 .def("recording_depth", &gui::magnum::CameraOSR::recording_depth)
+
+                .def("record_video", &gui::magnum::CameraOSR::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
                 // Magnum::Image2D* magnum_image()
                 // Magnum::Image2D* magnum_depth_image()
