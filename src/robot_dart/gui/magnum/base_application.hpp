@@ -130,9 +130,13 @@ namespace robot_dart {
                 void render_shadows();
                 bool attach_camera(gs::Camera& camera, const std::string& name);
 
+                // this naming is ambiguous : what do we record here? especially when we can record videos
+                // maybe record_image & record_video ?
                 void record(bool recording, bool depthRecording = false) { _camera->record(recording, depthRecording); }
                 bool recording() { return _camera->recording(); }
                 bool recording_depth() { return _camera->recording_depth(); }
+                // video (FPS is mandatory here, see the Graphics class for automatic computation)
+                void record_video(const std::string& video_fname, int fps) { _camera->record_video(video_fname, fps); }
 
                 bool shadowed() const { return _shadowed; }
                 bool transparent_shadows() const { return _transparent_shadows; }

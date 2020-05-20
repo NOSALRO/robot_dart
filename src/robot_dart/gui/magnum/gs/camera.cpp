@@ -2,14 +2,20 @@
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/gui_data.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
+#include "robot_dart/utils.hpp"
+
+#include <algorithm>
+#include <signal.h>
+
+#include <Corrade/Containers/ArrayViewStl.h>
+#include <Corrade/Containers/StridedArrayView.h>
+#include <Corrade/Utility/Algorithms.h>
 
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
-
-#include <algorithm>
 
 namespace robot_dart {
     namespace gui {
@@ -41,6 +47,18 @@ namespace robot_dart {
                     _camera->setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
                         .setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane))
                         .setViewport({width, height});
+                }
+
+                Camera::~Camera()
+                {
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
+                    if (_ffmpeg_process.id() > 0) {
+                        // we let ffmpeg finish nicely by detaching it and sending the signal
+                        // terminates() send a violent SIGTERM...
+                        _ffmpeg_process.detach();
+                        kill(_ffmpeg_process.id(), SIGINT);
+                    }
+#endif
                 }
 
                 Camera3D& Camera::camera() const
@@ -162,6 +180,44 @@ namespace robot_dart {
                     }
                 }
 
+                void Camera::record_video(const std::string& video_fname, int fps)
+                {
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
+                    // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
+                    namespace bp = boost::process;
+                    // search for ffmpeg
+                    boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
+                    if (ffmpeg.empty()) {
+                        ROBOT_DART_WARNING(ffmpeg.empty(), "ffmpeg not found in the PATH. RobotDART will not be able to record videos!");
+                        return;
+                    }
+                    // std::cout << "Found FFMPEG:" << ffmpeg << std::endl;
+                    _recording_video = true;
+                    // list our options
+                    std::vector<std::string> args = {"-y",
+                        "-f", "rawvideo",
+                        "-vcodec", "rawvideo",
+                        "-s", std::to_string(width()) + 'x' + std::to_string(height()),
+                        "-pix_fmt", "rgb24",
+                        "-r", std::to_string(fps),
+                        "-i", "-",
+                        "-an",
+                        "-vcodec", "mpeg4",
+                        "-vb", "20M",
+                        video_fname};
+                    // for (size_t i = 0; i < args.size(); ++i)
+                    //     std::cout << args[i] << " ";
+                    // std::cout << std::endl;
+                    // this runs in the background (in its own process)
+                    // clang-format off
+                    _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe, bp::std_out > "/dev/null", bp::std_err > "/dev/null");
+                    // clang-format on
+
+#else
+                    ROBOT_DART_WARNING(true, "Boost version does not support 'boost.process'. Cannot record video!");
+#endif
+                }
+
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost)
                 {
                     // TO-DO: Maybe check if world moved?
@@ -197,6 +253,20 @@ namespace robot_dart {
                     if (_recording_depth) {
                         _depth_image = framebuffer.read(framebuffer.viewport(), {Magnum::GL::PixelFormat::DepthComponent, Magnum::GL::PixelType::Float});
                     }
+
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
+                    if (_recording_video) {
+                        auto image = framebuffer.read(framebuffer.viewport(), {Magnum::PixelFormat::RGB8Unorm});
+
+                        std::vector<uint8_t> data(image.size().product() * sizeof(Magnum::Color3ub));
+                        Corrade::Containers::StridedArrayView2D<const Magnum::Color3ub> src = image.pixels<Magnum::Color3ub>().flipped<0>();
+                        Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
+                        Corrade::Utility::copy(src, dst);
+
+                        _video_pipe.write((char*)data.data(), data.size());
+                        _video_pipe.flush();
+                    }
+#endif
                 }
             } // namespace gs
         } // namespace magnum

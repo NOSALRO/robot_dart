@@ -4,6 +4,14 @@
 #include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
+#include <boost/version.hpp>
+#if ((BOOST_VERSION / 100000) > 1) || ((BOOST_VERSION / 100000) == 1 && ((BOOST_VERSION / 100 % 1000) >= 64))
+#include <boost/process.hpp> // for launching ffmpeg
+#define ROBOT_DART_HAS_BOOST_PROCESS
+#else
+#warning Boost.process is not supported. Will not be able to record videos.
+#endif
+
 #include <Corrade/Containers/Optional.h>
 #include <Magnum/Image.h>
 
@@ -15,6 +23,7 @@ namespace robot_dart {
                 class Camera : public Object3D {
                 public:
                     explicit Camera(Object3D& object, Magnum::Int width, Magnum::Int height);
+                    ~Camera();
 
                     Camera3D& camera() const;
                     Object3D& camera_object() const;
@@ -47,7 +56,8 @@ namespace robot_dart {
                         _recording = recording;
                         _recording_depth = depthRecording;
                     }
-
+                    // FPS is mandatory here (compared to Graphics and CameraOSR)
+                    void record_video(const std::string& video_fname, int fps);
                     bool recording() { return _recording; }
                     bool recording_depth() { return _recording_depth; }
 
@@ -69,7 +79,14 @@ namespace robot_dart {
                     Magnum::Rad _fov;
 
                     bool _recording = false, _recording_depth = false;
+                    bool _recording_video = false;
                     Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
+
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
+                    // pipe to write a video
+                    boost::process::opstream _video_pipe;
+                    boost::process::child _ffmpeg_process;
+#endif
                 };
             } // namespace gs
         } // namespace magnum
