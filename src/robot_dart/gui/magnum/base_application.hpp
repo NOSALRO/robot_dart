@@ -90,7 +90,7 @@ namespace robot_dart {
                 // Shadows
                 bool shadowed = true;
                 bool transparent_shadows = true;
-                size_t shadow_map_size = 512;
+                size_t shadow_map_size = 1024;
 
                 // Lights
                 size_t max_lights = 3;

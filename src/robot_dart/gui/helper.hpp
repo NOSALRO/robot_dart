@@ -7,13 +7,13 @@
 namespace robot_dart {
     namespace gui {
         struct Image {
-            size_t width, height;
+            size_t width = 0, height = 0;
             size_t channels = 3;
             std::vector<uint8_t> data;
         };
 
         struct GrayscaleImage {
-            size_t width, height;
+            size_t width = 0, height = 0;
             std::vector<uint8_t> data;
         };
 
