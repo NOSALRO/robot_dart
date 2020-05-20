@@ -42,7 +42,7 @@ namespace robot_dart {
                 /* Initialize DART world */
                 init(simu, configuration.width, configuration.height);
 
-                record(true);
+                _camera->record(true);
             }
 
             WindowlessGLApplication::~WindowlessGLApplication()
@@ -55,7 +55,7 @@ namespace robot_dart {
                 if (_draw_main_camera) {
                     /* Update graphic meshes/materials and render */
                     update_graphics();
-                    /* Update lights transformations */
+                    /* Update lights transformations --- this also draws the shadows if enabled */
                     update_lights(*_camera);
 
                     Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
