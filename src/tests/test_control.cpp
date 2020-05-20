@@ -55,11 +55,11 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
 
     // change pd values
     pd_control->set_pd(10.0, 20.0);
-    double p, d;
+    Eigen::VectorXd p, d;
     std::tie(p, d) = pd_control->pd();
     // check that they are properly set
-    BOOST_CHECK(p == 10.0);
-    BOOST_CHECK(d == 20.0);
+    BOOST_CHECK(p(0) == 10.0);
+    BOOST_CHECK(d(0) == 20.0);
 
     // change weight
     pd_control->set_weight(30.0);
