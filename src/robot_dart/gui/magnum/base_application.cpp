@@ -228,6 +228,17 @@ namespace robot_dart {
                     _color_shader->bind_cube_map_color_texture(*_shadow_color_cube_map);
                     _texture_shader->bind_cube_map_color_texture(*_shadow_color_cube_map);
                 }
+
+                if (_shadowed)
+                    _prepare_shadows();
+
+                _color_shader->set_is_shadowed(_shadowed);
+                _texture_shader->set_is_shadowed(_shadowed);
+                _color_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
+                _texture_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
+
+                if (_shadowed)
+                    render_shadows();
             }
 
             void BaseApplication::update_graphics()
@@ -339,17 +350,6 @@ namespace robot_dart {
                 }
 
                 _dart_world->clearUpdatedShapeObjects();
-
-                if (_shadowed)
-                    _prepare_shadows();
-
-                _color_shader->set_is_shadowed(_shadowed);
-                _texture_shader->set_is_shadowed(_shadowed);
-                _color_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
-                _texture_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
-
-                if (_shadowed)
-                    render_shadows();
             }
 
             void BaseApplication::render_shadows()
