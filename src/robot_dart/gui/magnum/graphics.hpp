@@ -115,7 +115,7 @@ namespace robot_dart {
                 GrayscaleImage raw_depth_image() override { return _magnum_app->raw_depth_image(); }
 
                 gs::Camera& camera() { return _magnum_app->camera(); }
-                const gs::Camera& camera() const { return _magnum_app->camera();  }
+                const gs::Camera& camera() const { return _magnum_app->camera(); }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }
                 const BaseApplication* magnum_app() const { return &*_magnum_app; }

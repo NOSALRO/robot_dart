@@ -95,7 +95,7 @@ namespace robot_dart {
             {
                 /* Update graphic meshes/materials and render */
                 _magnum_app->update_graphics();
-                /* Update lights transformations */
+                /* Update lights transformations --- this also draws the shadows if enabled */
                 _magnum_app->update_lights(*_camera);
 
                 Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
