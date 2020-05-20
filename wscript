@@ -18,7 +18,6 @@ from waflib.Tools import waf_unit_test
 import dart
 import boost
 import eigen
-import hexapod_controller
 import corrade
 import magnum
 import magnum_integration
@@ -31,7 +30,6 @@ def options(opt):
     opt.load('boost')
     opt.load('eigen')
     opt.load('dart')
-    opt.load('hexapod_controller')
     opt.load('corrade')
     opt.load('magnum')
     opt.load('magnum_integration')
@@ -53,7 +51,6 @@ def configure(conf):
     conf.load('boost')
     conf.load('eigen')
     conf.load('dart')
-    conf.load('hexapod_controller')
     conf.load('avx')
     conf.load('corrade')
     conf.load('magnum')
@@ -66,7 +63,6 @@ def configure(conf):
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_eigen(required=True)
     conf.check_dart(required=True)
-    conf.check_hexapod_controller()
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication'
     if conf.env['DEST_OS'] == 'darwin':
@@ -308,7 +304,7 @@ def build_examples(bld):
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
     # these examples have their own rules
-    exclude = ['hexapod.cpp']
+    exclude = []
 
     # generic builder
     for root, dirnames, filenames in os.walk(bld.path.abspath() + '/src/examples/'):
@@ -333,28 +329,8 @@ def build_examples(bld):
                             includes = './src',
                             uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
                             use = 'RobotDARTSimu RobotDARTMagnum',
-                            defines = ['RESPATH="' + path + '"'],
+                            defines = ['RESPATH="' + path + '"', 'GRAPHIC'],
                             target = basename)
-
-    # hexapod.cpp needs the controllers (optional)
-    if bld.get_env()['BUILD_MAGNUM'] and len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
-        bld.program(features = 'cxx',
-                    install_path = None,
-                    source = 'src/examples/hexapod.cpp',
-                    includes = './src',
-                    uselib = bld.env['magnum_libs'] + libs + ' HEXAPOD_CONTROLLER',
-                    use = 'RobotDARTSimu RobotDARTMagnum',
-                    defines = ['GRAPHIC'],
-                    target = 'hexapod')
-
-    if len(bld.env.INCLUDES_HEXAPOD_CONTROLLER) > 0:
-        bld.program(features = 'cxx',
-                    install_path = None,
-                    source = 'src/examples/hexapod.cpp',
-                    includes = './src',
-                    uselib = libs + ' HEXAPOD_CONTROLLER',
-                    use = 'RobotDARTSimu',
-                    target = 'hexapod_plain')
 
 
 class BuildExamples(BuildContext):
