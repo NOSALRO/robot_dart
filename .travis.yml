@@ -64,39 +64,28 @@ jobs:
         - MAGNUM_GUI=ON
         - CMAKE=ON
         - PYTHON=python2
-    # Test python3
-    - language: cpp
-      os: linux
-      dist: bionic
-      compiler: gcc
-      env:
-        - DART_MASTER=OFF
-        - DART_EXTRA=OFF
-        - MAGNUM_GUI=OFF
-        - CMAKE=OFF
-        - PYTHON=python3
-    # Normal test
-    - language: cpp
-      os: linux
-      dist: bionic
-      compiler: gcc
-      env:
-        - DART_MASTER=OFF
-        - DART_EXTRA=OFF
-        - MAGNUM_GUI=OFF
-        - CMAKE=OFF
-        - PYTHON=python2
-    # Normal test with GUI
-    - language: cpp
-      os: linux
-      dist: bionic
-      compiler: gcc
-      env:
-        - DART_MASTER=OFF
-        - DART_EXTRA=OFF
-        - MAGNUM_GUI=ON
-        - CMAKE=OFF
-        - PYTHON=python2
+    # # Normal test
+    # - language: cpp
+    #   os: linux
+    #   dist: bionic
+    #   compiler: gcc
+    #   env:
+    #     - DART_MASTER=OFF
+    #     - DART_EXTRA=OFF
+    #     - MAGNUM_GUI=OFF
+    #     - CMAKE=OFF
+    #     - PYTHON=python2
+    # # Normal test with GUI
+    # - language: cpp
+    #   os: linux
+    #   dist: bionic
+    #   compiler: gcc
+    #   env:
+    #     - DART_MASTER=OFF
+    #     - DART_EXTRA=OFF
+    #     - MAGNUM_GUI=ON
+    #     - CMAKE=OFF
+    #     - PYTHON=python2
     # Latest DART
     - language: cpp
       os: linux
