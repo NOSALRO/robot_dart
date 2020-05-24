@@ -8,7 +8,7 @@
 namespace robot_dart {
     namespace control {
         OSControl::OSControl() : RobotControl() {}
-        OSControl::OSControl(const std::vector<double>& ctrl, const std::string& end_effector, bool control_orientation) : RobotControl(ctrl, false), _end_effector(end_effector), _control_orientation(control_orientation) {}
+        OSControl::OSControl(const Eigen::VectorXd& ctrl, const std::string& end_effector, bool control_orientation) : RobotControl(ctrl, false), _end_effector(end_effector), _control_orientation(control_orientation) {}
 
         void OSControl::configure()
         {
@@ -42,7 +42,7 @@ namespace robot_dart {
             // for now assume no orientation
             ROBOT_DART_ASSERT(_ctrl.size() == 3 && !_control_orientation, "OSControl: Operational control with orientation not supported yet!", Eigen::VectorXd::Zero(_control_dof));
             auto robot = _robot.lock();
-            Eigen::VectorXd target_position = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd& target_position = _ctrl;
 
             auto bd = robot->skeleton()->getBodyNode(_end_effector);
 

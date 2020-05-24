@@ -61,7 +61,7 @@ namespace robot_dart {
 
             // RobotControl class
             py::class_<RobotControl, PyRobotControl, std::shared_ptr<RobotControl>>(m, "RobotControl")
-                .def(py::init<const std::vector<double>&, bool>())
+                .def(py::init<const Eigen::VectorXd&, bool>())
 
                 .def_readwrite("_active", &PublicistRobotControl::_active)
                 .def_readwrite("_ctrl", &PublicistRobotControl::_ctrl)
@@ -109,7 +109,7 @@ namespace robot_dart {
 
             // PDControl class
             py::class_<PDControl, RobotControl, std::shared_ptr<PDControl>>(m, "PDControl")
-                .def(py::init<const std::vector<double>&, bool>())
+                .def(py::init<const Eigen::VectorXd&, bool>())
 
                 .def("configure", &PDControl::configure)
                 .def("calculate", &PDControl::calculate)
@@ -123,7 +123,7 @@ namespace robot_dart {
 
             // SimpleControl class
             py::class_<SimpleControl, RobotControl, std::shared_ptr<SimpleControl>>(m, "SimpleControl")
-                .def(py::init<const std::vector<double>&, bool>())
+                .def(py::init<const Eigen::VectorXd&, bool>())
 
                 .def("configure", &SimpleControl::configure)
                 .def("calculate", &SimpleControl::calculate)

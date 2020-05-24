@@ -16,11 +16,11 @@ namespace robot_dart {
         class RobotControl {
         public:
             RobotControl();
-            RobotControl(const std::vector<double>& ctrl, bool full_control = false);
+            RobotControl(const Eigen::VectorXd& ctrl, bool full_control = false);
             virtual ~RobotControl() {}
 
-            void set_parameters(const std::vector<double>& ctrl);
-            std::vector<double> parameters() const;
+            void set_parameters(const Eigen::VectorXd& ctrl);
+            const Eigen::VectorXd& parameters() const;
 
             void init();
 
@@ -56,7 +56,7 @@ namespace robot_dart {
 
         protected:
             std::weak_ptr<Robot> _robot;
-            std::vector<double> _ctrl;
+            Eigen::VectorXd _ctrl;
             double _weight;
             bool _active, _full_control;
             size_t _start_dof, _dof, _control_dof;

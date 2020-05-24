@@ -12,8 +12,8 @@ namespace robot_dart {
         class PolicyControl : public RobotControl {
         public:
             PolicyControl() : RobotControl() {}
-            PolicyControl(double dt, const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(dt), _first(true), _full_dt(false) {}
-            PolicyControl(const std::vector<double>& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(0.), _first(true), _full_dt(true) {}
+            PolicyControl(double dt, const Eigen::VectorXd& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(dt), _first(true), _full_dt(false) {}
+            PolicyControl(const Eigen::VectorXd& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(0.), _first(true), _full_dt(true) {}
 
             void configure() override
             {
@@ -28,12 +28,12 @@ namespace robot_dart {
                 _threshold = -robot->skeleton()->getTimeStep() * 0.5;
             }
 
-            void set_h_params(const std::vector<double>& h_params)
+            void set_h_params(const Eigen::VectorXd& h_params)
             {
                 _policy.set_h_params(h_params);
             }
 
-            std::vector<double> h_params() const
+            Eigen::VectorXd h_params() const
             {
                 return _policy.h_params();
             }

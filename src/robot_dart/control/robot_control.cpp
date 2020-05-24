@@ -7,16 +7,16 @@
 namespace robot_dart {
     namespace control {
         RobotControl::RobotControl() : _weight(1.), _active(false), _full_control(false) {}
-        RobotControl::RobotControl(const std::vector<double>& ctrl, bool full_control) : _ctrl(ctrl), _weight(1.), _active(false), _full_control(full_control) {}
+        RobotControl::RobotControl(const Eigen::VectorXd& ctrl, bool full_control) : _ctrl(ctrl), _weight(1.), _active(false), _full_control(full_control) {}
 
-        void RobotControl::set_parameters(const std::vector<double>& ctrl)
+        void RobotControl::set_parameters(const Eigen::VectorXd& ctrl)
         {
             _ctrl = ctrl;
             _active = false;
             init();
         }
 
-        std::vector<double> RobotControl::parameters() const
+        const Eigen::VectorXd& RobotControl::parameters() const
         {
             return _ctrl;
         }

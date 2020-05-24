@@ -25,12 +25,13 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
     BOOST_CHECK(!pd_control->active());
 
     // dummy parameters
-    std::vector<double> ctrl = {1., 2., 3., 4.};
+    Eigen::VectorXd ctrl(4);
+    ctrl << 1., 2., 3., 4.;
     pd_control = std::make_shared<control::PDControl>(ctrl);
     // this controller should not be active
     BOOST_CHECK(!pd_control->active());
     // check that the parameters are properly passed
-    for (size_t i = 0; i < ctrl.size(); i++) {
+    for (int i = 0; i < ctrl.size(); i++) {
         BOOST_CHECK(ctrl[i] == pd_control->parameters()[i]);
     }
     // try to initialize
@@ -43,7 +44,8 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
     BOOST_REQUIRE(pendulum);
 
     // set proper parameters
-    ctrl = {1.};
+    ctrl = Eigen::VectorXd(1);
+    ctrl << 1.;
     pd_control->set_parameters(ctrl);
     // it should still not be active
     BOOST_CHECK(!pd_control->active());
@@ -78,12 +80,13 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
     BOOST_CHECK(!simple_control->active());
 
     // dummy parameters
-    std::vector<double> ctrl = {1., 2., 3., 4.};
+    Eigen::VectorXd ctrl(4);
+    ctrl << 1., 2., 3., 4.;
     simple_control = std::make_shared<control::SimpleControl>(ctrl);
     // this controller should not be active
     BOOST_CHECK(!simple_control->active());
     // check that the parameters are properly passed
-    for (size_t i = 0; i < ctrl.size(); i++) {
+    for (int i = 0; i < ctrl.size(); i++) {
         BOOST_CHECK(ctrl[i] == simple_control->parameters()[i]);
     }
     // try to initialize
@@ -97,7 +100,8 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
     pendulum->fix_to_world();
 
     // set proper parameters
-    ctrl = {1.};
+    ctrl = Eigen::VectorXd(1);
+    ctrl << 1.;
     simple_control->set_parameters(ctrl);
     // it should still not be active
     BOOST_CHECK(!simple_control->active());
@@ -113,7 +117,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
 
     // check controls
     Eigen::VectorXd commands = simple_control->commands(0.0);
-    for (size_t i = 0; i < ctrl.size(); i++) {
+    for (int i = 0; i < ctrl.size(); i++) {
         BOOST_CHECK(ctrl[i] == commands(i));
     }
 }
@@ -125,9 +129,9 @@ BOOST_AUTO_TEST_CASE(test_robot_control)
     BOOST_REQUIRE(pendulum);
     pendulum->fix_to_world();
 
-    std::vector<double> ctrl;
+    Eigen::VectorXd ctrl(1);
     // add a PD controller with weight 1.
-    ctrl = {2.};
+    ctrl << 2.;
     pendulum->add_controller(std::make_shared<control::PDControl>(ctrl), 1.0);
 
     // verify that it is added
@@ -140,7 +144,7 @@ BOOST_AUTO_TEST_CASE(test_robot_control)
     BOOST_CHECK(pd_control->weight() == 1.0);
 
     // add a Simple controller with weight 30.
-    ctrl = {-2.};
+    ctrl << -2.;
     pendulum->add_controller(std::make_shared<control::SimpleControl>(ctrl), 30.0);
 
     // verify that it is added

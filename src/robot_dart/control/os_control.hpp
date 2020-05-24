@@ -15,7 +15,7 @@ namespace robot_dart {
         class OSControl : public RobotControl {
         public:
             OSControl();
-            OSControl(const std::vector<double>& ctrl, const std::string& end_effector, bool control_orientation = false);
+            OSControl(const Eigen::VectorXd& ctrl, const std::string& end_effector, bool control_orientation = false);
 
             void configure() override;
             Eigen::VectorXd calculate(double) override;

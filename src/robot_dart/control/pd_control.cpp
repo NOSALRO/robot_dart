@@ -5,7 +5,7 @@
 namespace robot_dart {
     namespace control {
         PDControl::PDControl() : RobotControl() {}
-        PDControl::PDControl(const std::vector<double>& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
+        PDControl::PDControl(const Eigen::VectorXd& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
 
         void PDControl::configure()
         {
@@ -20,7 +20,7 @@ namespace robot_dart {
         {
             ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "PDControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             auto robot = _robot.lock();
-            Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd& target_positions = _ctrl;
 
             Eigen::VectorXd q = get_positions();
             Eigen::VectorXd dq = get_velocities();
