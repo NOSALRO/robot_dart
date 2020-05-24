@@ -30,7 +30,7 @@ namespace robot_dart {
             if (robot->free() && !_full_control)
                 _start_dof = 6;
             _control_dof = _dof - _start_dof;
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
             _mimic_dofs.clear();
             for (size_t i = _start_dof; i < robot->skeleton()->getNumDofs(); i++) {
                 auto joint = robot->skeleton()->getDof(i)->getJoint();
@@ -77,9 +77,11 @@ namespace robot_dart {
 
         void RobotControl::set_full_control(bool enable)
         {
-            _full_control = enable;
-            _active = false;
-            init();
+            if (enable != _full_control) {
+                _full_control = enable;
+                _active = false;
+                init();
+            }
         }
 
         double RobotControl::weight() const
@@ -141,7 +143,7 @@ namespace robot_dart {
 
         Eigen::VectorXd RobotControl::_get_vector_mimic(const Eigen::VectorXd& vec) const
         {
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
             Eigen::VectorXd ret = Eigen::VectorXd::Zero(_control_dof);
             size_t k = 0;
             for (size_t i = _start_dof; i < _dof; i++) {
@@ -158,7 +160,7 @@ namespace robot_dart {
 
         Eigen::VectorXd RobotControl::_set_vector_mimic(const Eigen::VectorXd& vec) const
         {
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
             Eigen::VectorXd ret = Eigen::VectorXd::Zero(_dof);
             size_t k = 0;
             for (size_t i = _start_dof; i < _dof; i++) {
