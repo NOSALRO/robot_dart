@@ -9,7 +9,7 @@ namespace robot_dart {
         class SimpleControl : public RobotControl {
         public:
             SimpleControl();
-            SimpleControl(const std::vector<double>& ctrl, bool full_control = false);
+            SimpleControl(const Eigen::VectorXd& ctrl, bool full_control = false);
 
             void configure() override;
             Eigen::VectorXd calculate(double) override;

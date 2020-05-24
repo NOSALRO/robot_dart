@@ -5,7 +5,7 @@
 namespace robot_dart {
     namespace control {
         SimpleControl::SimpleControl() : RobotControl() {}
-        SimpleControl::SimpleControl(const std::vector<double>& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
+        SimpleControl::SimpleControl(const Eigen::VectorXd& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
 
         void SimpleControl::configure()
         {
@@ -16,9 +16,7 @@ namespace robot_dart {
         Eigen::VectorXd SimpleControl::calculate(double)
         {
             ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "SimpleControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
-            Eigen::VectorXd commands = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
-
-            return commands;
+            return _ctrl;
         }
 
         std::shared_ptr<RobotControl> SimpleControl::clone() const
