@@ -60,7 +60,7 @@ namespace robot_dart {
             double _weight;
             bool _active, _full_control;
             size_t _start_dof, _dof, _control_dof;
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
             std::vector<size_t> _mimic_dofs;
 #endif
 
