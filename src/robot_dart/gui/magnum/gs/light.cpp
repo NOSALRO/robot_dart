@@ -7,101 +7,101 @@ namespace robot_dart {
         namespace magnum {
             namespace gs {
                 Light::Light() : _position(Magnum::Vector4{0.f, 0.f, 0.f, 1.f}),
-                                 _transformedPosition(_position),
+                                 _transformed_position(_position),
                                  _material(Material()),
-                                 _spotDirection(Magnum::Vector3{1.f, 0.f, 0.f}),
-                                 _spotExponent(1.f),
-                                 _spotCutOff(Magnum::Math::Constants<Magnum::Float>::pi()),
+                                 _spot_direction(Magnum::Vector3{1.f, 0.f, 0.f}),
+                                 _spot_exponent(1.f),
+                                 _spot_cut_off(Magnum::Math::Constants<Magnum::Float>::pi()),
                                  _attenuation(Magnum::Vector4{0.f, 0.f, 1.f, 1.f}) {}
 
-                Light::Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spotDirection,
-                    Magnum::Float spotExponent, Magnum::Float spotCutOff, const Magnum::Vector4& attenuation) : _position(position),
-                                                                                                                _transformedPosition(_position),
+                Light::Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spot_direction,
+                    Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation) : _position(position),
+                                                                                                                _transformed_position(_position),
                                                                                                                 _material(material),
-                                                                                                                _spotDirection(spotDirection),
-                                                                                                                _spotExponent(spotExponent),
-                                                                                                                _spotCutOff(spotCutOff),
+                                                                                                                _spot_direction(spot_direction),
+                                                                                                                _spot_exponent(spot_exponent),
+                                                                                                                _spot_cut_off(spot_cut_off),
                                                                                                                 _attenuation(attenuation) {}
 
                 // Magnum::Vector4& Light::position();
                 Magnum::Vector4 Light::position() const { return _position; }
 
-                Magnum::Vector4& Light::transformedPosition() { return _transformedPosition; }
-                Magnum::Vector4 Light::transformedPosition() const { return _transformedPosition; }
+                Magnum::Vector4& Light::transformed_position() { return _transformed_position; }
+                Magnum::Vector4 Light::transformed_position() const { return _transformed_position; }
 
                 Material& Light::material() { return _material; }
                 Material Light::material() const { return _material; }
 
-                // Magnum::Vector3& Light::spotDirection() { return _spotDirection; }
-                Magnum::Vector3 Light::spotDirection() const { return _spotDirection; }
+                // Magnum::Vector3& Light::spot_direction() { return _spot_direction; }
+                Magnum::Vector3 Light::spot_direction() const { return _spot_direction; }
 
-                Magnum::Vector3& Light::transformedSpotDirection() { return _transformedSpotDirection; }
-                Magnum::Vector3 Light::transformedSpotDirection() const { return _transformedSpotDirection; }
+                Magnum::Vector3& Light::transformed_spot_direction() { return _transformed_spot_direction; }
+                Magnum::Vector3 Light::transformed_spot_direction() const { return _transformed_spot_direction; }
 
-                Magnum::Float& Light::spotExponent() { return _spotExponent; }
-                Magnum::Float Light::spotExponent() const { return _spotExponent; }
+                Magnum::Float& Light::spot_exponent() { return _spot_exponent; }
+                Magnum::Float Light::spot_exponent() const { return _spot_exponent; }
 
-                Magnum::Float& Light::spotCutOff() { return _spotCutOff; }
-                Magnum::Float Light::spotCutOff() const { return _spotCutOff; }
+                Magnum::Float& Light::spot_cut_off() { return _spot_cut_off; }
+                Magnum::Float Light::spot_cut_off() const { return _spot_cut_off; }
 
                 Magnum::Vector4& Light::attenuation() { return _attenuation; }
                 Magnum::Vector4 Light::attenuation() const { return _attenuation; }
 
-                Magnum::Matrix4 Light::shadowMatrix() const { return _shadowTransform; }
+                Magnum::Matrix4 Light::shadow_matrix() const { return _shadow_transform; }
 
-                Light& Light::setPosition(const Magnum::Vector4& position)
+                Light& Light::set_position(const Magnum::Vector4& position)
                 {
                     _position = position;
-                    _transformedPosition = position;
+                    _transformed_position = position;
                     return *this;
                 }
 
-                Light& Light::setTransformedPosition(const Magnum::Vector4& transformedPosition)
+                Light& Light::set_transformed_position(const Magnum::Vector4& transformed_position)
                 {
-                    _transformedPosition = transformedPosition;
+                    _transformed_position = transformed_position;
                     return *this;
                 }
 
-                Light& Light::setMaterial(const Material& material)
+                Light& Light::set_material(const Material& material)
                 {
                     _material = material;
                     return *this;
                 }
 
-                Light& Light::setSpotDirection(const Magnum::Vector3& spotDirection)
+                Light& Light::set_spot_direction(const Magnum::Vector3& spot_direction)
                 {
-                    _spotDirection = spotDirection;
-                    _transformedSpotDirection = _spotDirection;
+                    _spot_direction = spot_direction;
+                    _transformed_spot_direction = _spot_direction;
                     return *this;
                 }
 
-                Light& Light::setTransformedSpotDirection(const Magnum::Vector3& transformedSpotDirection)
+                Light& Light::set_transformed_spot_direction(const Magnum::Vector3& transformed_spot_direction)
                 {
-                    _transformedSpotDirection = transformedSpotDirection;
+                    _transformed_spot_direction = transformed_spot_direction;
                     return *this;
                 }
 
-                Light& Light::setSpotExponent(Magnum::Float spotExponent)
+                Light& Light::set_spot_exponent(Magnum::Float spot_exponent)
                 {
-                    _spotExponent = spotExponent;
+                    _spot_exponent = spot_exponent;
                     return *this;
                 }
 
-                Light& Light::setSpotCutOff(Magnum::Float spotCutOff)
+                Light& Light::set_spot_cut_off(Magnum::Float spot_cut_off)
                 {
-                    _spotCutOff = spotCutOff;
+                    _spot_cut_off = spot_cut_off;
                     return *this;
                 }
 
-                Light& Light::setAttenuation(const Magnum::Vector4& attenuation)
+                Light& Light::set_attenuation(const Magnum::Vector4& attenuation)
                 {
                     _attenuation = attenuation;
                     return *this;
                 }
 
-                Light& Light::setShadowMatrix(const Magnum::Matrix4& shadowTransform)
+                Light& Light::set_shadow_matrix(const Magnum::Matrix4& shadowTransform)
                 {
-                    _shadowTransform = shadowTransform;
+                    _shadow_transform = shadowTransform;
                     return *this;
                 }
             } // namespace gs

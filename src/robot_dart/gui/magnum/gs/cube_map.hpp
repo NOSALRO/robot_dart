@@ -32,21 +32,21 @@ namespace robot_dart {
 
                     Flags flags() const;
 
-                    CubeMap& setTransformationMatrix(const Magnum::Matrix4& matrix);
-                    CubeMap& setShadowMatrices(Magnum::Matrix4 matrices[6]);
-                    CubeMap& setLightPosition(const Magnum::Vector3& position);
-                    CubeMap& setFarPlane(Magnum::Float farPlane);
-                    CubeMap& setLightIndex(Magnum::Int index);
-                    CubeMap& setMaterial(Material& material);
+                    CubeMap& set_transformation_matrix(const Magnum::Matrix4& matrix);
+                    CubeMap& set_shadow_matrices(Magnum::Matrix4 matrices[6]);
+                    CubeMap& set_light_position(const Magnum::Vector3& position);
+                    CubeMap& set_far_plane(Magnum::Float far_plane);
+                    CubeMap& set_light_index(Magnum::Int index);
+                    CubeMap& set_material(Material& material);
 
                 private:
                     Flags _flags;
-                    Magnum::Int _transformationMatrixUniform{0},
-                        _shadowMatricesUniform{5},
-                        _lightPositionUniform{1},
-                        _farPlaneUniform{2},
-                        _lightIndexUniform{3},
-                        _diffuseColorUniform{4};
+                    Magnum::Int _transformation_matrix_uniform{0},
+                        _shadow_matrices_uniform{5},
+                        _light_position_uniform{1},
+                        _far_plane_uniform{2},
+                        _light_index_uniform{3},
+                        _diffuse_color_uniform{4};
                 };
 
                 CORRADE_ENUMSET_OPERATORS(CubeMap::Flags)

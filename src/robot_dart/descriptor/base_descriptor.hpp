@@ -12,7 +12,7 @@ namespace robot_dart {
 
         struct BaseDescriptor {
         public:
-            BaseDescriptor(RobotDARTSimu& simu, size_t desc_dump = 1);
+            BaseDescriptor(RobotDARTSimu* simu, size_t desc_dump = 1);
             virtual ~BaseDescriptor() {}
 
             virtual void operator()() = 0;
@@ -20,8 +20,10 @@ namespace robot_dart {
             size_t desc_dump() const;
             void set_desc_dump(size_t desc_dump);
 
+            const RobotDARTSimu* simu() const { return _simu; }
+
         protected:
-            RobotDARTSimu& _simu;
+            RobotDARTSimu* _simu;
             size_t _desc_period;
         };
     } // namespace descriptor

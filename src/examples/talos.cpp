@@ -31,7 +31,7 @@ int main()
     robot_dart::RobotDARTSimu simu(0.001);
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif

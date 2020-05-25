@@ -18,12 +18,35 @@ namespace robot_dart {
         void py_gui(py::module& m)
         {
             auto sm = m.def_submodule("gui");
+            auto gsmodule = sm.def_submodule("gs");
 
             using namespace robot_dart;
 
             // Helper definitions and classes
             using BaseGraphics = gui::magnum::Graphics<gui::magnum::GlfwApplication>;
             using BaseWindowlessGraphics = gui::magnum::Graphics<gui::magnum::WindowlessGLApplication>;
+            using GraphicsConfiguration = gui::magnum::GraphicsConfiguration;
+
+            using Object3D = gui::magnum::Object3D;
+            using Camera = gui::magnum::gs::Camera;
+
+            py::class_<Camera>(gsmodule, "Camera")
+                .def(py::init<Object3D&, Magnum::Int, Magnum::Int>())
+
+                .def("record", &Camera::record)
+                .def("recording", &Camera::recording)
+                .def("recording_depth", &Camera::recording_depth)
+
+                .def("set_speed", &Camera::set_speed)
+                .def("set_near_plane", &Camera::set_near_plane)
+                .def("set_far_plane", &Camera::set_far_plane)
+                .def("set_fov", &Camera::set_fov)
+                .def("set_camera_params", &Camera::set_camera_params)
+
+                .def("speed", &Camera::speed)
+                .def("near_plane", &Camera::near_plane)
+                .def("far_plane", &Camera::far_plane)
+                .def("fov", &Camera::fov);
 
             class Graphics : public BaseGraphics {
             public:
@@ -35,6 +58,48 @@ namespace robot_dart {
                 using BaseWindowlessGraphics::BaseWindowlessGraphics;
             };
 
+            py::class_<gui::Image>(sm, "Image")
+                .def(py::init<size_t, size_t, size_t>(),
+                    py::arg("width") = 0,
+                    py::arg("height") = 0,
+                    py::arg("channels") = 3)
+
+                .def_readwrite("width", &gui::Image::width)
+                .def_readwrite("height", &gui::Image::height)
+                .def_readwrite("channels", &gui::Image::channels)
+                .def_readwrite("data", &gui::Image::data);
+
+            py::class_<gui::GrayscaleImage>(sm, "GrayscaleImage")
+                .def(py::init<size_t, size_t>(),
+                    py::arg("width") = 0,
+                    py::arg("height") = 0)
+
+                .def_readwrite("width", &gui::GrayscaleImage::width)
+                .def_readwrite("height", &gui::GrayscaleImage::height)
+                .def_readwrite("data", &gui::GrayscaleImage::data);
+
+            py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
+                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, bool, bool>(),
+                    py::arg("width") = 640,
+                    py::arg("height") = 480,
+                    py::arg("title") = "DART",
+                    py::arg("shadowed") = true,
+                    py::arg("transparent_shadows") = true,
+                    py::arg("shadow_map_size") = 1024,
+                    py::arg("max_lights") = 3,
+                    py::arg("draw_main_camera") = true,
+                    py::arg("draw_ghosts") = true)
+
+                .def_readwrite("width", &GraphicsConfiguration::width)
+                .def_readwrite("height", &GraphicsConfiguration::height)
+                .def_readwrite("title", &GraphicsConfiguration::title)
+
+                .def_readwrite("shadowed", &GraphicsConfiguration::shadowed)
+                .def_readwrite("transparent_shadows", &GraphicsConfiguration::transparent_shadows)
+                .def_readwrite("shadow_map_size", &GraphicsConfiguration::shadow_map_size)
+
+                .def_readwrite("max_lights", &GraphicsConfiguration::max_lights);
+
             py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
             py::class_<BaseGraphics, gui::Base, std::shared_ptr<BaseGraphics>>(sm, "BaseGraphics");
             py::class_<BaseWindowlessGraphics, gui::Base, std::shared_ptr<BaseWindowlessGraphics>>(sm, "BaseWindowlessGraphics");
@@ -42,7 +107,7 @@ namespace robot_dart {
 
             // Graphics class
             py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
-                .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
 
                 .def("done", &Graphics::done)
                 .def("refresh", &Graphics::refresh)
@@ -57,11 +122,12 @@ namespace robot_dart {
                 .def("num_lights", &Graphics::num_lights)
                 .def("light", &Graphics::light)
 
-                .def("set_recording", &Graphics::set_recording)
-                .def("recording", &Graphics::recording)
-                .def("recording_depth", &Graphics::recording_depth)
+                .def("record_video", &Graphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
-                .def("is_shadowed", &Graphics::is_shadowed)
+                .def("shadowed", &Graphics::shadowed)
+                .def("transparent_shadows", &Graphics::transparent_shadows)
                 .def("enable_shadows", &Graphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
@@ -69,22 +135,13 @@ namespace robot_dart {
                 .def("depth_image", &Graphics::depth_image)
                 .def("raw_depth_image", &Graphics::raw_depth_image)
 
-                .def("set_speed", &Graphics::set_speed)
-                .def("set_near_plane", &Graphics::set_near_plane)
-                .def("set_far_plane", &Graphics::set_far_plane)
-                .def("set_fov", &Graphics::set_fov)
-                .def("set_camera_params", &Graphics::set_camera_params)
+                .def("camera", (Camera & (Graphics::*)()) & Graphics::camera, py::return_value_policy::reference)
 
-                .def("speed", &Graphics::speed)
-                .def("near_plane", &Graphics::near_plane)
-                .def("far_plane", &Graphics::far_plane)
-                .def("fov", &Graphics::fov)
-
-                .def("magnum_app", &Graphics::magnum_app, py::return_value_policy::reference);
+                .def("magnum_app", (gui::magnum::BaseApplication * (Graphics::*)()) & Graphics::magnum_app, py::return_value_policy::reference);
 
             // WindowlessGraphics class
             py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
-                .def(py::init<const dart::simulation::WorldPtr&, unsigned int, unsigned int, bool, bool, const std::string&>())
+                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
 
                 .def("done", &WindowlessGraphics::done)
                 .def("refresh", &WindowlessGraphics::refresh)
@@ -99,11 +156,12 @@ namespace robot_dart {
                 .def("num_lights", &WindowlessGraphics::num_lights)
                 .def("light", &WindowlessGraphics::light)
 
-                .def("set_recording", &WindowlessGraphics::set_recording)
-                .def("recording", &WindowlessGraphics::recording)
-                .def("recording_depth", &WindowlessGraphics::recording_depth)
+                .def("record_video", &WindowlessGraphics::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
-                .def("is_shadowed", &WindowlessGraphics::is_shadowed)
+                .def("shadowed", &WindowlessGraphics::shadowed)
+                .def("transparent_shadows", &WindowlessGraphics::transparent_shadows)
                 .def("enable_shadows", &WindowlessGraphics::enable_shadows)
 
                 // Magnum::Image2D* magnum_image()
@@ -111,18 +169,9 @@ namespace robot_dart {
                 .def("depth_image", &WindowlessGraphics::depth_image)
                 .def("raw_depth_image", &WindowlessGraphics::raw_depth_image)
 
-                .def("set_speed", &WindowlessGraphics::set_speed)
-                .def("set_near_plane", &WindowlessGraphics::set_near_plane)
-                .def("set_far_plane", &WindowlessGraphics::set_far_plane)
-                .def("set_fov", &WindowlessGraphics::set_fov)
-                .def("set_camera_params", &WindowlessGraphics::set_camera_params)
+                .def("camera", (Camera & (WindowlessGraphics::*)()) & WindowlessGraphics::camera, py::return_value_policy::reference)
 
-                .def("speed", &WindowlessGraphics::speed)
-                .def("near_plane", &WindowlessGraphics::near_plane)
-                .def("far_plane", &WindowlessGraphics::far_plane)
-                .def("fov", &WindowlessGraphics::fov)
-
-                .def("magnum_app", &WindowlessGraphics::magnum_app, py::return_value_policy::reference);
+                .def("magnum_app", (gui::magnum::BaseApplication * (WindowlessGraphics::*)()) & WindowlessGraphics::magnum_app, py::return_value_policy::reference);
 
             sm.def(
                 "run_with_gl_context", +[](const std::function<void()>& func, size_t wait_ms) {
@@ -141,7 +190,7 @@ namespace robot_dart {
 
             // CameraOSR class
             py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
-                .def(py::init<const dart::simulation::WorldPtr&, gui::magnum::BaseApplication*, size_t, size_t>())
+                .def(py::init<RobotDARTSimu*, gui::magnum::BaseApplication*, size_t, size_t>())
 
                 .def("done", &gui::magnum::CameraOSR::done)
                 .def("refresh", &gui::magnum::CameraOSR::refresh)
@@ -152,9 +201,9 @@ namespace robot_dart {
 
                 .def("render", &gui::magnum::CameraOSR::render)
 
-                .def("set_recording", &gui::magnum::CameraOSR::set_recording)
-                .def("recording", &gui::magnum::CameraOSR::recording)
-                .def("recording_depth", &gui::magnum::CameraOSR::recording_depth)
+                .def("record_video", &gui::magnum::CameraOSR::record_video,
+                    py::arg("video_fname"),
+                    py::arg("fps") = -1)
 
                 // Magnum::Image2D* magnum_image()
                 // Magnum::Image2D* magnum_depth_image()
@@ -165,16 +214,7 @@ namespace robot_dart {
 
                 .def("attach_to", &gui::magnum::CameraOSR::attach_to)
 
-                .def("set_speed", &gui::magnum::CameraOSR::set_speed)
-                .def("set_near_plane", &gui::magnum::CameraOSR::set_near_plane)
-                .def("set_far_plane", &gui::magnum::CameraOSR::set_far_plane)
-                .def("set_fov", &gui::magnum::CameraOSR::set_fov)
-                .def("set_camera_params", &gui::magnum::CameraOSR::set_camera_params)
-
-                .def("speed", &gui::magnum::CameraOSR::speed)
-                .def("near_plane", &gui::magnum::CameraOSR::near_plane)
-                .def("far_plane", &gui::magnum::CameraOSR::far_plane)
-                .def("fov", &gui::magnum::CameraOSR::fov);
+                .def("camera", (Camera & (gui::magnum::CameraOSR::*)()) & gui::magnum::CameraOSR::camera, py::return_value_policy::reference);
 
             // Helper functions
             sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);
@@ -190,9 +230,9 @@ namespace robot_dart {
                 .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&>());
             // TO-DO: Add more functions
 
-            sm.def("createPointLight", &gui::magnum::gs::createPointLight);
-            sm.def("createSpotLight", &gui::magnum::gs::createSpotLight);
-            sm.def("createDirectionalLight", &gui::magnum::gs::createDirectionalLight);
+            sm.def("create_point_light", &gui::magnum::gs::create_point_light);
+            sm.def("create_spot_light", &gui::magnum::gs::create_spot_light);
+            sm.def("create_directional_light", &gui::magnum::gs::create_directional_light);
         }
 #endif
     } // namespace python
