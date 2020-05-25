@@ -91,6 +91,12 @@ namespace robot_dart {
         _skeleton->setCommands(commands);
     }
 
+    
+    void Robot::update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
+    {
+        _set_dof_data(4, commands, dof_names);
+    }
+
     void Robot::reinit_controllers()
     {
         for (auto& ctrl : _controllers)
@@ -444,6 +450,8 @@ namespace robot_dart {
                     data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getAcceleration();
                 } else if(content==3){
                     data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getForce();
+                } else if(content==4){
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getCommand();
                 } 
             }   
         }
@@ -456,7 +464,9 @@ namespace robot_dart {
                 data = _skeleton->getAccelerations();
             } else if(content==3){
                 data = _skeleton->getForces();
-            } 
+            } else if(content==4){
+                data = _skeleton->getCommands();
+            }
         }
         return data;
     }
@@ -485,7 +495,9 @@ namespace robot_dart {
             _skeleton->setAccelerations(ordered_data);
         } else if(content==3){
             _skeleton->setForces(ordered_data);
-        } 
+        } else if(content==4){
+            _skeleton->setCommands(ordered_data);
+        }
     }
 
     Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names) 
@@ -740,43 +752,6 @@ namespace robot_dart {
             _full_dof_map[_skeleton->getDof(i)->getName()] = i;
         }
     }
-
-//     Eigen::VectorXd RobotControl::_get_filter_mimic(const Eigen::VectorXd& vec) const
-//     {
-// #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_control_dof);
-//         size_t k = 0;
-//         for (size_t i = _start_dof; i < _dof; i++) {
-//             auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-//             if (it == _mimic_dofs.end())
-//                 ret(k++) = vec(i);
-//         }
-
-//         return ret;
-// #else
-//         return vec.tail(_control_dof);
-// #endif
-//     }
-
-//     Eigen::VectorXd RobotControl::_set_filter_mimic(const Eigen::VectorXd& vec, int start_dof) const
-//     {
-// #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
-//         size_t k = 0;
-//         for (size_t i = start_dof; i < _skeleton->getNumDofs(); i++) {
-//             auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-//             if (it == _mimic_dofs.end())
-//                 ret(i) = vec(k++);
-//         }
-
-//         return ret;
-// #else
-//         Eigen::VectorXd ret = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
-//         ret.tail(_control_dof) = vec;
-//         return ret;
-// #endif
-//     }
-
 
     std::map<std::string, size_t> Robot::get_controllable_dof() const
     {

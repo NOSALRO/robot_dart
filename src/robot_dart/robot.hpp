@@ -35,6 +35,7 @@ namespace robot_dart {
         const std::string& name() const;
 
         void update(double t);
+        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         void reinit_controllers();
 

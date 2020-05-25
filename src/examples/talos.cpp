@@ -39,7 +39,7 @@ int main()
     simu.add_robot(global_robot);
     // simu.run(20.);
     Eigen::VectorXd q0(36);
-    //dart is inverting base pos and rotation in comaprison with opensot and tsid 
+    //dart is inverting base pos and rotation in comparison with opensot
     q0 << 0.0,0.0,1.57, 0.0, 0.0,1.06, //floating_base
                 0.0, 0.0, -0.26, 0.56, -0.33, 0.0, //left_leg
                 0.0, 0.0, -0.26, 0.56, -0.33, 0.0, // right_leg
@@ -54,24 +54,32 @@ int main()
     }
  
     global_robot->set_positions(q0);
+    global_robot->set_actuator_types(dart::dynamics::detail::ActuatorType::VELOCITY);
     simu.run(5.);
     std::vector<std::string> dof_to_control;
     dof_to_control.push_back("arm_left_4_joint");
     dof_to_control.push_back("torso_2_joint");
     Eigen::VectorXd cmd(2);
     cmd(0) = 0.1;
-    cmd(1) = 1.2;
-    global_robot->set_positions(cmd,dof_to_control);
-    simu.run(5.);
-    std::cout <<"pos\n " <<  global_robot->positions(dof_to_control) << std::endl;
+    cmd(1) = 0.00;
+
+    for(int i=0; i<5000; i++ ){
+        global_robot->update(cmd,dof_to_control);
+        simu.refresh();
+    }
     
-    cmd(0) = 1;
-    cmd(1) = 0.1;
-    std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
-    global_robot->set_velocities(cmd,dof_to_control);
-    std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
-    simu.run(20.);
-    //  std::cout << global_robot->positions().transpose() << std::endl;
+    // cmd(0) = 0.1;
+    // cmd(1) = 1.2;
+    // global_robot->set_positions(cmd,dof_to_control);
+    // simu.run(5.);
+    // std::cout <<"pos\n " <<  global_robot->positions(dof_to_control) << std::endl;
+    // cmd(0) = 1;
+    // cmd(1) = 0.1;
+    // std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
+    // global_robot->set_velocities(cmd,dof_to_control);
+    // std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
+    // simu.run(5.);
+    // std::cout << global_robot->positions().transpose() << std::endl;
     // std::cout << global_robot->velocities().transpose() << std::endl;
     global_robot.reset();
     return 0;

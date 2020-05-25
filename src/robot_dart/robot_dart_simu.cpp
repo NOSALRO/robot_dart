@@ -56,6 +56,31 @@ namespace robot_dart {
         _old_index = index;
     }
 
+     void RobotDARTSimu::refresh()
+    {
+        _break = false;
+        size_t index = _old_index;
+        double old_t = _world->getTime();
+
+        _world->step(false);
+
+        _graphics->refresh();
+
+        // update descriptors
+        for (auto& desc : _descriptors)
+            if (index % desc->desc_dump() == 0)
+                desc->operator()();
+
+        // update cameras
+        for (auto& cam : _cameras)
+            cam->refresh();
+
+        ++index;
+            
+        _old_index = index;
+    }
+
+
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
     {
         return _graphics;
