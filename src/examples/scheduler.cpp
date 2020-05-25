@@ -2,7 +2,7 @@
 
 int main()
 {
-    Scheduler scheduler(1e-3, true);
+    robot_dart::Scheduler scheduler(1e-3, true);
     while (scheduler.next_time() < 5) {
 
         if (scheduler(1000)) {
