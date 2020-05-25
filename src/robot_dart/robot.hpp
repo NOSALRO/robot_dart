@@ -36,7 +36,7 @@ namespace robot_dart {
         const std::string& name() const;
 
         void update(double t);
-        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
+        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
 
         void reinit_controllers();
 
@@ -98,17 +98,17 @@ namespace robot_dart {
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
 
-        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {});
-        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
 
-        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {});
-        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
 
-        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {});
-        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
 
-        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
-        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
@@ -149,6 +149,7 @@ namespace robot_dart {
         std::map<std::string, size_t> get_mimic_dof_map() const;  
 #endif
         std::string dof_name(size_t dof_index) const;
+        size_t dof_index(std::string dof_name) const;
         std::vector<std::string> joint_names() const;
         std::string joint_name(size_t joint_index) const;
         void set_joint_name(size_t joint_index, const std::string& joint_name);
@@ -176,8 +177,10 @@ namespace robot_dart {
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
-        Eigen::VectorXd _get_dof_data(int content, const std::vector<std::string>& dof_names = {});
-        void _set_dof_data(int content,const Eigen::VectorXd& data, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd _get_dof_data(int content, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void _set_dof_data(int content,const Eigen::VectorXd& data, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd _get_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const;
+        Eigen::VectorXd _set_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const;
 
 
         std::string _robot_name;
