@@ -24,7 +24,8 @@ namespace robot_dart {
 
                 .def("name", &Robot::name)
 
-                .def("update", &Robot::update)
+                .def("update", (void (Robot::*)(double t)) & Robot::update)
+                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&)) & Robot::update)
 
                 .def("reinit_controllers", &Robot::reinit_controllers)
                 .def("num_controllers", &Robot::num_controllers)
@@ -127,6 +128,12 @@ namespace robot_dart {
                 .def("add_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::add_body_mass)
 
                 .def("dof_names", &Robot::dof_names)
+                .def("update_dof_map", &Robot::update_dof_map)
+                .def("get_controllable_dof_map", &Robot::get_controllable_dof_map)
+                .def("get_full_dof_map", &Robot::get_full_dof_map)
+#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+                .def("get_mimic_dof_map", &Robot::get_mimic_dof_map)
+#endif
                 .def("dof_name", &Robot::dof_name)
                 .def("joint_names", &Robot::joint_names)
                 .def("joint_name", &Robot::joint_name)

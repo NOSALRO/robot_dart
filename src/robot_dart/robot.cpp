@@ -523,7 +523,7 @@ namespace robot_dart {
                 ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i])!=_full_dof_map.end(), "_set_dof_data : " + dof_names[i] + " is not in _full_dof_map",);
                 auto joint = _skeleton->getDof(_full_dof_map[dof_names[i]])->getJoint();
                 ROBOT_DART_ASSERT(joint->getActuatorType() != dart::dynamics::Joint::MIMIC, "_set_dof_data : " + joint->getName() + " is a MIMIC joint",);
-                ordered_data(_controllable_dof[dof_names[i]]) = data(i);
+                ordered_data(_controllable_dof_map[dof_names[i]]) = data(i);
             }
         }
         else{
@@ -772,7 +772,7 @@ namespace robot_dart {
     void  Robot::update_dof_map()
     {
 
-        _controllable_dof.clear();
+        _controllable_dof_map.clear();
         _full_dof_map.clear();
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
         _mimic_dof_map.clear();
@@ -782,22 +782,22 @@ namespace robot_dart {
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
             auto joint = _skeleton->getDof(i)->getJoint();
             if (joint->getActuatorType() != dart::dynamics::Joint::MIMIC){
-                _controllable_dof[_skeleton->getDof(i)->getName()] = i;
+                _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
             }
             else{
                 _mimic_dof_map[_skeleton->getDof(i)->getName()] = i;
                 _mimic_dofs.push_back(i);
             }
 #else 
-            _controllable_dof[_skeleton->getDof(i)->getName()] = i;
+            _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
 #endif
             _full_dof_map[_skeleton->getDof(i)->getName()] = i;
         }
     }
 
-    std::map<std::string, size_t> Robot::get_controllable_dof() const
+    std::map<std::string, size_t> Robot::get_controllable_dof_map() const
     {
-        return _controllable_dof;
+        return _controllable_dof_map;
     }
     
     std::map<std::string, size_t> Robot::get_mimic_dof_map() const
