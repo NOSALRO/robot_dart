@@ -22,11 +22,12 @@ namespace robot_dart {
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, std::vector<RobotDamage> damages = {});
-        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, std::vector<RobotDamage> damages = {});
-        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true, std::vector<RobotDamage> damages = {});
 
         std::shared_ptr<Robot> clone() const;
+        std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
 
         dart::dynamics::SkeletonPtr skeleton();
 
@@ -155,6 +156,13 @@ namespace robot_dart {
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
 
+        // GUI options
+        void set_cast_shadows(bool cast_shadows = true);
+        bool cast_shadows() const;
+
+        void set_ghost(bool ghost = true);
+        bool ghost() const;
+
         // helper functions
         // pose: Orientation-Position
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box");
@@ -175,15 +183,15 @@ namespace robot_dart {
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
-        std::vector<std::shared_ptr<control::RobotControl>> _controllers;
+        std::vector<std::shared_ptr<control::RobotControl>> _controllers;  
         std::map<std::string, size_t> _controllable_dof;
         std::map<std::string, size_t> _full_dof_map;
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
         std::vector<size_t> _mimic_dofs;
         std::map<std::string, size_t> _mimic_dof_map;
 #endif
-
-
+        bool _cast_shadows;
+        bool _is_ghost;
     };
 } // namespace robot_dart
 

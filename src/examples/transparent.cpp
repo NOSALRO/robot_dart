@@ -38,7 +38,7 @@ int main()
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
     graphics->look_at({0., 3., 1.}, {0., 0., 0.});

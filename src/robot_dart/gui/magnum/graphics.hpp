@@ -4,6 +4,7 @@
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/gui/magnum/glfw_application.hpp>
 #include <robot_dart/gui/magnum/gs/helper.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
@@ -19,13 +20,14 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
-                Graphics(const dart::simulation::WorldPtr& world, unsigned int width = 640, unsigned int height = 480, bool shadowed = true, bool transparent_shadows = true, const std::string& title = "DART")
-                    : _world(world), _width(width), _height(height), _frame_counter(0), _enabled(true)
+                static constexpr int FPS = 40;
+                Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
+                    : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
                 {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
-                    _magnum_app.reset(make_application<T>(world, width, height, title, shadowed, transparent_shadows));
-                    set_render_period(world->getTimeStep());
+                    _magnum_app.reset(make_application<T>(simu, configuration));
+                    set_render_period(_world->getTimeStep());
                 }
 
                 ~Graphics() {}
@@ -49,7 +51,7 @@ namespace robot_dart {
                 void set_render_period(double dt) override
                 {
                     // we want to display at around 40Hz of simulated time
-                    _render_period = std::floor((1. / 40.) / dt);
+                    _render_period = std::floor((1. / FPS) / dt);
                     if (_render_period < 1)
                         _render_period = 1;
                 }
@@ -63,17 +65,17 @@ namespace robot_dart {
                     const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0),
                     const Eigen::Vector3d& up = Eigen::Vector3d(0, 0, 1))
                 {
-                    _magnum_app->lookAt(camera_pos, look_at, up);
+                    _magnum_app->look_at(camera_pos, look_at, up);
                 }
 
                 void clear_lights()
                 {
-                    _magnum_app->clearLights();
+                    _magnum_app->clear_lights();
                 }
 
                 void add_light(const magnum::gs::Light& light)
                 {
-                    _magnum_app->addLight(light);
+                    _magnum_app->add_light(light);
                 }
 
                 std::vector<gs::Light>& lights()
@@ -83,7 +85,7 @@ namespace robot_dart {
 
                 size_t num_lights() const
                 {
-                    return _magnum_app->numLights();
+                    return _magnum_app->num_lights();
                 }
 
                 magnum::gs::Light& light(size_t i)
@@ -91,12 +93,15 @@ namespace robot_dart {
                     return _magnum_app->light(i);
                 }
 
-                void set_recording(bool recording, bool recording_depth = false) { _magnum_app->record(recording, recording_depth); }
-                bool recording() { return _magnum_app->isRecording(); }
-                bool recording_depth() { return _magnum_app->isDepthRecording(); }
+                void record_video(const std::string& video_fname, int fps = -1)
+                {
+                    int fps_computed = (fps == -1) ? FPS : fps;
+                    _magnum_app->record_video(video_fname, fps_computed);
+                }
 
-                bool is_shadowed() const { return _magnum_app->isShadowed(); }
-                void enable_shadows(bool enable = true) { _magnum_app->enableShadows(enable); }
+                bool shadowed() const { return _magnum_app->shadowed(); }
+                bool transparent_shadows() const { return _magnum_app->transparent_shadows(); }
+                void enable_shadows(bool enable = true, bool transparent = true) { _magnum_app->enable_shadows(enable, transparent); }
 
                 Magnum::Image2D* magnum_image()
                 {
@@ -113,23 +118,17 @@ namespace robot_dart {
                     return Image();
                 }
 
-                GrayscaleImage depth_image() override { return _magnum_app->depthImage(); }
-                GrayscaleImage raw_depth_image() override { return _magnum_app->rawDepthImage(); }
+                GrayscaleImage depth_image() override { return _magnum_app->depth_image(); }
+                GrayscaleImage raw_depth_image() override { return _magnum_app->raw_depth_image(); }
 
-                void set_speed(const Magnum::Vector2& speed) { _magnum_app->camera().setSpeed(speed); }
-                void set_near_plane(double near_plane) { _magnum_app->camera().setNearPlane(near_plane); }
-                void set_far_plane(double far_plane) { _magnum_app->camera().setFarPlane(far_plane); }
-                void set_fov(double fov) { _magnum_app->camera().setFOV(fov); }
-                void set_camera_params(double near_plane, double far_plane, double fov, size_t width, size_t height) { _magnum_app->camera().setCameraParameters(near_plane, far_plane, fov, width, height); }
-
-                Magnum::Vector2 speed() const { return _magnum_app->camera().speed(); }
-                double near_plane() const { return _magnum_app->camera().nearPlane(); }
-                double far_plane() const { return _magnum_app->camera().farPlane(); }
-                double fov() const { return _magnum_app->camera().fov(); }
+                gs::Camera& camera() { return _magnum_app->camera(); }
+                const gs::Camera& camera() const { return _magnum_app->camera(); }
 
                 BaseApplication* magnum_app() { return &*_magnum_app; }
+                const BaseApplication* magnum_app() const { return &*_magnum_app; }
 
             protected:
+                RobotDARTSimu* _simu;
                 dart::simulation::WorldPtr _world;
                 size_t _render_period, _width, _height, _frame_counter;
                 bool _enabled;

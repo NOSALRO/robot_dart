@@ -30,38 +30,38 @@ namespace robot_dart {
 
                     using Flags = Magnum::Containers::EnumSet<Flag>;
 
-                    explicit PhongMultiLight(Flags flags = {}, Magnum::Int maxLights = 10);
+                    explicit PhongMultiLight(Flags flags = {}, Magnum::Int max_lights = 10);
                     explicit PhongMultiLight(Magnum::NoCreateT) noexcept;
 
                     Flags flags() const;
 
-                    PhongMultiLight& setMaterial(Material& material);
-                    PhongMultiLight& setLight(Magnum::Int i, const Light& light);
+                    PhongMultiLight& set_material(Material& material);
+                    PhongMultiLight& set_light(Magnum::Int i, const Light& light);
 
-                    PhongMultiLight& setTransformationMatrix(const Magnum::Matrix4& matrix);
-                    PhongMultiLight& setCameraMatrix(const Magnum::Matrix4& matrix);
-                    PhongMultiLight& setNormalMatrix(const Magnum::Matrix3x3& matrix);
-                    PhongMultiLight& setProjectionMatrix(const Magnum::Matrix4& matrix);
+                    PhongMultiLight& set_transformation_matrix(const Magnum::Matrix4& matrix);
+                    PhongMultiLight& set_camera_matrix(const Magnum::Matrix4& matrix);
+                    PhongMultiLight& set_normal_matrix(const Magnum::Matrix3x3& matrix);
+                    PhongMultiLight& set_projection_matrix(const Magnum::Matrix4& matrix);
 
-                    PhongMultiLight& setFarPlane(Magnum::Float farPlane);
-                    PhongMultiLight& setIsShadowed(bool shadows);
-                    PhongMultiLight& setTransparentShadows(bool shadows);
+                    PhongMultiLight& set_far_plane(Magnum::Float far_plane);
+                    PhongMultiLight& set_is_shadowed(bool shadows);
+                    PhongMultiLight& set_transparent_shadows(bool shadows);
 
-                    PhongMultiLight& bindShadowTexture(Magnum::GL::Texture2DArray& texture);
-                    PhongMultiLight& bindShadowColorTexture(Magnum::GL::Texture2DArray& texture);
-                    PhongMultiLight& bindCubeMapTexture(Magnum::GL::CubeMapTextureArray& texture);
-                    PhongMultiLight& bindCubeMapColorTexture(Magnum::GL::CubeMapTextureArray& texture);
+                    PhongMultiLight& bind_shadow_texture(Magnum::GL::Texture2DArray& texture);
+                    PhongMultiLight& bind_shadow_color_texture(Magnum::GL::Texture2DArray& texture);
+                    PhongMultiLight& bind_cube_map_texture(Magnum::GL::CubeMapTextureArray& texture);
+                    PhongMultiLight& bind_cube_map_color_texture(Magnum::GL::CubeMapTextureArray& texture);
 
-                    Magnum::Int maxLights() const;
+                    Magnum::Int max_lights() const;
 
                 private:
                     Flags _flags;
-                    Magnum::Int _maxLights = 10;
-                    Magnum::Int _transformationMatrixUniform{0}, _cameraMatrixUniform{7}, _projectionMatrixUniform{1}, _normalMatrixUniform{2},
-                        _shininessUniform{3}, _ambientColorUniform{4}, _diffuseColorUniform{5}, _specularColorUniform{6},
-                        _lightsUniform{11}, _lightsMatricesUniform, _farPlaneUniform{8}, _isShadowedUniform{9}, _drawTransparentShadowsUniform{10},
-                        _shadowTexturesLocation{3}, _cubeMapTexturesLocation{4}, _shadowColorTexturesLocation{5}, _cubeMapColorTexturesLocation{6};
-                    const Magnum::Int _lightLocSize = 12;
+                    Magnum::Int _max_lights = 10;
+                    Magnum::Int _transformation_matrix_uniform{0}, _camera_matrix_uniform{7}, _projection_matrix_uniform{1}, _normal_matrix_uniform{2},
+                        _shininess_uniform{3}, _ambient_color_uniform{4}, _diffuse_color_uniform{5}, _specular_color_uniform{6},
+                        _lights_uniform{11}, _lights_matrices_uniform, _far_plane_uniform{8}, _is_shadowed_uniform{9}, _transparent_shadows_uniform{10},
+                        _shadow_textures_location{3}, _cube_map_textures_location{4}, _shadow_color_textures_location{5}, _cube_map_color_textures_location{6};
+                    const Magnum::Int _light_loc_size = 12;
                 };
 
                 CORRADE_ENUMSET_OPERATORS(PhongMultiLight::Flags)

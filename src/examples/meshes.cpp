@@ -1,11 +1,9 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
+
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
-
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -31,15 +29,19 @@ int main()
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
     std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
 
+    // Add a ghost robot; only visuals, no dynamics, no collision
+    auto ghost = global_robot->clone_ghost();
+
     robot_dart::RobotDARTSimu simu(0.001);
-    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
+    simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world());
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
+    simu.add_robot(ghost);
     simu.run(20.);
 
     global_robot.reset();

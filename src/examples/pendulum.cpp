@@ -8,12 +8,12 @@
 #endif
 
 struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
-    StateDesc(robot_dart::RobotDARTSimu& simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
+    StateDesc(robot_dart::RobotDARTSimu* simu, size_t desc_dump = 1) : robot_dart::descriptor::BaseDescriptor(simu, desc_dump) {}
 
     void operator()()
     {
-        if (_simu.robots().size() > 0) {
-            states.push_back(_simu.robots()[0]->skeleton()->getPositions());
+        if (_simu->robots().size() > 0) {
+            states.push_back(_simu->robots()[0]->skeleton()->getPositions());
         }
     }
 
@@ -53,7 +53,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
-    simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics<>>(simu.world()));
+    simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu));
 #endif
     // <Type>(desc_period)
     simu.add_descriptor<StateDesc>(2);
