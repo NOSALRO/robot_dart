@@ -21,7 +21,7 @@ namespace robot_dart {
         ~RobotDARTSimu();
 
         void run(double max_duration = 5.0);
-        void refresh();
+        void step_once();
 
         std::shared_ptr<gui::Base> graphics() const;
         void set_graphics(const std::shared_ptr<gui::Base>& graphics);
