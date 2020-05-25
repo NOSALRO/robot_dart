@@ -27,7 +27,6 @@ int main()
     // First 6-DOFs should always be FORCE if robot is floating base
     for (size_t i = 0; i < 6; i++)
         global_robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
-
     robot_dart::RobotDARTSimu simu(0.001);
     simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
 #ifdef GRAPHIC
@@ -54,19 +53,27 @@ int main()
     }
  
     global_robot->set_positions(q0);
-    global_robot->set_actuator_types(dart::dynamics::detail::ActuatorType::VELOCITY);
+    
     simu.run(5.);
     std::vector<std::string> dof_to_control;
     dof_to_control.push_back("arm_left_4_joint");
     dof_to_control.push_back("torso_2_joint");
     Eigen::VectorXd cmd(2);
     cmd(0) = 0.1;
-    cmd(1) = 0.00;
+    cmd(1) = 0.1;
+   
+    global_robot->set_actuator_type(global_robot->dof_index("arm_left_5_joint"), dart::dynamics::detail::ActuatorType::MIMIC,true);
+    global_robot->update_dof_map();
 
+    Eigen::VectorXd cmd_full = Eigen::VectorXd::Zero(q0.size());
+    cmd_full(global_robot->dof_index("arm_left_4_joint")) = 1;
+    cmd_full(global_robot->dof_index("arm_left_5_joint")) = -1;
     for(int i=0; i<5000; i++ ){
-        global_robot->update(cmd,dof_to_control);
+        global_robot->update(cmd,dof_to_control,false,0);
+        // global_robot->update(cmd_full,{},true,0);
         simu.refresh();
     }
+
     
     // cmd(0) = 0.1;
     // cmd(1) = 1.2;

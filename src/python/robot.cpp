@@ -25,7 +25,7 @@ namespace robot_dart {
                 .def("name", &Robot::name)
 
                 .def("update", (void (Robot::*)(double t)) & Robot::update)
-                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&)) & Robot::update)
+                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&, bool, size_t)) & Robot::update)
 
                 .def("reinit_controllers", &Robot::reinit_controllers)
                 .def("num_controllers", &Robot::num_controllers)
@@ -135,6 +135,7 @@ namespace robot_dart {
                 .def("get_mimic_dof_map", &Robot::get_mimic_dof_map)
 #endif
                 .def("dof_name", &Robot::dof_name)
+                .def("dof_index", &Robot::dof_index)
                 .def("joint_names", &Robot::joint_names)
                 .def("joint_name", &Robot::joint_name)
                 .def("set_joint_name", &Robot::set_joint_name)
