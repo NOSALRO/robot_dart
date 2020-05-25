@@ -145,7 +145,7 @@ namespace robot_dart {
         _old_index = index;
     }
 
-     void RobotDARTSimu::refresh()
+    void RobotDARTSimu::step_once()
     {
         _break = false;
         size_t index = _old_index;
@@ -164,10 +164,9 @@ namespace robot_dart {
             cam->refresh();
 
         ++index;
-            
+
         _old_index = index;
     }
-
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
     {

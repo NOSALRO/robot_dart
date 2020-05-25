@@ -133,7 +133,6 @@ namespace robot_dart {
         _skeleton->setCommands(commands);
     }
 
-    
     void Robot::update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
     {
         _set_dof_data(4, commands, dof_names, filter_mimics, start_dof);
@@ -477,121 +476,7 @@ namespace robot_dart {
         return _skeleton->getCOMSpatialAcceleration();
     }
 
-    Eigen::VectorXd Robot::_get_dof_data(int content, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof) 
-    {
-        Eigen::VectorXd data;
-        if(!dof_names.empty()){
-            data.resize(dof_names.size());
-            for(size_t i =0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i])!=_full_dof_map.end(), "_get_dof_data : " + dof_names[i] + " is not in _full_dof_map", {} );
-                if(content==0){
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getPosition();
-                } else if(content==1){
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getVelocity();
-                } else if(content==2){
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getAcceleration();
-                } else if(content==3){
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getForce();
-                } else if(content==4){
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getCommand();
-                } 
-            }   
-        }
-        else{
-            if(content==0){
-                data = _skeleton->getPositions();
-            } else if(content==1){
-                data = _skeleton->getVelocities();
-            } else if(content==2){
-                data = _skeleton->getAccelerations();
-            } else if(content==3){
-                data = _skeleton->getForces();
-            } else if(content==4){
-                data = _skeleton->getCommands();
-            }
-        }
-        if(filter_mimics==true){
-            ROBOT_DART_ASSERT((dof_names.empty()==true),"If you want to use dof_names, filter mimic joints by names",  {} );
-            data = _get_vector_mimic(start_dof, data);
-        }
-        return data;
-    }
-
-    void Robot::_set_dof_data(int content, const Eigen::VectorXd& data, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof) 
-    {
-        Eigen::VectorXd ordered_data;
-        if(!dof_names.empty()){
-            ROBOT_DART_ASSERT((filter_mimics==false),"If you want to use dof_names, filter mimic joints by names",);
-            ROBOT_DART_ASSERT((size_t)data.size()==dof_names.size(), "_set_dof_data : data should have the same size and order than dof_names",);
-            ordered_data =  Robot::_get_dof_data(content);
-            for(size_t i = 0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i])!=_full_dof_map.end(), "_set_dof_data : " + dof_names[i] + " is not in _full_dof_map",);
-                auto joint = _skeleton->getDof(_full_dof_map[dof_names[i]])->getJoint();
-                ROBOT_DART_ASSERT(joint->getActuatorType() != dart::dynamics::Joint::MIMIC, "_set_dof_data : " + joint->getName() + " is a MIMIC joint",);
-                ordered_data(_controllable_dof_map[dof_names[i]]) = data(i);
-            }
-        }
-        else{
-            if(filter_mimics==true){
-                ordered_data = _set_vector_mimic(start_dof, data);
-            }
-            else{
-                ordered_data = data;
-            }
-        }
-        if(content==0){
-            _skeleton->setPositions(ordered_data);
-        } else if(content==1){
-            _skeleton->setVelocities(ordered_data);
-        } else if(content==2){
-            _skeleton->setAccelerations(ordered_data);
-        } else if(content==3){
-            _skeleton->setForces(ordered_data);
-        } else if(content==4){
-            _skeleton->setCommands(ordered_data);
-        }
-    }
-
-    Eigen::VectorXd Robot::_get_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
-    {
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-        size_t dof = _skeleton->getNumDofs();
-        size_t control_dof = dof - start_dof;
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(control_dof);
-        size_t k = 0;
-        for (size_t i = start_dof; i < dof; i++) {
-            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-            if (it == _mimic_dofs.end())
-                ret(k++) = vec(i);
-        }
-
-        return ret;
-#else
-        return vec.tail(control_dof);
-#endif
-    }
-
-    Eigen::VectorXd Robot::_set_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
-    {
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-        size_t dof = _skeleton->getNumDofs();
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
-        size_t k = 0;
-        for (size_t i = start_dof; i < dof; i++) {
-            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-            if (it == _mimic_dofs.end())
-                ret(i) = vec(k++);
-        }
-        std::cout << ret << std::endl;
-        return ret;
-#else
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
-        ret.tail(control_dof) = vec;
-        return ret;
-#endif
-    }
-
-    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof) 
+    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
     {
         return _get_dof_data(0, dof_names, filter_mimics, start_dof);
     }
@@ -623,12 +508,12 @@ namespace robot_dart {
 
     Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
     {
-        return _get_dof_data(3,dof_names, filter_mimics, start_dof);
+        return _get_dof_data(3, dof_names, filter_mimics, start_dof);
     }
 
     void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
     {
-        _set_dof_data(3, forces, dof_names, filter_mimics, start_dof); 
+        _set_dof_data(3, forces, dof_names, filter_mimics, start_dof);
     }
 
     std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const
@@ -817,44 +702,44 @@ namespace robot_dart {
             names.push_back(dof->getName());
         return names;
     }
-    
-    void  Robot::update_dof_map()
+
+    void Robot::update_dof_map()
     {
 
         _controllable_dof_map.clear();
         _full_dof_map.clear();
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
         _mimic_dof_map.clear();
         _mimic_dofs.clear();
 #endif
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+#if DART_VERSION_AT_LEAST(6, 7, 0)
             auto joint = _skeleton->getDof(i)->getJoint();
-            if (joint->getActuatorType() != dart::dynamics::Joint::MIMIC){
+            if (joint->getActuatorType() != dart::dynamics::Joint::MIMIC) {
                 _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
             }
-            else{
+            else {
                 _mimic_dof_map[_skeleton->getDof(i)->getName()] = i;
                 _mimic_dofs.push_back(i);
             }
-#else 
+#else
             _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
 #endif
             _full_dof_map[_skeleton->getDof(i)->getName()] = i;
         }
     }
 
-    std::map<std::string, size_t> Robot::get_controllable_dof_map() const
+    std::unordered_map<std::string, size_t> Robot::get_controllable_dof_map() const
     {
         return _controllable_dof_map;
     }
-    
-    std::map<std::string, size_t> Robot::get_mimic_dof_map() const
+
+    std::unordered_map<std::string, size_t> Robot::get_mimic_dof_map() const
     {
         return _mimic_dof_map;
     }
-    
-    std::map<std::string, size_t> Robot::get_full_dof_map() const
+
+    std::unordered_map<std::string, size_t> Robot::get_full_dof_map() const
     {
         return _full_dof_map;
     }
@@ -868,7 +753,7 @@ namespace robot_dart {
     size_t Robot::dof_index(std::string dof_name) const
     {
         auto it = _full_dof_map.find(dof_name);
-        ROBOT_DART_ASSERT(it!=_full_dof_map.end(), "dof_index : " + dof_name + " is not in _full_dof_map", 0);
+        ROBOT_DART_ASSERT(it != _full_dof_map.end(), "dof_index : " + dof_name + " is not in _full_dof_map", 0);
         return it->second;
     }
 
@@ -1017,6 +902,132 @@ namespace robot_dart {
             if (ms)
                 ms->setColorMode(color_mode);
         }
+    }
+
+    Eigen::VectorXd Robot::_get_dof_data(int content, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    {
+        Eigen::VectorXd data;
+        if (!dof_names.empty()) {
+            data.resize(dof_names.size());
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i]) != _full_dof_map.end(), "_get_dof_data : " + dof_names[i] + " is not in _full_dof_map", {});
+                if (content == 0) {
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getPosition();
+                }
+                else if (content == 1) {
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getVelocity();
+                }
+                else if (content == 2) {
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getAcceleration();
+                }
+                else if (content == 3) {
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getForce();
+                }
+                else if (content == 4) {
+                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getCommand();
+                }
+            }
+        }
+        else {
+            if (content == 0) {
+                data = _skeleton->getPositions();
+            }
+            else if (content == 1) {
+                data = _skeleton->getVelocities();
+            }
+            else if (content == 2) {
+                data = _skeleton->getAccelerations();
+            }
+            else if (content == 3) {
+                data = _skeleton->getForces();
+            }
+            else if (content == 4) {
+                data = _skeleton->getCommands();
+            }
+        }
+        if (filter_mimics == true) {
+            ROBOT_DART_ASSERT((dof_names.empty() == true), "If you want to use dof_names, filter mimic joints by names", {});
+            data = _get_vector_mimic(start_dof, data);
+        }
+        return data;
+    }
+
+    void Robot::_set_dof_data(int content, const Eigen::VectorXd& data, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    {
+        Eigen::VectorXd ordered_data;
+        if (!dof_names.empty()) {
+            ROBOT_DART_ASSERT((filter_mimics == false), "If you want to use dof_names, filter mimic joints by names", );
+            ROBOT_DART_ASSERT((size_t)data.size() == dof_names.size(), "_set_dof_data : data should have the same size and order than dof_names", );
+            ordered_data = Robot::_get_dof_data(content);
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i]) != _full_dof_map.end(), "_set_dof_data : " + dof_names[i] + " is not in _full_dof_map", );
+                auto joint = _skeleton->getDof(_full_dof_map[dof_names[i]])->getJoint();
+                ROBOT_DART_ASSERT(joint->getActuatorType() != dart::dynamics::Joint::MIMIC, "_set_dof_data : " + joint->getName() + " is a MIMIC joint", );
+                ordered_data(_controllable_dof_map[dof_names[i]]) = data(i);
+            }
+        }
+        else {
+            if (filter_mimics == true) {
+                ordered_data = _set_vector_mimic(start_dof, data);
+            }
+            else {
+                ordered_data = data;
+            }
+        }
+        if (content == 0) {
+            _skeleton->setPositions(ordered_data);
+        }
+        else if (content == 1) {
+            _skeleton->setVelocities(ordered_data);
+        }
+        else if (content == 2) {
+            _skeleton->setAccelerations(ordered_data);
+        }
+        else if (content == 3) {
+            _skeleton->setForces(ordered_data);
+        }
+        else if (content == 4) {
+            _skeleton->setCommands(ordered_data);
+        }
+    }
+
+    Eigen::VectorXd Robot::_get_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
+    {
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+        size_t dof = _skeleton->getNumDofs();
+        size_t control_dof = dof - start_dof;
+        Eigen::VectorXd ret = Eigen::VectorXd::Zero(control_dof);
+        size_t k = 0;
+        for (size_t i = start_dof; i < dof; i++) {
+            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
+            if (it == _mimic_dofs.end())
+                ret(k++) = vec(i);
+        }
+
+        return ret;
+#else
+        return vec.tail(control_dof);
+#endif
+    }
+
+    Eigen::VectorXd Robot::_set_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
+    {
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+        size_t dof = _skeleton->getNumDofs();
+        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
+        size_t k = 0;
+        for (size_t i = start_dof; i < dof; i++) {
+            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
+            if (it == _mimic_dofs.end())
+                ret(i) = vec(k++);
+        }
+        std::cout << ret << std::endl;
+        return ret;
+#else
+        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
+        ret.tail(control_dof) = vec;
+        return ret;
+#endif
     }
 
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)

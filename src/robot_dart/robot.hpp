@@ -1,7 +1,7 @@
 #ifndef ROBOT_DART_ROBOT_HPP
 #define ROBOT_DART_ROBOT_HPP
 
-#include <utility>
+#include <unordered_map>
 
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/Skeleton.hpp>
@@ -36,7 +36,7 @@ namespace robot_dart {
         const std::string& name() const;
 
         void update(double t);
-        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
 
         void reinit_controllers();
 
@@ -98,17 +98,17 @@ namespace robot_dart {
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
 
-        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
-        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
+        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
 
-        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
-        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
+        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
 
-        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
-        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
+        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
 
-        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
-        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
+        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
@@ -142,11 +142,11 @@ namespace robot_dart {
         void add_body_mass(size_t body_index, double mass);
 
         std::vector<std::string> dof_names() const;
-        void  update_dof_map();
-        std::map<std::string, size_t> get_controllable_dof_map() const;
-        std::map<std::string, size_t> get_full_dof_map() const;
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-        std::map<std::string, size_t> get_mimic_dof_map() const;  
+        void update_dof_map();
+        std::unordered_map<std::string, size_t> get_controllable_dof_map() const;
+        std::unordered_map<std::string, size_t> get_full_dof_map() const;
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+        std::unordered_map<std::string, size_t> get_mimic_dof_map() const;
 #endif
         std::string dof_name(size_t dof_index) const;
         size_t dof_index(std::string dof_name) const;
@@ -177,21 +177,20 @@ namespace robot_dart {
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
-        Eigen::VectorXd _get_dof_data(int content, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
-        void _set_dof_data(int content,const Eigen::VectorXd& data, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false , size_t start_dof = 0);
+        Eigen::VectorXd _get_dof_data(int content, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
+        void _set_dof_data(int content, const Eigen::VectorXd& data, const std::vector<std::string>& dof_names = {}, bool filter_mimics = false, size_t start_dof = 0);
         Eigen::VectorXd _get_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const;
         Eigen::VectorXd _set_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const;
-
 
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
-        std::vector<std::shared_ptr<control::RobotControl>> _controllers;  
-        std::map<std::string, size_t> _controllable_dof_map;
-        std::map<std::string, size_t> _full_dof_map;
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
+        std::vector<std::shared_ptr<control::RobotControl>> _controllers;
+        std::unordered_map<std::string, size_t> _controllable_dof_map;
+        std::unordered_map<std::string, size_t> _full_dof_map;
+#if DART_VERSION_AT_LEAST(6, 7, 0)
         std::vector<size_t> _mimic_dofs;
-        std::map<std::string, size_t> _mimic_dof_map;
+        std::unordered_map<std::string, size_t> _mimic_dof_map;
 #endif
         bool _cast_shadows;
         bool _is_ghost;

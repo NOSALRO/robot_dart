@@ -39,21 +39,21 @@ int main()
     // simu.run(20.);
     Eigen::VectorXd q0(36);
     //dart is inverting base pos and rotation in comparison with opensot
-    q0 << 0.0,0.0,1.57, 0.0, 0.0,1.06, //floating_base
-                0.0, 0.0, -0.26, 0.56, -0.33, 0.0, //left_leg
-                0.0, 0.0, -0.26, 0.56, -0.33, 0.0, // right_leg
-                0.0,0.05, // torso
-                0.4, 0.24,-0.6,-1.45 ,0.0,0.0,0.0, //arm left
-                -0.4, -0.24,0.6,-1.45,0.0,0.0,0.0, //arm right
-                0.0,0.0; // head
+    q0 << 0.0, 0.0, 1.57, 0.0, 0.0, 1.06, //floating_base
+        0.0, 0.0, -0.26, 0.56, -0.33, 0.0, //left_leg
+        0.0, 0.0, -0.26, 0.56, -0.33, 0.0, // right_leg
+        0.0, 0.05, // torso
+        0.4, 0.24, -0.6, -1.45, 0.0, 0.0, 0.0, //arm left
+        -0.4, -0.24, 0.6, -1.45, 0.0, 0.0, 0.0, //arm right
+        0.0, 0.0; // head
 
     auto dofs = global_robot->dof_names();
-    for(auto& d : dofs){
+    for (auto& d : dofs) {
         std::cout << d << std::endl;
     }
- 
+
     global_robot->set_positions(q0);
-    
+
     simu.run(5.);
     std::vector<std::string> dof_to_control;
     dof_to_control.push_back("arm_left_4_joint");
@@ -61,33 +61,19 @@ int main()
     Eigen::VectorXd cmd(2);
     cmd(0) = 0.1;
     cmd(1) = 0.1;
-   
-    global_robot->set_actuator_type(global_robot->dof_index("arm_left_5_joint"), dart::dynamics::detail::ActuatorType::MIMIC,true);
+
+    global_robot->set_actuator_type(global_robot->dof_index("arm_left_5_joint"), dart::dynamics::detail::ActuatorType::MIMIC, true);
     global_robot->update_dof_map();
 
     Eigen::VectorXd cmd_full = Eigen::VectorXd::Zero(q0.size());
     cmd_full(global_robot->dof_index("arm_left_4_joint")) = 1;
     cmd_full(global_robot->dof_index("arm_left_5_joint")) = -1;
-    for(int i=0; i<5000; i++ ){
-        global_robot->update(cmd,dof_to_control,false,0);
+    for (int i = 0; i < 5000; i++) {
+        global_robot->update(cmd, dof_to_control, false, 0);
         // global_robot->update(cmd_full,{},true,0);
-        simu.refresh();
+        simu.step_once();
     }
 
-    
-    // cmd(0) = 0.1;
-    // cmd(1) = 1.2;
-    // global_robot->set_positions(cmd,dof_to_control);
-    // simu.run(5.);
-    // std::cout <<"pos\n " <<  global_robot->positions(dof_to_control) << std::endl;
-    // cmd(0) = 1;
-    // cmd(1) = 0.1;
-    // std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
-    // global_robot->set_velocities(cmd,dof_to_control);
-    // std::cout <<"vel " << global_robot->velocities(dof_to_control).transpose() << std::endl;
-    // simu.run(5.);
-    // std::cout << global_robot->positions().transpose() << std::endl;
-    // std::cout << global_robot->velocities().transpose() << std::endl;
     global_robot.reset();
     return 0;
 }
