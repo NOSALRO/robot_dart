@@ -149,7 +149,6 @@ namespace robot_dart {
     {
         _break = false;
         size_t index = _old_index;
-        double old_t = _world->getTime();
 
         _world->step(false);
 

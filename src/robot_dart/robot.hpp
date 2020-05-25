@@ -143,7 +143,7 @@ namespace robot_dart {
 
         std::vector<std::string> dof_names() const;
         void  update_dof_map();
-        std::map<std::string, size_t> get_controllable_dof() const;
+        std::map<std::string, size_t> get_controllable_dof_map() const;
         std::map<std::string, size_t> get_full_dof_map() const;
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
         std::map<std::string, size_t> get_mimic_dof_map() const;  
@@ -184,7 +184,7 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;  
-        std::map<std::string, size_t> _controllable_dof;
+        std::map<std::string, size_t> _controllable_dof_map;
         std::map<std::string, size_t> _full_dof_map;
 #if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
         std::vector<size_t> _mimic_dofs;
