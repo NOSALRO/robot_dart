@@ -12,4 +12,7 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     sudo apt-get install -y --no-install-recommends libdart6-collision-ode-dev libdart6-collision-bullet-dev
 else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install dartsim
+    if [ "$PYTHON_TESTS" = "ON" ]; then
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install dartpy
+    fi
 fi
