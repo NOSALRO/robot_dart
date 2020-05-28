@@ -114,58 +114,45 @@ namespace robot_dart {
     void RobotDARTSimu::run(double max_duration)
     {
         _break = false;
-        size_t index = _old_index;
         double old_t = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            for (auto& robot : _robots) {
-                robot->update(_world->getTime());
-                _gui_data->update_robot(robot);
-            }
-
-            _world->step(false);
-
-            _graphics->refresh();
-
-            // update descriptors
-            for (auto& desc : _descriptors)
-                if (index % desc->desc_dump() == 0)
-                    desc->operator()();
-
-            // update cameras
-            for (auto& cam : _cameras)
-                cam->refresh();
-
-            ++index;
+            step_once();
 
             if (_break)
                 break;
         }
-        _old_index = index;
     }
 
-    void RobotDARTSimu::step_once()
+    bool RobotDARTSimu::step_world()
     {
-        _break = false;
-        size_t index = _old_index;
-
         _world->step(false);
 
         _graphics->refresh();
 
         // update descriptors
         for (auto& desc : _descriptors)
-            if (index % desc->desc_dump() == 0)
+            if (_old_index % desc->desc_dump() == 0)
                 desc->operator()();
 
         // update cameras
         for (auto& cam : _cameras)
             cam->refresh();
 
-        ++index;
+        _old_index++;
 
-        _old_index = index;
+        return _break;
+    }
+
+    bool RobotDARTSimu::step_once()
+    {
+        for (auto& robot : _robots) {
+            robot->update(_world->getTime());
+            _gui_data->update_robot(robot);
+        }
+
+        return step_world();
     }
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
