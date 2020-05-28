@@ -19,32 +19,46 @@ namespace robot_dart {
                 .def(py::init<dart::dynamics::SkeletonPtr, const std::string&>())
 
                 .def("clone", &Robot::clone)
-                .def("clone_ghost", &Robot::clone_ghost)
+                .def("clone_ghost", &Robot::clone_ghost,
+                    py::arg("ghost_name") = "ghost",
+                    py::arg("ghost_color") = Eigen::Vector4d{0.3, 0.3, 0.3, 0.7})
                 .def("skeleton", &Robot::skeleton)
 
                 .def("name", &Robot::name)
 
                 .def("update", (void (Robot::*)(double t)) & Robot::update)
-                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&, bool, size_t)) & Robot::update)
+                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&)) & Robot::update,
+                    py::arg("commands"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
                 .def("reinit_controllers", &Robot::reinit_controllers)
                 .def("num_controllers", &Robot::num_controllers)
                 .def("controllers", &Robot::controllers)
                 .def("active_controllers", &Robot::active_controllers)
                 .def("controller", &Robot::controller)
-                .def("add_controller", &Robot::add_controller, py::keep_alive<2, 1>())
+                .def("add_controller", &Robot::add_controller, py::keep_alive<2, 1>(),
+                    py::arg("controller"),
+                    py::arg("weight") = 1.)
                 .def("remove_controller", (void (Robot::*)(const std::shared_ptr<control::RobotControl>&)) & Robot::remove_controller)
                 .def("remove_controller", (void (Robot::*)(size_t)) & Robot::remove_controller)
                 .def("clear_controllers", &Robot::clear_controllers)
 
                 .def("fix_to_world", &Robot::fix_to_world)
-                .def("free_from_world", &Robot::free_from_world)
+                .def("free_from_world", &Robot::free_from_world,
+                    py::arg("pose") = Eigen::Vector6d::Zero())
                 .def("fixed", &Robot::fixed)
                 .def("free", &Robot::free)
 
-                .def("set_actuator_type", &Robot::set_actuator_type)
-                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool)) & Robot::set_actuator_types)
-                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool)) & Robot::set_actuator_types)
+                .def("set_actuator_type", &Robot::set_actuator_type,
+                    py::arg("index"),
+                    py::arg("type"),
+                    py::arg("override_mimic") = false)
+                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool)) & Robot::set_actuator_types,
+                    py::arg("types"),
+                    py::arg("override_mimic") = false)
+                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool)) & Robot::set_actuator_types,
+                    py::arg("types"),
+                    py::arg("override_mimic") = false)
 
                 .def("actuator_type", &Robot::actuator_type)
                 .def("actuator_types", &Robot::actuator_types)
@@ -83,29 +97,73 @@ namespace robot_dart {
                 .def("com_velocity", &Robot::com_velocity)
                 .def("com_acceleration", &Robot::com_acceleration)
 
-                .def("positions", &Robot::positions)
-                .def("set_positions", &Robot::set_positions)
+                .def("positions", &Robot::positions,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_positions", &Robot::set_positions,
+                    py::arg("positions"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("velocities", &Robot::velocities)
-                .def("set_velocities", &Robot::set_velocities)
+                .def("velocities", &Robot::velocities,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_velocities", &Robot::set_velocities,
+                    py::arg("velocities"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("accelerations", &Robot::accelerations)
-                .def("set_accelerations", &Robot::set_accelerations)
+                .def("accelerations", &Robot::accelerations,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_accelerations", &Robot::set_accelerations,
+                    py::arg("accelerations"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("forces", &Robot::forces)
-                .def("set_forces", &Robot::set_forces)
+                .def("forces", &Robot::forces,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_forces", &Robot::set_forces,
+                    py::arg("forces"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
                 .def("force_torque", &Robot::force_torque)
 
-                .def("set_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force)
-                .def("set_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force)
-                .def("add_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force)
-                .def("add_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force)
+                .def("set_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force,
+                    py::arg("body_name"),
+                    py::arg("force"),
+                    py::arg("offset") = Eigen::Vector3d::Zero(),
+                    py::arg("force_local") = false,
+                    py::arg("offset_local") = true)
+                .def("set_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force,
+                    py::arg("body_index"),
+                    py::arg("force"),
+                    py::arg("offset") = Eigen::Vector3d::Zero(),
+                    py::arg("force_local") = false,
+                    py::arg("offset_local") = true)
+                .def("add_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force,
+                    py::arg("body_name"),
+                    py::arg("force"),
+                    py::arg("offset") = Eigen::Vector3d::Zero(),
+                    py::arg("force_local") = false,
+                    py::arg("offset_local") = true)
+                .def("add_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force,
+                    py::arg("body_index"),
+                    py::arg("force"),
+                    py::arg("offset") = Eigen::Vector3d::Zero(),
+                    py::arg("force_local") = false,
+                    py::arg("offset_local") = true)
 
-                .def("set_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::set_external_torque)
-                .def("set_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::set_external_torque)
-                .def("add_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::add_external_torque)
-                .def("add_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::add_external_torque)
+                .def("set_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::set_external_torque,
+                    py::arg("body_name"),
+                    py::arg("torque"),
+                    py::arg("local") = false)
+                .def("set_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::set_external_torque,
+                    py::arg("body_index"),
+                    py::arg("torque"),
+                    py::arg("local") = false)
+                .def("add_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::add_external_torque,
+                    py::arg("body_name"),
+                    py::arg("torque"),
+                    py::arg("local") = false)
+                .def("add_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::add_external_torque,
+                    py::arg("body_index"),
+                    py::arg("torque"),
+                    py::arg("local") = false)
 
                 .def("clear_external_forces", &Robot::clear_external_forces)
 
@@ -127,26 +185,30 @@ namespace robot_dart {
                 .def("add_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::add_body_mass)
                 .def("add_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::add_body_mass)
 
-                .def("dof_names", &Robot::dof_names)
-                .def("update_dof_map", &Robot::update_dof_map)
-                .def("get_controllable_dof_map", &Robot::get_controllable_dof_map)
-                .def("get_full_dof_map", &Robot::get_full_dof_map)
-#if DART_MAJOR_VERSION > 6 || (DART_MAJOR_VERSION == 6 && DART_MINOR_VERSION > 6)
-                .def("get_mimic_dof_map", &Robot::get_mimic_dof_map)
-#endif
+                .def("update_joint_dof_maps", &Robot::update_joint_dof_maps)
+                .def("dof_map", &Robot::dof_map)
+                .def("joint_map", &Robot::joint_map)
+
+                .def("dof_names", &Robot::dof_names,
+                    py::arg("filter_mimics") = false)
+                .def("mimic_dof_names", &Robot::mimic_dof_names)
                 .def("dof_name", &Robot::dof_name)
                 .def("dof_index", &Robot::dof_index)
+
                 .def("joint_names", &Robot::joint_names)
                 .def("joint_name", &Robot::joint_name)
                 .def("set_joint_name", &Robot::set_joint_name)
+                .def("joint_index", &Robot::joint_index)
 
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode)) & Robot::set_color_mode)
                 .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode, const std::string&)) & Robot::set_color_mode)
 
-                .def("set_cast_shadows", &Robot::set_cast_shadows)
+                .def("set_cast_shadows", &Robot::set_cast_shadows,
+                    py::arg("cast_shadows") = true)
                 .def("cast_shadows", &Robot::cast_shadows)
 
-                .def("set_ghost", &Robot::set_ghost)
+                .def("set_ghost", &Robot::set_ghost,
+                    py::arg("ghost") = true)
                 .def("ghost", &Robot::ghost)
 
                 .def_static("create_box", &Robot::create_box)

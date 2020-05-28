@@ -63,14 +63,14 @@ int main()
     cmd(1) = 0.1;
 
     global_robot->set_actuator_type(global_robot->dof_index("arm_left_5_joint"), dart::dynamics::detail::ActuatorType::MIMIC, true);
-    global_robot->update_dof_map();
+    global_robot->update_joint_dof_maps();
 
     Eigen::VectorXd cmd_full = Eigen::VectorXd::Zero(q0.size());
     cmd_full(global_robot->dof_index("arm_left_4_joint")) = 1;
     cmd_full(global_robot->dof_index("arm_left_5_joint")) = -1;
     for (int i = 0; i < 5000; i++) {
-        global_robot->update(cmd, dof_to_control, false, 0);
-        // global_robot->update(cmd_full,{},true,0);
+        global_robot->update(cmd, dof_to_control);
+        // global_robot->update(cmd_full, {});
         simu.step_once();
     }
 
