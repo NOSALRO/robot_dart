@@ -89,6 +89,7 @@ namespace robot_dart {
             }
 
             for (size_t i = 0; i < dof_names.size(); i++) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "set_dof_data: size of data is not the same as the dof_names size", );
                 auto it = dof_map.find(dof_names[i]);
                 ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
                 auto dof = skeleton->getDof(it->second);
@@ -287,6 +288,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
+        update_joint_dof_maps();
     }
 
     // pose: Orientation-Position
@@ -310,6 +312,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
+        update_joint_dof_maps();
     }
 
     bool Robot::fixed() const
@@ -557,7 +560,6 @@ namespace robot_dart {
 
     void Robot::set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == positions.size()), "Size of data does not match size of DoFs", );
         detail::set_dof_data<0>(positions, _skeleton, dof_names, _dof_map);
     }
 
@@ -568,7 +570,6 @@ namespace robot_dart {
 
     void Robot::set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == velocities.size()), "Size of data does not match size of DoFs", );
         detail::set_dof_data<1>(velocities, _skeleton, dof_names, _dof_map);
     }
 
@@ -579,7 +580,6 @@ namespace robot_dart {
 
     void Robot::set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == accelerations.size()), "Size of data does not match size of DoFs", );
         detail::set_dof_data<2>(accelerations, _skeleton, dof_names, _dof_map);
     }
 
@@ -590,7 +590,6 @@ namespace robot_dart {
 
     void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == forces.size()), "Size of data does not match size of DoFs", );
         detail::set_dof_data<3>(forces, _skeleton, dof_names, _dof_map);
     }
 
@@ -601,7 +600,6 @@ namespace robot_dart {
 
     void Robot::set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == commands.size()), "Size of data does not match size of DoFs", );
         detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
     }
 
@@ -871,6 +869,8 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", );
         _skeleton->getJoint(joint_index)->setName(joint_name);
+
+        update_joint_dof_maps();
     }
 
     size_t Robot::joint_index(const std::string& joint_name) const
