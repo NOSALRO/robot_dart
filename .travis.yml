@@ -15,7 +15,7 @@ jobs:
       osx_image: xcode11.4
       compiler: clang
       env:
-        - DART_MASTER=ON
+        - DART_MASTER=OFF
         - DART_EXTRA=OFF
         - MAGNUM_GUI=OFF
         - CMAKE=OFF
