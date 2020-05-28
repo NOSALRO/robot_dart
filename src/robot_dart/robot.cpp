@@ -212,12 +212,6 @@ namespace robot_dart {
         _skeleton->setCommands(commands);
     }
 
-    void Robot::update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
-    {
-        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == commands.size()), "Size of data does not match size of DoFs", );
-        detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
-    }
-
     void Robot::reinit_controllers()
     {
         for (auto& ctrl : _controllers)
@@ -597,7 +591,18 @@ namespace robot_dart {
     void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
     {
         ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == forces.size()), "Size of data does not match size of DoFs", );
-        detail::set_dof_data<2>(forces, _skeleton, dof_names, _dof_map);
+        detail::set_dof_data<3>(forces, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::commands(const std::vector<std::string>& dof_names)
+    {
+        return detail::dof_data<4>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
+    {
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == commands.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
     }
 
     std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const

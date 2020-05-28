@@ -36,7 +36,6 @@ namespace robot_dart {
         const std::string& name() const;
 
         void update(double t);
-        void update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         void reinit_controllers();
 
@@ -109,6 +108,9 @@ namespace robot_dart {
 
         Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
         void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd commands(const std::vector<std::string>& dof_names = {});
+        void set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
