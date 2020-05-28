@@ -29,11 +29,90 @@ namespace dart {
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
+    namespace detail {
+        template <int content>
+        Eigen::VectorXd dof_data(dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
+        {
+            // Return all values
+            if (dof_names.empty()) {
+                if (content == 0)
+                    return skeleton->getPositions();
+                else if (content == 1)
+                    return skeleton->getVelocities();
+                else if (content == 2)
+                    return skeleton->getAccelerations();
+                else if (content == 3)
+                    return skeleton->getForces();
+                else if (content == 4)
+                    return skeleton->getCommands();
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+
+            Eigen::VectorXd data(dof_names.size());
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+                auto dof = skeleton->getDof(it->second);
+                if (content == 0)
+                    data(i) = dof->getPosition();
+                else if (content == 1)
+                    data(i) = dof->getVelocity();
+                else if (content == 2)
+                    data(i) = dof->getAcceleration();
+                else if (content == 3)
+                    data(i) = dof->getForce();
+                else if (content == 4)
+                    data(i) = dof->getCommand();
+                else
+                    ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+            return data;
+        }
+
+        template <int content>
+        void set_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
+        {
+            // Set all values
+            if (dof_names.empty()) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
+                if (content == 0)
+                    return skeleton->setPositions(data);
+                else if (content == 1)
+                    return skeleton->setVelocities(data);
+                else if (content == 2)
+                    return skeleton->setAccelerations(data);
+                else if (content == 3)
+                    return skeleton->setForces(data);
+                else if (content == 4)
+                    return skeleton->setCommands(data);
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                auto dof = skeleton->getDof(it->second);
+                if (content == 0)
+                    dof->setPosition(data(i));
+                else if (content == 1)
+                    dof->setVelocity(data(i));
+                else if (content == 2)
+                    dof->setAcceleration(data(i));
+                else if (content == 3)
+                    dof->setForce(data(i));
+                else if (content == 4)
+                    dof->setCommand(data(i));
+                else
+                    ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+        }
+    } // namespace detail
+
     Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
-        update_dof_map();
+        update_joint_dof_maps();
     }
 
     Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages) {}
@@ -43,7 +122,7 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
-        update_dof_map();
+        update_joint_dof_maps();
     }
 
     std::shared_ptr<Robot> Robot::clone() const
@@ -133,9 +212,10 @@ namespace robot_dart {
         _skeleton->setCommands(commands);
     }
 
-    void Robot::update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    void Robot::update(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
     {
-        _set_dof_data(4, commands, dof_names, filter_mimics, start_dof);
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == commands.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
     }
 
     void Robot::reinit_controllers()
@@ -476,44 +556,48 @@ namespace robot_dart {
         return _skeleton->getCOMSpatialAcceleration();
     }
 
-    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names)
     {
-        return _get_dof_data(0, dof_names, filter_mimics, start_dof);
+        return detail::dof_data<0>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    void Robot::set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
     {
-        _set_dof_data(0, positions, dof_names, filter_mimics, start_dof);
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == positions.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<0>(positions, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::velocities(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    Eigen::VectorXd Robot::velocities(const std::vector<std::string>& dof_names)
     {
-        return _get_dof_data(1, dof_names, filter_mimics, start_dof);
+        return detail::dof_data<1>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    void Robot::set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
     {
-        _set_dof_data(1, velocities, dof_names, filter_mimics, start_dof);
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == velocities.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<1>(velocities, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::accelerations(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    Eigen::VectorXd Robot::accelerations(const std::vector<std::string>& dof_names)
     {
-        return _get_dof_data(2, dof_names, filter_mimics, start_dof);
+        return detail::dof_data<2>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    void Robot::set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
     {
-        _set_dof_data(2, accelerations, dof_names, filter_mimics, start_dof);
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == accelerations.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<2>(accelerations, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names)
     {
-        return _get_dof_data(3, dof_names, filter_mimics, start_dof);
+        return detail::dof_data<3>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
+    void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
     {
-        _set_dof_data(3, forces, dof_names, filter_mimics, start_dof);
+        ROBOT_DART_ASSERT(dof_names.empty() || (static_cast<int>(dof_names.size()) == forces.size()), "Size of data does not match size of DoFs", );
+        detail::set_dof_data<2>(forces, _skeleton, dof_names, _dof_map);
     }
 
     std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const
@@ -695,53 +779,53 @@ namespace robot_dart {
         bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
     }
 
-    std::vector<std::string> Robot::dof_names() const
+    void Robot::update_joint_dof_maps()
+    {
+        // DoFs
+        _dof_map.clear();
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i)
+            _dof_map[_skeleton->getDof(i)->getName()] = i;
+
+        // Joints
+        _joint_map.clear();
+        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i)
+            _joint_map[_skeleton->getJoint(i)->getName()] = i;
+    }
+
+    const std::unordered_map<std::string, size_t>& Robot::dof_map() const
+    {
+        return _dof_map;
+    }
+
+    const std::unordered_map<std::string, size_t>& Robot::joint_map() const
+    {
+        return _joint_map;
+    }
+
+    std::vector<std::string> Robot::dof_names(bool filter_mimics) const
     {
         std::vector<std::string> names;
-        for (auto& dof : _skeleton->getDofs())
-            names.push_back(dof->getName());
+        for (auto& dof : _skeleton->getDofs()) {
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+            auto jt = dof->getJoint();
+            if (!filter_mimics || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
+#endif
+                names.push_back(dof->getName());
+        }
         return names;
     }
 
-    void Robot::update_dof_map()
+    std::vector<std::string> Robot::mimic_dof_names() const
     {
-
-        _controllable_dof_map.clear();
-        _full_dof_map.clear();
+        std::vector<std::string> names;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
-        _mimic_dof_map.clear();
-        _mimic_dofs.clear();
-#endif
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-#if DART_VERSION_AT_LEAST(6, 7, 0)
-            auto joint = _skeleton->getDof(i)->getJoint();
-            if (joint->getActuatorType() != dart::dynamics::Joint::MIMIC) {
-                _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
-            }
-            else {
-                _mimic_dof_map[_skeleton->getDof(i)->getName()] = i;
-                _mimic_dofs.push_back(i);
-            }
-#else
-            _controllable_dof_map[_skeleton->getDof(i)->getName()] = i;
-#endif
-            _full_dof_map[_skeleton->getDof(i)->getName()] = i;
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::MIMIC)
+                names.push_back(dof->getName());
         }
-    }
-
-    std::unordered_map<std::string, size_t> Robot::get_controllable_dof_map() const
-    {
-        return _controllable_dof_map;
-    }
-
-    std::unordered_map<std::string, size_t> Robot::get_mimic_dof_map() const
-    {
-        return _mimic_dof_map;
-    }
-
-    std::unordered_map<std::string, size_t> Robot::get_full_dof_map() const
-    {
-        return _full_dof_map;
+#endif
+        return names;
     }
 
     std::string Robot::dof_name(size_t dof_index) const
@@ -750,10 +834,17 @@ namespace robot_dart {
         return _skeleton->getDof(dof_index)->getName();
     }
 
-    size_t Robot::dof_index(std::string dof_name) const
+    size_t Robot::dof_index(const std::string& dof_name) const
     {
-        auto it = _full_dof_map.find(dof_name);
-        ROBOT_DART_ASSERT(it != _full_dof_map.end(), "dof_index : " + dof_name + " is not in _full_dof_map", 0);
+        if (_dof_map.empty()) {
+            ROBOT_DART_WARNING(true, "DoF map is empty. Iterating over all skeleton DoFs to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            for (size_t i = 0; i < _skeleton->getNumDofs(); i++)
+                if (_skeleton->getDof(i)->getName() == dof_name)
+                    return i;
+            ROBOT_DART_ASSERT(false, "dof_index : " + dof_name + " is not in the skeleton", 0);
+        }
+        auto it = _dof_map.find(dof_name);
+        ROBOT_DART_ASSERT(it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
         return it->second;
     }
 
@@ -775,6 +866,20 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", );
         _skeleton->getJoint(joint_index)->setName(joint_name);
+    }
+
+    size_t Robot::joint_index(const std::string& joint_name) const
+    {
+        if (_joint_map.empty()) {
+            ROBOT_DART_WARNING(true, "Joint map is empty. Iterating over all skeleton joints to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            for (size_t i = 0; i < _skeleton->getNumJoints(); i++)
+                if (_skeleton->getJoint(i)->getName() == joint_name)
+                    return i;
+            ROBOT_DART_ASSERT(false, "joint_index : " + joint_name + " is not in the skeleton", 0);
+        }
+        auto it = _joint_map.find(joint_name);
+        ROBOT_DART_ASSERT(it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
+        return it->second;
     }
 
     void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
@@ -902,132 +1007,6 @@ namespace robot_dart {
             if (ms)
                 ms->setColorMode(color_mode);
         }
-    }
-
-    Eigen::VectorXd Robot::_get_dof_data(int content, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
-    {
-        Eigen::VectorXd data;
-        if (!dof_names.empty()) {
-            data.resize(dof_names.size());
-            for (size_t i = 0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i]) != _full_dof_map.end(), "_get_dof_data : " + dof_names[i] + " is not in _full_dof_map", {});
-                if (content == 0) {
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getPosition();
-                }
-                else if (content == 1) {
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getVelocity();
-                }
-                else if (content == 2) {
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getAcceleration();
-                }
-                else if (content == 3) {
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getForce();
-                }
-                else if (content == 4) {
-                    data(i) = _skeleton->getDof(_full_dof_map[dof_names[i]])->getCommand();
-                }
-            }
-        }
-        else {
-            if (content == 0) {
-                data = _skeleton->getPositions();
-            }
-            else if (content == 1) {
-                data = _skeleton->getVelocities();
-            }
-            else if (content == 2) {
-                data = _skeleton->getAccelerations();
-            }
-            else if (content == 3) {
-                data = _skeleton->getForces();
-            }
-            else if (content == 4) {
-                data = _skeleton->getCommands();
-            }
-        }
-        if (filter_mimics == true) {
-            ROBOT_DART_ASSERT((dof_names.empty() == true), "If you want to use dof_names, filter mimic joints by names", {});
-            data = _get_vector_mimic(start_dof, data);
-        }
-        return data;
-    }
-
-    void Robot::_set_dof_data(int content, const Eigen::VectorXd& data, const std::vector<std::string>& dof_names, bool filter_mimics, size_t start_dof)
-    {
-        Eigen::VectorXd ordered_data;
-        if (!dof_names.empty()) {
-            ROBOT_DART_ASSERT((filter_mimics == false), "If you want to use dof_names, filter mimic joints by names", );
-            ROBOT_DART_ASSERT((size_t)data.size() == dof_names.size(), "_set_dof_data : data should have the same size and order than dof_names", );
-            ordered_data = Robot::_get_dof_data(content);
-            for (size_t i = 0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(_full_dof_map.find(dof_names[i]) != _full_dof_map.end(), "_set_dof_data : " + dof_names[i] + " is not in _full_dof_map", );
-                auto joint = _skeleton->getDof(_full_dof_map[dof_names[i]])->getJoint();
-                ROBOT_DART_ASSERT(joint->getActuatorType() != dart::dynamics::Joint::MIMIC, "_set_dof_data : " + joint->getName() + " is a MIMIC joint", );
-                ordered_data(_controllable_dof_map[dof_names[i]]) = data(i);
-            }
-        }
-        else {
-            if (filter_mimics == true) {
-                ordered_data = _set_vector_mimic(start_dof, data);
-            }
-            else {
-                ordered_data = data;
-            }
-        }
-        if (content == 0) {
-            _skeleton->setPositions(ordered_data);
-        }
-        else if (content == 1) {
-            _skeleton->setVelocities(ordered_data);
-        }
-        else if (content == 2) {
-            _skeleton->setAccelerations(ordered_data);
-        }
-        else if (content == 3) {
-            _skeleton->setForces(ordered_data);
-        }
-        else if (content == 4) {
-            _skeleton->setCommands(ordered_data);
-        }
-    }
-
-    Eigen::VectorXd Robot::_get_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
-    {
-#if DART_VERSION_AT_LEAST(6, 7, 0)
-        size_t dof = _skeleton->getNumDofs();
-        size_t control_dof = dof - start_dof;
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(control_dof);
-        size_t k = 0;
-        for (size_t i = start_dof; i < dof; i++) {
-            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-            if (it == _mimic_dofs.end())
-                ret(k++) = vec(i);
-        }
-
-        return ret;
-#else
-        return vec.tail(control_dof);
-#endif
-    }
-
-    Eigen::VectorXd Robot::_set_vector_mimic(size_t start_dof, const Eigen::VectorXd& vec) const
-    {
-#if DART_VERSION_AT_LEAST(6, 7, 0)
-        size_t dof = _skeleton->getNumDofs();
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
-        size_t k = 0;
-        for (size_t i = start_dof; i < dof; i++) {
-            auto it = std::find(_mimic_dofs.begin(), _mimic_dofs.end(), i);
-            if (it == _mimic_dofs.end())
-                ret(i) = vec(k++);
-        }
-        std::cout << ret << std::endl;
-        return ret;
-#else
-        Eigen::VectorXd ret = Eigen::VectorXd::Zero(dof);
-        ret.tail(control_dof) = vec;
-        return ret;
-#endif
     }
 
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
