@@ -13,6 +13,13 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
 else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install dartsim
     if [ "$PYTHON_TESTS" = "ON" ]; then
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install dartpy
+        # HOMEBREW_NO_AUTO_UPDATE=1 brew install dartpy
+        git clone git://github.com/dartsim/dart.git
+        cd dart
+        mkdir build_py
+        cd build_py
+        cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release ..
+        make -j4
+        sudo make install
     fi
 fi
