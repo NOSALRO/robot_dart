@@ -193,8 +193,12 @@ namespace robot_dart {
                 .def("joint_map", &Robot::joint_map)
 
                 .def("dof_names", &Robot::dof_names,
-                    py::arg("filter_mimics") = false)
+                    py::arg("filter_mimics") = false,
+                    py::arg("filter_locked") = false,
+                    py::arg("filter_passive") = false)
                 .def("mimic_dof_names", &Robot::mimic_dof_names)
+                .def("locked_dof_names", &Robot::locked_dof_names)
+                .def("passive_dof_names", &Robot::passive_dof_names)
                 .def("dof_name", &Robot::dof_name)
                 .def("dof_index", &Robot::dof_index)
 
