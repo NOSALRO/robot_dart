@@ -53,6 +53,7 @@ namespace robot_dart {
                 .def(py::init<double>())
 
                 .def("run", &RobotDARTSimu::run)
+                .def("step_world", &RobotDARTSimu::step_once)
                 .def("step_once", &RobotDARTSimu::step_once)
 
                 .def("graphics", &RobotDARTSimu::graphics)
