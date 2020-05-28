@@ -9,6 +9,18 @@ env:
 
 jobs:
   include:
+    # Test python bindings MacOS
+    - language: cpp
+      os: osx
+      osx_image: xcode11.4
+      compiler: clang
+      env:
+        - DART_MASTER=ON
+        - DART_EXTRA=OFF
+        - MAGNUM_GUI=OFF
+        - CMAKE=OFF
+        - PYTHON=python3
+        - PYTHON_TESTS=ON
     # MacOS
     - language: cpp
       os: osx
