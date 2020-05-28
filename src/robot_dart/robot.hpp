@@ -147,8 +147,10 @@ namespace robot_dart {
         const std::unordered_map<std::string, size_t>& dof_map() const;
         const std::unordered_map<std::string, size_t>& joint_map() const;
 
-        std::vector<std::string> dof_names(bool filter_mimics = false) const;
+        std::vector<std::string> dof_names(bool filter_mimics = false, bool filter_locked = false, bool filter_passive = false) const;
         std::vector<std::string> mimic_dof_names() const;
+        std::vector<std::string> locked_dof_names() const;
+        std::vector<std::string> passive_dof_names() const;
         std::string dof_name(size_t dof_index) const;
         size_t dof_index(const std::string& dof_name) const;
 

@@ -805,14 +805,20 @@ namespace robot_dart {
         return _joint_map;
     }
 
-    std::vector<std::string> Robot::dof_names(bool filter_mimics) const
+    std::vector<std::string> Robot::dof_names(bool filter_mimics, bool filter_locked, bool filter_passive) const
     {
         std::vector<std::string> names;
         for (auto& dof : _skeleton->getDofs()) {
-#if DART_VERSION_AT_LEAST(6, 7, 0)
             auto jt = dof->getJoint();
-            if (!filter_mimics || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
+            if ((!filter_mimics
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+                    || jt->getActuatorType() != dart::dynamics::Joint::MIMIC
+#else
+                    || true
 #endif
+                    )
+                && (!filter_locked || jt->getActuatorType() != dart::dynamics::Joint::LOCKED)
+                && (!filter_passive || jt->getActuatorType() != dart::dynamics::Joint::PASSIVE))
                 names.push_back(dof->getName());
         }
         return names;
@@ -828,6 +834,28 @@ namespace robot_dart {
                 names.push_back(dof->getName());
         }
 #endif
+        return names;
+    }
+
+    std::vector<std::string> Robot::locked_dof_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::LOCKED)
+                names.push_back(dof->getName());
+        }
+        return names;
+    }
+
+    std::vector<std::string> Robot::passive_dof_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::PASSIVE)
+                names.push_back(dof->getName());
+        }
         return names;
     }
 
