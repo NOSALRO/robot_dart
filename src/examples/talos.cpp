@@ -69,8 +69,8 @@ int main()
     cmd_full(global_robot->dof_index("arm_left_4_joint")) = 1;
     cmd_full(global_robot->dof_index("arm_left_5_joint")) = -1;
     for (int i = 0; i < 5000; i++) {
-        global_robot->update(cmd, dof_to_control);
-        // global_robot->update(cmd_full, {});
+        global_robot->set_commands(cmd, dof_to_control);
+        // global_robot->set_commands(cmd_full, {});
         simu.step_once();
     }
 

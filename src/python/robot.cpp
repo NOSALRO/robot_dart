@@ -26,10 +26,7 @@ namespace robot_dart {
 
                 .def("name", &Robot::name)
 
-                .def("update", (void (Robot::*)(double t)) & Robot::update)
-                .def("update", (void (Robot::*)(const Eigen::VectorXd&, const std::vector<std::string>&)) & Robot::update,
-                    py::arg("commands"),
-                    py::arg("dof_names") = std::vector<std::string>())
+                .def("update", &Robot::update)
 
                 .def("reinit_controllers", &Robot::reinit_controllers)
                 .def("num_controllers", &Robot::num_controllers)
@@ -119,6 +116,12 @@ namespace robot_dart {
                     py::arg("dof_names") = std::vector<std::string>())
                 .def("set_forces", &Robot::set_forces,
                     py::arg("forces"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("commands", &Robot::commands,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_commands", &Robot::set_commands,
+                    py::arg("commands"),
                     py::arg("dof_names") = std::vector<std::string>())
 
                 .def("force_torque", &Robot::force_torque)
