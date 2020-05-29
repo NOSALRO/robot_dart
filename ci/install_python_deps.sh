@@ -33,6 +33,4 @@ else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install pybind11
 
     sudo -H pip3 install numpy
-    # export PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.7/site-packages/"
-    python3 -c 'import numpy as np'
 fi
