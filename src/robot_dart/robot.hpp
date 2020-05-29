@@ -1,7 +1,7 @@
 #ifndef ROBOT_DART_ROBOT_HPP
 #define ROBOT_DART_ROBOT_HPP
 
-#include <utility>
+#include <unordered_map>
 
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/Skeleton.hpp>
@@ -97,17 +97,20 @@ namespace robot_dart {
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
 
-        Eigen::VectorXd positions() const;
-        void set_positions(const Eigen::VectorXd& positions);
+        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {});
+        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd velocities() const;
-        void set_velocities(const Eigen::VectorXd& velocities);
+        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {});
+        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd accelerations() const;
-        void set_accelerations(const Eigen::VectorXd& accelerations);
+        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {});
+        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd forces() const;
-        void set_forces(const Eigen::VectorXd& forces);
+        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
+        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd commands(const std::vector<std::string>& dof_names = {});
+        void set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
@@ -140,11 +143,21 @@ namespace robot_dart {
         void add_body_mass(const std::string& body_name, double mass);
         void add_body_mass(size_t body_index, double mass);
 
-        std::vector<std::string> dof_names() const;
+        void update_joint_dof_maps();
+        const std::unordered_map<std::string, size_t>& dof_map() const;
+        const std::unordered_map<std::string, size_t>& joint_map() const;
+
+        std::vector<std::string> dof_names(bool filter_mimics = false, bool filter_locked = false, bool filter_passive = false) const;
+        std::vector<std::string> mimic_dof_names() const;
+        std::vector<std::string> locked_dof_names() const;
+        std::vector<std::string> passive_dof_names() const;
         std::string dof_name(size_t dof_index) const;
+        size_t dof_index(const std::string& dof_name) const;
+
         std::vector<std::string> joint_names() const;
         std::string joint_name(size_t joint_index) const;
         void set_joint_name(size_t joint_index, const std::string& joint_name);
+        size_t joint_index(const std::string& joint_name) const;
 
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
         void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
@@ -173,7 +186,7 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;
-
+        std::unordered_map<std::string, size_t> _dof_map, _joint_map;
         bool _cast_shadows;
         bool _is_ghost;
     };
