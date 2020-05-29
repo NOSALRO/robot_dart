@@ -113,7 +113,6 @@ namespace robot_dart {
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
-        update_joint_dof_maps();
     }
 
     Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages) {}
@@ -123,7 +122,6 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
-        update_joint_dof_maps();
     }
 
     std::shared_ptr<Robot> Robot::clone() const
@@ -337,6 +335,7 @@ namespace robot_dart {
         if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
 #endif
             jt->setActuatorType(type);
+        update_joint_dof_maps();
     }
 
     void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic)
@@ -349,6 +348,7 @@ namespace robot_dart {
 #endif
                 jt->setActuatorType(types[i]);
         }
+        update_joint_dof_maps();
     }
 
     void Robot::set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic)
@@ -360,6 +360,7 @@ namespace robot_dart {
 #endif
                 jt->setActuatorType(type);
         }
+        update_joint_dof_maps();
     }
 
     dart::dynamics::Joint::ActuatorType Robot::actuator_type(size_t dof) const
@@ -1020,6 +1021,7 @@ namespace robot_dart {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
             }
         }
+        update_joint_dof_maps();
     }
 
     void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
