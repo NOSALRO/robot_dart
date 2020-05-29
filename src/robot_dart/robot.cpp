@@ -335,7 +335,6 @@ namespace robot_dart {
         if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
 #endif
             jt->setActuatorType(type);
-        update_joint_dof_maps();
     }
 
     void Robot::set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic)
@@ -348,7 +347,6 @@ namespace robot_dart {
 #endif
                 jt->setActuatorType(types[i]);
         }
-        update_joint_dof_maps();
     }
 
     void Robot::set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic)
@@ -360,7 +358,6 @@ namespace robot_dart {
 #endif
                 jt->setActuatorType(type);
         }
-        update_joint_dof_maps();
     }
 
     dart::dynamics::Joint::ActuatorType Robot::actuator_type(size_t dof) const
@@ -1021,6 +1018,7 @@ namespace robot_dart {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
             }
         }
+
         update_joint_dof_maps();
     }
 
