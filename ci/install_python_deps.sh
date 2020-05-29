@@ -33,4 +33,7 @@ else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install pybind11
 
     sudo -H python3 -m pip install --user numpy
+    ls /usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/
+    ls /usr/local/lib/python3.7/site-packages/
+    export PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.7/site-packages/"
 fi
