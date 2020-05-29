@@ -14,6 +14,8 @@ namespace robot_dart {
             PolicyControl() : RobotControl() {}
             PolicyControl(double dt, const Eigen::VectorXd& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(dt), _first(true), _full_dt(false) {}
             PolicyControl(const Eigen::VectorXd& ctrl, bool full_control = false) : RobotControl(ctrl, full_control), _dt(0.), _first(true), _full_dt(true) {}
+            PolicyControl(double dt, const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs) : RobotControl(ctrl, controllable_dofs), _dt(dt), _first(true), _full_dt(false) {}
+            PolicyControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs) : RobotControl(ctrl, controllable_dofs), _dt(0.), _first(true), _full_dt(true) {}
 
             void configure() override
             {

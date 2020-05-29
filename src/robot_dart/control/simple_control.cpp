@@ -6,6 +6,7 @@ namespace robot_dart {
     namespace control {
         SimpleControl::SimpleControl() : RobotControl() {}
         SimpleControl::SimpleControl(const Eigen::VectorXd& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
+        SimpleControl::SimpleControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs) : RobotControl(ctrl, controllable_dofs) {}
 
         void SimpleControl::configure()
         {

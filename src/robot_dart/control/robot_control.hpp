@@ -17,6 +17,7 @@ namespace robot_dart {
         public:
             RobotControl();
             RobotControl(const Eigen::VectorXd& ctrl, bool full_control = false);
+            RobotControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs);
             virtual ~RobotControl() {}
 
             void set_parameters(const Eigen::VectorXd& ctrl);
@@ -30,42 +31,23 @@ namespace robot_dart {
             void activate(bool enable = true);
             bool active() const;
 
-            bool fully_controlled() const;
-            void set_full_control(bool enable = true);
+            const std::vector<std::string>& controllable_dofs() const;
 
             double weight() const;
             void set_weight(double weight);
 
             virtual void configure() = 0;
-            // TO-DO: Maybe make these 2 const?
-            Eigen::VectorXd commands(double t);
+            // TO-DO: Maybe make this const?
             virtual Eigen::VectorXd calculate(double t) = 0;
             virtual std::shared_ptr<RobotControl> clone() const = 0;
-
-            Eigen::VectorXd get_positions() const;
-            void set_positions(const Eigen::VectorXd& positions);
-
-            Eigen::VectorXd get_velocities() const;
-            void set_velocities(const Eigen::VectorXd& velocities);
-
-            Eigen::VectorXd get_accelerations() const;
-            void set_accelerations(const Eigen::VectorXd& accelerations);
-
-            Eigen::VectorXd get_forces() const;
-            void set_forces(const Eigen::VectorXd& forces);
 
         protected:
             std::weak_ptr<Robot> _robot;
             Eigen::VectorXd _ctrl;
             double _weight;
-            bool _active, _full_control;
-            size_t _start_dof, _dof, _control_dof;
-#if DART_VERSION_AT_LEAST(6, 7, 0)
-            std::vector<size_t> _mimic_dofs;
-#endif
-
-            Eigen::VectorXd _get_vector_mimic(const Eigen::VectorXd& vec) const;
-            Eigen::VectorXd _set_vector_mimic(const Eigen::VectorXd& vec) const;
+            bool _active, _check_free = false;
+            int _dof, _control_dof;
+            std::vector<std::string> _controllable_dofs;
         };
     } // namespace control
 } // namespace robot_dart
