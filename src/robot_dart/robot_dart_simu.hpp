@@ -20,9 +20,9 @@ namespace robot_dart {
 
         ~RobotDARTSimu();
 
-        void run(double max_duration = 5.0);
-        bool step_world();
-        bool step_once();
+        void run(double max_duration = 5.0, bool reset_commands = false);
+        bool step_world(bool reset_commands = false);
+        bool step_once(bool reset_commands = false);
 
         std::shared_ptr<gui::Base> graphics() const;
         void set_graphics(const std::shared_ptr<gui::Base>& graphics);

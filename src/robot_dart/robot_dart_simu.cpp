@@ -111,23 +111,23 @@ namespace robot_dart {
         _cameras.clear();
     }
 
-    void RobotDARTSimu::run(double max_duration)
+    void RobotDARTSimu::run(double max_duration, bool reset_commands)
     {
         _break = false;
         double old_t = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            step_once();
+            step_once(reset_commands);
 
             if (_break)
                 break;
         }
     }
 
-    bool RobotDARTSimu::step_world()
+    bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        _world->step(false);
+        _world->step(reset_commands);
 
         _graphics->refresh();
 
@@ -145,14 +145,14 @@ namespace robot_dart {
         return _break;
     }
 
-    bool RobotDARTSimu::step_once()
+    bool RobotDARTSimu::step_once(bool reset_commands)
     {
         for (auto& robot : _robots) {
             robot->update(_world->getTime());
             _gui_data->update_robot(robot);
         }
 
-        return step_world();
+        return step_world(reset_commands);
     }
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
