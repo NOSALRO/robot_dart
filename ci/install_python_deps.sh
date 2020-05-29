@@ -32,5 +32,5 @@ else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install python
     HOMEBREW_NO_AUTO_UPDATE=1 brew install pybind11
 
-    sudo python3 -m pip install --user numpy
+    sudo -H python3 -m pip install --user numpy
 fi
