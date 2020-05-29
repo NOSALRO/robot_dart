@@ -36,4 +36,5 @@ else
     ls /usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/
     ls /usr/local/lib/python3.7/site-packages/
     export PYTHONPATH="${PYTHONPATH}:/usr/local/lib/python3.7/site-packages/"
+    python3 -c 'import numpy as np'
 fi
