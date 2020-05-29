@@ -18,9 +18,9 @@ int main()
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
-    
-    // Set actuator types to VELOCITY motors so that they stay in position without any controller
-    global_robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
+
+    // Set actuator types to SERVO motors so that they stay in position without any controller
+    global_robot->set_actuator_types(dart::dynamics::Joint::SERVO);
 
     float dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
@@ -37,7 +37,6 @@ int main()
     q0 << 0.0, M_PI / 3., 0.0, -M_PI / 4.0, 0.0, 0.0, 0.0;
     global_robot->set_positions(q0);
 
-
     //Get dofs names
     auto dofs = global_robot->dof_names();
     std::cout << "Dofs : " << std::endl;
@@ -49,7 +48,7 @@ int main()
     simu.add_robot(global_robot);
 
     //Create a custom update loop using step_world instead of run
-    int sim_time = 10/dt;
+    int sim_time = 10 / dt;
 
     //Create a vector of dofs to control
     std::vector<std::string> dof_to_control;
@@ -59,23 +58,23 @@ int main()
     cmd(0) = 0.1;
     cmd(1) = -0.1;
 
-    for (int i = 0; i <sim_time; i++) {
+    for (int i = 0; i < sim_time; i++) {
         global_robot->set_commands(cmd, dof_to_control);
-        pos = global_robot->positions(dof_to_control);//get dof_to_control positions only
-        full_pos = global_robot->positions();//get all dofs positions
+        pos = global_robot->positions(dof_to_control); //get dof_to_control positions only
+        full_pos = global_robot->positions(); //get all dofs positions
         simu.step_world();
     }
 
-    //If you wanted to control every dofs you could have used :
-    // Eigen::VectorXd cmd_full = Eigen::VectorXd::Constant(q0.size(),0.1);
-    // for (int i = 0; i <sim_time; i++) {
-    //     global_robot->set_commands(cmd_full); 
+    // If you wanted to control every dofs you could have used :
+    // Eigen::VectorXd cmd_full = Eigen::VectorXd::Constant(q0.size(), 0.1);
+    // for (int i = 0; i < sim_time; i++) {
+    //     global_robot->set_commands(cmd_full);
     //     simu.step_world();
     // }
 
     /**************** Mimic / Passive / Locked joint handling ********************************************************/
 
-    int mimic_index = global_robot->dof_index("iiwa_joint_5");   
+    int mimic_index = global_robot->dof_index("iiwa_joint_5");
     int locked_index = global_robot->dof_index("iiwa_joint_6");
     int passive_index = global_robot->dof_index("iiwa_joint_7");
 
@@ -92,12 +91,13 @@ int main()
     for (auto& cd : controllable_dofs) {
         std::cout << cd << std::endl;
     }
+
     cmd.resize(controllable_dofs.size());
     cmd.setConstant(-0.1);
 
-    for (int i = 0; i <sim_time; i++) {
+    for (int i = 0; i < sim_time; i++) {
         global_robot->set_commands(cmd, controllable_dofs);
-        // global_robot->set_commands(Eigen::VectorXd::Constant(q0.size(),0.1)); // You can try it won't work and display a warning
+        // global_robot->set_commands(Eigen::VectorXd::Constant(q0.size(), -0.1)); // This also works, but you will be getting a lot of warnings from DART; the comands to the mimic/passive/locked joints are ignored!
         simu.step_world();
     }
 
