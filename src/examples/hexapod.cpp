@@ -13,9 +13,6 @@ int main()
     global_robot->set_position_enforced(true);
 
     global_robot->set_actuator_types(dart::dynamics::Joint::SERVO);
-    // First 6-DoFs in a floating-base robot, should always be set to FORCE actuator
-    for (size_t i = 0; i < 6; i++)
-        global_robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
     global_robot->skeleton()->enableSelfCollisionCheck();
 
     auto g_robot = global_robot->clone();

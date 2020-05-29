@@ -49,13 +49,16 @@ namespace robot_dart {
                 .def("set_actuator_type", &Robot::set_actuator_type,
                     py::arg("index"),
                     py::arg("type"),
-                    py::arg("override_mimic") = false)
-                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool)) & Robot::set_actuator_types,
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
+                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool, bool)) & Robot::set_actuator_types,
                     py::arg("types"),
-                    py::arg("override_mimic") = false)
-                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool)) & Robot::set_actuator_types,
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
+                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool, bool)) & Robot::set_actuator_types,
                     py::arg("types"),
-                    py::arg("override_mimic") = false)
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
 
                 .def("actuator_type", &Robot::actuator_type)
                 .def("actuator_types", &Robot::actuator_types)

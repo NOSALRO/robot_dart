@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
     BOOST_CHECK(simple_control->weight() == 30.0);
 
     // check controls
-    Eigen::VectorXd commands = simple_control->commands(0.0);
+    Eigen::VectorXd commands = simple_control->calculate(0.0);
     for (int i = 0; i < ctrl.size(); i++) {
         BOOST_CHECK(ctrl[i] == commands(i));
     }
@@ -158,8 +158,8 @@ BOOST_AUTO_TEST_CASE(test_robot_control)
 
     // check that commands are combined
     Eigen::VectorXd commands = Eigen::VectorXd::Zero(pendulum->skeleton()->getNumDofs());
-    commands += pd_control->weight() * pd_control->commands(0.0);
-    commands += simple_control->weight() * simple_control->commands(0.0);
+    commands += pd_control->weight() * pd_control->calculate(0.0);
+    commands += simple_control->weight() * simple_control->calculate(0.0);
     // clamp commands to limits
     for (int i = 0; i < commands.size(); i++) {
         if (commands(i) > pendulum->skeleton()->getForceUpperLimit(i)) {

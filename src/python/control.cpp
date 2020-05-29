@@ -54,18 +54,26 @@ namespace robot_dart {
             class PublicistRobotControl : public RobotControl {
             public:
                 using RobotControl::_active;
+                using RobotControl::_check_free;
+                using RobotControl::_controllable_dofs;
                 using RobotControl::_ctrl;
-                using RobotControl::_full_control;
                 using RobotControl::_robot;
             };
 
             // RobotControl class
             py::class_<RobotControl, PyRobotControl, std::shared_ptr<RobotControl>>(m, "RobotControl")
-                .def(py::init<const Eigen::VectorXd&, bool>())
+                .def(py::init<>())
+                .def(py::init<const Eigen::VectorXd&, bool>(),
+                    py::arg("ctrl"),
+                    py::arg("full_control") = false)
+                .def(py::init<const Eigen::VectorXd&, const std::vector<std::string>&>(),
+                    py::arg("ctrl"),
+                    py::arg("controllable_dofs"))
 
                 .def_readwrite("_active", &PublicistRobotControl::_active)
+                .def_readwrite("_check_free", &PublicistRobotControl::_check_free)
+                .def_readonly("_controllable_dofs", &PublicistRobotControl::_controllable_dofs)
                 .def_readwrite("_ctrl", &PublicistRobotControl::_ctrl)
-                .def_readwrite("_full_control", &PublicistRobotControl::_full_control)
                 .def_readonly("_robot", &PublicistRobotControl::_robot)
 
                 .def("set_parameters", &RobotControl::set_parameters)
@@ -79,8 +87,7 @@ namespace robot_dart {
                 .def("activate", &RobotControl::activate)
                 .def("active", &RobotControl::active)
 
-                .def("fully_controlled", &RobotControl::fully_controlled)
-                .def("set_full_control", &RobotControl::set_full_control)
+                .def("controllable_dofs", &RobotControl::controllable_dofs)
 
                 .def("weight", &RobotControl::weight)
                 .def("set_weight", &RobotControl::set_weight)
@@ -88,28 +95,20 @@ namespace robot_dart {
                 // virtual void configure() = 0;
                 .def("configure", &RobotControl::configure)
 
-                .def("commands", &RobotControl::commands)
-
                 // virtual Eigen::VectorXd calculate(double t) = 0;
                 .def("calculate", &RobotControl::calculate)
                 // virtual std::shared_ptr<RobotControl> clone() const = 0;
-                .def("clone", &RobotControl::clone)
-
-                .def("get_positions", &RobotControl::get_positions)
-                .def("set_positions", &RobotControl::set_positions)
-
-                .def("get_velocities", &RobotControl::get_velocities)
-                .def("set_velocities", &RobotControl::set_velocities)
-
-                .def("get_accelerations", &RobotControl::get_accelerations)
-                .def("set_accelerations", &RobotControl::set_accelerations)
-
-                .def("get_forces", &RobotControl::get_forces)
-                .def("set_forces", &RobotControl::set_forces);
+                .def("clone", &RobotControl::clone);
 
             // PDControl class
             py::class_<PDControl, RobotControl, std::shared_ptr<PDControl>>(m, "PDControl")
-                .def(py::init<const Eigen::VectorXd&, bool>())
+                .def(py::init<>())
+                .def(py::init<const Eigen::VectorXd&, bool>(),
+                    py::arg("ctrl"),
+                    py::arg("full_control") = false)
+                .def(py::init<const Eigen::VectorXd&, const std::vector<std::string>&>(),
+                    py::arg("ctrl"),
+                    py::arg("controllable_dofs"))
 
                 .def("configure", &PDControl::configure)
                 .def("calculate", &PDControl::calculate)
@@ -123,7 +122,13 @@ namespace robot_dart {
 
             // SimpleControl class
             py::class_<SimpleControl, RobotControl, std::shared_ptr<SimpleControl>>(m, "SimpleControl")
-                .def(py::init<const Eigen::VectorXd&, bool>())
+                .def(py::init<>())
+                .def(py::init<const Eigen::VectorXd&, bool>(),
+                    py::arg("ctrl"),
+                    py::arg("full_control") = false)
+                .def(py::init<const Eigen::VectorXd&, const std::vector<std::string>&>(),
+                    py::arg("ctrl"),
+                    py::arg("controllable_dofs"))
 
                 .def("configure", &SimpleControl::configure)
                 .def("calculate", &SimpleControl::calculate)
