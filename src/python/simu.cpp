@@ -58,7 +58,8 @@ namespace robot_dart {
                 .def("step_world", &RobotDARTSimu::step_world,
                     py::arg("reset_commands") = false)
                 .def("step_once", &RobotDARTSimu::step_once,
-                    py::arg("reset_commands") = false)
+                    py::arg("reset_commands") = false,
+                    py::arg("update_controllers") = true)
 
                 .def("graphics", &RobotDARTSimu::graphics)
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
