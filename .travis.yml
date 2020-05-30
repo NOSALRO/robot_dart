@@ -185,4 +185,4 @@ script:
   - $PYTHON ./waf examples
   - sudo $PYTHON ./waf install
   - if [ "$CMAKE" = "ON" ]; then cd cmake/example && mkdir build && cd build && cmake .. && make -j4 ; fi
-  - if [ "$PYTHON_TESTS" = "ON" ]; then echo $PYTHONPATH && $PYTHON src/python/ci.py ; fi
+  - if [ "$PYTHON_TESTS" = "ON" ]; then $PYTHON src/python/ci.py ; fi

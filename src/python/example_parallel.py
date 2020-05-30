@@ -1,6 +1,6 @@
 import numpy as np
-import dartpy
 import RobotDART as rd
+import dartpy # OSX break if this is imported before RobotDART
 from multiprocessing import Process, Lock
 from timeit import default_timer as timer
 import os
