@@ -1,3 +1,4 @@
+PY_PACKAGE_FOLDER=dist-packages
 if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     sudo apt-get install -y --no-install-recommends \
         python3-dev \
@@ -33,8 +34,10 @@ else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install pybind11
 
     sudo -H pip3 install numpy
+
+    PY_PACKAGE_FOLDER=site-packages
 fi
 
 PY_VERSION=$(python3 -c "import platform; ver = platform.python_version(); ver_arr = ver.split('.'); print(ver_arr[0]+'.'+ver_arr[1])")
-PY_PACKAGES=/usr/local/lib/python${PY_VERSION}/site-packages
+PY_PACKAGES=/usr/local/lib/python${PY_VERSION}/${PY_PACKAGE_FOLDER}
 export PYTHONPATH="${PYTHONPATH}:${PY_PACKAGES}"
