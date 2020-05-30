@@ -1,5 +1,5 @@
 import numpy as np
-# import dartpy
+import dartpy
 import RobotDART as rd
 
 # Create custom controller
