@@ -118,7 +118,7 @@ namespace robot_dart {
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            step_once(reset_commands);
+            step_once(reset_commands, true);
 
             if (_break)
                 break;
@@ -145,10 +145,11 @@ namespace robot_dart {
         return _break;
     }
 
-    bool RobotDARTSimu::step_once(bool reset_commands)
+    bool RobotDARTSimu::step_once(bool reset_commands, bool update_controllers)
     {
         for (auto& robot : _robots) {
-            robot->update(_world->getTime());
+            if (update_controllers)
+                robot->update(_world->getTime());
             _gui_data->update_robot(robot);
         }
 
