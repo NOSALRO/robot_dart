@@ -35,6 +35,6 @@ else
     sudo -H pip3 install numpy
 fi
 
-PY_VERSION=$(python -c "import platform; ver = platform.python_version(); ver_arr = ver.split('.'); print(ver_arr[0]+'.'+ver_arr[1])")
+PY_VERSION=$(python3 -c "import platform; ver = platform.python_version(); ver_arr = ver.split('.'); print(ver_arr[0]+'.'+ver_arr[1])")
 PY_PACKAGES=/usr/local/lib/python${PY_VERSION}/site-packages
 export PYTHONPATH="${PYTHONPATH}:${PY_PACKAGES}"
