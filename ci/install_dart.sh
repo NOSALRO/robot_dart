@@ -16,6 +16,7 @@ else
         # HOMEBREW_NO_AUTO_UPDATE=1 brew install dartpy
         git clone git://github.com/dartsim/dart.git
         cd dart
+        git checkout v6.9.2
         mkdir build_py
         cd build_py
         cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release ..
