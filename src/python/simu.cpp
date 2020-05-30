@@ -52,7 +52,13 @@ namespace robot_dart {
             py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
                 .def(py::init<double>())
 
-                .def("run", &RobotDARTSimu::run)
+                .def("run", &RobotDARTSimu::run,
+                    py::arg("max_duration") = 5.,
+                    py::arg("reset_commands") = false)
+                .def("step_world", &RobotDARTSimu::step_world,
+                    py::arg("reset_commands") = false)
+                .def("step_once", &RobotDARTSimu::step_once,
+                    py::arg("reset_commands") = false)
 
                 .def("graphics", &RobotDARTSimu::graphics)
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
