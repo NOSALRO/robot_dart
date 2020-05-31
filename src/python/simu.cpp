@@ -65,7 +65,8 @@ namespace robot_dart {
 
                 .def("world", &RobotDARTSimu::world)
 
-                .def("add_descriptor", (void (RobotDARTSimu::*)(const std::shared_ptr<descriptor::BaseDescriptor>&)) & RobotDARTSimu::add_descriptor, py::keep_alive<2, 1>())
+                .def("add_descriptor", (void (RobotDARTSimu::*)(const std::shared_ptr<descriptor::BaseDescriptor>&)) & RobotDARTSimu::add_descriptor, py::keep_alive<2, 1>(),
+                    py::arg("desc_dump") = 1)
                 .def("descriptors", &RobotDARTSimu::descriptors)
                 .def("descriptor", &RobotDARTSimu::descriptor)
 
@@ -84,7 +85,8 @@ namespace robot_dart {
                 .def("step", &RobotDARTSimu::step)
                 .def("set_step", &RobotDARTSimu::set_step)
 
-                .def("stop_sim", &RobotDARTSimu::stop_sim)
+                .def("stop_sim", &RobotDARTSimu::stop_sim,
+                    py::arg("disable") = true)
                 .def("halted_sim", &RobotDARTSimu::halted_sim)
 
                 .def("num_robots", &RobotDARTSimu::num_robots)
@@ -98,8 +100,17 @@ namespace robot_dart {
                 .def("remove_robot", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_robot)
                 .def("clear_robots", &RobotDARTSimu::clear_robots)
 
-                .def("add_floor", &RobotDARTSimu::add_floor)
-                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor)
+                .def("add_floor", &RobotDARTSimu::add_floor,
+                    py::arg("floor_width") = 10.,
+                    py::arg("floor_height") = 0.1,
+                    py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("floor_name") = "floor")
+                .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor,
+                    py::arg("floor_width") = 10.,
+                    py::arg("floor_height") = 0.1,
+                    py::arg("size") = 1.,
+                    py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("floor_name") = "checkerboard_floor")
 
                 .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
                 .def("collision_detector", &RobotDARTSimu::collision_detector)
