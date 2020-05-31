@@ -1,6 +1,6 @@
 import numpy as np
 import RobotDART as rd
-import dartpy # OSX break if this is imported before RobotDART
+import dartpy # OSX breaks if this is imported before RobotDART
 # import magnum
 
 # Create custom controller
