@@ -29,6 +29,86 @@ namespace dart {
 #include <robot_dart/control/robot_control.hpp>
 
 namespace robot_dart {
+    namespace detail {
+        template <int content>
+        Eigen::VectorXd dof_data(dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
+        {
+            // Return all values
+            if (dof_names.empty()) {
+                if (content == 0)
+                    return skeleton->getPositions();
+                else if (content == 1)
+                    return skeleton->getVelocities();
+                else if (content == 2)
+                    return skeleton->getAccelerations();
+                else if (content == 3)
+                    return skeleton->getForces();
+                else if (content == 4)
+                    return skeleton->getCommands();
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+
+            Eigen::VectorXd data(dof_names.size());
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+                auto dof = skeleton->getDof(it->second);
+                if (content == 0)
+                    data(i) = dof->getPosition();
+                else if (content == 1)
+                    data(i) = dof->getVelocity();
+                else if (content == 2)
+                    data(i) = dof->getAcceleration();
+                else if (content == 3)
+                    data(i) = dof->getForce();
+                else if (content == 4)
+                    data(i) = dof->getCommand();
+                else
+                    ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+            return data;
+        }
+
+        template <int content>
+        void set_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
+        {
+            // Set all values
+            if (dof_names.empty()) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
+                if (content == 0)
+                    return skeleton->setPositions(data);
+                else if (content == 1)
+                    return skeleton->setVelocities(data);
+                else if (content == 2)
+                    return skeleton->setAccelerations(data);
+                else if (content == 3)
+                    return skeleton->setForces(data);
+                else if (content == 4)
+                    return skeleton->setCommands(data);
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "set_dof_data: size of data is not the same as the dof_names size", );
+                auto it = dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                auto dof = skeleton->getDof(it->second);
+                if (content == 0)
+                    dof->setPosition(data(i));
+                else if (content == 1)
+                    dof->setVelocity(data(i));
+                else if (content == 2)
+                    dof->setAcceleration(data(i));
+                else if (content == 3)
+                    dof->setForce(data(i));
+                else if (content == 4)
+                    dof->setCommand(data(i));
+                else
+                    ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+        }
+    } // namespace detail
+
     Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
@@ -206,6 +286,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
+        update_joint_dof_maps();
     }
 
     // pose: Orientation-Position
@@ -229,6 +310,7 @@ namespace robot_dart {
         _skeleton->getRootBodyNode()->getParentJoint()->setTransformFromParentBodyNode(tf);
 
         reinit_controllers();
+        update_joint_dof_maps();
     }
 
     bool Robot::fixed() const
@@ -469,44 +551,54 @@ namespace robot_dart {
         return _skeleton->getCOMSpatialAcceleration();
     }
 
-    Eigen::VectorXd Robot::positions() const
+    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names)
     {
-        return _skeleton->getPositions();
+        return detail::dof_data<0>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_positions(const Eigen::VectorXd& positions)
+    void Robot::set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
     {
-        _skeleton->setPositions(positions);
+        detail::set_dof_data<0>(positions, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::velocities() const
+    Eigen::VectorXd Robot::velocities(const std::vector<std::string>& dof_names)
     {
-        return _skeleton->getVelocities();
+        return detail::dof_data<1>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_velocities(const Eigen::VectorXd& velocities)
+    void Robot::set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
     {
-        _skeleton->setVelocities(velocities);
+        detail::set_dof_data<1>(velocities, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::accelerations() const
+    Eigen::VectorXd Robot::accelerations(const std::vector<std::string>& dof_names)
     {
-        return _skeleton->getAccelerations();
+        return detail::dof_data<2>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_accelerations(const Eigen::VectorXd& accelerations)
+    void Robot::set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
     {
-        _skeleton->setAccelerations(accelerations);
+        detail::set_dof_data<2>(accelerations, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::forces() const
+    Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names)
     {
-        return _skeleton->getForces();
+        return detail::dof_data<3>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_forces(const Eigen::VectorXd& forces)
+    void Robot::set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
     {
-        _skeleton->setForces(forces);
+        detail::set_dof_data<3>(forces, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::commands(const std::vector<std::string>& dof_names)
+    {
+        return detail::dof_data<4>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
     }
 
     std::pair<Eigen::Vector6d, Eigen::Vector6d> Robot::force_torque(size_t joint_index) const
@@ -688,11 +780,80 @@ namespace robot_dart {
         bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
     }
 
-    std::vector<std::string> Robot::dof_names() const
+    void Robot::update_joint_dof_maps()
+    {
+        // DoFs
+        _dof_map.clear();
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i)
+            _dof_map[_skeleton->getDof(i)->getName()] = i;
+
+        // Joints
+        _joint_map.clear();
+        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i)
+            _joint_map[_skeleton->getJoint(i)->getName()] = i;
+    }
+
+    const std::unordered_map<std::string, size_t>& Robot::dof_map() const
+    {
+        return _dof_map;
+    }
+
+    const std::unordered_map<std::string, size_t>& Robot::joint_map() const
+    {
+        return _joint_map;
+    }
+
+    std::vector<std::string> Robot::dof_names(bool filter_mimics, bool filter_locked, bool filter_passive) const
     {
         std::vector<std::string> names;
-        for (auto& dof : _skeleton->getDofs())
-            names.push_back(dof->getName());
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if ((!filter_mimics
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+                    || jt->getActuatorType() != dart::dynamics::Joint::MIMIC
+#else
+                    || true
+#endif
+                    )
+                && (!filter_locked || jt->getActuatorType() != dart::dynamics::Joint::LOCKED)
+                && (!filter_passive || jt->getActuatorType() != dart::dynamics::Joint::PASSIVE))
+                names.push_back(dof->getName());
+        }
+        return names;
+    }
+
+    std::vector<std::string> Robot::mimic_dof_names() const
+    {
+        std::vector<std::string> names;
+#if DART_VERSION_AT_LEAST(6, 7, 0)
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::MIMIC)
+                names.push_back(dof->getName());
+        }
+#endif
+        return names;
+    }
+
+    std::vector<std::string> Robot::locked_dof_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::LOCKED)
+                names.push_back(dof->getName());
+        }
+        return names;
+    }
+
+    std::vector<std::string> Robot::passive_dof_names() const
+    {
+        std::vector<std::string> names;
+        for (auto& dof : _skeleton->getDofs()) {
+            auto jt = dof->getJoint();
+            if (jt->getActuatorType() == dart::dynamics::Joint::PASSIVE)
+                names.push_back(dof->getName());
+        }
         return names;
     }
 
@@ -700,6 +861,20 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", "");
         return _skeleton->getDof(dof_index)->getName();
+    }
+
+    size_t Robot::dof_index(const std::string& dof_name) const
+    {
+        if (_dof_map.empty()) {
+            ROBOT_DART_WARNING(true, "DoF map is empty. Iterating over all skeleton DoFs to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            for (size_t i = 0; i < _skeleton->getNumDofs(); i++)
+                if (_skeleton->getDof(i)->getName() == dof_name)
+                    return i;
+            ROBOT_DART_ASSERT(false, "dof_index : " + dof_name + " is not in the skeleton", 0);
+        }
+        auto it = _dof_map.find(dof_name);
+        ROBOT_DART_ASSERT(it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
+        return it->second;
     }
 
     std::vector<std::string> Robot::joint_names() const
@@ -720,6 +895,22 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", );
         _skeleton->getJoint(joint_index)->setName(joint_name);
+
+        update_joint_dof_maps();
+    }
+
+    size_t Robot::joint_index(const std::string& joint_name) const
+    {
+        if (_joint_map.empty()) {
+            ROBOT_DART_WARNING(true, "Joint map is empty. Iterating over all skeleton joints to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            for (size_t i = 0; i < _skeleton->getNumJoints(); i++)
+                if (_skeleton->getJoint(i)->getName() == joint_name)
+                    return i;
+            ROBOT_DART_ASSERT(false, "joint_index : " + joint_name + " is not in the skeleton", 0);
+        }
+        auto it = _joint_map.find(joint_name);
+        ROBOT_DART_ASSERT(it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
+        return it->second;
     }
 
     void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
@@ -827,6 +1018,8 @@ namespace robot_dart {
                 _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
             }
         }
+
+        update_joint_dof_maps();
     }
 
     void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
