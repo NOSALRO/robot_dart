@@ -180,6 +180,7 @@ namespace robot_dart {
     void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
+        _graphics->set_fps(_graphics_freq);
         // we could schedule in synchronized mode by default here
     }
 
