@@ -51,7 +51,7 @@ int main()
     // record images from main camera/graphics
     graphics->camera().record(true);
     // we can also record a video directly to a file --- requires the executable of ffmpeg
-    graphics->record_video("video-main.mp4");
+    graphics->record_video("video-main.mp4", simu.graphics_freq());
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);

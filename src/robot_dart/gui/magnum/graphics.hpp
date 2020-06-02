@@ -20,7 +20,6 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class Graphics : public Base {
             public:
-                static constexpr int FPS = 40;
                 Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
                     : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
                 {
@@ -51,6 +50,7 @@ namespace robot_dart {
                 {
                     _enabled = enable;
                 }
+                void set_fps(int fps) override { _fps = fps; }
 
                 void look_at(const Eigen::Vector3d& camera_pos,
                     const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0),
@@ -86,7 +86,9 @@ namespace robot_dart {
 
                 void record_video(const std::string& video_fname, int fps = -1)
                 {
-                    int fps_computed = (fps == -1) ? FPS : fps;
+                    int fps_computed = (fps == -1) ? _fps : fps;
+                    ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(fps != -1 && "Video FPS not set!");
+
                     _magnum_app->record_video(video_fname, fps_computed);
                 }
 
@@ -123,7 +125,7 @@ namespace robot_dart {
                 dart::simulation::WorldPtr _world;
                 size_t _width, _height, _frame_counter;
                 bool _enabled;
-
+                int _fps;
                 std::unique_ptr<BaseApplication> _magnum_app;
             };
         } // namespace magnum
