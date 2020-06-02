@@ -33,7 +33,7 @@ namespace robot_dart {
         void _do_sync()
         {
             if (_sync) {
-                auto expected = std::chrono::microseconds(int(_step * _dt * 1e6));
+                auto expected = std::chrono::microseconds(int(_time * 1e6));
                 auto end = clock_t::now();
                 std::chrono::duration<double> real = end - _start;
                 auto adjust = expected - real;
