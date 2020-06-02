@@ -2,6 +2,8 @@
 
 #include <robot_dart/scheduler.hpp>
 
+// this is a simple example to show how the scheduling mechanism works
+// see exampls/control_loop.cpp for a simulation example
 int main()
 {
     robot_dart::Scheduler scheduler(1e-3, true);
@@ -19,7 +21,7 @@ int main()
             std::cout << 20 << std::endl;
         }
 
-        scheduler.sync();
+        scheduler.step();
     }
     return 0;
 }
