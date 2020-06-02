@@ -3,6 +3,9 @@
 
 #include <unistd.h>
 
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
+
 #include <dart/config.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/DegreeOfFreedom.hpp>
@@ -937,35 +940,53 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
+    std::string Robot::_get_filename(const std::string& filename) const {
+        namespace fs = boost::filesystem;
+        std::string model_file = boost::trim_copy(filename);
+        if (model_file[0] == '/')
+            return model_file;
+        // search current directory
+        if (fs::exists(fs::path(model_file)))
+            return fs::current_path().string() + "/" + model_file;
+        // search ROBOT_DART_PATH
+        const char* env_p = std::getenv("ROBOT_DART_PATH");
+        if (env_p != nullptr) {
+            fs::path p(std::string(env_p) + '/' + model_file);
+            if (fs::exists(p))
+                return p.string(); 
+        }
+        #define ROBOT_DART_PREFIX "/usr/local"
+        // search PREFIX/share/robot_dart
+        fs::path p(std::string(ROBOT_DART_PREFIX) + '/' + model_file);
+        if (fs::exists(p))
+            return p.string();
+        
+        ROBOT_DART_EXCEPTION_ASSERT(false, std::string("Could not find :") + filename);
+
+        return std::string();
+    }
+
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
-        // Remove spaces from beginning of the filename/path
-        std::string model_file = filename;
-        model_file.erase(model_file.begin(), std::find_if(model_file.begin(), model_file.end(), [](int ch) {
-            return !std::isspace(ch);
-        }));
+        ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
 
-        if (model_file[0] != '/') {
-            constexpr size_t max_size = 512;
-            char buff[max_size];
-            auto val = getcwd(buff, max_size);
-            ROBOT_DART_ASSERT(val, "Something bad happenned when trying to read current path", nullptr);
-            model_file = std::string(buff) + "/" + model_file;
-        }
-
+        std::string model_file = _get_filename(filename);
+        std::cout<<"RobotDART:: using:" << model_file << std::endl;
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
-            std::string extension = model_file.substr(model_file.find_last_of(".") + 1);
-            if (extension == "urdf") {
+            // in C++17 we would use std::filesystem!
+            boost::filesystem::path path(model_file);
+            std::string extension = path.extension().string();
+            if (extension == ".urdf") {
                 dart::io::DartLoader loader;
                 for (size_t i = 0; i < packages.size(); i++) {
                     loader.addPackageDirectory(std::get<0>(packages[i]), std::get<1>(packages[i]));
                 }
                 tmp_skel = loader.parseSkeleton(model_file);
             }
-            else if (extension == "sdf")
+            else if (extension == ".sdf")
                 tmp_skel = dart::io::SdfParser::readSkeleton(model_file);
-            else if (extension == "skel") {
+            else if (extension == ".skel") {
                 tmp_skel = dart::io::SkelParser::readSkeleton(model_file);
                 // if the skel file contains a world
                 // try to read the skeleton with name 'robot_name'
