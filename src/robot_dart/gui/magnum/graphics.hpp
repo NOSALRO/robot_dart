@@ -42,19 +42,10 @@ namespace robot_dart {
                     if (!_enabled)
                         return;
 
-                    // process next frame
-                    if (_frame_counter % _render_period == 0)
-                        _magnum_app->render();
+                    _magnum_app->render();
                     _frame_counter++;
                 }
 
-                void set_render_period(double dt) override
-                {
-                    // we want to display at around 40Hz of simulated time
-                    _render_period = std::floor((1. / FPS) / dt);
-                    if (_render_period < 1)
-                        _render_period = 1;
-                }
 
                 void set_enable(bool enable) override
                 {
@@ -130,7 +121,7 @@ namespace robot_dart {
             protected:
                 RobotDARTSimu* _simu;
                 dart::simulation::WorldPtr _world;
-                size_t _render_period, _width, _height, _frame_counter;
+                size_t _width, _height, _frame_counter;
                 bool _enabled;
 
                 std::unique_ptr<BaseApplication> _magnum_app;

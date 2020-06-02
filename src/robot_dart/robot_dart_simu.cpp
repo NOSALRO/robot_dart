@@ -93,7 +93,10 @@ namespace robot_dart {
 
     RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
                                                      _old_index(0),
-                                                     _break(false)
+                                                     _break(false),
+                                                     _scheduler(time_step),
+                                                     _physics_freq(std::round(1./time_step)),
+                                                     _control_freq(_physics_freq)
     {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
         _world->getConstraintSolver()->getCollisionOption().collisionFilter = std::make_shared<collision_filter::BitmaskContactFilter>();
@@ -118,41 +121,55 @@ namespace robot_dart {
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            step_once(reset_commands);
+            step_world(reset_commands);
+            step_robots(reset_commands);
 
             if (_break)
                 break;
+
+            _scheduler.step();
         }
     }
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        _world->step(reset_commands);
+        if (_scheduler(_physics_freq)) {
+            _world->step(reset_commands);
 
-        _graphics->refresh();
+            // update descriptors
+            for (auto& desc : _descriptors)
+                if (_old_index % desc->desc_dump() == 0)
+                    desc->operator()();
+        }
 
-        // update descriptors
-        for (auto& desc : _descriptors)
-            if (_old_index % desc->desc_dump() == 0)
-                desc->operator()();
+        if (_scheduler(_control_freq)) {
+            // update cameras (sensors)
+            for (auto& cam : _cameras)
+                cam->refresh();
+        }
 
-        // update cameras
-        for (auto& cam : _cameras)
-            cam->refresh();
+        if (_scheduler(_graphics_freq))
+            _graphics->refresh();
 
         _old_index++;
 
         return _break;
     }
 
-    bool RobotDARTSimu::step_once(bool reset_commands)
+    bool RobotDARTSimu::step_robots(bool reset_commands)
     {
-        for (auto& robot : _robots) {
-            robot->update(_world->getTime());
-            _gui_data->update_robot(robot);
+        if (_scheduler(_control_freq)) {
+            for (auto& robot : _robots) {
+                robot->update(_world->getTime());
+            }
         }
+        if (_scheduler(_graphics_freq)) {
+            for (auto& robot : _robots) {
+              _gui_data->update_robot(robot);
+            }
+         }
 
-        return step_world(reset_commands);
+        return _break;
     }
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
@@ -163,6 +180,7 @@ namespace robot_dart {
     void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
+        // we could schedule in synchronized mode by default here
     }
 
     dart::simulation::WorldPtr RobotDARTSimu::world()

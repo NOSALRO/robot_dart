@@ -13,10 +13,10 @@ namespace robot_dart {
 
                 .def("__call__", &Scheduler::operator())
 
-                .def("sync", &Scheduler::sync)
+                .def("sync", &Scheduler::step)
                 .def("reset", &Scheduler::reset)
 
-                .def("time", &Scheduler::time)
+                .def("current_time", &Scheduler::current_time)
                 .def("next_time", &Scheduler::next_time)
                 .def("dt", &Scheduler::dt);
         }

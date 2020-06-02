@@ -18,61 +18,24 @@ namespace robot_dart {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_dt > 0. && "Time-step needs to be bigger than zero.");
         }
 
-        bool operator()(int frequency)
-        {
-            if (_max_frequency == -1 && _sync)
-                _start = clock_t::now();
+        bool operator()(int frequency) { return schedule(frequency); };
+        bool schedule(int frequency);
 
-            _max_frequency = std::max(_max_frequency, frequency);
+        /// call this at the end of the loop (see examples)
+        /// this will synchronize with real time if requested
+        /// and increase the counter
+        void step();
 
-            double period = std::floor((1. / frequency) / _dt);
-            ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(period >= 1. && "Time-step is too big for required frequency.");
-
-            if (_step % int(period) == 0)
-                return true;
-
-            return false;
-        }
-
-        void sync()
-        {
-            _time += _dt;
-            _step += 1;
-            _do_sync();
-        }
-
-        void reset(double dt, bool sync = false)
-        {
-            ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(dt > 0. && "Time-step needs to be bigger than zero.");
-
-            _time = 0.;
-            _step = 0;
-            _max_frequency = -1;
-
-            _dt = dt;
-            _sync = sync;
-        }
-
-        double time() const { return _time; }
-        double next_time() const { return _time + _dt; }
+        void reset(double dt, bool sync = false);
+        void set_sync(bool v) { _sync = true;}
+        double current_time() const { return _current_time; }
+        double next_time() const { return _current_time + _dt; }
         double dt() const { return _dt; }
 
     protected:
-        void _do_sync()
-        {
-            if (_sync) {
-                auto expected = std::chrono::microseconds(int(_time * 1e6));
-                auto end = clock_t::now();
-                std::chrono::duration<double, std::micro> real = end - _start;
-                std::chrono::duration<double, std::micro> adjust = expected - real;
-                if (adjust.count() > 0)
-                    std::this_thread::sleep_for(adjust);
-            }
-        }
-
-        double _time = 0.;
+        double _current_time = 0.;
         double _dt;
-        int _step = 0;
+        int _current_step = 0;
         bool _sync;
         int _max_frequency = -1;
         clock_t::time_point _start;
