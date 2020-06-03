@@ -32,20 +32,20 @@ namespace robot_dart {
         int physics_freq() const { return _physics_freq; }
         int control_freq() const { return _control_freq; }
 
-        void set_control_freq(int f)
+        void set_control_freq(int frequency)
         {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
-                f <= _physics_freq && "Control frequency needs to be less than physics frequency");
-            _control_freq = f;
+                frequency <= _physics_freq && "Control frequency needs to be less than physics frequency");
+            _control_freq = frequency;
         }
 
         int graphics_freq() const { return _graphics_freq; }
 
-        void set_graphics_freq(int f)
+        void set_graphics_freq(int frequency)
         {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
-                f <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
-            _graphics_freq = f;
+                frequency <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
+            _graphics_freq = frequency;
         }
 
         std::shared_ptr<gui::Base> graphics() const;
