@@ -17,7 +17,6 @@ int main()
     robot_dart::RobotDARTSimu simu(1e-3);
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu));
-    simu.scheduler().set_sync(true);
 #endif
 
     simu.add_robot(robot);
