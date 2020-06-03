@@ -23,7 +23,7 @@ namespace robot_dart {
 
             virtual void set_enable(bool) {}
             virtual void set_fps(int) {}
-            
+
             virtual Image image() { return Image(); }
             virtual GrayscaleImage depth_image() { return GrayscaleImage(); }
             virtual GrayscaleImage raw_depth_image() { return GrayscaleImage(); }

@@ -24,22 +24,27 @@ namespace robot_dart {
         void run(double max_duration = 5.0, bool reset_commands = false);
         bool step_world(bool reset_commands = false);
         bool step_robots(bool reset_commands = false);
-       
+
         Scheduler& scheduler() { return _scheduler; }
         const Scheduler& scheduler() const { return _scheduler; }
         bool schedule(int freq) { return _scheduler(freq); }
 
         int physics_freq() const { return _physics_freq; }
         int control_freq() const { return _control_freq; }
-        void set_control_freq(int f) {
+
+        void set_control_freq(int f)
+        {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
-            f <= _physics_freq && "Control frequency needs to be less than physics frequency");
+                f <= _physics_freq && "Control frequency needs to be less than physics frequency");
             _control_freq = f;
         }
+
         int graphics_freq() const { return _graphics_freq; }
-        void set_graphics_freq(int f) {
+
+        void set_graphics_freq(int f)
+        {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
-            f <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
+                f <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
             _graphics_freq = f;
         }
 
@@ -109,7 +114,6 @@ namespace robot_dart {
 
         void remove_all_collision_masks();
 
-        
     protected:
         dart::simulation::WorldPtr _world;
         size_t _old_index;

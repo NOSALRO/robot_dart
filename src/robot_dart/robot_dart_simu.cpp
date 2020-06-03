@@ -95,7 +95,7 @@ namespace robot_dart {
                                                      _old_index(0),
                                                      _break(false),
                                                      _scheduler(time_step),
-                                                     _physics_freq(std::round(1./time_step)),
+                                                     _physics_freq(std::round(1. / time_step)),
                                                      _control_freq(_physics_freq)
     {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
@@ -121,8 +121,8 @@ namespace robot_dart {
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            step_world(reset_commands);
             step_robots(reset_commands);
+            step_world(reset_commands);
 
             if (_break)
                 break;
@@ -148,8 +148,13 @@ namespace robot_dart {
                 cam->refresh();
         }
 
-        if (_scheduler(_graphics_freq))
+        if (_scheduler(_graphics_freq)) {
             _graphics->refresh();
+
+            for (auto& robot : _robots) {
+                _gui_data->update_robot(robot);
+            }
+        }
 
         _old_index++;
 
@@ -163,11 +168,6 @@ namespace robot_dart {
                 robot->update(_world->getTime());
             }
         }
-        if (_scheduler(_graphics_freq)) {
-            for (auto& robot : _robots) {
-              _gui_data->update_robot(robot);
-            }
-         }
 
         return _break;
     }
