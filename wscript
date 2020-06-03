@@ -241,12 +241,6 @@ def build(bld):
                     cwd=bld.path.find_dir('res/robots/'),
                     relative_trick=True)
 
-    # for root, _ , filenames in os.walk('res/robots/'):
-    #      for f in filenames:
-    #          fname = os.path.join(root, f)
-    #          bld.install_files("${PREFIX}/share/robot_dart/robots/", fname, relative_trick=True)
-
-
     #### installation (waf install)
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
