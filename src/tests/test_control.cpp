@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
     BOOST_CHECK(!pd_control->active());
 
     // load a robot
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     // set proper parameters
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
     BOOST_CHECK(!simple_control->active());
 
     // load a robot
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     pendulum->fix_to_world();
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
 BOOST_AUTO_TEST_CASE(test_robot_control)
 {
     // load a robot
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     pendulum->fix_to_world();
 

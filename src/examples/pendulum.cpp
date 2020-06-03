@@ -37,7 +37,7 @@ int main()
     // dmg.data = "arm_joint_3";
     // brk.push_back(dmg);
 
-    auto global_robot = std::make_shared<robot_dart::Robot>("res/models/pendulum.urdf");
+    auto global_robot = std::make_shared<robot_dart::Robot>("res/robots/pendulum.urdf");
     auto g_robot = global_robot->clone();
     g_robot->fix_to_world();
     g_robot->set_position_enforced(false);
