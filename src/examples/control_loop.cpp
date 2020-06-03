@@ -23,13 +23,12 @@ int main()
     simu.add_robot(robot);
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {"pendulum_joint_1"};
-    while(simu.scheduler().next_time() < 10 && !simu.graphics()->done()) { // simulate 10 seconds
-        simu.step_world();
+    while (simu.scheduler().next_time() < 10 && !simu.graphics()->done()) { // simulate 10 seconds
         if (simu.schedule(simu.control_freq())) {
-            Eigen::VectorXd commands = Eigen::VectorXd::Random(1)*100;
+            Eigen::VectorXd commands = Eigen::VectorXd::Random(1) * 100;
             robot->set_commands(commands, dofs);
         }
-        simu.step_robots();
+        simu.step_world();
         simu.scheduler().step();
     }
     return 0;

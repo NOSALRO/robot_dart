@@ -45,11 +45,11 @@ namespace robot_dart {
                     _frame_counter++;
                 }
 
-
                 void set_enable(bool enable) override
                 {
                     _enabled = enable;
                 }
+
                 void set_fps(int fps) override { _fps = fps; }
 
                 void look_at(const Eigen::Vector3d& camera_pos,

@@ -27,7 +27,7 @@ namespace robot_dart {
         void step();
 
         void reset(double dt, bool sync = false);
-        void set_sync(bool v) { _sync = true;}
+        void set_sync(bool enable) { _sync = enable; }
         double current_time() const { return _current_time; }
         double next_time() const { return _current_time + _dt; }
         double dt() const { return _dt; }

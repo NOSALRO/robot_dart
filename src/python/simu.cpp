@@ -59,7 +59,7 @@ namespace robot_dart {
                     py::arg("reset_commands") = false)
                 .def("step_robots", &RobotDARTSimu::step_robots,
                     py::arg("reset_commands") = false)
-                .def("schedule",  &RobotDARTSimu::schedule)
+                .def("schedule", &RobotDARTSimu::schedule)
                 .def("graphics", &RobotDARTSimu::graphics)
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
 
