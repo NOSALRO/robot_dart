@@ -9,13 +9,19 @@ namespace robot_dart {
             using namespace robot_dart;
 
             py::class_<Scheduler>(m, "Scheduler")
-                .def(py::init<double, bool>())
+                .def(py::init<double, bool>(),
+                    py::arg("dt"),
+                    py::arg("sync") = false)
 
                 .def("__call__", &Scheduler::operator())
+                .def("schedule", &Scheduler::schedule)
 
-                .def("sync", &Scheduler::step)
-                .def("reset", &Scheduler::reset)
+                .def("step", &Scheduler::step)
 
+                .def("reset", &Scheduler::reset,
+                    py::arg("dt"),
+                    py::arg("sync") = false)
+                .def("set_sync", &Scheduler::set_sync)
                 .def("current_time", &Scheduler::current_time)
                 .def("next_time", &Scheduler::next_time)
                 .def("dt", &Scheduler::dt);

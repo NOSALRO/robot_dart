@@ -59,7 +59,18 @@ namespace robot_dart {
                     py::arg("reset_commands") = false)
                 .def("step_robots", &RobotDARTSimu::step_robots,
                     py::arg("reset_commands") = false)
+
+                .def("scheduler", (Scheduler & (RobotDARTSimu::*)(void)) & RobotDARTSimu::scheduler, py::return_value_policy::reference)
                 .def("schedule", &RobotDARTSimu::schedule)
+
+                .def("physics_freq", &RobotDARTSimu::physics_freq)
+
+                .def("control_freq", &RobotDARTSimu::control_freq)
+                .def("set_control_freq", &RobotDARTSimu::set_control_freq)
+
+                .def("graphics_freq", &RobotDARTSimu::graphics_freq)
+                .def("set_graphics_freq", &RobotDARTSimu::set_graphics_freq)
+
                 .def("graphics", &RobotDARTSimu::graphics)
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
 
