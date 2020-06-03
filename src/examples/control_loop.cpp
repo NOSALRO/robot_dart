@@ -29,7 +29,6 @@ int main()
             robot->set_commands(commands, dofs);
         }
         simu.step_world();
-        simu.scheduler().step();
     }
     return 0;
 }

@@ -157,7 +157,8 @@ namespace robot_dart {
         }
 
         _old_index++;
-
+        _scheduler.step();
+           
         return _break;
     }
 
