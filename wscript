@@ -133,6 +133,9 @@ def configure(conf):
         if '-std=c++0x' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
+    
+    # add the prefix
+    conf.env['CXXFLAGS'] = conf.env['CXXFLAGS']
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):
@@ -171,11 +174,12 @@ def build(bld):
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
     libs = 'BOOST EIGEN DART PTHREAD'
-
+    defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
                 includes = './src',
                 uselib = libs,
+                defines = defines,
                 target = 'RobotDARTSimu')
 
     build_graphic = False
@@ -189,6 +193,7 @@ def build(bld):
                     includes = './src',
                     uselib = bld.env['magnum_libs'] + libs,
                     use = 'RobotDARTSimu',
+                    defines = defines,
                     target = 'RobotDARTMagnum')
 
         build_graphic = True
@@ -197,7 +202,6 @@ def build(bld):
     if bld.env['BUILD_PYTHON'] == True:
         graphic_libs = ''
         graphic_lib = ''
-        defines = []
         if bld.get_env()['BUILD_MAGNUM'] == True:
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'

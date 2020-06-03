@@ -955,9 +955,8 @@ namespace robot_dart {
             if (fs::exists(p))
                 return p.string(); 
         }
-        #define ROBOT_DART_PREFIX "/usr/local"
         // search PREFIX/share/robot_dart
-        fs::path p(std::string(ROBOT_DART_PREFIX) + '/' + model_file);
+        fs::path p(std::string(ROBOT_DART_PREFIX) + "/robots_dart/robots/" + model_file);
         if (fs::exists(p))
             return p.string();
         
