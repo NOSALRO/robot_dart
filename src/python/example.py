@@ -30,7 +30,7 @@ class MyDesc(rd.Descriptor):
             self._states.append(self._simu.robot(0).positions())
 
 # Load robot from URDF
-robot = rd.Robot("res/robots/arm.urdf", "arm", False)
+robot = rd.Robot("res/models/arm.urdf", "arm", False)
 robot.fix_to_world()
 
 # Initiate custom controller
