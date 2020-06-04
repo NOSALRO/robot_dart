@@ -957,7 +957,7 @@ namespace robot_dart {
                 return env_path.string(); 
         }
         // search PREFIX/share/robot_dart
-        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robots_dart/robots/");
+        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
         if (fs::exists(system_path / model_file))
             return system_path.string();
         

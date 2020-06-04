@@ -18,6 +18,10 @@ int main()
     std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "res/robots/talos/talos_description"}};
     auto global_robot = std::make_shared<robot_dart::Robot>("res/robots/talos/talos.urdf", packages);
 
+    // system version
+    // std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
+    // auto global_robot = std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
+
     global_robot->set_position_enforced(true);
     global_robot->skeleton()->setPosition(5, 1.2);
     global_robot->skeleton()->setPosition(2, 1.57);
