@@ -23,8 +23,8 @@ int main()
     // Use the material information from the meshes only for a specific BodyNode
     // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, "iiwa_link_6");
 
-    std::vector<double> ctrl;
-    ctrl = {0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.};
+    Eigen::VectorXd ctrl(7);
+    ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
 
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
     std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
