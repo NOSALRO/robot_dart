@@ -44,14 +44,14 @@ int main()
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1024;
     configuration.height = 768;
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(&simu, configuration);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(&simu, configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
     // record images from main camera/graphics
     graphics->camera().record(true);
     // we can also record a video directly to a file --- requires the executable of ffmpeg
-    graphics->record_video("video-main.mp4");
+    graphics->record_video("video-main.mp4", simu.graphics_freq());
 
     // Add camera
     auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);

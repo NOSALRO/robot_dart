@@ -1,9 +1,13 @@
-sudo apt-get -qq update
-sudo apt-get -y install software-properties-common
-sudo apt-add-repository -y ppa:dartsim/ppa
-sudo apt-get -qq update
+if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+    sudo apt-get -qq update
+    sudo apt-get -y install software-properties-common
+    sudo apt-add-repository -y ppa:dartsim/ppa
+    sudo apt-get -qq update
 
-sudo apt-get install -y --no-install-recommends libassimp-dev libccd-dev libfcl-dev
+    sudo apt-get install -y --no-install-recommends libassimp-dev libccd-dev libfcl-dev
+else
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install dartsim --only-dependencies
+fi
 
 git clone git://github.com/dartsim/dart.git
 cd dart
