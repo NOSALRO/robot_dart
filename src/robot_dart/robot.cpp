@@ -983,8 +983,10 @@ namespace robot_dart {
             if (extension == ".urdf") {
                 dart::io::DartLoader loader;
                 for (size_t i = 0; i < packages.size(); i++) {
+                    std::string package = std::get<1>(packages[i]);
+                    std::string package_path = _get_path(package);
                     loader.addPackageDirectory(std::get<0>(packages[i]), 
-                                               file_dir + "/" + std::get<1>(packages[i]));
+                                               package_path + "/" + package);
                 }
                 tmp_skel = loader.parseSkeleton(model_file);
             }
@@ -1006,7 +1008,10 @@ namespace robot_dart {
             // Load from URDF string
             dart::io::DartLoader loader;
             for (size_t i = 0; i < packages.size(); i++) {
-                loader.addPackageDirectory(std::get<0>(packages[i]), std::get<1>(packages[i]));
+               std::string package = std::get<1>(packages[i]);
+                std::string package_path = _get_path(package); 
+                loader.addPackageDirectory(std::get<0>(packages[i]), 
+                                            package_path + "/" + package);
             }
             tmp_skel = loader.parseSkeletonString(filename, "");
         }
