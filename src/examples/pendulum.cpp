@@ -44,11 +44,11 @@ int main()
     g_robot->skeleton()->setPosition(0, M_PI);
     Eigen::Vector3d size(0.0402, 0.05, 1);
 
-    std::vector<double> ctrl;
-    ctrl = {0.0};
+    Eigen::VectorXd ctrl(1);
+    ctrl << 0.0;
 
     g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl));
-    ctrl = {-1.0};
+    ctrl << -1.0;
     g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl), 5.);
 
     robot_dart::RobotDARTSimu simu;
@@ -61,7 +61,7 @@ int main()
     std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(2.5);
     std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
-    ctrl = {2.5};
+    ctrl << 2.5;
     g_robot->controllers()[0]->set_parameters(ctrl);
     simu.run(2.5);
     std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;

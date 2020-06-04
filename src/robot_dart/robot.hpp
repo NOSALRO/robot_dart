@@ -57,9 +57,9 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false);
-        void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false);
-        void set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false);
+        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
+        void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false, bool override_base = false);
+        void set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
 
         dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
         std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
