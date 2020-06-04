@@ -4,7 +4,7 @@ PYBIND11_MODULE(RobotDART, m)
 {
     using namespace robot_dart::python;
     // Load dartpy
-    py::module::import("dartpy");
+    // py::module::import("dartpy");
     // Load magnum math
     // py::module::import("magnum.math");
 
