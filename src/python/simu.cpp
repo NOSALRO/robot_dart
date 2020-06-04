@@ -59,7 +59,6 @@ namespace robot_dart {
                 .def("step_world", &RobotDARTSimu::step_world,
                     py::arg("reset_commands") = false)
                 .def("step", &RobotDARTSimu::step,
-                    py::arg("update_controllers") = true,
                     py::arg("reset_commands") = false)
 
                 .def("scheduler", (Scheduler & (RobotDARTSimu::*)(void)) & RobotDARTSimu::scheduler, py::return_value_policy::reference)
