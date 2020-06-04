@@ -218,8 +218,20 @@ namespace robot_dart {
                     py::arg("ghost") = true)
                 .def("ghost", &Robot::ghost)
 
-                .def_static("create_box", &Robot::create_box)
-                .def_static("create_ellipsoid", &Robot::create_ellipsoid);
+                .def_static("create_box", &Robot::create_box,
+                    py::arg("dims"),
+                    py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("box_name") = "box")
+                .def_static("create_ellipsoid", &Robot::create_ellipsoid,
+                    py::arg("dims"),
+                    py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("ellipsoid_name") = "ellipsoid");
         }
     } // namespace python
 } // namespace robot_dart

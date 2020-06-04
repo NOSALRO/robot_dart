@@ -6,6 +6,7 @@
 #include <robot_dart/descriptor/base_descriptor.hpp>
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
+#include <robot_dart/scheduler.hpp>
 
 namespace robot_dart {
     namespace simu {
@@ -16,13 +17,36 @@ namespace robot_dart {
     public:
         using robot_t = std::shared_ptr<Robot>;
 
-        RobotDARTSimu(double time_step = 0.015);
+        RobotDARTSimu(double timestep = 0.015);
 
         ~RobotDARTSimu();
 
         void run(double max_duration = 5.0, bool reset_commands = false);
         bool step_world(bool reset_commands = false);
-        bool step_once(bool reset_commands = false);
+        bool step(bool reset_commands = false);
+
+        Scheduler& scheduler() { return _scheduler; }
+        const Scheduler& scheduler() const { return _scheduler; }
+        bool schedule(int freq) { return _scheduler(freq); }
+
+        int physics_freq() const { return _physics_freq; }
+        int control_freq() const { return _control_freq; }
+
+        void set_control_freq(int frequency)
+        {
+            ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
+                frequency <= _physics_freq && "Control frequency needs to be less than physics frequency");
+            _control_freq = frequency;
+        }
+
+        int graphics_freq() const { return _graphics_freq; }
+
+        void set_graphics_freq(int frequency)
+        {
+            ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
+                frequency <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
+            _graphics_freq = frequency;
+        }
 
         std::shared_ptr<gui::Base> graphics() const;
         void set_graphics(const std::shared_ptr<gui::Base>& graphics);
@@ -51,8 +75,8 @@ namespace robot_dart {
         void remove_camera(size_t index);
         void clear_cameras();
 
-        double step() const;
-        void set_step(double step);
+        double timestep() const;
+        void set_timestep(double timestep, bool update_control_freq = true);
 
         void stop_sim(bool disable = true);
         bool halted_sim() const;
@@ -100,6 +124,8 @@ namespace robot_dart {
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
         std::unique_ptr<simu::GUIData> _gui_data;
+        Scheduler _scheduler;
+        int _physics_freq = -1, _control_freq = -1, _graphics_freq = 40;
     };
 } // namespace robot_dart
 
