@@ -18,6 +18,28 @@ def options(opt):
     opt.add_option('--lapacke_blas', action='store_true', help='enable lapacke/blas if found (required Eigen>=3.3)', dest='lapacke_blas')
 
 
+def eigen_version(conf, includes_check):
+    world_version = -1
+    major_version = -1
+    minor_version = -1
+
+    config_file = conf.find_file('Eigen/src/Core/util/Macros.h', includes_check)
+    with open(config_file) as f:
+        config_content = f.readlines()
+    for line in config_content:
+        world = line.find('#define EIGEN_WORLD_VERSION')
+        major = line.find('#define EIGEN_MAJOR_VERSION')
+        minor = line.find('#define EIGEN_MINOR_VERSION')
+        if world > -1:
+            world_version = int(line.split(' ')[-1].strip())
+        if major > -1:
+            major_version = int(line.split(' ')[-1].strip())
+        if minor > -1:
+            minor_version = int(line.split(' ')[-1].strip())
+        if world_version > 0 and major_version > 0 and minor_version > 0:
+            break
+    return world_version, major_version, minor_version
+
 @conf
 def check_eigen(conf, *k, **kw):
     def get_directory(filename, dirs):
@@ -26,6 +48,8 @@ def check_eigen(conf, *k, **kw):
     includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
 
     required = kw.get('required', False)
+    min_version = kw.get('min_version', "3.3.3")
+    min_version_int = [int(i) for i in min_version.split('.')]
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
@@ -38,27 +62,24 @@ def check_eigen(conf, *k, **kw):
         incl = get_directory('Eigen/Core', includes_check)
         conf.env.INCLUDES_EIGEN = [incl]
         conf.end_msg(incl)
+
+        conf.start_msg('Checking for Eigen version')
+        world_version, major_version, minor_version = eigen_version(conf, includes_check)
+        bad_version = False
+        if world_version < min_version_int[0]:
+            bad_version = True
+        elif major_version < min_version_int[1]:
+            bad_version = True
+        elif minor_version < min_version_int[2]:
+            bad_version = True
+        #print(bad_version, min_version_int, (world_version, major_version, minor_version))
+        if bad_version:
+            print(min_version_int)
+            #conf.fatal("Found version {}.{}.{} but version {}.{}.{} is required".format(world_version, major_version,minor_version, min_version_int[0], min_version_int[1], min_version_int[2]))
+        conf.end_msg("{}.{}.{}".format(world_version, major_version,minor_version))
+
         if conf.options.lapacke_blas:
             conf.start_msg('Checking for LAPACKE/BLAS (optional)')
-            world_version = -1
-            major_version = -1
-            minor_version = -1
-
-            config_file = conf.find_file('Eigen/src/Core/util/Macros.h', includes_check)
-            with open(config_file) as f:
-                config_content = f.readlines()
-            for line in config_content:
-                world = line.find('#define EIGEN_WORLD_VERSION')
-                major = line.find('#define EIGEN_MAJOR_VERSION')
-                minor = line.find('#define EIGEN_MINOR_VERSION')
-                if world > -1:
-                    world_version = int(line.split(' ')[-1].strip())
-                if major > -1:
-                    major_version = int(line.split(' ')[-1].strip())
-                if minor > -1:
-                    minor_version = int(line.split(' ')[-1].strip())
-                if world_version > 0 and major_version > 0 and minor_version > 0:
-                    break
 
             if world_version == 3 and major_version >= 3:
                 # Check for lapacke and blas
