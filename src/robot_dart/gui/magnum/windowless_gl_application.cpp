@@ -32,7 +32,7 @@ namespace robot_dart {
                 _color.setStorage(Magnum::GL::RenderbufferFormat::RGBA8, {w, h});
                 _depth.setStorage(Magnum::GL::RenderbufferFormat::DepthComponent, {w, h});
 
-                _format = Magnum::PixelFormat::RGBA8Unorm;
+                _format = Magnum::PixelFormat::RGB8Unorm;
 
                 _framebuffer.attachRenderbuffer(
                     Magnum::GL::Framebuffer::ColorAttachment(0), _color);
