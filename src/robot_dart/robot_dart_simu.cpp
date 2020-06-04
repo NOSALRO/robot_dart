@@ -91,13 +91,16 @@ namespace robot_dart {
         };
     } // namespace collision_filter
 
-    RobotDARTSimu::RobotDARTSimu(double time_step) : _world(std::make_shared<dart::simulation::World>()),
-                                                     _old_index(0),
-                                                     _break(false)
+    RobotDARTSimu::RobotDARTSimu(double timestep) : _world(std::make_shared<dart::simulation::World>()),
+                                                    _old_index(0),
+                                                    _break(false),
+                                                    _scheduler(timestep),
+                                                    _physics_freq(std::round(1. / timestep)),
+                                                    _control_freq(_physics_freq)
     {
         _world->getConstraintSolver()->setCollisionDetector(dart::collision::DARTCollisionDetector::create());
         _world->getConstraintSolver()->getCollisionOption().collisionFilter = std::make_shared<collision_filter::BitmaskContactFilter>();
-        _world->setTimeStep(time_step);
+        _world->setTimeStep(timestep);
         _world->setTime(0.0);
         _graphics = std::make_shared<gui::Base>(this);
 
@@ -114,42 +117,52 @@ namespace robot_dart {
     void RobotDARTSimu::run(double max_duration, bool reset_commands)
     {
         _break = false;
-        double old_t = _world->getTime();
+        double old_time = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
-        while ((_world->getTime() - old_t - max_duration) < -factor && !_graphics->done()) {
-            step_once(reset_commands);
-
-            if (_break)
+        while ((_world->getTime() - old_time - max_duration) < -factor && !_graphics->done()) {
+            if (step(reset_commands))
                 break;
         }
     }
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        _world->step(reset_commands);
+        if (_scheduler(_physics_freq)) {
+            _world->step(reset_commands);
 
-        _graphics->refresh();
+            // update descriptors
+            for (auto& desc : _descriptors)
+                if (_old_index % desc->desc_dump() == 0)
+                    desc->operator()();
+        }
 
-        // update descriptors
-        for (auto& desc : _descriptors)
-            if (_old_index % desc->desc_dump() == 0)
-                desc->operator()();
+        if (_scheduler(_control_freq)) {
+            // update cameras (sensors)
+            for (auto& cam : _cameras)
+                cam->refresh();
+        }
 
-        // update cameras
-        for (auto& cam : _cameras)
-            cam->refresh();
+        if (_scheduler(_graphics_freq)) {
+            _graphics->refresh();
+
+            for (auto& robot : _robots) {
+                _gui_data->update_robot(robot);
+            }
+        }
 
         _old_index++;
+        _scheduler.step();
 
         return _break;
     }
 
-    bool RobotDARTSimu::step_once(bool reset_commands)
+    bool RobotDARTSimu::step(bool reset_commands)
     {
-        for (auto& robot : _robots) {
-            robot->update(_world->getTime());
-            _gui_data->update_robot(robot);
+        if (_scheduler(_control_freq)) {
+            for (auto& robot : _robots) {
+                robot->update(_world->getTime());
+            }
         }
 
         return step_world(reset_commands);
@@ -163,6 +176,7 @@ namespace robot_dart {
     void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
+        _graphics->set_fps(_graphics_freq);
     }
 
     dart::simulation::WorldPtr RobotDARTSimu::world()
@@ -202,15 +216,19 @@ namespace robot_dart {
         return _cameras[index];
     }
 
-    double RobotDARTSimu::step() const
+    double RobotDARTSimu::timestep() const
     {
         return _world->getTimeStep();
     }
 
-    void RobotDARTSimu::set_step(double step)
+    void RobotDARTSimu::set_timestep(double timestep, bool update_control_freq)
     {
-        _world->setTimeStep(step);
-        _graphics->set_render_period(step);
+        _world->setTimeStep(timestep);
+        _physics_freq = std::round(1. / timestep);
+        if (update_control_freq)
+            _control_freq = _physics_freq;
+
+        _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time());
     }
 
     void RobotDARTSimu::stop_sim(bool disable)
