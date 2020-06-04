@@ -9,7 +9,7 @@
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
-#include <robot_dart/gui/magnum/windowless_gl_application.hpp>
+#include <robot_dart/gui/magnum/windowless_graphics.hpp>
 #endif
 
 namespace robot_dart {
@@ -23,8 +23,8 @@ namespace robot_dart {
             using namespace robot_dart;
 
             // Helper definitions and classes
-            using BaseGraphics = gui::magnum::Graphics<gui::magnum::GlfwApplication>;
-            using BaseWindowlessGraphics = gui::magnum::Graphics<gui::magnum::WindowlessGLApplication>;
+            using BaseWindowedGraphics = gui::magnum::BaseGraphics<gui::magnum::GlfwApplication>;
+            using BaseWindowlessGraphics = gui::magnum::BaseGraphics<gui::magnum::WindowlessGLApplication>;
             using GraphicsConfiguration = gui::magnum::GraphicsConfiguration;
 
             using Object3D = gui::magnum::Object3D;
@@ -61,16 +61,6 @@ namespace robot_dart {
                 .def("record_video", &Camera::record_video)
                 .def("recording", &Camera::recording)
                 .def("recording_depth", &Camera::recording_depth);
-
-            class Graphics : public BaseGraphics {
-            public:
-                using BaseGraphics::BaseGraphics;
-            };
-
-            class WindowlessGraphics : public BaseWindowlessGraphics {
-            public:
-                using BaseWindowlessGraphics::BaseWindowlessGraphics;
-            };
 
             py::class_<gui::Image>(sm, "Image")
                 .def(py::init<size_t, size_t, size_t>(),
@@ -115,12 +105,13 @@ namespace robot_dart {
                 .def_readwrite("max_lights", &GraphicsConfiguration::max_lights);
 
             py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
-            py::class_<BaseGraphics, gui::Base, std::shared_ptr<BaseGraphics>>(sm, "BaseGraphics");
+            py::class_<BaseWindowedGraphics, gui::Base, std::shared_ptr<BaseWindowedGraphics>>(sm, "BaseWindowedGraphics");
             py::class_<BaseWindowlessGraphics, gui::Base, std::shared_ptr<BaseWindowlessGraphics>>(sm, "BaseWindowlessGraphics");
             py::class_<gui::magnum::BaseApplication>(sm, "BaseApplication");
 
+            using namespace robot_dart::gui::magnum;
             // Graphics class
-            py::class_<Graphics, BaseGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
+            py::class_<Graphics, BaseWindowedGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
                 .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
 
                 .def("done", &Graphics::done)

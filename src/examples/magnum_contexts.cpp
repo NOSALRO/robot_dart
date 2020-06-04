@@ -5,8 +5,7 @@
 
 #include <robot_dart/control/pd_control.hpp>
 
-#include <robot_dart/gui/magnum/graphics.hpp>
-#include <robot_dart/gui/magnum/windowless_gl_application.hpp>
+#include <robot_dart/gui/magnum/windowless_graphics.hpp>
 
 int main()
 {
@@ -55,7 +54,7 @@ int main()
             robot_dart::gui::magnum::GraphicsConfiguration configuration;
             configuration.width = 1024;
             configuration.height = 768;
-            auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<robot_dart::gui::magnum::WindowlessGLApplication>>(&simu, configuration);
+            auto graphics = std::make_shared<robot_dart::gui::magnum::WindowlessGraphics>(&simu, configuration);
             simu.set_graphics(graphics);
             // Position the camera differently for each thread to visualize the difference
             graphics->look_at({0.4 * index, 3.5 - index * 0.1, 2.}, {0., 0., 0.25});
