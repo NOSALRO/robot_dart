@@ -50,15 +50,27 @@ namespace robot_dart {
 
             // RobotDARTSimu class
             py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
-                .def(py::init<double>())
+                .def(py::init<double>(),
+                    py::arg("timestep") = 0.015)
 
                 .def("run", &RobotDARTSimu::run,
                     py::arg("max_duration") = 5.,
                     py::arg("reset_commands") = false)
                 .def("step_world", &RobotDARTSimu::step_world,
                     py::arg("reset_commands") = false)
-                .def("step_once", &RobotDARTSimu::step_once,
+                .def("step", &RobotDARTSimu::step,
                     py::arg("reset_commands") = false)
+
+                .def("scheduler", (Scheduler & (RobotDARTSimu::*)(void)) & RobotDARTSimu::scheduler, py::return_value_policy::reference)
+                .def("schedule", &RobotDARTSimu::schedule)
+
+                .def("physics_freq", &RobotDARTSimu::physics_freq)
+
+                .def("control_freq", &RobotDARTSimu::control_freq)
+                .def("set_control_freq", &RobotDARTSimu::set_control_freq)
+
+                .def("graphics_freq", &RobotDARTSimu::graphics_freq)
+                .def("set_graphics_freq", &RobotDARTSimu::set_graphics_freq)
 
                 .def("graphics", &RobotDARTSimu::graphics)
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
@@ -82,8 +94,8 @@ namespace robot_dart {
                 .def("remove_camera", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_camera)
                 .def("clear_cameras", &RobotDARTSimu::clear_cameras)
 
-                .def("step", &RobotDARTSimu::step)
-                .def("set_step", &RobotDARTSimu::set_step)
+                .def("timestep", &RobotDARTSimu::timestep)
+                .def("set_timestep", &RobotDARTSimu::set_timestep)
 
                 .def("stop_sim", &RobotDARTSimu::stop_sim,
                     py::arg("disable") = true)

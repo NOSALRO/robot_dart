@@ -315,6 +315,8 @@ def build_examples(bld):
 
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
+    # these examples should be compiled only without grpahics
+    simu_only = ['scheduler.cpp']
     # these examples have their own rules
     exclude = []
 
@@ -334,7 +336,7 @@ def build_examples(bld):
                     use = 'RobotDARTSimu',
                     target = basename + '_plain')
             # graphics version
-            if (filename not in exclude) and bld.get_env()['BUILD_MAGNUM'] == True:
+            if (filename not in exclude) and (filename not in simu_only) and bld.get_env()['BUILD_MAGNUM'] == True:
                 bld.program(features = 'cxx',
                             install_path = None,
                             source = '/src/examples/' + filename,

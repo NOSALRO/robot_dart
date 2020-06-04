@@ -22,6 +22,7 @@ namespace robot_dart {
             virtual void set_render_period(double) {}
 
             virtual void set_enable(bool) {}
+            virtual void set_fps(int) {}
 
             virtual Image image() { return Image(); }
             virtual GrayscaleImage depth_image() { return GrayscaleImage(); }
