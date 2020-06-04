@@ -176,7 +176,7 @@ namespace robot_dart {
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "ellipsoid");
 
     protected:
-        std::string _get_filename(const std::string& filename) const;
+        std::string _get_path(const std::string& filename) const;
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);

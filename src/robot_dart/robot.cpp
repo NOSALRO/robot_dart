@@ -940,25 +940,26 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
-    std::string Robot::_get_filename(const std::string& filename) const {
+    std::string Robot::_get_path(const std::string& filename) const {
         namespace fs = boost::filesystem;
-        std::string model_file = boost::trim_copy(filename);
-        if (model_file[0] == '/')
-            return model_file;
+        fs::path model_file(boost::trim_copy(filename));
+        if (model_file.string()[0] == '/')
+            return "/";
+
         // search current directory
-        if (fs::exists(fs::path(model_file)))
-            return fs::current_path().string() + "/" + model_file;
+        if (fs::exists(model_file))
+            return fs::current_path().string();
         // search ROBOT_DART_PATH
-        const char* env_p = std::getenv("ROBOT_DART_PATH");
-        if (env_p != nullptr) {
-            fs::path p(std::string(env_p) + '/' + model_file);
-            if (fs::exists(p))
-                return p.string(); 
+        const char* env = std::getenv("ROBOT_DART_PATH");
+        if (env != nullptr) {
+            fs::path env_path(env);
+            if (fs::exists(env_path / model_file))
+                return env_path.string(); 
         }
         // search PREFIX/share/robot_dart
-        fs::path p(std::string(ROBOT_DART_PREFIX) + "/robots_dart/robots/" + model_file);
-        if (fs::exists(p))
-            return p.string();
+        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robots_dart/robots/");
+        if (fs::exists(system_path / model_file))
+            return system_path.string();
         
         ROBOT_DART_EXCEPTION_ASSERT(false, std::string("Could not find :") + filename);
 
@@ -968,8 +969,11 @@ namespace robot_dart {
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
         ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
-
-        std::string model_file = _get_filename(filename);
+        
+        // search for the right directory for our files
+        std::string file_dir = _get_path(filename);
+        std::cout<<"path for our files:"<<file_dir<<std::endl;
+        std::string model_file = file_dir + '/' + boost::trim_copy(filename);
         std::cout<<"RobotDART:: using:" << model_file << std::endl;
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
@@ -979,7 +983,8 @@ namespace robot_dart {
             if (extension == ".urdf") {
                 dart::io::DartLoader loader;
                 for (size_t i = 0; i < packages.size(); i++) {
-                    loader.addPackageDirectory(std::get<0>(packages[i]), std::get<1>(packages[i]));
+                    loader.addPackageDirectory(std::get<0>(packages[i]), 
+                                               file_dir + "/" + std::get<1>(packages[i]));
                 }
                 tmp_skel = loader.parseSkeleton(model_file);
             }
