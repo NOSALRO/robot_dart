@@ -18,11 +18,12 @@ namespace robot_dart {
         return false;
     }
 
-    void Scheduler::reset(double dt, bool sync)
+    void Scheduler::reset(double dt, bool sync, double current_time)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(dt > 0. && "Time-step needs to be bigger than zero.");
 
         _current_time = 0.;
+        _simu_start_time = current_time;
         _current_step = 0;
         _max_frequency = -1;
 

@@ -20,8 +20,12 @@ namespace robot_dart {
 
                 .def("reset", &Scheduler::reset,
                     py::arg("dt"),
-                    py::arg("sync") = false)
+                    py::arg("sync") = false,
+                    py::arg("current_time") = 0.)
+
                 .def("set_sync", &Scheduler::set_sync)
+                .def("sync", &Scheduler::sync)
+
                 .def("current_time", &Scheduler::current_time)
                 .def("next_time", &Scheduler::next_time)
                 .def("dt", &Scheduler::dt);

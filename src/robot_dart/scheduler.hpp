@@ -26,14 +26,17 @@ namespace robot_dart {
         /// and increase the counter
         void step();
 
-        void reset(double dt, bool sync = false);
+        void reset(double dt, bool sync = false, double current_time = 0.);
+
         void set_sync(bool enable) { _sync = enable; }
-        double current_time() const { return _current_time; }
-        double next_time() const { return _current_time + _dt; }
+        bool sync() { return _sync; }
+
+        double current_time() const { return _simu_start_time + _current_time; }
+        double next_time() const { return _simu_start_time + _current_time + _dt; }
         double dt() const { return _dt; }
 
     protected:
-        double _current_time = 0.;
+        double _current_time = 0., _simu_start_time = 0.;
         double _dt;
         int _current_step = 0;
         bool _sync;

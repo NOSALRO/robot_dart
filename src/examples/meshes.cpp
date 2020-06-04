@@ -37,7 +37,6 @@ int main()
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<>>(&simu);
     simu.set_graphics(graphics);
-    simu.scheduler().set_sync(true);
 
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
