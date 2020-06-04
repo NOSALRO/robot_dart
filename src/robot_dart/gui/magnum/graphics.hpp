@@ -26,7 +26,6 @@ namespace robot_dart {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
                     _magnum_app.reset(make_application<T>(simu, configuration));
-                    set_render_period(_world->getTimeStep());
                 }
 
                 ~Graphics() {}

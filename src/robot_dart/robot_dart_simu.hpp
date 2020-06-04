@@ -17,13 +17,13 @@ namespace robot_dart {
     public:
         using robot_t = std::shared_ptr<Robot>;
 
-        RobotDARTSimu(double time_step = 0.015);
+        RobotDARTSimu(double timestep = 0.015);
 
         ~RobotDARTSimu();
 
         void run(double max_duration = 5.0, bool reset_commands = false);
         bool step_world(bool reset_commands = false);
-        bool step_robots(bool reset_commands = false);
+        bool step(bool reset_commands = false);
 
         Scheduler& scheduler() { return _scheduler; }
         const Scheduler& scheduler() const { return _scheduler; }
@@ -75,8 +75,8 @@ namespace robot_dart {
         void remove_camera(size_t index);
         void clear_cameras();
 
-        double step() const;
-        void set_step(double step);
+        double timestep() const;
+        void set_timestep(double timestep, bool update_control_freq = true);
 
         void stop_sim(bool disable = true);
         bool halted_sim() const;
