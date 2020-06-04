@@ -44,7 +44,7 @@ int main()
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1024;
     configuration.height = 768;
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics<MyApp>>(&simu, configuration);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(&simu, configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 

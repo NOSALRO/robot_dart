@@ -177,8 +177,6 @@ namespace robot_dart {
     {
         _graphics = graphics;
         _graphics->set_fps(_graphics_freq);
-        // we synchronize by default if we have the graphics activated
-        _scheduler.set_sync(true);
     }
 
     dart::simulation::WorldPtr RobotDARTSimu::world()
