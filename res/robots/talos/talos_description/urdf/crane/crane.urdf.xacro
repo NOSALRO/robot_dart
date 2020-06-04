@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/deg_to_rad.xacro" />
+
+  <xacro:macro name="crane" params="parent">
+
+    <link name="crane_link">
+      <inertial>
+        <origin xyz="0.0 0.0 0.25" rpy="0.0 0.0 0.0"/>
+        <mass value="0.0"/>
+        <!-- [ m(3r^2 + h^2)/12     m(3r^2 + h^2)/12    mr^2/2] -->
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+                 iyy="0.0" iyz="0.0"
+                 izz="0.0"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0.25" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.5" radius="0.3"/>
+        </geometry>
+        <material name="CraneMaterial" rgba="0.3 0.3 0.3 0.1"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.25" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.5" radius="0.3"/>
+        </geometry>
+        <material name="CraneMaterial"/>
+      </collision>
+    </link>
+
+    <joint name="crane_joint" type="fixed">
+      <parent link="${parent}" />
+      <child link="crane_link" />
+      <origin xyz="0.003 0.0 0.4" rpy="0.0  0.0  0.0"/>
+      <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0" />
+      <dynamics friction="0.0" damping="0.0"/>
+    </joint>
+
+  </xacro:macro>
+
+    <material name="CraneMaterial">
+        <color rgba="0.2 0.2 0.2 0.5"/>
+    </material>
+
+</robot>

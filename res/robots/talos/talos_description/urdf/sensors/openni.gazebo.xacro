@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2013, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+  ROS Gazebo plugin for RGBD sensor (OpenNI/Kinect/ASUS)
+   * Publishes MONO8 format "depth" image & PointCloud
+   * Publishes RGB8 format color image & 2nd copy of PointCloud (for registered)
+
+  Sensor parameters are from PR2 description.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="openni_ir_gazebo_v0" params="link_name frame_name camera_name">
+    <gazebo reference="${link_name}">
+      <sensor:camera name="${name}_ir_sensor">
+        <imageFormat>L8</imageFormat>
+        <imageSize>640 480</imageSize>
+        <hfov>57</hfov>
+        <nearClip>0.01</nearClip>
+        <farClip>5</farClip>
+        <updateRate>1.0</updateRate>
+        <baseline>0.2</baseline>
+        <controller:gazebo_ros_openni_kinect name="${link_name}_controller" plugin="libgazebo_ros_openni_kinect.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>1.0</updateRate>
+          <cameraName>${camera_name}_ir</cameraName>
+          <imageTopicName>/${camera_name}/depth/image_raw</imageTopicName>
+          <cameraInfoTopicName>/${camera_name}/depth/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/${camera_name}/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/${camera_name}/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/${camera_name}/depth/points</pointCloudTopicName>
+          <frameName>${frame_name}</frameName>
+          <pointCloudCutoff>0.5</pointCloudCutoff>
+          <distortionK1>0.00000001</distortionK1>
+          <distortionK2>0.00000001</distortionK2>
+          <distortionK3>0.00000001</distortionK3>
+          <distortionT1>0.00000001</distortionT1>
+          <distortionT2>0.00000001</distortionT2>
+        </controller:gazebo_ros_openni_kinect>
+      </sensor:camera>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="openni_rgb_gazebo_v0" params="link_name frame_name camera_name">
+    <gazebo reference="${link_name}">
+      <sensor:camera name="${name}_rgb_sensor">
+        <imageFormat>R8G8B8</imageFormat>
+        <imageSize>640 480</imageSize>
+        <hfov>57</hfov>
+        <nearClip>0.01</nearClip>
+        <farClip>5</farClip>
+        <updateRate>1.0</updateRate>
+        <baseline>0.2</baseline>
+        <controller:gazebo_ros_openni_kinect name="${link_name}_controller" plugin="libgazebo_ros_openni_kinect.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>1.0</updateRate>
+          <cameraName>${camera_name}_rgb</cameraName>
+          <imageTopicName>/${camera_name}/rgb/image_raw</imageTopicName>
+          <cameraInfoTopicName>/${camera_name}/rgb/camera_info</cameraInfoTopicName>
+          <pointCloudTopicName>/${camera_name}/depth_registered/points</pointCloudTopicName>
+          <frameName>${frame_name}</frameName>
+          <pointCloudCutoff>0.5</pointCloudCutoff>
+          <distortionK1>0.00000001</distortionK1>
+          <distortionK2>0.00000001</distortionK2>
+          <distortionK3>0.00000001</distortionK3>
+          <distortionT1>0.00000001</distortionT1>
+          <distortionT2>0.00000001</distortionT2>
+        </controller:gazebo_ros_openni_kinect>
+      </sensor:camera>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

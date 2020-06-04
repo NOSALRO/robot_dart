@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/head/head.transmission.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/sensors/orbbec_astra_pro.urdf.xacro" />
+  <xacro:include filename="$(find talos_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" />
+
+  <!--Constant parameters-->
+  <xacro:property name="head_friction" value="1.0" />
+  <xacro:property name="head_damping"  value="0.5" />
+  <xacro:property name="head_max_vel"  value="3.0" />
+  <xacro:property name="head_eps"      value="0.02" />
+
+  <!--************************-->
+  <!--     HEAD_1 (TILT)      -->
+  <!--************************-->
+  <xacro:macro name="talos_head_1" params="name parent">
+    <link name="${name}_link">
+      <xacro:call macro="${name}_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/head/head_1.dae" scale="1 1 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+      <origin xyz="0.02000 0.00000 0.32100"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="${-12.00000 * deg_to_rad}" upper="${45.00000 * deg_to_rad}" effort="8.0" velocity="${head_max_vel}" />
+      <dynamics damping="${head_damping}" friction="${head_friction}"/>
+       <!-- <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-15.00000 * deg_to_rad + eps_radians}"
+                          soft_upper_limit="${45.00000 * deg_to_rad - eps_radians}" /> -->
+    </joint>
+
+    <xacro:if value="$(arg enable_gazebo)">
+      <gazebo reference="${name}_link">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+      </gazebo>
+
+      <gazebo reference="${name}_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+      </gazebo>
+
+      <gazebo reference="${name}_link">
+        <material>Gazebo/FlatBlack</material>
+      </gazebo>
+    </xacro:if>
+
+  </xacro:macro>
+
+
+
+  <!--************************-->
+  <!--      HEAD_2 (PAN)      -->
+  <!--************************-->
+  <xacro:macro name="talos_head_2" params="name parent">
+    <link name="${name}_link">
+      <xacro:call macro="${name}_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/head/head_2.dae" scale="1 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+      <origin xyz="0.00000 0.00000 0.00000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${-75.00000 * deg_to_rad}" upper="${75.00000 * deg_to_rad}" effort="4.0" velocity="${head_max_vel}" />
+      <dynamics damping="${head_damping}" friction="${head_friction}"/>
+       <!-- <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-75.00000 * deg_to_rad + eps_radians}"
+                          soft_upper_limit="${75.00000 * deg_to_rad - eps_radians}" /> -->
+    </joint>
+
+    <xacro:if value="$(arg enable_gazebo)">
+      <gazebo reference="${name}_link">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <material>Gazebo/White</material>
+      </gazebo>
+      <gazebo reference="${name}_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+      </gazebo>
+    </xacro:if>
+
+  </xacro:macro>
+
+  <xacro:macro name="talos_head" params="name parent">
+    <xacro:talos_head_1 name="${name}_1" parent="${parent}" />
+    <xacro:talos_head_2 name="${name}_2" parent="${name}_1_link"/>
+    <xacro:orbbec_astra_pro name="rgbd" parent="${name}_2" enable_gazebo="$(arg enable_gazebo)">
+      <!-- Pose of sensor frame wrt to base -->
+      <origin xyz="${camera_position_x} ${camera_position_y} ${camera_position_z}" rpy="${camera_orientation_r} ${camera_orientation_p} ${camera_orientation_y}" />
+      <!-- Pose of optical frame wrt to sensor -->
+      <origin xyz="0 0 0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}"/>
+    </xacro:orbbec_astra_pro>
+    <xacro:if value="$(arg enable_gazebo)">
+      <xacro:talos_head_differential_transmission name="${name}" number1="1" number2="2"
+                                                  act_reduction1="1.0" act_reduction2="1.0"
+                                                  jnt_reduction1="1.0" jnt_reduction2="2.0"
+                                                  offset_value_1="${head_1_joint_offset}" offset_value_2="${head_2_joint_offset}"/>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

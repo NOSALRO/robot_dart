@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot name="talos" xmlns:xacro="http://ros.org/wiki/xacro"
+        xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+        xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:if value="$(arg enable_crane)">
+    <xacro:include filename="$(find talos_description)/urdf/crane/crane.urdf.xacro" />
+  </xacro:if>
+
+  <xacro:include filename="$(find talos_description)/urdf/torso/torso.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/head/head.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/arm/arm_specifics_v2.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/arm/arm.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/sensors/ftsensor.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/leg/leg.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/leg/foot_collision_$(arg foot_collision).urdf.xacro" />
+  <xacro:include filename="$(find talos_description_inertial)/urdf/inertial.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/extras/addons.urdf.xacro" />
+
+  <xacro:talos_torso name="torso" />
+
+  <xacro:if value="$(arg enable_crane)">
+    <xacro:crane parent="torso_2_link"/>
+  </xacro:if>
+
+  <xacro:talos_head name="head" parent="torso_2_link" disable_gazebo_camera="$(arg disable_gazebo_camera)"/>
+
+  <xacro:talos_arm name="arm" parent="torso_2_link" side="left" reflect="1"/>
+  <xacro:talos_arm name="arm" parent="torso_2_link" side="right" reflect="-1"/>
+
+  <xacro:ft_sensor name="wrist" parent="arm_right_7_link" side="right" reflect="1"  />
+  <xacro:ft_sensor name="wrist" parent="arm_left_7_link"  side="left"  reflect="-1" />
+
+  <xacro:talos_leg prefix="left"  reflect="1" />
+  <xacro:talos_leg prefix="right" reflect="-1" />
+
+  <!-- Macro to have the add-on links specific to each TALOS -->
+  <xacro:talos_addons />
+
+  <!-- Generic simulator_gazebo plugins -->
+  <xacro:include filename="$(find talos_description)/gazebo/gazebo.urdf.xacro" />
+  <!-- Materials for visualization -->
+  <xacro:include filename="$(find talos_description)/urdf/materials.urdf.xacro" />
+
+</robot>

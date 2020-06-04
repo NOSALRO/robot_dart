@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2013, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+  ASUS Xtion Pro Live
+    - visual model, without base
+    - collision geometry
+    - TF frames
+    - loads Gazebo plugin
+
+    Note: There is a bug that Gazebo in ROS Fuerte ignores the roll/pitch/yaw in the visual tag,
+          therefore it needs to be in a separate link, with the orientation specified at the joint.
+
+    ToDo: Fix visual mesh, re-scale it, & the origin is not centered along the frontal axis.
+          Can simplify collision mesh.
+          Rotate origin in mesh, to match the orientation of the base link and bypass the bug.
+
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find talos_description)/urdf/sensors/orbbec_astra_pro.gazebo.xacro" />
+
+  <!-- Macro -->
+  <xacro:macro name="orbbec_astra_pro" params="name parent *origin *optical_origin enable_gazebo:=true">
+
+    <!-- frames in the center of the camera -->
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <axis xyz="0 0 1"/>
+      <!-- <limit lower="0" upper="0.001" effort="100" velocity="0.01"/> -->
+      <parent link="${parent}_link"/>
+      <child link="${name}_link"/>
+    </joint>
+
+    <link name="${name}_link">
+      <!-- inertia tensor computed analytically for a solid cuboid -->
+      <xacro:call macro="${name}_link_inertial" />
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://talos_description/meshes/sensors/orbbec/orbbec.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="-0.01 0.0025 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.185 0.03"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_optical_joint" type="fixed">
+      <xacro:insert_block name="optical_origin" />
+      <parent link="${name}_link"/>
+      <child link="${name}_optical_frame"/>
+    </joint>
+
+    <link name="${name}_optical_frame">
+      <xacro:call macro="${name}_optical_frame_inertial" />
+    </link>
+
+    <!-- frames of the depth sensor -->
+    <joint name="${name}_depth_joint" type="fixed">
+      <origin xyz="0.0 0.03751 0.0" rpy="0 0 0" />
+      <parent link="${name}_link" />
+      <child link="${name}_depth_frame"/>
+    </joint>
+
+    <link name="${name}_depth_frame">
+      <xacro:call macro="${name}_optical_frame_inertial" />
+    </link>
+
+    <joint name="${name}_depth_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0.0 ${-90.0 * deg_to_rad}" />
+      <parent link="${name}_depth_frame" />
+      <child link="${name}_depth_optical_frame"/>
+    </joint>
+
+    <link name="${name}_depth_optical_frame">
+      <xacro:call macro="${name}_optical_frame_inertial" />
+    </link>
+
+    <!-- frames of the rgb sensor -->
+    <joint name="${name}_rgb_joint" type="fixed">
+      <origin xyz="0.0 0.01251 0.0" rpy="0 0 0" />
+      <parent link="${name}_link" />
+      <child link="${name}_rgb_frame"/>
+    </joint>
+
+    <link name="${name}_rgb_frame">
+      <xacro:call macro="${name}_optical_frame_inertial" />
+    </link>
+
+    <joint name="${name}_rgb_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0.0 ${-90.0 * deg_to_rad}" />
+      <parent link="${name}_rgb_frame" />
+      <child link="${name}_rgb_optical_frame"/>
+    </joint>
+
+    <link name="${name}_rgb_optical_frame">
+      <xacro:call macro="${name}_optical_frame_inertial" />
+    </link>
+
+    <xacro:if value="${enable_gazebo}">
+      <!-- extensions -->
+      <xacro:orbbec_astra_pro_rgbd_camera_gazebo name="${name}" />
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>
