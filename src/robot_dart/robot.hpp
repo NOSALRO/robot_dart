@@ -64,6 +64,13 @@ namespace robot_dart {
         dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
         std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
 
+        // control mode can be: torque, servo, velocity, passive, locked, mimic (only for completeness, use set_mimic to use this)
+        void set_control_mode(const std::string& mode, const std::vector<std::string>& dof_names = {}, bool override_mimic = false, bool override_base = false);
+        void set_mimic(const std::string& dof_name, const std::string& mimic_dof_name, double multiplier = 1., double offset = 0.);
+
+        std::string control_mode(const std::string& dof_name) const;
+        std::vector<std::string> control_modes(const std::vector<std::string>& dof_names = {}) const;
+
         void set_position_enforced(size_t dof, bool enforced);
         void set_position_enforced(const std::vector<bool>& enforced);
         void set_position_enforced(bool enforced);
