@@ -1,7 +1,7 @@
-#include <unistd.h>
 
-#include <boost/algorithm/string.hpp>
+#include <unistd.h>
 #include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <dart/config.hpp>
 #include <dart/dynamics/BoxShape.hpp>
@@ -10,7 +10,6 @@
 #include <dart/dynamics/FreeJoint.hpp>
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
-
 #if DART_VERSION_AT_LEAST(7, 0, 0)
 #include <dart/io/SkelParser.hpp>
 #include <dart/io/sdf/SdfParser.hpp>
@@ -20,7 +19,7 @@
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
 
-#include "robot.hpp"
+#include <robot_dart/robots/robot.hpp>
 #include <robot_dart/utils.hpp>
 
 // namespace alias for compatibility
@@ -118,7 +117,52 @@ namespace robot_dart {
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
         }
+
+        template <int content>
+        void add_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton,
+            const std::vector<std::string>& dof_names,
+            const std::unordered_map<std::string, size_t>& dof_map)
+        {
+            // Set all values
+            if (dof_names.empty()) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(),
+                    "set_dof_data: size of data is not the same as the DoFs", );
+                if (content == 0)
+                    return skeleton->setPositions(skeleton->getPositions() + data);
+                else if (content == 1)
+                    return skeleton->setVelocities(skeleton->getVelocities() + data);
+                else if (content == 2)
+                    return skeleton->setAccelerations(skeleton->getAccelerations() + data);
+                else if (content == 3)
+                    return skeleton->setForces(skeleton->getForces() + data);
+                else if (content == 4)
+                    return skeleton->setCommands(skeleton->getCommands() + data);
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(),
+                    "set_dof_data: size of data is not the same as the dof_names size", );
+                auto it = dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(
+                    it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                auto dof = skeleton->getDof(it->second);
+                if (content == 0)
+                    dof->setPosition(dof->getPosition() + data(i));
+                else if (content == 1)
+                    dof->setVelocity(dof->getVelocity() + data(i));
+                else if (content == 2)
+                    dof->setAcceleration(dof->getAcceleration() + data(i));
+                else if (content == 3)
+                    dof->setForce(dof->getForce() + data(i));
+                else if (content == 4)
+                    dof->setCommand(dof->getCommand() + data(i));
+                else
+                    ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
+            }
+        }
     } // namespace detail
+
     namespace robots {
         Robot::Robot(const std::string& model_file,
             const std::vector<std::pair<std::string, std::string>>& packages,
@@ -222,13 +266,13 @@ namespace robot_dart {
 
         void Robot::update(double t)
         {
-            Eigen::VectorXd commands = Eigen::VectorXd::Zero(_skeleton->getNumDofs());
+            _skeleton->setCommands(Eigen::VectorXd::Zero(_skeleton->getNumDofs()));
+
             for (auto& ctrl : _controllers) {
                 if (ctrl->active())
-                    commands += ctrl->weight() * ctrl->commands(t);
+                    detail::add_dof_data<4>(ctrl->weight() * ctrl->calculate(t), _skeleton,
+                        ctrl->controllable_dofs(), _dof_map);
             }
-
-            _skeleton->setCommands(commands);
         }
 
         void Robot::reinit_controllers()
@@ -347,10 +391,13 @@ namespace robot_dart {
             return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
         }
 
-        void Robot::set_actuator_type(
-            size_t dof, dart::dynamics::Joint::ActuatorType type, bool override_mimic)
+        void Robot::set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type,
+            bool override_mimic, bool override_base)
         {
             ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
+            // Do not override 6D base if robot is free and override_base is false
+            if (free() && (!override_base && dof < 6))
+                return;
             auto jt = _skeleton->getDof(dof)->getJoint();
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -359,11 +406,16 @@ namespace robot_dart {
         }
 
         void Robot::set_actuator_types(
-            const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic)
+            const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic,
+            bool override_base)
         {
             ROBOT_DART_ASSERT(types.size() == _skeleton->getNumDofs(),
                 "Actuator types vector size is not the same as the DOFs of the robot", );
-            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            // Ignore first 6 dofs if robot is free, and override_base is false
+            size_t start_dof = 0;
+            if (free() && !override_base)
+                start_dof = 6;
+            for (size_t i = start_dof; i < _skeleton->getNumDofs(); ++i) {
                 auto jt = _skeleton->getDof(i)->getJoint();
 #if DART_VERSION_AT_LEAST(6, 7, 0)
                 if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -373,9 +425,13 @@ namespace robot_dart {
         }
 
         void Robot::set_actuator_types(
-            dart::dynamics::Joint::ActuatorType type, bool override_mimic)
+            dart::dynamics::Joint::ActuatorType type, bool override_mimic, bool override_base)
         {
-            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            // Ignore first 6 dofs if robot is free, and override_base is false
+            size_t start_dof = 0;
+            if (free() && !override_base)
+                start_dof = 6;
+            for (size_t i = start_dof; i < _skeleton->getNumDofs(); ++i) {
                 auto jt = _skeleton->getDof(i)->getJoint();
 #if DART_VERSION_AT_LEAST(6, 7, 0)
                 if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -985,7 +1041,7 @@ namespace robot_dart {
 
         bool Robot::ghost() const { return _is_ghost; }
 
-        std::string Robot::_get_path(const std::string& filename) const
+         std::string Robot::_get_path(const std::string& filename) const
         {
             namespace fs = boost::filesystem;
             fs::path model_file(boost::trim_copy(filename));

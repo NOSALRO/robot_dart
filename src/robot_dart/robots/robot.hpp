@@ -39,11 +39,6 @@ namespace robot_dart {
             std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost",
                 const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
 
-            // path of the model file that was used to create this robot
-            // (so this can be used by a controller, for instance)
-            const std::string model_file() const { return _model_file; }
-            const std::vector<std::pair<std::string, std::string>>& packages() { return _packages; }
-
             dart::dynamics::SkeletonPtr skeleton();
 
             std::vector<RobotDamage> damages() const;
@@ -74,11 +69,11 @@ namespace robot_dart {
             bool free() const;
 
             void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type,
-                bool override_mimic = false);
+                bool override_mimic = false, bool override_base = false);
             void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types,
-                bool override_mimic = false);
-            void set_actuator_types(
-                dart::dynamics::Joint::ActuatorType type, bool override_mimic = false);
+                bool override_mimic = false, bool override_base = false);
+            void set_actuator_types(dart::dynamics::Joint::ActuatorType type,
+                bool override_mimic = false, bool override_base = false);
 
             dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
             std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;

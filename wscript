@@ -63,7 +63,7 @@ def configure(conf):
     conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     # we need pthread for video saving
     conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
-    conf.check_eigen(required=True)
+    conf.check_eigen(required=True, min_version=(3,2,92))
     conf.check_dart(required=True)
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication'
@@ -113,7 +113,8 @@ def configure(conf):
         opt_flags = " -O3 -xHost -unroll -g " + native_icc
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
-        opt_flags = " -O3 -g -faligned-new " + native
+        # no-stack-check required for Catalina
+        opt_flags = " -O3 -g -faligned-new  -fno-stack-check" + native
     else:
         gcc_version = int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1])
         if gcc_version < 47:

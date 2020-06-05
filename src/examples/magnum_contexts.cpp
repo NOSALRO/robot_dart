@@ -44,8 +44,8 @@ int main()
 
             robot_dart::RobotDARTSimu simu(0.001);
 
-            std::vector<double> ctrl;
-            ctrl = {0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.};
+            Eigen::VectorXd ctrl(7);
+            ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
 
             g_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
             std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(300., 50.);

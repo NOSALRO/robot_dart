@@ -62,14 +62,14 @@ int main()
         global_robot->set_commands(cmd, dof_to_control);
         pos = global_robot->positions(dof_to_control); //get dof_to_control positions only
         full_pos = global_robot->positions(); //get all dofs positions
-        simu.step_world();
+        simu.step_world(); // do not update controllers (it will override set_commands)
     }
 
     // If you wanted to control every dofs you could have used :
     // Eigen::VectorXd cmd_full = Eigen::VectorXd::Constant(q0.size(), 0.1);
     // for (int i = 0; i < sim_time; i++) {
     //     global_robot->set_commands(cmd_full);
-    //     simu.step_world();
+    //     simu.step_world(); // do not update controllers (it will override set_commands)
     // }
 
     /**************** Mimic / Passive / Locked joint handling ********************************************************/
@@ -98,7 +98,7 @@ int main()
     for (int i = 0; i < sim_time; i++) {
         global_robot->set_commands(cmd, controllable_dofs);
         // global_robot->set_commands(Eigen::VectorXd::Constant(q0.size(), -0.1)); // This also works, but you will be getting a lot of warnings from DART; the comands to the mimic/passive/locked joints are ignored!
-        simu.step_world();
+        simu.step_world(); // do not update controllers (it will override set_commands)
     }
 
     global_robot.reset();

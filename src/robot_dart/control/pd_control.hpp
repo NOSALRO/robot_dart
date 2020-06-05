@@ -5,6 +5,7 @@
 #include <utility>
 
 #include <robot_dart/control/robot_control.hpp>
+#include <robot_dart/robots/robot.hpp>
 
 namespace robot_dart {
     namespace control {
@@ -12,7 +13,8 @@ namespace robot_dart {
         class PDControl : public RobotControl {
         public:
             PDControl();
-            PDControl(const std::vector<double>& ctrl, bool full_control = false);
+            PDControl(const Eigen::VectorXd& ctrl, bool full_control = false);
+            PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs);
 
             void configure() override;
             Eigen::VectorXd calculate(double) override;

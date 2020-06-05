@@ -18,6 +18,28 @@ def options(opt):
     opt.add_option('--lapacke_blas', action='store_true', help='enable lapacke/blas if found (required Eigen>=3.3)', dest='lapacke_blas')
 
 
+def eigen_version(conf, includes_check):
+    world_version = -1
+    major_version = -1
+    minor_version = -1
+
+    config_file = conf.find_file('Eigen/src/Core/util/Macros.h', includes_check)
+    with open(config_file) as f:
+        config_content = f.readlines()
+    for line in config_content:
+        world = line.find('#define EIGEN_WORLD_VERSION')
+        major = line.find('#define EIGEN_MAJOR_VERSION')
+        minor = line.find('#define EIGEN_MINOR_VERSION')
+        if world > -1:
+            world_version = int(line.split(' ')[-1].strip())
+        if major > -1:
+            major_version = int(line.split(' ')[-1].strip())
+        if minor > -1:
+            minor_version = int(line.split(' ')[-1].strip())
+        if world_version > 0 and major_version > 0 and minor_version > 0:
+            break
+    return world_version, major_version, minor_version
+
 @conf
 def check_eigen(conf, *k, **kw):
     def get_directory(filename, dirs):
@@ -26,6 +48,7 @@ def check_eigen(conf, *k, **kw):
     includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
 
     required = kw.get('required', False)
+    min_version = kw.get('min_version', (3,3,3))
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
@@ -38,27 +61,10 @@ def check_eigen(conf, *k, **kw):
         incl = get_directory('Eigen/Core', includes_check)
         conf.env.INCLUDES_EIGEN = [incl]
         conf.end_msg(incl)
+
+        # LAPACK (optional)
         if conf.options.lapacke_blas:
             conf.start_msg('Checking for LAPACKE/BLAS (optional)')
-            world_version = -1
-            major_version = -1
-            minor_version = -1
-
-            config_file = conf.find_file('Eigen/src/Core/util/Macros.h', includes_check)
-            with open(config_file) as f:
-                config_content = f.readlines()
-            for line in config_content:
-                world = line.find('#define EIGEN_WORLD_VERSION')
-                major = line.find('#define EIGEN_MAJOR_VERSION')
-                minor = line.find('#define EIGEN_MINOR_VERSION')
-                if world > -1:
-                    world_version = int(line.split(' ')[-1].strip())
-                if major > -1:
-                    major_version = int(line.split(' ')[-1].strip())
-                if minor > -1:
-                    minor_version = int(line.split(' ')[-1].strip())
-                if world_version > 0 and major_version > 0 and minor_version > 0:
-                    break
 
             if world_version == 3 and major_version >= 3:
                 # Check for lapacke and blas
@@ -108,4 +114,12 @@ def check_eigen(conf, *k, **kw):
         if required:
             conf.fatal('Not found in %s' % str(includes_check))
         conf.end_msg('Not found in %s' % str(includes_check), 'RED')
+        return 1
+
+    # check the version
+    conf.start_msg('Checking for Eigen version')
+    version = eigen_version(conf, includes_check)
+    if version < min_version:
+        conf.fatal("Found version {}.{}.{} but version {}.{}.{} is required".format(version[0], version[1], version[2], min_version[0], min_version[1], min_version[2]))
+    conf.end_msg("{}.{}.{}".format(version[0], version[1], version[2]))
     return 1

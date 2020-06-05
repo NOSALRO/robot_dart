@@ -33,8 +33,8 @@ int main()
 
     global_robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
 
-    std::vector<double> ctrl;
-    ctrl = {0.0, 1.0, -1.5, 1.0};
+    Eigen::VectorXd ctrl(4);
+    ctrl << 0.0, 1.0, -1.5, 1.0;
 
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
 
@@ -49,7 +49,7 @@ int main()
     std::cout << (g_robot->body_pose("arm_link_5") * size).transpose() << std::endl;
     simu.run(2.5);
     std::cout << (g_robot->body_pose("arm_link_5") * size).transpose() << std::endl;
-    ctrl = {0.0, -1.0, 1.5, -1.0};
+    ctrl << 0.0, -1.0, 1.5, -1.0;
     g_robot->controllers()[0]->set_parameters(ctrl);
     std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(20., 0.);
     simu.run(2.5);

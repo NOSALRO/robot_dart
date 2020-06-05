@@ -5,7 +5,8 @@
 namespace robot_dart {
     namespace control {
         PDControl::PDControl() : RobotControl() {}
-        PDControl::PDControl(const std::vector<double>& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
+        PDControl::PDControl(const Eigen::VectorXd& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
+        PDControl::PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs) : RobotControl(ctrl, controllable_dofs) {}
 
         void PDControl::configure()
         {
@@ -20,10 +21,10 @@ namespace robot_dart {
         {
             ROBOT_DART_ASSERT(_control_dof == _ctrl.size(), "PDControl: Controller parameters size is not the same as DOFs of the robot", Eigen::VectorXd::Zero(_control_dof));
             auto robot = _robot.lock();
-            Eigen::VectorXd target_positions = Eigen::VectorXd::Map(_ctrl.data(), _ctrl.size());
+            Eigen::VectorXd& target_positions = _ctrl;
 
-            Eigen::VectorXd q = get_positions();
-            Eigen::VectorXd dq = get_velocities();
+            Eigen::VectorXd q = robot->positions(_controllable_dofs);
+            Eigen::VectorXd dq = robot->velocities(_controllable_dofs);
 
             /// Compute the simplest PD controller output:
             /// P gain * (target position - current position) + D gain * (0 - current velocity)
@@ -40,8 +41,8 @@ namespace robot_dart {
 
         void PDControl::set_pd(const Eigen::VectorXd& Kp, const Eigen::VectorXd& Kd)
         {
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kp.size()) == _control_dof, "PDControl: The Kp size is not the same as the DOFs!", );
-            ROBOT_DART_ASSERT(static_cast<size_t>(Kd.size()) == _control_dof, "PDControl: The Kd size is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(Kp.size() == _control_dof, "PDControl: The Kp size is not the same as the DOFs!", );
+            ROBOT_DART_ASSERT(Kd.size() == _control_dof, "PDControl: The Kd size is not the same as the DOFs!", );
             _Kp = Kp;
             _Kd = Kd;
         }
