@@ -10,7 +10,7 @@ include(FindPackageHandleStandardArgs)
 # CMAKE_MODULE_PATH
 set(CMAKE_MODULE_PATH "@RobotDART_CMAKE_MODULE_PATH@")
 
-find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
+find_dependency(Eigen3 3.2.92 REQUIRED NO_MODULE)
 find_dependency(DART 6.0.0 REQUIRED COMPONENTS utils-urdf @DART_EXTRA_LIBS@ CONFIG)
 
 # Look for components (ie. libraries)
