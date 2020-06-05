@@ -14,7 +14,7 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", std::string(RESPATH) + "/robots/meshes"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("res/robots/iiwa14.urdf", packages);
+    auto global_robot = std::make_shared<robot_dart::robots::Robot>("res/robots/iiwa14.urdf", packages);
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);

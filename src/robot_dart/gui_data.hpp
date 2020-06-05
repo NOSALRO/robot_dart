@@ -19,7 +19,7 @@ namespace robot_dart {
             std::unordered_map<dart::dynamics::ShapeNode*, RobotData> robot_data;
 
         public:
-            void update_robot(const std::shared_ptr<Robot>& robot)
+            void update_robot(const std::shared_ptr<robots::Robot>& robot)
             {
                 auto skel = robot->skeleton();
                 bool cast = robot->cast_shadows();
@@ -30,7 +30,7 @@ namespace robot_dart {
                 }
             }
 
-            void remove_robot(const std::shared_ptr<Robot>& robot)
+            void remove_robot(const std::shared_ptr<robots::Robot>& robot)
             {
                 auto skel = robot->skeleton();
                 for (size_t i = 0; i < skel->getNumShapeNodes(); ++i) {

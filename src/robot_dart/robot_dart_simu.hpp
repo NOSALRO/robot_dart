@@ -5,7 +5,7 @@
 
 #include <robot_dart/descriptor/base_descriptor.hpp>
 #include <robot_dart/gui/base.hpp>
-#include <robot_dart/robot.hpp>
+#include <robot_dart/robots/robot.hpp>
 #include <robot_dart/scheduler.hpp>
 
 namespace robot_dart {
@@ -15,7 +15,7 @@ namespace robot_dart {
 
     class RobotDARTSimu {
     public:
-        using robot_t = std::shared_ptr<Robot>;
+        using robot_t = std::shared_ptr<robots::Robot>;
 
         RobotDARTSimu(double timestep = 0.015);
 

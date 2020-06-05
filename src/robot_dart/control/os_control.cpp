@@ -1,5 +1,5 @@
 #include "os_control.hpp"
-#include "robot_dart/robot.hpp"
+#include "robot_dart/robots/robot.hpp"
 #include "robot_dart/utils.hpp"
 
 #include <dart/dynamics/BodyNode.hpp>
