@@ -425,6 +425,132 @@ namespace robot_dart {
         return types;
     }
 
+    void Robot::set_control_mode(const std::string& mode, const std::vector<std::string>& dof_names, bool override_mimic, bool override_base)
+    {
+        // Set all dofs to same control mode
+        if (dof_names.empty()) {
+            if (mode == "torque") {
+                return set_actuator_types(dart::dynamics::Joint::FORCE, override_mimic, override_base);
+            }
+            else if (mode == "servo") {
+                return set_actuator_types(dart::dynamics::Joint::SERVO, override_mimic, override_base);
+            }
+            else if (mode == "velocity") {
+                return set_actuator_types(dart::dynamics::Joint::VELOCITY, override_mimic, override_base);
+            }
+            else if (mode == "passive") {
+                return set_actuator_types(dart::dynamics::Joint::PASSIVE, override_mimic, override_base);
+            }
+            else if (mode == "locked") {
+                return set_actuator_types(dart::dynamics::Joint::LOCKED, override_mimic, override_base);
+            }
+            else if (mode == "mimic") {
+                ROBOT_DART_WARNING(true, "Use this only if you know what you are doing. Use set_mimic otherwise.");
+                return set_actuator_types(dart::dynamics::Joint::MIMIC, override_mimic, override_base);
+            }
+            ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of control mode. Valid values: torque, servo, velocity");
+        }
+
+        for (size_t i = 0; i < dof_names.size(); i++) {
+            auto it = _dof_map.find(dof_names[i]);
+            ROBOT_DART_ASSERT(it != _dof_map.end(), "set_control_mode: " + dof_names[i] + " is not in dof_map", );
+            if (mode == "torque") {
+                set_actuator_type(it->second, dart::dynamics::Joint::FORCE, override_mimic, override_base);
+            }
+            else if (mode == "servo") {
+                set_actuator_type(it->second, dart::dynamics::Joint::SERVO, override_mimic, override_base);
+            }
+            else if (mode == "velocity") {
+                set_actuator_type(it->second, dart::dynamics::Joint::VELOCITY, override_mimic, override_base);
+            }
+            else if (mode == "passive") {
+                set_actuator_type(it->second, dart::dynamics::Joint::PASSIVE, override_mimic, override_base);
+            }
+            else if (mode == "locked") {
+                set_actuator_type(it->second, dart::dynamics::Joint::LOCKED, override_mimic, override_base);
+            }
+            else if (mode == "mimic") {
+                ROBOT_DART_WARNING(true, "Use this only if you know what you are doing. Use set_mimic otherwise.");
+                set_actuator_type(it->second, dart::dynamics::Joint::MIMIC, override_mimic, override_base);
+            }
+            else
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of control mode. Valid values: torque, servo, velocity");
+        }
+    }
+
+    void Robot::set_mimic(const std::string& dof_name, const std::string& mimic_dof_name, double multiplier, double offset)
+    {
+        dart::dynamics::DegreeOfFreedom* dof = _skeleton->getDof(dof_name);
+        const dart::dynamics::DegreeOfFreedom* mimic_dof = _skeleton->getDof(mimic_dof_name);
+
+        ROBOT_DART_ASSERT((dof && mimic_dof), "set_mimic: DoF names do not exist", );
+
+        dart::dynamics::Joint* jnt = dof->getJoint();
+        const dart::dynamics::Joint* mimic_jnt = mimic_dof->getJoint();
+
+        jnt->setActuatorType(dart::dynamics::Joint::MIMIC);
+        jnt->setMimicJoint(mimic_jnt, multiplier, offset);
+    }
+
+    std::string Robot::control_mode(const std::string& dof_name) const
+    {
+        auto it = _dof_map.find(dof_name);
+        ROBOT_DART_ASSERT(it != _dof_map.end(), "control_mode: " + dof_name + " is not in dof_map", "invalid");
+
+        auto mode = actuator_type(it->second);
+        if (mode == dart::dynamics::Joint::FORCE)
+            return "torque";
+        else if (mode == dart::dynamics::Joint::SERVO)
+            return "servo";
+        else if (mode == dart::dynamics::Joint::VELOCITY)
+            return "velocity";
+        else if (mode == dart::dynamics::Joint::PASSIVE)
+            return "passive";
+        else if (mode == dart::dynamics::Joint::LOCKED)
+            return "locked";
+        else if (mode == dart::dynamics::Joint::MIMIC)
+            return "mimic";
+
+        ROBOT_DART_ASSERT(false, "control_mode: we should not reach here", "invalid");
+    }
+
+    std::vector<std::string> Robot::control_modes(const std::vector<std::string>& dof_names) const
+    {
+        std::vector<std::string> str_modes;
+        // Get all dofs
+        if (dof_names.empty()) {
+            auto modes = actuator_types();
+
+            for (size_t i = 0; i < modes.size(); i++) {
+                auto mode = modes[i];
+                if (mode == dart::dynamics::Joint::FORCE)
+                    str_modes.push_back("torque");
+                else if (mode == dart::dynamics::Joint::SERVO)
+                    str_modes.push_back("servo");
+                else if (mode == dart::dynamics::Joint::VELOCITY)
+                    str_modes.push_back("velocity");
+                else if (mode == dart::dynamics::Joint::PASSIVE)
+                    str_modes.push_back("passive");
+                else if (mode == dart::dynamics::Joint::LOCKED)
+                    str_modes.push_back("locked");
+                else if (mode == dart::dynamics::Joint::MIMIC)
+                    str_modes.push_back("mimic");
+            }
+
+            ROBOT_DART_ASSERT(str_modes.size() == modes.size(), "control_modes: sizes of retrieved modes do not match", {});
+
+            return str_modes;
+        }
+
+        for (size_t i = 0; i < dof_names.size(); i++) {
+            str_modes.push_back(control_mode(dof_names[i]));
+        }
+
+        ROBOT_DART_ASSERT(str_modes.size() == dof_names.size(), "control_modes: sizes of retrieved modes do not match", {});
+
+        return str_modes;
+    }
+
     void Robot::set_position_enforced(size_t dof, bool enforced)
     {
         ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
