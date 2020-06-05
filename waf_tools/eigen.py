@@ -48,8 +48,7 @@ def check_eigen(conf, *k, **kw):
     includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
 
     required = kw.get('required', False)
-    min_version = kw.get('min_version', "3.3.3")
-    min_version_int = [int(i) for i in min_version.split('.')]
+    min_version = kw.get('min_version', (3,3,3))
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
@@ -63,21 +62,7 @@ def check_eigen(conf, *k, **kw):
         conf.env.INCLUDES_EIGEN = [incl]
         conf.end_msg(incl)
 
-        conf.start_msg('Checking for Eigen version')
-        world_version, major_version, minor_version = eigen_version(conf, includes_check)
-        bad_version = False
-        if world_version < min_version_int[0]:
-            bad_version = True
-        elif major_version < min_version_int[1]:
-            bad_version = True
-        elif minor_version < min_version_int[2]:
-            bad_version = True
-        #print(bad_version, min_version_int, (world_version, major_version, minor_version))
-        if bad_version:
-            print(min_version_int)
-            #conf.fatal("Found version {}.{}.{} but version {}.{}.{} is required".format(world_version, major_version,minor_version, min_version_int[0], min_version_int[1], min_version_int[2]))
-        conf.end_msg("{}.{}.{}".format(world_version, major_version,minor_version))
-
+        # LAPACK (optional)
         if conf.options.lapacke_blas:
             conf.start_msg('Checking for LAPACKE/BLAS (optional)')
 
@@ -129,4 +114,12 @@ def check_eigen(conf, *k, **kw):
         if required:
             conf.fatal('Not found in %s' % str(includes_check))
         conf.end_msg('Not found in %s' % str(includes_check), 'RED')
+        return 1
+
+    # check the version
+    conf.start_msg('Checking for Eigen version')
+    version = eigen_version(conf, includes_check)
+    if version < min_version:
+        conf.fatal("Found version {}.{}.{} but version {}.{}.{} is required".format(version[0], version[1], version[2], min_version[0], min_version[1], min_version[2]))
+    conf.end_msg("{}.{}.{}".format(version[0], version[1], version[2]))
     return 1
