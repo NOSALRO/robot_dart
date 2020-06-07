@@ -9,7 +9,7 @@
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
 
-static void robot_dart_initialize_magnum_resources()
+inline static void robot_dart_initialize_magnum_resources()
 {
     CORRADE_RESOURCE_INITIALIZE(RobotDARTShaders);
 }

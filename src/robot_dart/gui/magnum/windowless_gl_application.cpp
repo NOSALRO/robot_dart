@@ -12,7 +12,7 @@ namespace robot_dart {
                   Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate),
                   _simu(simu),
                   _draw_main_camera(configuration.draw_main_camera),
-                  _draw_ghosts(configuration.draw_ghosts)
+                  _draw_debug(configuration.draw_debug)
             {
                 /* Assume context is given externally, if not create it */
                 if (!Magnum::GL::Context::hasCurrent()) {
@@ -74,7 +74,7 @@ namespace robot_dart {
                     _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, _framebuffer, _format, _simu, *_3D_axis_shader, *_3D_axis_mesh, _draw_ghosts);
+                    _camera->draw(_drawables, _framebuffer, _format, _simu, *_3D_axis_shader, *_3D_axis_mesh, _draw_debug);
 
                     // if (_index % 10 == 0) {
                     //     intptr_t tt = (intptr_t)_glx_context;

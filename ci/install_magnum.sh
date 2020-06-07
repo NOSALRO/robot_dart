@@ -34,7 +34,7 @@ if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     git clone https://github.com/mosra/magnum-integration.git
     cd magnum-integration
     mkdir build && cd build
-    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_DART=ON ..
+    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_DART=ON -DWITH_EIGEN=ON ..
     make -j
     sudo make install
     cd ../..
