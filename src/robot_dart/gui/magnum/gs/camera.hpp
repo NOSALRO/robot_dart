@@ -3,6 +3,7 @@
 
 #include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 #include <boost/version.hpp>
 #if ((BOOST_VERSION / 100000) > 1) || ((BOOST_VERSION / 100000) == 1 && ((BOOST_VERSION / 100 % 1000) >= 64))
@@ -13,7 +14,9 @@
 #endif
 
 #include <Corrade/Containers/Optional.h>
+#include <Magnum/GL/Mesh.h>
 #include <Magnum/Image.h>
+#include <Magnum/Shaders/VertexColor.h>
 
 namespace robot_dart {
     namespace gui {
@@ -65,7 +68,7 @@ namespace robot_dart {
                     Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
                     Corrade::Containers::Optional<Magnum::Image2D>& depth_image() { return _depth_image; }
 
-                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost = true);
+                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, bool draw_ghost = true);
 
                 private:
                     Object3D* _yaw_object;

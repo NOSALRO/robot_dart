@@ -986,6 +986,22 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
+    void Robot::set_draw_axis(const std::string& body_name, bool draw)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd, "Body name does not exist in skeleton", );
+        auto iter = std::find(_axis_shapes.begin(), _axis_shapes.end(), bd);
+        if (iter == _axis_shapes.end())
+            _axis_shapes.push_back(bd);
+    }
+
+    void Robot::remove_all_drawing_axis()
+    {
+        _axis_shapes.clear();
+    }
+
+    const std::vector<dart::dynamics::BodyNode*>& Robot::drawing_axes() const { return _axis_shapes; }
+
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
         // Remove spaces from beginning of the filename/path

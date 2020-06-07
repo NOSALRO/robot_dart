@@ -19,6 +19,7 @@
 
 #include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/Mesh.h>
 #include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
 #ifndef MAGNUM_MAC_OSX
@@ -26,6 +27,7 @@
 #else
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
+#include <Magnum/Shaders/VertexColor.h>
 
 #include <Magnum/DartIntegration/World.h>
 
@@ -146,6 +148,10 @@ namespace robot_dart {
                 // Image filled with depth buffer values
                 GrayscaleImage raw_depth_image();
 
+                // Access to members
+                Magnum::Shaders::VertexColor3D& axes_shader() { return *_3D_axis_shader; }
+                Magnum::GL::Mesh& axes_mesh() { return *_3D_axis_mesh; }
+
             protected:
                 /* Magnum */
                 Scene3D _scene;
@@ -177,6 +183,12 @@ namespace robot_dart {
                 int _shadow_map_size = 512;
                 std::unique_ptr<Camera3D> _shadow_camera;
                 Object3D* _shadow_camera_object;
+
+                /* Debug visualization */
+                std::unique_ptr<Magnum::GL::Mesh> _3D_axis_mesh;
+                std::unique_ptr<Magnum::Shaders::VertexColor3D> _3D_axis_shader;
+
+                /* Importer */
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;
 
                 void _gl_clean_up();
