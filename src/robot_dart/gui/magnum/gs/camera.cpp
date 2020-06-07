@@ -250,10 +250,10 @@ namespace robot_dart {
 
                     /* Draw debug */
                     if (draw_debug) {
-                        std::vector<dart::dynamics::BodyNode*> axes = simu->gui_data()->drawing_axes();
+                        std::vector<std::pair<dart::dynamics::BodyNode*, double>> axes = simu->gui_data()->drawing_axes();
                         for (auto& axis : axes) {
-                            Magnum::Matrix4 world_transform = Magnum::Matrix4(Magnum::Matrix4d(axis->getWorldTransform().matrix()));
-                            Magnum::Matrix4 scaling = Magnum::Matrix4::scaling({0.25f, 0.25f, 0.25f});
+                            Magnum::Matrix4 world_transform = Magnum::Matrix4(Magnum::Matrix4d(axis.first->getWorldTransform().matrix()));
+                            Magnum::Matrix4 scaling = Magnum::Matrix4::scaling(Magnum::Vector3(axis.second, axis.second, axis.second));
 
                             axes_shader.setTransformationProjectionMatrix(_camera->projectionMatrix() * _camera->cameraMatrix() * world_transform * scaling)
                                 .draw(axes_mesh);

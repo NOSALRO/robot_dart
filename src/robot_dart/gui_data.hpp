@@ -18,7 +18,7 @@ namespace robot_dart {
             };
 
             std::unordered_map<dart::dynamics::ShapeNode*, RobotData> robot_data;
-            std::unordered_map<Robot*, std::vector<dart::dynamics::BodyNode*>> robot_axes;
+            std::unordered_map<Robot*, std::vector<std::pair<dart::dynamics::BodyNode*, double>>> robot_axes;
 
         public:
             void update_robot(const std::shared_ptr<Robot>& robot)
@@ -75,10 +75,10 @@ namespace robot_dart {
                 return false;
             }
 
-            std::vector<dart::dynamics::BodyNode*> drawing_axes() const
+            std::vector<std::pair<dart::dynamics::BodyNode*, double>> drawing_axes() const
             {
-                std::vector<dart::dynamics::BodyNode*> axes;
-                for (std::pair<Robot*, std::vector<dart::dynamics::BodyNode*>> elem : robot_axes) {
+                std::vector<std::pair<dart::dynamics::BodyNode*, double>> axes;
+                for (std::pair<Robot*, std::vector<std::pair<dart::dynamics::BodyNode*, double>>> elem : robot_axes) {
                     axes.insert(axes.end(), elem.second.begin(), elem.second.end());
                 }
 
