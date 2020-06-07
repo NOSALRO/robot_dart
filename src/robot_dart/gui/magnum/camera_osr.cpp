@@ -17,8 +17,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            CameraOSR::CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_ghost)
-                : Base(), _simu(simu), _magnum_app(app), _enabled(true), _done(false), _draw_ghosts(draw_ghost)
+            CameraOSR::CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_debug)
+                : Base(), _simu(simu), _magnum_app(app), _enabled(true), _done(false), _draw_debug(draw_debug)
             {
                 /* Camera setup */
                 _camera.reset(
@@ -115,7 +115,7 @@ namespace robot_dart {
                 _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                 /* Draw with this camera */
-                _camera->draw(_magnum_app->drawables(), _framebuffer, _format, _simu, _magnum_app->axes_shader(), _magnum_app->axes_mesh(), _draw_ghosts);
+                _camera->draw(_magnum_app->drawables(), _framebuffer, _format, _simu, _magnum_app->axes_shader(), _magnum_app->axes_mesh(), _draw_debug);
             }
 
             GrayscaleImage CameraOSR::depth_image()

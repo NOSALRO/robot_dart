@@ -18,7 +18,7 @@ namespace robot_dart {
 
             protected:
                 RobotDARTSimu* _simu;
-                bool _draw_main_camera, _draw_ghosts;
+                bool _draw_main_camera, _draw_debug;
 
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;

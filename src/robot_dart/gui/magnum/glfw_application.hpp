@@ -25,7 +25,7 @@ namespace robot_dart {
             protected:
                 RobotDARTSimu* _simu;
                 Magnum::Float _speed_move, _speed_strafe;
-                bool _draw_main_camera, _draw_ghosts;
+                bool _draw_main_camera, _draw_debug;
 
                 static constexpr Magnum::Float _speed = 0.05f;
 

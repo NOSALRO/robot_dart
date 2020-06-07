@@ -221,6 +221,14 @@ namespace robot_dart {
                     py::arg("ghost") = true)
                 .def("ghost", &Robot::ghost)
 
+                .def("set_draw_axis", &Robot::set_draw_axis,
+                    py::arg("body_name"),
+                    py::arg("draw") = true)
+
+                .def("remove_all_drawing_axis", &Robot::remove_all_drawing_axis)
+
+                // .def("drawing_axes", &Robot::drawing_axes)
+
                 .def_static("create_box", &Robot::create_box,
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
