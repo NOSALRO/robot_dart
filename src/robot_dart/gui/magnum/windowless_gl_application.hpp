@@ -17,6 +17,7 @@ namespace robot_dart {
                 void render() override;
 
             protected:
+                RobotDARTSimu* _simu;
                 bool _draw_main_camera, _draw_ghosts;
 
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};

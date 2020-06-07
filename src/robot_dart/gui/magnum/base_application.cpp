@@ -11,10 +11,14 @@
 
 #include <Magnum/GL/CubeMapTexture.h>
 #include <Magnum/GL/DefaultFramebuffer.h>
-#include <Magnum/GL/Mesh.h>
 #include <Magnum/GL/Renderer.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureFormat.h>
+#include <Magnum/MeshTools/Compile.h>
+#include <Magnum/MeshTools/CompressIndices.h>
+#include <Magnum/MeshTools/Interleave.h>
+#include <Magnum/Primitives/Axis.h>
+#include <Magnum/Trade/MeshData.h>
 #include <Magnum/Trade/PhongMaterialData.h>
 
 namespace robot_dart {
@@ -138,6 +142,24 @@ namespace robot_dart {
                 // lpos = {-2.f, -1.f, 2.f};
                 // light = gs::create_point_light(lpos, mat, lint, latt);
                 // _lights.push_back(light);
+
+                /* Initialize 3D axis visualization mesh */
+                _3D_axis_shader.reset(new Magnum::Shaders::VertexColor3D);
+                _3D_axis_mesh.reset(new Magnum::GL::Mesh);
+
+                Magnum::Trade::MeshData axis_data = Magnum::Primitives::axis3D();
+
+                Magnum::GL::Buffer axis_vertices;
+                axis_vertices.setData(Magnum::MeshTools::interleave(axis_data.positions3DAsArray(), axis_data.colorsAsArray()));
+
+                std::pair<Corrade::Containers::Array<char>, Magnum::MeshIndexType> compressed = Magnum::MeshTools::compressIndices(axis_data.indicesAsArray());
+                Magnum::GL::Buffer axis_indices;
+                axis_indices.setData(compressed.first);
+
+                _3D_axis_mesh->setPrimitive(Magnum::GL::MeshPrimitive::Lines)
+                    .setCount(axis_data.indexCount())
+                    .addVertexBuffer(std::move(axis_vertices), 0, Magnum::Shaders::VertexColor3D::Position{}, Magnum::Shaders::VertexColor3D::Color4{})
+                    .setIndexBuffer(std::move(axis_indices), 0, compressed.second);
             }
 
             void BaseApplication::clear_lights()
@@ -590,6 +612,8 @@ namespace robot_dart {
                 _shadow_color_texture.reset();
                 _shadow_cube_map.reset();
                 _shadow_color_cube_map.reset();
+                _3D_axis_shader.reset();
+                _3D_axis_mesh.reset();
 
                 _camera.reset();
                 _shadow_camera.reset();

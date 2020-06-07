@@ -23,6 +23,7 @@ namespace robot_dart {
                 void render() override;
 
             protected:
+                RobotDARTSimu* _simu;
                 Magnum::Float _speed_move, _speed_strafe;
                 bool _draw_main_camera, _draw_ghosts;
 

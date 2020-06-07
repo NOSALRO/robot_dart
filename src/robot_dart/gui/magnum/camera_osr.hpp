@@ -75,6 +75,7 @@ namespace robot_dart {
                 void draw_ghost(bool draw = true) { _draw_ghosts = draw; }
 
             protected:
+                RobotDARTSimu* _simu;
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;
                 Magnum::GL::Renderbuffer _color, _depth;
