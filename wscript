@@ -6,7 +6,7 @@ import fnmatch
 import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
-VERSION = '1.0'
+VERSION = '1.0.0'
 APPNAME = 'robot_dart'
 
 srcdir = '.'
@@ -244,6 +244,7 @@ def build(bld):
         version = VERSION.split('.')
         f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
         f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
+        f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
         f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
 
