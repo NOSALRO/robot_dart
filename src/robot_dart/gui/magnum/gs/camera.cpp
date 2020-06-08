@@ -17,6 +17,8 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
+#include <Magnum/EigenIntegration/GeometryIntegration.h>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {
@@ -218,7 +220,7 @@ namespace robot_dart {
 #endif
                 }
 
-                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, bool draw_ghost)
+                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, bool draw_debug)
                 {
                     // TO-DO: Maybe check if world moved?
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
@@ -227,7 +229,7 @@ namespace robot_dart {
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>> opaque, transparent;
                     for (size_t i = 0; i < drawableTransformations.size(); i++) {
                         auto& obj = static_cast<DrawableObject&>(drawableTransformations[i].first.get().object());
-                        if (!draw_ghost && obj.simu()->gui_data()->ghost(obj.shape()))
+                        if (!draw_debug && simu->gui_data()->ghost(obj.shape()))
                             continue;
                         if (obj.transparent())
                             transparent.emplace_back(drawableTransformations[i]);
@@ -244,6 +246,18 @@ namespace robot_dart {
                             });
 
                         _camera->draw(transparent);
+                    }
+
+                    /* Draw debug */
+                    if (draw_debug) {
+                        std::vector<std::pair<dart::dynamics::BodyNode*, double>> axes = simu->gui_data()->drawing_axes();
+                        for (auto& axis : axes) {
+                            Magnum::Matrix4 world_transform = Magnum::Matrix4(Magnum::Matrix4d(axis.first->getWorldTransform().matrix()));
+                            Magnum::Matrix4 scaling = Magnum::Matrix4::scaling(Magnum::Vector3(axis.second, axis.second, axis.second));
+
+                            axes_shader.setTransformationProjectionMatrix(_camera->projectionMatrix() * _camera->cameraMatrix() * world_transform * scaling)
+                                .draw(axes_mesh);
+                        }
                     }
 
                     if (_recording) {

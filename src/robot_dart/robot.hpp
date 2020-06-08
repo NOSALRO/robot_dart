@@ -169,6 +169,10 @@ namespace robot_dart {
         void set_ghost(bool ghost = true);
         bool ghost() const;
 
+        void set_draw_axis(const std::string& body_name, double size = 0.25, bool draw = true);
+        void remove_all_drawing_axis();
+        const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& drawing_axes() const;
+
         // helper functions
         // pose: Orientation-Position
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box");
@@ -189,6 +193,7 @@ namespace robot_dart {
         std::unordered_map<std::string, size_t> _dof_map, _joint_map;
         bool _cast_shadows;
         bool _is_ghost;
+        std::vector<std::pair<dart::dynamics::BodyNode*, double>> _axis_shapes;
     };
 } // namespace robot_dart
 

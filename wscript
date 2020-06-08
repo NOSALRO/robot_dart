@@ -75,7 +75,7 @@ def configure(conf):
         conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     if len(conf.env.INCLUDES_Magnum):
         conf.check_magnum_plugins(components='AssimpImporter', required=False)
-        conf.check_magnum_integration(components='Dart', required=False)
+        conf.check_magnum_integration(components='Dart Eigen', required=False)
 
     conf.env['py_flags'] = ''
     conf.env['BUILD_PYTHON'] = False
@@ -89,9 +89,10 @@ def configure(conf):
         if conf.env.CXX_NAME in ["gcc", "g++"]:
             conf.env['py_flags'] = ' -fPIC' # we need -fPIC in some Linux/gcc combinations
 
-    if len(conf.env.INCLUDES_MagnumIntegration) > 0:
+    # We require both Magnum DartIntegration and EigenIntegration
+    if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
-        conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart')
+        conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart Eigen')
 
     avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
 

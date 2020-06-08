@@ -15,7 +15,7 @@ namespace robot_dart {
             class CameraOSR : public Base {
             public:
                 static constexpr int FPS = 30;
-                CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_ghost = false);
+                CameraOSR(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, bool draw_debug = false);
                 ~CameraOSR() {}
 
                 bool done() const override { return _done; }
@@ -71,10 +71,11 @@ namespace robot_dart {
                 gs::Camera& camera() { return *_camera; }
                 const gs::Camera& camera() const { return *_camera; }
 
-                bool drawing_ghosts() const { return _draw_ghosts; }
-                void draw_ghost(bool draw = true) { _draw_ghosts = draw; }
+                bool drawing_debug() const { return _draw_debug; }
+                void draw_debug(bool draw = true) { _draw_debug = draw; }
 
             protected:
+                RobotDARTSimu* _simu;
                 Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};
                 Magnum::PixelFormat _format;
                 Magnum::GL::Renderbuffer _color, _depth;
@@ -88,7 +89,7 @@ namespace robot_dart {
 
                 std::unique_ptr<gs::Camera> _camera;
 
-                bool _draw_ghosts;
+                bool _draw_debug;
             };
         } // namespace magnum
     } // namespace gui
