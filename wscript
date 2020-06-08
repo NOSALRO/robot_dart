@@ -6,7 +6,7 @@ import fnmatch
 import glob
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
-VERSION = '1.0.0'
+VERSION = '1.0'
 APPNAME = 'robot_dart'
 
 srcdir = '.'
@@ -151,6 +151,8 @@ def summary(bld):
         bld.fatal("Build failed, because some tests failed!")
 
 def build(bld):
+    prefix = bld.get_env()['PREFIX']
+
     if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
         bld.fatal('Some libraries were not found! Cannot proceed!')
 
@@ -236,6 +238,15 @@ def build(bld):
 
     bld.add_post_fun(summary)
 
+    ##### Create the config file and install it
+    config_file = blddir + '/config.hpp'
+    with open(config_file, 'w') as f:
+        version = VERSION.split('.')
+        f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
+        f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
+    bld.install_files("${PREFIX}/include/robot_dart/", config_file)
+
     #### install the URDF library (robots)
     bld.install_files("${PREFIX}/share/robot_dart/robots/",
                     bld.path.ant_glob('res/robots/**'),
@@ -271,7 +282,6 @@ def build(bld):
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
     #### installation of the cmake config (waf install)
-    prefix = bld.get_env()['PREFIX']
     # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         magnum_dep_libs = bld.get_env()['magnum_dep_libs']
