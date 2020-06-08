@@ -365,7 +365,7 @@ namespace robot_dart {
         return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
-    void Robot::set_actuator_type(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base)
+    void Robot::set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base)
     {
         // Set all dofs to same actuator type
         if (joint_names.empty()) {
@@ -416,6 +416,11 @@ namespace robot_dart {
             else
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of actuator type. Valid values: torque, servo, velocity, passive, locked, mimic");
         }
+    }
+
+    void Robot::set_actuator_type(const std::string& type, const std::string& joint_name, bool override_mimic, bool override_base)
+    {
+        set_actuator_types(type, {joint_name}, override_mimic, override_base);
     }
 
     void Robot::set_mimic(const std::string& joint_name, const std::string& mimic_joint_name, double multiplier, double offset)

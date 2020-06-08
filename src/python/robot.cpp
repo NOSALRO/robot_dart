@@ -46,9 +46,15 @@ namespace robot_dart {
                 .def("fixed", &Robot::fixed)
                 .def("free", &Robot::free)
 
-                .def("set_actuator_type", &Robot::set_actuator_type,
+                .def("set_actuator_types", &Robot::set_actuator_types,
                     py::arg("type"),
                     py::arg("joint_names") = std::vector<std::string>(),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
+
+                .def("set_actuator_type", &Robot::set_actuator_type,
+                    py::arg("type"),
+                    py::arg("joint_name"),
                     py::arg("override_mimic") = false,
                     py::arg("override_base") = false)
 

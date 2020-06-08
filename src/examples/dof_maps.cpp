@@ -20,7 +20,7 @@ int main()
     global_robot->set_position_enforced(true);
 
     // Set actuator types to SERVO motors so that they stay in position without any controller
-    global_robot->set_actuator_type("servo");
+    global_robot->set_actuator_types("servo");
 
     float dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
@@ -76,8 +76,8 @@ int main()
     bool filter_mimics = true, filter_locked = true, filter_passive = true;
 
     global_robot->set_mimic("iiwa_joint_5", "iiwa_joint_1");
-    global_robot->set_actuator_type("locked", {"iiwa_joint_6"});
-    global_robot->set_actuator_type("passive", {"iiwa_joint_7"});
+    global_robot->set_actuator_type("locked", "iiwa_joint_6");
+    global_robot->set_actuator_type("passive", "iiwa_joint_7");
 
     //Get the controllable joints (You cannot send a command to a mimic or passive or locked joint)
     auto controllable_dofs = global_robot->dof_names(filter_mimics, filter_locked, filter_passive);

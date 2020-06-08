@@ -31,7 +31,7 @@ int main()
     // g_robot->skeleton()->setPosition(1, M_PI / 2.0);
     Eigen::Vector3d size(0, 0, 0);
 
-    global_robot->set_actuator_type("velocity");
+    global_robot->set_actuator_types("velocity");
 
     Eigen::VectorXd ctrl(4);
     ctrl << 0.0, 1.0, -1.5, 1.0;
