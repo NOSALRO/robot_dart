@@ -2,7 +2,6 @@ def build(bld):
     libs = 'BOOST EIGEN DART'
     libs_graphics = libs + ' DART_GRAPHIC'
 
-    path = bld.path.abspath()[:-len('src/tests')] + 'res'
     cxxflags = bld.get_env()['CXXFLAGS']
 
     bld.program(features='cxx test',
@@ -11,7 +10,7 @@ def build(bld):
                 target='test_robot',
                 uselib=libs,
                 use='RobotDARTSimu',
-                cxxflags = cxxflags + ['-DRESPATH="' + path + '"'],)
+                cxxflags = cxxflags)
 
     bld.program(features='cxx test',
                 source='test_control.cpp',
@@ -19,4 +18,4 @@ def build(bld):
                 target='test_control',
                 uselib=libs,
                 use='RobotDARTSimu',
-                cxxflags = cxxflags + ['-DRESPATH="' + path + '"'],)
+                cxxflags = cxxflags)

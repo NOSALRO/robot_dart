@@ -15,8 +15,8 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "res/robots/talos/talos_description"}};
-    auto global_robot = std::make_shared<robot_dart::robots::Robot>("res/robots/talos/talos.urdf", packages);
+    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
+    auto global_robot = std::make_shared<robot_dart::robots::Robot>("talos/talos.urdf", packages);
 
     // system version
     // std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};

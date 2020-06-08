@@ -8,7 +8,7 @@
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/EllipsoidShape.hpp>
 
-#include <robot_dart/robot.hpp>
+#include <robot_dart/robots/robot.hpp>
 #include <robot_dart/utils.hpp>
 
 using namespace robot_dart;
@@ -16,14 +16,14 @@ using namespace robot_dart;
 BOOST_AUTO_TEST_CASE(test_constructors)
 {
     // bad urdf file location
-    BOOST_REQUIRE_EXCEPTION(std::make_shared<Robot>("/tmp/bad-path.urdf"), Assertion, [](const Assertion&) { return true; });
+    BOOST_REQUIRE_EXCEPTION(std::make_shared<robots::Robot>("/tmp/bad-path.urdf"), Assertion, [](const Assertion&) { return true; });
     // bad skeleton pointer
     dart::dynamics::SkeletonPtr null_skeleton = nullptr;
-    BOOST_REQUIRE_EXCEPTION(std::make_shared<Robot>(null_skeleton), Assertion, [](const Assertion&) { return true; });
+    BOOST_REQUIRE_EXCEPTION(std::make_shared<robots::Robot>(null_skeleton), Assertion, [](const Assertion&) { return true; });
     // test user case
-    std::shared_ptr<Robot> robot = nullptr;
+    std::shared_ptr<robots::Robot> robot = nullptr;
     try {
-        robot = std::make_shared<Robot>(null_skeleton);
+        robot = std::make_shared<robots::Robot>(null_skeleton);
     }
     catch (Assertion&) {
     }
@@ -31,11 +31,11 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(robot == nullptr);
 
     // well-defined URDF
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<robots::Robot>("pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     // well-defined skeleton
     dart::dynamics::SkeletonPtr dummy_skel = dart::dynamics::Skeleton::create("dummy");
-    auto dummy = std::make_shared<Robot>(dummy_skel, "dummy_robot");
+    auto dummy = std::make_shared<robots::Robot>(dummy_skel, "dummy_robot");
     BOOST_REQUIRE(dummy);
 
     // check name given
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
 
 BOOST_AUTO_TEST_CASE(test_fix_free)
 {
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<robots::Robot>("pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     pendulum->fix_to_world();
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_fix_free)
 
 BOOST_AUTO_TEST_CASE(test_actuators)
 {
-    auto pexod = std::make_shared<Robot>(std::string(RESPATH) + "/robots/pexod.urdf");
+    auto pexod = std::make_shared<robots::Robot>("pexod.urdf");
     BOOST_REQUIRE(pexod);
     // fix to world
     pexod->fix_to_world();
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(test_static_creation)
     {
         Eigen::Vector6d pose;
         pose << 0., 0., 0., 2., 0., 0.;
-        auto box = Robot::create_box(Eigen::Vector3d(1., 1., 1.), pose);
+        auto box = robots::Robot::create_box(Eigen::Vector3d(1., 1., 1.), pose);
         // check construction
         BOOST_REQUIRE(box);
         // check size
@@ -187,7 +187,7 @@ BOOST_AUTO_TEST_CASE(test_static_creation)
         // check name
         BOOST_CHECK(box->name() == "box");
         // check if fixed works
-        auto box2 = Robot::create_box(Eigen::Vector3d(1., 1., 1.), pose, "fixed");
+        auto box2 = robots::Robot::create_box(Eigen::Vector3d(1., 1., 1.), pose, "fixed");
         BOOST_REQUIRE(box2);
         // check if fixed (as requested)
         BOOST_CHECK(box2->fixed());
@@ -196,7 +196,7 @@ BOOST_AUTO_TEST_CASE(test_static_creation)
     {
         Eigen::Vector6d pose;
         pose << 2., 3., 0., 0., 2., 0.;
-        auto ellipsoid = Robot::create_ellipsoid(Eigen::Vector3d(1., 2., 3.), pose);
+        auto ellipsoid = robots::Robot::create_ellipsoid(Eigen::Vector3d(1., 2., 3.), pose);
         // check construction
         BOOST_REQUIRE(ellipsoid);
         // check size
@@ -216,7 +216,7 @@ BOOST_AUTO_TEST_CASE(test_static_creation)
         // check name
         BOOST_CHECK(ellipsoid->name() == "ellipsoid");
         // check if fixed works
-        auto ellipsoid2 = Robot::create_ellipsoid(Eigen::Vector3d(1., 1., 1.), pose, "fixed");
+        auto ellipsoid2 = robots::Robot::create_ellipsoid(Eigen::Vector3d(1., 1., 1.), pose, "fixed");
         BOOST_REQUIRE(ellipsoid2);
         // check if fixed (as requested)
         BOOST_CHECK(ellipsoid2->fixed());

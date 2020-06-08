@@ -5,7 +5,7 @@ from multiprocessing import Process, Lock
 from timeit import default_timer as timer
 import os
 
-robot = rd.Robot("res/models/arm.urdf", "arm", False)
+robot = rd.Robot("arm.urdf", "arm", False)
 robot.fix_to_world()
 
 def test():

@@ -1051,14 +1051,17 @@ namespace robot_dart {
             // search current directory
             if (fs::exists(model_file))
                 return fs::current_path().string();
-            // search ROBOT_DART_PATH
+            // search <current_directory>/robots
+            if (fs::exists(fs::path("robots") / model_file))
+                return (fs::current_path() / fs::path("robots")).string();
+            // search $ROBOT_DART_PATH
             const char* env = std::getenv("ROBOT_DART_PATH");
             if (env != nullptr) {
                 fs::path env_path(env);
                 if (fs::exists(env_path / model_file))
                     return env_path.string();
             }
-            // search PREFIX/share/robot_dart
+            // search PREFIX/share/robot_dart/robots
             fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
             if (fs::exists(system_path / model_file))
                 return system_path.string();
@@ -1075,9 +1078,8 @@ namespace robot_dart {
 
             // search for the right directory for our files
             std::string file_dir = _get_path(filename);
-            std::cout << "path for our files:" << file_dir << std::endl;
             std::string model_file = file_dir + '/' + boost::trim_copy(filename);
-            std::cout << "RobotDART:: using:" << model_file << std::endl;
+            std::cout << "RobotDART:: using: " << model_file << std::endl;
             dart::dynamics::SkeletonPtr tmp_skel;
             if (!is_urdf_string) {
                 // in C++17 we would use std::filesystem!

@@ -13,8 +13,8 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", std::string(RESPATH) + "/robots/iiwa/meshes"}};
-    auto global_robot = std::make_shared<robot_dart::robots::Robot>(std::string(RESPATH) + "/robots/iiwa/iiwa14.urdf", packages);
+    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", "iiwa/meshes"}};
+    auto global_robot = std::make_shared<robot_dart::robots::Robot>("iiwa/iiwa14.urdf", packages);
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
