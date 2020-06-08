@@ -63,6 +63,23 @@ namespace robot_dart {
                 .def("actuator_type", &Robot::actuator_type)
                 .def("actuator_types", &Robot::actuator_types)
 
+                .def("set_control_mode", &Robot::set_control_mode,
+                    py::arg("mode"),
+                    py::arg("dof_names") = std::vector<std::string>(),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
+
+                .def("set_mimic", &Robot::set_mimic,
+                    py::arg("dof_name"),
+                    py::arg("mimic_dof_name"),
+                    py::arg("multiplier") = 1.,
+                    py::arg("offset") = 0.)
+
+                .def("control_mode", &Robot::control_mode)
+
+                .def("control_modes", &Robot::control_modes,
+                    py::arg("dof_names") = std::vector<std::string>())
+
                 .def("set_position_enforced", (void (Robot::*)(size_t, bool)) & Robot::set_position_enforced)
                 .def("set_position_enforced", (void (Robot::*)(const std::vector<bool>&)) & Robot::set_position_enforced)
                 .def("set_position_enforced", (void (Robot::*)(bool)) & Robot::set_position_enforced)

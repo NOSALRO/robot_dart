@@ -86,7 +86,7 @@ namespace robot_dart {
                 void record_video(const std::string& video_fname, int fps = -1)
                 {
                     int fps_computed = (fps == -1) ? _fps : fps;
-                    ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(fps != -1 && "Video FPS not set!");
+                    ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(fps_computed != -1 && "Video FPS not set!");
 
                     _magnum_app->record_video(video_fname, fps_computed);
                 }
