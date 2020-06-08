@@ -75,34 +75,17 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     pexod->fix_to_world();
 
     // set different actuator type to all DOFs
-    pexod->set_actuator_types(dart::dynamics::Joint::ActuatorType::PASSIVE);
+    pexod->set_actuator_type("passive", {}, true, true);
 
     // check if the change is applied
     auto types = pexod->actuator_types();
     for (size_t i = 0; i < types.size(); i++) {
-        BOOST_CHECK(types[i] == dart::dynamics::Joint::ActuatorType::PASSIVE);
-    }
-
-    // set different actuator type to specific DOFs
-    types[0] = dart::dynamics::Joint::ActuatorType::SERVO;
-    types[types.size() - 1] = dart::dynamics::Joint::ActuatorType::LOCKED;
-    pexod->set_actuator_types(types);
-
-    // check if the change is applied
-    types.clear();
-    types = pexod->actuator_types();
-    for (size_t i = 0; i < types.size(); i++) {
-        dart::dynamics::Joint::ActuatorType type = dart::dynamics::Joint::ActuatorType::PASSIVE;
-        if (i == 0)
-            type = dart::dynamics::Joint::ActuatorType::SERVO;
-        else if (i == types.size() - 1)
-            type = dart::dynamics::Joint::ActuatorType::LOCKED;
-        BOOST_CHECK(types[i] == type);
+        BOOST_CHECK(types[i] == "passive");
     }
 
     // check simple dof setting
-    pexod->set_actuator_type(0, dart::dynamics::Joint::ActuatorType::FORCE);
-    BOOST_CHECK(pexod->actuator_type(0) == dart::dynamics::Joint::ActuatorType::FORCE);
+    pexod->set_actuator_type("torque", {pexod->dof_names()[0]});
+    BOOST_CHECK(pexod->actuator_type(pexod->dof_names()[0]) == "torque");
 
     // enforce position limits to all DOFs
     pexod->set_position_enforced(true);
