@@ -9,7 +9,7 @@
 #include <dart/config.hpp>
 
 namespace robot_dart {
-    namespace robots { class Robot; }
+    class Robot;
 
     namespace control {
 
@@ -25,8 +25,8 @@ namespace robot_dart {
 
             void init();
 
-            void set_robot(const std::shared_ptr<robots::Robot>& robot);
-            std::shared_ptr<robots::Robot> robot() const;
+            void set_robot(const std::shared_ptr<Robot>& robot);
+            std::shared_ptr<Robot> robot() const;
 
             void activate(bool enable = true);
             bool active() const;
@@ -42,7 +42,7 @@ namespace robot_dart {
             virtual std::shared_ptr<RobotControl> clone() const = 0;
 
         protected:
-            std::weak_ptr<robots::Robot> _robot;
+            std::weak_ptr<Robot> _robot;
             Eigen::VectorXd _ctrl;
             double _weight;
             bool _active, _check_free = false;

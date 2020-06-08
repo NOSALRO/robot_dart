@@ -8,7 +8,7 @@
 int main()
 {
     std::srand(std::time(NULL));
-    auto global_robot = std::make_shared<robot_dart::robots::Robot>("pexod.urdf");
+    auto global_robot = std::make_shared<robot_dart::Robot>("pexod.urdf");
 
     global_robot->set_position_enforced(true);
 

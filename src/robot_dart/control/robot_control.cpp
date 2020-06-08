@@ -1,5 +1,5 @@
 #include "robot_control.hpp"
-#include "robot_dart/robots/robot.hpp"
+#include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
 
 #include <dart/dynamics/DegreeOfFreedom.hpp>
@@ -42,12 +42,12 @@ namespace robot_dart {
             configure();
         }
 
-        void RobotControl::set_robot(const std::shared_ptr<robots::Robot>& robot)
+        void RobotControl::set_robot(const std::shared_ptr<Robot>& robot)
         {
             _robot = robot;
         }
 
-        std::shared_ptr<robots::Robot> RobotControl::robot() const
+        std::shared_ptr<Robot> RobotControl::robot() const
         {
             return _robot.lock();
         }
