@@ -84,8 +84,8 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     }
 
     // check simple dof setting
-    pexod->set_actuator_type("torque", {pexod->dof_names()[0]});
-    BOOST_CHECK(pexod->actuator_type(pexod->dof_names()[0]) == "torque");
+    pexod->set_actuator_type("torque", {pexod->joint_names()[0]});
+    BOOST_CHECK(pexod->actuator_type(pexod->joint_names()[0]) == "torque");
 
     // enforce position limits to all DOFs
     pexod->set_position_enforced(true);

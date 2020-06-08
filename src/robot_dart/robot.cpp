@@ -365,10 +365,10 @@ namespace robot_dart {
         return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
-    void Robot::set_actuator_type(const std::string& type, const std::vector<std::string>& dof_names, bool override_mimic, bool override_base)
+    void Robot::set_actuator_type(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base)
     {
         // Set all dofs to same actuator type
-        if (dof_names.empty()) {
+        if (joint_names.empty()) {
             if (type == "torque") {
                 return _set_actuator_types(dart::dynamics::Joint::FORCE, override_mimic, override_base);
             }
@@ -391,9 +391,9 @@ namespace robot_dart {
             ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of actuator type. Valid values: torque, servo, velocity, passive, locked, mimic");
         }
 
-        for (size_t i = 0; i < dof_names.size(); i++) {
-            auto it = _dof_map.find(dof_names[i]);
-            ROBOT_DART_ASSERT(it != _dof_map.end(), "set_actuator_type: " + dof_names[i] + " is not in dof_map", );
+        for (size_t i = 0; i < joint_names.size(); i++) {
+            auto it = _joint_map.find(joint_names[i]);
+            ROBOT_DART_ASSERT(it != _joint_map.end(), "set_actuator_type: " + joint_names[i] + " is not in joint_map", );
             if (type == "torque") {
                 _set_actuator_type(it->second, dart::dynamics::Joint::FORCE, override_mimic, override_base);
             }
@@ -418,24 +418,21 @@ namespace robot_dart {
         }
     }
 
-    void Robot::set_mimic(const std::string& dof_name, const std::string& mimic_dof_name, double multiplier, double offset)
+    void Robot::set_mimic(const std::string& joint_name, const std::string& mimic_joint_name, double multiplier, double offset)
     {
-        dart::dynamics::DegreeOfFreedom* dof = _skeleton->getDof(dof_name);
-        const dart::dynamics::DegreeOfFreedom* mimic_dof = _skeleton->getDof(mimic_dof_name);
+        dart::dynamics::Joint* jnt = _skeleton->getJoint(joint_name);
+        const dart::dynamics::Joint* mimic_jnt = _skeleton->getJoint(mimic_joint_name);
 
-        ROBOT_DART_ASSERT((dof && mimic_dof), "set_mimic: DoF names do not exist", );
-
-        dart::dynamics::Joint* jnt = dof->getJoint();
-        const dart::dynamics::Joint* mimic_jnt = mimic_dof->getJoint();
+        ROBOT_DART_ASSERT((jnt && mimic_jnt), "set_mimic: joint names do not exist", );
 
         jnt->setActuatorType(dart::dynamics::Joint::MIMIC);
         jnt->setMimicJoint(mimic_jnt, multiplier, offset);
     }
 
-    std::string Robot::actuator_type(const std::string& dof_name) const
+    std::string Robot::actuator_type(const std::string& joint_name) const
     {
-        auto it = _dof_map.find(dof_name);
-        ROBOT_DART_ASSERT(it != _dof_map.end(), "actuator_type: " + dof_name + " is not in dof_map", "invalid");
+        auto it = _joint_map.find(joint_name);
+        ROBOT_DART_ASSERT(it != _joint_map.end(), "actuator_type: " + joint_name + " is not in joint_map", "invalid");
 
         auto type = _actuator_type(it->second);
         if (type == dart::dynamics::Joint::FORCE)
@@ -454,11 +451,11 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(false, "actuator_type: we should not reach here", "invalid");
     }
 
-    std::vector<std::string> Robot::actuator_types(const std::vector<std::string>& dof_names) const
+    std::vector<std::string> Robot::actuator_types(const std::vector<std::string>& joint_names) const
     {
         std::vector<std::string> str_types;
         // Get all dofs
-        if (dof_names.empty()) {
+        if (joint_names.empty()) {
             auto types = _actuator_types();
 
             for (size_t i = 0; i < types.size(); i++) {
@@ -482,11 +479,11 @@ namespace robot_dart {
             return str_types;
         }
 
-        for (size_t i = 0; i < dof_names.size(); i++) {
-            str_types.push_back(actuator_type(dof_names[i]));
+        for (size_t i = 0; i < joint_names.size(); i++) {
+            str_types.push_back(actuator_type(joint_names[i]));
         }
 
-        ROBOT_DART_ASSERT(str_types.size() == dof_names.size(), "actuator_types: sizes of retrieved modes do not match", {});
+        ROBOT_DART_ASSERT(str_types.size() == joint_names.size(), "actuator_types: sizes of retrieved modes do not match", {});
 
         return str_types;
     }
@@ -1157,13 +1154,13 @@ namespace robot_dart {
         }
     }
 
-    void Robot::_set_actuator_type(size_t dof, dart::dynamics::Joint::ActuatorType type, bool override_mimic, bool override_base)
+    void Robot::_set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic, bool override_base)
     {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "joint_index index out of bounds", );
+        auto jt = _skeleton->getJoint(joint_index);
         // Do not override 6D base if robot is free and override_base is false
-        if (free() && (!override_base && dof < 6))
+        if (free() && (!override_base && _skeleton->getRootJoint() == jt))
             return;
-        auto jt = _skeleton->getDof(dof)->getJoint();
 #if DART_VERSION_AT_LEAST(6, 7, 0)
         if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
 #endif
@@ -1172,13 +1169,14 @@ namespace robot_dart {
 
     void Robot::_set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic, bool override_base)
     {
-        ROBOT_DART_ASSERT(types.size() == _skeleton->getNumDofs(), "Actuator types vector size is not the same as the DOFs of the robot", );
-        // Ignore first 6 dofs if robot is free, and override_base is false
-        size_t start_dof = 0;
-        if (free() && !override_base)
-            start_dof = 6;
-        for (size_t i = start_dof; i < _skeleton->getNumDofs(); ++i) {
-            auto jt = _skeleton->getDof(i)->getJoint();
+        ROBOT_DART_ASSERT(types.size() == _skeleton->getNumJoints(), "Actuator types vector size is not the same as the joints of the robot", );
+        // Ignore first root joint if robot is free, and override_base is false
+        bool ignore_base = free() && !override_base;
+        auto root_jt = _skeleton->getRootJoint();
+        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+            auto jt = _skeleton->getJoint(i);
+            if (ignore_base && jt == root_jt)
+                continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
 #endif
@@ -1188,12 +1186,13 @@ namespace robot_dart {
 
     void Robot::_set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic, bool override_base)
     {
-        // Ignore first 6 dofs if robot is free, and override_base is false
-        size_t start_dof = 0;
-        if (free() && !override_base)
-            start_dof = 6;
-        for (size_t i = start_dof; i < _skeleton->getNumDofs(); ++i) {
-            auto jt = _skeleton->getDof(i)->getJoint();
+        // Ignore first root joint if robot is free, and override_base is false
+        bool ignore_base = free() && !override_base;
+        auto root_jt = _skeleton->getRootJoint();
+        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+            auto jt = _skeleton->getJoint(i);
+            if (ignore_base && jt == root_jt)
+                continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
 #endif
@@ -1201,17 +1200,17 @@ namespace robot_dart {
         }
     }
 
-    dart::dynamics::Joint::ActuatorType Robot::_actuator_type(size_t dof) const
+    dart::dynamics::Joint::ActuatorType Robot::_actuator_type(size_t joint_index) const
     {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", dart::dynamics::Joint::ActuatorType::FORCE);
-        return _skeleton->getDof(dof)->getJoint()->getActuatorType();
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "joint_index out of bounds", dart::dynamics::Joint::ActuatorType::FORCE);
+        return _skeleton->getJoint(joint_index)->getActuatorType();
     }
 
     std::vector<dart::dynamics::Joint::ActuatorType> Robot::_actuator_types() const
     {
         std::vector<dart::dynamics::Joint::ActuatorType> types;
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            types.push_back(_skeleton->getDof(i)->getJoint()->getActuatorType());
+        for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
+            types.push_back(_skeleton->getJoint(i)->getActuatorType());
         }
 
         return types;
