@@ -59,7 +59,8 @@ namespace robot_dart {
 
         // actuator type can be: torque, servo, velocity, passive, locked, mimic (only for completeness, use set_mimic to use this)
         // Be careful that actuator types are per joint and not per DoF
-        void set_actuator_type(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false);
+        void set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false);
+        void set_actuator_type(const std::string& type, const std::string& joint_name, bool override_mimic = false, bool override_base = false);
         void set_mimic(const std::string& joint_name, const std::string& mimic_joint_name, double multiplier = 1., double offset = 0.);
 
         std::string actuator_type(const std::string& joint_name) const;

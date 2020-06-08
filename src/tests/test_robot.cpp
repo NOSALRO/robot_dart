@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     pexod->fix_to_world();
 
     // set different actuator type to all DOFs
-    pexod->set_actuator_type("passive", {}, true, true);
+    pexod->set_actuator_types("passive", {}, true, true);
 
     // check if the change is applied
     auto types = pexod->actuator_types();
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     }
 
     // check simple dof setting
-    pexod->set_actuator_type("torque", {pexod->joint_names()[0]});
+    pexod->set_actuator_type("torque", pexod->joint_names()[0]);
     BOOST_CHECK(pexod->actuator_type(pexod->joint_names()[0]) == "torque");
 
     // enforce position limits to all DOFs

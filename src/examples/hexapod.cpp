@@ -12,7 +12,7 @@ int main()
 
     global_robot->set_position_enforced(true);
 
-    global_robot->set_actuator_type("servo");
+    global_robot->set_actuator_types("servo");
     global_robot->skeleton()->enableSelfCollisionCheck();
 
     auto g_robot = global_robot->clone();
