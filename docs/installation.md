@@ -134,12 +134,12 @@ cmake -DWITH_ASSIMPIMPORTER=ON -DWITH_DDSIMPORTER=ON -DWITH_JPEGIMPORTER=ON -DWI
 make -j
 sudo make install
 
-# installation of Magnum DART Integration (DART needs to be installed)
+# installation of Magnum DART Integration (DART needs to be installed) and Eigen Integration
 cd /path/to/tmp/folder
 git clone https://github.com/mosra/magnum-integration.git
 cd magnum-integration
 mkdir build && cd build
-cmake -DWITH_DART=ON ..
+cmake -DWITH_DART=ON -DWITH_EIGEN=ON ..
 make -j
 sudo make install
 ```

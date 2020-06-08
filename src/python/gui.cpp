@@ -92,7 +92,7 @@ namespace robot_dart {
                     py::arg("shadow_map_size") = 1024,
                     py::arg("max_lights") = 3,
                     py::arg("draw_main_camera") = true,
-                    py::arg("draw_ghosts") = true)
+                    py::arg("draw_debug") = true)
 
                 .def_readwrite("width", &GraphicsConfiguration::width)
                 .def_readwrite("height", &GraphicsConfiguration::height)
@@ -239,8 +239,8 @@ namespace robot_dart {
 
                 .def("camera", (Camera & (gui::magnum::CameraOSR::*)()) & gui::magnum::CameraOSR::camera, py::return_value_policy::reference)
 
-                .def("drawing_ghosts", &gui::magnum::CameraOSR::drawing_ghosts)
-                .def("draw_ghost", &gui::magnum::CameraOSR::draw_ghost,
+                .def("drawing_debug", &gui::magnum::CameraOSR::drawing_debug)
+                .def("draw_debug", &gui::magnum::CameraOSR::draw_debug,
                     py::arg("draw") = true);
 
             // Helper functions
