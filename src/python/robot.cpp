@@ -47,24 +47,7 @@ namespace robot_dart {
                 .def("free", &Robot::free)
 
                 .def("set_actuator_type", &Robot::set_actuator_type,
-                    py::arg("index"),
                     py::arg("type"),
-                    py::arg("override_mimic") = false,
-                    py::arg("override_base") = false)
-                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool, bool)) & Robot::set_actuator_types,
-                    py::arg("types"),
-                    py::arg("override_mimic") = false,
-                    py::arg("override_base") = false)
-                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool, bool)) & Robot::set_actuator_types,
-                    py::arg("types"),
-                    py::arg("override_mimic") = false,
-                    py::arg("override_base") = false)
-
-                .def("actuator_type", &Robot::actuator_type)
-                .def("actuator_types", &Robot::actuator_types)
-
-                .def("set_control_mode", &Robot::set_control_mode,
-                    py::arg("mode"),
                     py::arg("dof_names") = std::vector<std::string>(),
                     py::arg("override_mimic") = false,
                     py::arg("override_base") = false)
@@ -75,9 +58,9 @@ namespace robot_dart {
                     py::arg("multiplier") = 1.,
                     py::arg("offset") = 0.)
 
-                .def("control_mode", &Robot::control_mode)
+                .def("actuator_type", &Robot::actuator_type)
 
-                .def("control_modes", &Robot::control_modes,
+                .def("actuator_types", &Robot::actuator_types,
                     py::arg("dof_names") = std::vector<std::string>())
 
                 .def("set_position_enforced", (void (Robot::*)(size_t, bool)) & Robot::set_position_enforced)
