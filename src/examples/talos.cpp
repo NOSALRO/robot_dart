@@ -16,7 +16,7 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-    auto robot = std::make_shared<robot_dart::robots::Robot>("talos/talos.urdf", packages);
+    auto robot = std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
 
     // system version
     // std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
@@ -33,7 +33,7 @@ int main()
         robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
 
     robot_dart::RobotDARTSimu simu(0.001);
-    simu.world()->getConstraintSolver()->setCollisionDetector(dart::collision::FCLCollisionDetector::create());
+    simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
     simu.set_graphics(graphics);
@@ -47,14 +47,14 @@ int main()
 
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {"arm_left_1_joint", "arm_right_1_joint"};
-
+    robot->set_control_mode("torque");
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 10 && !simu.graphics()->done()) { 
         if (simu.schedule(simu.control_freq())) {
             Eigen::VectorXd commands(2);
             commands << sin(simu.scheduler().current_time() * 4),
-                        cos(simu.scheduler().current_time() * 4);
+                        sin(simu.scheduler().current_time() * 4);
             robot->set_commands(commands, dofs);
         }
         simu.step_world();

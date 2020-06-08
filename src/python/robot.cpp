@@ -3,7 +3,7 @@
 #include <pybind11/eigen.h>
 #include <pybind11/stl.h>
 
-#include <robot_dart/robots/robot.hpp>
+#include <robot_dart/robot.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 

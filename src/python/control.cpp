@@ -4,7 +4,7 @@
 #include <pybind11/functional.h>
 #include <pybind11/stl.h>
 
-#include <robot_dart/robots/robot.hpp>
+#include <robot_dart/robot.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/control/pd_control.hpp>

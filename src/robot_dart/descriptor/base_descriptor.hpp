@@ -6,7 +6,7 @@
 
 namespace robot_dart {
     class RobotDARTSimu;
-    namespace robots { class Robot; }
+    class Robot;
 
     namespace descriptor {
 

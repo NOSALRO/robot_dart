@@ -27,7 +27,7 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", "iiwa/meshes"}};
-    auto global_robot = std::make_shared<robot_dart::robots::Robot>("iiwa/iiwa14.urdf", packages);
+    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa14.urdf", packages);
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
@@ -72,7 +72,7 @@ int main()
     simu.add_robot(global_robot);
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
-    simu.add_robot(robot_dart::robots::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
     simu.add_camera(camera);
 
     simu.run(10.);

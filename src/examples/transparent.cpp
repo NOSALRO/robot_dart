@@ -7,7 +7,7 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-std::shared_ptr<robot_dart::robots::Robot> random_box(size_t num = 0)
+std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -15,10 +15,10 @@ std::shared_ptr<robot_dart::robots::Robot> random_box(size_t num = 0)
     pose(5) += 1.5;
     // random size
     Eigen::Vector3d size = Eigen::Vector3d::Random().array() * Eigen::Vector3d(0.1, 0.2, 0.1).array() + 0.3;
-    return robot_dart::robots::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
+    return robot_dart::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
 }
 
-std::shared_ptr<robot_dart::robots::Robot> random_sphere(size_t num = 0)
+std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -29,7 +29,7 @@ std::shared_ptr<robot_dart::robots::Robot> random_sphere(size_t num = 0)
     // Transparent spheres
     Eigen::Vector4d color;
     color << 0., 0., 1., 0.5;
-    return robot_dart::robots::Robot::create_ellipsoid(size, pose, "free", 1., color, "sphere_" + std::to_string(num));
+    return robot_dart::Robot::create_ellipsoid(size, pose, "free", 1., color, "sphere_" + std::to_string(num));
 }
 
 int main()
@@ -54,7 +54,7 @@ int main()
     }
 
     // add a simple arm
-    auto arm_robot = std::make_shared<robot_dart::robots::Robot>("/arm.urdf");
+    auto arm_robot = std::make_shared<robot_dart::Robot>("/arm.urdf");
     // pin the arm to world
     arm_robot->fix_to_world();
     arm_robot->set_position_enforced(true);

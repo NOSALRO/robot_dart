@@ -246,25 +246,25 @@ namespace robot_dart {
         return _robots.size();
     }
 
-    const std::vector<std::shared_ptr<robots::Robot>>& RobotDARTSimu::robots() const
+    const std::vector<std::shared_ptr<Robot>>& RobotDARTSimu::robots() const
     {
         return _robots;
     }
 
-    std::shared_ptr<robots::Robot> RobotDARTSimu::robot(size_t index) const
+    std::shared_ptr<Robot> RobotDARTSimu::robot(size_t index) const
     {
         ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", nullptr);
         return _robots[index];
     }
 
-    int RobotDARTSimu::robot_index(const std::shared_ptr<robots::Robot>& robot) const
+    int RobotDARTSimu::robot_index(const std::shared_ptr<Robot>& robot) const
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);
         ROBOT_DART_ASSERT(it != _robots.end(), "Robot index out of bounds", -1);
         return std::distance(_robots.begin(), it);
     }
 
-    void RobotDARTSimu::add_robot(const std::shared_ptr<robots::Robot>& robot)
+    void RobotDARTSimu::add_robot(const std::shared_ptr<Robot>& robot)
     {
         if (robot->skeleton()) {
             _robots.push_back(robot);
@@ -274,7 +274,7 @@ namespace robot_dart {
         }
     }
 
-    void RobotDARTSimu::add_visual_robot(const std::shared_ptr<robots::Robot>& robot)
+    void RobotDARTSimu::add_visual_robot(const std::shared_ptr<Robot>& robot)
     {
         if (robot->skeleton()) {
             // make robot a pure visual one -- assuming that the color is already set
@@ -303,7 +303,7 @@ namespace robot_dart {
         }
     }
 
-    void RobotDARTSimu::remove_robot(const std::shared_ptr<robots::Robot>& robot)
+    void RobotDARTSimu::remove_robot(const std::shared_ptr<Robot>& robot)
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);
         if (it != _robots.end()) {

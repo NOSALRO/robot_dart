@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
-#include <robot_dart/robots/robot.hpp>
+#include <robot_dart/robot.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/control/simple_control.hpp>
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
     BOOST_CHECK(!pd_control->active());
 
     // load a robot
-    auto pendulum = std::make_shared<robots::Robot>("pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>("pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     // set proper parameters
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
     BOOST_CHECK(!simple_control->active());
 
     // load a robot
-    auto pendulum = std::make_shared<robots::Robot>("pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>("pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     pendulum->fix_to_world();
 
@@ -125,7 +125,7 @@ BOOST_AUTO_TEST_CASE(test_simple_control)
 BOOST_AUTO_TEST_CASE(test_robot_control)
 {
     // load a robot
-    auto pendulum = std::make_shared<robots::Robot>("pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>("pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     pendulum->fix_to_world();
 
