@@ -1,5 +1,5 @@
 #include "pd_control.hpp"
-#include "robot_dart/robot.hpp"
+#include "robot_dart/robots/robot.hpp"
 #include "robot_dart/utils.hpp"
 
 namespace robot_dart {
