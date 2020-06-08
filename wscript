@@ -343,7 +343,7 @@ def build_examples(bld):
                     source = '/src/examples/' + filename,
                     includes = './src',
                     uselib = libs,
-                    defines = ['RESPATH="' + path + '"'],
+                    defines = [],
                     use = 'RobotDARTSimu',
                     target = basename + '_plain')
             # graphics version
@@ -354,7 +354,7 @@ def build_examples(bld):
                             includes = './src',
                             uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
                             use = 'RobotDARTSimu RobotDARTMagnum',
-                            defines = ['RESPATH="' + path + '"', 'GRAPHIC'],
+                            defines = ['GRAPHIC'],
                             target = basename)
 
 
