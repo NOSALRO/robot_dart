@@ -1173,6 +1173,24 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
+  
+    void Robot::set_draw_axis(const std::string& body_name, double size, bool draw)
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd, "Body name does not exist in skeleton", );
+        std::pair<dart::dynamics::BodyNode*, double> p = {bd, size};
+        auto iter = std::find(_axis_shapes.begin(), _axis_shapes.end(), p);
+        if (iter == _axis_shapes.end())
+            _axis_shapes.push_back(p);
+    }
+
+    void Robot::remove_all_drawing_axis()
+    {
+        _axis_shapes.clear();
+    }
+
+    const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& Robot::drawing_axes() const { return _axis_shapes; }
+
     std::string Robot::_get_path(const std::string& filename) const
     {
         namespace fs = boost::filesystem;
@@ -1183,9 +1201,11 @@ namespace robot_dart {
         // search current directory
         if (fs::exists(model_file))
             return fs::current_path().string();
+
         // search <current_directory>/robots
         if (fs::exists(fs::path("robots") / model_file))
             return (fs::current_path() / fs::path("robots")).string();
+
         // search $ROBOT_DART_PATH
         const char* env = std::getenv("ROBOT_DART_PATH");
         if (env != nullptr) {
@@ -1193,6 +1213,7 @@ namespace robot_dart {
             if (fs::exists(env_path / model_file))
                 return env_path.string();
         }
+
         // search PREFIX/share/robot_dart/robots
         fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
         if (fs::exists(system_path / model_file))

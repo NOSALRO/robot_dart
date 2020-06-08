@@ -13,10 +13,11 @@ namespace robot_dart {
             GlfwApplication::GlfwApplication(int argc, char** argv, RobotDARTSimu* simu, const GraphicsConfiguration& configuration)
                 : BaseApplication(configuration),
                   Magnum::Platform::Application({argc, argv}, Magnum::NoCreate),
+                  _simu(simu),
                   _speed_move(0.f),
                   _speed_strafe(0.f),
                   _draw_main_camera(configuration.draw_main_camera),
-                  _draw_ghosts(configuration.draw_ghosts)
+                  _draw_debug(configuration.draw_debug)
             {
                 /* Try 16x MSAA */
                 Configuration conf;
@@ -80,7 +81,7 @@ namespace robot_dart {
                     _camera->strafe(_speed_strafe);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _draw_ghosts);
+                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, *_3D_axis_shader, *_3D_axis_mesh, _draw_debug);
 
                     swapBuffers();
                 }
