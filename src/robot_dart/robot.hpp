@@ -43,7 +43,8 @@ namespace robot_dart {
         std::vector<RobotDamage> damages() const;
 
         const std::string& name() const;
-
+        // to use the same urdf somewhere else
+        const std::string& model_filename() const { return _model_filename; }
         void update(double t);
 
         void reinit_controllers();
@@ -251,6 +252,7 @@ namespace robot_dart {
         bool _cast_shadows;
         bool _is_ghost;
         std::vector<std::pair<dart::dynamics::BodyNode*, double>> _axis_shapes;
+        std::string _model_filename;
     };
 } // namespace robot_dart
 

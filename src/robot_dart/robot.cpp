@@ -1232,6 +1232,8 @@ namespace robot_dart {
         // search for the right directory for our files
         std::string file_dir = _get_path(filename);
         std::string model_file = file_dir + '/' + boost::trim_copy(filename);
+        // store the name for future use
+        _model_filename = model_file;
         std::cout << "RobotDART:: using: " << model_file << std::endl;
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
