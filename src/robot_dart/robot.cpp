@@ -207,6 +207,7 @@ namespace robot_dart {
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
         robot->_damages = _damages;
+        robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
             robot->add_controller(ctrl->clone(), ctrl->weight());
@@ -227,6 +228,7 @@ namespace robot_dart {
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, ghost_name + "_" + _robot_name);
         robot->_damages = _damages;
+        robot->_model_filename = _model_filename;
 
         // ghost robots have no controllers
         robot->_controllers.clear();
@@ -1235,6 +1237,7 @@ namespace robot_dart {
         // store the name for future use
         _model_filename = model_file;
         std::cout << "RobotDART:: using: " << model_file << std::endl;
+        
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
             // in C++17 we would use std::filesystem!

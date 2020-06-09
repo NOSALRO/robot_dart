@@ -244,6 +244,7 @@ namespace robot_dart {
         void _set_color_mode(
             dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
 
+        std::string _model_filename;
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
@@ -252,7 +253,6 @@ namespace robot_dart {
         bool _cast_shadows;
         bool _is_ghost;
         std::vector<std::pair<dart::dynamics::BodyNode*, double>> _axis_shapes;
-        std::string _model_filename;
     };
 } // namespace robot_dart
 
