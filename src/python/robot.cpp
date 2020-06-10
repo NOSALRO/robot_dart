@@ -46,22 +46,28 @@ namespace robot_dart {
                 .def("fixed", &Robot::fixed)
                 .def("free", &Robot::free)
 
-                .def("set_actuator_type", &Robot::set_actuator_type,
-                    py::arg("index"),
+                .def("set_actuator_types", &Robot::set_actuator_types,
                     py::arg("type"),
-                    py::arg("override_mimic") = false,
-                    py::arg("override_base") = false)
-                .def("set_actuator_types", (void (Robot::*)(const std::vector<dart::dynamics::Joint::ActuatorType>&, bool, bool)) & Robot::set_actuator_types,
-                    py::arg("types"),
-                    py::arg("override_mimic") = false,
-                    py::arg("override_base") = false)
-                .def("set_actuator_types", (void (Robot::*)(dart::dynamics::Joint::ActuatorType, bool, bool)) & Robot::set_actuator_types,
-                    py::arg("types"),
+                    py::arg("joint_names") = std::vector<std::string>(),
                     py::arg("override_mimic") = false,
                     py::arg("override_base") = false)
 
+                .def("set_actuator_type", &Robot::set_actuator_type,
+                    py::arg("type"),
+                    py::arg("joint_name"),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false)
+
+                .def("set_mimic", &Robot::set_mimic,
+                    py::arg("joint_name"),
+                    py::arg("mimic_joint_name"),
+                    py::arg("multiplier") = 1.,
+                    py::arg("offset") = 0.)
+
                 .def("actuator_type", &Robot::actuator_type)
-                .def("actuator_types", &Robot::actuator_types)
+
+                .def("actuator_types", &Robot::actuator_types,
+                    py::arg("joint_names") = std::vector<std::string>())
 
                 .def("set_position_enforced", (void (Robot::*)(size_t, bool)) & Robot::set_position_enforced)
                 .def("set_position_enforced", (void (Robot::*)(const std::vector<bool>&)) & Robot::set_position_enforced)
