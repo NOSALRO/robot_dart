@@ -46,6 +46,7 @@ namespace robot_dart {
         // to use the same urdf somewhere else
         const std::string& model_filename() const { return _model_filename; }
         const std::vector<std::pair<std::string, std::string>>& model_packages() const { return _packages; }
+
         void update(double t);
 
         void reinit_controllers();
@@ -192,9 +193,13 @@ namespace robot_dart {
         void set_joint_name(size_t joint_index, const std::string& joint_name);
         size_t joint_index(const std::string& joint_name) const;
 
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
-        void set_color_mode(
-            dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
+        // MATERIAL_COLOR, COLOR_INDEX, SHAPE_COLOR
+        // This applies only to MeshShapes. Color mode can be: "material", "assimp", or "aspect"
+        // "material" -> uses the color of the material in the mesh file
+        // "assimp" -> uses the color specified by aiMesh::mColor
+        // "aspect" -> uses the color defined in the VisualAspect (if not changed, this is what read from the URDF)
+        void set_color_mode(const std::string& color_mode);
+        void set_color_mode(const std::string& color_mode, const std::string& body_name);
 
         // GUI options
         void set_cast_shadows(bool cast_shadows = true);
