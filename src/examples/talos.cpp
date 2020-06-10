@@ -24,11 +24,8 @@ int main()
     robot->skeleton()->setPosition(2, 1.57);
 
     // Set actuator types to VELOCITY motors so that they stay in position without any controller
-    robot->set_actuator_types(dart::dynamics::Joint::VELOCITY);
-    // First 6-DOFs should always be FORCE if robot is floating base
-    for (size_t i = 0; i < 6; i++)
-        robot->set_actuator_type(i, dart::dynamics::Joint::FORCE);
-
+    robot->set_actuator_types("velocity");
+  
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
@@ -48,7 +45,6 @@ int main()
         "arm_right_1_joint", 
         "arm_right_2_joint",
         "torso_1_joint"};
-    robot->set_control_mode("velocity");
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) { 
