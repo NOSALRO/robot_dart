@@ -2,6 +2,11 @@ def build(bld):
     libs = 'BOOST EIGEN DART'
     libs_graphics = libs + ' DART_GRAPHIC'
 
+    # This is a quick hack for finding the URDFs for the testing
+    path = bld.path.abspath()[:-len('src/tests')]
+
+    defines = ["ROBOT_DART_BUILD_DIR=\"" + path + "\""]
+
     cxxflags = bld.get_env()['CXXFLAGS']
 
     bld.program(features='cxx test',
@@ -10,6 +15,7 @@ def build(bld):
                 target='test_robot',
                 uselib=libs,
                 use='RobotDARTSimu',
+                defines=defines,
                 cxxflags = cxxflags)
 
     bld.program(features='cxx test',
@@ -18,4 +24,5 @@ def build(bld):
                 target='test_control',
                 uselib=libs,
                 use='RobotDARTSimu',
+                defines=defines,
                 cxxflags = cxxflags)

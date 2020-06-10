@@ -1090,7 +1090,6 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
-  
     void Robot::set_draw_axis(const std::string& body_name, double size, bool draw)
     {
         auto bd = _skeleton->getBodyNode(body_name);
@@ -1146,15 +1145,16 @@ namespace robot_dart {
     {
         ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
 
-        // search for the right directory for our files
-        std::string file_dir = _get_path(filename);
-        std::string model_file = file_dir + '/' + boost::trim_copy(filename);
-        // store the name for future use
-        _model_filename = model_file;
-        std::cout << "RobotDART:: using: " << model_file << std::endl;
-        
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
+            // search for the right directory for our files
+            std::string file_dir = _get_path(filename);
+            std::string model_file = file_dir + '/' + boost::trim_copy(filename);
+            // store the name for future use
+            _model_filename = model_file;
+            _packages = packages;
+            std::cout << "RobotDART:: using: " << model_file << std::endl;
+
             // in C++17 we would use std::filesystem!
             boost::filesystem::path path(model_file);
             std::string extension = path.extension().string();

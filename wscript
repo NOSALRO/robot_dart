@@ -27,6 +27,7 @@ import pybind
 def options(opt):
     opt.load('compiler_cxx')
     opt.load('compiler_c')
+    opt.load('waf_unit_test')
     opt.load('boost')
     opt.load('eigen')
     opt.load('dart')
