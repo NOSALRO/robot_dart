@@ -18,6 +18,8 @@ int main()
     std::vector<std::pair<std::string, std::string>> packages = {{"icub_description", "icub/icub_description"}};
     auto robot = std::make_shared<robot_dart::Robot>("icub/icub.urdf", packages);
 
+    robot->set_color_mode("material");
+
     robot->set_position_enforced(true);
     robot->skeleton()->setPosition(5, 0.5);
     robot->skeleton()->setPosition(2, 1.57);

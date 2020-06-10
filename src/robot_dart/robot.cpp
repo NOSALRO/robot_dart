@@ -249,7 +249,7 @@ namespace robot_dart {
         }
 
         // ghost robots, by default, use the color from the VisualAspect
-        robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+        robot->set_color_mode("aspect");
 
         // ghost robots do not cast shadows
         robot->set_cast_shadows(false);
@@ -1065,19 +1065,35 @@ namespace robot_dart {
         return it->second;
     }
 
-    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
+    void Robot::set_color_mode(const std::string& color_mode)
     {
-        _set_color_mode(color_mode, _skeleton);
+        if (color_mode == "material")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, _skeleton);
+        else if (color_mode == "assimp")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::COLOR_INDEX, _skeleton);
+        else if (color_mode == "aspect")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, _skeleton);
+        else
+            ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown color mode. Valid values: material, assimp and aspect.");
     }
 
-    void Robot::set_color_mode(
-        dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name)
+    void Robot::set_color_mode(const std::string& color_mode, const std::string& body_name)
     {
+        dart::dynamics::MeshShape::ColorMode cmode;
+        if (color_mode == "material")
+            cmode = dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR;
+        else if (color_mode == "assimp")
+            cmode = dart::dynamics::MeshShape::ColorMode::COLOR_INDEX;
+        else if (color_mode == "aspect")
+            cmode = dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR;
+        else
+            ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown color mode. Valid values: material, assimp and aspect.");
+
         auto bn = _skeleton->getBodyNode(body_name);
         if (bn) {
             for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
                 dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
-                _set_color_mode(color_mode, sn);
+                _set_color_mode(cmode, sn);
             }
         }
     }
@@ -1153,7 +1169,7 @@ namespace robot_dart {
             // store the name for future use
             _model_filename = model_file;
             _packages = packages;
-            std::cout << "RobotDART:: using: " << model_file << std::endl;
+            // std::cout << "RobotDART:: using: " << model_file << std::endl;
 
             // in C++17 we would use std::filesystem!
             boost::filesystem::path path(model_file);
@@ -1229,8 +1245,7 @@ namespace robot_dart {
         update_joint_dof_maps();
     }
 
-    void Robot::_set_color_mode(
-        dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
+    void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
     {
         for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
             dart::dynamics::BodyNode* bn = skel->getBodyNode(i);
@@ -1241,8 +1256,7 @@ namespace robot_dart {
         }
     }
 
-    void Robot::_set_color_mode(
-        dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn)
+    void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn)
     {
         if (sn->getVisualAspect()) {
             dart::dynamics::MeshShape* ms

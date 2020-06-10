@@ -18,10 +18,6 @@ int main()
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
-    // Use the material information coming from the meshes instead of the URDF file
-    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR);
-    // Use the material information from the meshes only for a specific BodyNode
-    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, "iiwa_link_6");
 
     Eigen::VectorXd ctrl(7);
     ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
