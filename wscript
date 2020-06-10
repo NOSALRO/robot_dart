@@ -251,8 +251,8 @@ def build(bld):
 
     #### install the URDF library (robots)
     bld.install_files("${PREFIX}/share/robot_dart/robots/",
-                    bld.path.ant_glob('res/robots/**'),
-                    cwd=bld.path.find_dir('res/robots/'),
+                    bld.path.ant_glob('robots/**'),
+                    cwd=bld.path.find_dir('robots/'),
                     relative_trick=True)
 
     #### installation (waf install)
