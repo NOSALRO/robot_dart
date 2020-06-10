@@ -24,19 +24,12 @@ namespace robot_dart {
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot(const std::string& model_file,
-            const std::vector<std::pair<std::string, std::string>>& packages,
-            const std::string& robot_name = "robot", bool is_urdf_string = false,
-            bool cast_shadows = true, std::vector<RobotDamage> damages = {});
-        Robot(const std::string& model_file, const std::string& robot_name = "robot",
-            bool is_urdf_string = false, bool cast_shadows = true,
-            std::vector<RobotDamage> damages = {});
-        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot",
-            bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true, std::vector<RobotDamage> damages = {});
 
         std::shared_ptr<Robot> clone() const;
-        std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost",
-            const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
+        std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
 
         dart::dynamics::SkeletonPtr skeleton();
 
@@ -114,48 +107,31 @@ namespace robot_dart {
         Eigen::Vector6d com_acceleration() const;
 
         Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {});
-        void set_positions(
-            const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
+        void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
 
         Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {});
-        void set_velocities(
-            const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
+        void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
 
         Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {});
-        void set_accelerations(
-            const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
+        void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
 
         Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
-        void set_forces(
-            const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+        void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
 
         Eigen::VectorXd commands(const std::vector<std::string>& dof_names = {});
-        void set_commands(
-            const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
+        void set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
 
-        void set_external_force(const std::string& body_name, const Eigen::Vector3d& force,
-            const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false,
-            bool offset_local = true);
-        void set_external_force(size_t body_index, const Eigen::Vector3d& force,
-            const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false,
-            bool offset_local = true);
-        void add_external_force(const std::string& body_name, const Eigen::Vector3d& force,
-            const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false,
-            bool offset_local = true);
-        void add_external_force(size_t body_index, const Eigen::Vector3d& force,
-            const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false,
-            bool offset_local = true);
+        void set_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
+        void add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset = Eigen::Vector3d::Zero(), bool force_local = false, bool offset_local = true);
 
-        void set_external_torque(
-            const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
-        void set_external_torque(
-            size_t body_index, const Eigen::Vector3d& torque, bool local = false);
-        void add_external_torque(
-            const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
-        void add_external_torque(
-            size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+        void set_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
+        void add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
 
         void clear_external_forces();
 
@@ -180,8 +156,7 @@ namespace robot_dart {
         const std::unordered_map<std::string, size_t>& dof_map() const;
         const std::unordered_map<std::string, size_t>& joint_map() const;
 
-        std::vector<std::string> dof_names(bool filter_mimics = false, bool filter_locked = false,
-            bool filter_passive = false) const;
+        std::vector<std::string> dof_names(bool filter_mimics = false, bool filter_locked = false, bool filter_passive = false) const;
         std::vector<std::string> mimic_dof_names() const;
         std::vector<std::string> locked_dof_names() const;
         std::vector<std::string> passive_dof_names() const;
@@ -226,9 +201,7 @@ namespace robot_dart {
 
     protected:
         std::string _get_path(const std::string& filename) const;
-        dart::dynamics::SkeletonPtr _load_model(const std::string& filename,
-            const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(),
-            bool is_urdf_string = false);
+        dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
