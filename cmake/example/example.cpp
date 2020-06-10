@@ -24,7 +24,7 @@ struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
 int main()
 {
     std::srand(std::time(NULL));
-    auto global_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
+    auto global_robot = std::make_shared<robot_dart::Robot>("arm.urdf");
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);

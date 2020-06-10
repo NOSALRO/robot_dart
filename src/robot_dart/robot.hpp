@@ -45,6 +45,7 @@ namespace robot_dart {
         const std::string& name() const;
         // to use the same urdf somewhere else
         const std::string& model_filename() const { return _model_filename; }
+        const std::vector<std::pair<std::string, std::string>>& model_packages() const { return _packages; }
         void update(double t);
 
         void reinit_controllers();
@@ -221,25 +222,22 @@ namespace robot_dart {
     protected:
         std::string _get_path(const std::string& filename) const;
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename,
-            const std::vector<std::pair<std::string, std::string>>& packages
-            = std::vector<std::pair<std::string, std::string>>(),
+            const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(),
             bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
-        void _set_color_mode(
-            dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
-        void _set_color_mode(
-            dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
+        void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
+        void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
         void _set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
         void _set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false, bool override_base = false);
         void _set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
 
-        std::string _model_filename;
-    
         dart::dynamics::Joint::ActuatorType _actuator_type(size_t joint_index) const;
         std::vector<dart::dynamics::Joint::ActuatorType> _actuator_types() const;
 
         std::string _robot_name;
+        std::string _model_filename;
+        std::vector<std::pair<std::string, std::string>> _packages;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;
