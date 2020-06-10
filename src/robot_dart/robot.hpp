@@ -68,27 +68,14 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void set_actuator_type(size_t index, dart::dynamics::Joint::ActuatorType type,
-            bool override_mimic = false, bool override_base = false);
-        void set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types,
-            bool override_mimic = false, bool override_base = false);
-        void set_actuator_types(dart::dynamics::Joint::ActuatorType type,
-            bool override_mimic = false, bool override_base = false);
+        // actuator type can be: torque, servo, velocity, passive, locked, mimic (only for completeness, use set_mimic to use this)
+        // Be careful that actuator types are per joint and not per DoF
+        void set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false);
+        void set_actuator_type(const std::string& type, const std::string& joint_name, bool override_mimic = false, bool override_base = false);
+        void set_mimic(const std::string& joint_name, const std::string& mimic_joint_name, double multiplier = 1., double offset = 0.);
 
-        dart::dynamics::Joint::ActuatorType actuator_type(size_t index) const;
-        std::vector<dart::dynamics::Joint::ActuatorType> actuator_types() const;
-
-        // control mode can be: torque, servo, velocity, passive, locked, mimic (only for
-        // completeness, use set_mimic to use this)
-        void set_control_mode(const std::string& mode,
-            const std::vector<std::string>& dof_names = {}, bool override_mimic = false,
-            bool override_base = false);
-        void set_mimic(const std::string& dof_name, const std::string& mimic_dof_name,
-            double multiplier = 1., double offset = 0.);
-
-        std::string control_mode(const std::string& dof_name) const;
-        std::vector<std::string> control_modes(
-            const std::vector<std::string>& dof_names = {}) const;
+        std::string actuator_type(const std::string& joint_name) const;
+        std::vector<std::string> actuator_types(const std::vector<std::string>& joint_names = {}) const;
 
         void set_position_enforced(size_t dof, bool enforced);
         void set_position_enforced(const std::vector<bool>& enforced);
@@ -243,8 +230,15 @@ namespace robot_dart {
             dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(
             dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
+        void _set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
+        void _set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false, bool override_base = false);
+        void _set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
 
         std::string _model_filename;
+    
+        dart::dynamics::Joint::ActuatorType _actuator_type(size_t joint_index) const;
+        std::vector<dart::dynamics::Joint::ActuatorType> _actuator_types() const;
+
         std::string _robot_name;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
