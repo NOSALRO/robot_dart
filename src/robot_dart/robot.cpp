@@ -33,9 +33,7 @@ namespace dart {
 namespace robot_dart {
     namespace detail {
         template <int content>
-        Eigen::VectorXd dof_data(dart::dynamics::SkeletonPtr skeleton,
-            const std::vector<std::string>& dof_names,
-            const std::unordered_map<std::string, size_t>& dof_map)
+        Eigen::VectorXd dof_data(dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
         {
             // Return all values
             if (dof_names.empty()) {
@@ -75,9 +73,7 @@ namespace robot_dart {
         }
 
         template <int content>
-        void set_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton,
-            const std::vector<std::string>& dof_names,
-            const std::unordered_map<std::string, size_t>& dof_map)
+        void set_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
         {
             // Set all values
             if (dof_names.empty()) {
@@ -119,9 +115,7 @@ namespace robot_dart {
         }
 
         template <int content>
-        void add_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton,
-            const std::vector<std::string>& dof_names,
-            const std::unordered_map<std::string, size_t>& dof_map)
+        void add_dof_data(const Eigen::VectorXd& data, dart::dynamics::SkeletonPtr skeleton, const std::vector<std::string>& dof_names, const std::unordered_map<std::string, size_t>& dof_map)
         {
             // Set all values
             if (dof_names.empty()) {
@@ -163,32 +157,20 @@ namespace robot_dart {
         }
     } // namespace detail
 
-    Robot::Robot(const std::string& model_file,
-        const std::vector<std::pair<std::string, std::string>>& packages,
-        const std::string& robot_name, bool is_urdf_string, bool cast_shadows,
-        std::vector<RobotDamage> damages)
-        : _robot_name(robot_name),
-          _skeleton(_load_model(model_file, packages, is_urdf_string)),
-          _cast_shadows(cast_shadows),
-          _is_ghost(false)
+    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+        : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
     }
 
-    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string,
-        bool cast_shadows, std::vector<RobotDamage> damages)
-        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name,
-            is_urdf_string, cast_shadows, damages)
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages)
     {
     }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name,
-        bool cast_shadows, std::vector<RobotDamage> damages)
-        : _robot_name(robot_name),
-          _skeleton(skeleton),
-          _cast_shadows(cast_shadows),
-          _is_ghost(false)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages)
+        : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
@@ -215,8 +197,7 @@ namespace robot_dart {
         return robot;
     }
 
-    std::shared_ptr<Robot> Robot::clone_ghost(
-        const std::string& ghost_name, const Eigen::Vector4d& ghost_color) const
+    std::shared_ptr<Robot> Robot::clone_ghost(const std::string& ghost_name, const Eigen::Vector4d& ghost_color) const
     {
         // safely clone the skeleton
         _skeleton->getMutex().lock();
@@ -306,8 +287,7 @@ namespace robot_dart {
         return _controllers[index];
     }
 
-    void Robot::add_controller(
-        const std::shared_ptr<control::RobotControl>& controller, double weight)
+    void Robot::add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight)
     {
         _controllers.push_back(controller);
         controller->set_robot(this->shared_from_this());
@@ -686,8 +666,7 @@ namespace robot_dart {
         return detail::dof_data<0>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_positions(
-        const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
+    void Robot::set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
     {
         detail::set_dof_data<0>(positions, _skeleton, dof_names, _dof_map);
     }
@@ -697,8 +676,7 @@ namespace robot_dart {
         return detail::dof_data<1>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_velocities(
-        const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
+    void Robot::set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
     {
         detail::set_dof_data<1>(velocities, _skeleton, dof_names, _dof_map);
     }
@@ -708,8 +686,7 @@ namespace robot_dart {
         return detail::dof_data<2>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_accelerations(
-        const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
+    void Robot::set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
     {
         detail::set_dof_data<2>(accelerations, _skeleton, dof_names, _dof_map);
     }
@@ -729,8 +706,7 @@ namespace robot_dart {
         return detail::dof_data<4>(_skeleton, dof_names, _dof_map);
     }
 
-    void Robot::set_commands(
-        const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
+    void Robot::set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names)
     {
         detail::set_dof_data<4>(commands, _skeleton, dof_names, _dof_map);
     }
@@ -757,8 +733,7 @@ namespace robot_dart {
         return {F1, F2};
     }
 
-    void Robot::set_external_force(const std::string& body_name, const Eigen::Vector3d& force,
-        const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    void Robot::set_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
@@ -766,8 +741,7 @@ namespace robot_dart {
         bd->setExtForce(force, offset, force_local, offset_local);
     }
 
-    void Robot::set_external_force(size_t body_index, const Eigen::Vector3d& force,
-        const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    void Robot::set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
         ROBOT_DART_ASSERT(
             body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
@@ -776,8 +750,7 @@ namespace robot_dart {
         bd->setExtForce(force, offset, force_local, offset_local);
     }
 
-    void Robot::add_external_force(const std::string& body_name, const Eigen::Vector3d& force,
-        const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    void Robot::add_external_force(const std::string& body_name, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
@@ -785,8 +758,7 @@ namespace robot_dart {
         bd->addExtForce(force, offset, force_local, offset_local);
     }
 
-    void Robot::add_external_force(size_t body_index, const Eigen::Vector3d& force,
-        const Eigen::Vector3d& offset, bool force_local, bool offset_local)
+    void Robot::add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
         ROBOT_DART_ASSERT(
             body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
@@ -795,8 +767,7 @@ namespace robot_dart {
         bd->addExtForce(force, offset, force_local, offset_local);
     }
 
-    void Robot::set_external_torque(
-        const std::string& body_name, const Eigen::Vector3d& torque, bool local)
+    void Robot::set_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
@@ -813,8 +784,7 @@ namespace robot_dart {
         bd->setExtTorque(torque, local);
     }
 
-    void Robot::add_external_torque(
-        const std::string& body_name, const Eigen::Vector3d& torque, bool local)
+    void Robot::add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
@@ -948,8 +918,7 @@ namespace robot_dart {
 
     const std::unordered_map<std::string, size_t>& Robot::joint_map() const { return _joint_map; }
 
-    std::vector<std::string> Robot::dof_names(
-        bool filter_mimics, bool filter_locked, bool filter_passive) const
+    std::vector<std::string> Robot::dof_names(bool filter_mimics, bool filter_locked, bool filter_passive) const
     {
         std::vector<std::string> names;
         for (auto& dof : _skeleton->getDofs()) {
@@ -1156,8 +1125,7 @@ namespace robot_dart {
         return std::string();
     }
 
-    dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename,
-        const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
+    dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
         ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
 
@@ -1365,9 +1333,7 @@ namespace robot_dart {
         return std::make_shared<Robot>(box_skel, box_name);
     }
 
-    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims,
-        const Eigen::Vector6d& pose, const std::string& type, double mass,
-        const Eigen::Vector4d& color, const std::string& ellipsoid_name)
+    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
     {
         dart::dynamics::SkeletonPtr ellipsoid_skel
             = dart::dynamics::Skeleton::create(ellipsoid_name);
