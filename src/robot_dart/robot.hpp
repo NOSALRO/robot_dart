@@ -201,9 +201,7 @@ namespace robot_dart {
 
     protected:
         std::string _get_path(const std::string& filename) const;
-        dart::dynamics::SkeletonPtr _load_model(const std::string& filename,
-            const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(),
-            bool is_urdf_string = false);
+        dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
