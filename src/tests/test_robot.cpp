@@ -80,7 +80,8 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     // check if the change is applied
     auto types = pexod->actuator_types();
     for (size_t i = 0; i < types.size(); i++) {
-        BOOST_CHECK(types[i] == "passive");
+        if (pexod->skeleton()->getJoint(i)->getNumDofs() > 0)
+            BOOST_CHECK(types[i] == "passive");
     }
 
     // check simple dof setting
