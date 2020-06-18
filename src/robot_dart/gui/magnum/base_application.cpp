@@ -393,7 +393,7 @@ namespace robot_dart {
                                 .setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
                                 .setProjectionMatrix(Magnum::Matrix4::orthographicProjection({proj_size, proj_size}, near_plane, far_plane))
                                 .setViewport({_shadow_map_size, _shadow_map_size});
-                            cullFront = true; // if false, peter panning will be quite a bit, but has better acne
+                            cullFront = false; // if false, peter panning will be quite a bit, but has better acne
                         }
                         /* Spotlights */
                         else if (_lights[i].spot_cut_off() < M_PI / 2.0) {
