@@ -1256,7 +1256,7 @@ namespace robot_dart {
         auto root_jt = _skeleton->getRootJoint();
         for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
             auto jt = _skeleton->getJoint(i);
-            if (ignore_base && jt == root_jt)
+            if (jt->getNumDofs() == 0 || (ignore_base && jt == root_jt))
                 continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -1272,7 +1272,7 @@ namespace robot_dart {
         auto root_jt = _skeleton->getRootJoint();
         for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
             auto jt = _skeleton->getJoint(i);
-            if (ignore_base && jt == root_jt)
+            if (jt->getNumDofs() == 0 || (ignore_base && jt == root_jt))
                 continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
