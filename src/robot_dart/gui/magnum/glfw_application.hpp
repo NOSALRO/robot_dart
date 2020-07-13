@@ -29,7 +29,7 @@ namespace robot_dart {
 
                 static constexpr Magnum::Float _speed = 0.05f;
 
-                void viewportEvent(const Magnum::Vector2i& size) override;
+                void viewportEvent(ViewportEvent& event) override;
 
                 void drawEvent() override;
 
