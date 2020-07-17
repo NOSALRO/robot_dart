@@ -49,11 +49,11 @@ namespace robot_dart {
                 mainLoopIteration();
             }
 
-            void GlfwApplication::viewportEvent(const Magnum::Vector2i& size)
+            void GlfwApplication::viewportEvent(ViewportEvent& event)
             {
-                Magnum::GL::defaultFramebuffer.setViewport({{}, size});
+                Magnum::GL::defaultFramebuffer.setViewport({{}, event.framebufferSize()});
 
-                _camera->set_viewport(size);
+                _camera->set_viewport(event.windowSize());
             }
 
             void GlfwApplication::drawEvent()
