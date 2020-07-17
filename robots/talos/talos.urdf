@@ -25,14 +25,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/torso_2.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/torso_2.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/torso_2_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/torso_2_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -48,14 +48,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/torso_1.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/torso_1.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/torso_1.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/torso_1.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -84,14 +84,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/base_link.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/base_link.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/torso/base_link_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/torso/base_link_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -136,14 +136,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/head/head_1.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/head/head_1.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/head/head_1_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -168,14 +168,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/head/head_2.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/head/head_2.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/head/head_2_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -208,7 +208,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/sensors/orbbec/orbbec.dae"/>
+        <mesh filename="package://talos_description/meshes/sensors/orbbec/orbbec.glb"/>
       </geometry>
     </visual>
     <collision>
@@ -292,14 +292,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_1.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_1.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_1_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_1_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -326,14 +326,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_2.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_2.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_2_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_2_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -358,14 +358,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_3.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_3.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_3_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_3_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -393,14 +393,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_4.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_4.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_4_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_4_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -428,14 +428,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_5.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_5.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_5_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_5_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -460,14 +460,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_6.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_6.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_6_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_6_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -492,14 +492,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_7.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_7.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_7_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_7_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -527,14 +527,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_1.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_1.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_1_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_1_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -561,14 +561,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_2.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_2.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_2_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_2_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -593,14 +593,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_3.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_3.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_3_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_3_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -628,14 +628,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_4.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_4.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_4_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_4_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -663,14 +663,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_5.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_5.glb" scale="1 -1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_5_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_5_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -695,14 +695,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_6.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_6.glb" scale="1 -1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_6_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_6_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -727,14 +727,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_7.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_7.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/arm/arm_7_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/arm/arm_7_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -871,14 +871,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/base_link.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/base_link.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/base_link_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/base_link_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -896,14 +896,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -924,14 +924,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_double.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_double.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_double_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_double_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -952,14 +952,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -980,14 +980,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1008,14 +1008,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1036,14 +1036,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_single.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_single.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_single_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_single_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1064,14 +1064,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1099,14 +1099,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/base_link.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/base_link.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/base_link_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/base_link_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1124,14 +1124,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1152,14 +1152,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_double.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_double.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_double_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_double_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1180,14 +1180,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1208,14 +1208,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1236,14 +1236,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1264,14 +1264,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_single.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_single.glb" scale="1 1 1"/>
       </geometry>
-      <material name="Orange"/>
+      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/inner_single_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/inner_single_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1292,14 +1292,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1328,14 +1328,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_z_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_z_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_z_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_z_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1357,14 +1357,14 @@
     <visual>
       <origin rpy="0  0  0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_x_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_x_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0  0  0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_x_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_x_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1386,14 +1386,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_y_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_y_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_y_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_y_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1415,14 +1415,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/knee_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/knee_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/knee_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/knee_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1444,14 +1444,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_Y_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_Y_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_Y_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_Y_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1473,14 +1473,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_X_lo_res.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_X_lo_res.glb" scale="1 1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_X_collision.dae" scale="1 1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_X_collision.glb" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1517,14 +1517,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_z_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_z_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_z_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_z_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1546,14 +1546,14 @@
     <visual>
       <origin rpy="0  0  0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_x_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_x_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0  0  0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_x_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_x_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1575,14 +1575,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_y_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_y_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/hip_y_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/hip_y_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1604,14 +1604,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/knee_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/knee_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/knee_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/knee_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1633,14 +1633,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_Y_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_Y_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0.0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_Y_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_Y_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1662,14 +1662,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_X_lo_res.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_X_lo_res.glb" scale="1 -1 1"/>
       </geometry>
       <material name="White"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://talos_description/meshes/v2/ankle_X_collision.dae" scale="1 -1 1"/>
+        <mesh filename="package://talos_description/meshes/v2/ankle_X_collision.glb" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1716,9 +1716,6 @@
   </material>
   <material name="White">
     <color rgba="1.0 1.0 1.0 1.0"/>
-  </material>
-  <material name="Orange">
-    <color rgba="1.0 0.5 0.0 1.0"/>
   </material>
   <material name="Black">
     <color rgba="0.0 0.0 0.0 1.0"/>
