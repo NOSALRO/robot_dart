@@ -61,7 +61,7 @@ int main()
         }
         simu.step_world();
     }
-    std::cout<<"out:"<<simu.graphics()->done()<<std::endl;
+
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::cout << "benchmark time: " << elapsed_seconds.count() << "s\n";
