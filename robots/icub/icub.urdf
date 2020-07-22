@@ -40,7 +40,7 @@
     <visual name="waist_link_visual">
       <origin rpy="0 0 0" xyz="0 0 0.02"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_waist.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_waist.glb"/>
       </geometry>
     </visual>
   </link>
@@ -53,7 +53,7 @@
     <visual>
       <origin rpy="2.35619 1.5708 0.785398" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_hip_pitch_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_hip_pitch_link.glb"/>
       </geometry>
     </visual>
     <collision>
@@ -72,7 +72,7 @@
     <visual>
       <origin rpy="-2.35623 -1.5708 -0.785361" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_hip_roll_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_hip_roll_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -95,7 +95,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_hip_yaw_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_hip_yaw_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -124,7 +124,7 @@
     <visual name="l_upper_leg_visual">
       <origin rpy="0 1.5708 1.5708" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_upper_leg.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_upper_leg.glb"/>
       </geometry>
     </visual>
   </link>
@@ -143,7 +143,7 @@
     <visual name="l_lower_leg_visual">
       <origin rpy="-3.14159 0 1.5708" xyz="0.010945 0.0009175 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_lower_leg.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_lower_leg.glb"/>
       </geometry>
     </visual>
   </link>
@@ -162,7 +162,7 @@
     <visual name="l_ankle_1_visual">
       <origin rpy="1.5708 0 0" xyz="-0.001555 0 0.0009175"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_ankle_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_ankle_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -181,7 +181,7 @@
     <visual name="l_ankle_2_visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_ankle_2.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_ankle_2.glb"/>
       </geometry>
     </visual>
   </link>
@@ -201,10 +201,11 @@
       </geometry>
     </collision>
     <visual name="l_foot_visual">
-      <origin rpy="-1.5708 0 -1.5708" xyz="0.04 0 0.01"/>
+      <origin rpy="0 0 -1.5708" xyz="0.04 0 0.01"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_foot.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_foot.glb"/>   
       </geometry>
+     
     </visual>
   </link>
   <link name="r_hip_pitch_link">
@@ -216,7 +217,7 @@
     <visual>
       <origin rpy="-1.3734 -1.5708 -0.380506" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_hip_pitch_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_hip_pitch_link.glb"/>
       </geometry>
     </visual>
     <collision>
@@ -235,7 +236,7 @@
     <visual>
       <origin rpy="0.785327 -1.5708 -0.785327" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_hip_roll_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_hip_roll_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -259,7 +260,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_hip_yaw_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_hip_yaw_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -288,7 +289,7 @@
     <visual name="r_upper_leg_visual">
       <origin rpy="0 -1.5708 1.5708" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_upper_leg.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_upper_leg.glb"/>
       </geometry>
     </visual>
   </link>
@@ -307,7 +308,7 @@
     <visual name="r_lower_leg_visual">
       <origin rpy="3.14159 0 1.5708" xyz="0.010945 0.0009175 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_lower_leg.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_lower_leg.glb"/>
       </geometry>
     </visual>
   </link>
@@ -326,7 +327,7 @@
     <visual name="r_ankle_1_visual">
       <origin rpy="-1.5708 0 0" xyz="-0.001555 0 -0.0009175"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_ankle_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_ankle_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -345,7 +346,7 @@
     <visual name="r_ankle_2_visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_ankle_2.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_ankle_2.glb"/>
       </geometry>
     </visual>
   </link>
@@ -366,9 +367,9 @@
       </geometry>
     </collision>
     <visual name="r_foot_visual">
-      <origin rpy="-1.5708 0 -1.5708" xyz="0.04 0 0.01"/>
+      <origin rpy="0 0 -1.5708" xyz="0.04 0 0.01"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_foot.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_foot.glb"/>
       </geometry>
     </visual>
   </link>
@@ -387,7 +388,7 @@
     <visual name="chest_visual">
       <origin rpy="0 -1.5708 1.5708" xyz="-0.0055 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_chest.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_chest.glb"/>
       </geometry>
     </visual>
   </link>
@@ -406,7 +407,7 @@
     <visual name="lap_belt_1_visual">
       <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_lap_belt_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_lap_belt_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -419,7 +420,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_lap_belt_2.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_lap_belt_2.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -448,7 +449,7 @@
     <visual name="neck_yaw_visual">
       <origin rpy="0 -1.5708 -1.5708" xyz="0 0 -0.0055"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_neck_yaw_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_neck_yaw_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -467,7 +468,7 @@
     <visual name="neck_roll_visual">
       <origin rpy="0 -1.5708 1.5708" xyz="0 0.0055 0.0235"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_neck_roll_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_neck_roll_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -486,7 +487,7 @@
     <visual name="head_visual">
       <origin rpy="0 1.5708 -1.5708" xyz="0.0045 -0.0235 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_head.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_head.glb"/>
       </geometry>
     </visual>
   </link>
@@ -505,7 +506,7 @@
     <visual name="l_shoulder_pitch_visual">
       <origin rpy="0 1.5708 -1.5708" xyz="0 0.109285 -0.00521101"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_shoulder_pitch_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_shoulder_pitch_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -524,7 +525,7 @@
     <visual name="l_shoulder_roll_visual">
       <origin rpy="1.00126 1.5708 2.57206" xyz="-0.00154529 -0.00521101 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_shoulder_roll_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_shoulder_roll_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -537,7 +538,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_shoulder_yaw_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_shoulder_yaw_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -566,7 +567,7 @@
     <visual name="l_upper_arm_visual">
       <origin rpy="0 0 -1.309" xyz="-0.0204334 0.000143922 -0.068"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_upper_arm.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_upper_arm.glb"/>
       </geometry>
     </visual>
   </link>
@@ -585,7 +586,7 @@
     <visual name="l_elbow_1_visual">
       <origin rpy="1.5708 0 0" xyz="-0.02 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_elbow_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_elbow_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -604,7 +605,7 @@
     <visual name="l_forearm_visual">
       <origin rpy="1.39994 1.5708 2.97073" xyz="-0.000143922 0 0.0204334"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_forearm.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_forearm.glb"/>
       </geometry>
     </visual>
   </link>
@@ -623,7 +624,7 @@
     <visual name="l_wrist_1_visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_wrist_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_wrist_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -636,7 +637,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0.0204334 -0.000143922"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_l_hand.dae" scale="1 1 1"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_l_hand.glb" scale="1 1 1"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -665,7 +666,7 @@
     <visual name="r_shoulder_pitch_visual">
       <origin rpy="-0.0815582 1.5708 1.48924" xyz="0 0.109285 0.00521101"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_shoulder_pitch_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_shoulder_pitch_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -684,7 +685,7 @@
     <visual name="r_shoulder_roll_visual">
       <origin rpy="2.14034 -1.5708 -0.56954" xyz="-0.00154529 -0.00521101 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_shoulder_roll_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_shoulder_roll_link.glb"/>
       </geometry>
     </visual>
   </link>
@@ -697,7 +698,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_shoulder_yaw_link.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_shoulder_yaw_link.glb"/>
       </geometry>
       <material name="material.metal">
         <texture/>
@@ -726,7 +727,7 @@
     <visual name="r_upper_arm_visual">
       <origin rpy="-3.14159 0 1.309" xyz="-0.0204334 -0.000143922 -0.068"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_upper_arm.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_upper_arm.glb"/>
       </geometry>
     </visual>
   </link>
@@ -745,7 +746,7 @@
     <visual name="r_elbow_1_visual">
       <origin rpy="1.5708 0 0" xyz="0.02 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_elbow_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_elbow_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -764,7 +765,7 @@
     <visual name="r_forearm_visual">
       <origin rpy="0 1.5708 1.5708" xyz="0.000143922 0 -0.0204334"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_forearm.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_forearm.glb"/>
       </geometry>
     </visual>
   </link>
@@ -783,7 +784,7 @@
     <visual name="r_wrist_1_visual">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_wrist_1.dae"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_wrist_1.glb"/>
       </geometry>
     </visual>
   </link>
@@ -796,7 +797,7 @@
     <visual>
       <origin rpy="0 0 -3.14159" xyz="0 0.0204334 0.000143922"/>
       <geometry>
-        <mesh filename="package://icub_description/meshes/visual/dae/icub_r_hand.dae" scale="1 1 1"/>
+        <mesh filename="package://icub_description/meshes/visual/glb/icub_r_hand.glb" scale="1 1 1"/>
       </geometry>
       <material name="material.metal">
         <texture/>
