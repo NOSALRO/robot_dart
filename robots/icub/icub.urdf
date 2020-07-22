@@ -1074,16 +1074,6 @@
     <axis use_parent_model_frame="1" xyz="0 0 0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="r_hip_yaw">
-    <sensor name="right_leg_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 0 0 0</pose>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_leg_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_leg_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
   <joint name="l_leg_ft_sensor" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.0665"/>
     <child link="l_hip_yaw_link"/>
@@ -1091,15 +1081,6 @@
     <axis use_parent_model_frame="1" xyz="0 0 0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="l_hip_yaw">
-    <sensor name="left_leg_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_leg_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_leg_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
   <joint name="r_arm_ft_sensor" type="fixed">
     <origin rpy="0 0 0" xyz="0.015 0 0.068"/>
     <child link="r_upper_arm"/>
@@ -1108,15 +1089,6 @@
     <limit effort="0" lower="0" upper="0" velocity="0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="r_shoulder_yaw">
-    <sensor name="right_arm_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_arm_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_arm_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
   <joint name="l_arm_ft_sensor" type="fixed">
     <origin rpy="0 0 0" xyz="0.015 0 0.068"/>
     <child link="l_upper_arm"/>
@@ -1124,15 +1096,6 @@
     <axis use_parent_model_frame="1" xyz="-0 0 0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="l_shoulder_yaw">
-    <sensor name="left_arm_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_arm_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_arm_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
   <joint name="r_foot_ft_sensor" type="fixed">
     <origin rpy="0 0 0" xyz="-0.0035 0 0"/>
     <child link="right_foot"/>
@@ -1140,21 +1103,6 @@
     <axis use_parent_model_frame="1" xyz="0 0 0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="r_ankle_roll">
-    <sensor name="right_foot_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 3.14 0 0</pose>
-      <visualize>false</visualize>
-      <force_torque>
-        <measure_direction>child_to_parent</measure_direction>
-        <frame>sensor</frame>
-      </force_torque>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_foot_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_foot_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
   <joint name="l_foot_ft_sensor" type="fixed">
     <origin rpy="0 0 0" xyz="-0.0035 0 0"/>
     <child link="left_foot"/>
@@ -1162,215 +1110,6 @@
     <axis use_parent_model_frame="1" xyz="0 0 0"/>
     <dynamics damping="0" friction="0" spring_reference="0" spring_stiffness="0"/>
   </joint>
-  <gazebo reference="l_ankle_roll">
-    <sensor name="left_foot_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 -3.14 0 0</pose>
-      <visualize>false</visualize>
-      <force_torque>
-        <measure_direction>child_to_parent</measure_direction>
-        <frame>sensor</frame>
-      </force_torque>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_foot_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_foot_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="r_foot_ft_sensor">
-    <disableFixedJointLumping>true</disableFixedJointLumping>
-    <preserveFixedJoint>true</preserveFixedJoint>
-  </gazebo>
-  <gazebo reference="l_foot_ft_sensor">
-    <disableFixedJointLumping>true</disableFixedJointLumping>
-    <preserveFixedJoint>true</preserveFixedJoint>
-  </gazebo>
-  <gazebo reference="left_foot">
-    <collision name="l_foot_collision">
-      <max_contacts>10</max_contacts>
-      <surface>
-        <contact>
-          <ode>
-            <soft_erp>0.2</soft_erp>
-            <soft_cfm>0</soft_cfm>
-            <kp>18000000</kp>
-            <kd>100</kd>
-            <max_vel>100</max_vel>
-            <min_depth>0.0001</min_depth>
-          </ode>
-        </contact>
-        <friction>
-          <ode>
-            <mu>0.998000</mu>
-            <mu2>0.998000</mu2>
-            <fdir1>1 0 0</fdir1>
-          </ode>
-        </friction>
-        <bounce>
-          <restitution_coefficient>0</restitution_coefficient>
-          <threshold>100000</threshold>
-        </bounce>
-      </surface>
-    </collision>
-  </gazebo>
-  <gazebo reference="right_foot">
-    <collision name="r_foot_collision">
-      <max_contacts>10</max_contacts>
-      <surface>
-        <contact>
-          <ode>
-            <soft_erp>0.2</soft_erp>
-            <soft_cfm>0</soft_cfm>
-            <kp>18000000</kp>
-            <kd>100</kd>
-            <max_vel>100</max_vel>
-            <min_depth>0.0001</min_depth>
-          </ode>
-        </contact>
-        <friction>
-          <ode>
-            <mu>0.998000</mu>
-            <mu2>0.998000</mu2>
-            <fdir1>1 0 0</fdir1>
-          </ode>
-        </friction>
-        <bounce>
-          <restitution_coefficient>0</restitution_coefficient>
-          <threshold>100000</threshold>
-        </bounce>
-      </surface>
-    </collision>
-  </gazebo>
-  <gazebo reference="r_leg_ft_sensor">
-    <sensor name="right_leg_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 0 0 0</pose>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_leg_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_leg_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="l_leg_ft_sensor">
-    <sensor name="left_leg_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_leg_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_leg_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="r_arm_ft_sensor">
-    <sensor name="right_arm_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_arm_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_arm_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="l_arm_ft_sensor">
-    <sensor name="left_arm_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_arm_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_arm_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="r_foot_ft_sensor">
-    <sensor name="right_foot_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 3.14 0 0</pose>
-      <visualize>false</visualize>
-      <force_torque>
-        <measure_direction>child_to_parent</measure_direction>
-        <frame>sensor</frame>
-      </force_torque>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="right_foot_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_right_foot_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="l_foot_ft_sensor">
-    <sensor name="left_foot_ft" type="force_torque">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <pose>0 0 0 -3.14 0 0</pose>
-      <visualize>false</visualize>
-      <force_torque>
-        <measure_direction>child_to_parent</measure_direction>
-        <frame>sensor</frame>
-      </force_torque>
-      <plugin filename="libgazebo_yarp_forcetorque.so" name="left_foot_ft_plugin">
-        <yarpConfigurationFile>model://icub_description/conf/FT/gazebo_icub_left_foot_ft.ini</yarpConfigurationFile>
-      </plugin>
-    </sensor>
-  </gazebo>
-  <gazebo reference="head">
-    <sensor name="imu_sensor" type="imu">
-      <always_on>1</always_on>
-      <update_rate>100</update_rate>
-      <visualize>1</visualize>
-      <imu/>
-      <plugin filename="libgazebo_yarp_imu.so" name="iCub_yarp_gazebo_plugin_IMU">
-        <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_inertial.ini</yarpConfigurationFile>
-      </plugin>
-      <pose>0.0185 -0.1108 0.0066 1.5708 -0 0</pose>
-    </sensor>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_torso">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_torso.ini</yarpConfigurationFile>
-      <initialConfiguration>0.0 0.0 0.436</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_head">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_head_no_eyes.ini</yarpConfigurationFile>
-      <initialConfiguration>0.174 0.0 0.0</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_left_arm_no_arm">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_left_arm_no_hand_for_no_hand_model.ini</yarpConfigurationFile>
-      <initialConfiguration>-0.1 0.35 0.174 0.7 0.0 -0.3 0.0</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_right_arm_no_arm">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_right_arm_no_hand_for_no_hand_model.ini</yarpConfigurationFile>
-      <initialConfiguration>-0.1 0.35 0.174 0.7 0.0 -0.3 0.0</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_left_leg">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_left_leg.ini</yarpConfigurationFile>
-      <initialConfiguration>0.35 0.174 0.174 -0.698 -0.35 -0.1103125</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_controlboard.so" name="controlboard_right_leg">
-      <yarpConfigurationFile>model://icub_description/conf/gazebo_icub_right_leg.ini</yarpConfigurationFile>
-      <initialConfiguration>0.35 0.174 0.174 -0.698 -0.35 -0.1103125</initialConfiguration>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libgazebo_yarp_externalwrench.so" name="apply_external_wrench">
-      <robotNamefromConfigFile>model://icub_description/conf/gazebo_icub_robotname.ini</robotNamefromConfigFile>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libmc_gazebo.so" name="mc_gazebo">
-      <robotName>icub_description</robotName>
-      <baseName>waist</baseName>
-    </plugin>
-  </gazebo>
-  <gazebo>
-    <plugin filename="libRobotDbg.so" name="RobotDbg">
-    </plugin>
-  </gazebo>
 <!-- foot contact points -->
   <link name="fl_left_foot">
    <inertial>
