@@ -405,7 +405,7 @@
       </geometry>
     </collision>
     <visual name="lap_belt_1_visual">
-      <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+      <origin rpy="0 0 -1.5708" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://icub_description/meshes/visual/glb/icub_lap_belt_1.glb"/>
       </geometry>
