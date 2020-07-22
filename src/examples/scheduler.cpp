@@ -3,7 +3,7 @@
 #include <robot_dart/scheduler.hpp>
 
 // this is a simple example to show how the scheduling mechanism works
-// see exampls/control_loop.cpp for a simulation example
+// see examples/control_loop.cpp for a simulation example
 int main()
 {
     robot_dart::Scheduler scheduler(1e-3, true);

@@ -34,7 +34,6 @@ int main()
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     //    graphics->record_video("icub.mp4");
-
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
