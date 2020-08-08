@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2018, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/arm/arm.transmission.xacro" />
+  <xacro:include filename="$(find talos_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" />
+
+  <!-- extensions -->
+  <xacro:talos_arm_simple_transmission name="${name}" side="left" number="1" reduction="1.0" offset_value="${arm_left_1_joint_offset}" />
+  <xacro:talos_arm_simple_transmission name="${name}" side="left" number="2" reduction="1.0" offset_value="${arm_left_2_joint_offset}" />
+  <xacro:talos_arm_simple_transmission name="${name}" side="left" number="3" reduction="1.0" offset_value="${arm_left_3_joint_offset}" />
+  <xacro:talos_arm_simple_transmission name="${name}" side="left" number="4" reduction="1.0" offset_value="${arm_left_4_joint_offset}" />
+
+</robot>

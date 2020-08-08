@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(robot == nullptr);
 
     // well-defined URDF
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     // well-defined skeleton
     dart::dynamics::SkeletonPtr dummy_skel = dart::dynamics::Skeleton::create("dummy");
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
 
 BOOST_AUTO_TEST_CASE(test_fix_free)
 {
-    auto pendulum = std::make_shared<Robot>(std::string(RESPATH) + "/models/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     pendulum->fix_to_world();
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(test_fix_free)
 
 BOOST_AUTO_TEST_CASE(test_actuators)
 {
-    auto pexod = std::make_shared<Robot>(std::string(RESPATH) + "/models/pexod.urdf");
+    auto pexod = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pexod.urdf");
     BOOST_REQUIRE(pexod);
     // fix to world
     pexod->fix_to_world();
@@ -80,7 +80,8 @@ BOOST_AUTO_TEST_CASE(test_actuators)
     // check if the change is applied
     auto types = pexod->actuator_types();
     for (size_t i = 0; i < types.size(); i++) {
-        BOOST_CHECK(types[i] == "passive");
+        if (pexod->skeleton()->getJoint(i)->getNumDofs() > 0)
+            BOOST_CHECK(types[i] == "passive");
     }
 
     // check simple dof setting

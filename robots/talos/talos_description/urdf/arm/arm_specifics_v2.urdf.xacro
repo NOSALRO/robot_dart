@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="arm_1_joint_limits" params="reflect">
+    <!-- v1 TALOS has 1st arm left joint (-90,30) and right joint (-30,90) -->
+    <!-- v2 TALOS has 1st arm left joint (-90,50) and right joint (-50,90) -->
+    <limit lower="${(-67.5 - 22.5*reflect)* deg_to_rad}" upper="${(67.5 - 22.5*reflect)* deg_to_rad}" effort="${arm_1_max_effort}" velocity="${arm_1_max_vel}" />
+  </xacro:macro>
+</robot>

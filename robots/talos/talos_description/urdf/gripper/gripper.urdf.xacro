@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/deg_to_rad.xacro" />
+  <xacro:if value="$(arg enable_gazebo)">
+    <xacro:include filename="$(find talos_description)/urdf/gripper/gripper.transmission.xacro" />
+    <xacro:include filename="$(find talos_description)/urdf/gripper/gripper.gazebo.xacro" />
+  </xacro:if>
+
+
+  <xacro:macro name="talos_gripper" params="name parent reflect">
+
+            <link name="${name}_base_link">
+              <xacro:call macro="${name}_base_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/base_link.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Black" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/base_link_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_base_link_joint" type="fixed">
+              <parent link="${parent}"/>
+              <child link="${name}_base_link"/>
+              <origin xyz="0.00000 0.00000 -0.02875"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+            </joint>
+
+
+            <link name="${name}_motor_double_link">
+              <xacro:call macro="${name}_motor_double_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Orange" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/gripper_motor_double_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_joint" type="revolute">
+              <parent link="${name}_base_link"/>
+              <child link="${name}_motor_double_link"/>
+              <origin xyz="0.0 0.02025 -0.03"
+                      rpy="${0.0 * deg_to_rad} ${0.0 * deg_to_rad} ${0.0 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${-55.0 * deg_to_rad}" upper="${0.0 * deg_to_rad}" effort="1.0" velocity="1.0" />
+              <dynamics friction="1.0" damping="1.0"/>
+            </joint>
+
+
+            <link name="${name}_inner_double_link">
+              <xacro:call macro="${name}_inner_double_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/inner_double.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Orange" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/inner_double_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_inner_double_joint" type="revolute">
+              <parent link="${name}_base_link"/>
+              <child link="${name}_inner_double_link"/>
+              <origin xyz="0.00000 0.00525 -0.05598"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${-60.0 * deg_to_rad}" upper="${0.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${1.0}" offset="0.0" />
+            </joint>
+
+
+
+            <link name="${name}_fingertip_1_link">
+              <xacro:call macro="${name}_fingertip_1_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Black" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+
+            <joint name="${name}_fingertip_1_joint" type="revolute">
+              <parent link="${name}_inner_double_link"/>
+              <child link="${name}_fingertip_1_link"/>
+              <origin xyz="0.03200 0.04589 -0.06553"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${0.0 * deg_to_rad}" upper="${60.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${-1.0}" offset="0.0" />
+            </joint>
+
+
+            <link name="${name}_fingertip_2_link">
+              <xacro:call macro="${name}_fingertip_2_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Black" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_fingertip_2_joint" type="revolute">
+              <parent link="${name}_inner_double_link"/>
+              <child link="${name}_fingertip_2_link"/>
+              <origin xyz="-0.03200 0.04589 -0.06553"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${0.0 * deg_to_rad}" upper="${60.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${-1.0}" offset="0.0" />
+            </joint>
+
+
+            <link name="${name}_motor_single_link">
+              <xacro:call macro="${name}_motor_single_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Orange" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/gripper_motor_single_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_motor_single_joint" type="revolute">
+              <parent link="${name}_base_link"/>
+              <child link="${name}_motor_single_link"/>
+              <origin xyz="0.00000 -0.02025 -0.03000"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${0.0 * deg_to_rad}" upper="${60.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${-1.0}" offset="0.0" />
+            </joint>
+
+
+
+            <link name="${name}_inner_single_link">
+              <xacro:call macro="${name}_inner_single_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/inner_single.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Orange" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/inner_single_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_inner_single_joint" type="revolute">
+              <parent link="${name}_base_link"/>
+              <child link="${name}_inner_single_link"/>
+              <origin xyz="0.00000 -0.00525 -0.05598"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${0.0 * deg_to_rad}" upper="${60.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${-1.0}" offset="0.0" />
+            </joint>
+
+
+            <link name="${name}_fingertip_3_link">
+              <xacro:call macro="${name}_fingertip_3_link_inertial" />
+
+              <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip.dae" scale="1 1 1"/>
+                </geometry>
+                <material name="Black" />
+              </visual>
+
+              <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                  <mesh filename="package://talos_description/meshes/gripper/fingertip_collision.dae" scale="1 1 1"/>
+                </geometry>
+              </collision>
+            </link>
+
+            <joint name="${name}_fingertip_3_joint" type="revolute">
+              <parent link="${name}_inner_single_link"/>
+              <child link="${name}_fingertip_3_link"/>
+              <origin xyz="0.00000 -0.04589 -0.06553"
+                      rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${180.00000 * deg_to_rad}"/>
+              <axis xyz="1 0 0" />
+              <limit lower="${0.0 * deg_to_rad}" upper="${60.0 * deg_to_rad}" effort="100.0" velocity="1.0" />
+              <mimic joint="${name}_joint" multiplier="${-1.0}" offset="0.0" />
+            </joint>
+
+
+
+        <xacro:if value="$(arg enable_gazebo)">
+          <xacro:virtual_joints name="${name}" />
+          <xacro:gripper_transmission name="${name}" reduction="1.0" />
+        </xacro:if>
+
+        <!-- virtual mimic joints -->
+<!--         <xacro:gripper_virtual_transmission name="${name}_inner_double" reduction="1.0"/>
+        <xacro:gripper_virtual_transmission name="${name}_fingertip_1" reduction="1.0"/>
+        <xacro:gripper_virtual_transmission name="${name}_fingertip_2" reduction="1.0"/>
+        <xacro:gripper_virtual_transmission name="${name}_inner_single" reduction="1.0"/>
+        <xacro:gripper_virtual_transmission name="${name}_motor_single" reduction="1.0"/>
+        <xacro:gripper_virtual_transmission name="${name}_fingertip_3" reduction="1.0"/> -->
+
+  </xacro:macro>
+
+</robot>

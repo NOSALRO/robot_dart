@@ -22,7 +22,7 @@ class MyController(rd.RobotControl):
         return MyController(self._ctrl, self._controllable_dofs)
 
 # Load robot from URDF
-robot = rd.Robot("res/models/arm.urdf", "arm", False)
+robot = rd.Robot("arm.urdf", "arm", False)
 robot.fix_to_world()
 
 # Initiate custom controller

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/torso/torso.transmission.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/sensors/imu.urdf.xacro" />
+
+ <!--Constant parameters-->
+  <xacro:property name="torso_max_vel"  value="5.4" />
+  <xacro:property name="torso_max_effort"  value="200.0" />
+  <xacro:property name="torso_eps"      value="0.02" />
+
+  <xacro:macro name="talos_torso" params="name">
+    <!--************************-->
+    <!--        TORSO_2  (TILT) -->
+    <!--************************-->
+    <link name="${name}_2_link">
+      <xacro:call macro="${name}_2_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/torso_2.dae" scale="1 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/torso_2_collision.dae" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+    <!--************************-->
+    <!--        TORSO_1  (PAN)  -->
+    <!--************************-->
+    <link name="${name}_1_link">
+      <xacro:call macro="${name}_1_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/torso_1.dae" scale="1 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/torso_1.dae" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_1_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="${name}_1_link"/>
+      <!-- XXX AS: The kinematic chain order for the torso was reversed manually. This value does not match the CAD model. XXX -->
+      <origin xyz="0.0 0.0 0.0722"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${-72.00000 * deg_to_rad}" upper="${72.00000 * deg_to_rad}"
+             effort="${torso_max_effort}" velocity="${torso_max_vel}" />
+      <dynamics damping="1.0" friction="1.0"/>
+
+      <!-- <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${-15.0 * deg_to_rad + torso_eps}"
+                         soft_upper_limit="${ 45.0 * deg_to_rad - torso_eps}" /> -->
+    </joint>
+
+    <!--************************-->
+    <!--        BASE_LINK       -->
+    <!--************************-->
+    <link name="base_link">
+      <xacro:call macro="base_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/base_link.dae" scale="1 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/torso/base_link_collision.dae" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_2_joint" type="revolute">
+      <parent link="${name}_1_link"/>
+      <child link="${name}_2_link"/>
+      <origin xyz="0.0 0.0 0.0"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="${-13.0 * deg_to_rad}" upper="${42.0 * deg_to_rad}"
+             effort="${torso_max_effort}" velocity="${torso_max_vel}"/>
+      <dynamics friction="1.0" damping="1.0"/>
+
+      <!-- <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-75.00000 * deg_to_rad + eps_radians}"
+                          soft_upper_limit="${75.00000 * deg_to_rad - eps_radians}" /> -->
+
+    </joint>
+
+    <xacro:talos_imu name="imu" parent="${name}_2_link" update_rate="100.0">
+        <origin xyz="0.04925 0 0.078" rpy="${180.0*deg_to_rad} 0 ${90.0*deg_to_rad}"/>
+    </xacro:talos_imu>
+
+
+    <xacro:if value="$(arg enable_gazebo)">
+      <gazebo reference="${name}_1_link">
+          <mu1>0.9</mu1>
+          <mu2>0.9</mu2>
+          <material>Gazebo/White</material>
+      </gazebo>
+      <gazebo reference="${name}_2_link">
+          <mu1>0.9</mu1>
+          <mu2>0.9</mu2>
+          <material>Gazebo/White</material>
+      </gazebo>
+      <gazebo reference="base_link">
+          <mu1>0.9</mu1>
+          <mu2>0.9</mu2>
+          <material>Gazebo/White</material>
+      </gazebo>
+
+      <gazebo reference="${name}_1_joint">
+          <implicitSpringDamper>1</implicitSpringDamper>
+      </gazebo>
+      <gazebo reference="${name}_2_joint">
+          <implicitSpringDamper>1</implicitSpringDamper>
+          <provideFeedback>1</provideFeedback>
+      </gazebo>
+
+
+      <!-- extensions -->
+      <xacro:talos_torso_differential_transmission name="${name}" number1="1" number2="2"
+                                                  act_reduction1="1.0" act_reduction2="1.0"
+                                                  jnt_reduction1="1.0" jnt_reduction2="1.0" />
+    </xacro:if>
+  </xacro:macro>
+
+</robot>
+

@@ -10,10 +10,12 @@ namespace robot_dart {
     namespace control {
         class RobotControl;
     }
-
     struct RobotDamage {
         RobotDamage() {}
-        RobotDamage(const std::string& type, const std::string& data, void* extra = nullptr) : type(type), data(data), extra(extra) {}
+        RobotDamage(const std::string& type, const std::string& data, void* extra = nullptr)
+            : type(type), data(data), extra(extra)
+        {
+        }
 
         std::string type;
         std::string data;
@@ -34,6 +36,9 @@ namespace robot_dart {
         std::vector<RobotDamage> damages() const;
 
         const std::string& name() const;
+        // to use the same urdf somewhere else
+        const std::string& model_filename() const { return _model_filename; }
+        const std::vector<std::pair<std::string, std::string>>& model_packages() const { return _packages; }
 
         void update(double t);
 
@@ -45,7 +50,8 @@ namespace robot_dart {
 
         std::shared_ptr<control::RobotControl> controller(size_t index) const;
 
-        void add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight = 1.0);
+        void add_controller(
+            const std::shared_ptr<control::RobotControl>& controller, double weight = 1.0);
         void remove_controller(const std::shared_ptr<control::RobotControl>& controller);
         void remove_controller(size_t index);
         void clear_controllers();
@@ -88,7 +94,8 @@ namespace robot_dart {
         std::vector<double> cfriction_coeffs() const;
 
         Eigen::Isometry3d base_pose() const;
-        // Set the pose of the robot base (changes the transformation of the parent joint of the root body)
+        // Set the pose of the robot base (changes the transformation of the parent joint of the
+        // root body)
         void set_base_pose(const Eigen::Isometry3d& tf);
 
         size_t num_dofs() const;
@@ -161,8 +168,13 @@ namespace robot_dart {
         void set_joint_name(size_t joint_index, const std::string& joint_name);
         size_t joint_index(const std::string& joint_name) const;
 
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode);
-        void set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name);
+        // MATERIAL_COLOR, COLOR_INDEX, SHAPE_COLOR
+        // This applies only to MeshShapes. Color mode can be: "material", "assimp", or "aspect"
+        // "material" -> uses the color of the material in the mesh file
+        // "assimp" -> uses the color specified by aiMesh::mColor
+        // "aspect" -> uses the color defined in the VisualAspect (if not changed, this is what read from the URDF)
+        void set_color_mode(const std::string& color_mode);
+        void set_color_mode(const std::string& color_mode, const std::string& body_name);
 
         // GUI options
         void set_cast_shadows(bool cast_shadows = true);
@@ -177,17 +189,23 @@ namespace robot_dart {
 
         // helper functions
         // pose: Orientation-Position
-        static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& box_name = "box");
+        static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
+            const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& box_name = "box");
 
-        static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free", double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0), const std::string& ellipsoid_name = "ellipsoid");
+        static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
+            const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& ellipsoid_name = "ellipsoid");
 
     protected:
+        std::string _get_path(const std::string& filename) const;
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
         void _set_damages(const std::vector<RobotDamage>& damages);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
-
         void _set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
         void _set_actuator_types(const std::vector<dart::dynamics::Joint::ActuatorType>& types, bool override_mimic = false, bool override_base = false);
         void _set_actuator_types(dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
@@ -196,6 +214,8 @@ namespace robot_dart {
         std::vector<dart::dynamics::Joint::ActuatorType> _actuator_types() const;
 
         std::string _robot_name;
+        std::string _model_filename;
+        std::vector<std::pair<std::string, std::string>> _packages;
         dart::dynamics::SkeletonPtr _skeleton;
         std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;

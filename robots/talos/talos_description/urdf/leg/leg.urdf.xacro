@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="talos">
+
+  <xacro:include filename="$(find talos_description)/urdf/leg/leg.transmission.xacro" />
+
+  <xacro:property name="deg_to_rad"       value="0.01745329251994329577" />
+  <xacro:property name="eps_radians"      value="0.008" /> <!-- 0.45deg -->
+  <xacro:property name="eps_meters"       value="0.005" />
+  <xacro:property name="leg_reduction"    value="1.0" />
+  <xacro:property name="leg_friction"     value="0.0" />
+  <xacro:property name="leg_damping"      value="0.0" />
+
+
+  <xacro:macro name="talos_leg" params="prefix reflect">
+    <!-- Joint hip_z (mesh link) : child link hip_x -> parent link base_link -->
+
+    <link name="leg_${prefix}_1_link">
+      <xacro:call macro="leg_${prefix}_1_link_inertial" />
+
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/hip_z_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+           <mesh filename="package://talos_description/meshes/v2/hip_z_collision.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="leg_${prefix}_1_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="leg_${prefix}_1_link"/>
+      <origin xyz="-0.02 ${reflect*0.08500} -0.27105"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${(-55.0 + 35.0*reflect)*deg_to_rad}" upper="${(55.0 + 35.0*reflect)*deg_to_rad}" effort="100" velocity="3.87" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+
+    <!-- Joint hip_x (mesh link) : child link hip_y -> parent link hip_z -->
+
+    <link name="leg_${prefix}_2_link">
+      <xacro:call macro="leg_${prefix}_2_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0.0" rpy="0  0  0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/hip_x_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.0" rpy="0  0  0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/hip_x_collision.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="leg_${prefix}_2_joint" type="revolute">
+      <parent link="leg_${prefix}_1_link"/>
+      <child link="leg_${prefix}_2_link"/>
+      <origin xyz="0.00000 0.00000 0.00000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="1 0 0" />
+      <limit lower="-0.5236" upper="0.5236" effort="160" velocity="5.8" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+    <!-- Joint hip_y (mesh link) : child link knee -> parent link hip_x -->
+
+    <link name="leg_${prefix}_3_link">
+      <xacro:call macro="leg_${prefix}_3_link_inertial" />
+
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/hip_y_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+           <mesh filename="package://talos_description/meshes/v2/hip_y_collision.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="leg_${prefix}_3_joint" type="revolute">
+      <parent link="leg_${prefix}_2_link"/>
+      <child link="leg_${prefix}_3_link"/>
+      <origin xyz="0.00000 0.00000 0.00000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="-2.095" upper="0.7" effort="160" velocity="5.8" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+    <!-- Joint knee (mesh link) : child link ankle_y -> parent link hip_y -->
+
+    <link name="leg_${prefix}_4_link">
+      <xacro:call macro="leg_${prefix}_4_link_inertial" />
+
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/knee_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+           <mesh filename="package://talos_description/meshes/v2/knee_collision.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="leg_${prefix}_4_joint" type="revolute">
+      <parent link="leg_${prefix}_3_link"/>
+      <child link="leg_${prefix}_4_link"/>
+
+      <origin xyz="0.00000 0.00000 -0.38000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="0" upper="2.618" effort="400" velocity="7" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+    <!-- Joint ankle_y (mesh link) : child link ankle_x -> parent link knee -->
+
+    <link name="leg_${prefix}_5_link">
+      <!-- XXX AS: this link has moving lever and inertial parameters should slightly vary depending on configuration. XXX -->
+      <xacro:call macro="leg_${prefix}_5_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/ankle_Y_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/ankle_Y_collision.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="leg_${prefix}_5_joint" type="revolute">
+      <parent link="leg_${prefix}_4_link"/>
+      <child link="leg_${prefix}_5_link"/>
+      <origin xyz="0.00000 0.00000 -0.32500"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="-1.27" upper="0.68" effort="160" velocity="5.8" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+    <!-- Joint ankle_x (mesh link) : child link None -> parent link ankle_y -->
+
+    <link name="leg_${prefix}_6_link">
+      <xacro:call macro="leg_${prefix}_6_link_inertial" />
+
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://talos_description/meshes/v2/ankle_X_lo_res.dae" scale="1 ${reflect*1} 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+
+      <xacro:talos_foot_collision />
+    </link>
+
+    <joint name="leg_${prefix}_6_joint" type="revolute">
+      <parent link="leg_${prefix}_5_link"/>
+      <child link="leg_${prefix}_6_link"/>
+      <origin xyz="0.00000 0.00000 0.00000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="1 0 0" />
+      <limit lower="-0.5236" upper="0.5236" effort="100" velocity="4.8" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+  <!-- from here is copy paste -->
+
+    <link name="${prefix}_sole_link">
+      <xacro:call macro="${prefix}_sole_link_inertial" />
+    </link>
+
+    <joint name="leg_${prefix}_sole_fix_joint" type="fixed">
+      <parent link="leg_${prefix}_6_link" />
+      <child link="${prefix}_sole_link" />
+      <origin xyz="0.00 0.00 -0.107" rpy="0 0 0" />
+      <axis xyz="1 0 0" />
+      <dynamics friction="${leg_friction}" damping="${leg_damping}"/>
+    </joint>
+
+    <xacro:if value="$(arg enable_gazebo)">
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="1" reduction="${leg_reduction}" />
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="2" reduction="${leg_reduction}" />
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="3" reduction="${leg_reduction}" />
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="4" reduction="${leg_reduction}" />
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="5" reduction="${leg_reduction}" />
+      <xacro:talos_leg_simple_transmission side="${prefix}" number="6" reduction="${leg_reduction}" />
+
+    <gazebo reference="leg_${prefix}_1_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_2_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_3_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_4_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_5_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+    </gazebo>
+
+    <!-- contact model for foot surface -->
+    <gazebo reference="leg_${prefix}_6_link">
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1>1 0 0</fdir1>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.00</minDepth>
+      <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference="leg_${prefix}_1_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_2_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_3_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_4_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_5_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_6_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+      <provideFeedback>1</provideFeedback>
+    </gazebo>
+
+    <gazebo reference="leg_${prefix}_1_link">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_2_link">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_3_link">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_4_link">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_5_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+    <gazebo reference="leg_${prefix}_6_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:if>
+
+  </xacro:macro>
+
+</robot>

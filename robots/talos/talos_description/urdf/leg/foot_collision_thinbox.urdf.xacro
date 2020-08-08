@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="talos">
+    <xacro:macro name="talos_foot_collision">
+        <collision>
+            <origin xyz="0 0 -0.1" rpy="0 0 0" />
+            <geometry>
+                <box size="0.21 0.13 0.02"/>
+            </geometry>
+        </collision>
+    </xacro:macro>
+</robot>

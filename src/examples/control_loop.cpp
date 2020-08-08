@@ -8,7 +8,7 @@
 
 int main()
 {
-    auto robot = std::make_shared<robot_dart::Robot>("res/models/pendulum.urdf");
+    auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
     robot->fix_to_world();
     robot->set_position_enforced(false);
     robot->skeleton()->setPosition(0, M_PI);

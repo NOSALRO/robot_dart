@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2013, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+  ASUS Xtion Pro Live
+    - visual model, without base
+    - collision geometry
+    - TF frames
+    - loads Gazebo plugin
+
+    Note: There is a bug that Gazebo in ROS Fuerte ignores the roll/pitch/yaw in the visual tag,
+          therefore it needs to be in a separate link, with the orientation specified at the joint.
+
+    ToDo: Fix visual mesh, re-scale it, & the origin is not centered along the frontal axis.
+          Can simplify collision mesh.
+          Rotate origin in mesh, to match the orientation of the base link and bypass the bug.
+
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find reemc)/urdf/sensors/calibration.xacro" />
+  <xacro:include filename="$(find reemc)/urdf/sensors/openni.gazebo.xacro" />
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <!-- Macro -->
+  <xacro:macro name="xtion_pro_live" params="name parent *origin *calibration_origin">
+    <!-- base link -->
+    <joint name="${name}_joint" type="fixed">
+      <xacro:call macro="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+    <link name="${name}_link">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0"  ixy="0.0"  ixz="0.0"
+                 iyy="0.0"  iyz="0.0"
+                 izz="0.0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://reemc/meshes/sensors/xtion_pro_live/xtion_pro_live.dae" />
+        </geometry>
+        <material name="Grey">
+          <color rgba="0.5 0.5 0.5 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="-0.02 0.0025 0" rpy="0 0 0"/> <!--TODO: Tune x coordinate. In Gazebo 1.0.2 collision geom conflicts with RGBD sensor, WTF?!-->
+        <geometry>
+          <box size="0.04 0.185 0.03"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Xtion IR sensor physical attachment -->
+    <joint name="${name}_ir_joint" type="fixed">
+      <!-- This relates the IR sensor to the Xtion base link -->
+      <!-- 4.8 cm because sensors are offset to right, from center -->
+      <origin xyz="0 0.048 0" rpy="0 0 0"/>
+      <parent link="${name}_link"/>
+      <child link="${name}_ir_link"/>
+    </joint>
+    <link name="${name}_ir_link">
+      <!-- This link is the reference for the IR sensor in Gazebo, so it has inertia properties -->
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0"  ixy="0.0"  ixz="0.0"
+                 iyy="0.0"  iyz="0.0"
+                 izz="0.0" />
+      </inertial>
+    </link>
+    <!-- Xtion IR sensor frame -->
+    <joint name="${name}_ir_optical_frame_joint" type="fixed">
+      <xacro:call macro="calibration_origin" /> <!-- macro argument -->
+      <parent link="${name}_ir_link"/>
+      <child link="${name}_ir_optical_frame"/>
+    </joint>
+    <link name="${name}_ir_optical_frame">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0"  ixy="0.0"  ixz="0.0"
+                 iyy="0.0"  iyz="0.0"
+                 izz="0.0" />
+      </inertial>
+    </link>
+    <!-- OpenNI IR sensor Gazebo extensions -->
+    <xacro:openni_ir_gazebo_v0 link_name="${name}_ir_link" frame_name="${name}_ir_optical_frame" camera_name="${name}" />
+
+    <!-- Xtion RGB sensor physical attachment -->
+    <joint name="${name}_rgb_joint" type="fixed">
+      <!-- The measured distance from RGB lens back to IR lens, approx 2.5cm, but PR2 is using 3.0cm -->
+      <origin xyz="0 -0.025 0" rpy="0 0 0"/>
+      <parent link="${name}_ir_link"/>
+      <child link="${name}_rgb_link"/>
+    </joint>
+    <link name="${name}_rgb_link" >
+      <!-- This link is the reference for the RGB sensor in Gazebo, so it has inertia properties -->
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0"  ixy="0.0"  ixz="0.0"
+                 iyy="0.0"  iyz="0.0"
+                 izz="0.0" />
+      </inertial>
+    </link>
+    <!-- Xtion RGB sensor frame -->
+    <joint name="${name}_rgb_optical_frame_joint" type="fixed">
+      <xacro:call macro="calibration_origin" /> <!-- macro argument -->
+      <parent link="${name}_rgb_link"/>
+      <child link="${name}_rgb_optical_frame"/>
+    </joint>
+    <link name="${name}_rgb_optical_frame">
+       <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0"  ixy="0.0"  ixz="0.0"
+                 iyy="0.0"  iyz="0.0"
+                 izz="0.0" />
+      </inertial>
+    </link>
+    <!-- OpenNI RGB sensor Gazebo extensions -->
+    <xacro:openni_rgb_gazebo_v0 link_name="${name}_rgb_link" frame_name="${name}_rgb_optical_frame" camera_name="${name}" />
+
+  </xacro:macro>
+
+</robot>

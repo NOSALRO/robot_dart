@@ -27,6 +27,7 @@ import pybind
 def options(opt):
     opt.load('compiler_cxx')
     opt.load('compiler_c')
+    opt.load('waf_unit_test')
     opt.load('boost')
     opt.load('eigen')
     opt.load('dart')
@@ -135,6 +136,9 @@ def configure(conf):
         if '-std=c++0x' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
+    
+    # add the prefix
+    conf.env['CXXFLAGS'] = conf.env['CXXFLAGS']
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):
@@ -149,6 +153,8 @@ def summary(bld):
         bld.fatal("Build failed, because some tests failed!")
 
 def build(bld):
+    prefix = bld.get_env()['PREFIX']
+
     if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
         bld.fatal('Some libraries were not found! Cannot proceed!')
 
@@ -173,11 +179,12 @@ def build(bld):
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
     libs = 'BOOST EIGEN DART PTHREAD'
-
+    defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
                 includes = './src',
                 uselib = libs,
+                defines = defines,
                 target = 'RobotDARTSimu')
 
     build_graphic = False
@@ -191,6 +198,7 @@ def build(bld):
                     includes = './src',
                     uselib = bld.env['magnum_libs'] + libs,
                     use = 'RobotDARTSimu',
+                    defines = defines,
                     target = 'RobotDARTMagnum')
 
         build_graphic = True
@@ -199,7 +207,6 @@ def build(bld):
     if bld.env['BUILD_PYTHON'] == True:
         graphic_libs = ''
         graphic_lib = ''
-        defines = []
         if bld.get_env()['BUILD_MAGNUM'] == True:
             graphic_libs = bld.env['magnum_libs']
             graphic_lib = 'RobotDARTMagnum'
@@ -233,6 +240,22 @@ def build(bld):
 
     bld.add_post_fun(summary)
 
+    ##### Create the config file and install it
+    config_file = blddir + '/config.hpp'
+    with open(config_file, 'w') as f:
+        version = VERSION.split('.')
+        f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
+        f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
+        f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
+    bld.install_files("${PREFIX}/include/robot_dart/", config_file)
+
+    #### install the URDF library (robots)
+    bld.install_files("${PREFIX}/share/robot_dart/robots/",
+                    bld.path.ant_glob('robots/**'),
+                    cwd=bld.path.find_dir('robots/'),
+                    relative_trick=True)
+
     #### installation (waf install)
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
@@ -262,7 +285,6 @@ def build(bld):
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
     #### installation of the cmake config (waf install)
-    prefix = bld.get_env()['PREFIX']
     # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         magnum_dep_libs = bld.get_env()['magnum_dep_libs']
@@ -334,7 +356,7 @@ def build_examples(bld):
                     source = '/src/examples/' + filename,
                     includes = './src',
                     uselib = libs,
-                    defines = ['RESPATH="' + path + '"'],
+                    defines = [],
                     use = 'RobotDARTSimu',
                     target = basename + '_plain')
             # graphics version
@@ -345,7 +367,7 @@ def build_examples(bld):
                             includes = './src',
                             uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
                             use = 'RobotDARTSimu RobotDARTMagnum',
-                            defines = ['RESPATH="' + path + '"', 'GRAPHIC'],
+                            defines = ['GRAPHIC'],
                             target = basename)
 
 
