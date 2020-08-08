@@ -46,6 +46,7 @@ namespace robot_dart {
             ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(
                 frequency <= _physics_freq && "Graphics frequency needs to be less than physics frequency");
             _graphics_freq = frequency;
+            _graphics->set_fps(_graphics_freq);
         }
 
         std::shared_ptr<gui::Base> graphics() const;

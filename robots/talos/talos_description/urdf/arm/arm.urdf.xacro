@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2016, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find talos_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/arm/wrist.urdf.xacro" />
+  <xacro:include filename="$(find talos_description)/urdf/arm/arm.transmission.xacro" />
+
+  <!--Constant parameters-->
+  <xacro:property name="arm_friction"       value="1.0" />
+  <xacro:property name="arm_damping"        value="1.0" />
+  <xacro:property name="arm_1_max_vel"      value="2.7" />
+  <xacro:property name="arm_2_max_vel"      value="3.66" />
+  <xacro:property name="arm_3_max_vel"      value="4.58" />
+  <xacro:property name="arm_4_max_vel"      value="4.58" />
+  <xacro:property name="arm_1_max_effort"   value="100.0" />
+  <xacro:property name="arm_2_max_effort"   value="100.0" />
+  <xacro:property name="arm_3_max_effort"   value="70.0" />
+  <xacro:property name="arm_4_max_effort"   value="70.0" />
+  <xacro:property name="arm_eps"            value="0.02" />
+
+
+  <xacro:macro name="talos_arm" params="name parent side reflect">
+
+    <!--************************-->
+    <!--        SHOULDER        -->
+    <!--************************-->
+    <link name="${name}_${side}_1_link">
+      <xacro:call macro="${name}_${side}_1_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_1.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+       <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_1_collision.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_1_joint" type="revolute">
+      <parent link="${parent}" />
+      <child link="${name}_${side}_1_link" />
+      <origin xyz="0.00000 ${0.15750*reflect} 0.23200"
+              rpy="${0.0 * deg_to_rad} ${0.0 * deg_to_rad} ${0.0 * deg_to_rad}"/>
+      <axis xyz="0 0 1" />
+
+      <xacro:arm_1_joint_limits reflect="${reflect}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+<!--        <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-90.00000 * deg_to_rad + arm_eps}"
+                          soft_upper_limit="${30.00000 * deg_to_rad - arm_eps}" /> -->
+    </joint>
+
+
+    <link name="${name}_${side}_2_link">
+      <xacro:call macro="${name}_${side}_2_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_2.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_2_collision.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_2_joint" type="revolute">
+      <parent link="${name}_${side}_1_link" />
+      <child link="${name}_${side}_2_link" />
+      <origin xyz="0.00493 ${0.13650*reflect} 0.04673"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="1 0 0" />
+      <limit lower="${(-82.0000 + 82.5000*reflect)* deg_to_rad}" upper="${(82.50000*reflect + 82.0000)* deg_to_rad}" effort="${arm_2_max_effort}" velocity="${arm_2_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+<!--        <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${0.00000 * deg_to_rad + arm_eps}"
+                          soft_upper_limit="${165.00000 * deg_to_rad - arm_eps}" /> -->
+
+    </joint>
+
+
+    <link name="${name}_${side}_3_link">
+      <xacro:call macro="${name}_${side}_3_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_3.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_3_collision.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_3_joint" type="revolute">
+      <parent link="${name}_${side}_2_link" />
+      <child link="${name}_${side}_3_link" />
+      <origin xyz="0.00000 0.00000 0.00000"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 0 1" />
+      <limit lower="${-139.0 * deg_to_rad}" upper="${139.0 * deg_to_rad}" effort="${arm_3_max_effort}" velocity="${arm_3_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+<!--       <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-140.0 * deg_to_rad + arm_eps}"
+                          soft_upper_limit="${140.0 * deg_to_rad - arm_eps}" /> -->
+
+    </joint>
+
+    <!--************************-->
+    <!--        ELBOW           -->
+    <!--************************-->
+    <link name="${name}_${side}_4_link">
+      <xacro:call macro="${name}_${side}_4_link_inertial" />
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_4.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material name="Black" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://talos_description/meshes/arm/arm_4_collision.dae" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_4_joint" type="revolute">
+      <parent link="${name}_${side}_3_link" />
+      <child link="${name}_${side}_4_link" />
+      <origin xyz="0.02000 0.00000 -0.27300"
+              rpy="${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad} ${0.00000 * deg_to_rad}"/>
+      <axis xyz="0 1 0" />
+      <limit lower="${-128.0 * deg_to_rad}" upper="${-0.2 * deg_to_rad}" effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+<!--       <safety_controller k_position="20"
+                          k_velocity="20"
+                          soft_lower_limit="${-135.0 * deg_to_rad + arm_eps}"
+                          soft_upper_limit="${0.0 * deg_to_rad - arm_eps}" /> -->
+    </joint>
+
+   <xacro:if value="$(arg enable_gazebo)">
+    <gazebo reference="${name}_${side}_1_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="${name}_${side}_2_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="${name}_${side}_3_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <gazebo reference="${name}_${side}_4_link">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+
+    <gazebo reference="${name}_${side}_1_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="${name}_${side}_2_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="${name}_${side}_3_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="${name}_${side}_4_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+   </xacro:if>
+
+
+    <!--************************-->
+    <!--        WRIST           -->
+    <!--************************-->
+     <xacro:talos_wrist name="arm" parent="${name}_${side}_4_link" side="${side}" reflect="${reflect}" />
+
+    <xacro:if value="$(arg enable_gazebo)">
+      <!-- extensions -->
+      <xacro:include filename="$(find talos_description)/urdf/arm/${side}_arm.transmissions.urdf.xacro" />
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

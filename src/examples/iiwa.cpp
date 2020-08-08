@@ -13,15 +13,11 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", std::string(RESPATH) + "/models/meshes"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("res/models/iiwa14.urdf", packages);
+    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
+    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
-    // Use the material information coming from the meshes instead of the URDF file
-    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR);
-    // Use the material information from the meshes only for a specific BodyNode
-    // global_robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, "iiwa_link_6");
 
     Eigen::VectorXd ctrl(7);
     ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;

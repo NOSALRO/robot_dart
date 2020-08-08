@@ -25,6 +25,8 @@ namespace robot_dart {
                 .def("skeleton", &Robot::skeleton)
 
                 .def("name", &Robot::name)
+                .def("model_filename", &Robot::model_filename)
+                .def("model_packages", &Robot::model_packages)
 
                 .def("update", &Robot::update)
 
@@ -216,8 +218,8 @@ namespace robot_dart {
                 .def("set_joint_name", &Robot::set_joint_name)
                 .def("joint_index", &Robot::joint_index)
 
-                .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode)) & Robot::set_color_mode)
-                .def("set_color_mode", (void (Robot::*)(dart::dynamics::MeshShape::ColorMode, const std::string&)) & Robot::set_color_mode)
+                .def("set_color_mode", (void (Robot::*)(const std::string&)) & Robot::set_color_mode)
+                .def("set_color_mode", (void (Robot::*)(const std::string&, const std::string&)) & Robot::set_color_mode)
 
                 .def("set_cast_shadows", &Robot::set_cast_shadows,
                     py::arg("cast_shadows") = true)

@@ -1,6 +1,6 @@
-#include "robot.hpp"
-#include "utils.hpp"
 
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
 #include <unistd.h>
 
 #include <dart/config.hpp>
@@ -10,7 +10,6 @@
 #include <dart/dynamics/FreeJoint.hpp>
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
-
 #if DART_VERSION_AT_LEAST(7, 0, 0)
 #include <dart/io/SkelParser.hpp>
 #include <dart/io/sdf/SdfParser.hpp>
@@ -19,6 +18,9 @@
 #include <dart/utils/SkelParser.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
+
+#include <robot_dart/robot.hpp>
+#include <robot_dart/utils.hpp>
 
 // namespace alias for compatibility
 namespace dart {
@@ -51,7 +53,8 @@ namespace robot_dart {
             Eigen::VectorXd data(dof_names.size());
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+                ROBOT_DART_ASSERT(it != dof_map.end(),
+                    "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     data(i) = dof->getPosition();
@@ -74,7 +77,8 @@ namespace robot_dart {
         {
             // Set all values
             if (dof_names.empty()) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(),
+                    "set_dof_data: size of data is not the same as the DoFs", );
                 if (content == 0)
                     return skeleton->setPositions(data);
                 else if (content == 1)
@@ -89,9 +93,11 @@ namespace robot_dart {
             }
 
             for (size_t i = 0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "set_dof_data: size of data is not the same as the dof_names size", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(),
+                    "set_dof_data: size of data is not the same as the dof_names size", );
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                ROBOT_DART_ASSERT(
+                    it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     dof->setPosition(data(i));
@@ -113,7 +119,8 @@ namespace robot_dart {
         {
             // Set all values
             if (dof_names.empty()) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(),
+                    "set_dof_data: size of data is not the same as the DoFs", );
                 if (content == 0)
                     return skeleton->setPositions(skeleton->getPositions() + data);
                 else if (content == 1)
@@ -128,9 +135,11 @@ namespace robot_dart {
             }
 
             for (size_t i = 0; i < dof_names.size(); i++) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "set_dof_data: size of data is not the same as the dof_names size", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(),
+                    "set_dof_data: size of data is not the same as the dof_names size", );
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                ROBOT_DART_ASSERT(
+                    it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     dof->setPosition(dof->getPosition() + data(i));
@@ -148,15 +157,20 @@ namespace robot_dart {
         }
     } // namespace detail
 
-    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
+    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+        : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _set_damages(damages);
     }
 
-    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages) : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages) {}
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages)
+    {
+    }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages) : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages)
+        : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
@@ -175,6 +189,7 @@ namespace robot_dart {
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
         robot->_damages = _damages;
+        robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
             robot->add_controller(ctrl->clone(), ctrl->weight());
@@ -194,6 +209,7 @@ namespace robot_dart {
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, ghost_name + "_" + _robot_name);
         robot->_damages = _damages;
+        robot->_model_filename = _model_filename;
 
         // ghost robots have no controllers
         robot->_controllers.clear();
@@ -214,7 +230,7 @@ namespace robot_dart {
         }
 
         // ghost robots, by default, use the color from the VisualAspect
-        robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+        robot->set_color_mode("aspect");
 
         // ghost robots do not cast shadows
         robot->set_cast_shadows(false);
@@ -224,20 +240,11 @@ namespace robot_dart {
         return robot;
     }
 
-    dart::dynamics::SkeletonPtr Robot::skeleton()
-    {
-        return _skeleton;
-    }
+    dart::dynamics::SkeletonPtr Robot::skeleton() { return _skeleton; }
 
-    std::vector<RobotDamage> Robot::damages() const
-    {
-        return _damages;
-    }
+    std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
-    const std::string& Robot::name() const
-    {
-        return _robot_name;
-    }
+    const std::string& Robot::name() const { return _robot_name; }
 
     void Robot::update(double t)
     {
@@ -245,7 +252,8 @@ namespace robot_dart {
 
         for (auto& ctrl : _controllers) {
             if (ctrl->active())
-                detail::add_dof_data<4>(ctrl->weight() * ctrl->calculate(t), _skeleton, ctrl->controllable_dofs(), _dof_map);
+                detail::add_dof_data<4>(ctrl->weight() * ctrl->calculate(t), _skeleton,
+                    ctrl->controllable_dofs(), _dof_map);
         }
     }
 
@@ -255,10 +263,7 @@ namespace robot_dart {
             ctrl->init();
     }
 
-    size_t Robot::num_controllers() const
-    {
-        return _controllers.size();
-    }
+    size_t Robot::num_controllers() const { return _controllers.size(); }
 
     std::vector<std::shared_ptr<control::RobotControl>> Robot::controllers() const
     {
@@ -282,7 +287,8 @@ namespace robot_dart {
         return _controllers[index];
     }
 
-    void Robot::add_controller(const std::shared_ptr<control::RobotControl>& controller, double weight)
+    void Robot::add_controller(
+        const std::shared_ptr<control::RobotControl>& controller, double weight)
     {
         _controllers.push_back(controller);
         controller->set_robot(this->shared_from_this());
@@ -303,10 +309,7 @@ namespace robot_dart {
         _controllers.erase(_controllers.begin() + index);
     }
 
-    void Robot::clear_controllers()
-    {
-        _controllers.clear();
-    }
+    void Robot::clear_controllers() { _controllers.clear(); }
 
     void Robot::fix_to_world()
     {
@@ -354,14 +357,16 @@ namespace robot_dart {
     bool Robot::fixed() const
     {
         auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
-        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        ROBOT_DART_ASSERT(
+            parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
         return parent_jt->getType() == dart::dynamics::WeldJoint::getStaticType();
     }
 
     bool Robot::free() const
     {
         auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
-        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        ROBOT_DART_ASSERT(
+            parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
         return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
@@ -505,7 +510,8 @@ namespace robot_dart {
 
     void Robot::set_position_enforced(const std::vector<bool>& enforced)
     {
-        ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(), "Position enforced vector size is not the same as the DOFs of the robot", );
+        ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(),
+            "Position enforced vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
 #if DART_VERSION_AT_LEAST(6, 10, 0)
             _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced[i]);
@@ -558,7 +564,8 @@ namespace robot_dart {
 
     void Robot::set_damping_coeffs(const std::vector<double>& damps)
     {
-        ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(), "Damping coefficient vector size is not the same as the DOFs of the robot", );
+        ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(),
+            "Damping coefficient vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->setDampingCoefficient(damps[i]);
         }
@@ -595,7 +602,8 @@ namespace robot_dart {
 
     void Robot::set_cfriction_coeffs(const std::vector<double>& cfrictions)
     {
-        ROBOT_DART_ASSERT(cfrictions.size() == _skeleton->getNumDofs(), "Damping coefficient vector size is not the same as the DOFs of the robot", );
+        ROBOT_DART_ASSERT(cfrictions.size() == _skeleton->getNumDofs(),
+            "Damping coefficient vector size is not the same as the DOFs of the robot", );
         for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
             _skeleton->getDof(i)->setCoulombFriction(cfrictions[i]);
         }
@@ -627,7 +635,8 @@ namespace robot_dart {
     Eigen::Isometry3d Robot::base_pose() const
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
-        ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!", Eigen::Isometry3d::Identity());
+        ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!",
+            Eigen::Isometry3d::Identity());
         return jt->getTransformFromParentBodyNode();
     }
 
@@ -638,30 +647,15 @@ namespace robot_dart {
             jt->setTransformFromParentBodyNode(tf);
     }
 
-    size_t Robot::num_dofs() const
-    {
-        return _skeleton->getNumDofs();
-    }
+    size_t Robot::num_dofs() const { return _skeleton->getNumDofs(); }
 
-    size_t Robot::num_joints() const
-    {
-        return _skeleton->getNumJoints();
-    }
+    size_t Robot::num_joints() const { return _skeleton->getNumJoints(); }
 
-    size_t Robot::num_bodies() const
-    {
-        return _skeleton->getNumBodyNodes();
-    }
+    size_t Robot::num_bodies() const { return _skeleton->getNumBodyNodes(); }
 
-    Eigen::Vector3d Robot::com() const
-    {
-        return _skeleton->getCOM();
-    }
+    Eigen::Vector3d Robot::com() const { return _skeleton->getCOM(); }
 
-    Eigen::Vector6d Robot::com_velocity() const
-    {
-        return _skeleton->getCOMSpatialVelocity();
-    }
+    Eigen::Vector6d Robot::com_velocity() const { return _skeleton->getCOMSpatialVelocity(); }
 
     Eigen::Vector6d Robot::com_acceleration() const
     {
@@ -734,8 +728,9 @@ namespace robot_dart {
 
         F1 = -dart::math::dAdInvR(T12, F2);
 
-        // F1 contains the force applied by the parent Link on the Joint specified in the parent Link frame
-        // F2 contains the force applied by the child Link on the Joint specified in the child Link frame
+        // F1 contains the force applied by the parent Link on the Joint specified in the parent
+        // Link frame F2 contains the force applied by the child Link on the Joint specified in
+        // the child Link frame
         return {F1, F2};
     }
 
@@ -749,7 +744,8 @@ namespace robot_dart {
 
     void Robot::set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->setExtForce(force, offset, force_local, offset_local);
@@ -765,7 +761,8 @@ namespace robot_dart {
 
     void Robot::add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->addExtForce(force, offset, force_local, offset_local);
@@ -781,7 +778,8 @@ namespace robot_dart {
 
     void Robot::set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->setExtTorque(torque, local);
@@ -797,28 +795,28 @@ namespace robot_dart {
 
     void Robot::add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->addExtTorque(torque, local);
     }
 
-    void Robot::clear_external_forces()
-    {
-        _skeleton->clearExternalForces();
-    }
+    void Robot::clear_external_forces() { _skeleton->clearExternalForces(); }
 
     Eigen::Vector6d Robot::external_forces(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(
+            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
 
         return bd->getExternalForceGlobal();
     }
 
     Eigen::Vector6d Robot::external_forces(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
+            Eigen::Vector6d::Zero());
         auto bd = _skeleton->getBodyNode(body_index);
 
         return bd->getExternalForceGlobal();
@@ -827,13 +825,15 @@ namespace robot_dart {
     Eigen::Isometry3d Robot::body_pose(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Isometry3d::Identity());
+        ROBOT_DART_ASSERT(
+            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Isometry3d::Identity());
         return bd->getWorldTransform();
     }
 
     Eigen::Isometry3d Robot::body_pose(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Isometry3d::Identity());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
+            Eigen::Isometry3d::Identity());
         return _skeleton->getBodyNode(body_index)->getWorldTransform();
     }
 
@@ -847,13 +847,15 @@ namespace robot_dart {
 
     std::string Robot::body_name(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
         return _skeleton->getBodyNode(body_index)->getName();
     }
 
     void Robot::set_body_name(size_t body_index, const std::string& body_name)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setName(body_name);
     }
 
@@ -866,7 +868,8 @@ namespace robot_dart {
 
     double Robot::body_mass(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
         return _skeleton->getBodyNode(body_index)->getMass();
     }
 
@@ -879,7 +882,8 @@ namespace robot_dart {
 
     void Robot::set_body_mass(size_t body_index, double mass)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setMass(mass); // TO-DO: Recompute inertia?
     }
 
@@ -892,7 +896,8 @@ namespace robot_dart {
 
     void Robot::add_body_mass(size_t body_index, double mass)
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
         bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
     }
@@ -910,15 +915,9 @@ namespace robot_dart {
             _joint_map[_skeleton->getJoint(i)->getName()] = i;
     }
 
-    const std::unordered_map<std::string, size_t>& Robot::dof_map() const
-    {
-        return _dof_map;
-    }
+    const std::unordered_map<std::string, size_t>& Robot::dof_map() const { return _dof_map; }
 
-    const std::unordered_map<std::string, size_t>& Robot::joint_map() const
-    {
-        return _joint_map;
-    }
+    const std::unordered_map<std::string, size_t>& Robot::joint_map() const { return _joint_map; }
 
     std::vector<std::string> Robot::dof_names(bool filter_mimics, bool filter_locked, bool filter_passive) const
     {
@@ -983,14 +982,17 @@ namespace robot_dart {
     size_t Robot::dof_index(const std::string& dof_name) const
     {
         if (_dof_map.empty()) {
-            ROBOT_DART_WARNING(true, "DoF map is empty. Iterating over all skeleton DoFs to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            ROBOT_DART_WARNING(true,
+                "DoF map is empty. Iterating over all skeleton DoFs to get the index. Consider "
+                "calling update_joint_dof_maps() before using dof_index()");
             for (size_t i = 0; i < _skeleton->getNumDofs(); i++)
                 if (_skeleton->getDof(i)->getName() == dof_name)
                     return i;
             ROBOT_DART_ASSERT(false, "dof_index : " + dof_name + " is not in the skeleton", 0);
         }
         auto it = _dof_map.find(dof_name);
-        ROBOT_DART_ASSERT(it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
+        ROBOT_DART_ASSERT(
+            it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
         return it->second;
     }
 
@@ -1019,29 +1021,49 @@ namespace robot_dart {
     size_t Robot::joint_index(const std::string& joint_name) const
     {
         if (_joint_map.empty()) {
-            ROBOT_DART_WARNING(true, "Joint map is empty. Iterating over all skeleton joints to get the index. Consider calling update_joint_dof_maps() before using dof_index()");
+            ROBOT_DART_WARNING(true,
+                "Joint map is empty. Iterating over all skeleton joints to get the index. "
+                "Consider calling update_joint_dof_maps() before using dof_index()");
             for (size_t i = 0; i < _skeleton->getNumJoints(); i++)
                 if (_skeleton->getJoint(i)->getName() == joint_name)
                     return i;
             ROBOT_DART_ASSERT(false, "joint_index : " + joint_name + " is not in the skeleton", 0);
         }
         auto it = _joint_map.find(joint_name);
-        ROBOT_DART_ASSERT(it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
+        ROBOT_DART_ASSERT(
+            it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
         return it->second;
     }
 
-    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode)
+    void Robot::set_color_mode(const std::string& color_mode)
     {
-        _set_color_mode(color_mode, _skeleton);
+        if (color_mode == "material")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR, _skeleton);
+        else if (color_mode == "assimp")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::COLOR_INDEX, _skeleton);
+        else if (color_mode == "aspect")
+            _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, _skeleton);
+        else
+            ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown color mode. Valid values: material, assimp and aspect.");
     }
 
-    void Robot::set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, const std::string& body_name)
+    void Robot::set_color_mode(const std::string& color_mode, const std::string& body_name)
     {
+        dart::dynamics::MeshShape::ColorMode cmode;
+        if (color_mode == "material")
+            cmode = dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR;
+        else if (color_mode == "assimp")
+            cmode = dart::dynamics::MeshShape::ColorMode::COLOR_INDEX;
+        else if (color_mode == "aspect")
+            cmode = dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR;
+        else
+            ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown color mode. Valid values: material, assimp and aspect.");
+
         auto bn = _skeleton->getBodyNode(body_name);
         if (bn) {
             for (size_t j = 0; j < bn->getNumShapeNodes(); ++j) {
                 dart::dynamics::ShapeNode* sn = bn->getShapeNode(j);
-                _set_color_mode(color_mode, sn);
+                _set_color_mode(cmode, sn);
             }
         }
     }
@@ -1071,35 +1093,69 @@ namespace robot_dart {
 
     const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& Robot::drawing_axes() const { return _axis_shapes; }
 
+    std::string Robot::_get_path(const std::string& filename) const
+    {
+        namespace fs = boost::filesystem;
+        fs::path model_file(boost::trim_copy(filename));
+        if (model_file.string()[0] == '/')
+            return "/";
+
+        // search current directory
+        if (fs::exists(model_file))
+            return fs::current_path().string();
+
+        // search <current_directory>/robots
+        if (fs::exists(fs::path("robots") / model_file))
+            return (fs::current_path() / fs::path("robots")).string();
+
+        // search $ROBOT_DART_PATH
+        const char* env = std::getenv("ROBOT_DART_PATH");
+        if (env != nullptr) {
+            fs::path env_path(env);
+            if (fs::exists(env_path / model_file))
+                return env_path.string();
+        }
+
+        // search PREFIX/share/robot_dart/robots
+        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
+        if (fs::exists(system_path / model_file))
+            return system_path.string();
+
+        ROBOT_DART_EXCEPTION_ASSERT(false, std::string("Could not find :") + filename);
+
+        return std::string();
+    }
+
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
-        // Remove spaces from beginning of the filename/path
-        std::string model_file = filename;
-        model_file.erase(model_file.begin(), std::find_if(model_file.begin(), model_file.end(), [](int ch) {
-            return !std::isspace(ch);
-        }));
-
-        if (model_file[0] != '/') {
-            constexpr size_t max_size = 512;
-            char buff[max_size];
-            auto val = getcwd(buff, max_size);
-            ROBOT_DART_ASSERT(val, "Something bad happenned when trying to read current path", nullptr);
-            model_file = std::string(buff) + "/" + model_file;
-        }
+        ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
 
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
-            std::string extension = model_file.substr(model_file.find_last_of(".") + 1);
-            if (extension == "urdf") {
+            // search for the right directory for our files
+            std::string file_dir = _get_path(filename);
+            std::string model_file = file_dir + '/' + boost::trim_copy(filename);
+            // store the name for future use
+            _model_filename = model_file;
+            _packages = packages;
+            // std::cout << "RobotDART:: using: " << model_file << std::endl;
+
+            // in C++17 we would use std::filesystem!
+            boost::filesystem::path path(model_file);
+            std::string extension = path.extension().string();
+            if (extension == ".urdf") {
                 dart::io::DartLoader loader;
                 for (size_t i = 0; i < packages.size(); i++) {
-                    loader.addPackageDirectory(std::get<0>(packages[i]), std::get<1>(packages[i]));
+                    std::string package = std::get<1>(packages[i]);
+                    std::string package_path = _get_path(package);
+                    loader.addPackageDirectory(
+                        std::get<0>(packages[i]), package_path + "/" + package);
                 }
                 tmp_skel = loader.parseSkeleton(model_file);
             }
-            else if (extension == "sdf")
+            else if (extension == ".sdf")
                 tmp_skel = dart::io::SdfParser::readSkeleton(model_file);
-            else if (extension == "skel") {
+            else if (extension == ".skel") {
                 tmp_skel = dart::io::SkelParser::readSkeleton(model_file);
                 // if the skel file contains a world
                 // try to read the skeleton with name 'robot_name'
@@ -1115,7 +1171,9 @@ namespace robot_dart {
             // Load from URDF string
             dart::io::DartLoader loader;
             for (size_t i = 0; i < packages.size(); i++) {
-                loader.addPackageDirectory(std::get<0>(packages[i]), std::get<1>(packages[i]));
+                std::string package = std::get<1>(packages[i]);
+                std::string package_path = _get_path(package);
+                loader.addPackageDirectory(std::get<0>(packages[i]), package_path + "/" + package);
             }
             tmp_skel = loader.parseSkeletonString(filename, "");
         }
@@ -1170,7 +1228,8 @@ namespace robot_dart {
     void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn)
     {
         if (sn->getVisualAspect()) {
-            dart::dynamics::MeshShape* ms = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
+            dart::dynamics::MeshShape* ms
+                = dynamic_cast<dart::dynamics::MeshShape*>(sn->getShape().get());
             if (ms)
                 ms->setColorMode(color_mode);
         }
@@ -1197,7 +1256,7 @@ namespace robot_dart {
         auto root_jt = _skeleton->getRootJoint();
         for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
             auto jt = _skeleton->getJoint(i);
-            if (ignore_base && jt == root_jt)
+            if (jt->getNumDofs() == 0 || (ignore_base && jt == root_jt))
                 continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -1213,7 +1272,7 @@ namespace robot_dart {
         auto root_jt = _skeleton->getRootJoint();
         for (size_t i = 0; i < _skeleton->getNumJoints(); ++i) {
             auto jt = _skeleton->getJoint(i);
-            if (ignore_base && jt == root_jt)
+            if (jt->getNumDofs() == 0 || (ignore_base && jt == root_jt))
                 continue;
 #if DART_VERSION_AT_LEAST(6, 7, 0)
             if (override_mimic || jt->getActuatorType() != dart::dynamics::Joint::MIMIC)
@@ -1252,7 +1311,8 @@ namespace robot_dart {
 
         // Give the body a shape
         auto box = std::make_shared<dart::dynamics::BoxShape>(dims);
-        auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
+        auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect,
+            dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
         box_node->getVisualAspect()->setColor(color);
         // Set up inertia
         dart::dynamics::Inertia inertia;
@@ -1274,21 +1334,27 @@ namespace robot_dart {
         return std::make_shared<Robot>(box_skel, box_name);
     }
 
-    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
+    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims,
+        const Eigen::Vector6d& pose, const std::string& type, double mass,
+        const Eigen::Vector4d& color, const std::string& ellipsoid_name)
     {
-        dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(ellipsoid_name);
+        dart::dynamics::SkeletonPtr ellipsoid_skel
+            = dart::dynamics::Skeleton::create(ellipsoid_name);
 
         // Give the ellipsoid a body
         dart::dynamics::BodyNodePtr body;
         if (type == "free")
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr)
+                       .second;
         else
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr)
+                       .second;
         body->setName(ellipsoid_name);
 
         // Give the body a shape
         auto ellipsoid = std::make_shared<dart::dynamics::EllipsoidShape>(dims);
-        auto ellipsoid_node = body->createShapeNodeWith<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(ellipsoid);
+        auto ellipsoid_node = body->createShapeNodeWith<dart::dynamics::VisualAspect,
+            dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(ellipsoid);
         ellipsoid_node->getVisualAspect()->setColor(color);
         // Set up inertia
         dart::dynamics::Inertia inertia;

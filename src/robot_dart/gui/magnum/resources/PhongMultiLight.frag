@@ -141,7 +141,7 @@ float visibilityCalculation(int index, float bias)
     // projCoords = projCoords * 0.5 + 0.5;
     // get depth of current fragment from light's perspective
     float currentDepth = projCoords.z;
-    if(currentDepth > 1.)// || projCoords.x < 0. || projCoords.x >= 1. || projCoords.y < 0. || projCoords.y >= 1.)
+    if(currentDepth > 1. || projCoords.x < 0. || projCoords.x >= 1. || projCoords.y < 0. || projCoords.y >= 1.)
         return 1.;
     // float visibility = texture(shadowTextures, vec4(projCoords.xy, index, currentDepth - bias));
     float visibility = 0.;
@@ -303,7 +303,7 @@ void main() {
         float visibility = 1.;
         vec3 colorShadow = vec3(1.);
         if(isShadowed) {
-            float bias = 0.00005;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
+            float bias = 0.0005;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
             if(!isPoint) {
                 visibility = visibilityCalculation(i, bias);
 

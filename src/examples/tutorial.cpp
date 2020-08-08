@@ -51,7 +51,7 @@ int main()
     }
 
     // add a simple arm
-    auto arm_robot = std::make_shared<robot_dart::Robot>("res/models/arm.urdf");
+    auto arm_robot = std::make_shared<robot_dart::Robot>("arm.urdf");
     // pin the arm to world
     arm_robot->fix_to_world();
     arm_robot->set_position_enforced(true);

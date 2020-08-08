@@ -289,7 +289,7 @@ namespace robot_dart {
             }
 
             // visual robots, by default, use the color from the VisualAspect
-            robot->set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR);
+            robot->set_color_mode("aspect");
 
             // visual robots do not cast shadows
             robot->set_cast_shadows(false);
