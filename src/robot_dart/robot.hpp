@@ -63,6 +63,8 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
+        void reset();
+
         // actuator type can be: torque, servo, velocity, passive, locked, mimic (only for completeness, use set_mimic to use this)
         // Be careful that actuator types are per joint and not per DoF
         void set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false);
@@ -106,19 +108,39 @@ namespace robot_dart {
         Eigen::Vector6d com_velocity() const;
         Eigen::Vector6d com_acceleration() const;
 
-        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd positions(const std::vector<std::string>& dof_names = {}) const;
         void set_positions(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd position_lower_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_position_lower_limits(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd position_upper_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_position_upper_limits(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd velocities(const std::vector<std::string>& dof_names = {}) const;
         void set_velocities(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd velocity_lower_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_velocity_lower_limits(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd velocity_upper_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_velocity_upper_limits(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd accelerations(const std::vector<std::string>& dof_names = {}) const;
         void set_accelerations(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd acceleration_lower_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_acceleration_lower_limits(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd acceleration_upper_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_acceleration_upper_limits(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd forces(const std::vector<std::string>& dof_names = {}) const;
         void set_forces(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
 
-        Eigen::VectorXd commands(const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd force_lower_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_force_lower_limits(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+        Eigen::VectorXd force_upper_limits(const std::vector<std::string>& dof_names = {}) const;
+        void set_force_upper_limits(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names = {});
+
+        Eigen::VectorXd commands(const std::vector<std::string>& dof_names = {}) const;
         void set_commands(const Eigen::VectorXd& commands, const std::vector<std::string>& dof_names = {});
 
         std::pair<Eigen::Vector6d, Eigen::Vector6d> force_torque(size_t joint_index) const;
