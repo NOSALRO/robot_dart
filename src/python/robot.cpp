@@ -14,9 +14,21 @@ namespace robot_dart {
             using namespace robot_dart;
             // Robot class
             py::class_<Robot, std::shared_ptr<Robot>>(m, "Robot")
-                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&, const std::string&, bool>())
-                .def(py::init<const std::string&, const std::string&, bool>())
-                .def(py::init<dart::dynamics::SkeletonPtr, const std::string&>())
+                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&, const std::string&, bool, bool>(),
+                    py::arg("model_file"),
+                    py::arg("packages"),
+                    py::arg("robot_name") = "robot",
+                    py::arg("is_urdf_string") = false,
+                    py::arg("cast_shadows") = true)
+                .def(py::init<const std::string&, const std::string&, bool, bool>(),
+                    py::arg("model_file"),
+                    py::arg("robot_name") = "robot",
+                    py::arg("is_urdf_string") = false,
+                    py::arg("cast_shadows") = true)
+                .def(py::init<dart::dynamics::SkeletonPtr, const std::string&, bool>(),
+                    py::arg("skeleton"),
+                    py::arg("robot_name") = "robot",
+                    py::arg("cast_shadows") = true)
 
                 .def("clone", &Robot::clone)
                 .def("clone_ghost", &Robot::clone_ghost,
@@ -47,6 +59,8 @@ namespace robot_dart {
                     py::arg("pose") = Eigen::Vector6d::Zero())
                 .def("fixed", &Robot::fixed)
                 .def("free", &Robot::free)
+
+                .def("reset", &Robot::reset)
 
                 .def("set_actuator_types", &Robot::set_actuator_types,
                     py::arg("type"),
@@ -111,9 +125,31 @@ namespace robot_dart {
                     py::arg("positions"),
                     py::arg("dof_names") = std::vector<std::string>())
 
+                .def("position_lower_limits", &Robot::position_lower_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_position_lower_limits", &Robot::set_position_lower_limits,
+                    py::arg("positions"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("position_upper_limits", &Robot::position_upper_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_position_upper_limits", &Robot::set_position_upper_limits,
+                    py::arg("positions"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
                 .def("velocities", &Robot::velocities,
                     py::arg("dof_names") = std::vector<std::string>())
                 .def("set_velocities", &Robot::set_velocities,
+                    py::arg("velocities"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("velocity_lower_limits", &Robot::velocity_lower_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_velocity_lower_limits", &Robot::set_velocity_lower_limits,
+                    py::arg("velocities"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("velocity_upper_limits", &Robot::velocity_upper_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_velocity_upper_limits", &Robot::set_velocity_upper_limits,
                     py::arg("velocities"),
                     py::arg("dof_names") = std::vector<std::string>())
 
@@ -123,9 +159,31 @@ namespace robot_dart {
                     py::arg("accelerations"),
                     py::arg("dof_names") = std::vector<std::string>())
 
+                .def("acceleration_lower_limits", &Robot::acceleration_lower_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_acceleration_lower_limits", &Robot::set_acceleration_lower_limits,
+                    py::arg("accelerations"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("acceleration_upper_limits", &Robot::acceleration_upper_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_acceleration_upper_limits", &Robot::set_acceleration_upper_limits,
+                    py::arg("accelerations"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
                 .def("forces", &Robot::forces,
                     py::arg("dof_names") = std::vector<std::string>())
                 .def("set_forces", &Robot::set_forces,
+                    py::arg("forces"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("force_lower_limits", &Robot::force_lower_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_force_lower_limits", &Robot::set_force_lower_limits,
+                    py::arg("forces"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("force_upper_limits", &Robot::force_upper_limits,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_force_upper_limits", &Robot::set_force_upper_limits,
                     py::arg("forces"),
                     py::arg("dof_names") = std::vector<std::string>())
 
