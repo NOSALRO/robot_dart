@@ -47,6 +47,22 @@ namespace robot_dart {
                     return skeleton->getForces();
                 else if (content == 4)
                     return skeleton->getCommands();
+                else if (content == 5)
+                    return skeleton->getPositionLowerLimits();
+                else if (content == 6)
+                    return skeleton->getPositionUpperLimits();
+                else if (content == 7)
+                    return skeleton->getVelocityLowerLimits();
+                else if (content == 8)
+                    return skeleton->getVelocityUpperLimits();
+                else if (content == 9)
+                    return skeleton->getAccelerationLowerLimits();
+                else if (content == 10)
+                    return skeleton->getAccelerationUpperLimits();
+                else if (content == 11)
+                    return skeleton->getForceLowerLimits();
+                else if (content == 12)
+                    return skeleton->getForceUpperLimits();
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
@@ -66,6 +82,22 @@ namespace robot_dart {
                     data(i) = dof->getForce();
                 else if (content == 4)
                     data(i) = dof->getCommand();
+                else if (content == 5)
+                    data(i) = dof->getPositionLowerLimit();
+                else if (content == 6)
+                    data(i) = dof->getPositionUpperLimit();
+                else if (content == 7)
+                    data(i) = dof->getVelocityLowerLimit();
+                else if (content == 8)
+                    data(i) = dof->getVelocityUpperLimit();
+                else if (content == 9)
+                    data(i) = dof->getAccelerationLowerLimit();
+                else if (content == 10)
+                    data(i) = dof->getAccelerationUpperLimit();
+                else if (content == 11)
+                    data(i) = dof->getForceLowerLimit();
+                else if (content == 12)
+                    data(i) = dof->getForceUpperLimit();
                 else
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
@@ -89,6 +121,22 @@ namespace robot_dart {
                     return skeleton->setForces(data);
                 else if (content == 4)
                     return skeleton->setCommands(data);
+                else if (content == 5)
+                    return skeleton->setPositionLowerLimits(data);
+                else if (content == 6)
+                    return skeleton->setPositionUpperLimits(data);
+                else if (content == 7)
+                    return skeleton->setVelocityLowerLimits(data);
+                else if (content == 8)
+                    return skeleton->setVelocityUpperLimits(data);
+                else if (content == 9)
+                    return skeleton->setAccelerationLowerLimits(data);
+                else if (content == 10)
+                    return skeleton->setAccelerationUpperLimits(data);
+                else if (content == 11)
+                    return skeleton->setForceLowerLimits(data);
+                else if (content == 12)
+                    return skeleton->setForceUpperLimits(data);
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
@@ -109,6 +157,22 @@ namespace robot_dart {
                     dof->setForce(data(i));
                 else if (content == 4)
                     dof->setCommand(data(i));
+                else if (content == 5)
+                    dof->setPositionLowerLimit(data(i));
+                else if (content == 6)
+                    dof->setPositionUpperLimit(data(i));
+                else if (content == 7)
+                    dof->setVelocityLowerLimit(data(i));
+                else if (content == 8)
+                    dof->setVelocityUpperLimit(data(i));
+                else if (content == 9)
+                    dof->setAccelerationLowerLimit(data(i));
+                else if (content == 10)
+                    dof->setAccelerationUpperLimit(data(i));
+                else if (content == 11)
+                    dof->setForceLowerLimit(data(i));
+                else if (content == 12)
+                    dof->setForceUpperLimit(data(i));
                 else
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
@@ -131,6 +195,22 @@ namespace robot_dart {
                     return skeleton->setForces(skeleton->getForces() + data);
                 else if (content == 4)
                     return skeleton->setCommands(skeleton->getCommands() + data);
+                else if (content == 5)
+                    return skeleton->setPositionLowerLimits(skeleton->getPositionLowerLimits() + data);
+                else if (content == 6)
+                    return skeleton->setPositionUpperLimits(skeleton->getPositionUpperLimits() + data);
+                else if (content == 7)
+                    return skeleton->setVelocityLowerLimits(skeleton->getVelocityLowerLimits() + data);
+                else if (content == 8)
+                    return skeleton->setVelocityUpperLimits(skeleton->getVelocityUpperLimits() + data);
+                else if (content == 9)
+                    return skeleton->setAccelerationLowerLimits(skeleton->getAccelerationLowerLimits() + data);
+                else if (content == 10)
+                    return skeleton->setAccelerationUpperLimits(skeleton->getAccelerationUpperLimits() + data);
+                else if (content == 11)
+                    return skeleton->setForceLowerLimits(skeleton->getForceLowerLimits() + data);
+                else if (content == 12)
+                    return skeleton->setForceUpperLimits(skeleton->getForceUpperLimits() + data);
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
@@ -151,6 +231,22 @@ namespace robot_dart {
                     dof->setForce(dof->getForce() + data(i));
                 else if (content == 4)
                     dof->setCommand(dof->getCommand() + data(i));
+                else if (content == 5)
+                    dof->setPositionLowerLimit(dof->getPositionLowerLimit() + data(i));
+                else if (content == 6)
+                    dof->setPositionUpperLimit(dof->getPositionUpperLimit() + data(i));
+                else if (content == 7)
+                    dof->setVelocityLowerLimit(dof->getVelocityLowerLimit() + data(i));
+                else if (content == 8)
+                    dof->setVelocityUpperLimit(dof->getVelocityUpperLimit() + data(i));
+                else if (content == 9)
+                    dof->setAccelerationLowerLimit(dof->getAccelerationLowerLimit() + data(i));
+                else if (content == 10)
+                    dof->setAccelerationUpperLimit(dof->getAccelerationUpperLimit() + data(i));
+                else if (content == 11)
+                    dof->setForceLowerLimit(dof->getForceLowerLimit() + data(i));
+                else if (content == 12)
+                    dof->setForceUpperLimit(dof->getForceUpperLimit() + data(i));
                 else
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
@@ -368,6 +464,14 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(
             parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
         return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
+    }
+
+    void Robot::reset()
+    {
+        _skeleton->resetPositions();
+        _skeleton->resetVelocities();
+        _skeleton->resetAccelerations();
+        this->clear_external_forces();
     }
 
     void Robot::set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base)
@@ -662,7 +766,7 @@ namespace robot_dart {
         return _skeleton->getCOMSpatialAcceleration();
     }
 
-    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names)
+    Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<0>(_skeleton, dof_names, _dof_map);
     }
@@ -672,7 +776,27 @@ namespace robot_dart {
         detail::set_dof_data<0>(positions, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::velocities(const std::vector<std::string>& dof_names)
+    Eigen::VectorXd Robot::position_lower_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<5>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_position_lower_limits(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<5>(positions, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::position_upper_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<6>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_position_upper_limits(const Eigen::VectorXd& positions, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<6>(positions, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::velocities(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<1>(_skeleton, dof_names, _dof_map);
     }
@@ -682,7 +806,27 @@ namespace robot_dart {
         detail::set_dof_data<1>(velocities, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::accelerations(const std::vector<std::string>& dof_names)
+    Eigen::VectorXd Robot::velocity_lower_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<7>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_velocity_lower_limits(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<7>(velocities, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::velocity_upper_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<8>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_velocity_upper_limits(const Eigen::VectorXd& velocities, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<8>(velocities, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::accelerations(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<2>(_skeleton, dof_names, _dof_map);
     }
@@ -692,7 +836,27 @@ namespace robot_dart {
         detail::set_dof_data<2>(accelerations, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names)
+    Eigen::VectorXd Robot::acceleration_lower_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<9>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_acceleration_lower_limits(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<9>(accelerations, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::acceleration_upper_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<10>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_acceleration_upper_limits(const Eigen::VectorXd& accelerations, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<10>(accelerations, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::forces(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<3>(_skeleton, dof_names, _dof_map);
     }
@@ -702,7 +866,27 @@ namespace robot_dart {
         detail::set_dof_data<3>(forces, _skeleton, dof_names, _dof_map);
     }
 
-    Eigen::VectorXd Robot::commands(const std::vector<std::string>& dof_names)
+    Eigen::VectorXd Robot::force_lower_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<11>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_force_lower_limits(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<11>(forces, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::force_upper_limits(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<12>(_skeleton, dof_names, _dof_map);
+    }
+
+    void Robot::set_force_upper_limits(const Eigen::VectorXd& forces, const std::vector<std::string>& dof_names)
+    {
+        detail::set_dof_data<12>(forces, _skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::commands(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<4>(_skeleton, dof_names, _dof_map);
     }
