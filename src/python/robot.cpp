@@ -245,6 +245,15 @@ namespace robot_dart {
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(const std::string& body_name) const) & Robot::body_pose)
                 .def("body_pose", (Eigen::Isometry3d(Robot::*)(size_t body_index) const) & Robot::body_pose)
 
+                .def("body_pose_vec", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_pose_vec)
+                .def("body_pose_vec", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_pose_vec)
+
+                .def("body_velocity", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_velocity)
+                .def("body_velocity", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_velocity)
+
+                .def("body_acceleration", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_acceleration)
+                .def("body_acceleration", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_acceleration)
+
                 .def("body_names", &Robot::body_names)
                 .def("body_name", &Robot::body_name)
                 .def("set_body_name", &Robot::set_body_name)
@@ -256,6 +265,38 @@ namespace robot_dart {
                 .def("set_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::set_body_mass)
                 .def("add_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::add_body_mass)
                 .def("add_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::add_body_mass)
+
+                .def("jacobian", &Robot::jacobian,
+                    py::arg("body_name"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("jacobian_deriv", &Robot::jacobian_deriv,
+                    py::arg("body_name"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("com_jacobian", &Robot::com_jacobian,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("com_jacobian_deriv", &Robot::com_jacobian_deriv,
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("mass_matrix", &Robot::mass_matrix,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("aug_mass_matrix", &Robot::aug_mass_matrix,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("inv_mass_matrix", &Robot::inv_mass_matrix,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("inv_aug_mass_matrix", &Robot::inv_aug_mass_matrix,
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("coriolis_forces", &Robot::coriolis_forces,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("gravity_forces", &Robot::gravity_forces,
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("coriolis_gravity_forces", &Robot::coriolis_gravity_forces,
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("vec_dof", &Robot::vec_dof,
+                    py::arg("vec"),
+                    py::arg("dof_names"))
 
                 .def("update_joint_dof_maps", &Robot::update_joint_dof_maps)
                 .def("dof_map", &Robot::dof_map)
