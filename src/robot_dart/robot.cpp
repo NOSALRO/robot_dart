@@ -1238,6 +1238,22 @@ namespace robot_dart {
         return detail::dof_data<15>(_skeleton, dof_names, _dof_map);
     }
 
+    Eigen::VectorXd Robot::vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const
+    {
+        assert(vec.size() == static_cast<int>(_skeleton->getNumDofs()));
+
+        Eigen::VectorXd ret(dof_names.size());
+        for (size_t i = 0; i < dof_names.size(); i++) {
+            auto it = _dof_map.find(dof_names[i]);
+            ROBOT_DART_ASSERT(
+                it != _dof_map.end(), "vec_dof: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+
+            ret(i) = vec[it->second];
+        }
+
+        return ret;
+    }
+
     void Robot::update_joint_dof_maps()
     {
         // DoFs

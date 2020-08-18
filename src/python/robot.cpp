@@ -294,6 +294,10 @@ namespace robot_dart {
                 .def("coriolis_gravity_forces", &Robot::coriolis_gravity_forces,
                     py::arg("dof_names") = std::vector<std::string>())
 
+                .def("vec_dof", &Robot::vec_dof,
+                    py::arg("vec"),
+                    py::arg("dof_names"))
+
                 .def("update_joint_dof_maps", &Robot::update_joint_dof_maps)
                 .def("dof_map", &Robot::dof_map)
                 .def("joint_map", &Robot::joint_map)
