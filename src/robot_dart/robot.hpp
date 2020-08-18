@@ -163,6 +163,15 @@ namespace robot_dart {
         Eigen::Isometry3d body_pose(const std::string& body_name) const;
         Eigen::Isometry3d body_pose(size_t body_index) const;
 
+        Eigen::Vector6d body_pose_vec(const std::string& body_name) const;
+        Eigen::Vector6d body_pose_vec(size_t body_index) const;
+
+        Eigen::Vector6d body_velocity(const std::string& body_name) const;
+        Eigen::Vector6d body_velocity(size_t body_index) const;
+
+        Eigen::Vector6d body_acceleration(const std::string& body_name) const;
+        Eigen::Vector6d body_acceleration(size_t body_index) const;
+
         std::vector<std::string> body_names() const;
         std::string body_name(size_t body_index) const;
         void set_body_name(size_t body_index, const std::string& body_name);
@@ -173,6 +182,24 @@ namespace robot_dart {
         void set_body_mass(size_t body_index, double mass);
         void add_body_mass(const std::string& body_name, double mass);
         void add_body_mass(size_t body_index, double mass);
+
+        Eigen::MatrixXd jacobian(const std::string& body_name, const std::vector<std::string>& dof_names = {}) const;
+        Eigen::MatrixXd jacobian_deriv(const std::string& body_name, const std::vector<std::string>& dof_names = {}) const;
+
+        Eigen::MatrixXd com_jacobian(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::MatrixXd com_jacobian_deriv(const std::vector<std::string>& dof_names = {}) const;
+
+        Eigen::MatrixXd mass_matrix(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::MatrixXd aug_mass_matrix(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::MatrixXd inv_mass_matrix(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::MatrixXd inv_aug_mass_matrix(const std::vector<std::string>& dof_names = {}) const;
+
+        Eigen::VectorXd coriolis_forces(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::VectorXd gravity_forces(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::VectorXd coriolis_gravity_forces(const std::vector<std::string>& dof_names = {}) const;
+
+        // Get only the part of vector for DOFs in dof_names
+        Eigen::VectorXd vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const;
 
         void update_joint_dof_maps();
         const std::unordered_map<std::string, size_t>& dof_map() const;
@@ -234,6 +261,9 @@ namespace robot_dart {
 
         dart::dynamics::Joint::ActuatorType _actuator_type(size_t joint_index) const;
         std::vector<dart::dynamics::Joint::ActuatorType> _actuator_types() const;
+
+        Eigen::MatrixXd _jacobian(const Eigen::MatrixXd& full_jacobian, const std::vector<std::string>& dof_names) const;
+        Eigen::MatrixXd _mass_matrix(const Eigen::MatrixXd& full_mass_matrix, const std::vector<std::string>& dof_names) const;
 
         std::string _robot_name;
         std::string _model_filename;
