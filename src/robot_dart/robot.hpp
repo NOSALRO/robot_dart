@@ -198,6 +198,9 @@ namespace robot_dart {
         Eigen::VectorXd gravity_forces(const std::vector<std::string>& dof_names = {}) const;
         Eigen::VectorXd coriolis_gravity_forces(const std::vector<std::string>& dof_names = {}) const;
 
+        // Get only the part of vector for DOFs in dof_names
+        Eigen::VectorXd vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const;
+
         void update_joint_dof_maps();
         const std::unordered_map<std::string, size_t>& dof_map() const;
         const std::unordered_map<std::string, size_t>& joint_map() const;
