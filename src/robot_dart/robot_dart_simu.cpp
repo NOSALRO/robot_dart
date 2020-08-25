@@ -231,6 +231,16 @@ namespace robot_dart {
         _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time());
     }
 
+    Eigen::Vector3d RobotDARTSimu::gravity() const
+    {
+        return _world->getGravity();
+    }
+
+    void RobotDARTSimu::set_gravity(const Eigen::Vector3d& gravity)
+    {
+        _world->setGravity(gravity);
+    }
+
     void RobotDARTSimu::stop_sim(bool disable)
     {
         _break = disable;

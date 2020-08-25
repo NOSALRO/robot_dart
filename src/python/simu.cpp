@@ -97,6 +97,9 @@ namespace robot_dart {
                 .def("timestep", &RobotDARTSimu::timestep)
                 .def("set_timestep", &RobotDARTSimu::set_timestep)
 
+                .def("gravity", &RobotDARTSimu::gravity)
+                .def("set_gravity", &RobotDARTSimu::set_gravity)
+
                 .def("stop_sim", &RobotDARTSimu::stop_sim,
                     py::arg("disable") = true)
                 .def("halted_sim", &RobotDARTSimu::halted_sim)
