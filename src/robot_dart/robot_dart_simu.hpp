@@ -79,6 +79,9 @@ namespace robot_dart {
         double timestep() const;
         void set_timestep(double timestep, bool update_control_freq = true);
 
+        Eigen::Vector3d gravity() const;
+        void set_gravity(const Eigen::Vector3d& gravity);
+
         void stop_sim(bool disable = true);
         bool halted_sim() const;
 
