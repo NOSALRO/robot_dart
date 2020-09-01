@@ -398,7 +398,7 @@ namespace robot_dart {
         // Put the body into position
         Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
         // tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
-        tf.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        tf.linear() = dart::math::expMapRot(pose.head(3));
         tf.translation() = pose.tail(3);
         tf.translation()[2] -= floor_height / 2.0;
         body->getParentJoint()->setTransformFromParentBodyNode(tf);
@@ -426,7 +426,7 @@ namespace robot_dart {
         // Put the body into position
         Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
         // tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
-        tf.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
+        tf.linear() = dart::math::expMapRot(pose.head(3));
         tf.translation() = pose.tail(3);
         tf.translation()[2] -= floor_height / 2.0;
         main_body->getParentJoint()->setTransformFromParentBodyNode(tf);
@@ -459,7 +459,6 @@ namespace robot_dart {
 
                 // Put the body into position
                 Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-                tf.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
                 tf.translation() = pose.tail(3) + init_pose;
                 body->getParentJoint()->setTransformFromParentBodyNode(tf);
 
