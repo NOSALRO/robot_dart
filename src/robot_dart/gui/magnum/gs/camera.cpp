@@ -222,17 +222,18 @@ namespace robot_dart {
                     pipe(_video_fd);
                     //  Data written to fd[1] appears on (i.e., can be read from) fd[0].
                     _video_pid = fork();
-                    if (_video_pid != 0) {  // main process
+                    if (_video_pid != 0) { // main process
                         close(_video_fd[0]); // we close the input on this side
-                    } else { // ffmpeg process
+                    }
+                    else { // ffmpeg process
                         close(_video_fd[1]); // ffmpeg does not write here
                         dup2(_video_fd[0], STDIN_FILENO); // ffmpeg will read the fd[0] as stdin
-                        char** argv =  (char**) calloc(args.size() + 1, sizeof(char*)); // we need the 0 at the end
+                        char** argv = (char**)calloc(args.size() + 1, sizeof(char*)); // we need the 0 at the end
                         for (int i = 0; i < args.size(); ++i)
-                            argv[i] = (char*) args[i].c_str();
+                            argv[i] = (char*)args[i].c_str();
                         execvp("ffmpeg", argv);
                     }
-                   // ROBOT_DART_WARNING(true, "Boost version does not support 'boost.process'. Cannot record video!");
+                    // ROBOT_DART_WARNING(true, "Boost version does not support 'boost.process'. Cannot record video!");
 #endif
                 }
 
@@ -298,7 +299,6 @@ namespace robot_dart {
 #else
                         write(_video_fd[1], (char*)data.data(), data.size());
 #endif
-
                     }
                 }
             } // namespace gs
