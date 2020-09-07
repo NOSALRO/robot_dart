@@ -90,6 +90,9 @@ namespace robot_dart {
                     // pipe to write a video
                     boost::process::opstream _video_pipe;
                     boost::process::child _ffmpeg_process;
+#else
+                    pid_t _video_pid = 0;
+                    int _video_fd[2];
 #endif
                 };
             } // namespace gs
