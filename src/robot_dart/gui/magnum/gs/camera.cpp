@@ -188,6 +188,7 @@ namespace robot_dart {
                 void Camera::record_video(const std::string& video_fname, int fps)
                 {
                     // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
+#ifdef ROBOT_DART_HAS_BOOST_PROCESS
                     namespace bp = boost::process;
                     // search for ffmpeg
                     boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
@@ -195,6 +196,7 @@ namespace robot_dart {
                         ROBOT_DART_WARNING(ffmpeg.empty(), "ffmpeg not found in the PATH. RobotDART will not be able to record videos!");
                         return;
                     }
+#endif
                     // std::cout << "Found FFMPEG:" << ffmpeg << std::endl;
                     _recording_video = true;
                     // list our options
