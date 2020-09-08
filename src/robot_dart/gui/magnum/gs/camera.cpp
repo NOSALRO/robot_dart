@@ -230,7 +230,7 @@ namespace robot_dart {
                         args.push_back("quiet");
                         close(_video_fd[1]); // ffmpeg does not write here
                         dup2(_video_fd[0], STDIN_FILENO); // ffmpeg will read the fd[0] as stdin
-                        char** argv = (char**)calloc(args.size() + 1, sizeof(char*)); // we need the 0 at the end
+                        char** argv = (char**)calloc(args.size() + 2, sizeof(char*)); // we need the 0 at the end AND the ffffmpeg at the beginning
                         argv[0] = (char*)"ffmpeg";
                         for (size_t i = 0; i < args.size(); ++i)
                             argv[i + 1] = (char*)args[i].c_str();
