@@ -9,8 +9,6 @@
 #if ((BOOST_VERSION / 100000) > 1) || ((BOOST_VERSION / 100000) == 1 && ((BOOST_VERSION / 100 % 1000) >= 64))
 #include <boost/process.hpp> // for launching ffmpeg
 #define ROBOT_DART_HAS_BOOST_PROCESS
-#else
-#warning Boost.process is not supported. Will not be able to record videos.
 #endif
 
 #include <Corrade/Containers/Optional.h>
