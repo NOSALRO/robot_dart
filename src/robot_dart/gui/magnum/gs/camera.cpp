@@ -1,3 +1,5 @@
+#include <sys/errno.h>
+
 #include "camera.hpp"
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/gui_data.hpp"
@@ -234,7 +236,11 @@ namespace robot_dart {
                         argv[0] = (char*)"ffmpeg";
                         for (size_t i = 0; i < args.size(); ++i)
                             argv[i + 1] = (char*)args[i].c_str();
-                        execvp("ffmpeg", argv);
+                        int ret = execvp("ffmpeg", argv);
+                        if (ret == -1) {
+                            std::cerr << "Video recording: cannot execute ffmpeg! ["<< strerror(errno) << "]" << std::endl;
+                            exit(0); // we are in the fork
+                        }
                     }
 #endif
                 }
