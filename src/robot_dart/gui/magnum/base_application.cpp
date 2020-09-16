@@ -283,7 +283,7 @@ namespace robot_dart {
                         bool isColor = true;
                         gs::Material mat;
 
-                        if (object.drawData().materials[i].flags() & Magnum::Trade::PhongMaterialData::Flag::DiffuseTexture) {
+                        if (object.drawData().materials[i].hasAttribute(Magnum::Trade::MaterialAttribute::DiffuseTexture)) {
                             mat.set_diffuse_texture(&(*object.drawData().textures[object.drawData().materials[i].diffuseTexture()]));
                             isColor = false;
                         }
