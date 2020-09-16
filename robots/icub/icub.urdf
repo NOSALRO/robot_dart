@@ -205,7 +205,9 @@
       <geometry>
         <mesh filename="package://icub_description/meshes/visual/glb/icub_l_foot.glb"/>   
       </geometry>
-     
+      <material name="LightGrey">
+        <color rgba="0.9 0.9 0.9 1.0"/>
+      </material>
     </visual>
   </link>
   <link name="r_hip_pitch_link">
@@ -371,6 +373,9 @@
       <geometry>
         <mesh filename="package://icub_description/meshes/visual/glb/icub_r_foot.glb"/>
       </geometry>
+      <material name="LightGrey">
+        <color rgba="0.9 0.9 0.9 1.0"/>
+      </material>
     </visual>
   </link>
   <link name="chest">

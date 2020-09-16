@@ -19,6 +19,8 @@ int main()
     auto robot = std::make_shared<robot_dart::Robot>("icub/icub.urdf", packages);
 
     robot->set_color_mode("material");
+    robot->set_color_mode("aspect", "right_foot");
+    robot->set_color_mode("aspect", "left_foot");
 
     robot->set_position_enforced(true);
     robot->skeleton()->setPosition(5, 0.5);
@@ -40,12 +42,17 @@ int main()
 
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
-        "l_knee", "r_knee", 
-        "l_ankle_pitch", "r_ankle_pitch",
-        "l_hip_pitch", "r_hip_pitch",
-        "l_shoulder_pitch", "l_shoulder_roll",
-        "r_shoulder_pitch", "r_shoulder_roll",
-        };
+        "l_knee",
+        "r_knee",
+        "l_ankle_pitch",
+        "r_ankle_pitch",
+        "l_hip_pitch",
+        "r_hip_pitch",
+        "l_shoulder_pitch",
+        "l_shoulder_roll",
+        "r_shoulder_pitch",
+        "r_shoulder_roll",
+    };
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) {
