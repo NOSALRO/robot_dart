@@ -238,7 +238,7 @@ namespace robot_dart {
                             argv[i + 1] = (char*)args[i].c_str();
                         int ret = execvp("ffmpeg", argv);
                         if (ret == -1) {
-                            std::cerr << "Video recording: cannot execute ffmpeg! ["<< strerror(errno) << "]" << std::endl;
+                            std::cerr << "Video recording: cannot execute ffmpeg! [" << strerror(errno) << "]" << std::endl;
                             exit(0); // we are in the fork
                         }
                     }
