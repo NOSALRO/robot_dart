@@ -288,6 +288,7 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
+        reset();
     }
 
     std::shared_ptr<Robot> Robot::clone() const
@@ -488,6 +489,9 @@ namespace robot_dart {
         _skeleton->resetPositions();
         _skeleton->resetVelocities();
         _skeleton->resetAccelerations();
+        _skeleton->clearInternalForces();
+        _skeleton->clearConstraintImpulses();
+        _skeleton->resetCommands();
         this->clear_external_forces();
     }
 
