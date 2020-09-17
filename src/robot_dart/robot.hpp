@@ -65,6 +65,10 @@ namespace robot_dart {
 
         void reset();
 
+        void clear_external_forces();
+        void clear_internal_forces();
+        void reset_commands();
+
         // actuator type can be: torque, servo, velocity, passive, locked, mimic (only for completeness, use set_mimic to use this)
         // Be careful that actuator types are per joint and not per DoF
         void set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false);
@@ -154,8 +158,6 @@ namespace robot_dart {
         void set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
         void add_external_torque(const std::string& body_name, const Eigen::Vector3d& torque, bool local = false);
         void add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local = false);
-
-        void clear_external_forces();
 
         Eigen::Vector6d external_forces(const std::string& body_name) const;
         Eigen::Vector6d external_forces(size_t body_index) const;
