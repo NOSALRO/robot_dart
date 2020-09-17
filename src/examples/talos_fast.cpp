@@ -45,18 +45,16 @@ int main()
 
     simu.set_control_freq(100);
     std::vector<std::string> dofs = {"arm_left_1_joint",
-                                     "arm_left_2_joint",
-                                     "arm_right_1_joint",
-                                     "arm_right_2_joint",
-                                     "torso_1_joint"};
+        "arm_left_2_joint",
+        "arm_right_1_joint",
+        "arm_right_2_joint",
+        "torso_1_joint"};
 
     Eigen::VectorXd init_positions = robot->positions(dofs);
 
     auto start = std::chrono::steady_clock::now();
-    while (simu.scheduler().next_time() < 20. && !simu.graphics()->done())
-    {
-        if (simu.schedule(simu.control_freq()))
-        {
+    while (simu.scheduler().next_time() < 20. && !simu.graphics()->done()) {
+        if (simu.schedule(simu.control_freq())) {
             Eigen::VectorXd delta_pos(5);
             delta_pos << sin(simu.scheduler().current_time() * 2.),
                 sin(simu.scheduler().current_time() * 2.),
