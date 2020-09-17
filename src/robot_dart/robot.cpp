@@ -288,6 +288,7 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
         _set_damages(damages);
+        reset();
     }
 
     std::shared_ptr<Robot> Robot::clone() const
@@ -488,8 +489,21 @@ namespace robot_dart {
         _skeleton->resetPositions();
         _skeleton->resetVelocities();
         _skeleton->resetAccelerations();
-        this->clear_external_forces();
+
+        clear_internal_forces();
+        reset_commands();
+        clear_external_forces();
     }
+
+    void Robot::clear_external_forces() { _skeleton->clearExternalForces(); }
+
+    void Robot::clear_internal_forces()
+    {
+        _skeleton->clearInternalForces();
+        _skeleton->clearConstraintImpulses();
+    }
+
+    void Robot::reset_commands() { _skeleton->resetCommands(); }
 
     void Robot::set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base)
     {
@@ -1002,8 +1016,6 @@ namespace robot_dart {
 
         bd->addExtTorque(torque, local);
     }
-
-    void Robot::clear_external_forces() { _skeleton->clearExternalForces(); }
 
     Eigen::Vector6d Robot::external_forces(const std::string& body_name) const
     {
@@ -1718,8 +1730,10 @@ namespace robot_dart {
         body->setInertia(inertia);
 
         // Put the body into position
+        auto robot = std::make_shared<Robot>(box_skel, box_name);
+
         if (type == "free") // free floating
-            box_skel->setPositions(pose);
+            robot->set_positions(pose);
         else // fixed
         {
             Eigen::Isometry3d T;
@@ -1728,7 +1742,7 @@ namespace robot_dart {
             body->getParentJoint()->setTransformFromParentBodyNode(T);
         }
 
-        return std::make_shared<Robot>(box_skel, box_name);
+        return robot;
     }
 
     std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims,
@@ -1759,9 +1773,11 @@ namespace robot_dart {
         inertia.setMoment(ellipsoid->computeInertia(mass));
         body->setInertia(inertia);
 
+        auto robot = std::make_shared<Robot>(ellipsoid_skel, ellipsoid_name);
+
         // Put the body into position
         if (type == "free") // free floating
-            ellipsoid_skel->setPositions(pose);
+            robot->set_positions(pose);
         else // fixed
         {
             Eigen::Isometry3d T;
@@ -1770,6 +1786,6 @@ namespace robot_dart {
             body->getParentJoint()->setTransformFromParentBodyNode(T);
         }
 
-        return std::make_shared<Robot>(ellipsoid_skel, ellipsoid_name);
+        return robot;
     }
 } // namespace robot_dart

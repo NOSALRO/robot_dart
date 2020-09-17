@@ -61,6 +61,9 @@ namespace robot_dart {
                 .def("free", &Robot::free)
 
                 .def("reset", &Robot::reset)
+                .def("clear_external_forces", &Robot::clear_external_forces)
+                .def("clear_internal_forces", &Robot::clear_internal_forces)
+                .def("reset_commands", &Robot::reset_commands)
 
                 .def("set_actuator_types", &Robot::set_actuator_types,
                     py::arg("type"),
@@ -236,8 +239,6 @@ namespace robot_dart {
                     py::arg("body_index"),
                     py::arg("torque"),
                     py::arg("local") = false)
-
-                .def("clear_external_forces", &Robot::clear_external_forces)
 
                 .def("external_forces", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::external_forces)
                 .def("external_forces", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::external_forces)
