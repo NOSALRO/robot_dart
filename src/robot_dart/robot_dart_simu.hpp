@@ -7,6 +7,7 @@
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
 #include <robot_dart/scheduler.hpp>
+#include <robot_dart/sensor/sensor.hpp>
 
 namespace robot_dart {
     namespace simu {
@@ -72,9 +73,33 @@ namespace robot_dart {
         std::vector<std::shared_ptr<gui::Base>> cameras() const;
         std::shared_ptr<gui::Base> camera(size_t index) const;
 
-        void remove_camera(const std::shared_ptr<gui::Base>& desc);
+        void remove_camera(const std::shared_ptr<gui::Base>& cam);
         void remove_camera(size_t index);
         void clear_cameras();
+
+        template <typename T, typename... Args>
+        std::shared_ptr<T> add_sensor(Args&&... args)
+        {
+            add_sensor(std::make_shared<T>(this, std::forward<Args>(args)...));
+            return _sensors.back();
+        }
+
+        template <typename T, typename... Args>
+        std::shared_ptr<T> add_sensor(const std::string& body_name, const Eigen::Isometry3d& tf, Args&&... args)
+        {
+            add_sensor(std::make_shared<T>(this, std::forward<Args>(args)...), body_name, tf);
+            return _sensors.back();
+        }
+
+        void add_sensor(const std::shared_ptr<sensor::Sensor>& sensor);
+        void add_sensor(const std::shared_ptr<sensor::Sensor>& sensor, const std::string& body_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity());
+        std::vector<std::shared_ptr<sensor::Sensor>> sensors() const;
+        std::shared_ptr<sensor::Sensor> sensor(size_t index) const;
+
+        void remove_sensor(const std::shared_ptr<sensor::Sensor>& sensor);
+        void remove_sensor(size_t index);
+        void remove_sensors(const std::string& type);
+        void clear_sensors();
 
         double timestep() const;
         void set_timestep(double timestep, bool update_control_freq = true);
@@ -125,6 +150,7 @@ namespace robot_dart {
 
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
         std::vector<std::shared_ptr<gui::Base>> _cameras; // designed to include mainly graphcis::CameraOSR
+        std::vector<std::shared_ptr<sensor::Sensor>> _sensors;
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
         std::unique_ptr<simu::GUIData> _gui_data;

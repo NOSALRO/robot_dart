@@ -73,6 +73,11 @@ namespace robot_dart {
                     return *_camera;
                 }
 
+                Object3D& Camera::root_object()
+                {
+                    return *this;
+                }
+
                 Object3D& Camera::camera_object() const
                 {
                     return *_camera_object;

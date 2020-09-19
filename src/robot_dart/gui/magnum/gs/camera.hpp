@@ -27,6 +27,7 @@ namespace robot_dart {
                     ~Camera();
 
                     Camera3D& camera() const;
+                    Object3D& root_object();
                     Object3D& camera_object() const;
 
                     Camera& set_viewport(const Magnum::Vector2i& size);

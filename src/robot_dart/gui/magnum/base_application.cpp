@@ -556,11 +556,11 @@ namespace robot_dart {
             {
                 for (Magnum::DartIntegration::Object& object : _dart_world->objects()) {
                     if (object.bodyNode() && object.bodyNode()->getName() == name) {
-                        camera.camera_object().setParent(static_cast<Object3D*>(&object.object()));
+                        camera.root_object().setParent(static_cast<Object3D*>(&object.object()));
                         return true;
                     }
                     if (object.shapeNode() && object.shapeNode()->getName() == name) {
-                        camera.camera_object().setParent(static_cast<Object3D*>(&object.object()));
+                        camera.root_object().setParent(static_cast<Object3D*>(&object.object()));
                         return true;
                     }
                 }
