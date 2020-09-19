@@ -7,6 +7,8 @@
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 
+#include <robot_dart/sensor/imu.hpp>
+
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
@@ -40,6 +42,12 @@ int main()
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
 
+    // Add an IMU sensor to the "chest" body link
+    robot_dart::sensor::IMUConfig imu_config;
+    imu_config._body_name = "chest"; // choose which body the sensor is attached to
+    imu_config._frequency = 200; // update rate of the sensor
+    auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
+
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
         "l_knee",
@@ -53,6 +61,10 @@ int main()
         "r_shoulder_pitch",
         "r_shoulder_roll",
     };
+
+    robot->set_draw_axis(imu_config._body_name);
+    Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n", "", "");
+    std::cout.precision(4);
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) {
@@ -71,6 +83,13 @@ int main()
             robot->set_commands(commands, dofs);
         }
         simu.step_world();
+
+        // Print IMU measurements
+        if (simu.schedule(imu_sensor->frequency())) {
+            std::cout << "Angular    Velocity: " << imu_sensor->angular_velocity().transpose().format(fmt) << std::endl;
+            std::cout << "Linear Acceleration: " << imu_sensor->linear_acceleration().transpose().format(fmt) << std::endl;
+            std::cout << "=================================" << std::endl;
+        }
     }
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
