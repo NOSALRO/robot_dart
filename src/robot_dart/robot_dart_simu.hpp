@@ -69,14 +69,6 @@ namespace robot_dart {
         void remove_descriptor(size_t index);
         void clear_descriptors();
 
-        void add_camera(const std::shared_ptr<gui::Base>& cam);
-        std::vector<std::shared_ptr<gui::Base>> cameras() const;
-        std::shared_ptr<gui::Base> camera(size_t index) const;
-
-        void remove_camera(const std::shared_ptr<gui::Base>& cam);
-        void remove_camera(size_t index);
-        void clear_cameras();
-
         template <typename T, typename... Args>
         std::shared_ptr<T> add_sensor(Args&&... args)
         {
@@ -149,7 +141,6 @@ namespace robot_dart {
         bool _break;
 
         std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
-        std::vector<std::shared_ptr<gui::Base>> _cameras; // designed to include mainly graphcis::CameraOSR
         std::vector<std::shared_ptr<sensor::Sensor>> _sensors;
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
