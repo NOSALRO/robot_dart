@@ -3,8 +3,8 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
+#include <robot_dart/gui/magnum/sensor/camera.hpp>
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
@@ -54,7 +54,7 @@ int main()
     graphics->record_video("video-main.mp4", simu.graphics_freq());
 
     // Add camera
-    auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);
+    auto camera = std::make_shared<robot_dart::gui::magnum::sensor::Camera>(&simu, graphics->magnum_app(), 256, 256);
     camera->camera().set_far_plane(5.f);
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // cameras can also record video
@@ -73,7 +73,7 @@ int main()
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
-    simu.add_camera(camera);
+    simu.add_sensor(camera);
 
     simu.run(10.);
 
