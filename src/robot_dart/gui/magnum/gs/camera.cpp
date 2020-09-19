@@ -301,7 +301,6 @@ namespace robot_dart {
                         Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
                         Corrade::Utility::copy(src, dst);
 #ifdef ROBOT_DART_HAS_BOOST_PROCESS
-
                         _video_pipe.write((char*)data.data(), data.size());
                         _video_pipe.flush();
 #else

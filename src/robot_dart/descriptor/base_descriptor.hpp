@@ -6,7 +6,6 @@
 
 namespace robot_dart {
     class RobotDARTSimu;
-    class Robot;
 
     namespace descriptor {
 
