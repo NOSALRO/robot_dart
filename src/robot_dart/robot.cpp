@@ -792,10 +792,7 @@ namespace robot_dart {
 
     Eigen::Vector6d Robot::com_velocity() const { return _skeleton->getCOMSpatialVelocity(); }
 
-    Eigen::Vector6d Robot::com_acceleration() const
-    {
-        return _skeleton->getCOMSpatialAcceleration();
-    }
+    Eigen::Vector6d Robot::com_acceleration() const { return _skeleton->getCOMSpatialAcceleration(); }
 
     Eigen::VectorXd Robot::positions(const std::vector<std::string>& dof_names) const
     {
