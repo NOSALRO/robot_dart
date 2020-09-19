@@ -5,6 +5,7 @@
 #include <Eigen/Geometry>
 
 #include <memory>
+#include <vector>
 
 namespace dart {
     namespace dynamics {
