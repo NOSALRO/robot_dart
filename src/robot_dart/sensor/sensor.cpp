@@ -6,7 +6,13 @@
 
 namespace robot_dart {
     namespace sensor {
-        Sensor::Sensor(RobotDARTSimu* simu, size_t freq) : _simu(simu), _active(false), _frequency(freq), _world_pose(Eigen::Isometry3d::Identity()), _attaching(false), _attached(false) {}
+        Sensor::Sensor(RobotDARTSimu* simu, size_t freq) : _simu(simu), _active(false), _frequency(freq), _world_pose(Eigen::Isometry3d::Identity()), _attaching(false), _attached(false)
+        {
+            bool check = static_cast<int>(_frequency) > simu->physics_freq();
+            ROBOT_DART_WARNING(check, "Sensor frequency is bigger than simulation physics. Setting it to simulation rate!");
+            if (check)
+                _frequency = simu->physics_freq();
+        }
 
         void Sensor::activate(bool enable)
         {
@@ -33,7 +39,7 @@ namespace robot_dart {
                 attach_to(_attach_to, _attached_tf);
             }
 
-            if (_attached) {
+            if (_attached && _body_attached) {
                 _world_pose = _body_attached->getWorldTransform() * _attached_tf;
             }
 

@@ -7,6 +7,7 @@
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
 
+#include <robot_dart/sensor/force_torque.hpp>
 #include <robot_dart/sensor/imu.hpp>
 
 #ifdef GRAPHIC
@@ -48,6 +49,13 @@ int main()
     imu_config._frequency = 200; // update rate of the sensor
     auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
 
+    // Add a force/torque sensor in "r_ankle_roll" joint
+    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, "r_ankle_roll");
+
+    // Add some visualizations
+    robot->set_draw_axis(imu_config._body_name);
+    robot->set_draw_axis("r_ankle_2");
+
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
         "l_knee",
@@ -62,7 +70,7 @@ int main()
         "r_shoulder_roll",
     };
 
-    robot->set_draw_axis(imu_config._body_name);
+    // Format Eigen to std::cout
     Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n", "", "");
     std::cout.precision(4);
 
@@ -88,6 +96,13 @@ int main()
         if (simu.schedule(imu_sensor->frequency())) {
             std::cout << "Angular    Velocity: " << imu_sensor->angular_velocity().transpose().format(fmt) << std::endl;
             std::cout << "Linear Acceleration: " << imu_sensor->linear_acceleration().transpose().format(fmt) << std::endl;
+            std::cout << "=================================" << std::endl;
+        }
+
+        // Print FT measurements
+        if (simu.schedule(ft_sensor->frequency())) {
+            std::cout << "FT ( force): " << ft_sensor->force().transpose().format(fmt) << std::endl;
+            std::cout << "FT (torque): " << ft_sensor->torque().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
         }
     }
