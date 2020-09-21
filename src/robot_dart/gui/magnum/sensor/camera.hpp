@@ -88,6 +88,10 @@ namespace robot_dart {
             } // namespace sensor
         } // namespace magnum
     } // namespace gui
+
+    namespace sensor {
+        using gui::magnum::sensor::Camera;
+    }
 } // namespace robot_dart
 
 #endif
