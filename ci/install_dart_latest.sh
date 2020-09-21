@@ -13,14 +13,14 @@ git clone git://github.com/dartsim/dart.git
 cd dart
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release -CMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 sudo make install
 if [ "$PYTHON_TESTS" = "ON" ]; then
     cd ..
     mkdir build_py
     cd build_py
-    cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release ..
+    cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -CMAKE_INSTALL_PREFIX=/usr ..
     make -j4
     sudo make install
 fi
