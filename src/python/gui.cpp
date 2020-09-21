@@ -6,6 +6,8 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <dart/dynamics/BodyNode.hpp>
+
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #include <robot_dart/gui/magnum/sensor/camera.hpp>
@@ -220,8 +222,12 @@ namespace robot_dart {
 
                 .def("type", &gui::magnum::sensor::Camera::type)
 
-                .def("attach_to", &gui::magnum::sensor::Camera::attach_to,
-                    py::arg("body_name"),
+                .def("attach_to_body", &gui::magnum::sensor::Camera::attach_to_body,
+                    py::arg("body"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("attach_to_joint", &gui::magnum::sensor::Camera::attach_to_joint,
+                    py::arg("joint"),
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
                 .def("camera", (Camera & (gui::magnum::sensor::Camera::*)()) & gui::magnum::sensor::Camera::camera, py::return_value_policy::reference)

@@ -45,15 +45,15 @@ int main()
 
     // Add an IMU sensor to the "chest" body link
     robot_dart::sensor::IMUConfig imu_config;
-    imu_config._body_name = "chest"; // choose which body the sensor is attached to
-    imu_config._frequency = 200; // update rate of the sensor
+    imu_config.body = robot->body_node("chest"); // choose which body the sensor is attached to
+    imu_config.frequency = 200; // update rate of the sensor
     auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
 
     // Add a force/torque sensor in "r_ankle_roll" joint
-    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, "r_ankle_roll");
+    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, robot, "r_ankle_roll");
 
     // Add some visualizations
-    robot->set_draw_axis(imu_config._body_name);
+    robot->set_draw_axis(imu_config.body->getName());
     robot->set_draw_axis("r_ankle_2");
 
     simu.set_control_freq(100); // 100 Hz

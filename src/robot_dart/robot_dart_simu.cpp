@@ -207,13 +207,6 @@ namespace robot_dart {
         sensor->init();
     }
 
-    void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor, const std::string& body_name, const Eigen::Isometry3d& tf)
-    {
-        _sensors.push_back(sensor);
-        sensor->init();
-        sensor->attach_to(body_name, tf);
-    }
-
     std::vector<std::shared_ptr<sensor::Sensor>> RobotDARTSimu::sensors() const
     {
         return _sensors;

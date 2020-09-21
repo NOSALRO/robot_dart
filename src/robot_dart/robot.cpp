@@ -356,6 +356,24 @@ namespace robot_dart {
 
     dart::dynamics::SkeletonPtr Robot::skeleton() { return _skeleton; }
 
+    dart::dynamics::BodyNode* Robot::body_node(const std::string& body_name) { return _skeleton->getBodyNode(body_name); }
+
+    dart::dynamics::BodyNode* Robot::body_node(size_t body_index)
+    {
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", nullptr);
+        return _skeleton->getBodyNode(body_index);
+    }
+
+    dart::dynamics::Joint* Robot::joint(const std::string& joint_name) { return _skeleton->getJoint(joint_name); }
+
+    dart::dynamics::Joint* Robot::joint(size_t joint_index)
+    {
+        ROBOT_DART_ASSERT(
+            joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", nullptr);
+        return _skeleton->getJoint(joint_index);
+    }
+
     std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
     const std::string& Robot::name() const { return _robot_name; }

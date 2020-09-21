@@ -6,28 +6,28 @@
 
 namespace robot_dart {
     namespace sensor {
-        IMU::IMU(RobotDARTSimu* simu, const IMUConfig& config) : Sensor(simu, config._frequency), _config(config) {}
+        IMU::IMU(RobotDARTSimu* simu, const IMUConfig& config) : Sensor(simu, config.frequency), _config(config) {}
 
         void IMU::init()
         {
             _angular_vel.setZero();
             _linear_accel.setZero();
 
-            attach_to(_config._body_name, Eigen::Isometry3d::Identity());
+            attach_to_body(_config.body, Eigen::Isometry3d::Identity());
             _active = true;
         }
 
         void IMU::calculate(double t)
         {
-            if (!_attached)
+            if (!_attached_to_body)
                 return; // cannot compute anything if not attached to a link
 
             _angular_vel = _body_attached->getSpatialVelocity().head(3); // angular velocity with respect to the world, in local coordinates
             _linear_accel = _body_attached->getSpatialAcceleration().tail(3); // linear acceleration with respect to the world, in local coordinates
 
             // add biases
-            _angular_vel += _config._gyro_bias;
-            _linear_accel += _config._accel_bias;
+            _angular_vel += _config.gyro_bias;
+            _linear_accel += _config.accel_bias;
 
             // add gravity to acceleration
             _linear_accel -= _world_pose.linear().transpose() * _simu->gravity();

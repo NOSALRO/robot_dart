@@ -76,15 +76,7 @@ namespace robot_dart {
             return std::static_pointer_cast<T>(_sensors.back());
         }
 
-        template <typename T, typename... Args>
-        std::shared_ptr<T> add_sensor(const std::string& body_name, const Eigen::Isometry3d& tf, Args&&... args)
-        {
-            add_sensor(std::make_shared<T>(std::forward<Args>(args)...), body_name, tf);
-            return std::static_pointer_cast<T>(_sensors.back());
-        }
-
         void add_sensor(const std::shared_ptr<sensor::Sensor>& sensor);
-        void add_sensor(const std::shared_ptr<sensor::Sensor>& sensor, const std::string& body_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity());
         std::vector<std::shared_ptr<sensor::Sensor>> sensors() const;
         std::shared_ptr<sensor::Sensor> sensor(size_t index) const;
 

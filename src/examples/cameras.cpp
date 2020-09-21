@@ -65,7 +65,7 @@ int main()
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
     tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
-    camera->attach_to("iiwa_link_ee", tf); // cameras are looking towards -z by default
+    camera->attach_to_body(global_robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
 
     // simu.add_floor(5.);
     simu.add_checkerboard_floor(10.);
