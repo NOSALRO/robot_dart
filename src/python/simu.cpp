@@ -89,11 +89,6 @@ namespace robot_dart {
                 .def("add_sensor", (void (RobotDARTSimu::*)(const std::shared_ptr<sensor::Sensor>&)) & RobotDARTSimu::add_sensor,
                     py::keep_alive<2, 1>(),
                     py::arg("sensor"))
-                .def("add_sensor", (void (RobotDARTSimu::*)(const std::shared_ptr<sensor::Sensor>&, const std::string&, const Eigen::Isometry3d&)) & RobotDARTSimu::add_sensor,
-                    py::keep_alive<2, 1>(),
-                    py::arg("sensor"),
-                    py::arg("body_name"),
-                    py::arg("tf") = Eigen::Isometry3d::Identity())
                 .def("sensors", &RobotDARTSimu::sensors)
                 .def("sensor", &RobotDARTSimu::sensor)
 

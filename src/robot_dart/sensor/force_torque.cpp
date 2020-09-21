@@ -7,9 +7,9 @@
 
 namespace robot_dart {
     namespace sensor {
-        ForceTorque::ForceTorque(RobotDARTSimu* simu, const std::string& joint_name, size_t frequency, const std::string& direction) : Sensor(simu, frequency), _joint_name(joint_name), _direction(direction)
+        ForceTorque::ForceTorque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency, const std::string& direction) : Sensor(simu, frequency), _direction(direction)
         {
-            attach_to(joint_name, Eigen::Isometry3d::Identity());
+            attach_to_joint(joint, Eigen::Isometry3d::Identity());
         }
 
         void ForceTorque::init()
@@ -17,28 +17,20 @@ namespace robot_dart {
             _force.setZero();
             _torque.setZero();
 
-            attach_to(_joint_name, Eigen::Isometry3d::Identity());
+            attach_to_joint(_joint_attached, Eigen::Isometry3d::Identity());
             _active = true;
         }
 
         void ForceTorque::calculate(double t)
         {
-            if (!_attached)
+            if (!_attached_to_joint)
                 return; // cannot compute anything if not attached to a joint
 
-            // // Update transformations: in theory these should not change
-            // if (_joint_attached->getParentBodyNode()) {
-            //     _body_attached = _joint_attached->getParentBodyNode();
-            //     _attached_tf = _joint_attached->getTransformFromParentBodyNode();
-            // }
-            // else if (_joint_attached->getChildBodyNode()) {
-            //     _body_attached = _joint_attached->getChildBodyNode();
-            //     _attached_tf = _joint_attached->getTransformFromChildBodyNode();
-            // }
-            auto robot = _robot.lock();
-
-            Eigen::Vector6d F1, F2;
-            std::tie(F1, F2) = robot->force_torque(robot->joint_index(_joint_name));
+            Eigen::Vector6d F2 = Eigen::Vector6d::Zero();
+            auto child_body = _joint_attached->getChildBodyNode();
+            // ROBOT_DART_ASSERT(child_body != nullptr, "Child BodyNode is nullptr", {});
+            if (child_body)
+                F2 = -dart::math::dAdT(_joint_attached->getTransformFromChildBodyNode(), child_body->getBodyForce());
 
             // We always compute things in SENSOR frame (aka joint frame)
             if (_direction == "parent_to_child") {
@@ -66,47 +58,6 @@ namespace robot_dart {
         const Eigen::Vector3d& ForceTorque::torque() const
         {
             return _torque;
-        }
-
-        void ForceTorque::attach_to(const std::string& joint_name, const Eigen::Isometry3d&)
-        {
-            _attach_to = joint_name;
-            _attaching = true;
-            _attached = false;
-            _attached_tf = Eigen::Isometry3d::Identity();
-
-            bool end = false;
-            for (size_t i = 0; i < _simu->num_robots(); i++) {
-                auto robot = _simu->robot(i);
-                auto names = robot->joint_names();
-                for (size_t j = 0; j < robot->num_joints(); j++) {
-                    if (names[j] == joint_name) {
-                        end = true;
-                        _attaching = false;
-                        _attached = true;
-
-                        _joint_attached = robot->skeleton()->getJoint(joint_name);
-                        _robot = robot;
-                        if (_joint_attached->getParentBodyNode()) {
-                            _body_attached = _joint_attached->getParentBodyNode();
-                            _attached_tf = _joint_attached->getTransformFromParentBodyNode();
-                        }
-                        else if (_joint_attached->getChildBodyNode()) {
-                            _body_attached = _joint_attached->getChildBodyNode();
-                            _attached_tf = _joint_attached->getTransformFromChildBodyNode();
-                        }
-                        // else {
-                        //     _attaching = true;
-                        //     _attached = false;
-                        // }
-
-                        break;
-                    }
-                }
-
-                if (end)
-                    break;
-            }
         }
     } // namespace sensor
 } // namespace robot_dart

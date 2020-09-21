@@ -64,7 +64,7 @@ simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
 camera = rd.sensor.Camera(simu, graphics.magnum_app(), 256, 256)
 rot = dartpy.math.AngleAxis(3.14, [1., 0., 0.]).to_rotation_matrix()
 rot = rot.dot(dartpy.math.AngleAxis(1.57, [0., 0., 1.]).to_rotation_matrix())
-camera.attach_to("arm_link_5", dartpy.math.Isometry3(rotation=rot, translation=[0., 0., 0.1]))
+camera.attach_to_body(robot.body_node("arm_link_5"), dartpy.math.Isometry3(rotation=rot, translation=[0., 0., 0.1]))
 simu.add_sensor(camera)
 
 simu.run(5.)

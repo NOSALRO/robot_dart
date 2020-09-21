@@ -83,14 +83,14 @@ namespace robot_dart {
 
                 std::string Camera::type() const { return "rgb_camera"; }
 
-                void Camera::attach_to(const std::string& body_name, const Eigen::Isometry3d& tf)
+                void Camera::attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf)
                 {
-                    robot_dart::sensor::Sensor::attach_to(body_name, tf);
+                    robot_dart::sensor::Sensor::attach_to_body(body, tf);
 
-                    if (_attached) {
-                        if (!_magnum_app->attach_camera(*_camera, body_name)) {
-                            _attaching = true;
-                            _attached = false;
+                    if (_attached_to_body) {
+                        if (!_magnum_app->attach_camera(*_camera, body)) {
+                            _attaching_to_body = true;
+                            _attached_to_body = false;
                             return;
                         }
 
@@ -135,7 +135,7 @@ namespace robot_dart {
                         Magnum::Vector3{lx, ly, lz},
                         Magnum::Vector3{ux, uy, uz});
 
-                    if (_attached) {
+                    if (_attached_to_body) {
                         Eigen::Matrix4d tr = Magnum::EigenIntegration::cast<Eigen::Matrix4d>(Magnum::Math::Matrix4<double>(_camera->camera_object().transformationMatrix()));
 
                         _world_pose = Eigen::Isometry3d(tr);

@@ -3,19 +3,12 @@
 
 #include <robot_dart/sensor/sensor.hpp>
 
-namespace dart {
-    namespace dynamics {
-        class Joint;
-    }
-} // namespace dart
-
 namespace robot_dart {
-    class Robot;
-
     namespace sensor {
         class ForceTorque : public Sensor {
         public:
-            ForceTorque(RobotDARTSimu* simu, const std::string& joint_name, size_t frequency = 1000, const std::string& direction = "child_to_parent");
+            ForceTorque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency = 1000, const std::string& direction = "child_to_parent");
+            ForceTorque(RobotDARTSimu* simu, const std::shared_ptr<Robot>& robot, const std::string& joint_name, size_t frequency = 1000, const std::string& direction = "child_to_parent") : ForceTorque(simu, robot->joint(joint_name), frequency, direction) {}
 
             void init() override;
 
@@ -26,13 +19,12 @@ namespace robot_dart {
             const Eigen::Vector3d& force() const;
             const Eigen::Vector3d& torque() const;
 
-            void attach_to(const std::string& joint_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override;
+            void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            {
+                ROBOT_DART_WARNING(true, "You cannot attach a force/torque sensor to a body!");
+            }
 
         protected:
-            std::weak_ptr<Robot> _robot;
-            std::string _joint_name;
-            dart::dynamics::Joint* _joint_attached;
-
             std::string _direction;
 
             Eigen::Vector3d _force;

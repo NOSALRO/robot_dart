@@ -8,19 +8,19 @@ namespace robot_dart {
         // TO-DO: Implement some noise models (e.g., https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model)
         struct IMUConfig {
             // We assume fixed bias; TO-DO: Make this time-dependent
-            Eigen::Vector3d _gyro_bias = Eigen::Vector3d::Zero();
-            Eigen::Vector3d _accel_bias = Eigen::Vector3d::Zero();
+            Eigen::Vector3d gyro_bias = Eigen::Vector3d::Zero();
+            Eigen::Vector3d accel_bias = Eigen::Vector3d::Zero();
 
             // // We assume white Gaussian noise // TO-DO: Implement this
             // Eigen::Vector3d _gyro_std = Eigen::Vector3d::Zero();
             // Eigen::Vector3d _accel_std = Eigen::Vector3d::Zero();
 
             // BodyNode/Link attached to
-            std::string _body_name = "";
+            dart::dynamics::BodyNode* body = nullptr;
             // Eigen::Isometry3d _tf = Eigen::Isometry3d::Identity();
 
             // Frequency
-            size_t _frequency = 200;
+            size_t frequency = 200;
         };
 
         class IMU : public Sensor {
@@ -35,6 +35,11 @@ namespace robot_dart {
 
             const Eigen::Vector3d& angular_velocity() const;
             const Eigen::Vector3d& linear_acceleration() const;
+
+            void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            {
+                ROBOT_DART_WARNING(true, "You cannot attach an IMU sensor to a joint!");
+            }
 
         protected:
             // double _prev_time = 0.;

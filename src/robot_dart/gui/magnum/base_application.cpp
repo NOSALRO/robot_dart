@@ -568,6 +568,18 @@ namespace robot_dart {
                 return false;
             }
 
+            bool BaseApplication::attach_camera(gs::Camera& camera, dart::dynamics::BodyNode* body)
+            {
+                for (Magnum::DartIntegration::Object& object : _dart_world->objects()) {
+                    if (object.bodyNode() && object.bodyNode() == body) {
+                        camera.root_object().setParent(static_cast<Object3D*>(&object.object()));
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
             void BaseApplication::enable_shadows(bool enable, bool drawTransparentShadows)
             {
                 _shadowed = enable;

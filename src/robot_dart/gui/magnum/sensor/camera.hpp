@@ -24,7 +24,12 @@ namespace robot_dart {
 
                     std::string type() const override;
 
-                    void attach_to(const std::string& body_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override;
+                    void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override;
+
+                    void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                    {
+                        ROBOT_DART_WARNING(true, "You cannot attach a camera to a joint!");
+                    }
 
                     gs::Camera& camera() { return *_camera; }
                     const gs::Camera& camera() const { return *_camera; }
