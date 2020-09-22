@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_imu)
         // Add an IMU sensor
         robot_dart::sensor::IMUConfig imu_config;
         imu_config.body = robot->body_node("box");
-        imu_config.frequency = 200; // update rate of the sensor
+        imu_config.frequency = 1000; // big update rate to get result in one time-step
         auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
 
         // Test IMU zero linear acceleration on free-fall
