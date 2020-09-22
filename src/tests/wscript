@@ -26,3 +26,12 @@ def build(bld):
                 use='RobotDARTSimu',
                 defines=defines,
                 cxxflags = cxxflags)
+
+    bld.program(features='cxx test',
+                source='test_sensors.cpp',
+                includes='..',
+                target='test_sensors',
+                uselib=libs,
+                use='RobotDARTSimu',
+                defines=defines,
+                cxxflags = cxxflags)

@@ -8,6 +8,7 @@ namespace robot_dart {
         void py_simu(py::module& m);
         void py_control(py::module& m);
         void py_utils(py::module& m);
+        void py_sensors(py::module& m);
 
 #ifdef GRAPHIC
         void py_gui(py::module& m);

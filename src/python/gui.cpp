@@ -6,9 +6,11 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <dart/dynamics/BodyNode.hpp>
+
 #ifdef GRAPHIC
-#include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
+#include <robot_dart/gui/magnum/sensor/camera.hpp>
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 #endif
 
@@ -19,6 +21,7 @@ namespace robot_dart {
         {
             auto sm = m.def_submodule("gui");
             auto gsmodule = sm.def_submodule("gs");
+            auto sensormodule = m.def_submodule("sensor");
 
             using namespace robot_dart;
 
@@ -203,45 +206,50 @@ namespace robot_dart {
                     gui::magnum::GlobalData::instance()->set_max_contexts(num_contexts);
                 });
 
-            // CameraOSR class
-            py::class_<gui::magnum::CameraOSR, gui::Base, std::shared_ptr<gui::magnum::CameraOSR>>(sm, "CameraOSR")
-                .def(py::init<RobotDARTSimu*, gui::magnum::BaseApplication*, size_t, size_t, bool>(),
+            // Camera sensor class
+            py::class_<gui::magnum::sensor::Camera, robot_dart::sensor::Sensor, std::shared_ptr<gui::magnum::sensor::Camera>>(sensormodule, "Camera")
+                .def(py::init<RobotDARTSimu*, gui::magnum::BaseApplication*, size_t, size_t, size_t, bool>(),
                     py::arg("simu"),
                     py::arg("app"),
                     py::arg("width"),
                     py::arg("height"),
+                    py::arg("freq") = 30,
                     py::arg("draw_ghost") = false)
 
-                .def("done", &gui::magnum::CameraOSR::done)
-                .def("refresh", &gui::magnum::CameraOSR::refresh)
-                .def("set_render_period", &gui::magnum::CameraOSR::set_render_period)
-                .def("set_enable", &gui::magnum::CameraOSR::set_enable)
+                .def("init", &gui::magnum::sensor::Camera::init)
 
-                .def("look_at", &gui::magnum::CameraOSR::look_at,
+                .def("calculate", &gui::magnum::sensor::Camera::calculate)
+
+                .def("type", &gui::magnum::sensor::Camera::type)
+
+                .def("attach_to_body", &gui::magnum::sensor::Camera::attach_to_body,
+                    py::arg("body"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("attach_to_joint", &gui::magnum::sensor::Camera::attach_to_joint,
+                    py::arg("joint"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("camera", (Camera & (gui::magnum::sensor::Camera::*)()) & gui::magnum::sensor::Camera::camera, py::return_value_policy::reference)
+
+                .def("drawing_debug", &gui::magnum::sensor::Camera::drawing_debug)
+                .def("draw_debug", &gui::magnum::sensor::Camera::draw_debug,
+                    py::arg("draw") = true)
+
+                .def("look_at", &gui::magnum::sensor::Camera::look_at,
                     py::arg("camera_pos"),
                     py::arg("look_at") = Eigen::Vector3d(0, 0, 0),
                     py::arg("up") = Eigen::Vector3d(0, 0, 1))
 
-                .def("render", &gui::magnum::CameraOSR::render)
-
-                .def("record_video", &gui::magnum::CameraOSR::record_video,
-                    py::arg("video_fname"),
-                    py::arg("fps") = -1)
+                .def("record_video", &gui::magnum::sensor::Camera::record_video,
+                    py::arg("video_fname"))
 
                 // Magnum::Image2D* magnum_image()
                 // Magnum::Image2D* magnum_depth_image()
 
-                .def("image", &gui::magnum::CameraOSR::image)
-                .def("depth_image", &gui::magnum::CameraOSR::depth_image)
-                .def("raw_depth_image", &gui::magnum::CameraOSR::raw_depth_image)
-
-                .def("attach_to", &gui::magnum::CameraOSR::attach_to)
-
-                .def("camera", (Camera & (gui::magnum::CameraOSR::*)()) & gui::magnum::CameraOSR::camera, py::return_value_policy::reference)
-
-                .def("drawing_debug", &gui::magnum::CameraOSR::drawing_debug)
-                .def("draw_debug", &gui::magnum::CameraOSR::draw_debug,
-                    py::arg("draw") = true);
+                .def("image", &gui::magnum::sensor::Camera::image)
+                .def("depth_image", &gui::magnum::sensor::Camera::depth_image)
+                .def("raw_depth_image", &gui::magnum::sensor::Camera::raw_depth_image);
 
             // Helper functions
             sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);

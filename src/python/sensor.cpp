@@ -1,0 +1,240 @@
+#include "robot_dart.hpp"
+
+#include <pybind11/eigen.h>
+#include <pybind11/operators.h>
+#include <pybind11/stl.h>
+
+#include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/sensor/force_torque.hpp>
+#include <robot_dart/sensor/imu.hpp>
+#include <robot_dart/sensor/sensor.hpp>
+
+#include <dart/dynamics/BodyNode.hpp>
+#include <dart/dynamics/Joint.hpp>
+
+namespace robot_dart {
+    namespace python {
+        void py_sensors(py::module& m)
+        {
+            auto sensormodule = m.def_submodule("sensor");
+
+            using namespace robot_dart;
+            using Sensor = sensor::Sensor;
+
+            // Sensor class
+            class PySensor : public Sensor {
+            public:
+                using Sensor::Sensor;
+
+                /* Trampolines */
+                void init() override
+                {
+                    PYBIND11_OVERLOAD_PURE(
+                        void, /* return type */
+                        Sensor, /* parent class */
+                        init, /* name */
+                        /* arguments */
+                    );
+                }
+
+                void calculate(double t) override
+                {
+                    PYBIND11_OVERLOAD_PURE(
+                        void, /* return type */
+                        Sensor, /* parent class */
+                        calculate, /* name */
+                        t
+                        /* arguments */
+                    );
+                }
+
+                std::string type() const override
+                {
+                    PYBIND11_OVERLOAD_PURE(
+                        std::string, /* return type */
+                        Sensor, /* parent class */
+                        type, /* name */
+                        /* arguments */
+                    );
+                }
+
+                void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* return type */
+                        Sensor, /* parent class */
+                        attach_to_body, /* name */
+                        body,
+                        tf
+                        /* arguments */
+                    );
+                }
+
+                void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* return type */
+                        Sensor, /* parent class */
+                        attach_to_joint, /* name */
+                        joint,
+                        tf
+                        /* arguments */
+                    );
+                }
+            };
+
+            class PublicistSensor : public Sensor {
+            public:
+                using Sensor::_active;
+                using Sensor::_frequency;
+                using Sensor::_simu;
+
+                using Sensor::_world_pose;
+
+                using Sensor::_attached_to_body;
+                using Sensor::_attached_to_joint;
+                using Sensor::_attaching_to_body;
+                using Sensor::_attaching_to_joint;
+
+                using Sensor::_attached_tf;
+                using Sensor::_body_attached;
+                using Sensor::_joint_attached;
+            };
+
+            py::class_<Sensor, PySensor, std::shared_ptr<Sensor>>(sensormodule, "Sensor")
+                .def(py::init<RobotDARTSimu*, size_t>(),
+                    py::arg("simu"),
+                    py::arg("freq") = 40)
+
+                .def_readwrite("_active", &PublicistSensor::_active)
+                .def_readwrite("_frequency", &PublicistSensor::_frequency)
+                .def_readonly("_simu", &PublicistSensor::_simu)
+
+                .def_readwrite("_attached_to_body", &PublicistSensor::_attached_to_body)
+                .def_readwrite("_attached_to_joint", &PublicistSensor::_attached_to_joint)
+                .def_readwrite("_attaching_to_body", &PublicistSensor::_attaching_to_body)
+                .def_readwrite("_attaching_to_joint", &PublicistSensor::_attaching_to_joint)
+                .def_readwrite("_attached_tf", &PublicistSensor::_attached_tf)
+                .def_readwrite("_body_attached", &PublicistSensor::_body_attached)
+                .def_readwrite("_joint_attached", &PublicistSensor::_joint_attached)
+
+                .def("activate", &Sensor::activate,
+                    py::arg("enable") = true)
+                .def("active", &Sensor::active)
+
+                .def("frequency", &Sensor::frequency)
+                .def("set_frequency", &Sensor::set_frequency,
+                    py::arg("freq"))
+
+                .def("set_pose", &Sensor::set_pose,
+                    py::arg("tf"))
+                .def("pose", &Sensor::pose)
+
+                .def("refresh", &Sensor::refresh,
+                    py::arg("t"))
+
+                .def("init", &Sensor::init)
+                .def("calculate", &Sensor::calculate,
+                    py::arg("t"))
+                .def("type", &Sensor::type)
+
+                .def("attach_to_body", (void (Sensor::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)) & Sensor::attach_to_body,
+                    py::arg("body"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("attach_to_body", (void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)) & Sensor::attach_to_body,
+                    py::arg("robot"),
+                    py::arg("body_name"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("attach_to_joint", (void (Sensor::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)) & Sensor::attach_to_joint,
+                    py::arg("joint"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity())
+
+                .def("attach_to_joint", (void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)) & Sensor::attach_to_joint,
+                    py::arg("robot"),
+                    py::arg("joint_name"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity());
+
+            // Force-Torque Sensor Class
+            class PublicistFTSensor : public sensor::ForceTorque {
+            public:
+                using sensor::ForceTorque::_direction;
+
+                using sensor::ForceTorque::_force;
+                using sensor::ForceTorque::_torque;
+            };
+
+            py::class_<sensor::ForceTorque, Sensor, std::shared_ptr<sensor::ForceTorque>>(sensormodule, "ForceTorque")
+                .def(py::init<RobotDARTSimu*, dart::dynamics::Joint*, size_t, const std::string&>(),
+                    py::arg("simu"),
+                    py::arg("joint"),
+                    py::arg("frequency") = 1000,
+                    py::arg("direction") = "child_to_parent")
+                .def(py::init<RobotDARTSimu*, const std::shared_ptr<Robot>&, const std::string&, size_t, const std::string&>(),
+                    py::arg("simu"),
+                    py::arg("robot"),
+                    py::arg("joint_name"),
+                    py::arg("frequency") = 1000,
+                    py::arg("direction") = "child_to_parent")
+
+                .def_readwrite("_direction", &PublicistFTSensor::_direction)
+                .def_readonly("_force", &PublicistFTSensor::_force)
+                .def_readonly("_torque", &PublicistFTSensor::_torque)
+
+                .def("init", &sensor::ForceTorque::init)
+                .def("calculate", &sensor::ForceTorque::calculate,
+                    py::arg("t"))
+                .def("type", &sensor::ForceTorque::type)
+
+                .def("force", &sensor::ForceTorque::force)
+                .def("torque", &sensor::ForceTorque::torque)
+
+                .def("attach_to_body", (void (sensor::ForceTorque::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)) & sensor::ForceTorque::attach_to_body,
+                    py::arg("body"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity());
+
+            // IMU Sensor Class
+            py::class_<sensor::IMUConfig>(sensormodule, "IMUConfig")
+                .def(py::init<const Eigen::Vector3d&, const Eigen::Vector3d&, dart::dynamics::BodyNode*, size_t>(),
+                    py::arg("gyro_bias") = Eigen::Vector3d::Zero(),
+                    py::arg("accel_bias") = Eigen::Vector3d::Zero(),
+                    py::arg("body") = nullptr,
+                    py::arg("frequency") = 200)
+
+                .def_readwrite("gyro_bias", &sensor::IMUConfig::gyro_bias)
+                .def_readwrite("accel_bias", &sensor::IMUConfig::accel_bias)
+                .def_readwrite("body", &sensor::IMUConfig::body)
+                .def_readwrite("frequency", &sensor::IMUConfig::frequency);
+
+            class PublicistIMUSensor : public sensor::IMU {
+            public:
+                using sensor::IMU::_config;
+
+                using sensor::IMU::_angular_vel;
+                using sensor::IMU::_linear_accel;
+            };
+
+            py::class_<sensor::IMU, Sensor, std::shared_ptr<sensor::IMU>>(sensormodule, "IMU")
+                .def(py::init<RobotDARTSimu*, const sensor::IMUConfig&>(),
+                    py::arg("simu"),
+                    py::arg("config"))
+
+                .def_readonly("_config", &PublicistIMUSensor::_config)
+                .def_readonly("_angular_vel", &PublicistIMUSensor::_angular_vel)
+                .def_readonly("_linear_accel", &PublicistIMUSensor::_linear_accel)
+
+                .def("init", &sensor::IMU::init)
+                .def("calculate", &sensor::IMU::calculate,
+                    py::arg("t"))
+                .def("type", &sensor::IMU::type)
+
+                .def("angular_velocity", &sensor::IMU::angular_velocity)
+                .def("linear_acceleration", &sensor::IMU::linear_acceleration)
+
+                .def("attach_to_joint", (void (sensor::IMU::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)) & sensor::ForceTorque::attach_to_joint,
+                    py::arg("joint"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity());
+        }
+    } // namespace python
+} // namespace robot_dart
