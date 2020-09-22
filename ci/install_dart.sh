@@ -19,7 +19,7 @@ else
         git checkout v6.9.2
         mkdir build_py
         cd build_py
-        cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
         make -j4
         sudo make install
     fi

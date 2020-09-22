@@ -552,17 +552,17 @@ namespace robot_dart {
                 }
             }
 
-            bool BaseApplication::attach_camera(gs::Camera& camera, const std::string& name)
+            bool BaseApplication::attach_camera(gs::Camera& camera, dart::dynamics::BodyNode* body)
             {
                 for (Magnum::DartIntegration::Object& object : _dart_world->objects()) {
-                    if (object.bodyNode() && object.bodyNode()->getName() == name) {
-                        camera.camera_object().setParent(static_cast<Object3D*>(&object.object()));
+                    if (object.bodyNode() && object.bodyNode() == body) {
+                        camera.root_object().setParent(static_cast<Object3D*>(&object.object()));
                         return true;
                     }
-                    if (object.shapeNode() && object.shapeNode()->getName() == name) {
-                        camera.camera_object().setParent(static_cast<Object3D*>(&object.object()));
-                        return true;
-                    }
+                    // if (object.shapeNode() && object.shapeNode()->getName() == name) {
+                    //     camera.root_object().setParent(static_cast<Object3D*>(&object.object()));
+                    //     return true;
+                    // }
                 }
 
                 return false;

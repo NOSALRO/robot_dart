@@ -7,6 +7,9 @@
 
 #include <robot_dart/control/robot_control.hpp>
 
+#include <dart/dynamics/BodyNode.hpp>
+#include <dart/dynamics/Joint.hpp>
+
 namespace robot_dart {
     namespace python {
         void py_robot(py::module& m)
@@ -35,6 +38,18 @@ namespace robot_dart {
                     py::arg("ghost_name") = "ghost",
                     py::arg("ghost_color") = Eigen::Vector4d{0.3, 0.3, 0.3, 0.7})
                 .def("skeleton", &Robot::skeleton)
+
+                .def("body_node", (dart::dynamics::BodyNode * (Robot::*)(const std::string&)) & Robot::body_node, py::return_value_policy::reference,
+                    py::arg("body_name"))
+
+                .def("body_node", (dart::dynamics::BodyNode * (Robot::*)(size_t)) & Robot::body_node, py::return_value_policy::reference,
+                    py::arg("body_index"))
+
+                .def("joint", (dart::dynamics::Joint * (Robot::*)(const std::string&)) & Robot::joint, py::return_value_policy::reference,
+                    py::arg("joint_name"))
+
+                .def("joint", (dart::dynamics::Joint * (Robot::*)(size_t)) & Robot::joint, py::return_value_policy::reference,
+                    py::arg("joint_index"))
 
                 .def("name", &Robot::name)
                 .def("model_filename", &Robot::model_filename)

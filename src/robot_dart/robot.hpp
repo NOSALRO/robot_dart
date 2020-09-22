@@ -32,6 +32,11 @@ namespace robot_dart {
         std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
 
         dart::dynamics::SkeletonPtr skeleton();
+        dart::dynamics::BodyNode* body_node(const std::string& body_name);
+        dart::dynamics::BodyNode* body_node(size_t body_index);
+
+        dart::dynamics::Joint* joint(const std::string& joint_name);
+        dart::dynamics::Joint* joint(size_t joint_index);
 
         std::vector<RobotDamage> damages() const;
 

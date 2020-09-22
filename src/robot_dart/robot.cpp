@@ -356,6 +356,24 @@ namespace robot_dart {
 
     dart::dynamics::SkeletonPtr Robot::skeleton() { return _skeleton; }
 
+    dart::dynamics::BodyNode* Robot::body_node(const std::string& body_name) { return _skeleton->getBodyNode(body_name); }
+
+    dart::dynamics::BodyNode* Robot::body_node(size_t body_index)
+    {
+        ROBOT_DART_ASSERT(
+            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", nullptr);
+        return _skeleton->getBodyNode(body_index);
+    }
+
+    dart::dynamics::Joint* Robot::joint(const std::string& joint_name) { return _skeleton->getJoint(joint_name); }
+
+    dart::dynamics::Joint* Robot::joint(size_t joint_index)
+    {
+        ROBOT_DART_ASSERT(
+            joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", nullptr);
+        return _skeleton->getJoint(joint_index);
+    }
+
     std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
     const std::string& Robot::name() const { return _robot_name; }
@@ -941,7 +959,7 @@ namespace robot_dart {
         F1 = -dart::math::dAdInvR(T12, F2);
 
         // F1 contains the force applied by the parent Link on the Joint specified in the parent
-        // Link frame F2 contains the force applied by the child Link on the Joint specified in
+        // Link frame, F2 contains the force applied by the child Link on the Joint specified in
         // the child Link frame
         return {F1, F2};
     }
@@ -1384,7 +1402,7 @@ namespace robot_dart {
         if (_joint_map.empty()) {
             ROBOT_DART_WARNING(true,
                 "Joint map is empty. Iterating over all skeleton joints to get the index. "
-                "Consider calling update_joint_dof_maps() before using dof_index()");
+                "Consider calling update_joint_dof_maps() before using joint_index()");
             for (size_t i = 0; i < _skeleton->getNumJoints(); i++)
                 if (_skeleton->getJoint(i)->getName() == joint_name)
                     return i;

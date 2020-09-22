@@ -3,8 +3,8 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/gui/magnum/camera_osr.hpp>
 #include <robot_dart/gui/magnum/graphics.hpp>
+#include <robot_dart/gui/magnum/sensor/camera.hpp>
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
@@ -54,7 +54,7 @@ int main()
     graphics->record_video("video-main.mp4", simu.graphics_freq());
 
     // Add camera
-    auto camera = std::make_shared<robot_dart::gui::magnum::CameraOSR>(&simu, graphics->magnum_app(), 256, 256);
+    auto camera = std::make_shared<robot_dart::sensor::Camera>(&simu, graphics->magnum_app(), 256, 256);
     camera->camera().set_far_plane(5.f);
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // cameras can also record video
@@ -65,7 +65,7 @@ int main()
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
     tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
-    camera->attach_to("iiwa_link_ee", tf); // cameras are looking towards -z by default
+    camera->attach_to_body(global_robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
 
     // simu.add_floor(5.);
     simu.add_checkerboard_floor(10.);
@@ -73,7 +73,7 @@ int main()
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
-    simu.add_camera(camera);
+    simu.add_sensor(camera);
 
     simu.run(10.);
 

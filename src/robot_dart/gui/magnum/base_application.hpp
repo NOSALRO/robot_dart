@@ -131,7 +131,8 @@ namespace robot_dart {
                 void update_lights(const gs::Camera& camera);
                 void update_graphics();
                 void render_shadows();
-                bool attach_camera(gs::Camera& camera, const std::string& name);
+
+                bool attach_camera(gs::Camera& camera, dart::dynamics::BodyNode* body);
 
                 // video (FPS is mandatory here, see the Graphics class for automatic computation)
                 void record_video(const std::string& video_fname, int fps) { _camera->record_video(video_fname, fps); }

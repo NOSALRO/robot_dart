@@ -86,13 +86,17 @@ namespace robot_dart {
                 .def("remove_descriptor", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_descriptor)
                 .def("clear_descriptors", &RobotDARTSimu::clear_descriptors)
 
-                .def("add_camera", &RobotDARTSimu::add_camera, py::keep_alive<2, 1>())
-                .def("cameras", &RobotDARTSimu::cameras)
-                .def("camera", &RobotDARTSimu::camera)
+                .def("add_sensor", (void (RobotDARTSimu::*)(const std::shared_ptr<sensor::Sensor>&)) & RobotDARTSimu::add_sensor,
+                    py::keep_alive<2, 1>(),
+                    py::arg("sensor"))
+                .def("sensors", &RobotDARTSimu::sensors)
+                .def("sensor", &RobotDARTSimu::sensor)
 
-                .def("remove_camera", (void (RobotDARTSimu::*)(const std::shared_ptr<gui::Base>&)) & RobotDARTSimu::remove_camera)
-                .def("remove_camera", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_camera)
-                .def("clear_cameras", &RobotDARTSimu::clear_cameras)
+                .def("remove_sensor", (void (RobotDARTSimu::*)(const std::shared_ptr<sensor::Sensor>&)) & RobotDARTSimu::remove_sensor)
+                .def("remove_sensor", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_sensor)
+                .def("remove_sensors", &RobotDARTSimu::remove_sensors,
+                    py::arg("type"))
+                .def("clear_sensors", &RobotDARTSimu::clear_sensors)
 
                 .def("timestep", &RobotDARTSimu::timestep)
                 .def("set_timestep", &RobotDARTSimu::set_timestep)

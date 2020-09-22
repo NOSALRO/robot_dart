@@ -111,7 +111,7 @@ namespace robot_dart {
     {
         _robots.clear();
         _descriptors.clear();
-        _cameras.clear();
+        _sensors.clear();
     }
 
     void RobotDARTSimu::run(double max_duration, bool reset_commands)
@@ -137,10 +137,11 @@ namespace robot_dart {
                     desc->operator()();
         }
 
-        if (_scheduler(_control_freq)) {
-            // update cameras (sensors)
-            for (auto& cam : _cameras)
-                cam->refresh();
+        // update sensors
+        for (auto& sensor : _sensors) {
+            if (sensor->active() && _scheduler(sensor->frequency())) {
+                sensor->refresh(_world->getTime());
+            }
         }
 
         if (_scheduler(_graphics_freq)) {
@@ -200,20 +201,51 @@ namespace robot_dart {
         return _descriptors[index];
     }
 
-    void RobotDARTSimu::add_camera(const std::shared_ptr<gui::Base>& cam)
+    void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
     {
-        _cameras.push_back(cam);
+        _sensors.push_back(sensor);
+        sensor->init();
     }
 
-    std::vector<std::shared_ptr<gui::Base>> RobotDARTSimu::cameras() const
+    std::vector<std::shared_ptr<sensor::Sensor>> RobotDARTSimu::sensors() const
     {
-        return _cameras;
+        return _sensors;
     }
 
-    std::shared_ptr<gui::Base> RobotDARTSimu::camera(size_t index) const
+    std::shared_ptr<sensor::Sensor> RobotDARTSimu::sensor(size_t index) const
     {
-        ROBOT_DART_ASSERT(index < _cameras.size(), "Camera index out of bounds", nullptr);
-        return _cameras[index];
+        ROBOT_DART_ASSERT(index < _sensors.size(), "Sensor index out of bounds", nullptr);
+        return _sensors[index];
+    }
+
+    void RobotDARTSimu::remove_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
+    {
+        auto it = std::find(_sensors.begin(), _sensors.end(), sensor);
+        if (it != _sensors.end()) {
+            _sensors.erase(it);
+        }
+    }
+
+    void RobotDARTSimu::remove_sensor(size_t index)
+    {
+        ROBOT_DART_ASSERT(index < _sensors.size(), "Sensor index out of bounds", );
+        _sensors.erase(_sensors.begin() + index);
+    }
+
+    void RobotDARTSimu::remove_sensors(const std::string& type)
+    {
+        for (int i = 0; i < static_cast<int>(_sensors.size()); i++) {
+            auto& sensor = _sensors[i];
+            if (sensor->type() == type) {
+                _sensors.erase(_sensors.begin() + i);
+                i--;
+            }
+        }
+    }
+
+    void RobotDARTSimu::clear_sensors()
+    {
+        _sensors.clear();
     }
 
     double RobotDARTSimu::timestep() const
@@ -356,25 +388,6 @@ namespace robot_dart {
     void RobotDARTSimu::clear_descriptors()
     {
         _descriptors.clear();
-    }
-
-    void RobotDARTSimu::remove_camera(const std::shared_ptr<gui::Base>& cam)
-    {
-        auto it = std::find(_cameras.begin(), _cameras.end(), cam);
-        if (it != _cameras.end()) {
-            _cameras.erase(it);
-        }
-    }
-
-    void RobotDARTSimu::remove_camera(size_t index)
-    {
-        ROBOT_DART_ASSERT(index < _cameras.size(), "Cameras index out of bounds", );
-        _cameras.erase(_cameras.begin() + index);
-    }
-
-    void RobotDARTSimu::clear_cameras()
-    {
-        _cameras.clear();
     }
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
