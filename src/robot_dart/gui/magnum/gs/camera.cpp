@@ -16,6 +16,7 @@
 #include <Magnum/GL/AbstractFramebuffer.h>
 #include <Magnum/GL/GL.h>
 #include <Magnum/GL/PixelFormat.h>
+#include <Magnum/GL/Renderer.h>
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
@@ -250,7 +251,7 @@ namespace robot_dart {
 #endif
                 }
 
-                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, bool draw_debug)
+                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, Magnum::Shaders::DistanceFieldVector2D* text_shader, Magnum::Text::Renderer2D* text_renderer, bool draw_debug)
                 {
                     // TO-DO: Maybe check if world moved?
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
@@ -280,6 +281,7 @@ namespace robot_dart {
 
                     /* Draw debug */
                     if (draw_debug) {
+                        /* Draw axes */
                         std::vector<std::pair<dart::dynamics::BodyNode*, double>> axes = simu->gui_data()->drawing_axes();
                         for (auto& axis : axes) {
                             Magnum::Matrix4 world_transform = Magnum::Matrix4(Magnum::Matrix4d(axis.first->getWorldTransform().matrix()));
@@ -287,6 +289,28 @@ namespace robot_dart {
 
                             axes_shader.setTransformationProjectionMatrix(_camera->projectionMatrix() * _camera->cameraMatrix() * world_transform * scaling)
                                 .draw(axes_mesh);
+                        }
+
+                        /* Draw text */
+                        if (text_shader && text_renderer) {
+                            using namespace Magnum::Math::Literals;
+                            Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::DepthTest);
+                            Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
+
+                            for (auto& text : simu->gui_data()->drawing_texts()) {
+                                text_renderer->render(text.text);
+                                // std::cout << text_renderer->rectangle().sizeX() << std::endl;
+                                (*text_shader)
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
+                                    // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
+                                    .setColor(Magnum::Vector4(Magnum::Vector4d(text.color)))
+                                    .setOutlineRange(0.5f, 1.0f)
+                                    .setSmoothness(0.075f)
+                                    .draw(text_renderer->mesh());
+                            }
+
+                            Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);
+                            Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::FaceCulling);
                         }
                     }
 

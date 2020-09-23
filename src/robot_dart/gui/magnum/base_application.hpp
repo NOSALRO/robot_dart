@@ -27,7 +27,11 @@
 #else
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
+#include <Magnum/Shaders/DistanceFieldVector.h>
 #include <Magnum/Shaders/VertexColor.h>
+#include <Magnum/Text/AbstractFont.h>
+#include <Magnum/Text/DistanceFieldGlyphCache.h>
+#include <Magnum/Text/Renderer.h>
 
 #include <Magnum/DartIntegration/World.h>
 
@@ -152,6 +156,8 @@ namespace robot_dart {
                 // Access to members
                 Magnum::Shaders::VertexColor3D& axes_shader() { return *_3D_axis_shader; }
                 Magnum::GL::Mesh& axes_mesh() { return *_3D_axis_mesh; }
+                Magnum::Shaders::DistanceFieldVector2D* text_shader() { return &*_text_shader; }
+                Magnum::Text::Renderer2D* text_renderer() { return &*_dynamic_text; }
 
             protected:
                 /* Magnum */
@@ -188,6 +194,12 @@ namespace robot_dart {
                 /* Debug visualization */
                 std::unique_ptr<Magnum::GL::Mesh> _3D_axis_mesh;
                 std::unique_ptr<Magnum::Shaders::VertexColor3D> _3D_axis_shader;
+                /* Text visualization */
+                std::unique_ptr<Magnum::Shaders::DistanceFieldVector2D> _text_shader;
+                Corrade::PluginManager::Manager<Magnum::Text::AbstractFont> _font_manager;
+                Corrade::Containers::Pointer<Magnum::Text::DistanceFieldGlyphCache> _glyph_cache;
+                Corrade::Containers::Pointer<Magnum::Text::AbstractFont> _font;
+                Corrade::Containers::Pointer<Magnum::Text::Renderer2D> _dynamic_text;
 
                 /* Importer */
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;

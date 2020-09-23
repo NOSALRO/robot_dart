@@ -127,6 +127,9 @@ namespace robot_dart {
                     py::arg("look_at") = Eigen::Vector3d(0, 0, 0),
                     py::arg("up") = Eigen::Vector3d(0, 0, 1))
 
+                .def("width", &BaseWindowedGraphics::width)
+                .def("height", &BaseWindowedGraphics::height)
+
                 .def("clear_lights", &Graphics::clear_lights)
                 .def("add_light", &Graphics::add_light, py::keep_alive<2, 1>())
                 .def("lights", &Graphics::lights)
@@ -165,6 +168,9 @@ namespace robot_dart {
                     py::arg("camera_pos"),
                     py::arg("look_at") = Eigen::Vector3d(0, 0, 0),
                     py::arg("up") = Eigen::Vector3d(0, 0, 1))
+
+                .def("width", &BaseWindowlessGraphics::width)
+                .def("height", &BaseWindowlessGraphics::height)
 
                 .def("clear_lights", &WindowlessGraphics::clear_lights)
                 .def("add_light", &WindowlessGraphics::add_light, py::keep_alive<2, 1>())

@@ -119,6 +119,9 @@ namespace robot_dart {
                 .def("remove_robot", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_robot)
                 .def("clear_robots", &RobotDARTSimu::clear_robots)
 
+                .def("enable_summary_text", &RobotDARTSimu::enable_summary_text,
+                    py::arg("enable") = true)
+
                 .def("add_floor", &RobotDARTSimu::add_floor,
                     py::arg("floor_width") = 10.,
                     py::arg("floor_height") = 0.1,

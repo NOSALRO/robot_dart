@@ -23,8 +23,9 @@ namespace robot_dart {
 
         /// call this at the end of the loop (see examples)
         /// this will synchronize with real time if requested
-        /// and increase the counter
-        void step();
+        /// and increase the counter;
+        /// returns the real-time (in seconds)
+        double step();
 
         void reset(double dt, bool sync = false, double current_time = 0.);
 

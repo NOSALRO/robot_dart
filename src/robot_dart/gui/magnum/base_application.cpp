@@ -8,6 +8,7 @@
 #include <dart/dynamics/SoftMeshShape.hpp>
 
 #include <Corrade/Containers/StridedArrayView.h>
+#include <Corrade/Utility/Resource.h>
 
 #include <Magnum/GL/CubeMapTexture.h>
 #include <Magnum/GL/DefaultFramebuffer.h>
@@ -160,6 +161,30 @@ namespace robot_dart {
                     .setCount(axis_data.indexCount())
                     .addVertexBuffer(std::move(axis_vertices), 0, Magnum::Shaders::VertexColor3D::Position{}, Magnum::Shaders::VertexColor3D::Color4{})
                     .setIndexBuffer(std::move(axis_indices), 0, compressed.second);
+
+                /* Initialize text visualization */
+                Corrade::Utility::Resource rs("RobotDARTShaders");
+                _font = _font_manager.loadAndInstantiate("TrueTypeFont");
+                if (_font) {
+                    _font->openData(rs.getRaw("SourceSansPro-Regular.ttf"), 180.0f);
+
+                    /* Glyphs we need to render everything */
+                    /* Latin characters for now only */
+                    _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
+                    _font->fillGlyphCache(*_glyph_cache,
+                        "abcdefghijklmnopqrstuvwxyz"
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        "0123456789:-+,.!° ");
+
+                    /* Initialize dynamic text */
+                    _dynamic_text.reset(new Magnum::Text::Renderer2D(*_font, *_glyph_cache, 32.0f, Magnum::Text::Alignment::TopLeft));
+                    /* Reserve 100 characters for drawing debug text */
+                    _dynamic_text->reserve(100, Magnum::GL::BufferUsage::DynamicDraw, Magnum::GL::BufferUsage::StaticDraw);
+
+                    /* Initialize text shader */
+                    _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
+                    _text_shader->bindVectorTexture(_glyph_cache->texture());
+                }
             }
 
             void BaseApplication::clear_lights()
@@ -614,6 +639,10 @@ namespace robot_dart {
                 _shadow_color_cube_map.reset();
                 _3D_axis_shader.reset();
                 _3D_axis_mesh.reset();
+                _text_shader.reset();
+                _glyph_cache.reset();
+                _font.reset();
+                _dynamic_text.reset();
 
                 _camera.reset();
                 _shadow_camera.reset();

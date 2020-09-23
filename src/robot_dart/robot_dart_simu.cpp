@@ -2,6 +2,8 @@
 #include "gui_data.hpp"
 #include "utils.hpp"
 
+#include <sstream>
+
 #include <dart/collision/CollisionFilter.hpp>
 #include <dart/collision/CollisionObject.hpp>
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
@@ -105,6 +107,7 @@ namespace robot_dart {
         _graphics = std::make_shared<gui::Base>(this);
 
         _gui_data.reset(new simu::GUIData());
+        _summary_text = _gui_data->add_text("Sim. Time: 0s");
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -153,7 +156,20 @@ namespace robot_dart {
         }
 
         _old_index++;
-        _scheduler.step();
+        double rt = _scheduler.step();
+        if (_summary_text) {
+            std::ostringstream out;
+            out.precision(3);
+            out << std::fixed << "Sim. Time: " << _world->getTime() << "s" << std::endl
+                << "Time: " << rt << "s";
+
+            _summary_text->text = out.str();
+
+            Eigen::Affine2d tf = Eigen::Affine2d::Identity();
+            tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., _graphics->height() / 2.));
+
+            _summary_text->transformation = tf;
+        }
 
         return _break;
     }
@@ -391,6 +407,18 @@ namespace robot_dart {
     }
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
+
+    void RobotDARTSimu::enable_summary_text(bool enable)
+    {
+        if (!_summary_text && enable) {
+            _summary_text = _gui_data->add_text("");
+        }
+        else if (!enable) {
+            if (_summary_text)
+                _gui_data->remove_text(_summary_text);
+            _summary_text = nullptr;
+        }
+    }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {

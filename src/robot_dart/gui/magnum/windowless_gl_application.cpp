@@ -74,7 +74,7 @@ namespace robot_dart {
                     _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, _framebuffer, _format, _simu, *_3D_axis_shader, *_3D_axis_mesh, _draw_debug);
+                    _camera->draw(_drawables, _framebuffer, _format, _simu, *_3D_axis_shader, *_3D_axis_mesh, &*_text_shader, &*_dynamic_text, _draw_debug);
 
                     // if (_index % 10 == 0) {
                     //     intptr_t tt = (intptr_t)_glx_context;
