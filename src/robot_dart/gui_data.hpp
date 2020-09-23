@@ -22,20 +22,20 @@ namespace robot_dart {
 
             std::unordered_map<dart::dynamics::ShapeNode*, RobotData> robot_data;
             std::unordered_map<Robot*, std::vector<std::pair<dart::dynamics::BodyNode*, double>>> robot_axes;
-            std::vector<TextData> text_drawings;
+            std::vector<std::shared_ptr<simu::TextData>> text_drawings;
 
         public:
-            TextData* add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1))
+            std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1))
             {
-                text_drawings.emplace_back(TextData{text, tf, color});
+                text_drawings.emplace_back(new TextData{text, tf, color});
 
-                return &text_drawings.back();
+                return text_drawings.back();
             }
 
-            void remove_text(TextData* data)
+            void remove_text(const std::shared_ptr<simu::TextData>& data)
             {
                 for (size_t i = 0; i < text_drawings.size(); i++) {
-                    if (&text_drawings[i] == data) {
+                    if (text_drawings[i] == data) {
                         text_drawings.erase(text_drawings.begin() + i);
                         return;
                     }
@@ -113,7 +113,7 @@ namespace robot_dart {
                 return axes;
             }
 
-            const std::vector<TextData>& drawing_texts() const { return text_drawings; }
+            const std::vector<std::shared_ptr<simu::TextData>>& drawing_texts() const { return text_drawings; }
         };
     } // namespace simu
 } // namespace robot_dart

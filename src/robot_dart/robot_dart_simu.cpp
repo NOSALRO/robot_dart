@@ -419,6 +419,11 @@ namespace robot_dart {
         }
     }
 
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color)
+    {
+        return _gui_data->add_text(text, tf, color);
+    }
+
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!

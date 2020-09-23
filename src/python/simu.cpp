@@ -48,6 +48,18 @@ namespace robot_dart {
 
                 .def("__call__", &Descriptor::operator());
 
+            // TextData
+            using simu::TextData;
+            py::class_<TextData, std::shared_ptr<TextData>>(m, "TextData")
+                .def(py::init<const std::string&, const Eigen::Affine2d&, const Eigen::Vector4d&>(),
+                    py::arg("text"),
+                    py::arg("transformation") = Eigen::Affine2d::Identity(),
+                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1))
+
+                .def_readwrite("text", &TextData::text)
+                .def_readwrite("transformation", &TextData::transformation)
+                .def_readwrite("color", &TextData::color);
+
             // RobotDARTSimu class
             py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
                 .def(py::init<double>(),
@@ -121,6 +133,11 @@ namespace robot_dart {
 
                 .def("enable_summary_text", &RobotDARTSimu::enable_summary_text,
                     py::arg("enable") = true)
+
+                .def("add_text", &RobotDARTSimu::add_text, py::return_value_policy::reference,
+                    py::arg("text"),
+                    py::arg("transformation") = Eigen::Affine2d::Identity(),
+                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1))
 
                 .def("add_floor", &RobotDARTSimu::add_floor,
                     py::arg("floor_width") = 10.,
