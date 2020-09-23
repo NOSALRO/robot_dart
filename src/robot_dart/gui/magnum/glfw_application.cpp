@@ -23,7 +23,7 @@ namespace robot_dart {
                 Configuration conf;
                 GLConfiguration glConf;
                 conf.setTitle(configuration.title);
-                conf.setSize({static_cast<int>(configuration.width), static_cast<int>(configuration.height)});
+                conf.setSize({static_cast<int>(configuration.width), static_cast<int>(configuration.height)}, {1, 1});
                 conf.setWindowFlags(Configuration::WindowFlag::Resizable);
                 glConf.setSampleCount(8);
                 if (!tryCreate(conf, glConf))
@@ -81,7 +81,7 @@ namespace robot_dart {
                     _camera->strafe(_speed_strafe);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, *_3D_axis_shader, *_3D_axis_mesh, _draw_debug);
+                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, *_3D_axis_shader, *_3D_axis_mesh, &*_text_shader, &*_dynamic_text, _draw_debug);
 
                     swapBuffers();
                 }
