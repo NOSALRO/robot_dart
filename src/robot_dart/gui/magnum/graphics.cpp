@@ -7,6 +7,8 @@ namespace robot_dart {
             {
                 // we synchronize by default if we have the graphics activated
                 simu->scheduler().set_sync(true);
+                // enable summary text when graphics activated
+                simu->enable_summary_text(true);
             }
         } // namespace magnum
     } // namespace gui
