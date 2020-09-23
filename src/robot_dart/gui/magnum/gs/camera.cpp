@@ -298,12 +298,12 @@ namespace robot_dart {
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
 
                             for (auto& text : simu->gui_data()->drawing_texts()) {
-                                text_renderer->render(text.text);
+                                text_renderer->render(text->text);
                                 // std::cout << text_renderer->rectangle().sizeX() << std::endl;
                                 (*text_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)))
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
-                                    .setColor(Magnum::Vector4(Magnum::Vector4d(text.color)))
+                                    .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
                                     .setOutlineRange(0.5f, 1.0f)
                                     .setSmoothness(0.075f)
                                     .draw(text_renderer->mesh());

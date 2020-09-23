@@ -115,6 +115,7 @@ namespace robot_dart {
 
         simu::GUIData* gui_data();
         void enable_summary_text(bool enable = true);
+        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1));
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
@@ -146,7 +147,7 @@ namespace robot_dart {
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
         std::unique_ptr<simu::GUIData> _gui_data;
-        simu::TextData* _summary_text = nullptr;
+        std::shared_ptr<simu::TextData> _summary_text = nullptr;
         Scheduler _scheduler;
         int _physics_freq = -1, _control_freq = -1, _graphics_freq = 40;
     };
