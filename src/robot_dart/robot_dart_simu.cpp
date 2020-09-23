@@ -107,7 +107,6 @@ namespace robot_dart {
         _graphics = std::make_shared<gui::Base>(this);
 
         _gui_data.reset(new simu::GUIData());
-        _summary_text = _gui_data->add_text("Sim. Time: 0s");
     }
 
     RobotDARTSimu::~RobotDARTSimu()
@@ -411,7 +410,7 @@ namespace robot_dart {
     void RobotDARTSimu::enable_summary_text(bool enable)
     {
         if (!_summary_text && enable) {
-            _summary_text = _gui_data->add_text("");
+            _summary_text = _gui_data->add_text("Sim. Time: 0s");
         }
         else if (!enable) {
             if (_summary_text)
