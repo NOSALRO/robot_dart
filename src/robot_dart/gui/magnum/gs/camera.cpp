@@ -300,8 +300,11 @@ namespace robot_dart {
                             for (auto& text : simu->gui_data()->drawing_texts()) {
                                 text_renderer->render(text->text);
                                 // std::cout << text_renderer->rectangle().sizeX() << std::endl;
+                                auto viewport = Magnum::Vector2{_camera->viewport()};
+                                auto big = viewport.max();
+                                auto scaling = Magnum::Vector2{big / 1024.f};
                                 (*text_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)))
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * Magnum::Matrix3::scaling(scaling))
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
                                     .setOutlineRange(0.5f, 1.0f)
