@@ -12,7 +12,15 @@
 namespace robot_dart {
     namespace simu {
         struct GUIData;
-    }
+
+        // We use the Abode Source Sans Pro font: https://github.com/adobe-fonts/source-sans-pro
+        // This font is licensed under SIL Open Font License 1.1: https://github.com/adobe-fonts/source-sans-pro/blob/release/LICENSE.md
+        struct TextData {
+            std::string text;
+            Eigen::Affine2d transformation;
+            Eigen::Vector4d color;
+        };
+    } // namespace simu
 
     class RobotDARTSimu {
     public:
@@ -106,6 +114,8 @@ namespace robot_dart {
         void clear_robots();
 
         simu::GUIData* gui_data();
+        void enable_summary_text(bool enable = true);
+        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1));
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
@@ -137,6 +147,7 @@ namespace robot_dart {
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;
         std::unique_ptr<simu::GUIData> _gui_data;
+        std::shared_ptr<simu::TextData> _summary_text = nullptr;
         Scheduler _scheduler;
         int _physics_freq = -1, _control_freq = -1, _graphics_freq = 40;
     };
