@@ -123,6 +123,7 @@ def check_magnum(conf, *k, **kw):
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
+    modules_suffix = 'so'
 
     # Magnum depends on several libraries and we cannot make the assumption that
     # someone installed all of them in the same directory!
@@ -467,7 +468,7 @@ def check_magnum(conf, *k, **kw):
                 # we need the full lib_dir in order to be able to link to the plugins
                 # or not? because they are loaded dynamically
                 # we need to set the libpath for the static plugins only
-                lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+suffix, libs_check, True)
+                lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+modules_suffix, libs_check, True)
 
                 magnum_component_includes[component] = magnum_component_includes[component] + [include_dir]
                 # magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
