@@ -23,7 +23,7 @@ namespace robot_dart {
                 Configuration conf;
                 GLConfiguration glConf;
                 conf.setTitle(configuration.title);
-                conf.setSize({static_cast<int>(configuration.width), static_cast<int>(configuration.height)}, {1, 1});
+                conf.setSize({static_cast<int>(configuration.width), static_cast<int>(configuration.height)});
                 conf.setWindowFlags(Configuration::WindowFlag::Resizable);
                 glConf.setSampleCount(8);
                 if (!tryCreate(conf, glConf))
@@ -53,7 +53,7 @@ namespace robot_dart {
             {
                 Magnum::GL::defaultFramebuffer.setViewport({{}, event.framebufferSize()});
 
-                _camera->set_viewport(event.windowSize());
+                _camera->set_viewport(event.framebufferSize());
             }
 
             void GlfwApplication::drawEvent()
