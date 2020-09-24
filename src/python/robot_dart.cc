@@ -10,6 +10,7 @@ PYBIND11_MODULE(RobotDART, m)
 
     m.doc() = "RobotDART: Python API of robot_dart";
 
+    py_eigen(m);
     py_simu(m);
     py_robot(m);
     py_control(m);

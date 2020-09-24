@@ -67,7 +67,7 @@ def configure(conf):
     conf.check_eigen(required=True, min_version=(3,2,92))
     conf.check_dart(required=True)
     conf.check_corrade(components='Utility PluginManager', required=False)
-    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication'
+    conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication Text MagnumFont'
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
@@ -75,7 +75,7 @@ def configure(conf):
     if len(conf.env.INCLUDES_Corrade):
         conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     if len(conf.env.INCLUDES_Magnum):
-        conf.check_magnum_plugins(components='AssimpImporter', required=False)
+        conf.check_magnum_plugins(components='AssimpImporter StbTrueTypeFont', required=False)
         conf.check_magnum_integration(components='Dart Eigen', required=False)
 
     conf.env['py_flags'] = ''
@@ -90,8 +90,8 @@ def configure(conf):
         if conf.env.CXX_NAME in ["gcc", "g++"]:
             conf.env['py_flags'] = ' -fPIC' # we need -fPIC in some Linux/gcc combinations
 
-    # We require both Magnum DartIntegration and EigenIntegration
-    if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0:
+    # We require Magnum DartIntegration, EigenIntegration, AssimpImporter, and StbTrueTypeFont
+    if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0 and len(conf.env.INCLUDES_MagnumPlugins_AssimpImporter) > 0 and len(conf.env.INCLUDES_MagnumPlugins_StbTrueTypeFont) > 0:
         conf.get_env()['BUILD_MAGNUM'] = True
         conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart Eigen')
 

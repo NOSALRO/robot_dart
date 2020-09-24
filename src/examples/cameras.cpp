@@ -9,7 +9,13 @@
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
     explicit MyApp(int argc, char** argv, robot_dart::RobotDARTSimu* simu, const robot_dart::gui::magnum::GraphicsConfiguration& configuration = robot_dart::gui::magnum::GraphicsConfiguration())
-        : GlfwApplication(argc, argv, simu, configuration) {}
+        : GlfwApplication(argc, argv, simu, configuration)
+    {
+        // we synchronize by default if we have the graphics activated
+        simu->scheduler().set_sync(true);
+        // enable summary text when graphics activated
+        simu->enable_summary_text(true);
+    }
 
 protected:
     void keyPressEvent(KeyEvent& event) override

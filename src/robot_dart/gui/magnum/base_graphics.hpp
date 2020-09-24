@@ -30,6 +30,9 @@ namespace robot_dart {
 
                 virtual ~BaseGraphics() {}
 
+                size_t width() const override { return _magnum_app->camera().width(); }
+                size_t height() const override { return _magnum_app->camera().height(); }
+
                 bool done() const override
                 {
                     return _magnum_app->done();
