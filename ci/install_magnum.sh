@@ -46,6 +46,6 @@ else
     # We need a newer version than 2019.10 for Magnum
     HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/corrade
     HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/magnum
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/magnum-plugins
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/magnum-integration
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/magnum-plugins --with-assimp
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install --HEAD mosra/magnum/magnum-integration --with-dartsim --with-eigen
 fi
