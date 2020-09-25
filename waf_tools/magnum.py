@@ -56,6 +56,8 @@ def get_magnum_dependency_libs(bld, components, magnum_var = 'Magnum', corrade_v
         requested_components = requested_components + magnum_dependencies[lib]
     # remove duplicates
     requested_components = list(set(requested_components))
+    # remove non-lib components
+    requested_components = [c for c in requested_components if magnum_component_type[c] == 'lib']
 
     # first sanity checks
     # Magnum requires Corrade
