@@ -20,8 +20,7 @@ void eval_robot(int i)
         = robot_dart::RobotPool::instance(robot_creator, NUM_THREADS).get_robot();
 
     std::cout << "Robot " << i << " created [" << robot->skeleton() << "]" << std::endl;
-    
-    
+
     /// --- some robot_dart code ---
 
     robot->set_position_enforced(true);
@@ -46,7 +45,7 @@ void eval_robot(int i)
 
     Eigen::VectorXd init_positions = robot->positions(dofs);
 
-    while (simu.scheduler().next_time() < 5) {// 5 second of simu only
+    while (simu.scheduler().next_time() < 5) { // 5 second of simu only
         if (simu.schedule(simu.control_freq())) {
             Eigen::VectorXd delta_pos(5);
             delta_pos << sin(simu.scheduler().current_time() * 2.),
@@ -60,17 +59,24 @@ void eval_robot(int i)
         simu.step_world();
     }
     // --- do something with the result
+
+    // CRITICAL : free your robot !
+    robot_dart::RobotPool::instance(robot_creator, NUM_THREADS).free_robot(robot);
+    
 }
 
 int main(int argc, char** argv)
 {
-    // for the example, we run NUM_THREADS threads of eval_robot()
-    std::vector<std::thread> threads(NUM_THREADS);
-    for (size_t i = 0; i < threads.size(); ++i)
-        threads[i] = std::thread(eval_robot, i);
+    for (int i = 0; i < 2; ++i) { // we do it twice to see reuse of the some robots
+        // for the example, we run NUM_THREADS threads of eval_robot()
+        std::vector<std::thread> threads(NUM_THREADS);
+        for (size_t i = 0; i < threads.size(); ++i)
+            threads[i] = std::thread(eval_robot, i);
 
-    // wait for the threads to finish
-    for (size_t i = 0; i < threads.size(); ++i)
-        threads[i].join();
+        // wait for the threads to finish
+        for (size_t i = 0; i < threads.size(); ++i)
+            threads[i].join();
+        std::cout << "first batch finished" << std::endl;
+    }
     return 0;
 }
