@@ -33,7 +33,7 @@ int main()
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
-    graphics->record_video("talos_dancing.mp4");
+    //graphics->record_video("talos_dancing.mp4");
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
