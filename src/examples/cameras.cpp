@@ -15,6 +15,7 @@ public:
         simu->scheduler().set_sync(true);
         // enable summary text when graphics activated
         simu->enable_text_panel(true);
+        simu->enable_status_bar(true);
     }
 
 protected:
