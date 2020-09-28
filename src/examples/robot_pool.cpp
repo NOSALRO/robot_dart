@@ -33,7 +33,7 @@ void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
 
     Eigen::VectorXd init_positions = robot->positions(dofs);
 
-    while (simu.scheduler().next_time() < 3) { // 3 second of simu only
+    while (simu.scheduler().next_time() <= 3.) { // 3 second of simu only
         if (simu.schedule(simu.control_freq())) {
             Eigen::VectorXd delta_pos(5);
             delta_pos << sin(simu.scheduler().current_time() * 2.),
@@ -54,6 +54,7 @@ namespace pool {
         std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
         return std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
     }
+
     robot_dart::RobotPool robot_pool(robot_creator, NUM_THREADS);
 } // namespace pool
 
