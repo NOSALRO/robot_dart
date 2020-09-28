@@ -174,7 +174,7 @@ namespace robot_dart {
                     _font->fillGlyphCache(*_glyph_cache,
                         "abcdefghijklmnopqrstuvwxyz"
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        "0123456789:-+,.!° ");
+                        "0123456789:-+*,.!° /|[]()_");
 
                     /* Initialize dynamic text */
                     _dynamic_text.reset(new Magnum::Text::Renderer2D(*_font, *_glyph_cache, 32.0f, Magnum::Text::Alignment::TopLeft));
