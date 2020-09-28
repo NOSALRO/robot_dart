@@ -333,7 +333,7 @@ def build_examples(bld):
     # we first build the library
     build(bld)
     print("Bulding examples...")
-    libs = 'BOOST EIGEN DART'
+    libs = 'BOOST EIGEN DART PTHREAD'
     path = bld.path.abspath() + '/res'
     bld.env.LIB_PTHREAD = ['pthread']
 
@@ -365,7 +365,7 @@ def build_examples(bld):
                             install_path = None,
                             source = '/src/examples/' + filename,
                             includes = './src',
-                            uselib = 'PTHREAD ' + bld.env['magnum_libs'] + libs,
+                            uselib = bld.env['magnum_libs'] + libs,
                             use = 'RobotDARTSimu RobotDARTMagnum',
                             defines = ['GRAPHIC'],
                             target = basename)
