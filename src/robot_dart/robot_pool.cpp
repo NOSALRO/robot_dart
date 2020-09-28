@@ -45,7 +45,5 @@ namespace robot_dart {
         skel->clearInternalForces();
         skel->clearConstraintImpulses();
         skel->resetCommands();
-
-        // reset any altered properties (e.g., altered mass of a link) and set initial positions
     }
 } // namespace robot_dart

@@ -12,13 +12,16 @@ namespace robot_dart {
     class RobotPool {
     public:
         using robot_creator_t = std::function<std::shared_ptr<Robot>()>;
+
         static RobotPool& instance(const robot_creator_t& robot_creator, size_t pool_size = 32)
         {
             static RobotPool gdata(robot_creator, pool_size);
             return gdata;
         }
+
         RobotPool(const robot_creator_t& robot_creator, size_t pool_size = 32);
         virtual ~RobotPool() {}
+
         RobotPool(const RobotPool&) = delete;
         void operator=(const RobotPool&) = delete;
 
@@ -26,13 +29,14 @@ namespace robot_dart {
         virtual void free_robot(const std::shared_ptr<Robot>& robot);
 
     protected:
-        virtual void _set_init_pos(const dart::dynamics::SkeletonPtr& skel);
         robot_creator_t _robot_creator;
         size_t _pool_size;
         std::vector<dart::dynamics::SkeletonPtr> _skeletons;
         std::vector<bool> _free;
         std::mutex _skeleton_mutex;
         std::string _model_filename;
+
+        virtual void _set_init_pos(const dart::dynamics::SkeletonPtr& skel);
     };
 } // namespace robot_dart
 

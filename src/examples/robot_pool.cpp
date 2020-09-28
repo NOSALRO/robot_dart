@@ -16,13 +16,11 @@ void eval_robot(int i)
         return std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
     }; // do not forget the ; for lambda!
     // we want 12 robots in the pool(usually the number of threads or a bit more )
-    auto robot
-        = robot_dart::RobotPool::instance(robot_creator, NUM_THREADS).get_robot();
+    auto robot = robot_dart::RobotPool::instance(robot_creator, NUM_THREADS).get_robot();
 
     std::cout << "Robot " << i << " created [" << robot->skeleton() << "]" << std::endl;
 
     /// --- some robot_dart code ---
-
     robot->set_position_enforced(true);
     robot->skeleton()->setPosition(5, 1.1);
     robot->skeleton()->setPosition(2, 1.57);
@@ -37,7 +35,8 @@ void eval_robot(int i)
     simu.add_robot(robot);
 
     simu.set_control_freq(100);
-    std::vector<std::string> dofs = {"arm_left_1_joint",
+    std::vector<std::string> dofs = {
+        "arm_left_1_joint",
         "arm_left_2_joint",
         "arm_right_1_joint",
         "arm_right_2_joint",
@@ -62,7 +61,6 @@ void eval_robot(int i)
 
     // CRITICAL : free your robot !
     robot_dart::RobotPool::instance(robot_creator, NUM_THREADS).free_robot(robot);
-    
 }
 
 int main(int argc, char** argv)
@@ -70,13 +68,13 @@ int main(int argc, char** argv)
     for (int i = 0; i < 2; ++i) { // we do it twice to see reuse of the some robots
         // for the example, we run NUM_THREADS threads of eval_robot()
         std::vector<std::thread> threads(NUM_THREADS);
-        for (size_t i = 0; i < threads.size(); ++i)
-            threads[i] = std::thread(eval_robot, i);
+        for (size_t j = 0; j < threads.size(); ++j)
+            threads[j] = std::thread(eval_robot, j);
 
         // wait for the threads to finish
-        for (size_t i = 0; i < threads.size(); ++i)
-            threads[i].join();
-        std::cout << "first batch finished" << std::endl;
+        for (size_t j = 0; j < threads.size(); ++j)
+            threads[j].join();
+        std::cout << "Batch " << i << " finished" << std::endl;
     }
     return 0;
 }
