@@ -117,6 +117,9 @@ namespace robot_dart {
         void enable_text_panel(bool enable = true);
         std::string default_text_panel() const;
         void set_text_panel(const std::string& str);
+        void enable_status_bar(bool enable = true);
+        std::string default_status_bar() const;
+        void set_status_bar(const std::string& str);
         std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1));
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
@@ -140,6 +143,8 @@ namespace robot_dart {
         void remove_all_collision_masks();
 
     protected:
+        void _enable(std::shared_ptr<simu::TextData>& text, bool enable);
+
         dart::simulation::WorldPtr _world;
         size_t _old_index;
         bool _break;
