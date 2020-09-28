@@ -1,15 +1,27 @@
 #include <robot_dart/robot_pool.hpp>
 
 namespace robot_dart {
-    RobotPool::RobotPool(const std::function<std::shared_ptr<Robot>()>& robot_creator, size_t pool_size) : _robot_creator(robot_creator), _pool_size(pool_size)
+    RobotPool::RobotPool(const std::function<std::shared_ptr<Robot>()>& robot_creator, size_t pool_size, bool verbose) : _robot_creator(robot_creator), _pool_size(pool_size), _verbose(true)
     {
+        if (_verbose) {
+            std::cout << "Creating a pool of " << pool_size << " robots: ";
+            std::cout.flush();
+        }
+
         for (size_t i = 0; i < _pool_size; ++i) {
+            if (_verbose) {
+                std::cout << "[" << i << "]";
+                std::cout.flush();
+            }
             auto robot = robot_creator();
             _set_init_pos(robot->skeleton());
             _skeletons.push_back(robot->skeleton());
         }
         for (size_t i = 0; i < _pool_size; i++)
             _free.push_back(true);
+
+        if (_verbose)
+            std::cout << std::endl;
     }
 
     std::shared_ptr<Robot> RobotPool::get_robot(const std::string& name)
