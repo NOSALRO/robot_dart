@@ -12,7 +12,8 @@ namespace robot_dart {
     class RobotPool {
     public:
         using robot_creator_t = std::function<std::shared_ptr<Robot>()>;
-        RobotPool(const robot_creator_t& robot_creator, size_t pool_size = 32, bool verbose=true);
+
+        RobotPool(const robot_creator_t& robot_creator, size_t pool_size = 32, bool verbose = true);
         virtual ~RobotPool() {}
 
         RobotPool(const RobotPool&) = delete;
