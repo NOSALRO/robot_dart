@@ -45,7 +45,8 @@ namespace robot_dart {
                 std::this_thread::sleep_for(adjust);
         }
 
-        return real.count() * 1e-6;
+        _real_time = real.count() * 1e-6;
+        return _real_time;
     }
 
 } // namespace robot_dart
