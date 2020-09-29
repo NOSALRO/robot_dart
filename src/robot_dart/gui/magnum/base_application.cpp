@@ -179,7 +179,7 @@ namespace robot_dart {
                     /* Initialize dynamic text */
                     _dynamic_text.reset(new Magnum::Text::Renderer2D(*_font, *_glyph_cache, 32.0f, Magnum::Text::Alignment::TopLeft));
                     /* Reserve 100 characters for drawing debug text */
-                    _dynamic_text->reserve(100, Magnum::GL::BufferUsage::DynamicDraw, Magnum::GL::BufferUsage::StaticDraw);
+                    _dynamic_text->reserve(256, Magnum::GL::BufferUsage::DynamicDraw, Magnum::GL::BufferUsage::StaticDraw);
 
                     /* Initialize text shader */
                     _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
