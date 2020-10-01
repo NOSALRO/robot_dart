@@ -23,6 +23,7 @@ namespace robot_dart {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(dt > 0. && "Time-step needs to be bigger than zero.");
 
         _current_time = 0.;
+        _real_time = 0.;
         _simu_start_time = current_time;
         _current_step = 0;
         _max_frequency = -1;

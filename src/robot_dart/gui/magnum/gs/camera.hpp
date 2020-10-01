@@ -21,6 +21,8 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
+            struct DebugDrawData;
+
             namespace gs {
                 // This is partly code from the ThirdPersonCameraController of https://github.com/alexesDev/magnum-tips
                 class Camera : public Object3D {
@@ -69,7 +71,7 @@ namespace robot_dart {
                     Corrade::Containers::Optional<Magnum::Image2D>& image() { return _image; }
                     Corrade::Containers::Optional<Magnum::Image2D>& depth_image() { return _depth_image; }
 
-                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, Magnum::Shaders::DistanceFieldVector2D* text_shader, Magnum::Text::Renderer2D* text_renderer, bool draw_debug = true);
+                    void draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, const DebugDrawData& debug_data, bool draw_debug = true);
 
                 private:
                     Object3D* _yaw_object;

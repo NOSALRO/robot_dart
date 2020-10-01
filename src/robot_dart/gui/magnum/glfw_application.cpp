@@ -81,7 +81,7 @@ namespace robot_dart {
                     _camera->strafe(_speed_strafe);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, *_3D_axis_shader, *_3D_axis_mesh, &*_text_shader, &*_dynamic_text, _draw_debug);
+                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, debug_draw_data(), _draw_debug);
 
                     swapBuffers();
                 }
