@@ -25,9 +25,9 @@ namespace robot_dart {
             std::vector<std::shared_ptr<simu::TextData>> text_drawings;
 
         public:
-            std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1))
+            std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3))
             {
-                text_drawings.emplace_back(new TextData{text, tf, color});
+                text_drawings.emplace_back(new TextData{text, tf, color, alignment});
 
                 return text_drawings.back();
             }

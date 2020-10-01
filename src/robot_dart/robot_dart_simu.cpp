@@ -158,7 +158,7 @@ namespace robot_dart {
                 if (_status_bar->text == "")
                     _status_bar->text = default_status_bar();
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
-                tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., 50 - _graphics->height() / 2.));
+                tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., -static_cast<double>(_graphics->height() / 2.)));
                 _status_bar->transformation = tf;
             }
 
@@ -416,7 +416,12 @@ namespace robot_dart {
 
     void RobotDARTSimu::enable_text_panel(bool enable) { _enable(_text_panel, enable); }
 
-    void RobotDARTSimu::enable_status_bar(bool enable) { _enable(_status_bar, enable); }
+    void RobotDARTSimu::enable_status_bar(bool enable)
+    {
+        _enable(_status_bar, enable);
+        if (enable) // alignment of status bar should be LineLeft
+            _status_bar->alignment = (1 | 1 << 3);
+    }
 
     void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable)
     {
@@ -446,7 +451,7 @@ namespace robot_dart {
     {
         std::ostringstream out;
         out.precision(3);
-        double rt = _scheduler.current_time();
+        double rt = _scheduler.real_time();
 
         out << std::fixed << "Sim. Time: " << _world->getTime() << "s" << std::endl
             << "Time: " << rt << "s";
@@ -461,9 +466,9 @@ namespace robot_dart {
         return _robots[0]->model_filename();
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color)
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment)
     {
-        return _gui_data->add_text(text, tf, color);
+        return _gui_data->add_text(text, tf, color, alignment);
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)

@@ -51,14 +51,16 @@ namespace robot_dart {
             // TextData
             using simu::TextData;
             py::class_<TextData, std::shared_ptr<TextData>>(m, "TextData")
-                .def(py::init<const std::string&, const Eigen::Affine2d&, const Eigen::Vector4d&>(),
+                .def(py::init<const std::string&, const Eigen::Affine2d&, const Eigen::Vector4d&, std::uint8_t>(),
                     py::arg("text"),
                     py::arg("transformation") = Eigen::Affine2d::Identity(),
-                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1))
+                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1),
+                    py::arg("alignment") = (1 | 3 << 3))
 
                 .def_readwrite("text", &TextData::text)
                 .def_readwrite("transformation", &TextData::transformation)
-                .def_readwrite("color", &TextData::color);
+                .def_readwrite("color", &TextData::color)
+                .def_readwrite("alignment", &TextData::alignment);
 
             // RobotDARTSimu class
             py::class_<RobotDARTSimu>(m, "RobotDARTSimu")
@@ -140,12 +142,11 @@ namespace robot_dart {
                 .def("set_text_panel", &RobotDARTSimu::set_text_panel,
                     py::arg("text") = "")
 
-
-
                 .def("add_text", &RobotDARTSimu::add_text, py::return_value_policy::reference,
                     py::arg("text"),
                     py::arg("transformation") = Eigen::Affine2d::Identity(),
-                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1))
+                    py::arg("color") = Eigen::Vector4d(1, 1, 1, 1),
+                    py::arg("alignment") = (1 | 3 << 3))
 
                 .def("add_floor", &RobotDARTSimu::add_floor,
                     py::arg("floor_width") = 10.,

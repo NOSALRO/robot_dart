@@ -176,10 +176,9 @@ namespace robot_dart {
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         "0123456789:-+*,.!° /|[]()_");
 
-                    /* Initialize dynamic text */
-                    _dynamic_text.reset(new Magnum::Text::Renderer2D(*_font, *_glyph_cache, 32.0f, Magnum::Text::Alignment::TopLeft));
-                    /* Reserve 100 characters for drawing debug text */
-                    _dynamic_text->reserve(256, Magnum::GL::BufferUsage::DynamicDraw, Magnum::GL::BufferUsage::StaticDraw);
+                    /* Initialize buffers for text */
+                    _text_vertices.reset(new Magnum::GL::Buffer);
+                    _text_indices.reset(new Magnum::GL::Buffer);
 
                     /* Initialize text shader */
                     _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
@@ -642,7 +641,8 @@ namespace robot_dart {
                 _text_shader.reset();
                 _glyph_cache.reset();
                 _font.reset();
-                _dynamic_text.reset();
+                _text_vertices.reset();
+                _text_indices.reset();
 
                 _camera.reset();
                 _shadow_camera.reset();

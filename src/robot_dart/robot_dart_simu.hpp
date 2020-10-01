@@ -19,6 +19,7 @@ namespace robot_dart {
             std::string text;
             Eigen::Affine2d transformation;
             Eigen::Vector4d color;
+            std::uint8_t alignment;
         };
     } // namespace simu
 
@@ -120,7 +121,7 @@ namespace robot_dart {
         void enable_status_bar(bool enable = true);
         std::string default_status_bar() const;
         void set_status_bar(const std::string& str);
-        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1));
+        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3));
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
