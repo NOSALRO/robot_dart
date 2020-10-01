@@ -130,6 +130,8 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
+        bool update_graphics = false;
+
         if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
 
@@ -147,35 +149,33 @@ namespace robot_dart {
         }
 
         if (_scheduler(_graphics_freq)) {
-            if (_text_panel) {
-                if (_text_panel->text == "")
-                    _text_panel->text = default_text_panel();
+            update_graphics = true;
+        }
+
+        _old_index++;
+        _scheduler.step();
+
+        if (update_graphics) {
+            // Update default texts
+            if (_text_panel) { // Need to re-transform as the size of the window might have changed
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
                 tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., _graphics->height() / 2.));
                 _text_panel->transformation = tf;
             }
             if (_status_bar) {
-                if (_status_bar->text == "")
-                    _status_bar->text = default_status_bar();
+                _status_bar->text = status_bar_text(); // this is dynamic text (timings)
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
                 tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., -static_cast<double>(_graphics->height() / 2.)));
                 _status_bar->transformation = tf;
             }
 
-            _graphics->refresh();
-
+            // Update robot-specific GUI data
             for (auto& robot : _robots) {
                 _gui_data->update_robot(robot);
             }
 
-            if (_text_panel)
-                _text_panel->text = "";
-            if (_status_bar)
-                _status_bar->text = "";
+            _graphics->refresh();
         }
-
-        _old_index++;
-        _scheduler.step();
 
         return _break;
     }
@@ -437,17 +437,17 @@ namespace robot_dart {
 
     void RobotDARTSimu::set_text_panel(const std::string& str)
     {
-        if (_text_panel)
-            _text_panel->text = str;
+        ROBOT_DART_ASSERT(!_text_panel, "Panel text object not created. Use enable_text_panel() to create it.", );
+        _text_panel->text = str;
     }
 
-    void RobotDARTSimu::set_status_bar(const std::string& str)
+    std::string RobotDARTSimu::text_panel_text() const
     {
-        if (_status_bar)
-            _status_bar->text = str;
+        ROBOT_DART_ASSERT(!_text_panel, "Panel text object not created. Returning empty string.", "");
+        return _text_panel->text;
     }
 
-    std::string RobotDARTSimu::default_text_panel() const
+    std::string RobotDARTSimu::status_bar_text() const
     {
         std::ostringstream out;
         out.precision(3);
@@ -457,13 +457,6 @@ namespace robot_dart {
             << "Time: " << rt << "s";
 
         return out.str();
-    }
-
-    std::string RobotDARTSimu::default_status_bar() const
-    {
-        if (_robots.empty())
-            return "";
-        return _robots[0]->model_filename();
     }
 
     std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment)

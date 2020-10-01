@@ -115,12 +115,14 @@ namespace robot_dart {
         void clear_robots();
 
         simu::GUIData* gui_data();
+
         void enable_text_panel(bool enable = true);
-        std::string default_text_panel() const;
+        std::string text_panel_text() const;
         void set_text_panel(const std::string& str);
+
         void enable_status_bar(bool enable = true);
-        std::string default_status_bar() const;
-        void set_status_bar(const std::string& str);
+        std::string status_bar_text() const;
+
         std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3));
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");

@@ -59,8 +59,7 @@ int main()
             Eigen::VectorXd commands = (init_positions + delta_pos) - robot->positions(dofs);
             robot->set_commands(commands, dofs);
         }
-        simu.set_text_panel(robot->model_filename() + "\n"
-            + simu.default_text_panel());
+
         simu.step_world();
     }
 

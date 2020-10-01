@@ -297,7 +297,12 @@ namespace robot_dart {
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::DepthTest);
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
 
+                            // bind glyph texture
+                            debug_data.text_shader->bindVectorTexture(debug_data.cache->texture());
+
                             for (auto& text : simu->gui_data()->drawing_texts()) {
+                                if (text->text.empty()) // ignore empty strings
+                                    continue;
                                 Magnum::GL::Mesh mesh;
                                 Magnum::Range2D rectangle;
                                 std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 32.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
@@ -307,12 +312,12 @@ namespace robot_dart {
                                 auto scaling = Magnum::Vector2{big / 1024.f};
                                 auto tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
-                                    tr = Magnum::Matrix3::translation({0.f, rectangle.sizeY() / 2.f});
+                                    tr = Magnum::Matrix3::translation({0.f, rectangle.sizeY()});
                                 (*debug_data.text_shader)
                                     .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr * Magnum::Matrix3::scaling(scaling))
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
-                                    .setOutlineRange(0.5f, 1.0f)
+                                    .setOutlineRange(0.45f, 0.35f)
                                     .setSmoothness(0.075f)
                                     .draw(mesh);
                             }
