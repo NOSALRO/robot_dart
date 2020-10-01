@@ -106,6 +106,13 @@ namespace robot_dart {
                 bool draw_debug = true;
             };
 
+            struct DebugDrawData {
+                Magnum::Shaders::VertexColor3D* axes_shader;
+                Magnum::GL::Mesh* axes_mesh;
+                Magnum::Shaders::DistanceFieldVector2D* text_shader;
+                Magnum::Text::Renderer2D* text_renderer;
+            };
+
             class BaseApplication {
             public:
                 BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
@@ -158,6 +165,17 @@ namespace robot_dart {
                 Magnum::GL::Mesh& axes_mesh() { return *_3D_axis_mesh; }
                 Magnum::Shaders::DistanceFieldVector2D* text_shader() { return &*_text_shader; }
                 Magnum::Text::Renderer2D* text_renderer() { return &*_dynamic_text; }
+
+                DebugDrawData debug_draw_data()
+                {
+                    DebugDrawData data;
+                    data.axes_shader = &*_3D_axis_shader;
+                    data.axes_mesh = &*_3D_axis_mesh;
+                    data.text_shader = &*_text_shader;
+                    data.text_renderer = &*_dynamic_text;
+
+                    return data;
+                }
 
             protected:
                 /* Magnum */
