@@ -135,12 +135,13 @@ namespace robot_dart {
 
                 .def("enable_text_panel", &RobotDARTSimu::enable_text_panel,
                     py::arg("enable") = true)
+                .def("text_panel_text", &RobotDARTSimu::text_panel_text)
+                .def("set_text_panel", &RobotDARTSimu::set_text_panel,
+                    py::arg("str") = "")
+
                 .def("enable_status_bar", &RobotDARTSimu::enable_status_bar,
                     py::arg("enable") = true)
-                .def("set_status_bar", &RobotDARTSimu::set_status_bar,
-                    py::arg("text") = "")
-                .def("set_text_panel", &RobotDARTSimu::set_text_panel,
-                    py::arg("text") = "")
+                .def("status_bar_text", &RobotDARTSimu::status_bar_text)
 
                 .def("add_text", &RobotDARTSimu::add_text, py::return_value_policy::reference,
                     py::arg("text"),
