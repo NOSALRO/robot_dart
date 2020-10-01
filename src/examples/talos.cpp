@@ -3,6 +3,7 @@
 #include <iostream>
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/talos.hpp>
 
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
@@ -15,19 +16,8 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
-    robot->set_position_enforced(true);
-    robot->skeleton()->setPosition(5, 1.1);
-    robot->skeleton()->setPosition(2, 1.57);
-
-    // Set actuator types to VELOCITY (for speed)
-    robot->set_actuator_types("velocity");
-
     double dt = 0.001;
-    robot_dart::RobotDARTSimu simu(dt);
+robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
@@ -36,6 +26,16 @@ int main()
     graphics->record_video("talos_dancing.mp4");
 #endif
     simu.add_checkerboard_floor();
+
+    auto robot = std::make_shared<robot_dart::robots::Talos>(simu);
+    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
+
+    robot->set_position_enforced(true);
+    robot->skeleton()->setPosition(2, 1.57);
+
+    // Set actuator types to VELOCITY (for speed)
+    robot->set_actuator_types("velocity");
+
     simu.add_robot(robot);
 
     simu.set_control_freq(100);
