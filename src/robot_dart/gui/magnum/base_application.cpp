@@ -642,8 +642,9 @@ namespace robot_dart {
                 _shadow_cube_map.reset();
                 _shadow_color_cube_map.reset();
                 _3D_axis_shader.reset();
-                _background_shader.reset();
                 _3D_axis_mesh.reset();
+                _background_mesh.reset();
+                _background_shader.reset();
                 _text_shader.reset();
                 _glyph_cache.reset();
                 _font.reset();

@@ -310,7 +310,7 @@ namespace robot_dart {
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto big = viewport.max();
-                                auto scaling = Magnum::Vector2{big / 1024.f};
+                                auto scaling = Magnum::Matrix3::scaling(Magnum::Vector2{big / 1024.f});
                                 auto tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
                                     tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
@@ -320,12 +320,12 @@ namespace robot_dart {
 
                                 // draw the background
                                 (*debug_data.background_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * tr2 * scaling2 * Magnum::Matrix3::scaling(scaling))
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * tr2 * scaling2 * scaling)
                                     .setColor({0.f, 0.f, 0.f, 0.75f})
                                     .draw(*debug_data.background_mesh);
 
                                 (*debug_data.text_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr * Magnum::Matrix3::scaling(scaling))
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr * scaling)
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
                                     .setOutlineRange(0.4f, 0.45f)
