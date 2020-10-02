@@ -28,7 +28,9 @@
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
 #include <Magnum/Shaders/DistanceFieldVector.h>
+#include <Magnum/Shaders/Flat.h>
 #include <Magnum/Shaders/VertexColor.h>
+
 #include <Magnum/Text/AbstractFont.h>
 #include <Magnum/Text/DistanceFieldGlyphCache.h>
 #include <Magnum/Text/Renderer.h>
@@ -109,6 +111,8 @@ namespace robot_dart {
             struct DebugDrawData {
                 Magnum::Shaders::VertexColor3D* axes_shader;
                 Magnum::GL::Mesh* axes_mesh;
+                Magnum::Shaders::Flat2D* background_shader;
+                Magnum::GL::Mesh* background_mesh;
 
                 Magnum::Shaders::DistanceFieldVector2D* text_shader;
                 Magnum::GL::Buffer* text_vertices;
@@ -169,7 +173,9 @@ namespace robot_dart {
                 {
                     DebugDrawData data;
                     data.axes_shader = &*_3D_axis_shader;
+                    data.background_shader = &*_background_shader;
                     data.axes_mesh = &*_3D_axis_mesh;
+                    data.background_mesh = &*_background_mesh;
                     data.text_shader = &*_text_shader;
                     data.text_vertices = &*_text_vertices;
                     data.text_indices = &*_text_indices;
@@ -214,6 +220,9 @@ namespace robot_dart {
                 /* Debug visualization */
                 std::unique_ptr<Magnum::GL::Mesh> _3D_axis_mesh;
                 std::unique_ptr<Magnum::Shaders::VertexColor3D> _3D_axis_shader;
+                std::unique_ptr<Magnum::GL::Mesh> _background_mesh;
+                std::unique_ptr<Magnum::Shaders::Flat2D> _background_shader;
+
                 /* Text visualization */
                 std::unique_ptr<Magnum::Shaders::DistanceFieldVector2D> _text_shader;
                 Corrade::PluginManager::Manager<Magnum::Text::AbstractFont> _font_manager;

@@ -19,6 +19,8 @@
 #include <Magnum/MeshTools/CompressIndices.h>
 #include <Magnum/MeshTools/Interleave.h>
 #include <Magnum/Primitives/Axis.h>
+#include <Magnum/Primitives/Square.h>
+
 #include <Magnum/Trade/MeshData.h>
 #include <Magnum/Trade/PhongMaterialData.h>
 
@@ -147,6 +149,9 @@ namespace robot_dart {
                 /* Initialize 3D axis visualization mesh */
                 _3D_axis_shader.reset(new Magnum::Shaders::VertexColor3D);
                 _3D_axis_mesh.reset(new Magnum::GL::Mesh);
+
+                _background_shader.reset(new Magnum::Shaders::Flat2D);
+                _background_mesh.reset(new Magnum::GL::Mesh{Magnum::MeshTools::compile(Magnum::Primitives::squareSolid())});
 
                 Magnum::Trade::MeshData axis_data = Magnum::Primitives::axis3D();
 
@@ -637,6 +642,7 @@ namespace robot_dart {
                 _shadow_cube_map.reset();
                 _shadow_color_cube_map.reset();
                 _3D_axis_shader.reset();
+                _background_shader.reset();
                 _3D_axis_mesh.reset();
                 _text_shader.reset();
                 _glyph_cache.reset();
