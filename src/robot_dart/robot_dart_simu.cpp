@@ -453,8 +453,10 @@ namespace robot_dart {
         out.precision(3);
         double rt = _scheduler.real_time();
 
-        out << std::fixed << "Sim. Time: " << _world->getTime() << "s" << std::endl
-            << "Time: " << rt << "s";
+        out << std::fixed << "[Simulation: " << _world->getTime() 
+            << "s ] [" << "Real: " << rt << "s] [";
+        out.precision(1);
+        out << _world->getTime() / rt << "x]";
 
         return out.str();
     }
