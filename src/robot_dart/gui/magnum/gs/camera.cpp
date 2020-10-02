@@ -315,12 +315,12 @@ namespace robot_dart {
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
                                     tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
 
-                                auto tr2 = Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr;
+                                auto tr2 = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
                                 auto scaling2 = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
 
                                 // draw the background
                                 (*debug_data.background_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * tr2 * scaling2)
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * tr2 * scaling2 * Magnum::Matrix3::scaling(scaling))
                                     .setColor({0.f, 0.f, 0.f, 0.75f})
                                     .draw(*debug_data.background_mesh);
 
