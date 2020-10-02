@@ -305,14 +305,14 @@ namespace robot_dart {
                                     continue;
                                 Magnum::GL::Mesh mesh;
                                 Magnum::Range2D rectangle;
-                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 32.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
+                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 28.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto big = viewport.max();
                                 auto scaling = Magnum::Vector2{big / 1024.f};
                                 auto tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
-                                    tr = Magnum::Matrix3::translation({0.f, rectangle.sizeY()});
+                                    tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
                                 (*debug_data.text_shader)
                                     .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr * Magnum::Matrix3::scaling(scaling))
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
