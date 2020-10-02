@@ -27,7 +27,7 @@ robot_dart::RobotDARTSimu simu(dt);
 #endif
     simu.add_checkerboard_floor();
 
-    auto robot = std::make_shared<robot_dart::robots::Talos>(&simu);
+    auto robot = std::make_shared<robot_dart::robots::TalosLight>(&simu);
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
     robot->set_position_enforced(true);
