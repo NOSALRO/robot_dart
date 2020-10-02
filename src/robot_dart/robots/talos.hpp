@@ -15,7 +15,7 @@ namespace robot_dart {
             const std::shared_ptr<sensor::ForceTorque>& ft_foot_left() const { return _ft_foot_left; }
             const std::shared_ptr<sensor::ForceTorque>& ft_foot_right() const { return _ft_foot_right; }
             const std::shared_ptr<sensor::ForceTorque>& ft_wrist_left() const { return _ft_wrist_left; }
-            const std::shared_ptr<sensor::ForceTorque>&  ft_wrist_right() const { return _ft_wrist_right; }
+            const std::shared_ptr<sensor::ForceTorque>& ft_wrist_right() const { return _ft_wrist_right; }
 
         protected:
             std::shared_ptr<sensor::IMU> _imu;
@@ -24,6 +24,11 @@ namespace robot_dart {
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_left;
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_right;
         };
+
+        class TalosLight : public Talos {
+        public:
+            TalosLight(RobotDARTSimu* simu, size_t frequency = 1000, const std::string& urdf = "talos/talos_fast.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(simu, frequency, urdf, packages) {}
+        };
     } // namespace robots
-}
+} // namespace robot_dart
 #endif
