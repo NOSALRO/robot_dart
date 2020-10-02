@@ -27,10 +27,11 @@ robot_dart::RobotDARTSimu simu(dt);
 #endif
     simu.add_checkerboard_floor();
 
-    auto robot = std::make_shared<robot_dart::robots::Talos>(simu);
+    auto robot = std::make_shared<robot_dart::robots::Talos>(&simu);
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
     robot->set_position_enforced(true);
+    robot->skeleton()->setPosition(5, 1.1);
     robot->skeleton()->setPosition(2, 1.57);
 
     // Set actuator types to VELOCITY (for speed)
