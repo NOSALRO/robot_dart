@@ -31,7 +31,7 @@ namespace robot_dart {
         std::mutex _skeleton_mutex;
         std::string _model_filename;
 
-        virtual void _set_init_pos(const dart::dynamics::SkeletonPtr& skel);
+        virtual void _reset_robot(const std::shared_ptr<Robot>& robot);
     };
 } // namespace robot_dart
 
