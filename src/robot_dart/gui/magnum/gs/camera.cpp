@@ -310,22 +310,22 @@ namespace robot_dart {
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto big = viewport.max();
-                                auto scaling = Magnum::Matrix3::scaling(Magnum::Vector2{big / 1024.f});
-                                auto tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
+                                auto text_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{big / 1024.f});
+                                auto extra_tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
-                                    tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
+                                    extra_tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
 
-                                auto tr2 = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
-                                auto scaling2 = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
+                                auto text_tr = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
+                                auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
 
                                 // draw the background
                                 (*debug_data.background_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * tr2 * scaling2 * scaling)
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
                                     .setColor({0.f, 0.f, 0.f, 0.75f})
                                     .draw(*debug_data.background_mesh);
 
                                 (*debug_data.text_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * tr * scaling)
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * extra_tr * text_scaling)
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
                                     .setOutlineRange(0.4f, 0.45f)
