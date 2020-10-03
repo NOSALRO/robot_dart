@@ -316,13 +316,16 @@ namespace robot_dart {
                                     extra_tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
 
                                 auto text_tr = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
-                                auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
 
-                                // draw the background
-                                (*debug_data.background_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
-                                    .setColor({0.f, 0.f, 0.f, 0.75f})
-                                    .draw(*debug_data.background_mesh);
+                                if (text->draw_background) {
+                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
+
+                                    // draw the background
+                                    (*debug_data.background_shader)
+                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
+                                        .setColor({0.f, 0.f, 0.f, 0.75f})
+                                        .draw(*debug_data.background_mesh);
+                                }
 
                                 (*debug_data.text_shader)
                                     .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * extra_tr * text_scaling)
