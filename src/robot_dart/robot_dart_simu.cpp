@@ -419,8 +419,11 @@ namespace robot_dart {
     void RobotDARTSimu::enable_status_bar(bool enable)
     {
         _enable(_status_bar, enable);
-        if (enable) // alignment of status bar should be LineLeft
-            _status_bar->alignment = (1 | 1 << 3);
+        if (enable) {
+            _status_bar->alignment = (1 | 1 << 3); // alignment of status bar should be LineLeft
+            _status_bar->draw_background = true; // we want to draw a background
+            _status_bar->background_color = Eigen::Vector4d(0, 0, 0, 0.75); // black-transparent bar
+        }
     }
 
     void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable)
@@ -437,13 +440,13 @@ namespace robot_dart {
 
     void RobotDARTSimu::set_text_panel(const std::string& str)
     {
-        ROBOT_DART_ASSERT(!_text_panel, "Panel text object not created. Use enable_text_panel() to create it.", );
+        ROBOT_DART_ASSERT(_text_panel, "Panel text object not created. Use enable_text_panel() to create it.", );
         _text_panel->text = str;
     }
 
     std::string RobotDARTSimu::text_panel_text() const
     {
-        ROBOT_DART_ASSERT(!_text_panel, "Panel text object not created. Returning empty string.", "");
+        ROBOT_DART_ASSERT(_text_panel, "Panel text object not created. Returning empty string.", "");
         return _text_panel->text;
     }
 
@@ -462,9 +465,9 @@ namespace robot_dart {
         return out.str();
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment)
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color)
     {
-        return _gui_data->add_text(text, tf, color, alignment);
+        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color);
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
