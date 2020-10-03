@@ -59,6 +59,7 @@ int main()
             Eigen::VectorXd commands = (init_positions + delta_pos) - robot->positions(dofs);
             robot->set_commands(commands, dofs);
         }
+
         simu.step_world();
     }
 

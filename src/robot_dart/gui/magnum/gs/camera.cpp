@@ -251,7 +251,7 @@ namespace robot_dart {
 #endif
                 }
 
-                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, Magnum::Shaders::VertexColor3D& axes_shader, Magnum::GL::Mesh& axes_mesh, Magnum::Shaders::DistanceFieldVector2D* text_shader, Magnum::Text::Renderer2D* text_renderer, bool draw_debug)
+                void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, const DebugDrawData& debug_data, bool draw_debug)
                 {
                     // TO-DO: Maybe check if world moved?
                     std::vector<std::pair<std::reference_wrapper<Magnum::SceneGraph::Drawable3D>, Magnum::Matrix4>>
@@ -287,29 +287,53 @@ namespace robot_dart {
                             Magnum::Matrix4 world_transform = Magnum::Matrix4(Magnum::Matrix4d(axis.first->getWorldTransform().matrix()));
                             Magnum::Matrix4 scaling = Magnum::Matrix4::scaling(Magnum::Vector3(axis.second, axis.second, axis.second));
 
-                            axes_shader.setTransformationProjectionMatrix(_camera->projectionMatrix() * _camera->cameraMatrix() * world_transform * scaling)
-                                .draw(axes_mesh);
+                            debug_data.axes_shader->setTransformationProjectionMatrix(_camera->projectionMatrix() * _camera->cameraMatrix() * world_transform * scaling)
+                                .draw(*debug_data.axes_mesh);
                         }
 
                         /* Draw text */
-                        if (text_shader && text_renderer) {
+                        if (debug_data.text_shader && debug_data.text_vertices) {
                             using namespace Magnum::Math::Literals;
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::DepthTest);
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
 
+                            // bind glyph texture
+                            debug_data.text_shader->bindVectorTexture(debug_data.cache->texture());
+
                             for (auto& text : simu->gui_data()->drawing_texts()) {
-                                text_renderer->render(text->text);
-                                // std::cout << text_renderer->rectangle().sizeX() << std::endl;
+                                if (text->text.empty()) // ignore empty strings
+                                    continue;
+
+                                Magnum::GL::Mesh mesh;
+                                Magnum::Range2D rectangle;
+                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 28.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
+
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto big = viewport.max();
-                                auto scaling = Magnum::Vector2{big / 1024.f};
-                                (*text_shader)
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * Magnum::Matrix3(Magnum::Matrix3d(text->transformation)) * Magnum::Matrix3::scaling(scaling))
+                                auto text_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{big / 1024.f});
+                                auto extra_tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
+                                if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
+                                    extra_tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
+
+                                auto text_tr = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
+
+                                if (text->draw_background) {
+                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
+
+                                    // draw the background
+                                    (*debug_data.background_shader)
+                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
+                                        .setColor(Magnum::Vector4(Magnum::Vector4d(text->background_color)))
+                                        .draw(*debug_data.background_mesh);
+                                }
+
+                                (*debug_data.text_shader)
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * extra_tr * text_scaling)
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
-                                    .setOutlineRange(0.5f, 1.0f)
+                                    .setOutlineRange(0.4f, 0.45f)
                                     .setSmoothness(0.075f)
-                                    .draw(text_renderer->mesh());
+                                    .draw(mesh);
                             }
 
                             Magnum::GL::Renderer::enable(Magnum::GL::Renderer::Feature::DepthTest);

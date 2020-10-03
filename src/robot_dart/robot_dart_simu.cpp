@@ -130,6 +130,8 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
+        bool update_graphics = false;
+
         if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
 
@@ -147,27 +149,32 @@ namespace robot_dart {
         }
 
         if (_scheduler(_graphics_freq)) {
-            _graphics->refresh();
-
-            for (auto& robot : _robots) {
-                _gui_data->update_robot(robot);
-            }
+            update_graphics = true;
         }
 
         _old_index++;
-        double rt = _scheduler.step();
-        if (_summary_text) {
-            std::ostringstream out;
-            out.precision(3);
-            out << std::fixed << "Sim. Time: " << _world->getTime() << "s" << std::endl
-                << "Time: " << rt << "s";
+        _scheduler.step();
 
-            _summary_text->text = out.str();
+        if (update_graphics) {
+            // Update default texts
+            if (_text_panel) { // Need to re-transform as the size of the window might have changed
+                Eigen::Affine2d tf = Eigen::Affine2d::Identity();
+                tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., _graphics->height() / 2.));
+                _text_panel->transformation = tf;
+            }
+            if (_status_bar) {
+                _status_bar->text = status_bar_text(); // this is dynamic text (timings)
+                Eigen::Affine2d tf = Eigen::Affine2d::Identity();
+                tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., -static_cast<double>(_graphics->height() / 2.)));
+                _status_bar->transformation = tf;
+            }
 
-            Eigen::Affine2d tf = Eigen::Affine2d::Identity();
-            tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., _graphics->height() / 2.));
+            // Update robot-specific GUI data
+            for (auto& robot : _robots) {
+                _gui_data->update_robot(robot);
+            }
 
-            _summary_text->transformation = tf;
+            _graphics->refresh();
         }
 
         return _break;
@@ -407,21 +414,60 @@ namespace robot_dart {
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
-    void RobotDARTSimu::enable_summary_text(bool enable)
+    void RobotDARTSimu::enable_text_panel(bool enable) { _enable(_text_panel, enable); }
+
+    void RobotDARTSimu::enable_status_bar(bool enable)
     {
-        if (!_summary_text && enable) {
-            _summary_text = _gui_data->add_text("Sim. Time: 0s");
-        }
-        else if (!enable) {
-            if (_summary_text)
-                _gui_data->remove_text(_summary_text);
-            _summary_text = nullptr;
+        _enable(_status_bar, enable);
+        if (enable) {
+            _status_bar->alignment = (1 | 1 << 3); // alignment of status bar should be LineLeft
+            _status_bar->draw_background = true; // we want to draw a background
+            _status_bar->background_color = Eigen::Vector4d(0, 0, 0, 0.75); // black-transparent bar
         }
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color)
+    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable)
     {
-        return _gui_data->add_text(text, tf, color);
+        if (!text && enable) {
+            text = _gui_data->add_text("");
+        }
+        else if (!enable) {
+            if (text)
+                _gui_data->remove_text(text);
+            text = nullptr;
+        }
+    }
+
+    void RobotDARTSimu::set_text_panel(const std::string& str)
+    {
+        ROBOT_DART_ASSERT(_text_panel, "Panel text object not created. Use enable_text_panel() to create it.", );
+        _text_panel->text = str;
+    }
+
+    std::string RobotDARTSimu::text_panel_text() const
+    {
+        ROBOT_DART_ASSERT(_text_panel, "Panel text object not created. Returning empty string.", "");
+        return _text_panel->text;
+    }
+
+    std::string RobotDARTSimu::status_bar_text() const
+    {
+        std::ostringstream out;
+        out.precision(3);
+        double rt = _scheduler.real_time();
+
+        out << std::fixed << "[Simulation: " << _world->getTime()
+            << "s ] ["
+            << "Real: " << rt << "s] [";
+        out.precision(1);
+        out << _world->getTime() / rt << "x]";
+
+        return out.str();
+    }
+
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color)
+    {
+        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color);
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)

@@ -28,7 +28,9 @@
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
 #include <Magnum/Shaders/DistanceFieldVector.h>
+#include <Magnum/Shaders/Flat.h>
 #include <Magnum/Shaders/VertexColor.h>
+
 #include <Magnum/Text/AbstractFont.h>
 #include <Magnum/Text/DistanceFieldGlyphCache.h>
 #include <Magnum/Text/Renderer.h>
@@ -106,6 +108,19 @@ namespace robot_dart {
                 bool draw_debug = true;
             };
 
+            struct DebugDrawData {
+                Magnum::Shaders::VertexColor3D* axes_shader;
+                Magnum::GL::Mesh* axes_mesh;
+                Magnum::Shaders::Flat2D* background_shader;
+                Magnum::GL::Mesh* background_mesh;
+
+                Magnum::Shaders::DistanceFieldVector2D* text_shader;
+                Magnum::GL::Buffer* text_vertices;
+                Magnum::GL::Buffer* text_indices;
+                Magnum::Text::AbstractFont* font;
+                Magnum::Text::DistanceFieldGlyphCache* cache;
+            };
+
             class BaseApplication {
             public:
                 BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
@@ -153,11 +168,22 @@ namespace robot_dart {
                 // Image filled with depth buffer values
                 GrayscaleImage raw_depth_image();
 
-                // Access to members
-                Magnum::Shaders::VertexColor3D& axes_shader() { return *_3D_axis_shader; }
-                Magnum::GL::Mesh& axes_mesh() { return *_3D_axis_mesh; }
-                Magnum::Shaders::DistanceFieldVector2D* text_shader() { return &*_text_shader; }
-                Magnum::Text::Renderer2D* text_renderer() { return &*_dynamic_text; }
+                // Access to debug data
+                DebugDrawData debug_draw_data()
+                {
+                    DebugDrawData data;
+                    data.axes_shader = &*_3D_axis_shader;
+                    data.background_shader = &*_background_shader;
+                    data.axes_mesh = &*_3D_axis_mesh;
+                    data.background_mesh = &*_background_mesh;
+                    data.text_shader = &*_text_shader;
+                    data.text_vertices = &*_text_vertices;
+                    data.text_indices = &*_text_indices;
+                    data.font = &*_font;
+                    data.cache = &*_glyph_cache;
+
+                    return data;
+                }
 
             protected:
                 /* Magnum */
@@ -194,12 +220,16 @@ namespace robot_dart {
                 /* Debug visualization */
                 std::unique_ptr<Magnum::GL::Mesh> _3D_axis_mesh;
                 std::unique_ptr<Magnum::Shaders::VertexColor3D> _3D_axis_shader;
+                std::unique_ptr<Magnum::GL::Mesh> _background_mesh;
+                std::unique_ptr<Magnum::Shaders::Flat2D> _background_shader;
+
                 /* Text visualization */
                 std::unique_ptr<Magnum::Shaders::DistanceFieldVector2D> _text_shader;
                 Corrade::PluginManager::Manager<Magnum::Text::AbstractFont> _font_manager;
                 Corrade::Containers::Pointer<Magnum::Text::DistanceFieldGlyphCache> _glyph_cache;
                 Corrade::Containers::Pointer<Magnum::Text::AbstractFont> _font;
-                Corrade::Containers::Pointer<Magnum::Text::Renderer2D> _dynamic_text;
+                Corrade::Containers::Pointer<Magnum::GL::Buffer> _text_vertices;
+                Corrade::Containers::Pointer<Magnum::GL::Buffer> _text_indices;
 
                 /* Importer */
                 Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> _importer_manager;

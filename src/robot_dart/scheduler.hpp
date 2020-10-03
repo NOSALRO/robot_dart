@@ -32,12 +32,16 @@ namespace robot_dart {
         void set_sync(bool enable) { _sync = enable; }
         bool sync() { return _sync; }
 
+        /// current time according to the simulation
         double current_time() const { return _simu_start_time + _current_time; }
+        /// next time according to the simulation
         double next_time() const { return _simu_start_time + _current_time + _dt; }
+        /// time according to the clock's computer
+        double real_time() const { return _real_time; }
         double dt() const { return _dt; }
 
     protected:
-        double _current_time = 0., _simu_start_time = 0.;
+        double _current_time = 0., _simu_start_time = 0., _real_time = 0;
         double _dt;
         int _current_step = 0;
         bool _sync;

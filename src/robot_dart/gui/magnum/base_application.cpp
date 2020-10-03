@@ -19,6 +19,8 @@
 #include <Magnum/MeshTools/CompressIndices.h>
 #include <Magnum/MeshTools/Interleave.h>
 #include <Magnum/Primitives/Axis.h>
+#include <Magnum/Primitives/Square.h>
+
 #include <Magnum/Trade/MeshData.h>
 #include <Magnum/Trade/PhongMaterialData.h>
 
@@ -148,6 +150,9 @@ namespace robot_dart {
                 _3D_axis_shader.reset(new Magnum::Shaders::VertexColor3D);
                 _3D_axis_mesh.reset(new Magnum::GL::Mesh);
 
+                _background_shader.reset(new Magnum::Shaders::Flat2D);
+                _background_mesh.reset(new Magnum::GL::Mesh{Magnum::MeshTools::compile(Magnum::Primitives::squareSolid())});
+
                 Magnum::Trade::MeshData axis_data = Magnum::Primitives::axis3D();
 
                 Magnum::GL::Buffer axis_vertices;
@@ -174,12 +179,11 @@ namespace robot_dart {
                     _font->fillGlyphCache(*_glyph_cache,
                         "abcdefghijklmnopqrstuvwxyz"
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        "0123456789:-+,.!° ");
+                        "0123456789:-+*,.!° /|[]()_");
 
-                    /* Initialize dynamic text */
-                    _dynamic_text.reset(new Magnum::Text::Renderer2D(*_font, *_glyph_cache, 32.0f, Magnum::Text::Alignment::TopLeft));
-                    /* Reserve 100 characters for drawing debug text */
-                    _dynamic_text->reserve(100, Magnum::GL::BufferUsage::DynamicDraw, Magnum::GL::BufferUsage::StaticDraw);
+                    /* Initialize buffers for text */
+                    _text_vertices.reset(new Magnum::GL::Buffer);
+                    _text_indices.reset(new Magnum::GL::Buffer);
 
                     /* Initialize text shader */
                     _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
@@ -639,10 +643,13 @@ namespace robot_dart {
                 _shadow_color_cube_map.reset();
                 _3D_axis_shader.reset();
                 _3D_axis_mesh.reset();
+                _background_mesh.reset();
+                _background_shader.reset();
                 _text_shader.reset();
                 _glyph_cache.reset();
                 _font.reset();
-                _dynamic_text.reset();
+                _text_vertices.reset();
+                _text_indices.reset();
 
                 _camera.reset();
                 _shadow_camera.reset();
