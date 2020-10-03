@@ -78,7 +78,7 @@ namespace robot_dart {
                     _framebuffer.clear(Magnum::GL::FramebufferClear::Color | Magnum::GL::FramebufferClear::Depth);
 
                     /* Draw with this camera */
-                    _camera->draw(_magnum_app->drawables(), _framebuffer, _format, _simu, _magnum_app->axes_shader(), _magnum_app->axes_mesh(), _magnum_app->text_shader(), _magnum_app->text_renderer(), _draw_debug);
+                    _camera->draw(_magnum_app->drawables(), _framebuffer, _format, _simu, _magnum_app->debug_draw_data(), _draw_debug);
                 }
 
                 std::string Camera::type() const { return "rgb_camera"; }
