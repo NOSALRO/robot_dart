@@ -323,7 +323,7 @@ namespace robot_dart {
                                     // draw the background
                                     (*debug_data.background_shader)
                                         .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
-                                        .setColor({0.f, 0.f, 0.f, 0.75f})
+                                        .setColor(Magnum::Vector4(Magnum::Vector4d(text->background_color)))
                                         .draw(*debug_data.background_mesh);
                                 }
 
