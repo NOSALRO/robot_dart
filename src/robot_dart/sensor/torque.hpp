@@ -17,7 +17,7 @@ namespace robot_dart {
 
             std::string type() const override;
 
-            const Eigen::VectorXd& torque() const;
+            const Eigen::VectorXd& torques() const;
 
             void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
             {
@@ -25,9 +25,15 @@ namespace robot_dart {
             }
 
         protected:
+
+            void update_motion_subspace(dart::dynamics::Joint* joint);
+
             std::string _direction;
 
-            Eigen::VectorXd _torque;
+            Eigen::Vector6d _wrench;
+            Eigen::VectorXd _torques;
+
+            Eigen::MatrixXd _motion_subspace;
         };
     } // namespace sensor
 } // namespace robot_dart
