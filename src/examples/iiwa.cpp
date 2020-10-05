@@ -5,6 +5,8 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
+#include <robot_dart/sensor/torque.hpp>
+
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
@@ -39,7 +41,42 @@ int main()
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
     simu.add_robot(ghost);
-    simu.run(20.);
+
+    // Format Eigen to std::cout
+    Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n", "", "");
+    std::cout.precision(4); 
+
+
+    // Add a torque sensors to the robot
+    int ct=0;
+    std::shared_ptr<robot_dart::sensor::Torque> tq_sensors[global_robot->num_dofs()];
+    for(const auto& joint : global_robot->dof_names())
+        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(&simu, global_robot, joint);
+
+    auto start = std::chrono::steady_clock::now();
+    while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) {
+
+        if (simu.schedule(simu.control_freq())) {
+            Eigen::VectorXd commands = global_robot->controllers()[0]->calculate(simu.scheduler().next_time());
+            global_robot->set_commands(commands);
+        }
+
+        simu.step_world();
+
+        // Print torque sensor measurement
+        if (simu.schedule(tq_sensors[0]->frequency())) {
+            
+            ct=0;
+            Eigen::VectorXd torques(global_robot->num_dofs());
+            for(const auto& tq_sens : tq_sensors)
+                torques.block<1,1>(ct++, 0) = tq_sens->torques();
+            
+            std::cout << "sensors' torque: " << torques.transpose().format(fmt) << std::endl;
+            std::cout << "motors' torque: "  << global_robot->forces().transpose().format(fmt) <<std::endl;
+            std::cout << "=================================" << std::endl;
+        }
+    }
+    auto end = std::chrono::steady_clock::now();
 
     global_robot.reset();
     return 0;

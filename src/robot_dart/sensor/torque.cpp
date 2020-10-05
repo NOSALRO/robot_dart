@@ -45,7 +45,7 @@ namespace robot_dart {
 
             Eigen::Vector6d F2 = Eigen::Vector6d::Zero();
             auto child_body = _joint_attached->getChildBodyNode();
-            // ROBOT_DART_ASSERT(child_body != nullptr, "Child BodyNode is nullptr", {});
+            // ROBOT_DART_ASSERT(child_body != nullptr, "Child BodyNode is nullptr", );
             if (child_body)
                 F2 = -dart::math::dAdT(_joint_attached->getTransformFromChildBodyNode(), child_body->getBodyForce());
 
@@ -77,7 +77,7 @@ namespace robot_dart {
             }
             else if(joint->getType() == "EulerJoint")
             {
-                assert(false && "Torque sensor for euler joint not implemented.");
+                ROBOT_DART_ASSERT(false, "Torque sensor for euler joint not implemented.", );
             }
             else if(joint->getType() == "FreeJoint")
             {
@@ -117,15 +117,15 @@ namespace robot_dart {
             }
             else if(joint->getType() == "UniversalJoint")
             {
-                assert(false && "Torque sensor for universal joint not implemented.");
+                ROBOT_DART_ASSERT(false, "Torque sensor for universal joint not implemented.", );
             }
             else if(joint->getType() == "WeldJoint")
             {
-                assert(false && "Torque sensor for weld joint not implemented.");
+                ROBOT_DART_ASSERT(false, "Torque sensor for weld joint not implemented.", );
             }
             else
             {
-                assert(false && "unknown type of joint for a torque sensor.");
+                ROBOT_DART_ASSERT(false, "unknown type of joint for a torque sensor.", );
             }
         }
 
