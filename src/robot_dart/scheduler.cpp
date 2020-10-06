@@ -3,8 +3,10 @@
 namespace robot_dart {
     bool Scheduler::schedule(int frequency)
     {
-        if (_max_frequency == -1)
-            _start = clock_t::now();
+        if (_max_frequency == -1) {
+            _start_time = clock_t::now();
+            _last_iteration_time = _start_time;
+        }
 
         _max_frequency = std::max(_max_frequency, frequency);
         double period = std::round((1. / frequency) / _dt);
@@ -30,6 +32,9 @@ namespace robot_dart {
 
         _dt = dt;
         _sync = sync;
+
+        _start_time = clock_t::now();
+        _last_iteration_time = _start_time;
     }
 
     double Scheduler::step()
@@ -38,7 +43,9 @@ namespace robot_dart {
         _current_step += 1;
 
         auto end = clock_t::now();
-        std::chrono::duration<double, std::micro> real = end - _start;
+        _it_duration = std::chrono::duration<double, std::micro>(end - _last_iteration_time).count();
+        _last_iteration_time = end;
+        std::chrono::duration<double, std::micro> real = end - _start_time;
         if (_sync) {
             auto expected = std::chrono::microseconds(int(_current_time * 1e6));
             std::chrono::duration<double, std::micro> adjust = expected - real;
