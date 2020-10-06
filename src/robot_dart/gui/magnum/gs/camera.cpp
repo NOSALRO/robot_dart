@@ -309,20 +309,20 @@ namespace robot_dart {
                                 std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 28.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
-                                auto big = viewport.max();
-                                auto text_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{big / 1024.f});
+                                auto sc = Magnum::Vector2{viewport.max() / 1024.f};
+                                auto text_scaling = Magnum::Matrix3::scaling(sc);
                                 auto extra_tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
                                 if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
-                                    extra_tr = Magnum::Matrix3::translation({0.f, 0.25f * rectangle.sizeY()});
+                                    extra_tr = Magnum::Matrix3::translation({0.f, sc[1] * 0.25f * rectangle.sizeY()});
 
                                 auto text_tr = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
 
                                 if (text->draw_background) {
-                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY()});
+                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY() * sc[1]});
 
                                     // draw the background
                                     (*debug_data.background_shader)
-                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling * bg_scaling)
+                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * bg_scaling)
                                         .setColor(Magnum::Vector4(Magnum::Vector4d(text->background_color)))
                                         .draw(*debug_data.background_mesh);
                                 }
