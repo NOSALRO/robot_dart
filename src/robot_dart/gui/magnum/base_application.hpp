@@ -106,6 +106,9 @@ namespace robot_dart {
                 // These options are only for the main camera
                 bool draw_main_camera = true;
                 bool draw_debug = true;
+
+                // text
+                int font_size = 32;
             };
 
             struct DebugDrawData {

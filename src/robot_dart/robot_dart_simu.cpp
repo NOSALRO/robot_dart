@@ -430,6 +430,7 @@ namespace robot_dart {
     {
         if (!text && enable) {
             text = _gui_data->add_text("");
+            text->font_size = 0;
         }
         else if (!enable) {
             if (text)
@@ -467,9 +468,9 @@ namespace robot_dart {
         return out.str();
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color)
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color, float font_size)
     {
-        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color);
+        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color, font_size);
     }
 
     void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
