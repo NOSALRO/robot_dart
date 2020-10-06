@@ -32,9 +32,6 @@ namespace robot_dart {
 
         _dt = dt;
         _sync = sync;
-
-        _start_time = clock_t::now();
-        _last_iteration_time = _start_time;
     }
 
     double Scheduler::step()
