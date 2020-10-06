@@ -17,6 +17,7 @@ int main()
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
     auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
+    global_robot->set_actuator_types("torque");
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
@@ -51,13 +52,17 @@ int main()
     int ct=0;
     std::shared_ptr<robot_dart::sensor::Torque> tq_sensors[global_robot->num_dofs()];
     for(const auto& joint : global_robot->dof_names())
-        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(&simu, global_robot, joint);
+        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(&simu, global_robot, joint, 1000);
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) {
 
         if (simu.schedule(simu.control_freq())) {
-            Eigen::VectorXd commands = global_robot->controllers()[0]->calculate(simu.scheduler().next_time());
+            Eigen::MatrixXd K = 10 * Eigen::MatrixXd::Identity(global_robot->num_dofs(), global_robot->num_dofs());
+
+            Eigen::VectorXd velocities = global_robot->controllers()[0]->calculate(simu.scheduler().next_time());
+            Eigen::VectorXd commands = global_robot->mass_matrix() * (K * velocities) + global_robot->coriolis_gravity_forces();
+
             global_robot->set_commands(commands);
         }
 
@@ -65,7 +70,7 @@ int main()
 
         // Print torque sensor measurement
         if (simu.schedule(tq_sensors[0]->frequency())) {
-            
+
             ct=0;
             Eigen::VectorXd torques(global_robot->num_dofs());
             for(const auto& tq_sens : tq_sensors)
