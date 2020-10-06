@@ -282,7 +282,7 @@ namespace robot_dart {
         if (update_control_freq)
             _control_freq = _physics_freq;
 
-        _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time());
+        _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time(), _scheduler.real_time());
     }
 
     Eigen::Vector3d RobotDARTSimu::gravity() const
