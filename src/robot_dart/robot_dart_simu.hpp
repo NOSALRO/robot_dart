@@ -22,6 +22,7 @@ namespace robot_dart {
             std::uint8_t alignment;
             bool draw_background;
             Eigen::Vector4d background_color;
+            float font_size;
         };
     } // namespace simu
 
@@ -125,7 +126,7 @@ namespace robot_dart {
         void enable_status_bar(bool enable = true);
         std::string status_bar_text() const;
 
-        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3), bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75));
+        std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3), bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75), float font_size = 28);
 
         void add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
         void add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
