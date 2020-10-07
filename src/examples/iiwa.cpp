@@ -5,8 +5,6 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/sensor/torque.hpp>
-
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
@@ -17,7 +15,6 @@ int main()
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
     auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
-    global_robot->set_actuator_types("torque");
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
@@ -42,67 +39,7 @@ int main()
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
     simu.add_robot(ghost);
-
-    // Format Eigen to std::cout
-    Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n", "", "");
-    std::cout.precision(5); 
-
-
-    // Add a torque sensors to the robot
-    int ct=0;
-    std::shared_ptr<robot_dart::sensor::Torque> tq_sensors[global_robot->num_dofs()];
-    for(const auto& joint : global_robot->dof_names())
-        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(&simu, global_robot, joint, 1000);
-
-    auto start = std::chrono::steady_clock::now();
-    Eigen::Vector3d external_force = Eigen::Vector3d::Zero();
-    while (simu.scheduler().next_time() < 20 && !simu.graphics()->done()) {
-
-        if (simu.schedule(simu.control_freq())) {
-            Eigen::MatrixXd K = 10 * Eigen::MatrixXd::Identity(global_robot->num_dofs(), global_robot->num_dofs());
-
-            Eigen::VectorXd velocities = global_robot->controllers()[0]->calculate(simu.scheduler().next_time());
-            Eigen::VectorXd commands = global_robot->mass_matrix() * (K * velocities) + global_robot->coriolis_gravity_forces();
-
-            global_robot->set_commands(commands);
-        }
-
-        simu.step_world();
-
-        // Print torque sensor measurement
-        if (simu.schedule(tq_sensors[0]->frequency())) {
-
-            ct=0;
-            Eigen::VectorXd torques_measure(global_robot->num_dofs());
-            for(const auto& tq_sens : tq_sensors)
-                torques_measure.block<1,1>(ct++, 0) = tq_sens->torques();
-
-            // get joint torque due to external force uding jacobian
-            Eigen::MatrixXd jac = global_robot->jacobian("iiwa_link_4").bottomRows<3>();
-            Eigen::VectorXd ext_tau = jac.transpose() * external_force;
-            
-            std::cout << "commanded torque:" << global_robot->commands().transpose().format(fmt) << std::endl;
-            std::cout << "sensors' torque: " << torques_measure.transpose().format(fmt) << std::endl;
-            std::cout << "motors' torque:  " << global_robot->forces().transpose().format(fmt) << std::endl;
-            std::cout << "external torque: " << ext_tau.transpose().format(fmt) << std::endl;
-            std::cout << "=================================" << std::endl;
-        }
-
-
-        // add external force
-        int time_in_seconds = static_cast<int>(simu.scheduler().next_time());
-        if (time_in_seconds % 3 >= 1 && time_in_seconds % 3 < 2) {
-            external_force = Eigen::Vector3d::Constant(10.0);
-            std::cout << "Applying force on iiwa_link_4" << std::endl;
-        }
-        else {
-            external_force = Eigen::Vector3d::Zero();
-        }
-
-        global_robot->set_external_force("iiwa_link_4", external_force);
-        
-    }
-    auto end = std::chrono::steady_clock::now();
+    simu.run(20.);
 
     global_robot.reset();
     return 0;
