@@ -20,12 +20,7 @@ int main()
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
 
-    for( auto s : global_robot->actuator_types()){
-
-      std::cout << "type of actuators" << s <<"\n";
-    }
-
-
+    
     global_robot->set_actuator_types("velocity");
 
 
