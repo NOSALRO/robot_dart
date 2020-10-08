@@ -33,8 +33,8 @@ namespace robot_dart {
                 /* Initialize DART world */
                 init(simu, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
 
-                /* Loop at 60 Hz max */
-                setSwapInterval(1);
+                /* No VSync */
+                setSwapInterval(0);
 
                 redraw();
             }

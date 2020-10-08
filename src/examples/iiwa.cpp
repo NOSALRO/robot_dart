@@ -39,6 +39,7 @@ int main()
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
     simu.add_robot(ghost);
+    simu.set_text_panel("IIWA simulation");
     simu.run(20.);
 
     global_robot.reset();

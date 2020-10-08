@@ -304,9 +304,9 @@ namespace robot_dart {
                                 if (text->text.empty()) // ignore empty strings
                                     continue;
 
-                                Magnum::GL::Mesh mesh;
+                                Magnum::GL::Mesh mesh{Magnum::NoCreate};
                                 Magnum::Range2D rectangle;
-                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 28.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::StaticDraw, Magnum::Text::Alignment(text->alignment));
+                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, 28.f, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::DynamicDraw, Magnum::Text::Alignment(text->alignment));
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto sc = Magnum::Vector2{viewport.max() / 1024.f};
