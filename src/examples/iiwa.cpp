@@ -38,7 +38,7 @@ int main()
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
-
+    simu.add_robot(ghost);
     simu.run(20.);
 
     global_robot.reset();
