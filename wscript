@@ -139,7 +139,7 @@ def configure(conf):
     
     # add the prefix
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS']
-    print(conf.env['CXXFLAGS'])
+    print(conf.env)
 
 def summary(bld):
     lst = getattr(bld, 'utest_results', [])
