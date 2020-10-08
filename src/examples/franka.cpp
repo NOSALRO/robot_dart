@@ -7,8 +7,6 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-
-
 int main()
 {
     std::srand(std::time(NULL));
@@ -20,23 +18,16 @@ int main()
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
 
-    
-    global_robot->set_actuator_types("velocity");
-
+    global_robot->set_actuator_types("torque");
 
     // add a PD-controller to the arm
     // set desired positions
-    Eigen::VectorXd ctrl(8);
-    ctrl << 0., 0., 0., 0., 0., 0., 0.,0. ;
-
+    Eigen::VectorXd ctrl(7);
+    ctrl << 0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0.;
 
     // add the controller to the robot
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
     std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
-
-    // Add a ghost robot; only visuals, no dynamics, no collision
-    auto ghost = global_robot->clone_ghost();
-
 
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
@@ -51,9 +42,8 @@ int main()
 
     simu.add_checkerboard_floor();
     simu.add_robot(global_robot);
-    simu.add_robot(ghost);
 
-    simu.run(10.);
+    simu.run(30.);
     global_robot.reset();
     return 0;
 }

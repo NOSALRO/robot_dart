@@ -256,7 +256,7 @@
         <geometry>
            <box size="0.02 0.02 0.20"/>
          </geometry>
-	<material name="white"/>
+	<material name="White"/>
          <origin rpy="0 0 0" xyz="0. 0 0.1"/>
 	<parent link="panda_link8"/>
        </visual>
