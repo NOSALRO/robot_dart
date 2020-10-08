@@ -47,10 +47,8 @@ namespace robot_dart {
         if (_sync) {
             auto expected = std::chrono::microseconds(int(_current_time * 1e6));
             std::chrono::duration<double, std::micro> adjust = expected - real;
-            if (adjust.count() > 0) {
-                std::cout << adjust.count() * 1e-6 << std::endl;
+            if (adjust.count() > 0)
                 std::this_thread::sleep_for(adjust);
-            }
         }
 
         _real_time = real.count() * 1e-6;
