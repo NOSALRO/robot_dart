@@ -7,9 +7,9 @@ namespace robot_dart {
     namespace sensor {
         class Torque : public Sensor {
         public:
-            Torque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency = 1000, const std::string& direction = "child_to_parent");
-            Torque(RobotDARTSimu* simu, const std::shared_ptr<Robot>& robot, const std::string& joint_name, size_t frequency = 1000, const std::string& direction = "child_to_parent") 
-                : Torque(simu, robot->joint(joint_name), frequency, direction) {}
+            Torque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency = 1000);
+            Torque(RobotDARTSimu* simu, const std::shared_ptr<Robot>& robot, const std::string& joint_name, size_t frequency = 1000)
+                : Torque(simu, robot->joint(joint_name), frequency) {}
 
             void init() override;
 
@@ -25,15 +25,7 @@ namespace robot_dart {
             }
 
         protected:
-
-            void update_motion_subspace(dart::dynamics::Joint* joint);
-
-            std::string _direction;
-
-            Eigen::Vector6d _wrench;
             Eigen::VectorXd _torques;
-
-            Eigen::MatrixXd _motion_subspace;
         };
     } // namespace sensor
 } // namespace robot_dart
