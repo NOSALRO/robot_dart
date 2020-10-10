@@ -20,15 +20,20 @@ namespace robot_dart {
             template <typename T = GlfwApplication>
             class BaseGraphics : public Base {
             public:
-                BaseGraphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration())
-                    : _simu(simu), _world(simu->world()), _width(configuration.width), _height(configuration.height), _frame_counter(0), _enabled(true)
+                BaseGraphics(const GraphicsConfiguration& configuration = GraphicsConfiguration())
+                    : _configuration(configuration), _enabled(true)
                 {
                     Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
-                    _magnum_app.reset(make_application<T>(simu, configuration));
                 }
 
                 virtual ~BaseGraphics() {}
+
+                virtual void set_simu(RobotDARTSimu* simu) override
+                {
+                    _simu = simu;
+                    _magnum_app.reset(make_application<T>(simu, _configuration));
+                }
 
                 size_t width() const override { return _magnum_app->camera().width(); }
                 size_t height() const override { return _magnum_app->camera().height(); }
@@ -44,7 +49,6 @@ namespace robot_dart {
                         return;
 
                     _magnum_app->render();
-                    _frame_counter++;
                 }
 
                 void set_enable(bool enable) override
@@ -123,9 +127,7 @@ namespace robot_dart {
                 const BaseApplication* magnum_app() const { return &*_magnum_app; }
 
             protected:
-                RobotDARTSimu* _simu;
-                dart::simulation::WorldPtr _world;
-                size_t _width, _height, _frame_counter;
+                GraphicsConfiguration _configuration;
                 bool _enabled;
                 int _fps;
                 std::unique_ptr<BaseApplication> _magnum_app;

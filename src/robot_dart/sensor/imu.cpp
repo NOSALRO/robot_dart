@@ -6,7 +6,7 @@
 
 namespace robot_dart {
     namespace sensor {
-        IMU::IMU(RobotDARTSimu* simu, const IMUConfig& config) : Sensor(simu, config.frequency), _config(config) {}
+        IMU::IMU(const IMUConfig& config) : Sensor(config.frequency), _config(config) {}
 
         void IMU::init()
         {
@@ -14,7 +14,8 @@ namespace robot_dart {
             _linear_accel.setZero();
 
             attach_to_body(_config.body, Eigen::Isometry3d::Identity());
-            _active = true;
+            if (_simu)
+                _active = true;
         }
 
         void IMU::calculate(double t)

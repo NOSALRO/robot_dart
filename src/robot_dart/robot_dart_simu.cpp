@@ -104,7 +104,7 @@ namespace robot_dart {
         _world->getConstraintSolver()->getCollisionOption().collisionFilter = std::make_shared<collision_filter::BitmaskContactFilter>();
         _world->setTimeStep(timestep);
         _world->setTime(0.0);
-        _graphics = std::make_shared<gui::Base>(this);
+        _graphics = std::make_shared<gui::Base>();
 
         _gui_data.reset(new simu::GUIData());
     }
@@ -199,6 +199,7 @@ namespace robot_dart {
     void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
+        _graphics->set_simu(this);
         _graphics->set_fps(_graphics_freq);
     }
 
@@ -226,6 +227,7 @@ namespace robot_dart {
     void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
     {
         _sensors.push_back(sensor);
+        sensor->set_simu(this);
         sensor->init();
     }
 
