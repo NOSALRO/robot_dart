@@ -86,7 +86,7 @@ namespace robot_dart {
                 .def_readwrite("data", &gui::GrayscaleImage::data);
 
             py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
-                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, bool, bool>(),
+                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, double, bool, bool>(),
                     py::arg("width") = 640,
                     py::arg("height") = 480,
                     py::arg("title") = "DART",
@@ -94,6 +94,7 @@ namespace robot_dart {
                     py::arg("transparent_shadows") = true,
                     py::arg("shadow_map_size") = 1024,
                     py::arg("max_lights") = 3,
+                    py::arg("specular_strength") = 0.25,
                     py::arg("draw_main_camera") = true,
                     py::arg("draw_debug") = true)
 
@@ -105,7 +106,8 @@ namespace robot_dart {
                 .def_readwrite("transparent_shadows", &GraphicsConfiguration::transparent_shadows)
                 .def_readwrite("shadow_map_size", &GraphicsConfiguration::shadow_map_size)
 
-                .def_readwrite("max_lights", &GraphicsConfiguration::max_lights);
+                .def_readwrite("max_lights", &GraphicsConfiguration::max_lights)
+                .def_readwrite("specular_strength", &GraphicsConfiguration::specular_strength);
 
             py::class_<gui::Base, std::shared_ptr<gui::Base>>(sm, "Base");
             py::class_<BaseWindowedGraphics, gui::Base, std::shared_ptr<BaseWindowedGraphics>>(sm, "BaseWindowedGraphics");
