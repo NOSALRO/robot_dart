@@ -22,6 +22,7 @@ namespace robot_dart {
         {
             if (!_attached_to_body)
                 return; // cannot compute anything if not attached to a link
+            ROBOT_DART_EXCEPTION_ASSERT(_simu, "Simulation pointer is null!");
 
             _angular_vel = _body_attached->getSpatialVelocity().head(3); // angular velocity with respect to the world, in local coordinates
             _linear_accel = _body_attached->getSpatialAcceleration().tail(3); // linear acceleration with respect to the world, in local coordinates

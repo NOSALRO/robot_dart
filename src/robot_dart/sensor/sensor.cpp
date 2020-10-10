@@ -24,6 +24,7 @@ namespace robot_dart {
 
         void Sensor::set_simu(RobotDARTSimu* simu)
         {
+            ROBOT_DART_EXCEPTION_ASSERT(simu, "Simulation pointer is null!");
             _simu = simu;
             bool check = static_cast<int>(_frequency) > simu->physics_freq();
             ROBOT_DART_WARNING(check, "Sensor frequency is bigger than simulation physics. Setting it to simulation rate!");

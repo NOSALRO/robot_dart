@@ -57,6 +57,7 @@ namespace robot_dart {
 
                 void Camera::calculate(double)
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_simu, "Simulation pointer is null!");
                     /* Update graphic meshes/materials and render */
                     _magnum_app->update_graphics();
                     /* Update lights transformations --- this also draws the shadows if enabled */

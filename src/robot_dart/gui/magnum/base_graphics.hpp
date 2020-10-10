@@ -31,15 +31,26 @@ namespace robot_dart {
 
                 virtual void set_simu(RobotDARTSimu* simu) override
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(simu, "Simulation pointer is null!");
                     _simu = simu;
                     _magnum_app.reset(make_application<T>(simu, _configuration));
                 }
 
-                size_t width() const override { return _magnum_app->camera().width(); }
-                size_t height() const override { return _magnum_app->camera().height(); }
+                size_t width() const override
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->camera().width();
+                }
+
+                size_t height() const override
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->camera().height();
+                }
 
                 bool done() const override
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     return _magnum_app->done();
                 }
 
@@ -48,6 +59,7 @@ namespace robot_dart {
                     if (!_enabled)
                         return;
 
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     _magnum_app->render();
                 }
 
@@ -62,48 +74,70 @@ namespace robot_dart {
                     const Eigen::Vector3d& look_at = Eigen::Vector3d(0, 0, 0),
                     const Eigen::Vector3d& up = Eigen::Vector3d(0, 0, 1))
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     _magnum_app->look_at(camera_pos, look_at, up);
                 }
 
                 void clear_lights()
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     _magnum_app->clear_lights();
                 }
 
                 void add_light(const magnum::gs::Light& light)
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     _magnum_app->add_light(light);
                 }
 
                 std::vector<gs::Light>& lights()
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     return _magnum_app->lights();
                 }
 
                 size_t num_lights() const
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     return _magnum_app->num_lights();
                 }
 
                 magnum::gs::Light& light(size_t i)
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     return _magnum_app->light(i);
                 }
 
                 void record_video(const std::string& video_fname, int fps = -1)
                 {
                     int fps_computed = (fps == -1) ? _fps : fps;
-                    ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(fps_computed != -1 && "Video FPS not set!");
+                    ROBOT_DART_EXCEPTION_ASSERT(fps_computed != -1, "Video FPS not set!");
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
 
                     _magnum_app->record_video(video_fname, fps_computed);
                 }
 
-                bool shadowed() const { return _magnum_app->shadowed(); }
-                bool transparent_shadows() const { return _magnum_app->transparent_shadows(); }
-                void enable_shadows(bool enable = true, bool transparent = true) { _magnum_app->enable_shadows(enable, transparent); }
+                bool shadowed() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->shadowed();
+                }
+
+                bool transparent_shadows() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->transparent_shadows();
+                }
+
+                void enable_shadows(bool enable = true, bool transparent = true)
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    _magnum_app->enable_shadows(enable, transparent);
+                }
 
                 Magnum::Image2D* magnum_image()
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     if (_magnum_app->image())
                         return &(*_magnum_app->image());
                     return nullptr;
@@ -117,14 +151,41 @@ namespace robot_dart {
                     return Image();
                 }
 
-                GrayscaleImage depth_image() override { return _magnum_app->depth_image(); }
-                GrayscaleImage raw_depth_image() override { return _magnum_app->raw_depth_image(); }
+                GrayscaleImage depth_image() override
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->depth_image();
+                }
 
-                gs::Camera& camera() { return _magnum_app->camera(); }
-                const gs::Camera& camera() const { return _magnum_app->camera(); }
+                GrayscaleImage raw_depth_image() override
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->raw_depth_image();
+                }
 
-                BaseApplication* magnum_app() { return &*_magnum_app; }
-                const BaseApplication* magnum_app() const { return &*_magnum_app; }
+                gs::Camera& camera()
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->camera();
+                }
+
+                const gs::Camera& camera() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->camera();
+                }
+
+                BaseApplication* magnum_app()
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return &*_magnum_app;
+                }
+
+                const BaseApplication* magnum_app() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return &*_magnum_app;
+                }
 
             protected:
                 GraphicsConfiguration _configuration;
