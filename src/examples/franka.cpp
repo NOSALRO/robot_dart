@@ -13,6 +13,7 @@ int main()
 
     std::vector<std::pair<std::string, std::string>> packages = {{"franka_description", "franka/franka_description"}};
     auto global_robot = std::make_shared<robot_dart::Robot>("franka/franka.urdf", packages);
+    global_robot->set_color_mode("material");
 
     // pin the arm to world
     global_robot->fix_to_world();
@@ -22,8 +23,8 @@ int main()
 
     // add a PD-controller to the arm
     // set desired positions
-    Eigen::VectorXd ctrl(7);
-    ctrl << 0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0.;
+    Eigen::VectorXd ctrl(8);
+    ctrl << 0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.;
 
     // add the controller to the robot
     global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
