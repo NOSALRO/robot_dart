@@ -49,12 +49,12 @@ desc = MyDesc(simu, 10)
 simu.add_descriptor(desc)
 
 # Create graphics
-graphics = rd.gui.Graphics(simu, rd.gui.GraphicsConfiguration())
+graphics = rd.gui.Graphics()
+simu.set_graphics(graphics)
 # graphics.clear_lights()
 # mat = rd.gui.Material(magnum.Color4(0, 0, 0, 1), magnum.Color4(1, 1, 1, 1), magnum.Color4(1, 1, 1, 1), 80.)
 # graphics.add_light(rd.gui.create_point_light(magnum.Vector3(-1., 1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
 # graphics.add_light(rd.gui.create_point_light(magnum.Vector3(1., -1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
-simu.set_graphics(graphics)
 
 # Add robot and floor to the simulation
 simu.add_robot(robot)
