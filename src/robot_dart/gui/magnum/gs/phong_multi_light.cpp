@@ -62,6 +62,7 @@ namespace robot_dart {
                         _specular_color_uniform = uniformLocation("specularColor");
                         _shininess_uniform = uniformLocation("shininess");
                         _far_plane_uniform = uniformLocation("farPlane");
+                        _specular_strength_uniform = uniformLocation("specularStrength");
                         _is_shadowed_uniform = uniformLocation("isShadowed");
                         _transparent_shadows_uniform = uniformLocation("drawTransparentShadows");
                     }
@@ -210,6 +211,12 @@ namespace robot_dart {
                 PhongMultiLight& PhongMultiLight::set_transparent_shadows(bool shadows)
                 {
                     setUniform(_transparent_shadows_uniform, shadows);
+                    return *this;
+                }
+
+                PhongMultiLight& PhongMultiLight::set_specular_strength(Magnum::Float specular_strength)
+                {
+                    setUniform(_specular_strength_uniform, std::max(0.f, specular_strength));
                     return *this;
                 }
 
