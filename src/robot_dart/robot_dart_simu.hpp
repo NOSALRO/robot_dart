@@ -69,7 +69,7 @@ namespace robot_dart {
         template <typename Descriptor>
         void add_descriptor(size_t desc_dump = 1)
         {
-            add_descriptor(std::make_shared<Descriptor>(Descriptor{this, desc_dump}));
+            add_descriptor(std::make_shared<Descriptor>(Descriptor{desc_dump}));
         }
 
         void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);

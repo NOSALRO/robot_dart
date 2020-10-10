@@ -211,6 +211,7 @@ namespace robot_dart {
     void RobotDARTSimu::add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
     {
         _descriptors.push_back(desc);
+        desc->set_simu(this);
     }
 
     std::vector<std::shared_ptr<descriptor::BaseDescriptor>> RobotDARTSimu::descriptors() const
