@@ -31,7 +31,7 @@ namespace robot_dart {
                 _frequency = simu->physics_freq();
         }
 
-        RobotDARTSimu* Sensor::simu()
+        const RobotDARTSimu* Sensor::simu() const
         {
             return _simu;
         }

@@ -14,7 +14,7 @@ namespace robot_dart {
             virtual ~Base() {}
 
             virtual void set_simu(RobotDARTSimu* simu) { _simu = simu; }
-            RobotDARTSimu* simu() { return _simu; }
+            const RobotDARTSimu* simu() const { return _simu; }
 
             virtual bool done() const { return false; }
 

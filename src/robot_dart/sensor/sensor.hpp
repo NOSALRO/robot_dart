@@ -30,7 +30,7 @@ namespace robot_dart {
             bool active() const;
 
             void set_simu(RobotDARTSimu* simu);
-            RobotDARTSimu* simu();
+            const RobotDARTSimu* simu() const;
 
             size_t frequency() const;
             void set_frequency(size_t freq);
