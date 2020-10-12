@@ -35,7 +35,7 @@ int main()
     simu.set_collision_detector("fcl");
 
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
     graphics->look_at({0., 3., 1.}, {0., 0., 0.});
