@@ -102,6 +102,7 @@ namespace robot_dart {
 
                 // Lights
                 size_t max_lights = 3;
+                double specular_strength = 0.25; // strength of the specular component
 
                 // These options are only for the main camera
                 bool draw_main_camera = true;
@@ -126,7 +127,7 @@ namespace robot_dart {
                 BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
                 virtual ~BaseApplication() {}
 
-                void init(RobotDARTSimu* simu, size_t width, size_t height);
+                void init(RobotDARTSimu* simu, const GraphicsConfiguration& configuration);
 
                 void clear_lights();
                 void add_light(const gs::Light& light);
@@ -194,6 +195,9 @@ namespace robot_dart {
                 std::unique_ptr<gs::Camera> _camera;
 
                 bool _done = false;
+
+                /* GUI Config */
+                GraphicsConfiguration _configuration;
 
                 /* DART */
                 RobotDARTSimu* _simu;

@@ -41,7 +41,7 @@ namespace robot_dart {
                     Magnum::GL::Framebuffer::BufferAttachment::Depth, _depth);
 
                 /* Initialize DART world */
-                init(simu, configuration.width, configuration.height);
+                init(simu, configuration);
 
                 _camera->record(true);
             }
