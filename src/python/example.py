@@ -23,8 +23,8 @@ class MyController(rd.RobotControl):
         return MyController(self._ctrl, self._controllable_dofs)
 
 class MyDesc(rd.Descriptor):
-    def __init__(self, simu, desc):
-        rd.Descriptor.__init__(self, simu, desc)
+    def __init__(self, desc):
+        rd.Descriptor.__init__(self, desc)
         self._states = []
 
     def __call__(self):
@@ -45,23 +45,23 @@ print(robot.positions())
 
 # Create simulator object
 simu = rd.RobotDARTSimu(0.001)
-desc = MyDesc(simu, 10)
+desc = MyDesc(10)
 simu.add_descriptor(desc)
 
 # Create graphics
-graphics = rd.gui.Graphics(simu, rd.gui.GraphicsConfiguration())
+graphics = rd.gui.Graphics()
+simu.set_graphics(graphics)
 # graphics.clear_lights()
 # mat = rd.gui.Material(magnum.Color4(0, 0, 0, 1), magnum.Color4(1, 1, 1, 1), magnum.Color4(1, 1, 1, 1), 80.)
 # graphics.add_light(rd.gui.create_point_light(magnum.Vector3(-1., 1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
 # graphics.add_light(rd.gui.create_point_light(magnum.Vector3(1., -1., 2.), mat, 2., magnum.Vector3(0., 0., 1.)))
-simu.set_graphics(graphics)
 
 # Add robot and floor to the simulation
 simu.add_robot(robot)
 simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
 
 # Add a camera sensor to the end-effector of the manipulator
-camera = rd.sensor.Camera(simu, graphics.magnum_app(), 256, 256)
+camera = rd.sensor.Camera(graphics.magnum_app(), 256, 256)
 rot = dartpy.math.AngleAxis(3.14, [1., 0., 0.]).to_rotation_matrix()
 rot = rot.dot(dartpy.math.AngleAxis(1.57, [0., 0., 1.]).to_rotation_matrix())
 camera.attach_to_body(robot.body_node("arm_link_5"), dartpy.math.Isometry3(rotation=rot, translation=[0., 0., 0.1]))

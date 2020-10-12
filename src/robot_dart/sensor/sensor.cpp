@@ -7,13 +7,7 @@
 
 namespace robot_dart {
     namespace sensor {
-        Sensor::Sensor(RobotDARTSimu* simu, size_t freq) : _simu(simu), _active(false), _frequency(freq), _world_pose(Eigen::Isometry3d::Identity()), _attaching_to_body(false), _attached_to_body(false), _attaching_to_joint(false), _attached_to_joint(false)
-        {
-            bool check = static_cast<int>(_frequency) > simu->physics_freq();
-            ROBOT_DART_WARNING(check, "Sensor frequency is bigger than simulation physics. Setting it to simulation rate!");
-            if (check)
-                _frequency = simu->physics_freq();
-        }
+        Sensor::Sensor(size_t freq) : _active(false), _frequency(freq), _world_pose(Eigen::Isometry3d::Identity()), _attaching_to_body(false), _attached_to_body(false), _attaching_to_joint(false), _attached_to_joint(false) {}
 
         void Sensor::activate(bool enable)
         {
@@ -26,6 +20,21 @@ namespace robot_dart {
         bool Sensor::active() const
         {
             return _active;
+        }
+
+        void Sensor::set_simu(RobotDARTSimu* simu)
+        {
+            ROBOT_DART_EXCEPTION_ASSERT(simu, "Simulation pointer is null!");
+            _simu = simu;
+            bool check = static_cast<int>(_frequency) > simu->physics_freq();
+            ROBOT_DART_WARNING(check, "Sensor frequency is bigger than simulation physics. Setting it to simulation rate!");
+            if (check)
+                _frequency = simu->physics_freq();
+        }
+
+        const RobotDARTSimu* Sensor::simu() const
+        {
+            return _simu;
         }
 
         size_t Sensor::frequency() const { return _frequency; }

@@ -8,9 +8,10 @@ namespace robot_dart {
         namespace magnum {
             class Graphics : public BaseGraphics<GlfwApplication> {
             public:
-                Graphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration = GraphicsConfiguration());
-
+                Graphics(const GraphicsConfiguration& configuration = GraphicsConfiguration()) : BaseGraphics<GlfwApplication>(configuration) {}
                 ~Graphics() {}
+
+                void set_simu(RobotDARTSimu* simu) override;
             };
         } // namespace magnum
     } // namespace gui

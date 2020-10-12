@@ -61,14 +61,18 @@ namespace pool {
 void eval_robot(int i)
 {
     auto robot = pool::robot_pool.get_robot();
-    std::cout << "Robot " << i << " created [" << robot->skeleton() << "]" << std::endl;
+    std::cout << "Robot " << i << " got [" << robot->skeleton() << "]" << std::endl;
 
     /// --- some robot_dart code ---
     simulate_robot(robot);
     // --- do something with the result
 
+    std::cout << "End of simulation " << i << std::endl;
+
     // CRITICAL : free your robot !
     pool::robot_pool.free_robot(robot);
+
+    std::cout << "Robot " << i << " freed!" << std::endl;
 }
 
 int main(int argc, char** argv)
