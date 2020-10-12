@@ -7,9 +7,8 @@ namespace robot_dart {
     namespace sensor {
         class Torque : public Sensor {
         public:
-            Torque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency = 1000);
-            Torque(RobotDARTSimu* simu, const std::shared_ptr<Robot>& robot, const std::string& joint_name, size_t frequency = 1000)
-                : Torque(simu, robot->joint(joint_name), frequency) {}
+            Torque(dart::dynamics::Joint* joint, size_t frequency = 1000);
+            Torque(const std::shared_ptr<Robot>& robot, const std::string& joint_name, size_t frequency = 1000) : Torque(robot->joint(joint_name), frequency) {}
 
             void init() override;
 

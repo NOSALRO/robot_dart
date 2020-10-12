@@ -19,9 +19,7 @@
 
 namespace robot_dart {
     namespace sensor {
-        Torque::Torque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency)
-            : Sensor(simu, frequency),
-              _torques(joint->getNumDofs())
+        Torque::Torque(dart::dynamics::Joint* joint, size_t frequency) : Sensor(frequency), _torques(joint->getNumDofs())
         {
             attach_to_joint(joint, Eigen::Isometry3d::Identity());
         }

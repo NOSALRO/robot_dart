@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(test_force_torque)
         robot->set_positions(pos);
 
         // Add a torque sensor
-        auto torque_sensor = simu.add_sensor<robot_dart::sensor::Torque>(&simu, robot, "joint_1");
+        auto torque_sensor = simu.add_sensor<robot_dart::sensor::Torque>(robot, "joint_1");
 
         Eigen::VectorXd cmd(1);
         cmd << 1.;
