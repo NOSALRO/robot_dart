@@ -31,10 +31,13 @@ namespace robot_dart {
                 ROBOT_DART_EXCEPTION_ASSERT(Magnum::GL::Context::current().version() >= Magnum::GL::Version::GL320, "robot_dart requires at least OpenGL 3.2 for rendering!");
 
                 /* Initialize DART world */
-                init(simu, Magnum::GL::defaultFramebuffer.viewport().size()[0], Magnum::GL::defaultFramebuffer.viewport().size()[1]);
+                GraphicsConfiguration config = configuration;
+                config.width = Magnum::GL::defaultFramebuffer.viewport().size()[0];
+                config.height = Magnum::GL::defaultFramebuffer.viewport().size()[1];
+                init(simu, config);
 
-                /* Loop at 60 Hz max */
-                setSwapInterval(1);
+                /* No VSync */
+                setSwapInterval(0);
 
                 redraw();
             }
@@ -81,7 +84,7 @@ namespace robot_dart {
                     _camera->strafe(_speed_strafe);
 
                     /* Draw with main camera */
-                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, *_3D_axis_shader, *_3D_axis_mesh, &*_text_shader, &*_dynamic_text, _draw_debug);
+                    _camera->draw(_drawables, Magnum::GL::defaultFramebuffer, Magnum::PixelFormat::RGB8Unorm, _simu, debug_draw_data(), _draw_debug);
 
                     swapBuffers();
                 }

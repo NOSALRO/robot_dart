@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(test_imu)
         robot_dart::sensor::IMUConfig imu_config;
         imu_config.body = robot->body_node("box");
         imu_config.frequency = 1000; // big update rate to get result in one time-step
-        auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
+        auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(imu_config);
 
         // Test IMU zero linear acceleration on free-fall
         // Do one step
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE(test_force_torque)
         robot->set_positions(pos);
 
         // Add a force/torque sensor
-        auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, robot, "joint_1");
+        auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(robot, "joint_1");
 
         // Do a few steps to hit the limit
         for (int i = 0; i < 5000; i++)

@@ -340,7 +340,7 @@ def build_examples(bld):
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
     # these examples should be compiled only without grpahics
-    simu_only = ['scheduler.cpp']
+    simu_only = ['scheduler.cpp', 'robot_pool.cpp']
     # these examples have their own rules
     exclude = []
 

@@ -14,7 +14,7 @@ namespace robot_dart {
                 std::cout.flush();
             }
             auto robot = robot_creator();
-            _set_init_pos(robot->skeleton());
+            _reset_robot(robot);
             _skeletons.push_back(robot->skeleton());
         }
         for (size_t i = 0; i < _pool_size; i++)
@@ -26,8 +26,8 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotPool::get_robot(const std::string& name)
     {
-        std::lock_guard<std::mutex> lock(_skeleton_mutex);
         while (true) {
+            std::lock_guard<std::mutex> lock(_skeleton_mutex);
             for (size_t i = 0; i < _pool_size; i++)
                 if (_free[i]) {
                     _free[i] = false;
@@ -41,21 +41,15 @@ namespace robot_dart {
         std::lock_guard<std::mutex> lock(_skeleton_mutex);
         for (size_t i = 0; i < _pool_size; i++) {
             if (_skeletons[i] == robot->skeleton()) {
-                _set_init_pos(_skeletons[i]);
+                _reset_robot(robot);
                 _free[i] = true;
                 break;
             }
         }
     }
 
-    void RobotPool::_set_init_pos(const dart::dynamics::SkeletonPtr& skel)
+    void RobotPool::_reset_robot(const std::shared_ptr<Robot>& robot)
     {
-        skel->resetPositions();
-        skel->resetVelocities();
-        skel->resetAccelerations();
-        skel->clearExternalForces();
-        skel->clearInternalForces();
-        skel->clearConstraintImpulses();
-        skel->resetCommands();
+        robot->reset();
     }
 } // namespace robot_dart
