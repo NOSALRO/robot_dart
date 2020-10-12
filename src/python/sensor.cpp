@@ -102,8 +102,7 @@ namespace robot_dart {
             };
 
             py::class_<Sensor, PySensor, std::shared_ptr<Sensor>>(sensormodule, "Sensor")
-                .def(py::init<RobotDARTSimu*, size_t>(),
-                    py::arg("simu"),
+                .def(py::init<size_t>(),
                     py::arg("freq") = 40)
 
                 .def_readwrite("_active", &PublicistSensor::_active)
@@ -121,6 +120,9 @@ namespace robot_dart {
                 .def("activate", &Sensor::activate,
                     py::arg("enable") = true)
                 .def("active", &Sensor::active)
+
+                .def("set_simu", &Sensor::set_simu)
+                .def("simu", &Sensor::simu, py::return_value_policy::reference)
 
                 .def("frequency", &Sensor::frequency)
                 .def("set_frequency", &Sensor::set_frequency,
@@ -166,13 +168,11 @@ namespace robot_dart {
             };
 
             py::class_<sensor::ForceTorque, Sensor, std::shared_ptr<sensor::ForceTorque>>(sensormodule, "ForceTorque")
-                .def(py::init<RobotDARTSimu*, dart::dynamics::Joint*, size_t, const std::string&>(),
-                    py::arg("simu"),
+                .def(py::init<dart::dynamics::Joint*, size_t, const std::string&>(),
                     py::arg("joint"),
                     py::arg("frequency") = 1000,
                     py::arg("direction") = "child_to_parent")
-                .def(py::init<RobotDARTSimu*, const std::shared_ptr<Robot>&, const std::string&, size_t, const std::string&>(),
-                    py::arg("simu"),
+                .def(py::init<const std::shared_ptr<Robot>&, const std::string&, size_t, const std::string&>(),
                     py::arg("robot"),
                     py::arg("joint_name"),
                     py::arg("frequency") = 1000,
@@ -216,8 +216,7 @@ namespace robot_dart {
             };
 
             py::class_<sensor::IMU, Sensor, std::shared_ptr<sensor::IMU>>(sensormodule, "IMU")
-                .def(py::init<RobotDARTSimu*, const sensor::IMUConfig&>(),
-                    py::arg("simu"),
+                .def(py::init<const sensor::IMUConfig&>(),
                     py::arg("config"))
 
                 .def_readonly("_config", &PublicistIMUSensor::_config)

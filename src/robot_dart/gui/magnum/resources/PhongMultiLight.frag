@@ -117,6 +117,11 @@ uniform bool drawTransparentShadows;
 #ifdef EXPLICIT_UNIFORM_LOCATION
 layout(location = 11)
 #endif
+uniform float specularStrength = 0.5;
+
+#ifdef EXPLICIT_UNIFORM_LOCATION
+layout(location = 12)
+#endif
 uniform lightSource lights[LIGHT_COUNT];
 
 in mediump vec3 transformedNormal;
@@ -261,7 +266,7 @@ void main() {
     for(int i = 0; i != LIGHT_COUNT; ++i) {
         highp vec3 lightDirection;
         highp float attenuation;
-        bool spec = any(greaterThan(lights[i].specular.rgb, vec3(0.0)));
+        bool spec = any(greaterThan(lights[i].specular.rgb, vec3(0.0))) && specularStrength > 0.0;
         bool isPoint = false;
 
          if(!any(greaterThan(lights[i].diffuse.rgb, vec3(0.0))) && !spec)
@@ -333,7 +338,7 @@ void main() {
             specularReflection = attenuation * lights[i].specular.rgb * finalSpecularColor.rgb * specularity;
         }
 
-        color.rgb += (diffuseReflection + specularReflection) * visibility * colorShadow;
+        color.rgb += (diffuseReflection + specularStrength * specularReflection) * visibility * colorShadow;
     }
 
     color.a = finalDiffuseColor.a;

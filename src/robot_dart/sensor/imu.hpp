@@ -28,7 +28,7 @@ namespace robot_dart {
 
         class IMU : public Sensor {
         public:
-            IMU(RobotDARTSimu* simu, const IMUConfig& config);
+            IMU(const IMUConfig& config);
 
             void init() override;
 

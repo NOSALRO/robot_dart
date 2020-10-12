@@ -26,9 +26,10 @@ def test():
     simu = rd.RobotDARTSimu(0.001)
 
     # set the graphics
-    graphics = rd.gui.WindowlessGraphics(simu, rd.gui.GraphicsConfiguration())
-    graphics.look_at([0.4 * ii, 3.5 - ii * 0.1, 2.], [0., 0., 0.25], [0., 0., 1.])
+    graphics = rd.gui.WindowlessGraphics()
     simu.set_graphics(graphics)
+
+    graphics.look_at([0.4 * ii, 3.5 - ii * 0.1, 2.], [0., 0., 0.25], [0., 0., 1.])
 
     # add the robot and the floor
     simu.add_robot(grobot)
