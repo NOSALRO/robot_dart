@@ -38,7 +38,8 @@ namespace robot_dart {
             };
 
             py::class_<Descriptor, PyDescriptor, std::shared_ptr<Descriptor>>(m, "Descriptor")
-                .def(py::init<RobotDARTSimu*, size_t>())
+                .def(py::init<size_t>(),
+                    py::arg("desc_dump") = 1)
 
                 .def_readwrite("_desc_period", &PublicistDescriptor::_desc_period)
                 .def_readonly("_simu", &PublicistDescriptor::_simu)

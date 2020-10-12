@@ -1,13 +1,11 @@
 #include "force_torque.hpp"
 
-#include <robot_dart/robot_dart_simu.hpp>
-
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/Joint.hpp>
 
 namespace robot_dart {
     namespace sensor {
-        ForceTorque::ForceTorque(RobotDARTSimu* simu, dart::dynamics::Joint* joint, size_t frequency, const std::string& direction) : Sensor(simu, frequency), _direction(direction)
+        ForceTorque::ForceTorque(dart::dynamics::Joint* joint, size_t frequency, const std::string& direction) : Sensor(frequency), _direction(direction)
         {
             attach_to_joint(joint, Eigen::Isometry3d::Identity());
         }

@@ -117,12 +117,16 @@ namespace robot_dart {
             using namespace robot_dart::gui::magnum;
             // Graphics class
             py::class_<Graphics, BaseWindowedGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
-                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
+                .def(py::init<const GraphicsConfiguration&>(),
+                    py::arg("configuration") = GraphicsConfiguration())
 
                 .def("done", &Graphics::done)
                 .def("refresh", &Graphics::refresh)
                 .def("set_render_period", &Graphics::set_render_period)
                 .def("set_enable", &Graphics::set_enable)
+
+                .def("set_simu", &Graphics::set_simu)
+                .def("simu", &Graphics::simu, py::return_value_policy::reference)
 
                 .def("look_at", &Graphics::look_at,
                     py::arg("camera_pos"),
@@ -159,7 +163,8 @@ namespace robot_dart {
 
             // WindowlessGraphics class
             py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
-                .def(py::init<RobotDARTSimu*, const GraphicsConfiguration&>())
+                .def(py::init<const GraphicsConfiguration&>(),
+                    py::arg("configuration") = GraphicsConfiguration())
 
                 .def("done", &WindowlessGraphics::done)
                 .def("refresh", &WindowlessGraphics::refresh)
@@ -216,8 +221,7 @@ namespace robot_dart {
 
             // Camera sensor class
             py::class_<gui::magnum::sensor::Camera, robot_dart::sensor::Sensor, std::shared_ptr<gui::magnum::sensor::Camera>>(sensormodule, "Camera")
-                .def(py::init<RobotDARTSimu*, gui::magnum::BaseApplication*, size_t, size_t, size_t, bool>(),
-                    py::arg("simu"),
+                .def(py::init<gui::magnum::BaseApplication*, size_t, size_t, size_t, bool>(),
                     py::arg("app"),
                     py::arg("width"),
                     py::arg("height"),

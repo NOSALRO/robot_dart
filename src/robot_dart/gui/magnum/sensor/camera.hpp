@@ -15,7 +15,7 @@ namespace robot_dart {
             namespace sensor {
                 class Camera : public robot_dart::sensor::Sensor {
                 public:
-                    Camera(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, size_t freq = 30, bool draw_debug = false);
+                    Camera(BaseApplication* app, size_t width, size_t height, size_t freq = 30, bool draw_debug = false);
                     ~Camera() {}
 
                     void init() override;
