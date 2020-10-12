@@ -30,7 +30,7 @@ int main()
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     graphics->record_video("talos_dancing.mp4");
@@ -59,6 +59,7 @@ int main()
             Eigen::VectorXd commands = (init_positions + delta_pos) - robot->positions(dofs);
             robot->set_commands(commands, dofs);
         }
+
         simu.step_world();
     }
 

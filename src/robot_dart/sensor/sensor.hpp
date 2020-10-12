@@ -23,11 +23,14 @@ namespace robot_dart {
     namespace sensor {
         class Sensor {
         public:
-            Sensor(RobotDARTSimu* simu, size_t freq = 40);
+            Sensor(size_t freq = 40);
             virtual ~Sensor() {}
 
             void activate(bool enable = true);
             bool active() const;
+
+            void set_simu(RobotDARTSimu* simu);
+            const RobotDARTSimu* simu() const;
 
             size_t frequency() const;
             void set_frequency(size_t freq);
@@ -50,7 +53,7 @@ namespace robot_dart {
             void attach_to_joint(const std::shared_ptr<Robot>& robot, const std::string& joint_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) { attach_to_joint(robot->joint(joint_name), tf); }
 
         protected:
-            RobotDARTSimu* _simu;
+            RobotDARTSimu* _simu = nullptr;
             bool _active;
             size_t _frequency;
 

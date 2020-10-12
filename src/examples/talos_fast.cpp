@@ -35,7 +35,7 @@ int main()
     // we use dart, but only the feet are used
     simu.set_collision_detector("dart");
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     graphics->record_video("talos.mp4");

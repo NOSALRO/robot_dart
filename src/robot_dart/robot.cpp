@@ -84,8 +84,7 @@ namespace robot_dart {
 
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(it != dof_map.end(),
-                    "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     data(i) = dof->getPosition();
@@ -126,8 +125,7 @@ namespace robot_dart {
         {
             // Set all values
             if (dof_names.empty()) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(),
-                    "set_dof_data: size of data is not the same as the DoFs", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
                 if (content == 0)
                     return skeleton->setPositions(data);
                 else if (content == 1)
@@ -157,12 +155,10 @@ namespace robot_dart {
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
-            ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(),
-                "set_dof_data: size of data is not the same as the dof_names size", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "set_dof_data: size of data is not the same as the dof_names size", );
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(
-                    it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     dof->setPosition(data(i));
@@ -200,8 +196,7 @@ namespace robot_dart {
         {
             // Set all values
             if (dof_names.empty()) {
-                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(),
-                    "set_dof_data: size of data is not the same as the DoFs", );
+                ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == skeleton->getNumDofs(), "set_dof_data: size of data is not the same as the DoFs", );
                 if (content == 0)
                     return skeleton->setPositions(skeleton->getPositions() + data);
                 else if (content == 1)
@@ -231,12 +226,10 @@ namespace robot_dart {
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
-            ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(),
-                "add_dof_data: size of data is not the same as the dof_names size", );
+            ROBOT_DART_ASSERT(static_cast<size_t>(data.size()) == dof_names.size(), "add_dof_data: size of data is not the same as the dof_names size", );
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
-                ROBOT_DART_ASSERT(
-                    it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
+                ROBOT_DART_ASSERT(it != dof_map.end(), "dof_data: " + dof_names[i] + " is not in dof_map", );
                 auto dof = skeleton->getDof(it->second);
                 if (content == 0)
                     dof->setPosition(dof->getPosition() + data(i));
@@ -360,8 +353,7 @@ namespace robot_dart {
 
     dart::dynamics::BodyNode* Robot::body_node(size_t body_index)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", nullptr);
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", nullptr);
         return _skeleton->getBodyNode(body_index);
     }
 
@@ -369,8 +361,7 @@ namespace robot_dart {
 
     dart::dynamics::Joint* Robot::joint(size_t joint_index)
     {
-        ROBOT_DART_ASSERT(
-            joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", nullptr);
+        ROBOT_DART_ASSERT(joint_index < _skeleton->getNumJoints(), "Joint index out of bounds", nullptr);
         return _skeleton->getJoint(joint_index);
     }
 
@@ -489,16 +480,14 @@ namespace robot_dart {
     bool Robot::fixed() const
     {
         auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
-        ROBOT_DART_ASSERT(
-            parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
         return parent_jt->getType() == dart::dynamics::WeldJoint::getStaticType();
     }
 
     bool Robot::free() const
     {
         auto parent_jt = _skeleton->getRootBodyNode()->getParentJoint();
-        ROBOT_DART_ASSERT(
-            parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
+        ROBOT_DART_ASSERT(parent_jt != nullptr, "RootBodyNode does not have a parent joint!", false);
         return parent_jt->getType() == dart::dynamics::FreeJoint::getStaticType();
     }
 
@@ -974,8 +963,7 @@ namespace robot_dart {
 
     void Robot::set_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->setExtForce(force, offset, force_local, offset_local);
@@ -991,8 +979,7 @@ namespace robot_dart {
 
     void Robot::add_external_force(size_t body_index, const Eigen::Vector3d& force, const Eigen::Vector3d& offset, bool force_local, bool offset_local)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->addExtForce(force, offset, force_local, offset_local);
@@ -1008,8 +995,7 @@ namespace robot_dart {
 
     void Robot::set_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->setExtTorque(torque, local);
@@ -1025,8 +1011,7 @@ namespace robot_dart {
 
     void Robot::add_external_torque(size_t body_index, const Eigen::Vector3d& torque, bool local)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
 
         bd->addExtTorque(torque, local);
@@ -1035,8 +1020,7 @@ namespace robot_dart {
     Eigen::Vector6d Robot::external_forces(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(
-            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
 
         return bd->getExternalForceGlobal();
     }
@@ -1053,23 +1037,20 @@ namespace robot_dart {
     Eigen::Isometry3d Robot::body_pose(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(
-            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Isometry3d::Identity());
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Isometry3d::Identity());
         return bd->getWorldTransform();
     }
 
     Eigen::Isometry3d Robot::body_pose(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
-            Eigen::Isometry3d::Identity());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Isometry3d::Identity());
         return _skeleton->getBodyNode(body_index)->getWorldTransform();
     }
 
     Eigen::Vector6d Robot::body_pose_vec(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(
-            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
         Eigen::Isometry3d bd_trans = bd->getWorldTransform();
 
         Eigen::Vector6d pose;
@@ -1081,8 +1062,7 @@ namespace robot_dart {
 
     Eigen::Vector6d Robot::body_pose_vec(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
-            Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
 
         Eigen::Isometry3d bd_trans = _skeleton->getBodyNode(body_index)->getWorldTransform();
 
@@ -1096,30 +1076,26 @@ namespace robot_dart {
     Eigen::Vector6d Robot::body_velocity(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(
-            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
         return bd->getSpatialVelocity(dart::dynamics::Frame::World(), dart::dynamics::Frame::World());
     }
 
     Eigen::Vector6d Robot::body_velocity(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
-            Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
         return _skeleton->getBodyNode(body_index)->getSpatialVelocity(dart::dynamics::Frame::World(), dart::dynamics::Frame::World());
     }
 
     Eigen::Vector6d Robot::body_acceleration(const std::string& body_name) const
     {
         auto bd = _skeleton->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(
-            bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
         return bd->getSpatialAcceleration(dart::dynamics::Frame::World(), dart::dynamics::Frame::World());
     }
 
     Eigen::Vector6d Robot::body_acceleration(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds",
-            Eigen::Vector6d::Zero());
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
         return _skeleton->getBodyNode(body_index)->getSpatialAcceleration(dart::dynamics::Frame::World(), dart::dynamics::Frame::World());
     }
 
@@ -1133,15 +1109,13 @@ namespace robot_dart {
 
     std::string Robot::body_name(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", "");
         return _skeleton->getBodyNode(body_index)->getName();
     }
 
     void Robot::set_body_name(size_t body_index, const std::string& body_name)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setName(body_name);
     }
 
@@ -1154,8 +1128,7 @@ namespace robot_dart {
 
     double Robot::body_mass(size_t body_index) const
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
         return _skeleton->getBodyNode(body_index)->getMass();
     }
 
@@ -1168,8 +1141,7 @@ namespace robot_dart {
 
     void Robot::set_body_mass(size_t body_index, double mass)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setMass(mass); // TO-DO: Recompute inertia?
     }
 
@@ -1182,8 +1154,7 @@ namespace robot_dart {
 
     void Robot::add_body_mass(size_t body_index, double mass)
     {
-        ROBOT_DART_ASSERT(
-            body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
+        ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = _skeleton->getBodyNode(body_index);
         bd->setMass(mass + bd->getMass()); // TO-DO: Recompute inertia?
     }
@@ -1272,8 +1243,7 @@ namespace robot_dart {
         Eigen::VectorXd ret(dof_names.size());
         for (size_t i = 0; i < dof_names.size(); i++) {
             auto it = _dof_map.find(dof_names[i]);
-            ROBOT_DART_ASSERT(
-                it != _dof_map.end(), "vec_dof: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
+            ROBOT_DART_ASSERT(it != _dof_map.end(), "vec_dof: " + dof_names[i] + " is not in dof_map", Eigen::VectorXd());
 
             ret(i) = vec[it->second];
         }
@@ -1370,8 +1340,7 @@ namespace robot_dart {
             ROBOT_DART_ASSERT(false, "dof_index : " + dof_name + " is not in the skeleton", 0);
         }
         auto it = _dof_map.find(dof_name);
-        ROBOT_DART_ASSERT(
-            it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
+        ROBOT_DART_ASSERT(it != _dof_map.end(), "dof_index : " + dof_name + " is not in DoF map", 0);
         return it->second;
     }
 
@@ -1409,8 +1378,7 @@ namespace robot_dart {
             ROBOT_DART_ASSERT(false, "joint_index : " + joint_name + " is not in the skeleton", 0);
         }
         auto it = _joint_map.find(joint_name);
-        ROBOT_DART_ASSERT(
-            it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
+        ROBOT_DART_ASSERT(it != _joint_map.end(), "joint_index : " + joint_name + " is not in Joint map", 0);
         return it->second;
     }
 
@@ -1685,8 +1653,7 @@ namespace robot_dart {
 
         for (size_t i = 0; i < dof_names.size(); i++) {
             auto it = _dof_map.find(dof_names[i]);
-            ROBOT_DART_ASSERT(
-                it != _dof_map.end(), "_jacobian: " + dof_names[i] + " is not in dof_map", Eigen::MatrixXd());
+            ROBOT_DART_ASSERT(it != _dof_map.end(), "_jacobian: " + dof_names[i] + " is not in dof_map", Eigen::MatrixXd());
 
             jac_ret.col(i) = full_jacobian.col(it->second);
         }
@@ -1703,15 +1670,13 @@ namespace robot_dart {
 
         for (size_t i = 0; i < dof_names.size(); i++) {
             auto it = _dof_map.find(dof_names[i]);
-            ROBOT_DART_ASSERT(
-                it != _dof_map.end(), "mass_matrix: " + dof_names[i] + " is not in dof_map", Eigen::MatrixXd());
+            ROBOT_DART_ASSERT(it != _dof_map.end(), "mass_matrix: " + dof_names[i] + " is not in dof_map", Eigen::MatrixXd());
 
             M_ret(i, i) = full_mass_matrix(it->second, it->second);
 
             for (size_t j = i + 1; j < dof_names.size(); j++) {
                 auto it2 = _dof_map.find(dof_names[j]);
-                ROBOT_DART_ASSERT(
-                    it2 != _dof_map.end(), "mass_matrix: " + dof_names[j] + " is not in dof_map", Eigen::MatrixXd());
+                ROBOT_DART_ASSERT(it2 != _dof_map.end(), "mass_matrix: " + dof_names[j] + " is not in dof_map", Eigen::MatrixXd());
 
                 M_ret(i, j) = full_mass_matrix(it->second, it2->second);
                 M_ret(j, i) = full_mass_matrix(it2->second, it->second);
