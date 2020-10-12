@@ -30,7 +30,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
 
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
@@ -56,7 +56,7 @@ int main()
     int ct = 0;
     std::shared_ptr<robot_dart::sensor::Torque> tq_sensors[robot->num_dofs()];
     for (const auto& joint : robot->dof_names())
-        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(&simu, robot, joint, 1000);
+        tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(robot, joint, 1000);
 
     auto start = std::chrono::steady_clock::now();
     Eigen::Vector3d external_force = Eigen::Vector3d::Zero();
