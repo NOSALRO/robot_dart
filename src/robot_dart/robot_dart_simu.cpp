@@ -130,8 +130,6 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        bool update_graphics = false;
-
         if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
 
@@ -141,21 +139,8 @@ namespace robot_dart {
                     desc->operator()();
         }
 
-        // update sensors
-        for (auto& sensor : _sensors) {
-            if (sensor->active() && _scheduler(sensor->frequency())) {
-                sensor->refresh(_world->getTime());
-            }
-        }
-
+        // Update graphics
         if (_scheduler(_graphics_freq)) {
-            update_graphics = true;
-        }
-
-        _old_index++;
-        _scheduler.step();
-
-        if (update_graphics) {
             // Update default texts
             if (_text_panel) { // Need to re-transform as the size of the window might have changed
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
@@ -176,6 +161,16 @@ namespace robot_dart {
 
             _graphics->refresh();
         }
+
+        // update sensors
+        for (auto& sensor : _sensors) {
+            if (sensor->active() && _scheduler(sensor->frequency())) {
+                sensor->refresh(_world->getTime());
+            }
+        }
+
+        _old_index++;
+        _scheduler.step();
 
         return _break;
     }
