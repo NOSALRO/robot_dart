@@ -173,15 +173,15 @@ namespace robot_dart {
                 DebugDrawData debug_draw_data()
                 {
                     DebugDrawData data;
-                    data.axes_shader = &*_3D_axis_shader;
-                    data.background_shader = &*_background_shader;
-                    data.axes_mesh = &*_3D_axis_mesh;
-                    data.background_mesh = &*_background_mesh;
-                    data.text_shader = &*_text_shader;
-                    data.text_vertices = &*_text_vertices;
-                    data.text_indices = &*_text_indices;
-                    data.font = &*_font;
-                    data.cache = &*_glyph_cache;
+                    data.axes_shader = _3D_axis_shader.get();
+                    data.background_shader = _background_shader.get();
+                    data.axes_mesh = _3D_axis_mesh.get();
+                    data.background_mesh = _background_mesh.get();
+                    data.text_shader = _text_shader.get();
+                    data.text_vertices = _text_vertices.get();
+                    data.text_indices = _text_indices.get();
+                    data.font = _font.get();
+                    data.cache = _glyph_cache.get();
 
                     return data;
                 }
