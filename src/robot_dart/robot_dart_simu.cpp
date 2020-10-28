@@ -470,11 +470,11 @@ namespace robot_dart {
         return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color);
     }
 
-    void RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
-            return;
+            return nullptr;
 
         dart::dynamics::SkeletonPtr floor_skel = dart::dynamics::Skeleton::create(floor_name);
 
@@ -494,14 +494,16 @@ namespace robot_dart {
         tf.translation()[2] -= floor_height / 2.0;
         body->getParentJoint()->setTransformFromParentBodyNode(tf);
 
-        _world->addSkeleton(floor_skel);
+        auto floor_robot = std::make_shared<Robot>(floor_skel, floor_name);
+        add_robot(floor_robot);
+        return floor_robot;
     }
 
-    void RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
-            return;
+            return nullptr;
 
         // Add main floor skeleton
         dart::dynamics::SkeletonPtr main_floor_skel = dart::dynamics::Skeleton::create(floor_name + "_main");
@@ -521,8 +523,6 @@ namespace robot_dart {
         tf.translation() = pose.tail(3);
         tf.translation()[2] -= floor_height / 2.0;
         main_body->getParentJoint()->setTransformFromParentBodyNode(tf);
-
-        _world->addSkeleton(main_floor_skel);
 
         // Add visual bodies just for visualization
         int step = std::ceil(floor_width / size);
@@ -556,6 +556,10 @@ namespace robot_dart {
                 c++;
             }
         }
+
+        auto floor_robot = std::make_shared<Robot>(main_floor_skel, floor_name);
+        add_robot(floor_robot);
+        return floor_robot;
     }
 
     void RobotDARTSimu::set_collision_detector(const std::string& collision_detector)

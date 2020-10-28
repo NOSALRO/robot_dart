@@ -104,6 +104,27 @@ namespace robot_dart {
         double cfriction_coeff(size_t dof) const;
         std::vector<double> cfriction_coeffs() const;
 
+        // the friction direction is in local frame
+        void set_friction_dir(const std::string& body_name, const Eigen::Vector3d& direction);
+        void set_friction_dir(size_t body_index, const Eigen::Vector3d& direction);
+        Eigen::Vector3d friction_dir(const std::string& body_name);
+        Eigen::Vector3d friction_dir(size_t body_index);
+
+        void set_friction_coeff(const std::string& body_name, double value);
+        void set_friction_coeff(size_t body_index, double value);
+        double friction_coeff(const std::string& body_name);
+        double friction_coeff(size_t body_index);
+
+        void set_secondary_friction_coeff(const std::string& body_name, double value);
+        void set_secondary_friction_coeff(size_t body_index, double value);
+        double secondary_friction_coeff(const std::string& body_name);
+        double secondary_friction_coeff(size_t body_index);
+
+        void set_restitution_coeff(const std::string& body_name, double value);
+        void set_restitution_coeff(size_t body_index, double value);
+        double restitution_coeff(const std::string& body_name);
+        double restitution_coeff(size_t body_index);
+
         Eigen::Isometry3d base_pose() const;
         // Set the pose of the robot base (changes the transformation of the parent joint of the
         // root body)
