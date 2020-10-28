@@ -24,6 +24,8 @@ namespace robot_dart {
                 return; // cannot compute anything if not attached to a link
             ROBOT_DART_EXCEPTION_ASSERT(_simu, "Simulation pointer is null!");
 
+            Eigen::Vector3d tmp = dart::math::logMap(_body_attached->getTransform(dart::dynamics::Frame::World(), _body_attached).linear().matrix());
+            _angular_pos = Eigen::AngleAxisd(tmp.norm(), tmp.normalized());
             _angular_vel = _body_attached->getSpatialVelocity().head(3); // angular velocity with respect to the world, in local coordinates
             _linear_accel = _body_attached->getSpatialAcceleration().tail(3); // linear acceleration with respect to the world, in local coordinates
 
@@ -36,6 +38,16 @@ namespace robot_dart {
         }
 
         std::string IMU::type() const { return "imu"; }
+
+        const Eigen::AngleAxisd& IMU::angular_position() const
+        {
+            return _angular_pos;
+        }
+
+        Eigen::Vector3d IMU::angular_position_vec() const
+        {
+            return _angular_pos.angle() * _angular_pos.axis();
+        }
 
         const Eigen::Vector3d& IMU::angular_velocity() const
         {
