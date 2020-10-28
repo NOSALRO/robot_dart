@@ -112,16 +112,19 @@ namespace robot_dart {
 
         void set_friction_coeff(const std::string& body_name, double value);
         void set_friction_coeff(size_t body_index, double value);
+        void set_friction_coeffs(double value);
         double friction_coeff(const std::string& body_name);
         double friction_coeff(size_t body_index);
 
         void set_secondary_friction_coeff(const std::string& body_name, double value);
         void set_secondary_friction_coeff(size_t body_index, double value);
+        void set_secondary_friction_coeffs(double value);
         double secondary_friction_coeff(const std::string& body_name);
         double secondary_friction_coeff(size_t body_index);
 
         void set_restitution_coeff(const std::string& body_name, double value);
         void set_restitution_coeff(size_t body_index, double value);
+        void set_restitution_coeffs(double value);
         double restitution_coeff(const std::string& body_name);
         double restitution_coeff(size_t body_index);
 

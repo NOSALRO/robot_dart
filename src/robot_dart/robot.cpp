@@ -845,6 +845,12 @@ namespace robot_dart {
         body_node_set_friction_coeff(_skeleton->getBodyNode(body_index), value);
     }
 
+    void Robot::set_friction_coeffs(double value)
+    {
+        for (auto bd : _skeleton->getBodyNodes())
+            body_node_set_friction_coeff(bd, value);
+    }
+
     auto body_node_get_friction_coeff = [](dart::dynamics::BodyNode* body) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
@@ -890,6 +896,12 @@ namespace robot_dart {
         body_node_set_secondary_friction_coeff(_skeleton->getBodyNode(body_index), value);
     }
 
+    void Robot::set_secondary_friction_coeffs(double value)
+    {
+        for (auto bd : _skeleton->getBodyNodes())
+            body_node_set_secondary_friction_coeff(bd, value);
+    }
+
     auto body_node_get_secondary_friction_coeff = [](dart::dynamics::BodyNode* body) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
@@ -933,6 +945,12 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
 
         body_node_set_restitution_coeff(_skeleton->getBodyNode(body_index), value);
+    }
+
+    void Robot::set_restitution_coeffs(double value)
+    {
+        for (auto bd : _skeleton->getBodyNodes())
+            body_node_set_restitution_coeff(bd, value);
     }
 
     auto body_node_get_restitution_coeff = [](dart::dynamics::BodyNode* body) {
