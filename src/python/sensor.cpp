@@ -163,8 +163,7 @@ namespace robot_dart {
             public:
                 using sensor::ForceTorque::_direction;
 
-                using sensor::ForceTorque::_force;
-                using sensor::ForceTorque::_torque;
+                using sensor::ForceTorque::_wrench;
             };
 
             py::class_<sensor::ForceTorque, Sensor, std::shared_ptr<sensor::ForceTorque>>(sensormodule, "ForceTorque")
@@ -179,8 +178,7 @@ namespace robot_dart {
                     py::arg("direction") = "child_to_parent")
 
                 .def_readwrite("_direction", &PublicistFTSensor::_direction)
-                .def_readonly("_force", &PublicistFTSensor::_force)
-                .def_readonly("_torque", &PublicistFTSensor::_torque)
+                .def_readonly("_wrench", &PublicistFTSensor::_wrench)
 
                 .def("init", &sensor::ForceTorque::init)
                 .def("calculate", &sensor::ForceTorque::calculate,
@@ -189,6 +187,7 @@ namespace robot_dart {
 
                 .def("force", &sensor::ForceTorque::force)
                 .def("torque", &sensor::ForceTorque::torque)
+                .def("wrench", &sensor::ForceTorque::wrench)
 
                 .def("attach_to_body", (void (sensor::ForceTorque::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)) & sensor::ForceTorque::attach_to_body,
                     py::arg("body"),
@@ -211,6 +210,7 @@ namespace robot_dart {
             public:
                 using sensor::IMU::_config;
 
+                using sensor::IMU::_angular_pos;
                 using sensor::IMU::_angular_vel;
                 using sensor::IMU::_linear_accel;
             };
@@ -220,6 +220,7 @@ namespace robot_dart {
                     py::arg("config"))
 
                 .def_readonly("_config", &PublicistIMUSensor::_config)
+                .def_readonly("_angular_pos", &PublicistIMUSensor::_angular_pos)
                 .def_readonly("_angular_vel", &PublicistIMUSensor::_angular_vel)
                 .def_readonly("_linear_accel", &PublicistIMUSensor::_linear_accel)
 
@@ -228,6 +229,8 @@ namespace robot_dart {
                     py::arg("t"))
                 .def("type", &sensor::IMU::type)
 
+                .def("angular_position", &sensor::IMU::angular_position)
+                .def("angular_position_vec", &sensor::IMU::angular_position_vec)
                 .def("angular_velocity", &sensor::IMU::angular_velocity)
                 .def("linear_acceleration", &sensor::IMU::linear_acceleration)
 
