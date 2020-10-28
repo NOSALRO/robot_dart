@@ -210,6 +210,7 @@ namespace robot_dart {
             public:
                 using sensor::IMU::_config;
 
+                using sensor::IMU::_angular_pos;
                 using sensor::IMU::_angular_vel;
                 using sensor::IMU::_linear_accel;
             };
@@ -219,6 +220,7 @@ namespace robot_dart {
                     py::arg("config"))
 
                 .def_readonly("_config", &PublicistIMUSensor::_config)
+                .def_readonly("_angular_vel", &PublicistIMUSensor::_angular_pos)
                 .def_readonly("_angular_vel", &PublicistIMUSensor::_angular_vel)
                 .def_readonly("_linear_accel", &PublicistIMUSensor::_linear_accel)
 
@@ -227,6 +229,7 @@ namespace robot_dart {
                     py::arg("t"))
                 .def("type", &sensor::IMU::type)
 
+                .def("angular_position", &sensor::IMU::angular_position)
                 .def("angular_velocity", &sensor::IMU::angular_velocity)
                 .def("linear_acceleration", &sensor::IMU::linear_acceleration)
 
