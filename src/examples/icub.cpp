@@ -94,7 +94,7 @@ int main()
 
         // Print IMU measurements
         if (simu.schedule(imu_sensor->frequency())) {
-            std::cout << "Angular    Position: " << imu_sensor->angular_position().transpose().format(fmt) << std::endl;
+            std::cout << "Angular    Position: " << imu_sensor->angular_position_vec().transpose().format(fmt) << std::endl;
             std::cout << "Angular    Velocity: " << imu_sensor->angular_velocity().transpose().format(fmt) << std::endl;
             std::cout << "Linear Acceleration: " << imu_sensor->linear_acceleration().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;

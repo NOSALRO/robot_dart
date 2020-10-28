@@ -33,7 +33,8 @@ namespace robot_dart {
 
             std::string type() const override;
 
-            const Eigen::Vector3d& angular_position() const;
+            const Eigen::AngleAxisd& angular_position() const;
+            Eigen::Vector3d angular_position_vec() const;
             const Eigen::Vector3d& angular_velocity() const;
             const Eigen::Vector3d& linear_acceleration() const;
 
@@ -46,7 +47,7 @@ namespace robot_dart {
             // double _prev_time = 0.;
             IMUConfig _config;
 
-            Eigen::Vector3d _angular_pos; // TO-DO: Check how to do this as close as possible to real sensors
+            Eigen::AngleAxisd _angular_pos; // TO-DO: Check how to do this as close as possible to real sensors
             Eigen::Vector3d _angular_vel;
             Eigen::Vector3d _linear_accel;
         };
