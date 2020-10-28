@@ -124,6 +124,60 @@ namespace robot_dart {
                 .def("cfriction_coeff", &Robot::cfriction_coeff)
                 .def("cfriction_coeffs", &Robot::cfriction_coeffs)
 
+                .def("set_friction_dir", (void (Robot::*)(const std::string&, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                    py::arg("body_name"),
+                    py::arg("direction"))
+                .def("set_friction_dir", (void (Robot::*)(size_t, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                    py::arg("body_index"),
+                    py::arg("direction"))
+
+                .def("friction_dir", (Eigen::Vector3d(Robot::*)(const std::string&)) & Robot::friction_dir,
+                    py::arg("body_name"))
+                .def("friction_dir", (Eigen::Vector3d(Robot::*)(size_t)) & Robot::friction_dir,
+                    py::arg("body_index"))
+
+                .def("set_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_friction_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_friction_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_friction_coeffs", &Robot::set_friction_coeffs,
+                    py::arg("value"))
+
+                .def("friction_coeff", (double (Robot::*)(const std::string&)) & Robot::friction_coeff,
+                    py::arg("body_name"))
+                .def("friction_coeff", (double (Robot::*)(size_t)) & Robot::friction_coeff,
+                    py::arg("body_index"))
+
+                .def("set_secondary_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_secondary_friction_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_secondary_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_secondary_friction_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_secondary_friction_coeffs", &Robot::set_secondary_friction_coeffs,
+                    py::arg("value"))
+
+                .def("secondary_friction_coeff", (double (Robot::*)(const std::string&)) & Robot::secondary_friction_coeff,
+                    py::arg("body_name"))
+                .def("secondary_friction_coeff", (double (Robot::*)(size_t)) & Robot::secondary_friction_coeff,
+                    py::arg("body_index"))
+
+                .def("set_restitution_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_restitution_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_restitution_coeff", (void (Robot::*)(size_t, double)) & Robot::set_restitution_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_restitution_coeffs", &Robot::set_restitution_coeffs,
+                    py::arg("value"))
+
+                .def("restitution_coeff", (double (Robot::*)(const std::string&)) & Robot::restitution_coeff,
+                    py::arg("body_name"))
+                .def("restitution_coeff", (double (Robot::*)(size_t)) & Robot::restitution_coeff,
+                    py::arg("body_index"))
+
                 .def("set_base_pose", &Robot::set_base_pose)
 
                 .def("base_pose", &Robot::base_pose)
