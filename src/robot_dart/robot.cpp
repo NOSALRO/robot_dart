@@ -774,6 +774,7 @@ namespace robot_dart {
         return cfrictions;
     }
 
+#if DART_VERSION_AT_LEAST(6, 10, 0)
     auto body_node_set_friction_dir = [](dart::dynamics::BodyNode* body, const Eigen::Vector3d& direction) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
@@ -782,22 +783,32 @@ namespace robot_dart {
             dyn->setFirstFrictionDirectionFrame(body);
         }
     };
+#endif
 
     void Robot::set_friction_dir(const std::string& body_name, const Eigen::Vector3d& direction)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
 
         body_node_set_friction_dir(bd, direction);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the frictional direction from v.6.10 onwards!");
+#endif
     }
 
     void Robot::set_friction_dir(size_t body_index, const Eigen::Vector3d& direction)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
 
         body_node_set_friction_dir(_skeleton->getBodyNode(body_index), direction);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the frictional direction from v.6.10 onwards!");
+#endif
     }
 
+#if DART_VERSION_AT_LEAST(6, 10, 0)
     auto body_node_get_friction_dir = [](dart::dynamics::BodyNode* body) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
@@ -807,27 +818,42 @@ namespace robot_dart {
 
         return Eigen::Vector3d(Eigen::Vector3d::Zero());
     };
+#endif
 
     Eigen::Vector3d Robot::friction_dir(const std::string& body_name)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector3d::Zero());
 
         return body_node_get_friction_dir(bd);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the frictional direction from v.6.10 onwards!");
+        return Eigen::Vector3d::Zero();
+#endif
     }
 
     Eigen::Vector3d Robot::friction_dir(size_t body_index)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector3d::Zero());
 
         return body_node_get_friction_dir(_skeleton->getBodyNode(body_index));
+#else
+        ROBOT_DART_WARNING(true, "DART supports the frictional direction from v.6.10 onwards!");
+        return Eigen::Vector3d::Zero();
+#endif
     }
 
     auto body_node_set_friction_coeff = [](dart::dynamics::BodyNode* body, double value) {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
             shape->getDynamicsAspect()->setFrictionCoeff(value);
         }
+#else
+        body->setFrictionCoeff(value);
+#endif
     };
 
     void Robot::set_friction_coeff(const std::string& body_name, double value)
@@ -852,12 +878,16 @@ namespace robot_dart {
     }
 
     auto body_node_get_friction_coeff = [](dart::dynamics::BodyNode* body) {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
             return shape->getDynamicsAspect()->getFrictionCoeff(); // assume all shape nodes have the same friction
         }
 
         return 0.;
+#else
+        return body->getFrictionCoeff();
+#endif
     };
 
     double Robot::friction_coeff(const std::string& body_name)
@@ -874,34 +904,49 @@ namespace robot_dart {
         return body_node_get_friction_coeff(_skeleton->getBodyNode(body_index));
     }
 
+#if DART_VERSION_AT_LEAST(6, 10, 0)
     auto body_node_set_secondary_friction_coeff = [](dart::dynamics::BodyNode* body, double value) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
             shape->getDynamicsAspect()->setSecondaryFrictionCoeff(value);
         }
     };
+#endif
 
     void Robot::set_secondary_friction_coeff(const std::string& body_name, double value)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
 
         body_node_set_secondary_friction_coeff(bd, value);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the secondary friction coefficient from v.6.10 onwards!");
+#endif
     }
 
     void Robot::set_secondary_friction_coeff(size_t body_index, double value)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
 
         body_node_set_secondary_friction_coeff(_skeleton->getBodyNode(body_index), value);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the secondary friction coefficient from v.6.10 onwards!");
+#endif
     }
 
     void Robot::set_secondary_friction_coeffs(double value)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         for (auto bd : _skeleton->getBodyNodes())
             body_node_set_secondary_friction_coeff(bd, value);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the secondary friction coefficient from v.6.10 onwards!");
+#endif
     }
 
+#if DART_VERSION_AT_LEAST(6, 10, 0)
     auto body_node_get_secondary_friction_coeff = [](dart::dynamics::BodyNode* body) {
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
@@ -910,26 +955,41 @@ namespace robot_dart {
 
         return 0.;
     };
+#endif
 
     double Robot::secondary_friction_coeff(const std::string& body_name)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0.);
 
         return body_node_get_secondary_friction_coeff(bd);
+#else
+        ROBOT_DART_WARNING(true, "DART supports the secondary friction coefficient from v.6.10 onwards!");
+        return 0.;
+#endif
     }
 
     double Robot::secondary_friction_coeff(size_t body_index)
     {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", 0.);
         return body_node_get_secondary_friction_coeff(_skeleton->getBodyNode(body_index));
+#else
+        ROBOT_DART_WARNING(true, "DART supports the secondary friction coefficient from v.6.10 onwards!");
+        return 0.;
+#endif
     }
 
     auto body_node_set_restitution_coeff = [](dart::dynamics::BodyNode* body, double value) {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
             shape->getDynamicsAspect()->setRestitutionCoeff(value);
         }
+#else
+        body->setRestitutionCoeff(value);
+#endif
     };
 
     void Robot::set_restitution_coeff(const std::string& body_name, double value)
@@ -954,12 +1014,16 @@ namespace robot_dart {
     }
 
     auto body_node_get_restitution_coeff = [](dart::dynamics::BodyNode* body) {
+#if DART_VERSION_AT_LEAST(6, 10, 0)
         auto& dyn_shapes = body->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
         for (auto& shape : dyn_shapes) {
             return shape->getDynamicsAspect()->getRestitutionCoeff(); // assume all shape nodes have the same restitution
         }
 
         return 0.;
+#else
+        return body->getRestitutionCoeff();
+#endif
     };
 
     double Robot::restitution_coeff(const std::string& body_name)
