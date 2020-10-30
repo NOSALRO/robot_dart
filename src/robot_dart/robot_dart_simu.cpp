@@ -122,7 +122,7 @@ namespace robot_dart {
         double old_time = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
-        while ((_world->getTime() - old_time - max_duration) < -factor && !_graphics->done()) {
+        while ((_world->getTime() - old_time - max_duration) < -factor) {
             if (step(reset_commands))
                 break;
         }
@@ -172,7 +172,7 @@ namespace robot_dart {
         _old_index++;
         _scheduler.step();
 
-        return _break;
+        return _break || _graphics->done();
     }
 
     bool RobotDARTSimu::step(bool reset_commands)

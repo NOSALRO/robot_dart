@@ -23,12 +23,12 @@ int main()
 
     // add a PD-controller to the arm
     // set desired positions
-    Eigen::VectorXd ctrl(8);
-    ctrl << 0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.});
 
     // add the controller to the robot
-    robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(robot->controllers()[0])->set_pd(300., 50.);
+    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    robot->add_controller(controller);
+    controller->set_pd(300., 50.);
 
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
