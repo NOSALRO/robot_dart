@@ -1043,17 +1043,44 @@ namespace robot_dart {
 
     Eigen::Isometry3d Robot::base_pose() const
     {
+        if (free())
+            return dart::math::expMap(_skeleton->getPositions().head(6));
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
         ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!",
             Eigen::Isometry3d::Identity());
         return jt->getTransformFromParentBodyNode();
     }
 
+    Eigen::Vector6d Robot::base_pose_vec() const
+    {
+        if (free())
+            return _skeleton->getPositions().head(6);
+        auto jt = _skeleton->getRootBodyNode()->getParentJoint();
+        ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!",
+            Eigen::Vector6d::Zero());
+        return dart::math::logMap(jt->getTransformFromParentBodyNode());
+    }
+
     void Robot::set_base_pose(const Eigen::Isometry3d& tf)
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
-        if (jt)
-            jt->setTransformFromParentBodyNode(tf);
+        if (jt) {
+            if (free())
+                jt->setPositions(dart::math::logMap(tf));
+            else
+                jt->setTransformFromParentBodyNode(tf);
+        }
+    }
+
+    void Robot::set_base_pose(const Eigen::Vector6d& pose)
+    {
+        auto jt = _skeleton->getRootBodyNode()->getParentJoint();
+        if (jt) {
+            if (free())
+                jt->setPositions(pose);
+            else
+                jt->setTransformFromParentBodyNode(dart::math::expMap(pose));
+        }
     }
 
     size_t Robot::num_dofs() const { return _skeleton->getNumDofs(); }

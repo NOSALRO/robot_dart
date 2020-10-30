@@ -14,7 +14,7 @@ struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
     void operator()()
     {
         if (_simu->robots().size() > 0) {
-            states.push_back(_simu->robots()[0]->skeleton()->getPositions());
+            states.push_back(_simu->robots()[0]->positions());
         }
     }
 
@@ -24,40 +24,39 @@ struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
 int main()
 {
     std::srand(std::time(NULL));
-    auto global_robot = std::make_shared<robot_dart::Robot>("arm.urdf");
+    auto robot = std::make_shared<robot_dart::Robot>("arm.urdf");
 
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
-    // g_robot->skeleton()->setPosition(1, M_PI / 2.0);
-    Eigen::Vector3d size(0, 0, 0);
+    robot->fix_to_world();
+    robot->set_position_enforced(true);
 
-    global_robot->set_actuator_types("velocity");
+    robot->set_actuator_types("velocity");
 
     Eigen::VectorXd ctrl(4);
     ctrl << 0.0, 1.0, -1.5, 1.0;
 
-    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-
-    auto g_robot = global_robot->clone();
+    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    robot->add_controller(controller);
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics>());
 #endif
-    simu.add_descriptor(std::make_shared<StateDesc>());
-    simu.add_robot(g_robot);
-    std::cout << (g_robot->body_pose("arm_link_5") * size).transpose() << std::endl;
+    auto state_desc = std::make_shared<StateDesc>();
+    simu.add_descriptor(state_desc);
+    simu.add_robot(robot);
+    std::cout << robot->body_pose("arm_link_5").translation().transpose() << std::endl;
+
     simu.run(2.5);
-    std::cout << (g_robot->body_pose("arm_link_5") * size).transpose() << std::endl;
+    std::cout << robot->body_pose("arm_link_5").translation().transpose() << std::endl;
+
     ctrl << 0.0, -1.0, 1.5, -1.0;
-    g_robot->controllers()[0]->set_parameters(ctrl);
-    std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(20., 0.);
+    controller->set_parameters(ctrl);
+    controller->set_pd(20., 0.);
     simu.run(2.5);
-    std::cout << (g_robot->body_pose("arm_link_5") * size).transpose() << std::endl;
+    std::cout << robot->body_pose("arm_link_5").translation().transpose() << std::endl;
 
-    std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
+    std::cout << state_desc->states.size() << std::endl;
 
-    g_robot.reset();
-    global_robot.reset();
+    robot.reset();
     return 0;
 }

@@ -40,15 +40,16 @@ int main()
             get_gl_context_with_sleep(gl_context, 20); // this call will sleep 20ms between each failed query
 
             // Do the simulation
-            auto g_robot = global_robot->clone();
+            auto robot = global_robot->clone();
 
             robot_dart::RobotDARTSimu simu(0.001);
 
             Eigen::VectorXd ctrl(7);
             ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
 
-            g_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-            std::static_pointer_cast<robot_dart::control::PDControl>(g_robot->controllers()[0])->set_pd(300., 50.);
+            auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+            robot->add_controller(controller);
+            controller->set_pd(300., 50.);
 
             // Magnum graphics
             robot_dart::gui::magnum::GraphicsConfiguration configuration;
@@ -61,7 +62,7 @@ int main()
             // record images from main camera/graphics
             // graphics->set_recording(true); // WindowlessGLApplication records images by default
 
-            simu.add_robot(g_robot);
+            simu.add_robot(robot);
             simu.run(6);
 
             // Save the image for verification

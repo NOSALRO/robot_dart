@@ -129,9 +129,9 @@ namespace robot_dart {
         double restitution_coeff(size_t body_index);
 
         Eigen::Isometry3d base_pose() const;
-        // Set the pose of the robot base (changes the transformation of the parent joint of the
-        // root body)
+        Eigen::Vector6d base_pose_vec() const;
         void set_base_pose(const Eigen::Isometry3d& tf);
+        void set_base_pose(const Eigen::Vector6d& pose);
 
         size_t num_dofs() const;
         size_t num_joints() const;
