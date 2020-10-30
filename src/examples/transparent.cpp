@@ -27,8 +27,7 @@ std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
     // random size
     Eigen::Vector3d size = Eigen::Vector3d::Random()[0] * Eigen::Vector3d(0.2, 0.2, 0.2).array() + 0.3;
     // Transparent spheres
-    Eigen::Vector4d color;
-    color << 0., 0., 1., 0.5;
+    Eigen::Vector4d color = robot_dart::make_vector({0., 0., 1., 0.5});
     return robot_dart::Robot::create_ellipsoid(size, pose, "free", 1., color, "sphere_" + std::to_string(num));
 }
 

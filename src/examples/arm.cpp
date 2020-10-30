@@ -31,8 +31,7 @@ int main()
 
     robot->set_actuator_types("velocity");
 
-    Eigen::VectorXd ctrl(4);
-    ctrl << 0.0, 1.0, -1.5, 1.0;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0.0, 1.0, -1.5, 1.0});
 
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
     robot->add_controller(controller);

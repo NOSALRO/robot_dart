@@ -44,8 +44,7 @@ int main()
 
             robot_dart::RobotDARTSimu simu(0.001);
 
-            Eigen::VectorXd ctrl(7);
-            ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
+            Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
             auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
             robot->add_controller(controller);

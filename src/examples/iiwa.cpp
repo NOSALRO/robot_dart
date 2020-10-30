@@ -19,8 +19,7 @@ int main()
     robot->fix_to_world();
     robot->set_position_enforced(true);
 
-    Eigen::VectorXd ctrl(7);
-    ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
     robot->add_controller(controller);

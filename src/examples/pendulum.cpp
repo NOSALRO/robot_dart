@@ -40,9 +40,7 @@ int main()
     auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
     robot->fix_to_world();
     robot->set_position_enforced(false);
-    Eigen::VectorXd pos(1);
-    pos << M_PI;
-    robot->set_positions(pos);
+    robot->set_positions(robot_dart::make_vector({M_PI}));
 
     Eigen::VectorXd ctrl(1);
     ctrl << 0.0;

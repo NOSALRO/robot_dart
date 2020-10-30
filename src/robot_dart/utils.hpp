@@ -5,11 +5,18 @@
 #include <exception>
 #include <iostream>
 
+#include <Eigen/Core>
+
 #ifndef ROBOT_DART_SHOW_WARNINGS
 #define ROBOT_DART_SHOW_WARNINGS true
 #endif
 
 namespace robot_dart {
+
+    inline Eigen::VectorXd make_vector(std::initializer_list<double> args)
+    {
+        return Eigen::VectorXd::Map(args.begin(), args.size());
+    }
 
     class Assertion : public std::exception {
     public:
@@ -33,10 +40,10 @@ namespace robot_dart {
     };
 } // namespace robot_dart
 
-#define ROBOT_DART_WARNING(condition, message)                                    \
-    if(ROBOT_DART_SHOW_WARNINGS && (condition)) {                                                            \
-        std::cerr<< "[robot_dart WARNING]: \"" << message << "\"" << std::endl;   \
-    }                                                                             \
+#define ROBOT_DART_WARNING(condition, message)                                   \
+    if (ROBOT_DART_SHOW_WARNINGS && (condition)) {                               \
+        std::cerr << "[robot_dart WARNING]: \"" << message << "\"" << std::endl; \
+    }
 
 #define ROBOT_DART_ASSERT(condition, message, returnValue)                        \
     do {                                                                          \
@@ -47,10 +54,10 @@ namespace robot_dart {
     } while (false)
 
 #define ROBOT_DART_EXCEPTION_ASSERT(condition, message) \
-    do {                                           \
-        if (!(condition)) {                        \
-            throw robot_dart::Assertion(message);  \
-        }                                          \
+    do {                                                \
+        if (!(condition)) {                             \
+            throw robot_dart::Assertion(message);       \
+        }                                               \
     } while (false)
 
 #define ROBOT_DART_INTERNAL_ASSERT(condition)                                                                                 \
@@ -61,11 +68,11 @@ namespace robot_dart {
         }                                                                                                                     \
     } while (false)
 
-#define ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(condition)   \
-    do {                                             \
-        if (!(condition)) {                          \
-            throw robot_dart::Assertion(#condition); \
-        }                                            \
+#define ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(condition) \
+    do {                                                \
+        if (!(condition)) {                             \
+            throw robot_dart::Assertion(#condition);    \
+        }                                               \
     } while (false)
 
 #endif

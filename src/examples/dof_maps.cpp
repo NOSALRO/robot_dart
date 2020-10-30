@@ -33,8 +33,7 @@ int main()
     /**************** Use dofs names to control the robot *********************************************/
 
     //Set Initial Position for the robot
-    Eigen::VectorXd q0(7);
-    q0 << 0.0, M_PI / 3., 0.0, -M_PI / 4.0, 0.0, 0.0, 0.0;
+    Eigen::VectorXd q0 = robot_dart::make_vector({0.0, M_PI / 3., 0.0, -M_PI / 4.0, 0.0, 0.0, 0.0});
     robot->set_positions(q0);
 
     //Get dofs names
@@ -54,15 +53,16 @@ int main()
     std::vector<std::string> dof_to_control;
     dof_to_control.push_back("iiwa_joint_1");
     dof_to_control.push_back("iiwa_joint_4");
-    Eigen::VectorXd cmd(2), pos(2), full_pos(q0.size());
-    cmd(0) = 0.1;
-    cmd(1) = -0.1;
+    Eigen::VectorXd cmd = robot_dart::make_vector({0.1, -0.1}),
+                    pos(2),
+                    full_pos(q0.size());
 
     for (int i = 0; i < sim_time; i++) {
         robot->set_commands(cmd, dof_to_control);
         pos = robot->positions(dof_to_control); //get dof_to_control positions only
         full_pos = robot->positions(); //get all dofs positions
-        simu.step_world(); // do not update controllers (it will override set_commands)
+        if (simu.step_world()) // do not update controllers (it will override set_commands)
+            break;
     }
 
     // If you wanted to control every dofs you could have used :
@@ -93,7 +93,8 @@ int main()
     for (int i = 0; i < sim_time; i++) {
         robot->set_commands(cmd, controllable_dofs);
         // robot->set_commands(Eigen::VectorXd::Constant(q0.size(), -0.1)); // This also works, but you will be getting a lot of warnings from DART; the comands to the mimic/passive/locked joints are ignored!
-        simu.step_world(); // do not update controllers (it will override set_commands)
+        if (simu.step_world()) // do not update controllers (it will override set_commands)
+            break;
     }
 
     robot.reset();

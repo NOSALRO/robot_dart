@@ -15,9 +15,7 @@ int main()
     robot->set_actuator_types("servo");
     robot->skeleton()->enableSelfCollisionCheck();
 
-    Eigen::Vector6d pose;
-    pose << 0., 0., 0., 0., 0., 0.2;
-    robot->set_base_pose(pose);
+    robot->set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.2}));
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC

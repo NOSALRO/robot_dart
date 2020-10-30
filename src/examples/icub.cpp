@@ -26,9 +26,7 @@ int main()
     robot->set_color_mode("aspect", "left_foot");
 
     robot->set_position_enforced(true);
-    Eigen::Vector6d pose;
-    pose << 0., 0., M_PI / 2., 0., 0., 0.5;
-    robot->set_base_pose(pose);
+    robot->set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.5}));
 
     // Set actuator types to VELOCITY motors so that they stay in position without any controller
     robot->set_actuator_types("velocity");
