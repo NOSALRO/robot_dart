@@ -13,7 +13,7 @@ struct StateDesc : public robot_dart::descriptor::BaseDescriptor {
     void operator()()
     {
         if (_simu->robots().size() > 0) {
-            states.push_back(_simu->robots()[0]->skeleton()->getPositions());
+            states.push_back(_simu->robots()[0]->positions());
         }
     }
 
@@ -37,19 +37,21 @@ int main()
     // dmg.data = "arm_joint_3";
     // brk.push_back(dmg);
 
-    auto global_robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
-    auto g_robot = global_robot->clone();
-    g_robot->fix_to_world();
-    g_robot->set_position_enforced(false);
-    g_robot->skeleton()->setPosition(0, M_PI);
-    Eigen::Vector3d size(0.0402, 0.05, 1);
+    auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
+    robot->fix_to_world();
+    robot->set_position_enforced(false);
+    Eigen::VectorXd pos(1);
+    pos << M_PI;
+    robot->set_positions(pos);
 
     Eigen::VectorXd ctrl(1);
     ctrl << 0.0;
 
-    g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl));
+    auto controller1 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
+    robot->add_controller(controller1);
     ctrl << -1.0;
-    g_robot->add_controller(std::make_shared<robot_dart::control::SimpleControl>(ctrl), 5.);
+    auto controller2 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
+    robot->add_controller(controller2, 5.);
 
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
@@ -57,18 +59,19 @@ int main()
 #endif
     // <Type>(desc_period)
     simu.add_descriptor<StateDesc>(2);
-    simu.add_robot(g_robot);
-    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
+    simu.add_robot(robot);
+
+    Eigen::Vector3d size(0.0402, 0.05, 1);
+    std::cout << (robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(2.5);
-    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
+    std::cout << (robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     ctrl << 2.5;
-    g_robot->controllers()[0]->set_parameters(ctrl);
+    controller1->set_parameters(ctrl);
     simu.run(2.5);
-    std::cout << (g_robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
+    std::cout << (robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
 
     std::cout << std::static_pointer_cast<StateDesc>(simu.descriptor(0))->states.size() << std::endl;
 
-    g_robot.reset();
-    global_robot.reset();
+    robot.reset();
     return 0;
 }

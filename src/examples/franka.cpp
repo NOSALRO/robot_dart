@@ -12,14 +12,14 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"franka_description", "franka/franka_description"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("franka/franka.urdf", packages);
-    global_robot->set_color_mode("material");
+    auto robot = std::make_shared<robot_dart::Robot>("franka/franka.urdf", packages);
+    robot->set_color_mode("material");
 
     // pin the arm to world
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
+    robot->fix_to_world();
+    robot->set_position_enforced(true);
 
-    global_robot->set_actuator_types("torque");
+    robot->set_actuator_types("torque");
 
     // add a PD-controller to the arm
     // set desired positions
@@ -27,8 +27,8 @@ int main()
     ctrl << 0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.;
 
     // add the controller to the robot
-    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
+    robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
+    std::static_pointer_cast<robot_dart::control::PDControl>(robot->controllers()[0])->set_pd(300., 50.);
 
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
@@ -42,9 +42,9 @@ int main()
 #endif
 
     simu.add_checkerboard_floor();
-    simu.add_robot(global_robot);
+    simu.add_robot(robot);
 
     simu.run(30.);
-    global_robot.reset();
+    robot.reset();
     return 0;
 }

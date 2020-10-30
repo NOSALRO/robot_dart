@@ -178,10 +178,13 @@ namespace robot_dart {
                 .def("restitution_coeff", (double (Robot::*)(size_t)) & Robot::restitution_coeff,
                     py::arg("body_index"))
 
-                .def("set_base_pose", &Robot::set_base_pose)
-
                 .def("base_pose", &Robot::base_pose)
-                .def("set_base_pose", &Robot::set_base_pose)
+                .def("base_pose_vec", &Robot::base_pose)
+
+                .def("set_base_pose", (void (Robot::*)(const Eigen::Isometry3d&)) & Robot::set_base_pose,
+                    py::arg("tf"))
+                .def("set_base_pose", (void (Robot::*)(const Eigen::Vector6d&)) & Robot::set_base_pose,
+                    py::arg("pose"))
 
                 .def("num_dofs", &Robot::num_dofs)
                 .def("num_joints", &Robot::num_joints)

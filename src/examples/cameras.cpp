@@ -34,16 +34,16 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
+    auto robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
 
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
+    robot->fix_to_world();
+    robot->set_position_enforced(true);
 
     Eigen::VectorXd ctrl(7);
     ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
 
-    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(500., 50.);
+    robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
+    std::static_pointer_cast<robot_dart::control::PDControl>(robot->controllers()[0])->set_pd(500., 50.);
 
     robot_dart::RobotDARTSimu simu(0.001);
 
@@ -72,11 +72,11 @@ int main()
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
     tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
-    camera->attach_to_body(global_robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
+    camera->attach_to_body(robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
 
     // simu.add_floor(5.);
     simu.add_checkerboard_floor(10.);
-    simu.add_robot(global_robot);
+    simu.add_robot(robot);
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.1;
     simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
@@ -102,6 +102,6 @@ int main()
     // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
     robot_dart::gui::save_png_image("camera-depth-raw.png", camera->raw_depth_image());
 
-    global_robot.reset();
+    robot.reset();
     return 0;
 }
