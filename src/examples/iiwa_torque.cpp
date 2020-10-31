@@ -42,14 +42,18 @@ int main()
     std::cout.precision(5);
 
     robot->set_damping_coeffs(0.);
-    robot->set_cfriction_coeffs(0.);
+    robot->set_coulomb_coeffs(0.);
+    robot->set_spring_stiffnesses(0.);
 
-    for (const auto& jnt : robot->skeleton()->getJoints()) {
-        for (size_t i = 0; i < jnt->getNumDofs(); ++i) {
-            std::cout << "Stiffness: " << jnt->getSpringStiffness(i) << std::endl;
-            std::cout << "Friction: " << jnt->getCoulombFriction(i) << std::endl;
-            std::cout << "Damping: " << jnt->getDampingCoefficient(i) << std::endl;
-        }
+    auto dampings = robot->damping_coeffs();
+    auto frictions = robot->coulomb_coeffs();
+    auto stiffnesses = robot->spring_stiffnesses();
+
+    for (size_t i = 0; i < dampings.size(); ++i) {
+        std::cout << "DoF #" << i << std::endl;
+        std::cout << "    Stiffness: " << stiffnesses[i] << std::endl;
+        std::cout << "    Friction: " << frictions[i] << std::endl;
+        std::cout << "    Damping: " << dampings[i] << std::endl;
     }
 
     // Add a torque sensors to the robot

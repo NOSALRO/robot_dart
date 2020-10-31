@@ -365,6 +365,14 @@ namespace robot_dart {
         return _skeleton->getJoint(joint_index);
     }
 
+    dart::dynamics::DegreeOfFreedom* Robot::dof(const std::string& dof_name) { return _skeleton->getDof(dof_name); }
+
+    dart::dynamics::DegreeOfFreedom* Robot::dof(size_t dof_index)
+    {
+        ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", nullptr);
+        return _skeleton->getDof(dof_index);
+    }
+
     std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
     const std::string& Robot::name() const { return _robot_name; }
@@ -640,138 +648,220 @@ namespace robot_dart {
         return str_types;
     }
 
-    void Robot::set_position_enforced(size_t dof, bool enforced)
+    void Robot::set_position_enforced(const std::vector<bool>& enforced, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0) {
+            ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(),
+                "Position enforced vector size is not the same as the DOFs of the robot", );
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
 #if DART_VERSION_AT_LEAST(6, 10, 0)
-        _skeleton->getDof(dof)->getJoint()->setLimitEnforcement(enforced);
+                _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced[i]);
 #else
-        _skeleton->getDof(dof)->getJoint()->setPositionLimitEnforced(enforced);
+                _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced[i]);
 #endif
-    }
-
-    void Robot::set_position_enforced(const std::vector<bool>& enforced)
-    {
-        ROBOT_DART_ASSERT(enforced.size() == _skeleton->getNumDofs(),
-            "Position enforced vector size is not the same as the DOFs of the robot", );
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            }
+        }
+        else {
+            ROBOT_DART_ASSERT(enforced.size() == dof_names.size(),
+                "Position enforced vector size is not the same as the dof_names size", );
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "set_position_enforced: " + dof_names[i] + " is not in dof_map", );
 #if DART_VERSION_AT_LEAST(6, 10, 0)
-            _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced[i]);
+                _skeleton->getDof(it->second)->getJoint()->setLimitEnforcement(enforced[i]);
 #else
-            _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced[i]);
+                _skeleton->getDof(it->second)->getJoint()->setPositionLimitEnforced(enforced[i]);
 #endif
+            }
         }
     }
 
-    void Robot::set_position_enforced(bool enforced)
+    void Robot::set_position_enforced(bool enforced, const std::vector<std::string>& dof_names)
     {
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-#if DART_VERSION_AT_LEAST(6, 10, 0)
-            _skeleton->getDof(i)->getJoint()->setLimitEnforcement(enforced);
-#else
-            _skeleton->getDof(i)->getJoint()->setPositionLimitEnforced(enforced);
-#endif
-        }
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0)
+            n_dofs = _skeleton->getNumDofs();
+        std::vector<bool> enforced_all(n_dofs, enforced);
+
+        set_position_enforced(enforced_all, dof_names);
     }
 
-    bool Robot::position_enforced(size_t dof) const
-    {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", false);
-#if DART_VERSION_AT_LEAST(6, 10, 0)
-        return _skeleton->getDof(dof)->getJoint()->areLimitsEnforced();
-#else
-        return _skeleton->getDof(dof)->getJoint()->isPositionLimitEnforced();
-#endif
-    }
-
-    std::vector<bool> Robot::position_enforced() const
+    std::vector<bool> Robot::position_enforced(const std::vector<std::string>& dof_names) const
     {
         std::vector<bool> pos;
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+        if (dof_names.size() == 0) {
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
 #if DART_VERSION_AT_LEAST(6, 10, 0)
-            pos.push_back(_skeleton->getDof(i)->getJoint()->areLimitsEnforced());
+                pos.push_back(_skeleton->getDof(i)->getJoint()->areLimitsEnforced());
 #else
-            pos.push_back(_skeleton->getDof(i)->getJoint()->isPositionLimitEnforced());
+                pos.push_back(_skeleton->getDof(i)->getJoint()->isPositionLimitEnforced());
 #endif
+            }
+        }
+        else {
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "position_enforced: " + dof_names[i] + " is not in dof_map", std::vector<bool>());
+#if DART_VERSION_AT_LEAST(6, 10, 0)
+                pos.push_back(_skeleton->getDof(it->second)->getJoint()->areLimitsEnforced());
+#else
+                pos.push_back(_skeleton->getDof(it->second)->getJoint()->isPositionLimitEnforced());
+#endif
+            }
         }
 
         return pos;
     }
 
-    void Robot::set_damping_coeff(size_t dof, double damp)
+    void Robot::set_damping_coeffs(const std::vector<double>& damps, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
-        _skeleton->getDof(dof)->setDampingCoefficient(damp);
-    }
-
-    void Robot::set_damping_coeffs(const std::vector<double>& damps)
-    {
-        ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(),
-            "Damping coefficient vector size is not the same as the DOFs of the robot", );
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->setDampingCoefficient(damps[i]);
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0) {
+            ROBOT_DART_ASSERT(damps.size() == _skeleton->getNumDofs(),
+                "Damping coefficient vector size is not the same as the DOFs of the robot", );
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->setDampingCoefficient(damps[i]);
+            }
+        }
+        else {
+            ROBOT_DART_ASSERT(damps.size() == dof_names.size(),
+                "Damping coefficient vector size is not the same as the dof_names size", );
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "set_damping_coeffs: " + dof_names[i] + " is not in dof_map", );
+                _skeleton->getDof(it->second)->setDampingCoefficient(damps[i]);
+            }
         }
     }
 
-    void Robot::set_damping_coeffs(double damp)
+    void Robot::set_damping_coeffs(double damp, const std::vector<std::string>& dof_names)
     {
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->setDampingCoefficient(damp);
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0)
+            n_dofs = _skeleton->getNumDofs();
+        std::vector<double> damps_all(n_dofs, damp);
+
+        set_damping_coeffs(damps_all, dof_names);
+    }
+
+    std::vector<double> Robot::damping_coeffs(const std::vector<std::string>& dof_names) const
+    {
+        std::vector<double> dampings;
+        if (dof_names.size() == 0) {
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                dampings.push_back(_skeleton->getDof(i)->getDampingCoefficient());
+            }
+        }
+        else {
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "damping_coeffs: " + dof_names[i] + " is not in dof_map", std::vector<double>());
+                dampings.push_back(_skeleton->getDof(it->second)->getDampingCoefficient());
+            }
+        }
+
+        return dampings;
+    }
+
+    void Robot::set_coulomb_coeffs(const std::vector<double>& cfrictions, const std::vector<std::string>& dof_names)
+    {
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0) {
+            ROBOT_DART_ASSERT(cfrictions.size() == _skeleton->getNumDofs(),
+                "Coulomb friction coefficient vector size is not the same as the DOFs of the robot", );
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->setCoulombFriction(cfrictions[i]);
+            }
+        }
+        else {
+            ROBOT_DART_ASSERT(cfrictions.size() == dof_names.size(),
+                "Coulomb friction coefficient vector size is not the same as the dof_names size", );
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "set_coulomb_coeffs: " + dof_names[i] + " is not in dof_map", );
+                _skeleton->getDof(it->second)->setCoulombFriction(cfrictions[i]);
+            }
         }
     }
 
-    double Robot::damping_coeff(size_t dof) const
+    void Robot::set_coulomb_coeffs(double cfriction, const std::vector<std::string>& dof_names)
     {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", 0.);
-        return _skeleton->getDof(dof)->getDampingCoefficient();
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0)
+            n_dofs = _skeleton->getNumDofs();
+        std::vector<double> cfrictions(n_dofs, cfriction);
+
+        set_coulomb_coeffs(cfrictions, dof_names);
     }
 
-    std::vector<double> Robot::damping_coeffs() const
-    {
-        std::vector<double> damps;
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            damps.push_back(_skeleton->getDof(i)->getDampingCoefficient());
-        }
-
-        return damps;
-    }
-
-    void Robot::set_cfriction_coeff(size_t dof, double cfriction)
-    {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", );
-        _skeleton->getDof(dof)->setCoulombFriction(cfriction);
-    }
-
-    void Robot::set_cfriction_coeffs(const std::vector<double>& cfrictions)
-    {
-        ROBOT_DART_ASSERT(cfrictions.size() == _skeleton->getNumDofs(),
-            "Damping coefficient vector size is not the same as the DOFs of the robot", );
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->setCoulombFriction(cfrictions[i]);
-        }
-    }
-
-    void Robot::set_cfriction_coeffs(double cfriction)
-    {
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            _skeleton->getDof(i)->setCoulombFriction(cfriction);
-        }
-    }
-
-    double Robot::cfriction_coeff(size_t dof) const
-    {
-        ROBOT_DART_ASSERT(dof < _skeleton->getNumDofs(), "DOF index out of bounds", 0.);
-        return _skeleton->getDof(dof)->getCoulombFriction();
-    }
-
-    std::vector<double> Robot::cfriction_coeffs() const
+    std::vector<double> Robot::coulomb_coeffs(const std::vector<std::string>& dof_names) const
     {
         std::vector<double> cfrictions;
-        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
-            cfrictions.push_back(_skeleton->getDof(i)->getCoulombFriction());
+        if (dof_names.size() == 0) {
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                cfrictions.push_back(_skeleton->getDof(i)->getCoulombFriction());
+            }
+        }
+        else {
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "coulomb_coeffs: " + dof_names[i] + " is not in dof_map", std::vector<double>());
+                cfrictions.push_back(_skeleton->getDof(it->second)->getCoulombFriction());
+            }
         }
 
         return cfrictions;
+    }
+
+    void Robot::set_spring_stiffnesses(const std::vector<double>& stiffnesses, const std::vector<std::string>& dof_names)
+    {
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0) {
+            ROBOT_DART_ASSERT(stiffnesses.size() == _skeleton->getNumDofs(),
+                "Spring stiffnesses vector size is not the same as the DOFs of the robot", );
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                _skeleton->getDof(i)->setSpringStiffness(stiffnesses[i]);
+            }
+        }
+        else {
+            ROBOT_DART_ASSERT(stiffnesses.size() == dof_names.size(),
+                "Spring stiffnesses vector size is not the same as the dof_names size", );
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "set_spring_stiffnesses: " + dof_names[i] + " is not in dof_map", );
+                _skeleton->getDof(it->second)->setSpringStiffness(stiffnesses[i]);
+            }
+        }
+    }
+
+    void Robot::set_spring_stiffnesses(double stiffness, const std::vector<std::string>& dof_names)
+    {
+        size_t n_dofs = dof_names.size();
+        if (n_dofs == 0)
+            n_dofs = _skeleton->getNumDofs();
+        std::vector<double> stiffnesses(n_dofs, stiffness);
+
+        set_spring_stiffnesses(stiffnesses, dof_names);
+    }
+
+    std::vector<double> Robot::spring_stiffnesses(const std::vector<std::string>& dof_names) const
+    {
+        std::vector<double> stiffnesses;
+        if (dof_names.size() == 0) {
+            for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+                stiffnesses.push_back(_skeleton->getDof(i)->getSpringStiffness());
+            }
+        }
+        else {
+            for (size_t i = 0; i < dof_names.size(); i++) {
+                auto it = _dof_map.find(dof_names[i]);
+                ROBOT_DART_ASSERT(it != _dof_map.end(), "spring_stiffnesses: " + dof_names[i] + " is not in dof_map", std::vector<double>());
+                stiffnesses.push_back(_skeleton->getDof(it->second)->getSpringStiffness());
+            }
+        }
+
+        return stiffnesses;
     }
 
 #if DART_VERSION_AT_LEAST(6, 10, 0)
@@ -1411,6 +1501,13 @@ namespace robot_dart {
     {
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", );
         _skeleton->getBodyNode(body_index)->setName(body_name);
+    }
+
+    size_t Robot::body_index(const std::string& body_name) const
+    {
+        auto bd = _skeleton->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd, "body_index : " + body_name + " is not in the skeleton", 0);
+        return bd->getIndexInSkeleton();
     }
 
     double Robot::body_mass(const std::string& body_name) const
