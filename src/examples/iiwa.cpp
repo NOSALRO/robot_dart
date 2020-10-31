@@ -14,19 +14,19 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
+    auto robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
 
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
+    robot->fix_to_world();
+    robot->set_position_enforced(true);
 
-    Eigen::VectorXd ctrl(7);
-    ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
-    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(300., 50.);
+    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    robot->add_controller(controller);
+    controller->set_pd(300., 50.);
 
     // Add a ghost robot; only visuals, no dynamics, no collision
-    auto ghost = global_robot->clone_ghost();
+    auto ghost = robot->clone_ghost();
 
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
@@ -37,11 +37,11 @@ int main()
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 #endif
     simu.add_checkerboard_floor();
-    simu.add_robot(global_robot);
+    simu.add_robot(robot);
     simu.add_robot(ghost);
     simu.set_text_panel("IIWA simulation");
     simu.run(20.);
 
-    global_robot.reset();
+    robot.reset();
     return 0;
 }

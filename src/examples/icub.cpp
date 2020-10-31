@@ -26,8 +26,7 @@ int main()
     robot->set_color_mode("aspect", "left_foot");
 
     robot->set_position_enforced(true);
-    robot->skeleton()->setPosition(5, 0.5);
-    robot->skeleton()->setPosition(2, 1.57);
+    robot->set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.5}));
 
     // Set actuator types to VELOCITY motors so that they stay in position without any controller
     robot->set_actuator_types("velocity");

@@ -160,7 +160,8 @@ BOOST_AUTO_TEST_CASE(test_force_torque)
         robot->fix_to_world();
         robot->set_position_enforced(false); // Do not enforce limits
         robot->set_damping_coeffs(0.); // no damping
-        robot->set_cfriction_coeffs(0.); // no coulomb friction
+        robot->set_coulomb_coeffs(0.); // no coulomb friction
+        robot->set_spring_stiffnesses(0.); // no spring stiffness
 
         robot_dart::RobotDARTSimu simu(0.001);
         simu.add_robot(robot);

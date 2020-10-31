@@ -22,11 +22,11 @@ int main()
     robot->set_position_enforced(false);
     robot->set_actuator_types("torque");
 
-    Eigen::VectorXd ctrl(7);
-    ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
-    robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(robot->controllers()[0])->set_pd(300., 50.);
+    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    robot->add_controller(controller);
+    controller->set_pd(300., 50.);
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
@@ -42,14 +42,18 @@ int main()
     std::cout.precision(5);
 
     robot->set_damping_coeffs(0.);
-    robot->set_cfriction_coeffs(0.);
+    robot->set_coulomb_coeffs(0.);
+    robot->set_spring_stiffnesses(0.);
 
-    for (const auto& jnt : robot->skeleton()->getJoints()) {
-        for (size_t i = 0; i < jnt->getNumDofs(); ++i) {
-            std::cout << "Stiffness: " << jnt->getSpringStiffness(i) << std::endl;
-            std::cout << "Friction: " << jnt->getCoulombFriction(i) << std::endl;
-            std::cout << "Damping: " << jnt->getDampingCoefficient(i) << std::endl;
-        }
+    auto dampings = robot->damping_coeffs();
+    auto frictions = robot->coulomb_coeffs();
+    auto stiffnesses = robot->spring_stiffnesses();
+
+    for (size_t i = 0; i < dampings.size(); ++i) {
+        std::cout << "DoF #" << i << std::endl;
+        std::cout << "    Stiffness: " << stiffnesses[i] << std::endl;
+        std::cout << "    Friction: " << frictions[i] << std::endl;
+        std::cout << "    Damping: " << dampings[i] << std::endl;
     }
 
     // Add a torque sensors to the robot
