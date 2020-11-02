@@ -16,6 +16,7 @@ namespace robot_dart {
             const std::shared_ptr<sensor::ForceTorque>& ft_foot_right() const { return _ft_foot_right; }
             const std::shared_ptr<sensor::ForceTorque>& ft_wrist_left() const { return _ft_wrist_left; }
             const std::shared_ptr<sensor::ForceTorque>& ft_wrist_right() const { return _ft_wrist_right; }
+            const std::unordered_map<std::string, sensor::Torque>& torques() const { return _torques; }
 
         protected:
             std::shared_ptr<sensor::IMU> _imu;
@@ -23,6 +24,7 @@ namespace robot_dart {
             std::shared_ptr<sensor::ForceTorque> _ft_foot_right;
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_left;
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_right;
+            std::unordered_map<std::string, sensor::Torque> _torques;
         };
 
         class TalosLight : public Talos {
