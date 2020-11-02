@@ -45,8 +45,8 @@ int main()
     // auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(robot, "r_ankle_roll");
 
     // Add some visualizations
-    // robot->set_draw_axis(imu_config.body->getName());
-    // robot->set_draw_axis("r_ankle_2");
+    //    robot->set_draw_axis(imu_config.body->getName());
+    //    robot->set_draw_axis("r_ankle_2");
 
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
@@ -85,16 +85,17 @@ int main()
         simu.step_world();
 
         // Print IMU measurements
-        if (simu.schedule(robot->imu()->frequency())) {
-            std::cout << "Angular    Velocity: " << robot->imu()->angular_velocity().transpose().format(fmt) << std::endl;
-            std::cout << "Linear Acceleration: " << robot->imu()->linear_acceleration().transpose().format(fmt) << std::endl;
+        if (simu.schedule(robot->imu().frequency())) {
+            std::cout << "Angular    Position: " << robot->imu().angular_position_vec().transpose().format(fmt) << std::endl;
+            std::cout << "Angular    Velocity: " << robot->imu().angular_velocity().transpose().format(fmt) << std::endl;
+            std::cout << "Linear Acceleration: " << robot->imu().linear_acceleration().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
         }
 
         // Print FT measurements
-        if (simu.schedule(robot->ft_foot_left()->frequency())) {
-            std::cout << "FT ( force): " << robot->ft_foot_left()->force().transpose().format(fmt) << std::endl;
-            std::cout << "FT (torque): " << robot->ft_foot_left()->torque().transpose().format(fmt) << std::endl;
+        if (simu.schedule(robot->ft_foot_left().frequency())) {
+            std::cout << "FT ( force): " << robot->ft_foot_left().force().transpose().format(fmt) << std::endl;
+            std::cout << "FT (torque): " << robot->ft_foot_left().torque().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
         }
     }

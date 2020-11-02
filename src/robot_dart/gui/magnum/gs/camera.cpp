@@ -297,9 +297,6 @@ namespace robot_dart {
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::DepthTest);
                             Magnum::GL::Renderer::disable(Magnum::GL::Renderer::Feature::FaceCulling);
 
-                            // bind glyph texture
-                            debug_data.text_shader->bindVectorTexture(debug_data.cache->texture());
-
                             for (auto& text : simu->gui_data()->drawing_texts()) {
                                 if (text->text.empty()) // ignore empty strings
                                     continue;
@@ -328,6 +325,7 @@ namespace robot_dart {
                                 }
 
                                 (*debug_data.text_shader)
+                                    .bindVectorTexture(debug_data.cache->texture())
                                     .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * extra_tr * text_scaling)
                                     // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
