@@ -23,7 +23,6 @@ namespace robot_dart {
                 BaseGraphics(const GraphicsConfiguration& configuration = GraphicsConfiguration())
                     : _configuration(configuration), _enabled(true)
                 {
-                    Corrade::Utility::Debug magnum_silence_output{nullptr};
                     robot_dart_initialize_magnum_resources();
                 }
 
@@ -192,6 +191,8 @@ namespace robot_dart {
                 bool _enabled;
                 int _fps;
                 std::unique_ptr<BaseApplication> _magnum_app;
+
+                Corrade::Utility::Debug _magnum_silence_output{nullptr};
             };
         } // namespace magnum
     } // namespace gui
