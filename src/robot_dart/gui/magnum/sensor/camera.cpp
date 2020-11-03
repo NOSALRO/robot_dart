@@ -17,7 +17,7 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace sensor {
-                Camera::Camera(RobotDARTSimu* simu, BaseApplication* app, size_t width, size_t height, size_t freq, bool draw_debug) : robot_dart::sensor::Sensor(simu, freq), _magnum_app(app), _width(width), _height(height), _draw_debug(draw_debug)
+                Camera::Camera(BaseApplication* app, size_t width, size_t height, size_t freq, bool draw_debug) : robot_dart::sensor::Sensor(freq), _magnum_app(app), _width(width), _height(height), _draw_debug(draw_debug)
                 {
                     /* Camera setup */
                     _camera.reset(
@@ -46,18 +46,18 @@ namespace robot_dart {
                         Magnum::GL::Framebuffer::ColorAttachment(0), _color);
                     _framebuffer.attachRenderbuffer(
                         Magnum::GL::Framebuffer::BufferAttachment::Depth, _depth);
-
-                    _active = true;
                 }
 
                 void Camera::init()
                 {
-                    // Do nothing
+                    if (_simu)
+                        _active = true;
                     // TO-DO: Maybe create a camera configuration structure that gets saved and re-initialized each time
                 }
 
                 void Camera::calculate(double)
                 {
+                    ROBOT_DART_EXCEPTION_ASSERT(_simu, "Simulation pointer is null!");
                     /* Update graphic meshes/materials and render */
                     _magnum_app->update_graphics();
                     /* Update lights transformations --- this also draws the shadows if enabled */

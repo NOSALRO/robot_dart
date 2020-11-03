@@ -20,13 +20,14 @@ namespace robot_dart {
         return false;
     }
 
-    void Scheduler::reset(double dt, bool sync, double current_time)
+    void Scheduler::reset(double dt, bool sync, double current_time, double real_time)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(dt > 0. && "Time-step needs to be bigger than zero.");
 
         _current_time = 0.;
         _real_time = 0.;
         _simu_start_time = current_time;
+        _real_start_time = real_time;
         _current_step = 0;
         _max_frequency = -1;
 
@@ -51,7 +52,7 @@ namespace robot_dart {
         }
 
         _real_time = real.count() * 1e-6;
-        return _real_time;
+        return _real_start_time + _real_time;
     }
 
 } // namespace robot_dart

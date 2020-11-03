@@ -11,6 +11,7 @@
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/sensor/force_torque.hpp>
 #include <robot_dart/sensor/imu.hpp>
+#include <robot_dart/sensor/torque.hpp>
 #include <robot_dart/utils.hpp>
 
 using namespace robot_dart;
@@ -40,7 +41,7 @@ BOOST_AUTO_TEST_CASE(test_imu)
         robot_dart::sensor::IMUConfig imu_config;
         imu_config.body = robot->body_node("box");
         imu_config.frequency = 1000; // big update rate to get result in one time-step
-        auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
+        auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(imu_config);
 
         // Test IMU zero linear acceleration on free-fall
         // Do one step
@@ -121,31 +122,66 @@ BOOST_AUTO_TEST_CASE(test_force_torque)
     "</link>"
     "</robot>";
     // clang-format on
-    // Load robot & setup sim
-    auto robot = std::make_shared<robot_dart::Robot>(urdf_robot, "test_robot", true);
-    robot->fix_to_world();
+    // FT sensor
+    {
+        // Load robot & setup sim
+        auto robot = std::make_shared<robot_dart::Robot>(urdf_robot, "test_robot", true);
+        robot->fix_to_world();
 
-    robot_dart::RobotDARTSimu simu(0.001);
-    simu.add_robot(robot);
+        robot_dart::RobotDARTSimu simu(0.001);
+        simu.add_robot(robot);
 
-    // Put the robot in unstable position to hit the limits with gravity
-    Eigen::VectorXd pos(1);
-    pos << M_PI / 3.;
-    robot->set_positions(pos);
+        // Put the robot in unstable position to hit the limits with gravity
+        Eigen::VectorXd pos(1);
+        pos << M_PI / 3.;
+        robot->set_positions(pos);
 
-    // Add a force/torque sensor
-    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, robot, "joint_1");
+        // Add a force/torque sensor
+        auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(robot, "joint_1");
 
-    // Do a few steps to hit the limit
-    for (int i = 0; i < 5000; i++)
-        simu.step_world();
+        // Do a few steps to hit the limit
+        for (int i = 0; i < 5000; i++)
+            simu.step_world();
 
-    // force and torque magnitude should be equal to gravity magnitude
-    BOOST_CHECK_SMALL(std::abs(ft_sensor->force().norm() - simu.gravity().norm()), 1e-6);
-    BOOST_CHECK_SMALL(std::abs(ft_sensor->torque().norm() - simu.gravity().norm()), 1e-6);
+        // force and torque magnitude should be equal to gravity magnitude
+        BOOST_CHECK_SMALL(std::abs(ft_sensor->force().norm() - simu.gravity().norm()), 1e-6);
+        BOOST_CHECK_SMALL(std::abs(ft_sensor->torque().norm() - simu.gravity().norm()), 1e-6);
 
-    // force (abs) x-axis should be very close to gravity magnitude
-    BOOST_CHECK_SMALL(std::abs(ft_sensor->force()[0]) - simu.gravity().norm(), 1e-4);
-    // torque (abs) y-axis should be very close to gravity magnitude
-    BOOST_CHECK_SMALL(std::abs(ft_sensor->torque()[1]) - simu.gravity().norm(), 1e-6);
+        // force (abs) x-axis should be very close to gravity magnitude
+        BOOST_CHECK_SMALL(std::abs(ft_sensor->force()[0]) - simu.gravity().norm(), 1e-4);
+        // torque (abs) y-axis should be very close to gravity magnitude
+        BOOST_CHECK_SMALL(std::abs(ft_sensor->torque()[1]) - simu.gravity().norm(), 1e-6);
+    }
+
+    // torque sensor
+    {
+        // Load robot & setup sim
+        auto robot = std::make_shared<robot_dart::Robot>(urdf_robot, "test_robot", true);
+        robot->fix_to_world();
+        robot->set_position_enforced(false); // Do not enforce limits
+        robot->set_damping_coeffs(0.); // no damping
+        robot->set_cfriction_coeffs(0.); // no coulomb friction
+
+        robot_dart::RobotDARTSimu simu(0.001);
+        simu.add_robot(robot);
+
+        // Put the robot in unstable position to hit the limits with gravity
+        Eigen::VectorXd pos(1);
+        pos << M_PI / 3.;
+        robot->set_positions(pos);
+
+        // Add a torque sensor
+        auto torque_sensor = simu.add_sensor<robot_dart::sensor::Torque>(robot, "joint_1");
+
+        Eigen::VectorXd cmd(1);
+        cmd << 1.;
+
+        // Do a few steps of simulation
+        for (int i = 0; i < 50; i++) {
+            robot->set_commands(cmd);
+            simu.step_world();
+        }
+
+        BOOST_CHECK_SMALL(std::abs(cmd(0) - torque_sensor->torques().norm()), 1e-6);
+    }
 }

@@ -102,6 +102,7 @@ namespace robot_dart {
 
                 // Lights
                 size_t max_lights = 3;
+                double specular_strength = 0.25; // strength of the specular component
 
                 // These options are only for the main camera
                 bool draw_main_camera = true;
@@ -129,7 +130,7 @@ namespace robot_dart {
                 BaseApplication(const GraphicsConfiguration& configuration = GraphicsConfiguration());
                 virtual ~BaseApplication() {}
 
-                void init(RobotDARTSimu* simu, size_t width, size_t height);
+                void init(RobotDARTSimu* simu, const GraphicsConfiguration& configuration);
 
                 void clear_lights();
                 void add_light(const gs::Light& light);
@@ -175,15 +176,15 @@ namespace robot_dart {
                 DebugDrawData debug_draw_data()
                 {
                     DebugDrawData data;
-                    data.axes_shader = &*_3D_axis_shader;
-                    data.background_shader = &*_background_shader;
-                    data.axes_mesh = &*_3D_axis_mesh;
-                    data.background_mesh = &*_background_mesh;
-                    data.text_shader = &*_text_shader;
-                    data.text_vertices = &*_text_vertices;
-                    data.text_indices = &*_text_indices;
-                    data.font = &*_font;
-                    data.cache = &*_glyph_cache;
+                    data.axes_shader = _3D_axis_shader.get();
+                    data.background_shader = _background_shader.get();
+                    data.axes_mesh = _3D_axis_mesh.get();
+                    data.background_mesh = _background_mesh.get();
+                    data.text_shader = _text_shader.get();
+                    data.text_vertices = _text_vertices.get();
+                    data.text_indices = _text_indices.get();
+                    data.font = _font.get();
+                    data.cache = _glyph_cache.get();
 
                     return data;
                 }
@@ -197,6 +198,9 @@ namespace robot_dart {
                 std::unique_ptr<gs::Camera> _camera;
 
                 bool _done = false;
+
+                /* GUI Config */
+                GraphicsConfiguration _configuration;
 
                 /* DART */
                 RobotDARTSimu* _simu;

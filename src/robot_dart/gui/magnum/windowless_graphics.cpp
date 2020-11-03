@@ -3,8 +3,9 @@
 namespace robot_dart {
     namespace gui {
         namespace magnum {
-            WindowlessGraphics::WindowlessGraphics(RobotDARTSimu* simu, const GraphicsConfiguration& configuration) : BaseGraphics(simu, configuration)
+            void WindowlessGraphics::set_simu(RobotDARTSimu* simu)
             {
+                BaseGraphics<WindowlessGLApplication>::set_simu(simu);
                 // we should not synchronize by default if we want windowless graphics (usually used only for sensors)
                 simu->scheduler().set_sync(false);
                 // disable summary text when windowless graphics activated

@@ -11,9 +11,10 @@ namespace robot_dart {
         public:
             Base() {}
 
-            Base(RobotDARTSimu*) {}
-
             virtual ~Base() {}
+
+            virtual void set_simu(RobotDARTSimu* simu) { _simu = simu; }
+            const RobotDARTSimu* simu() const { return _simu; }
 
             virtual bool done() const { return false; }
 
@@ -30,6 +31,9 @@ namespace robot_dart {
 
             virtual size_t width() const { return 0; }
             virtual size_t height() const { return 0; }
+
+        protected:
+            RobotDARTSimu* _simu = nullptr;
         };
     } // namespace gui
 } // namespace robot_dart

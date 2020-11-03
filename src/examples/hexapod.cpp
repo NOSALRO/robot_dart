@@ -20,7 +20,7 @@ int main()
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
