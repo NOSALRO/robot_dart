@@ -25,35 +25,17 @@ namespace robot_dart {
                 "torso_1_joint",
                 "torso_2_joint",
                 // arm_left
-                "arm_left_1_joint",
-                "arm_left_2_joint",
-                "arm_left_3_joint",
-                "arm_left_4_joint",
-                "arm_left_5_joint",
-                "arm_left_6_joint",
-                "arm_left_7_joint",
+                "arm_left_1_joint", "arm_left_2_joint",
+                "arm_left_3_joint", "arm_left_4_joint",
                 // arm_right
-                "arm_right_1_joint",
-                "arm_right_2_joint",
-                "arm_right_3_joint",
-                "arm_right_4_joint",
-                "arm_right_5_joint",
-                "arm_right_6_joint",
-                "arm_right_7_joint",
+                "arm_right_1_joint", "arm_right_2_joint",
+                "arm_right_3_joint", "arm_right_4_joint",
                 // leg_left
-                "leg_left_1_joint",
-                "leg_left_2_joint",
-                "leg_left_3_joint",
-                "leg_left_4_joint",
-                "leg_left_5_joint",
-                "leg_left_6_joint",
+                "leg_left_1_joint", "leg_left_2_joint", "leg_left_3_joint",
+                "leg_left_4_joint", "leg_left_5_joint", "leg_left_6_joint",
                 // leg_right
-                "leg_right_1_joint",
-                "leg_right_2_joint",
-                "leg_right_3_joint",
-                "leg_right_4_joint",
-                "leg_right_5_joint",
-                "leg_right_6_joint"
+                "leg_right_1_joint", "leg_right_2_joint", "leg_right_3_joint",
+                "leg_right_4_joint", "leg_right_5_joint", "leg_right_6_joint"
 
             };
             for (auto& s : joints) {
