@@ -176,7 +176,7 @@ namespace robot_dart {
 
                     /* Glyphs we need to render everything */
                     /* Latin characters for now only */
-                    _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
+                    _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 32});
                     _font->fillGlyphCache(*_glyph_cache,
                         "abcdefghijklmnopqrstuvwxyz"
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
