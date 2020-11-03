@@ -22,7 +22,7 @@ namespace robot_dart {
             std::uint8_t alignment;
             bool draw_background;
             Eigen::Vector4d background_color;
-            float font_size = 22; // default font size
+            float font_size; // default font size
         };
     } // namespace simu
 
