@@ -12,8 +12,8 @@ int main()
     std::srand(std::time(NULL));
 
     // Load robot from URDF
-    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa14", "iiwa/meshes"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa14.urdf", packages);
+    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
+    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
 
     global_robot->fix_to_world();
     global_robot->set_position_enforced(true);
@@ -54,7 +54,7 @@ int main()
             robot_dart::gui::magnum::GraphicsConfiguration configuration;
             configuration.width = 1024;
             configuration.height = 768;
-            auto graphics = std::make_shared<robot_dart::gui::magnum::WindowlessGraphics>(&simu, configuration);
+            auto graphics = std::make_shared<robot_dart::gui::magnum::WindowlessGraphics>(configuration);
             simu.set_graphics(graphics);
             // Position the camera differently for each thread to visualize the difference
             graphics->look_at({0.4 * index, 3.5 - index * 0.1, 2.}, {0., 0., 0.25});

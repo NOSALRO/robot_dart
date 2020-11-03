@@ -51,7 +51,7 @@ int main()
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1024;
     configuration.height = 768;
-    auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(&simu, configuration);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
@@ -61,7 +61,7 @@ int main()
     graphics->record_video("video-main.mp4", simu.graphics_freq());
 
     // Add camera
-    auto camera = std::make_shared<robot_dart::sensor::Camera>(&simu, graphics->magnum_app(), 256, 256);
+    auto camera = std::make_shared<robot_dart::sensor::Camera>(graphics->magnum_app(), 256, 256);
     camera->camera().set_far_plane(5.f);
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // cameras can also record video

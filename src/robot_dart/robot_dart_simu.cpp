@@ -104,7 +104,7 @@ namespace robot_dart {
         _world->getConstraintSolver()->getCollisionOption().collisionFilter = std::make_shared<collision_filter::BitmaskContactFilter>();
         _world->setTimeStep(timestep);
         _world->setTime(0.0);
-        _graphics = std::make_shared<gui::Base>(this);
+        _graphics = std::make_shared<gui::Base>();
 
         _gui_data.reset(new simu::GUIData());
     }
@@ -130,8 +130,6 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        bool update_graphics = false;
-
         if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
 
@@ -141,21 +139,8 @@ namespace robot_dart {
                     desc->operator()();
         }
 
-        // update sensors
-        for (auto& sensor : _sensors) {
-            if (sensor->active() && _scheduler(sensor->frequency())) {
-                sensor->refresh(_world->getTime());
-            }
-        }
-
+        // Update graphics
         if (_scheduler(_graphics_freq)) {
-            update_graphics = true;
-        }
-
-        _old_index++;
-        _scheduler.step();
-
-        if (update_graphics) {
             // Update default texts
             if (_text_panel) { // Need to re-transform as the size of the window might have changed
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
@@ -176,6 +161,16 @@ namespace robot_dart {
 
             _graphics->refresh();
         }
+
+        // update sensors
+        for (auto& sensor : _sensors) {
+            if (sensor->active() && _scheduler(sensor->frequency())) {
+                sensor->refresh(_world->getTime());
+            }
+        }
+
+        _old_index++;
+        _scheduler.step();
 
         return _break;
     }
@@ -199,6 +194,7 @@ namespace robot_dart {
     void RobotDARTSimu::set_graphics(const std::shared_ptr<gui::Base>& graphics)
     {
         _graphics = graphics;
+        _graphics->set_simu(this);
         _graphics->set_fps(_graphics_freq);
     }
 
@@ -210,6 +206,7 @@ namespace robot_dart {
     void RobotDARTSimu::add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
     {
         _descriptors.push_back(desc);
+        desc->set_simu(this);
     }
 
     std::vector<std::shared_ptr<descriptor::BaseDescriptor>> RobotDARTSimu::descriptors() const
@@ -226,6 +223,7 @@ namespace robot_dart {
     void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
     {
         _sensors.push_back(sensor);
+        sensor->set_simu(this);
         sensor->init();
     }
 
@@ -282,7 +280,7 @@ namespace robot_dart {
         if (update_control_freq)
             _control_freq = _physics_freq;
 
-        _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time());
+        _scheduler.reset(timestep, _scheduler.sync(), _scheduler.current_time(), _scheduler.real_time());
     }
 
     Eigen::Vector3d RobotDARTSimu::gravity() const

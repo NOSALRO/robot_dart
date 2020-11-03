@@ -74,17 +74,18 @@ namespace robot_dart {
             }
 
             // BaseApplication
-            BaseApplication::BaseApplication(const GraphicsConfiguration& configuration) : _max_lights(configuration.max_lights), _shadow_map_size(configuration.shadow_map_size)
+            BaseApplication::BaseApplication(const GraphicsConfiguration& configuration) : _configuration(configuration), _max_lights(configuration.max_lights), _shadow_map_size(configuration.shadow_map_size)
             {
                 enable_shadows(configuration.shadowed, configuration.transparent_shadows);
             }
 
-            void BaseApplication::init(RobotDARTSimu* simu, size_t width, size_t height)
+            void BaseApplication::init(RobotDARTSimu* simu, const GraphicsConfiguration& configuration)
             {
+                _configuration = configuration;
                 _simu = simu;
                 /* Camera setup */
                 _camera.reset(
-                    new gs::Camera(_scene, static_cast<int>(width), static_cast<int>(height)));
+                    new gs::Camera(_scene, static_cast<int>(configuration.width), static_cast<int>(configuration.height)));
 
                 /* Shadow camera */
                 _shadow_camera_object = new Object3D{&_scene};
@@ -255,6 +256,12 @@ namespace robot_dart {
                 /* Update lights transformations */
                 camera.transform_lights(_lights);
 
+                if (_shadowed)
+                    _prepare_shadows();
+
+                if (_shadowed)
+                    render_shadows();
+
                 /* Set the shader information */
                 for (size_t i = 0; i < _lights.size(); i++) {
                     _color_shader->set_light(i, _lights[i]);
@@ -281,16 +288,13 @@ namespace robot_dart {
                     _texture_shader->bind_cube_map_color_texture(*_shadow_color_cube_map);
                 }
 
-                if (_shadowed)
-                    _prepare_shadows();
-
                 _color_shader->set_is_shadowed(_shadowed);
                 _texture_shader->set_is_shadowed(_shadowed);
                 _color_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
                 _texture_shader->set_transparent_shadows(_transparent_shadows && _transparentSize > 0);
 
-                if (_shadowed)
-                    render_shadows();
+                _color_shader->set_specular_strength(_configuration.specular_strength);
+                _texture_shader->set_specular_strength(_configuration.specular_strength);
             }
 
             void BaseApplication::update_graphics()
@@ -323,6 +327,8 @@ namespace robot_dart {
                             transparent = true;
                         mat.specular_color() = object.drawData().materials[i].specularColor();
                         mat.shininess() = object.drawData().materials[i].shininess();
+                        if (mat.shininess() < 1.f)
+                            mat.shininess() = 2000.f;
 
                         scalings.push_back(object.drawData().scaling);
 

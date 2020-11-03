@@ -35,7 +35,7 @@ int main()
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(&simu);
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     //    graphics->record_video("icub.mp4");
@@ -47,10 +47,10 @@ int main()
     robot_dart::sensor::IMUConfig imu_config;
     imu_config.body = robot->body_node("chest"); // choose which body the sensor is attached to
     imu_config.frequency = 200; // update rate of the sensor
-    auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(&simu, imu_config);
+    auto imu_sensor = simu.add_sensor<robot_dart::sensor::IMU>(imu_config);
 
     // Add a force/torque sensor in "r_ankle_roll" joint
-    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(&simu, robot, "r_ankle_roll");
+    auto ft_sensor = simu.add_sensor<robot_dart::sensor::ForceTorque>(robot, "r_ankle_roll");
 
     // Add some visualizations
     robot->set_draw_axis(imu_config.body->getName());
@@ -94,6 +94,7 @@ int main()
 
         // Print IMU measurements
         if (simu.schedule(imu_sensor->frequency())) {
+            std::cout << "Angular    Position: " << imu_sensor->angular_position_vec().transpose().format(fmt) << std::endl;
             std::cout << "Angular    Velocity: " << imu_sensor->angular_velocity().transpose().format(fmt) << std::endl;
             std::cout << "Linear Acceleration: " << imu_sensor->linear_acceleration().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
