@@ -428,14 +428,14 @@ namespace robot_dart {
     {
         if (!text && enable) {
             text = _gui_data->add_text("");
-            if (font_size > 0)
-                text->font_size = font_size;
         }
         else if (!enable) {
             if (text)
                 _gui_data->remove_text(text);
             text = nullptr;
         }
+        if (text && font_size > 0)
+            text->font_size = font_size;
     }
 
     void RobotDARTSimu::set_text_panel(const std::string& str)
