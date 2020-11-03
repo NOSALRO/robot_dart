@@ -22,7 +22,7 @@ namespace robot_dart {
             std::uint8_t alignment;
             bool draw_background;
             Eigen::Vector4d background_color;
-            float font_size;
+            float font_size = 22; // default font size
         };
     } // namespace simu
 
@@ -119,11 +119,11 @@ namespace robot_dart {
 
         simu::GUIData* gui_data();
 
-        void enable_text_panel(bool enable = true);
+        void enable_text_panel(bool enable = true, float font_size = -1);
         std::string text_panel_text() const;
         void set_text_panel(const std::string& str);
 
-        void enable_status_bar(bool enable = true);
+        void enable_status_bar(bool enable = true, float font_size = -1);
         std::string status_bar_text() const;
 
         std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3), bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75), float font_size = 28);
@@ -149,7 +149,7 @@ namespace robot_dart {
         void remove_all_collision_masks();
 
     protected:
-        void _enable(std::shared_ptr<simu::TextData>& text, bool enable);
+        void _enable(std::shared_ptr<simu::TextData>& text, bool enable, float font_size);
 
         dart::simulation::WorldPtr _world;
         size_t _old_index;

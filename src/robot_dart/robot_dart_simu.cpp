@@ -412,11 +412,11 @@ namespace robot_dart {
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
-    void RobotDARTSimu::enable_text_panel(bool enable) { _enable(_text_panel, enable); }
+    void RobotDARTSimu::enable_text_panel(bool enable, float font_size) { _enable(_text_panel, enable, font_size); }
 
-    void RobotDARTSimu::enable_status_bar(bool enable)
+    void RobotDARTSimu::enable_status_bar(bool enable, float font_size)
     {
-        _enable(_status_bar, enable);
+        _enable(_status_bar, enable, font_size);
         if (enable) {
             _status_bar->alignment = (1 | 1 << 3); // alignment of status bar should be LineLeft
             _status_bar->draw_background = true; // we want to draw a background
@@ -424,11 +424,12 @@ namespace robot_dart {
         }
     }
 
-    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable)
+    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable, float font_size)
     {
         if (!text && enable) {
             text = _gui_data->add_text("");
-            text->font_size = 0;
+            if (font_size > 0)
+                text->font_size = font_size;
         }
         else if (!enable) {
             if (text)
