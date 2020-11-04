@@ -412,9 +412,9 @@ namespace robot_dart {
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
-    void RobotDARTSimu::enable_text_panel(bool enable, float font_size) { _enable(_text_panel, enable, font_size); }
+    void RobotDARTSimu::enable_text_panel(bool enable, double font_size) { _enable(_text_panel, enable, font_size); }
 
-    void RobotDARTSimu::enable_status_bar(bool enable, float font_size)
+    void RobotDARTSimu::enable_status_bar(bool enable, double font_size)
     {
         _enable(_status_bar, enable, font_size);
         if (enable) {
@@ -424,7 +424,7 @@ namespace robot_dart {
         }
     }
 
-    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable, float font_size)
+    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable, double font_size)
     {
         if (!text && enable) {
             text = _gui_data->add_text("");
@@ -467,7 +467,7 @@ namespace robot_dart {
         return out.str();
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color, float font_size)
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color, double font_size)
     {
         return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color, font_size);
     }
