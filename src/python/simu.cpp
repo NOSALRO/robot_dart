@@ -139,13 +139,15 @@ namespace robot_dart {
                 .def("clear_robots", &RobotDARTSimu::clear_robots)
 
                 .def("enable_text_panel", &RobotDARTSimu::enable_text_panel,
-                    py::arg("enable") = true)
+                    py::arg("enable") = true,
+                    py::arg("font_size") = -1)
                 .def("text_panel_text", &RobotDARTSimu::text_panel_text)
                 .def("set_text_panel", &RobotDARTSimu::set_text_panel,
                     py::arg("str") = "")
 
                 .def("enable_status_bar", &RobotDARTSimu::enable_status_bar,
-                    py::arg("enable") = true)
+                    py::arg("enable") = true,
+                    py::arg("font_size") = -1)
                 .def("status_bar_text", &RobotDARTSimu::status_bar_text)
 
                 .def("add_text", &RobotDARTSimu::add_text, py::return_value_policy::reference,
@@ -154,7 +156,8 @@ namespace robot_dart {
                     py::arg("color") = Eigen::Vector4d(1, 1, 1, 1),
                     py::arg("alignment") = (1 | 3 << 3),
                     py::arg("draw_bg") = false,
-                    py::arg("bg_color") = Eigen::Vector4d(0, 0, 0, 0.75))
+                    py::arg("bg_color") = Eigen::Vector4d(0, 0, 0, 0.75),
+                    py::arg("font_size") = 28)
 
                 .def("add_floor", &RobotDARTSimu::add_floor,
                     py::arg("floor_width") = 10.,
