@@ -16,7 +16,7 @@ The URDF files are loaded using the following rules (see `Robot::_get_path()`):
 
 Talos is a humanoid robot made by [PAL Robotics](https://pal-robotics.com/robots/talos/).
 
-- Datasheet: [pdf](https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf)
+- Datasheet: [[pdf](https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf)]
 - 32 degrees of freedom (6 for each leg, 7 for each arm, 2 for the waist, 2 for the neck, 1 for each gripper)
 - 175 cm / 95 kg
 - IMU in the torso
@@ -45,7 +45,7 @@ We have two URDF files:
 
 The Franka is a modern manipulator made by [Franka Emika Panda](https://www.franka.de/technology). It is commonly found in many robotics labs.
 
-- Datasheet: [pdf](https://www.generationrobots.com/media/panda-franka-emika-datasheet.pdf)
+- Datasheet: [[pdf](https://www.generationrobots.com/media/panda-franka-emika-datasheet.pdf)]
 - 7 degrees of freedom
 - Can be controlled in torque
 - 18 kg
@@ -60,7 +60,7 @@ The URDF includes the gripper.
 
 The LBR Iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot-systems/industrial-robots/lbr-iiwa) . It is similar to the Panda and is also very common in robotics labs.
 
-- Datasheet: [pdf](https://www.kuka.com/-/media/kuka-downloads/imported/6b77eecacfe542d3b736af377562ecaa/db_lbr_iiwa_en.pdf?rev=70ca3521eecc42b9b1a05d0e486119ba&hash=C3DDC2EFE649EFDF75E592892C466D6F)
+- Datasheet: [[pdf](https://www.kuka.com/-/media/kuka-downloads/imported/6b77eecacfe542d3b736af377562ecaa/db_lbr_iiwa_en.pdf?rev=70ca3521eecc42b9b1a05d0e486119ba&hash=C3DDC2EFE649EFDF75E592892C466D6F)]
 - We implement the 14 kg version
 - 29.5 kg
 - 7 degrees of freedom
@@ -70,12 +70,15 @@ The LBR Iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 
 The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecnologia](https://icub.iit.it). There are currently 42 iCUbs in the world, and many versions.
 
-- Datasheet (rev 2.3) [pdf](https://icub.iit.it/storage/documents/Technical-specs_iCub_robot_Rev_2.3_05082019.pdf)
+- Datasheet (rev 2.3) [[pdf](https://icub.iit.it/storage/documents/Technical-specs_iCub_robot_Rev_2.3_05082019.pdf)]
 - 6 force/torque sensors (upper arms, upper legs, ankles)
 - IMU in the head
 - We do to simulate the skin
 - We do not simulate the hands
 - Our model is close to the [Inria's iCub](https://members.loria.fr/JBMouret/robots.html), but it has not been checked in detail.
+
+
+*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
 ## Dynamixel-based hexapod robot (Inria and others)
 ![Placeholder](images/hexapod.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
