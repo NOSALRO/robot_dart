@@ -2,10 +2,11 @@
 
 Every robot is a defined as a URDF, which will be installed `$PREFIX/shared/robot_dart/robots`. Some robots (Talos, iCub) ehave predefined "Robot classes" that defines the sensors; for the others, you have to add the sensors to the generic robot class.
 
-The URDF files are loaded using the following rules:
+The URDF files are loaded using the following rules (see `Robot::_get_path()`):
 
 - First check in the current directory
 - If not found, check in `current_directory/robots`
+- If not found, check in `$ROBOT_DART_PATH/robots`
 - If not found, check in the robot dart installation path/robots (e.g., `/usr/share/robot_dart/robots` or `$HOME/share/robot_dart/robots`)
 - Otherwise, report failure
 
