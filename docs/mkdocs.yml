@@ -1,0 +1,8 @@
+site_name: Documentation of robot_dart
+theme:
+  name: null
+  custom_dir: 'cinder'
+nav:
+  - Home: index.md
+markdown_extensions:
+  - attr_list
