@@ -44,6 +44,12 @@ In a few words, RobotDART combines:
 * Full-featured **Python bindings** for fast prototyping
 * robot\_dart runs on any Linux distribution and Mac OS
 
+## What RobotDART is not
+- RobotDART is primarily intended to be non-interactive (run a simulation, record/view the result). 
+- Interaction is limited to changing the view and your own code. No GUI for adding objects or interactively build an environment.
+- RobotDART is not designed for wheeled robots.
+- RobotDART is not designed for simulating complex (e.g., mountain-like) terrains
+
 [DART]: http://dartsim.github.io/
 [Magnum]: http://magnum.graphics
 [Gazebo]: http://gazebosim.org/
