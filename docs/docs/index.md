@@ -1,6 +1,6 @@
 # RobotDART
 
-robot\_dart is a **C++11 robot simulator** (with optional Python bindings) built on top of the [DART] physics engine. The robot\_dart simulator is **intended to be used by *Robotics and Machine Learning researchers* ** who want to quickly write controllers or test learning algorithms **without delays and overhead** that usually comes with other simulators (e.g., [Gazebo]). 
+robot\_dart is a **C++11 robot simulator** (with optional Python bindings) built on top of the [DART] physics engine. The robot\_dart simulator is **intended to be used by *Robotics and Machine Learning researchers* ** who want to write controllers or test learning algorithms **without the delays and overhead** that usually comes with other simulators (e.g., [Gazebo], [Coppelia-sim]). 
 
 For this reason, **the simulator runs headless by default**, and there is the possibility of *rendering the scene (e.g., through a camera sensor) without opening a graphics window*. All robot\_dart's code is **thread-safe** (including *graphics and camera sensors*), and thus enables its users to **use their code in parallel jobs in multicore computers**.
 
@@ -47,3 +47,4 @@ In a few words, RobotDART combines:
 [DART]: http://dartsim.github.io/
 [Magnum]: http://magnum.graphics
 [Gazebo]: http://gazebosim.org/
+[Coppelia-sim]: https://www.coppeliarobotics.com
