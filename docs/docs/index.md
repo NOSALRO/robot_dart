@@ -13,7 +13,7 @@ robot\_dart is a **C++11 robot simulator** built on top of the [DART] physics en
 * A generic `Sensor` class that allows the creation of any kind of sensor
 * A growing list of already implemented **sensors**, that includes 6-axis `ForceTorque`, `IMU`, `RGB`, and `RGB-D` sensors
 * A simulation class (`RobotDARTSimu`) that handles multiple robots and sensors, and allows for step-by-step simulation
-* A growing list of supported robots along with edited and optimized models to be used with robot\_dart:
+* A growing list of supported robots along with edited and optimized models to be used with robot\_dart (see the [robots page](robots)):
     * [PAL Talos humanoid](https://pal-robotics.com/robots/talos/) (with and without hands)
     * [Franka Emika Panda](https://www.franka.de/technology)
     * [KUKA LBR Iiwa](https://www.kuka.com/en-de/products/robot-systems/industrial-robots/lbr-iiwa) (14kg version)

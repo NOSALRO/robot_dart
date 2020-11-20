@@ -4,5 +4,6 @@ theme:
   custom_dir: 'cinder'
 nav:
   - Home: index.md
+  - Supported robots: robots.md
 markdown_extensions:
   - attr_list
