@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>FAQ - Documentation of RobotDART</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Documentation of RobotDART</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../robots/">Supported robots</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">FAQ</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../robots/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+            <li class="second-level"><a href="#what-is-a-minimal-working-example-of-robotdart">What is a minimal, working example of RobotDART</a></li>
+                
+            <li class="second-level"><a href="#what-robots-are-supported-in-robotdart">What robots are supported in RobotDART?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-load-my-own-urdfsdfskelmjcf-file">How can I load my own URDF/SDF/SKEL/MJCF file?</a></li>
+                
+            <li class="second-level"><a href="#how-do-i-enable-graphics-in-my-code">How do I enable graphics in my code?</a></li>
+                
+            <li class="second-level"><a href="#how-do-i-record-a-video">How do I record a video?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-manipulate-the-camera">How can I manipulate the camera?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-display-debug-information">How can I display debug information?</a></li>
+                
+            <li class="second-level"><a href="#what-do-the-numbers-in-the-status-bar-mean">What do the numbers in the status bar mean?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-visualize-the-state-of-my-model">How can I visualize the state of my model?</a></li>
+                
+            <li class="second-level"><a href="#can-i-add-change-the-graphics-scene-eg-change-lighting-conditions">Can I add change the graphics scene (e.g., change lighting conditions)?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-control-my-robot-can-i-have-a-position-velocity-torque-controlled-robot">How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?</a></li>
+                
+            <li class="second-level"><a href="#is-there-a-way-to-control-the-simulation-timestep">Is there a way to control the simulation timestep?</a></li>
+                
+            <li class="second-level"><a href="#what-is-the-difference-between-the-dart-and-the-fcl-collision-detector-how-can-i-choose-between-them">What is the difference between the DART and the FCL collision detector? How can I choose between them?</a></li>
+                
+            <li class="second-level"><a href="#my-robot-does-not-self-collide-how-can-i-change-this">My robot does not self-collide. How can I change this?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-compute-kinematicdynamic-properties-of-my-robot-eg-jacobians-mass-matrix">How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?</a></li>
+                
+            <li class="second-level"><a href="#is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass">Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?</a></li>
+                
+            <li class="second-level"><a href="#what-are-the-supported-sensors-how-can-i-use-an-imu">What are the supported sensors? How can I use an IMU?</a></li>
+                
+            <li class="second-level"><a href="#i-want-to-have-multiple-camera-sensors-is-it-possible-how-can-i-attach-a-camera-to-a-moving-link">I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-measure-forces-being-applied-to-my-robot">How can I measure forces being applied to my robot?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-spawn-multiple-robots-in-parallel">How can I spawn multiple robots in parallel?</a></li>
+                
+            <li class="second-level"><a href="#i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this">I need to simulate many worlds with camera sensors in parallel. How can I do this?</a></li>
+                
+            <li class="second-level"><a href="#i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake">I do not know how to use waf. How can I detect RobotDART from CMake?</a></li>
+                
+            <li class="second-level"><a href="#i-prefer-coding-in-python-how-can-i-use-robotdart">I prefer coding in python. How can I use RobotDART?</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
+<p>This pages provides a user guide of the library through Frequently Asked Questions (FAQ).</p>
+<h2 id="what-is-a-minimal-working-example-of-robotdart">What is a minimal, working example of RobotDART</h2>
+<h2 id="what-robots-are-supported-in-robotdart">What robots are supported in RobotDART?</h2>
+<p>RobotDART supports any robot that can be described by a URDF, SDF, SKEL or MJCF file. Nevertheless, we have a curated list of robots with edited and optimized models to be used with RobotDART (see the <a href="robots">robots page</a> for details and examples).</p>
+<h2 id="how-can-i-load-my-own-urdfsdfskelmjcf-file">How can I load my own URDF/SDF/SKEL/MJCF file?</h2>
+<p>See the <a href="robots">robots page</a> for details.</p>
+<h2 id="how-do-i-enable-graphics-in-my-code">How do I enable graphics in my code?</h2>
+<h2 id="how-do-i-record-a-video">How do I record a video?</h2>
+<h2 id="how-can-i-manipulate-the-camera">How can I manipulate the camera?</h2>
+<h2 id="how-can-i-display-debug-information">How can I display debug information?</h2>
+<h2 id="what-do-the-numbers-in-the-status-bar-mean">What do the numbers in the status bar mean?</h2>
+<h2 id="how-can-i-visualize-the-state-of-my-model">How can I visualize the state of my model?</h2>
+<h2 id="can-i-add-change-the-graphics-scene-eg-change-lighting-conditions">Can I add change the graphics scene (e.g., change lighting conditions)?</h2>
+<h2 id="how-can-i-control-my-robot-can-i-have-a-position-velocity-torque-controlled-robot">How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?</h2>
+<h2 id="is-there-a-way-to-control-the-simulation-timestep">Is there a way to control the simulation timestep?</h2>
+<h2 id="what-is-the-difference-between-the-dart-and-the-fcl-collision-detector-how-can-i-choose-between-them">What is the difference between the DART and the FCL collision detector? How can I choose between them?</h2>
+<h2 id="my-robot-does-not-self-collide-how-can-i-change-this">My robot does not self-collide. How can I change this?</h2>
+<h2 id="how-can-i-compute-kinematicdynamic-properties-of-my-robot-eg-jacobians-mass-matrix">How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?</h2>
+<h2 id="is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass">Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?</h2>
+<h2 id="what-are-the-supported-sensors-how-can-i-use-an-imu">What are the supported sensors? How can I use an IMU?</h2>
+<h2 id="i-want-to-have-multiple-camera-sensors-is-it-possible-how-can-i-attach-a-camera-to-a-moving-link">I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?</h2>
+<h2 id="how-can-i-measure-forces-being-applied-to-my-robot">How can I measure forces being applied to my robot?</h2>
+<h2 id="how-can-i-spawn-multiple-robots-in-parallel">How can I spawn multiple robots in parallel?</h2>
+<h2 id="i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this">I need to simulate many worlds with camera sensors in parallel. How can I do this?</h2>
+<h2 id="i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake">I do not know how to use waf. How can I detect RobotDART from CMake?</h2>
+<h2 id="i-prefer-coding-in-python-how-can-i-use-robotdart">I prefer coding in python. How can I use RobotDART?</h2></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

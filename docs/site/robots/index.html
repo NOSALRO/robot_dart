@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Supported robots - Documentation of RobotDART</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Documentation of RobotDART</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Supported robots</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../faq/">FAQ</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../faq/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#supported-robots">Supported robots</a></li>
+            <li class="second-level"><a href="#talos-pal-robotics">Talos (PAL Robotics)</a></li>
+                
+            <li class="second-level"><a href="#panda-franka-emika">Panda (Franka Emika)</a></li>
+                
+            <li class="second-level"><a href="#lbr-iiwa-kuka">LBR iiwa (KUKA)</a></li>
+                
+            <li class="second-level"><a href="#icub-iit">iCub (IIT)</a></li>
+                
+            <li class="second-level"><a href="#dynamixel-based-hexapod-robot-inria-and-others">Dynamixel-based hexapod robot (Inria and others)</a></li>
+                
+            <li class="second-level"><a href="#simple-arm">Simple arm</a></li>
+                
+            <li class="second-level"><a href="#how-to-use-your-own-urdf">How to use your own URDF?</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="supported-robots">Supported robots</h1>
+<p>Every robot is a defined as a URDF, which will be installed <code>$PREFIX/shared/robot_dart/robots</code>. Some robots (Talos, iCub) have pre-defined "robot classes" that define sensors and other properties; for the other robot, you will have to add the sensors/properties via the generic robot class.</p>
+<p>The URDF files are loaded using the following rules (see <code>Robot::_get_path()</code>):</p>
+<ul>
+<li>First check in the current directory</li>
+<li>If not found, check in <code>current_directory/robots</code></li>
+<li>If not found, check in <code>$ROBOT_DART_PATH/robots</code></li>
+<li>If not found, check in the robot dart installation path/robots (e.g., <code>/usr/share/robot_dart/robots</code> or <code>$HOME/share/robot_dart/robots</code>)</li>
+<li>Otherwise, report failure</li>
+</ul>
+<h2 id="talos-pal-robotics">Talos (PAL Robotics)</h2>
+<p><img alt="Talos humanoid robot" src="../images/talos.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>Talos is a humanoid robot made by <a href="https://pal-robotics.com/robots/talos/">PAL Robotics</a>.</p>
+<ul>
+<li>Datasheet: [<a href="https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf">pdf</a>]</li>
+<li>32 degrees of freedom (6 for each leg, 7 for each arm, 2 for the waist, 2 for the neck, 1 for each gripper)</li>
+<li>175 cm / 95 kg</li>
+<li>IMU in the torso</li>
+<li>Torque sensors in all joints except head, wrist and gripper (22 torque sensors total)</li>
+<li>1 force/torque sensor in each ankle</li>
+<li>1 force/torque sensor in each wrist</li>
+</ul>
+<p>We have two URDF files:</p>
+<ul>
+<li>
+<p><code>robots/talos/talos.urdf</code> :</p>
+<ul>
+<li>accurate (simplified but made of polygons) collision meshes</li>
+<li>mimic joints for the gripper</li>
+<li>Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos.urdf">talos.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>]</li>
+</ul>
+</li>
+<li>
+<p><code>robot/talos/talos_fast.urdf</code>:</p>
+<ul>
+<li>no collision except for the feet, which are approximated by boxes</li>
+<li>grippers are fixed (no movement is allowed)</li>
+<li>compatible with the DART collision detector</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf">talos.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp">talos.cpp</a>]</li>
+</ul>
+</li>
+</ul>
+<p><code>talos_fast.urdf</code> is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.</p>
+<p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
+<h2 id="panda-franka-emika">Panda (Franka Emika)</h2>
+<p><img alt="Franka Panda manipulator" src="../images/franka.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>The Franka is a modern manipulator made by <a href="https://www.franka.de/technology">Franka Emika Panda</a>. It is commonly found in many robotics labs.</p>
+<ul>
+<li>Datasheet: [<a href="https://www.generationrobots.com/media/panda-franka-emika-datasheet.pdf">pdf</a>]</li>
+<li>7 degrees of freedom</li>
+<li>Can be controlled in torque</li>
+<li>18 kg</li>
+<li>workspace: 855 mm (horizontal), 1190 mm (vertical)</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/franka/franka.urdf">franka.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp">franka.cpp</a>]</li>
+</ul>
+<p>The URDF includes the gripper.</p>
+<h2 id="lbr-iiwa-kuka">LBR iiwa (KUKA)</h2>
+<p><img alt="LBR iiwa robot" src="../images/iiwa.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>The LBR iiwa is manufactured by <a href="https://www.kuka.com/en-de/products/robot-systems/industrial-robots/lbr-iiwa">KUKA</a>. It is similar to the Panda and is also very common in robotics labs.</p>
+<ul>
+<li>Datasheet: [<a href="https://www.kuka.com/-/media/kuka-downloads/imported/6b77eecacfe542d3b736af377562ecaa/db_lbr_iiwa_en.pdf?rev=70ca3521eecc42b9b1a05d0e486119ba&amp;hash=C3DDC2EFE649EFDF75E592892C466D6F">pdf</a>]</li>
+<li>We implement the 14 kg version</li>
+<li>29.5 kg</li>
+<li>7 degrees of freedom</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/iiwa/iiwa.urdf">iiwa.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp">iiwa.cpp</a>]</li>
+</ul>
+<h2 id="icub-iit">iCub (IIT)</h2>
+<p><img alt="iCub humanoid robot" src="../images/icub.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>The iCub is a open source humanoid robot made by the <a href="https://icub.iit.it">Instituto Italiano di Tecnologia</a>. There are currently 42 iCUbs in the world, and many versions.</p>
+<ul>
+<li>Datasheet (rev 2.3) [<a href="https://icub.iit.it/storage/documents/Technical-specs_iCub_robot_Rev_2.3_05082019.pdf">pdf</a>]</li>
+<li>6 force/torque sensors (upper arms, upper legs, ankles)</li>
+<li>IMU in the head</li>
+<li>We do to simulate the skin</li>
+<li>We do not simulate the hands</li>
+<li>Our model is close to the <a href="https://members.loria.fr/JBMouret/robots.html">Inria's iCub</a>, but it has not been checked in detail.</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/iiwa/icub.urdf">icub.urdf</a>]</li>
+<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp">icub.cpp</a>]</li>
+</ul>
+<p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
+<h2 id="dynamixel-based-hexapod-robot-inria-and-others">Dynamixel-based hexapod robot (Inria and others)</h2>
+<p><img alt="hexapod robot" src="../images/hexapod.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>This hexapod is a simple 6-legged robot based on dynamixel actuators. It is similar to the robot used in the paper <a href="https://www.nature.com/articles/nature14422">`Robots that can adapt like animals'</a> (Cully et al., 2015).</p>
+<ul>
+<li>6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)</li>
+<li>simple URDF (no meshes)</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/pexod.urdf">pexod.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp">hexapod.cpp</a>]</li>
+</ul>
+<h2 id="simple-arm">Simple arm</h2>
+<p><img alt="simple arm robot" src="../images/arm.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<ul>
+<li>A simple arm for educational or debugging purposes</li>
+<li>5 degrees of freedom</li>
+<li>simple URDF (no meshes)</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf">pexod.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
+</ul>
+<h2 id="how-to-use-your-own-urdf">How to use your own URDF?</h2>
+<p><strong>TO-DO</strong></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
