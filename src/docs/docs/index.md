@@ -12,7 +12,7 @@ In a few words, RobotDART combines:
 - an optional graphics engine (Magnum)
 - a few sensor classes (IMU, force/torque sensors, cameras, etc.)
 - a curated URDF library
-- ... and a few useful features to make the life of roboticists/researcher easier
+- ... and a few useful features to make the life of roboticists/researchers easier
 
 <img src="images/talos.png" width="24%" />
 <img src="images/icub.png" width="24%" />
@@ -43,6 +43,7 @@ In a few words, RobotDART combines:
 * RobotDART runs on any Linux distribution and Mac OS
 
 ## What RobotDART is not
+
 - RobotDART is primarily intended to be non-interactive (run a simulation, record/view the result),
 - Interaction is limited to changing the view and your own code. No GUI for adding objects or interactively build an environment,
 - RobotDART is not optimized for wheeled robots,

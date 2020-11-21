@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
+import subprocess
 import os
 import fnmatch
 import glob
@@ -370,7 +371,15 @@ def build_examples(bld):
                             defines = ['GRAPHIC'],
                             target = basename)
 
+def build_docs(bld):
+    Logs.pprint('NORMAL', "Generating HTML docs...")
+    s = 'cd ' + bld.path.abspath() + '/src/docs && mkdocs build'
+    retcode = subprocess.call(s, shell=True, env=None)
 
 class BuildExamples(BuildContext):
     cmd = 'examples'
     fun = 'build_examples'
+
+class BuildDocs(BuildContext):
+    cmd = 'docs'
+    fun = 'build_docs'
