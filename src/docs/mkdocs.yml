@@ -1,5 +1,7 @@
 site_name: Documentation of RobotDART
 site_dir: '../../docs'
+site_author: 'Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret'
+copyright: 'Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret'
 theme:
   name: null
   custom_dir: 'cinder'
