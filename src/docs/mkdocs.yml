@@ -1,4 +1,5 @@
 site_name: Documentation of RobotDART
+site_dir: '../../docs'
 theme:
   name: null
   custom_dir: 'cinder'
