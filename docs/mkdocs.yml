@@ -1,9 +1,15 @@
-site_name: Documentation of robot_dart
+site_name: Documentation of RobotDART
 theme:
   name: null
   custom_dir: 'cinder'
 nav:
   - Home: index.md
   - Supported robots: robots.md
+  - FAQ: faq.md
 markdown_extensions:
   - attr_list
+plugins:
+    - search
+    - macros:
+        module_name: include/macros
+        include_dir: include

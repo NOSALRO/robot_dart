@@ -1,6 +1,6 @@
 # Supported robots
 
-Every robot is a defined as a URDF, which will be installed `$PREFIX/shared/robot_dart/robots`. Some robots (Talos, iCub) ehave predefined "Robot classes" that defines the sensors; for the others, you have to add the sensors to the generic robot class.
+Every robot is a defined as a URDF, which will be installed `$PREFIX/shared/robot_dart/robots`. Some robots (Talos, iCub) have pre-defined "robot classes" that define sensors and other properties; for the other robot, you will have to add the sensors/properties via the generic robot class.
 
 The URDF files are loaded using the following rules (see `Robot::_get_path()`):
 
@@ -10,9 +10,8 @@ The URDF files are loaded using the following rules (see `Robot::_get_path()`):
 - If not found, check in the robot dart installation path/robots (e.g., `/usr/share/robot_dart/robots` or `$HOME/share/robot_dart/robots`)
 - Otherwise, report failure
 
-
 ## Talos (PAL Robotics)
-![Placeholder](images/talos.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+![Talos humanoid robot](images/talos.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
 Talos is a humanoid robot made by [PAL Robotics](https://pal-robotics.com/robots/talos/).
 
@@ -26,27 +25,26 @@ Talos is a humanoid robot made by [PAL Robotics](https://pal-robotics.com/robots
 
 We have two URDF files:
 
-- `robots/talos/talos.urdf` : 
+- `robots/talos/talos.urdf` :
     * accurate (simplified but made of polygons) collision meshes
     * mimic joints for the gripper
-    * Not compatible the DART collision detector (you need to use FCLe
+    * Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
 
 - `robot/talos/talos_fast.urdf`:
-    * no collision except for the feet, which are approximate by boxes
-    * grippers are fixed
+    * no collision except for the feet, which are approximated by boxes
+    * grippers are fixed (no movement is allowed)
     * compatible with the DART collision detector
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
-`talos_fast.urdf` is faster because it makes it possible to use the DART collision detector. You should prefer it except if you want to use the grippers or are working on self-collisions.
+`talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
 
-*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x shipped with ROS). If you cannot load the URDF, please check your assimp version.*
-
+*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
 ## Panda (Franka Emika)
-![Placeholder](images/franka.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+![Franka Panda manipulator](images/franka.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
 The Franka is a modern manipulator made by [Franka Emika Panda](https://www.franka.de/technology). It is commonly found in many robotics labs.
 
@@ -60,13 +58,10 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 
 The URDF includes the gripper.
 
+## LBR iiwa (KUKA)
+![LBR iiwa robot](images/iiwa.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
-
-
-## LBR Iiwa (KUKA)
-![Placeholder](images/iiwa.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
-
-The LBR Iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot-systems/industrial-robots/lbr-iiwa) . It is similar to the Panda and is also very common in robotics labs.
+The LBR iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot-systems/industrial-robots/lbr-iiwa). It is similar to the Panda and is also very common in robotics labs.
 
 - Datasheet: [[pdf](https://www.kuka.com/-/media/kuka-downloads/imported/6b77eecacfe542d3b736af377562ecaa/db_lbr_iiwa_en.pdf?rev=70ca3521eecc42b9b1a05d0e486119ba&hash=C3DDC2EFE649EFDF75E592892C466D6F)]
 - We implement the 14 kg version
@@ -75,8 +70,8 @@ The LBR Iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 - URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/robots/iiwa/iiwa.urdf)]
 - Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)]
 
-## Icub (IIT)
-![Placeholder](images/icub.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+## iCub (IIT)
+![iCub humanoid robot](images/icub.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
 The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecnologia](https://icub.iit.it). There are currently 42 iCUbs in the world, and many versions.
 
@@ -89,28 +84,28 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 - URDF: [[icub.urdf](https://github.com/resibots/robot_dart/blob/master/robots/iiwa/icub.urdf)]
 - Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)]
 
-
-*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x shipped with ROS). If you cannot load the URDF, please check your assimp version.*
+*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
 ## Dynamixel-based hexapod robot (Inria and others)
-![Placeholder](images/hexapod.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+![hexapod robot](images/hexapod.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
 This hexapod is a simple 6-legged robot based on dynamixel actuators. It is similar to the robot used in the paper [`Robots that can adapt like animals'](https://www.nature.com/articles/nature14422) (Cully et al., 2015).
 
 - 6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)
-- simple URDF (no mesh)
+- simple URDF (no meshes)
 - URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/robots/pexod.urdf)]
 - Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)]
 
 
 ## Simple arm
-![Placeholder](images/arm.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+![simple arm robot](images/arm.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
 - A simple arm for educational or debugging purposes
 - 5 degrees of freedom
-- simple URDF (no mesh)
+- simple URDF (no meshes)
 - URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf)]
 - Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
 
-
 ## How to use your own URDF?
+
+**TO-DO**
