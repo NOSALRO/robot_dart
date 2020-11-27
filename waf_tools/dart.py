@@ -40,19 +40,6 @@ def check_dart(conf, *k, **kw):
             includes_check = [os.environ['RESIBOTS_DIR'] + '/include'] + includes_check
             libs_check = [os.environ['RESIBOTS_DIR'] + '/lib'] + libs_check
 
-    # DART requires assimp library
-    assimp_include = []
-    assimp_lib = []
-    assimp_check = ['/usr/local/include', '/usr/include']
-    assimp_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
-    assimp_found = False
-    try:
-        assimp_include = get_directory('assimp/scene.h', assimp_check)
-        assimp_lib = [get_directory('libassimp.' + suffix, assimp_libs)]
-        assimp_found = True
-    except:
-        assimp_found = False
-
     # DART has some optional Bullet features
     bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet']
     bullet_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
@@ -182,8 +169,6 @@ def check_dart(conf, *k, **kw):
         conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_include[0])
 
         more_includes = []
-        if assimp_found:
-            more_includes += assimp_include
 
         conf.start_msg('Checking for DART libs (including io/urdf)')
         dart_lib = []
@@ -197,13 +182,7 @@ def check_dart(conf, *k, **kw):
         if len(dart_cxx_flags) > 0:
             conf.env.CXXFLAGS_DART = [dart_cxx_flags]
         conf.end_msg(conf.env.LIB_DART)
-        conf.start_msg('DART: Checking for Assimp')
-        if assimp_found:
-            conf.end_msg(assimp_include)
-            conf.env.LIBPATH_DART = conf.env.LIBPATH_DART + assimp_lib
-            conf.env.LIB_DART.append('assimp')
-        else:
-            conf.end_msg('Not found - Your programs may not compile', 'RED')
+      
 
         if dart_have_bullet:
             conf.start_msg('DART: Checking for Bullet Collision libs')
