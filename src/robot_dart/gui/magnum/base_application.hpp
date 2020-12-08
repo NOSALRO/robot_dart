@@ -107,6 +107,9 @@ namespace robot_dart {
                 // These options are only for the main camera
                 bool draw_main_camera = true;
                 bool draw_debug = true;
+
+                // Background (default = black)
+                Eigen::Vector4d bg_color{0.0, 0.0, 0.0, 1.0}; 
             };
 
             struct DebugDrawData {

@@ -17,7 +17,11 @@ namespace robot_dart {
                   _speed_move(0.f),
                   _speed_strafe(0.f),
                   _draw_main_camera(configuration.draw_main_camera),
-                  _draw_debug(configuration.draw_debug)
+                  _draw_debug(configuration.draw_debug),
+                  _bg_color(configuration.bg_color[0],
+                      configuration.bg_color[1],
+                      configuration.bg_color[2],
+                      configuration.bg_color[3])
             {
                 /* Try 16x MSAA */
                 Configuration conf;
@@ -74,7 +78,7 @@ namespace robot_dart {
                     Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
 
                     /* Change default clear color to black */
-                    Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
+                    Magnum::GL::Renderer::setClearColor(_bg_color);
 
                     Magnum::GL::defaultFramebuffer.bind();
                     Magnum::GL::defaultFramebuffer.clear(

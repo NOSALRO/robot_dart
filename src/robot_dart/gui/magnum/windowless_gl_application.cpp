@@ -12,7 +12,11 @@ namespace robot_dart {
                   Magnum::Platform::WindowlessApplication({argc, argv}, Magnum::NoCreate),
                   _simu(simu),
                   _draw_main_camera(configuration.draw_main_camera),
-                  _draw_debug(configuration.draw_debug)
+                  _draw_debug(configuration.draw_debug),
+                  _bg_color(configuration.bg_color[0],
+                      configuration.bg_color[1],
+                      configuration.bg_color[2],
+                      configuration.bg_color[3])
             {
                 /* Assume context is given externally, if not create it */
                 if (!Magnum::GL::Context::hasCurrent()) {
@@ -66,7 +70,7 @@ namespace robot_dart {
                     Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
 
                     /* Change default clear color to black */
-                    Magnum::GL::Renderer::setClearColor(Magnum::Vector4{0.f, 0.f, 0.f, 1.f});
+                    Magnum::GL::Renderer::setClearColor(_bg_color);
 
                     /* Bind the framebuffer */
                     _framebuffer.bind();
