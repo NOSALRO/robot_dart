@@ -544,7 +544,7 @@ namespace robot_dart {
                 // no collision/dynamics for these ones; only visual shape
                 auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect>(box);
                 if (c % 2 == 0)
-                    box_node->getVisualAspect()->setColor(dart::Color::Gray());
+                    box_node->getVisualAspect()->setColor(Eigen::Vector3d{0.75, 0.75, 0.75});
                 else
                     box_node->getVisualAspect()->setColor(dart::Color::White());
 

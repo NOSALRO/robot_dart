@@ -32,7 +32,11 @@ int main()
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
+    robot_dart::gui::magnum::GraphicsConfiguration configuration;
+    configuration.width = 1280;
+    configuration.height = 960;
+    configuration.bg_color = Eigen::Vector4d{1.0, 1.0, 1.0, 1.0};
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     graphics->record_video("talos_dancing.mp4");
