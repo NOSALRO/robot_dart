@@ -22,7 +22,7 @@ namespace robot_dart {
             std::uint8_t alignment;
             bool draw_background;
             Eigen::Vector4d background_color;
-            double font_size;
+            double font_size = 28.;
         };
     } // namespace simu
 
