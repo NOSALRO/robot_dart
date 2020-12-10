@@ -58,7 +58,7 @@ simu.set_graphics(graphics)
 
 # Add robot and floor to the simulation
 simu.add_robot(robot)
-simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
+simu.add_checkerboard_floor()
 
 # Add a camera sensor to the end-effector of the manipulator
 camera = rd.sensor.Camera(graphics.magnum_app(), 256, 256)
