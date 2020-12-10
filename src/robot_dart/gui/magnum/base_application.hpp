@@ -109,7 +109,7 @@ namespace robot_dart {
                 bool draw_debug = true;
 
                 // Background (default = black)
-                Eigen::Vector4d bg_color{0.0, 0.0, 0.0, 1.0}; 
+                Eigen::Vector4d bg_color{0.0, 0.0, 0.0, 1.0};
             };
 
             struct DebugDrawData {

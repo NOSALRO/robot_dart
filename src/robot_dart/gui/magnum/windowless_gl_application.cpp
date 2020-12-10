@@ -69,7 +69,7 @@ namespace robot_dart {
                     Magnum::GL::Renderer::setBlendFunction(Magnum::GL::Renderer::BlendFunction::SourceAlpha, Magnum::GL::Renderer::BlendFunction::OneMinusSourceAlpha);
                     Magnum::GL::Renderer::setBlendEquation(Magnum::GL::Renderer::BlendEquation::Add);
 
-                    /* Change default clear color to black */
+                    /* Change clear color to _bg_color */
                     Magnum::GL::Renderer::setClearColor(_bg_color);
 
                     /* Bind the framebuffer */
