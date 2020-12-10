@@ -33,6 +33,7 @@ int main()
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
+    simu.enable_status_bar(true, 20); // change the font size
 
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
