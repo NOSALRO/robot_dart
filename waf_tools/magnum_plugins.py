@@ -168,6 +168,9 @@ def check_magnum_plugins(conf, *k, **kw):
 
     for component in requested_components:
         conf.start_msg('Checking for ' + component + ' Magnum Plugin')
+        # magnum_plugins_component_includes[component] = copy.deepcopy(conf.env['INCLUDES_%s_Magnum' % magnum_var])
+        # magnum_plugins_component_libpaths[component] = copy.deepcopy(conf.env['LIBPATH_%s_Magnum' % magnum_var])
+        # magnum_plugins_component_libs[component] = copy.deepcopy(conf.env['LIB_%s_Magnum' % magnum_var])
         magnum_plugins_component_includes[component] = []
         magnum_plugins_component_libpaths[component] = []
         magnum_plugins_component_libs[component] = []
@@ -186,6 +189,14 @@ def check_magnum_plugins(conf, *k, **kw):
                     conf.fatal(msg)
                 Logs.pprint('RED', msg)
                 return
+            # add includes/paths/libs
+            # magnum_plugins_includes = magnum_plugins_includes + conf.env['INCLUDES_%s_Audio' % magnum_var]
+            # magnum_plugins_libpaths = magnum_plugins_libpaths + conf.env['LIBPATH_%s_Audio' % magnum_var]
+            # magnum_plugins_libs = magnum_plugins_libs + conf.env['LIB_%s_Audio' % magnum_var]
+
+            # magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + conf.env['INCLUDES_%s_Audio' % magnum_var]
+            # magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + conf.env['LIBPATH_%s_Audio' % magnum_var]
+            # magnum_plugins_component_libs[component] = magnum_plugins_component_libs[component] + conf.env['LIB_%s_Audio' % magnum_var]
         elif re.match(pat_importer, component):
             lib_path_suffix = 'importers'
         elif re.match(pat_font, component):
@@ -203,7 +214,15 @@ def check_magnum_plugins(conf, *k, **kw):
                     conf.fatal(msg)
                 Logs.pprint('RED', msg)
                 return
-         
+            # add includes/paths/libs
+            # magnum_plugins_includes = magnum_plugins_includes + conf.env['INCLUDES_%s_Text' % magnum_var]
+            # magnum_plugins_libpaths = magnum_plugins_libpaths + conf.env['LIBPATH_%s_Text' % magnum_var]
+            # magnum_plugins_libs = magnum_plugins_libs + conf.env['LIB_%s_Text' % magnum_var]
+
+            # magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + conf.env['INCLUDES_%s_Text' % magnum_var]
+            # magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + conf.env['LIBPATH_%s_Text' % magnum_var]
+            # magnum_plugins_component_libs[component] = magnum_plugins_component_libs[component] + conf.env['LIB_%s_Text' % magnum_var]
+
         if lib_path_suffix != '':
             lib_path_suffix = lib_path_suffix + '/'
 
@@ -214,8 +233,12 @@ def check_magnum_plugins(conf, *k, **kw):
             # we need the full lib_dir in order to be able to link to the plugins
             # or not? because they are loaded dynamically
             lib_dir = get_directory('magnum/'+lib_path_suffix+lib+'.'+modules_suffix, libs_check, True)
-           
+            # magnum_plugins_libs.append(lib)
+            # magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
+
             magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [include_dir]
+            # magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + [lib_dir]
+            # magnum_plugins_component_libs[component].append(lib)
         except:
             if required:
                 conf.fatal('Not found')
@@ -224,6 +247,107 @@ def check_magnum_plugins(conf, *k, **kw):
             continue
         conf.end_msg(include_dir)
 
+        # extra dependencies
+        if component == 'AssimpImporter':
+            # AssimpImporter requires Assimp
+            conf.start_msg(component + ': Checking for Assimp')
+            try:
+                assimp_inc = get_directory('assimp/anim.h', includes_check)
+
+                magnum_plugins_includes = magnum_plugins_includes + [assimp_inc]
+                magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [assimp_inc]
+
+                lib_dir = get_directory('libassimp.'+suffix, libs_check)
+                magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
+                magnum_plugins_libs.append('assimp')
+
+                magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + [lib_dir]
+                magnum_plugins_component_libs[component].append('assimp')
+            except:
+                if required:
+                    conf.fatal('Not found')
+                conf.end_msg('Not found', 'RED')
+                # if optional, continue?
+                continue
+            conf.end_msg(assimp_inc)
+        elif component == 'DevIlImageImporter':
+            # DevIlImageImporter requires DevIl
+            msg = component + ' is not supported with WAF'
+            if required:
+                conf.fatal(msg)
+            conf.end_msg(msg, 'RED')
+        elif component == 'FreeTypeFont':
+            # FreeTypeFont requires FreeType2?
+            conf.start_msg(component + ': Checking for FreeType')
+            try:
+                freetype_inc = get_directory('freetype/ft2build.h', includes_check, True)
+
+                magnum_plugins_includes = magnum_plugins_includes + [freetype_inc]
+                magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [freetype_inc]
+
+                lib_dir = get_directory('libfreetype.'+suffix, libs_check)
+                magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
+                magnum_plugins_libs.append('freetype')
+
+                magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + [lib_dir]
+                magnum_plugins_component_libs[component].append('freetype')
+            except:
+                if required:
+                    conf.fatal('Not found')
+                conf.end_msg('Not found', 'RED')
+                # if optional, continue?
+                continue
+            conf.end_msg(freetype_inc)
+        elif component == 'HarfBuzzFont':
+            # HarfBuzzFont requires FreeType and HarfBuzz
+            msg = component + ' is not supported with WAF'
+            if required:
+                conf.fatal(msg)
+            conf.end_msg(msg, 'RED')
+        elif component == 'JpegImporter':
+            # JpegImporter requires JPEG
+            conf.start_msg(component + ': Checking for JPEG')
+            try:
+                jpeg_inc = get_directory('jpeglib.h', includes_check)
+
+                magnum_plugins_includes = magnum_plugins_includes + [jpeg_inc]
+                magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [jpeg_inc]
+
+                lib_dir = get_directory('libjpeg.'+suffix, libs_check)
+                magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
+                magnum_plugins_libs.append('jpeg')
+
+                magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + [lib_dir]
+                magnum_plugins_component_libs[component].append('jpeg')
+            except:
+                if required:
+                    conf.fatal('Not found')
+                conf.end_msg('Not found', 'RED')
+                # if optional, continue?
+                continue
+            conf.end_msg(jpeg_inc)
+        elif component == 'PngImageConverter' or component == 'PngImporter':
+            # PngImageConverter and PngImporter require PNG
+            conf.start_msg(component + ': Checking for PNG')
+            try:
+                png_inc = get_directory('png.h', includes_check)
+
+                magnum_plugins_includes = magnum_plugins_includes + [png_inc]
+                magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + [png_inc]
+
+                lib_dir = get_directory('libpng.'+suffix, libs_check)
+                magnum_plugins_libpaths = magnum_plugins_libpaths + [lib_dir]
+                magnum_plugins_libs.append('png')
+
+                magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + [lib_dir]
+                magnum_plugins_component_libs[component].append('png')
+            except:
+                if required:
+                    conf.fatal('Not found')
+                conf.end_msg('Not found', 'RED')
+                # if optional, continue?
+                continue
+            conf.end_msg(png_inc)
 
     if len(magnum_plugins_libs) > 0:
         conf.start_msg(magnum_plugins_var + ' libs:')
@@ -241,6 +365,10 @@ def check_magnum_plugins(conf, *k, **kw):
 
     # set component libs
     for component in requested_components:
+        # for lib in magnum_plugins_dependencies[component]:
+        #     magnum_plugins_component_includes[component] = magnum_plugins_component_includes[component] + magnum_plugins_component_includes[lib]
+        #     magnum_plugins_component_libpaths[component] = magnum_plugins_component_libpaths[component] + magnum_plugins_component_libpaths[lib]
+        #     magnum_plugins_component_libs[component] = magnum_plugins_component_libs[component] + magnum_plugins_component_libs[lib]
 
         conf.env['INCLUDES_%s_%s' % (magnum_plugins_var, component)] = list(set(magnum_plugins_component_includes[component]))
         conf.env['LIBPATH_%s_%s' % (magnum_plugins_var, component)] = list(set(magnum_plugins_component_libpaths[component]))
