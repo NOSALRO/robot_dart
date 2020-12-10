@@ -303,7 +303,11 @@ namespace robot_dart {
 
                                 Magnum::GL::Mesh mesh{Magnum::NoCreate};
                                 Magnum::Range2D rectangle;
-                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, text->font_size, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::DynamicDraw, Magnum::Text::Alignment(text->alignment));
+                                double fnt_size = text->font_size;
+                                if (fnt_size <= 0.)
+                                    fnt_size = 28.;
+
+                                std::tie(mesh, rectangle) = Magnum::Text::Renderer2D::render(*debug_data.font, *debug_data.cache, fnt_size, text->text, *debug_data.text_vertices, *debug_data.text_indices, Magnum::GL::BufferUsage::DynamicDraw, Magnum::Text::Alignment(text->alignment));
 
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto sc = Magnum::Vector2{viewport.max() / 1024.f};
