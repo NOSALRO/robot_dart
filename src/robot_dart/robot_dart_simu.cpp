@@ -501,7 +501,7 @@ namespace robot_dart {
         return floor_robot;
     }
 
-    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
@@ -546,9 +546,9 @@ namespace robot_dart {
                 // no collision/dynamics for these ones; only visual shape
                 auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect>(box);
                 if (c % 2 == 0)
-                    box_node->getVisualAspect()->setColor(dart::Color::Gray());
+                    box_node->getVisualAspect()->setColor(second_color);
                 else
-                    box_node->getVisualAspect()->setColor(dart::Color::White());
+                    box_node->getVisualAspect()->setColor(first_color);
 
                 // Put the body into position
                 Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
