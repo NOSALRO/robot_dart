@@ -51,7 +51,7 @@ int main()
             controller->set_pd(300., 50.);
 
             // Magnum graphics
-            robot_dart::gui::magnum::GraphicsConfiguration configuration;
+            robot_dart::gui::magnum::GraphicsConfiguration configuration = robot_dart::gui::magnum::WindowlessGraphics::default_configuration();
             configuration.width = 1024;
             configuration.height = 768;
             auto graphics = std::make_shared<robot_dart::gui::magnum::WindowlessGraphics>(configuration);
