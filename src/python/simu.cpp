@@ -170,6 +170,8 @@ namespace robot_dart {
                     py::arg("floor_width") = 10.,
                     py::arg("floor_height") = 0.1,
                     py::arg("size") = 1.,
+                    py::arg("first_color") = dart::Color::White(1.),
+                    py::arg("second_color") = dart::Color::Gray(1.),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
                     py::arg("floor_name") = "checkerboard_floor")
 
