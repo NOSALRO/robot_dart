@@ -169,26 +169,28 @@ namespace robot_dart {
                     .setIndexBuffer(std::move(axis_indices), 0, compressed.second);
 
                 /* Initialize text visualization */
-                Corrade::Utility::Resource rs("RobotDARTShaders");
-                _font = _font_manager.loadAndInstantiate("TrueTypeFont");
-                if (_font) {
-                    _font->openData(rs.getRaw("SourceSansPro-Regular.ttf"), 180.0f);
+                if (_configuration.draw_debug && _configuration.draw_text) { // only if we ask for it
+                    _font = _font_manager.loadAndInstantiate("TrueTypeFont");
+                    if (_font) {
+                        Corrade::Utility::Resource rs("RobotDARTShaders");
+                        _font->openData(rs.getRaw("SourceSansPro-Regular.ttf"), 180.0f);
 
-                    /* Glyphs we need to render everything */
-                    /* Latin characters for now only */
-                    _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
-                    _font->fillGlyphCache(*_glyph_cache,
-                        "abcdefghijklmnopqrstuvwxyz"
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        "0123456789:-+*,.!° /|[]()_");
+                        /* Glyphs we need to render everything */
+                        /* Latin characters for now only */
+                        _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
+                        _font->fillGlyphCache(*_glyph_cache,
+                            "abcdefghijklmnopqrstuvwxyz"
+                            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            "0123456789:-+*,.!° /|[]()_");
 
-                    /* Initialize buffers for text */
-                    _text_vertices.reset(new Magnum::GL::Buffer);
-                    _text_indices.reset(new Magnum::GL::Buffer);
+                        /* Initialize buffers for text */
+                        _text_vertices.reset(new Magnum::GL::Buffer);
+                        _text_indices.reset(new Magnum::GL::Buffer);
 
-                    /* Initialize text shader */
-                    _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
-                    _text_shader->bindVectorTexture(_glyph_cache->texture());
+                        /* Initialize text shader */
+                        _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
+                        _text_shader->bindVectorTexture(_glyph_cache->texture());
+                    }
                 }
             }
 

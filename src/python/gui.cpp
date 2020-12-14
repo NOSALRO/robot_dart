@@ -86,7 +86,7 @@ namespace robot_dart {
                 .def_readwrite("data", &gui::GrayscaleImage::data);
 
             py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
-                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, double, bool, bool, const Eigen::Vector4d&>(),
+                .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, double, bool, bool, bool, const Eigen::Vector4d&>(),
                     py::arg("width") = 640,
                     py::arg("height") = 480,
                     py::arg("title") = "DART",
@@ -97,6 +97,7 @@ namespace robot_dart {
                     py::arg("specular_strength") = 0.25,
                     py::arg("draw_main_camera") = true,
                     py::arg("draw_debug") = true,
+                    py::arg("draw_text") = true,
                     py::arg("bg_color") = Eigen::Vector4d(0.0, 0.0, 0.0, 1.0))
 
                 .def_readwrite("width", &GraphicsConfiguration::width)
@@ -112,6 +113,7 @@ namespace robot_dart {
 
                 .def_readwrite("draw_main_camera", &GraphicsConfiguration::draw_main_camera)
                 .def_readwrite("draw_debug", &GraphicsConfiguration::draw_debug)
+                .def_readwrite("draw_text", &GraphicsConfiguration::draw_text)
 
                 .def_readwrite("bg_color", &GraphicsConfiguration::bg_color);
 
@@ -124,7 +126,7 @@ namespace robot_dart {
             // Graphics class
             py::class_<Graphics, BaseWindowedGraphics, std::shared_ptr<Graphics>>(sm, "Graphics")
                 .def(py::init<const GraphicsConfiguration&>(),
-                    py::arg("configuration") = GraphicsConfiguration())
+                    py::arg("configuration") = Graphics::default_configuration())
 
                 .def("done", &Graphics::done)
                 .def("refresh", &Graphics::refresh)
@@ -165,12 +167,14 @@ namespace robot_dart {
 
                 .def("camera", (Camera & (Graphics::*)()) & Graphics::camera, py::return_value_policy::reference)
 
-                .def("magnum_app", (gui::magnum::BaseApplication * (Graphics::*)()) & Graphics::magnum_app, py::return_value_policy::reference);
+                .def("magnum_app", (gui::magnum::BaseApplication * (Graphics::*)()) & Graphics::magnum_app, py::return_value_policy::reference)
+
+                .def_static("default_configuration", &Graphics::default_configuration);
 
             // WindowlessGraphics class
             py::class_<WindowlessGraphics, BaseWindowlessGraphics, std::shared_ptr<WindowlessGraphics>>(sm, "WindowlessGraphics")
                 .def(py::init<const GraphicsConfiguration&>(),
-                    py::arg("configuration") = GraphicsConfiguration())
+                    py::arg("configuration") = WindowlessGraphics::default_configuration())
 
                 .def("done", &WindowlessGraphics::done)
                 .def("refresh", &WindowlessGraphics::refresh)
@@ -208,7 +212,9 @@ namespace robot_dart {
 
                 .def("camera", (Camera & (WindowlessGraphics::*)()) & WindowlessGraphics::camera, py::return_value_policy::reference)
 
-                .def("magnum_app", (gui::magnum::BaseApplication * (WindowlessGraphics::*)()) & WindowlessGraphics::magnum_app, py::return_value_policy::reference);
+                .def("magnum_app", (gui::magnum::BaseApplication * (WindowlessGraphics::*)()) & WindowlessGraphics::magnum_app, py::return_value_policy::reference)
+
+                .def_static("default_configuration", &WindowlessGraphics::default_configuration);
 
             sm.def(
                 "run_with_gl_context", +[](const std::function<void()>& func, size_t wait_ms) {

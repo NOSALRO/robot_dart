@@ -12,6 +12,16 @@ namespace robot_dart {
                 simu->enable_text_panel(false);
                 simu->enable_status_bar(false);
             }
+
+            GraphicsConfiguration WindowlessGraphics::default_configuration()
+            {
+                GraphicsConfiguration config;
+                // by default we do not draw text in windowless mode
+                config.draw_debug = false;
+                config.draw_text = false;
+
+                return config;
+            }
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart

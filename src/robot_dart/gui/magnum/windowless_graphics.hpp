@@ -9,10 +9,12 @@ namespace robot_dart {
         namespace magnum {
             class WindowlessGraphics : public BaseGraphics<WindowlessGLApplication> {
             public:
-                WindowlessGraphics(const GraphicsConfiguration& configuration = GraphicsConfiguration()) : BaseGraphics<WindowlessGLApplication>(configuration) {}
+                WindowlessGraphics(const GraphicsConfiguration& configuration = default_configuration()) : BaseGraphics<WindowlessGLApplication>(configuration) {}
                 ~WindowlessGraphics() {}
 
                 void set_simu(RobotDARTSimu* simu) override;
+
+                static GraphicsConfiguration default_configuration();
             };
         } // namespace magnum
     } // namespace gui
