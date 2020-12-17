@@ -123,6 +123,7 @@ namespace robot_dart {
                 _lights.push_back(light);
                 dir = {0.5f, 0.5f, -0.5f};
                 light = gs::create_directional_light(dir, mat);
+                light.set_casts_shadows(false);
                 _lights.push_back(light);
                 // Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
                 // Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
@@ -416,6 +417,8 @@ namespace robot_dart {
             {
                 /* For each light */
                 for (size_t i = 0; i < _lights.size(); i++) {
+                    if (!_lights[i].casts_shadows())
+                        continue;
                     bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PI / 2.0);
                     bool cullFront = false;
                     Magnum::Matrix4 cameraMatrix;
