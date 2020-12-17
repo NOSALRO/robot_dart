@@ -166,6 +166,8 @@ namespace robot_dart {
                     setUniform(_lights_uniform + i * _light_loc_size + 10, attenuation[2]);
                     // world position
                     setUniform(_lights_uniform + i * _light_loc_size + 11, light.position());
+                    // casts shadows?
+                    setUniform(_lights_uniform + i * _light_loc_size + 12, light.casts_shadows());
 
                     setUniform(_lights_matrices_uniform + i, light.shadow_matrix());
 
