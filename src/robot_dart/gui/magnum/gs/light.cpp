@@ -12,16 +12,18 @@ namespace robot_dart {
                                  _spot_direction(Magnum::Vector3{1.f, 0.f, 0.f}),
                                  _spot_exponent(1.f),
                                  _spot_cut_off(Magnum::Math::Constants<Magnum::Float>::pi()),
-                                 _attenuation(Magnum::Vector4{0.f, 0.f, 1.f, 1.f}) {}
+                                 _attenuation(Magnum::Vector4{0.f, 0.f, 1.f, 1.f}),
+                                 _cast_shadows(true) {}
 
                 Light::Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spot_direction,
-                    Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation) : _position(position),
-                                                                                                                _transformed_position(_position),
-                                                                                                                _material(material),
-                                                                                                                _spot_direction(spot_direction),
-                                                                                                                _spot_exponent(spot_exponent),
-                                                                                                                _spot_cut_off(spot_cut_off),
-                                                                                                                _attenuation(attenuation) {}
+                    Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation, bool cast_shadows) : _position(position),
+                                                                                                                                      _transformed_position(_position),
+                                                                                                                                      _material(material),
+                                                                                                                                      _spot_direction(spot_direction),
+                                                                                                                                      _spot_exponent(spot_exponent),
+                                                                                                                                      _spot_cut_off(spot_cut_off),
+                                                                                                                                      _attenuation(attenuation),
+                                                                                                                                      _cast_shadows(cast_shadows) {}
 
                 // Magnum::Vector4& Light::position();
                 Magnum::Vector4 Light::position() const { return _position; }
@@ -48,6 +50,8 @@ namespace robot_dart {
                 Magnum::Vector4 Light::attenuation() const { return _attenuation; }
 
                 Magnum::Matrix4 Light::shadow_matrix() const { return _shadow_transform; }
+
+                bool Light::casts_shadows() const { return _cast_shadows; }
 
                 Light& Light::set_position(const Magnum::Vector4& position)
                 {
@@ -102,6 +106,12 @@ namespace robot_dart {
                 Light& Light::set_shadow_matrix(const Magnum::Matrix4& shadowTransform)
                 {
                     _shadow_transform = shadowTransform;
+                    return *this;
+                }
+
+                Light& Light::set_casts_shadows(bool cast_shadows)
+                {
+                    _cast_shadows = cast_shadows;
                     return *this;
                 }
             } // namespace gs

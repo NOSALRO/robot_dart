@@ -62,7 +62,7 @@ namespace robot_dart {
                         _shininess_uniform{3}, _ambient_color_uniform{4}, _diffuse_color_uniform{5}, _specular_color_uniform{6}, _specular_strength_uniform{11},
                         _lights_uniform{12}, _lights_matrices_uniform, _far_plane_uniform{8}, _is_shadowed_uniform{9}, _transparent_shadows_uniform{10},
                         _shadow_textures_location{3}, _cube_map_textures_location{4}, _shadow_color_textures_location{5}, _cube_map_color_textures_location{6};
-                    const Magnum::Int _light_loc_size = 12;
+                    const Magnum::Int _light_loc_size = 13;
                 };
 
                 CORRADE_ENUMSET_OPERATORS(PhongMultiLight::Flags)

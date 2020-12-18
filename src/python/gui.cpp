@@ -286,7 +286,7 @@ namespace robot_dart {
             // TO-DO: Add more functions
             using Light = gui::magnum::gs::Light;
             py::class_<Light>(sm, "Light")
-                .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&>());
+                .def(py::init<const Magnum::Vector4&, const Material&, const Magnum::Vector3&, Magnum::Float, Magnum::Float, const Magnum::Vector4&, bool>());
             // TO-DO: Add more functions
 
             sm.def("create_point_light", &gui::magnum::gs::create_point_light);
