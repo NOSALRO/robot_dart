@@ -49,6 +49,7 @@ namespace robot_dart {
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 for (size_t i = 0; i < _gl_contexts.size(); i++) {
                     if (&_gl_contexts[i] == context) {
+                        while (!_gl_contexts[i].release()) {} // release the context
                         _used[i] = false;
                         break;
                     }
