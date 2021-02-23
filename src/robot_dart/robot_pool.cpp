@@ -14,6 +14,7 @@ namespace robot_dart {
                 std::cout.flush();
             }
             auto robot = robot_creator();
+            _model_filename = robot->model_filename();
             _reset_robot(robot);
             _skeletons.push_back(robot->skeleton());
         }
