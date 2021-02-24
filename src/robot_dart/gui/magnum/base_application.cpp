@@ -30,6 +30,9 @@ namespace robot_dart {
             // GlobalData
             Magnum::Platform::WindowlessGLContext* GlobalData::gl_context()
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 if (_gl_contexts.size() == 0)
                     _create_contexts();
@@ -46,6 +49,9 @@ namespace robot_dart {
 
             void GlobalData::free_gl_context(Magnum::Platform::WindowlessGLContext* context)
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 for (size_t i = 0; i < _gl_contexts.size(); i++) {
                     if (&_gl_contexts[i] == context) {
@@ -58,6 +64,9 @@ namespace robot_dart {
 
             void GlobalData::set_max_contexts(size_t N)
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 _max_contexts = N;
                 _create_contexts();
