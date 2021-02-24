@@ -412,11 +412,11 @@ namespace robot_dart {
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
-    void RobotDARTSimu::enable_text_panel(bool enable) { _enable(_text_panel, enable); }
+    void RobotDARTSimu::enable_text_panel(bool enable, double font_size) { _enable(_text_panel, enable, font_size); }
 
-    void RobotDARTSimu::enable_status_bar(bool enable)
+    void RobotDARTSimu::enable_status_bar(bool enable, double font_size)
     {
-        _enable(_status_bar, enable);
+        _enable(_status_bar, enable, font_size);
         if (enable) {
             _status_bar->alignment = (1 | 1 << 3); // alignment of status bar should be LineLeft
             _status_bar->draw_background = true; // we want to draw a background
@@ -424,7 +424,7 @@ namespace robot_dart {
         }
     }
 
-    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable)
+    void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable, double font_size)
     {
         if (!text && enable) {
             text = _gui_data->add_text("");
@@ -434,6 +434,8 @@ namespace robot_dart {
                 _gui_data->remove_text(text);
             text = nullptr;
         }
+        if (text && font_size > 0)
+            text->font_size = font_size;
     }
 
     void RobotDARTSimu::set_text_panel(const std::string& str)
@@ -465,9 +467,9 @@ namespace robot_dart {
         return out.str();
     }
 
-    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color)
+    std::shared_ptr<simu::TextData> RobotDARTSimu::add_text(const std::string& text, const Eigen::Affine2d& tf, Eigen::Vector4d color, std::uint8_t alignment, bool draw_bg, Eigen::Vector4d bg_color, double font_size)
     {
-        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color);
+        return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color, font_size);
     }
 
     std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
@@ -499,7 +501,7 @@ namespace robot_dart {
         return floor_robot;
     }
 
-    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color, const Eigen::Vector6d& pose, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
@@ -544,9 +546,9 @@ namespace robot_dart {
                 // no collision/dynamics for these ones; only visual shape
                 auto box_node = body->createShapeNodeWith<dart::dynamics::VisualAspect>(box);
                 if (c % 2 == 0)
-                    box_node->getVisualAspect()->setColor(dart::Color::Gray());
+                    box_node->getVisualAspect()->setColor(second_color);
                 else
-                    box_node->getVisualAspect()->setColor(dart::Color::White());
+                    box_node->getVisualAspect()->setColor(first_color);
 
                 // Put the body into position
                 Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());

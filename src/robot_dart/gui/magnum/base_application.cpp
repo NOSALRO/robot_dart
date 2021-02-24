@@ -30,6 +30,9 @@ namespace robot_dart {
             // GlobalData
             Magnum::Platform::WindowlessGLContext* GlobalData::gl_context()
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 if (_gl_contexts.size() == 0)
                     _create_contexts();
@@ -46,9 +49,13 @@ namespace robot_dart {
 
             void GlobalData::free_gl_context(Magnum::Platform::WindowlessGLContext* context)
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 for (size_t i = 0; i < _gl_contexts.size(); i++) {
                     if (&_gl_contexts[i] == context) {
+                        while (!_gl_contexts[i].release()) {} // release the context
                         _used[i] = false;
                         break;
                     }
@@ -57,6 +64,9 @@ namespace robot_dart {
 
             void GlobalData::set_max_contexts(size_t N)
             {
+#ifdef MAGNUM_MAC_OSX
+                ROBOT_DART_EXCEPTION_ASSERT(false, "Windowless GLContext unsupported in Mac!");
+#endif
                 std::lock_guard<std::mutex> lg(_context_mutex);
                 _max_contexts = N;
                 _create_contexts();
@@ -123,6 +133,7 @@ namespace robot_dart {
                 _lights.push_back(light);
                 dir = {0.5f, 0.5f, -0.5f};
                 light = gs::create_directional_light(dir, mat);
+                light.set_casts_shadows(false);
                 _lights.push_back(light);
                 // Magnum::Vector3 lpos = {0.f, 0.5f, 1.f};
                 // Magnum::Vector3 ldir = {0.f, 0.f, -1.f};
@@ -169,26 +180,28 @@ namespace robot_dart {
                     .setIndexBuffer(std::move(axis_indices), 0, compressed.second);
 
                 /* Initialize text visualization */
-                Corrade::Utility::Resource rs("RobotDARTShaders");
-                _font = _font_manager.loadAndInstantiate("TrueTypeFont");
-                if (_font) {
-                    _font->openData(rs.getRaw("SourceSansPro-Regular.ttf"), 180.0f);
+                if (_configuration.draw_debug && _configuration.draw_text) { // only if we ask for it
+                    _font = _font_manager.loadAndInstantiate("TrueTypeFont");
+                    if (_font) {
+                        Corrade::Utility::Resource rs("RobotDARTShaders");
+                        _font->openData(rs.getRaw("SourceSansPro-Regular.ttf"), 180.0f);
 
-                    /* Glyphs we need to render everything */
-                    /* Latin characters for now only */
-                    _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
-                    _font->fillGlyphCache(*_glyph_cache,
-                        "abcdefghijklmnopqrstuvwxyz"
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        "0123456789:-+*,.!° /|[]()_");
+                        /* Glyphs we need to render everything */
+                        /* Latin characters for now only */
+                        _glyph_cache.reset(new Magnum::Text::DistanceFieldGlyphCache{Magnum::Vector2i{2048}, Magnum::Vector2i{512}, 22});
+                        _font->fillGlyphCache(*_glyph_cache,
+                            "abcdefghijklmnopqrstuvwxyz"
+                            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            "0123456789:-+*,.!° /|[]()_");
 
-                    /* Initialize buffers for text */
-                    _text_vertices.reset(new Magnum::GL::Buffer);
-                    _text_indices.reset(new Magnum::GL::Buffer);
+                        /* Initialize buffers for text */
+                        _text_vertices.reset(new Magnum::GL::Buffer);
+                        _text_indices.reset(new Magnum::GL::Buffer);
 
-                    /* Initialize text shader */
-                    _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
-                    _text_shader->bindVectorTexture(_glyph_cache->texture());
+                        /* Initialize text shader */
+                        _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
+                        _text_shader->bindVectorTexture(_glyph_cache->texture());
+                    }
                 }
             }
 
@@ -414,6 +427,8 @@ namespace robot_dart {
             {
                 /* For each light */
                 for (size_t i = 0; i < _lights.size(); i++) {
+                    if (!_lights[i].casts_shadows())
+                        continue;
                     bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PI / 2.0);
                     bool cullFront = false;
                     Magnum::Matrix4 cameraMatrix;

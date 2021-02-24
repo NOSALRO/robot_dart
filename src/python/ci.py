@@ -38,7 +38,7 @@ simu = rd.RobotDARTSimu(0.001)
 
 # Add robot and floor to the simulation
 simu.add_robot(robot)
-simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
+simu.add_checkerboard_floor()
 
 simu.run(5.)
 

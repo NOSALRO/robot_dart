@@ -16,6 +16,7 @@ struct lightSource
     highp float linearAttenuation;
     highp float quadraticAttenuation;
     highp vec4 worldPosition;
+    bool castsShadows;
 };
 
 #ifdef EXPLICIT_UNIFORM_LOCATION
@@ -307,7 +308,7 @@ void main() {
         highp float intensity = dot(normalizedTransformedNormal, lightDirection);
         float visibility = 1.;
         vec3 colorShadow = vec3(1.);
-        if(isShadowed) {
+        if(isShadowed && lights[i].castsShadows) {
             float bias = 0.0005;//max(0.0001, 0.0005*tan(acos(intensity)));//0.001;// max(0.05 * (1.0 - intensity), 0.005);
             if(!isPoint) {
                 visibility = visibilityCalculation(i, bias);
