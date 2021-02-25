@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include <Eigen/Core>
+#include <Eigen/Geometry>
 
 #ifndef ROBOT_DART_SHOW_WARNINGS
 #define ROBOT_DART_SHOW_WARNINGS true
@@ -16,6 +17,39 @@ namespace robot_dart {
     inline Eigen::VectorXd make_vector(std::initializer_list<double> args)
     {
         return Eigen::VectorXd::Map(args.begin(), args.size());
+    }
+
+    inline Eigen::Isometry3d make_tf(const Eigen::Matrix3d& R, const Eigen::Vector3d& t)
+    {
+        Eigen::Isometry3d tf = Eigen::Isometry3d::Identity();
+        tf.linear().matrix() = R;
+        tf.translation() = t;
+
+        return tf;
+    }
+
+    inline Eigen::Isometry3d make_tf(const Eigen::Matrix3d& R)
+    {
+        Eigen::Isometry3d tf = Eigen::Isometry3d::Identity();
+        tf.linear().matrix() = R;
+
+        return tf;
+    }
+
+    inline Eigen::Isometry3d make_tf(const Eigen::Vector3d& t)
+    {
+        Eigen::Isometry3d tf = Eigen::Isometry3d::Identity();
+        tf.translation() = t;
+
+        return tf;
+    }
+
+    inline Eigen::Isometry3d make_tf(std::initializer_list<double> args)
+    {
+        Eigen::Isometry3d tf = Eigen::Isometry3d::Identity();
+        tf.translation() = make_vector(args);
+
+        return tf;
     }
 
     class Assertion : public std::exception {

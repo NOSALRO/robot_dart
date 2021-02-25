@@ -349,6 +349,8 @@ def build_examples(bld):
     for root, dirnames, filenames in os.walk(bld.path.abspath() + '/src/examples/'):
         for filename in fnmatch.filter(filenames, '*.cpp'):
             ffile = os.path.join(root, filename)
+            if 'old' in ffile:
+                continue
             basename = filename.replace('.cpp', '')
             # plain version
             if (filename not in exclude) and (filename not in magnum_only):
@@ -372,6 +374,15 @@ def build_examples(bld):
                             target = basename)
 
 def build_docs(bld):
+    import macros
+    variables = macros.grab()
+    f = open(bld.path.abspath() + '/src/docs/include/macros.py', 'w')
+    vv = str(variables)
+    f.write('\ndef define_env(env):\n')
+    f.write('    variables = ' + vv.replace('\n', '\\n') + '\n')
+    f.write('    for v in variables.items():\n')
+    f.write('        env.variables[v[0]] = variables[v[0]]\n')
+    f.close()
     Logs.pprint('NORMAL', "Generating HTML docs...")
     s = 'cd ' + bld.path.abspath() + '/src/docs && mkdocs build'
     retcode = subprocess.call(s, shell=True, env=None)

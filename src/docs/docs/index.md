@@ -28,7 +28,7 @@ In a few words, RobotDART combines:
 * A generic `Sensor` class that allows the creation of any kind of sensor
 * A growing list of already implemented **sensors**, that includes 6-axis `ForceTorque`, `IMU`, `RGB`, and `RGB-D` sensors
 * A simulation class (`RobotDARTSimu`) that handles multiple robots and sensors, and allows for step-by-step simulation
-* A growing list of supported robots along with edited and optimized models to be used with RobotDART (see the [robots page](robots) for details and examples):
+* A growing list of supported robots along with edited and optimized models to be used with RobotDART (see the [robots page](robots.md) for details and examples):
     * PAL Talos humanoid
     * Franka Emika Panda
     * KUKA LBR Iiwa (14kg version)

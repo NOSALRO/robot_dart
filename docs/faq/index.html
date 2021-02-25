@@ -115,7 +115,7 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
-            <li class="second-level"><a href="#what-is-a-minimal-working-example-of-robotdart">What is a minimal, working example of RobotDART</a></li>
+            <li class="second-level"><a href="#what-is-a-minimal-working-example-of-robotdart">What is a minimal working example of RobotDART</a></li>
                 
             <li class="second-level"><a href="#what-robots-are-supported-in-robotdart">What robots are supported in RobotDART?</a></li>
                 
@@ -167,12 +167,68 @@
 
 <h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
 <p>This pages provides a user guide of the library through Frequently Asked Questions (FAQ).</p>
-<h2 id="what-is-a-minimal-working-example-of-robotdart">What is a minimal, working example of RobotDART</h2>
+<h2 id="what-is-a-minimal-working-example-of-robotdart">What is a minimal working example of RobotDART</h2>
+<p>You can find a minimal working example at <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hello_world.cpp">hello_world.cpp</a>. This example is creating a world where a hexapod robot is placed just above a floor and left to fall. The robot has no actuation, and there is the simplest graphics configuration. Let's split it down.</p>
+<ul>
+<li>We first include the RobotDART headers:</li>
+</ul>
+<pre><code class="language-cpp">#include &lt;robot_dart/robot_dart_simu.hpp&gt;
+
+#ifdef GRAPHIC
+#include &lt;robot_dart/gui/magnum/graphics.hpp&gt;
+#endif
+</code></pre>
+<ul>
+<li>We then load our hexapod robot:</li>
+</ul>
+<pre><code class="language-cpp">auto robot = std::make_shared&lt;robot_dart::Robot&gt;(&quot;pexod.urdf&quot;);
+</code></pre>
+<ul>
+<li>We need to place it above the floor to avoid collision (position is given as a screw vector):</li>
+</ul>
+<pre><code class="language-cpp">robot-&gt;set_base_pose(robot_dart::make_tf({0., 0., 0.2}));
+</code></pre>
+<ul>
+<li>We can now create the simulation object and add the robot and the floor:</li>
+</ul>
+<pre><code class="language-cpp">robot_dart::RobotDARTSimu simu(0.001); // dt=0.001, 1KHz simulation
+simu.add_floor();
+simu.add_robot(robot);
+</code></pre>
+<ul>
+<li>If needed or wanted, we can add a graphics component to visualize the scene:</li>
+</ul>
+<pre><code class="language-cpp">#ifdef GRAPHIC
+    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
+    simu.set_graphics(graphics);
+    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+#endif
+</code></pre>
+<ul>
+<li>Once everything is configured, we can run our simulation for a few seconds:</li>
+</ul>
+<pre><code class="language-cpp">simu.run(10.);
+</code></pre>
+<ul>
+<li>Here's how it looks:</li>
+</ul>
+<p><img alt="Hello World example" src="../images/FAQ/hello_world.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <h2 id="what-robots-are-supported-in-robotdart">What robots are supported in RobotDART?</h2>
-<p>RobotDART supports any robot that can be described by a URDF, SDF, SKEL or MJCF file. Nevertheless, we have a curated list of robots with edited and optimized models to be used with RobotDART (see the <a href="robots">robots page</a> for details and examples).</p>
+<p>RobotDART supports any robot that can be described by a URDF, SDF, SKEL or MJCF file. Nevertheless, we have a curated list of robots with edited and optimized models to be used with RobotDART (see the <a href="../robots/">robots page</a> for details and examples).</p>
 <h2 id="how-can-i-load-my-own-urdfsdfskelmjcf-file">How can I load my own URDF/SDF/SKEL/MJCF file?</h2>
-<p>See the <a href="robots">robots page</a> for details.</p>
+<p>See the <a href="../robots/">robots page</a> for details.</p>
 <h2 id="how-do-i-enable-graphics-in-my-code">How do I enable graphics in my code?</h2>
+<p>To enable graphics in your code, you need to do the following:</p>
+<ul>
+<li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="install.md">installation page</a> for details.</li>
+<li>Create and set a graphics object in the simulation object. Here's an example:</li>
+</ul>
+<pre><code class="language-cpp">#ifdef GRAPHIC
+    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
+    simu.set_graphics(graphics);
+    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+#endif
+</code></pre>
 <h2 id="how-do-i-record-a-video">How do I record a video?</h2>
 <h2 id="how-can-i-manipulate-the-camera">How can I manipulate the camera?</h2>
 <h2 id="how-can-i-display-debug-information">How can I display debug information?</h2>
