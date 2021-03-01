@@ -71,7 +71,7 @@ def configure(conf):
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
-        conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
+        conf.env['magnum_dep_libs'] += ' WindowlessEglApplication'
     if len(conf.env.INCLUDES_Corrade):
         conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     if len(conf.env.INCLUDES_Magnum):
@@ -136,7 +136,7 @@ def configure(conf):
         if '-std=c++0x' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
-    
+
     # add the prefix
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS']
     print(conf.env['CXXFLAGS'])
@@ -247,7 +247,7 @@ def build(bld):
         f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
         f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
         f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
-        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
 
     #### install the URDF library (robots)

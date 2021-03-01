@@ -23,7 +23,7 @@
 #include <Magnum/GL/TextureArray.h>
 #include <Magnum/Platform/GLContext.h>
 #ifndef MAGNUM_MAC_OSX
-#include <Magnum/Platform/WindowlessGlxApplication.h>
+#include <Magnum/Platform/WindowlessEglApplication.h>
 #else
 #include <Magnum/Platform/WindowlessCglApplication.h>
 #endif
