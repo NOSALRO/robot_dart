@@ -214,10 +214,10 @@ def check_magnum(conf, *k, **kw):
             conf.end_msg(opengl_include_dir)
 
             conf.start_msg('Magnum: Checking for OpenGL lib')
-            opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
+            opengl_lib_dir = get_directory('libOpenGL.'+suffix, libs_check)
             magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
-            magnum_libs = magnum_libs + ['GL']
-            conf.end_msg(['GL'])
+            magnum_libs = magnum_libs + ['OpenGL']
+            conf.end_msg(['OpenGL'])
 
             conf.start_msg('Magnum: Checking for MagnumGL lib')
             gl_lib_dir = get_directory('libMagnumGL.'+suffix, libs_check)
@@ -301,6 +301,14 @@ def check_magnum(conf, *k, **kw):
                             lib_dir = get_directory('libdl.'+suffix, libs_check)
                             magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
                             magnum_component_libs[component].append('dl')
+                        except:
+                            glfw_found = False
+
+                        # GlfwApplication needs the libGLX.so library
+                        try:
+                            lib_dir = get_directory('libGLX.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = [lib_dir] + magnum_component_libpaths[component]
+                            magnum_component_libs[component] = ['GLX'] + magnum_component_libs[component]
                         except:
                             glfw_found = False
 
