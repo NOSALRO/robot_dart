@@ -296,19 +296,19 @@ def check_magnum(conf, *k, **kw):
                             except:
                                 glfw_found = False
 
+                        # GlfwApplication needs the libGLX.so library
+                        try:
+                            lib_dir = get_directory('libGLX.'+suffix, libs_check)
+                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                            magnum_component_libs[component] = magnum_component_libs[component] + ['GLX']
+                        except:
+                            glfw_found = False
+
                         # GlfwApplication needs the libdl.so library
                         try:
                             lib_dir = get_directory('libdl.'+suffix, libs_check)
                             magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
                             magnum_component_libs[component].append('dl')
-                        except:
-                            glfw_found = False
-
-                        # GlfwApplication needs the libGLX.so library
-                        try:
-                            lib_dir = get_directory('libGLX.'+suffix, libs_check)
-                            magnum_component_libpaths[component] = [lib_dir] + magnum_component_libpaths[component]
-                            magnum_component_libs[component] = ['GLX'] + magnum_component_libs[component]
                         except:
                             glfw_found = False
 
