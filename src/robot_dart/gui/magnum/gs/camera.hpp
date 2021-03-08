@@ -52,6 +52,7 @@ namespace robot_dart {
                     Magnum::Float fov() const { return static_cast<Magnum::Float>(_fov); }
                     Magnum::Int width() const { return _camera->viewport()[0]; }
                     Magnum::Int height() const { return _camera->viewport()[1]; }
+                    Magnum::Matrix3 intrinsicMatrix();
 
                     Camera& look_at(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 
