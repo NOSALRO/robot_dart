@@ -71,10 +71,10 @@ namespace robot_dart {
 
                 Magnum::Matrix3 intrinsicMatrix()
                 {
-                    Magnum::Matrix4 perspProj = Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane);
-                    return {{perspProj[0][0], 0., 0.},
-                            {perspProj[0][1], perspProj[1][1], 0.}
-                            {perspProj[0][2], perspProj[1][2], -1.}};
+                    Magnum::Matrix4 projection = _camera->projectionMatrix();
+                    return {{projection[0][0], 0., 0.},
+                            {projection[1][0], projection[1][1], 0.}
+                            {projection[2][0], projection[2][1], -1.}};
                 }
 
                 Camera3D& Camera::camera() const
