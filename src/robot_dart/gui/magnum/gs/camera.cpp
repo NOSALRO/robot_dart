@@ -69,7 +69,7 @@ namespace robot_dart {
 #endif
                 }
 
-                Magnum::Matrix3 intrinsicMatrix()
+                Magnum::Matrix3 intrinsic_matrix()
                 {
                     Magnum::Matrix4 projection = _camera->projectionMatrix();
                     return {{projection[0][0], 0., 0.},
