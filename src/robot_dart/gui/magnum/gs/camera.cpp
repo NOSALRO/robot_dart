@@ -69,14 +69,6 @@ namespace robot_dart {
 #endif
                 }
 
-                Magnum::Matrix3 intrinsic_matrix()
-                {
-                    Magnum::Matrix4 projection = _camera->projectionMatrix();
-                    return {{projection[0][0], 0., 0.},
-                            {projection[1][0], projection[1][1], 0.}
-                            {projection[2][0], projection[2][1], -1.}};
-                }
-
                 Camera3D& Camera::camera() const
                 {
                     return *_camera;
@@ -168,6 +160,19 @@ namespace robot_dart {
                         .setViewport({width, height});
 
                     return *this;
+                }
+
+                Magnum::Matrix3 Camera::intrinsic_matrix() const
+                {
+                    Magnum::Matrix4 projection = _camera->projectionMatrix();
+                    return {{projection[0][0], 0., 0.},
+                        {projection[1][0], projection[1][1], 0.},
+                        {projection[2][0], projection[2][1], -1.}};
+                }
+
+                Magnum::Matrix4 Camera::extrinsic_matrix() const
+                {
+                    return _camera->cameraMatrix();
                 }
 
                 Camera& Camera::look_at(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up)
