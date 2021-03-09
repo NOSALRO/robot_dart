@@ -1,5 +1,7 @@
 #include "helper.hpp"
 
+#include <Eigen/Dense>
+
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -56,6 +58,45 @@ namespace robot_dart {
             }
 
             return gray;
+        }
+
+        std::vector<Eigen::Vector3d> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane)
+        {
+            auto point_3d = [](const Eigen::Matrix3d& K, size_t u, size_t v, double depth) {
+                double fx = K(0, 0);
+                double fy = K(1, 1);
+                double cx = K(0, 2);
+                double cy = K(1, 2);
+                double gamma = K(0, 1);
+
+                Eigen::Vector3d p;
+                p << 0., 0., -depth;
+
+                p(1) = (cy - v) * depth / fy;
+                p(0) = -((cx - u) * depth - gamma * p(1)) / fx;
+
+                return p;
+            };
+
+            std::vector<Eigen::Vector3d> point_cloud;
+
+            size_t height = depth_image.height;
+            size_t width = depth_image.width;
+            for (size_t h = 0; h < height; h++) {
+                for (size_t w = 0; w < width; w++) {
+                    int id = w + h * width;
+                    if (depth_image.data[id] >= 0.99 * far_plane) // close to far plane
+                        continue;
+                    Eigen::Vector4d pp;
+                    pp.head(3) = point_3d(intrinsic_matrix, w, h, depth_image.data[id]);
+                    pp.tail(1) << 1.;
+                    pp = tf.inverse() * pp;
+
+                    point_cloud.push_back(pp.head(3));
+                }
+            }
+
+            return point_cloud;
         }
     } // namespace gui
 } // namespace robot_dart

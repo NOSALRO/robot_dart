@@ -86,6 +86,7 @@ namespace robot_dart {
                     Magnum::Vector3 _up, _front, _right;
                     Magnum::Float _aspect_ratio, _near_plane, _far_plane;
                     Magnum::Rad _fov;
+                    Magnum::Int _width, _height;
 
                     bool _recording = false, _recording_depth = false;
                     bool _recording_video = false;

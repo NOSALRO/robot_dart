@@ -173,6 +173,9 @@ namespace robot_dart {
                 // Image filled with depth buffer values
                 GrayscaleImage raw_depth_image();
 
+                // "Image" filled with depth buffer values (this returns an array of doubles)
+                DepthImage depth_array();
+
                 // Access to debug data
                 DebugDrawData debug_draw_data()
                 {

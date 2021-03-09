@@ -13,6 +13,7 @@ namespace robot_dart {
             namespace gs {
                 Image rgb_from_image(Magnum::Image2D* image);
                 GrayscaleImage depth_from_image(Magnum::Image2D* image, bool linearize = false, Magnum::Float near_plane = 0.f, Magnum::Float far_plane = 100.f);
+                DepthImage depth_array_from_image(Magnum::Image2D* image, Magnum::Float near_plane = 0.f, Magnum::Float far_plane = 100.f);
             } // namespace gs
         } // namespace magnum
     } // namespace gui

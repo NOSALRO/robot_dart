@@ -9,6 +9,8 @@
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
 
+#include <Magnum/EigenIntegration/Integration.h>
+
 inline static void robot_dart_initialize_magnum_resources()
 {
     CORRADE_RESOURCE_INITIALIZE(RobotDARTShaders);
@@ -172,6 +174,18 @@ namespace robot_dart {
                 {
                     ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
                     return _magnum_app->camera();
+                }
+
+                Eigen::Matrix3d camera_intrinsic_matrix() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return Magnum::EigenIntegration::cast<Eigen::Matrix3d>(Magnum::Matrix3d(_magnum_app->camera().intrinsic_matrix()));
+                }
+
+                Eigen::Matrix4d camera_extrinsic_matrix() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return Magnum::EigenIntegration::cast<Eigen::Matrix4d>(Magnum::Matrix4d(_magnum_app->camera().extrinsic_matrix()));
                 }
 
                 BaseApplication* magnum_app()
