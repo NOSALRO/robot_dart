@@ -47,6 +47,8 @@ namespace robot_dart {
                     _aspect_ratio = width / static_cast<Magnum::Float>(height);
                     _near_plane = 0.01f;
                     _far_plane = 200.f;
+                    _width = width;
+                    _height = height;
 
                     _camera = new Camera3D{*_camera_object};
                     _camera->setAspectRatioPolicy(Magnum::SceneGraph::AspectRatioPolicy::Extend)
@@ -86,6 +88,8 @@ namespace robot_dart {
 
                 Camera& Camera::set_viewport(const Magnum::Vector2i& size)
                 {
+                    _width = size[0];
+                    _height = size[1];
                     _aspect_ratio = size[0] / static_cast<Magnum::Float>(size[1]);
                     _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane))
                         .setViewport(size);
@@ -155,6 +159,8 @@ namespace robot_dart {
                     // Maximum FOV is around 170 degrees
                     _fov = Magnum::Rad(std::max(0.f, std::min(3.f, fov)));
                     _aspect_ratio = width / static_cast<Magnum::Float>(height);
+                    _width = width;
+                    _height = height;
 
                     _camera->setProjectionMatrix(Magnum::Matrix4::perspectiveProjection(_fov, _aspect_ratio, _near_plane, _far_plane))
                         .setViewport({width, height});
@@ -164,10 +170,10 @@ namespace robot_dart {
 
                 Magnum::Matrix3 Camera::intrinsic_matrix() const
                 {
-                    Magnum::Matrix4 projection = _camera->projectionMatrix();
+                    Magnum::Matrix4 projection = _camera->projectionMatrix() * Magnum::Matrix4::orthographicProjection({static_cast<float>(_width), static_cast<float>(_height)}, _near_plane, _far_plane).inverted();
                     return {{projection[0][0], 0., 0.},
                         {projection[1][0], projection[1][1], 0.},
-                        {projection[2][0], projection[2][1], -1.}};
+                        {_width / 2.f, _height / 2.f, 1.}};
                 }
 
                 Magnum::Matrix4 Camera::extrinsic_matrix() const

@@ -645,6 +645,15 @@ namespace robot_dart {
                 return gs::depth_from_image(&*depth_image);
             }
 
+            DepthImage BaseApplication::depth_array()
+            {
+                auto& depth_image = _camera->depth_image();
+                if (!depth_image)
+                    return DepthImage();
+
+                return gs::depth_array_from_image(&*depth_image, _camera->near_plane(), _camera->far_plane());
+            }
+
             void BaseApplication::_gl_clean_up()
             {
                 /* Clean up GL because of destructor order */

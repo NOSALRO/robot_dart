@@ -39,7 +39,7 @@ int main()
     robot->fix_to_world();
     robot->set_position_enforced(true);
 
-    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
+    Eigen::VectorXd ctrl = robot_dart::make_vector({-0.3, M_PI / 3., 0.2, -M_PI / 4., 0., 0., -0.6});
 
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
     robot->add_controller(controller);
@@ -78,8 +78,10 @@ int main()
     simu.add_checkerboard_floor(10.);
     simu.add_robot(robot);
     Eigen::Vector6d pose;
-    pose << 0., 0., 0., 1.5, 0., 0.1;
-    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    pose << 0., 0., 0., 1.5, 0., 0.25;
+    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.5}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    pose << 0., 0., 0., 1.5, -0.5, 0.25;
+    simu.add_robot(robot_dart::Robot::create_ellipsoid({0.2, 0.2, 0.2}, pose, "free", 1., dart::Color::Red(1.), "sphere"));
     simu.add_sensor(camera);
 
     simu.run(10.);
@@ -101,6 +103,22 @@ int main()
     robot_dart::gui::save_png_image("camera-depth.png", camera->depth_image());
     // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
     robot_dart::gui::save_png_image("camera-depth-raw.png", camera->raw_depth_image());
+
+    auto depth_image = camera->depth_array();
+
+    std::vector<Eigen::Vector3d> point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+    for (size_t i = 0; i < point_cloud.size(); i++) {
+        if (i % 20 == 0) {
+            Eigen::Vector6d pose;
+            pose << 0., 0., 0., point_cloud[i];
+            auto bbox = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, pose, "fxied", 1., dart::Color::Blue(1.), "box_" + std::to_string(i));
+            bbox->set_ghost(true);
+            bbox->set_cast_shadows(false);
+            simu.add_robot(bbox);
+        }
+    }
+
+    simu.run(10.);
 
     robot.reset();
     return 0;
