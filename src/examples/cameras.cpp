@@ -74,7 +74,6 @@ int main()
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
     camera->attach_to_body(robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
 
-    // simu.add_floor(5.);
     simu.add_checkerboard_floor(10.);
     simu.add_robot(robot);
     Eigen::Vector6d pose;
@@ -106,19 +105,31 @@ int main()
 
     auto depth_image = camera->depth_array();
 
+    auto small_box = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, Eigen::Vector6d::Zero(), "fixed", 1., dart::Color::Blue(1.), "box_pc");
     std::vector<Eigen::Vector3d> point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
     for (size_t i = 0; i < point_cloud.size(); i++) {
-        if (i % 20 == 0) {
+        if (i % 30 == 0) { // do not display all the points in the cloud
             Eigen::Vector6d pose;
             pose << 0., 0., 0., point_cloud[i];
-            auto bbox = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, pose, "fxied", 1., dart::Color::Blue(1.), "box_" + std::to_string(i));
-            bbox->set_ghost(true);
+            auto bbox = small_box->clone_ghost("box_" + std::to_string(i), dart::Color::Blue(1.));
+            bbox->set_base_pose(pose);
             bbox->set_cast_shadows(false);
             simu.add_robot(bbox);
         }
     }
 
-    simu.run(10.);
+    simu.set_graphics_freq(20);
+    simu.world()->setTime(0.);
+    simu.scheduler().reset(simu.timestep(), true);
+    while (true) {
+        if (simu.step())
+            break;
+        if (simu.schedule(simu.graphics_freq())) {
+            auto depth_image = camera->depth_array();
+            std::vector<Eigen::Vector3d> point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+            std::cout << simu.scheduler().current_time() << ": " << point_cloud.size() << std::endl;
+        }
+    }
 
     robot.reset();
     return 0;
