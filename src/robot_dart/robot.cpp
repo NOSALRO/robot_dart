@@ -1814,7 +1814,7 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
-    void Robot::set_draw_axis(const std::string& body_name, double size, bool draw)
+    void Robot::set_draw_axis(const std::string& body_name, double size)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd, "Body name does not exist in skeleton", );
