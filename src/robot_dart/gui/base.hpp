@@ -28,6 +28,7 @@ namespace robot_dart {
             virtual Image image() { return Image(); }
             virtual GrayscaleImage depth_image() { return GrayscaleImage(); }
             virtual GrayscaleImage raw_depth_image() { return GrayscaleImage(); }
+            virtual DepthImage depth_array() { return DepthImage(); }
 
             virtual size_t width() const { return 0; }
             virtual size_t height() const { return 0; }
