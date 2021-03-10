@@ -266,7 +266,7 @@ namespace robot_dart {
         void set_ghost(bool ghost = true);
         bool ghost() const;
 
-        void set_draw_axis(const std::string& body_name, double size = 0.25, bool draw = true);
+        void set_draw_axis(const std::string& body_name, double size = 0.25);
         void remove_all_drawing_axis();
         const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& drawing_axes() const;
 

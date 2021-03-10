@@ -429,8 +429,7 @@ namespace robot_dart {
 
                 .def("set_draw_axis", &Robot::set_draw_axis,
                     py::arg("body_name"),
-                    py::arg("size") = 0.25,
-                    py::arg("draw") = true)
+                    py::arg("size") = 0.25)
 
                 .def("remove_all_drawing_axis", &Robot::remove_all_drawing_axis)
 

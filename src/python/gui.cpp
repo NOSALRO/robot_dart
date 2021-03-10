@@ -85,6 +85,15 @@ namespace robot_dart {
                 .def_readwrite("height", &gui::GrayscaleImage::height)
                 .def_readwrite("data", &gui::GrayscaleImage::data);
 
+            py::class_<gui::DepthImage>(sm, "DepthImage")
+                .def(py::init<size_t, size_t>(),
+                    py::arg("width") = 0,
+                    py::arg("height") = 0)
+
+                .def_readwrite("width", &gui::DepthImage::width)
+                .def_readwrite("height", &gui::DepthImage::height)
+                .def_readwrite("data", &gui::DepthImage::data);
+
             py::class_<GraphicsConfiguration>(sm, "GraphicsConfiguration")
                 .def(py::init<size_t, size_t, const std::string&, bool, bool, size_t, size_t, double, bool, bool, bool, const Eigen::Vector4d&>(),
                     py::arg("width") = 640,
@@ -164,6 +173,7 @@ namespace robot_dart {
                 .def("image", &Graphics::image)
                 .def("depth_image", &Graphics::depth_image)
                 .def("raw_depth_image", &Graphics::raw_depth_image)
+                .def("depth_array", &Graphics::depth_array)
 
                 .def("camera", (Camera & (Graphics::*)()) & Graphics::camera, py::return_value_policy::reference)
 
@@ -209,6 +219,7 @@ namespace robot_dart {
                 .def("image", &WindowlessGraphics::image)
                 .def("depth_image", &WindowlessGraphics::depth_image)
                 .def("raw_depth_image", &WindowlessGraphics::raw_depth_image)
+                .def("depth_array", &WindowlessGraphics::depth_array)
 
                 .def("camera", (Camera & (WindowlessGraphics::*)()) & WindowlessGraphics::camera, py::return_value_policy::reference)
 
@@ -273,11 +284,18 @@ namespace robot_dart {
 
                 .def("image", &gui::magnum::sensor::Camera::image)
                 .def("depth_image", &gui::magnum::sensor::Camera::depth_image)
-                .def("raw_depth_image", &gui::magnum::sensor::Camera::raw_depth_image);
+                .def("raw_depth_image", &gui::magnum::sensor::Camera::raw_depth_image)
+                .def("depth_array", &gui::magnum::sensor::Camera::depth_array);
 
             // Helper functions
             sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);
             sm.def("save_png_image", (void (*)(const std::string&, const gui::GrayscaleImage&)) & gui::save_png_image);
+            sm.def("convert_rgb_to_grayscale", gui::convert_rgb_to_grayscale);
+            sm.def("point_cloud_from_depth_array", gui::point_cloud_from_depth_array,
+                py::arg("depth_image"),
+                py::arg("intrinsic_matrix"),
+                py::arg("tf"),
+                py::arg("far_plane") = 1000.);
 
             // Material class
             using Material = gui::magnum::gs::Material;
