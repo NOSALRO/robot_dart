@@ -62,6 +62,10 @@ namespace robot_dart {
 
         std::vector<Eigen::Vector3d> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane)
         {
+            // This is assuming that K is normal intrisinc matrix (i.e., camera pointing to +Z),
+            // but an OpenGL camera (i.e., pointing to -Z). Thus it transforms the points accordingly
+            // TO-DO: Format the intrinsic matrix correctly, and take as an argument the camera orientation
+            // with respect to the normal cameras. See http://ksimek.github.io/2013/06/03/calibrated_cameras_in_opengl/.
             auto point_3d = [](const Eigen::Matrix3d& K, size_t u, size_t v, double depth) {
                 double fx = K(0, 0);
                 double fy = K(1, 1);

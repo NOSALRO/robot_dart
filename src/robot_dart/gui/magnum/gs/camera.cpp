@@ -170,6 +170,9 @@ namespace robot_dart {
 
                 Magnum::Matrix3 Camera::intrinsic_matrix() const
                 {
+                    // This function returns the intrinsic matrix as if it was a normal camera (pointing to +Z), not an OpenGL camera (pointing to -Z)
+                    // even if the camera is pointing towards -Z. This should be appropriately handled by the user.
+                    // TO-DO: Make this represent the correct intrinsic matrix. See http://ksimek.github.io/2013/06/03/calibrated_cameras_in_opengl/
                     Magnum::Matrix4 projection = _camera->projectionMatrix() * Magnum::Matrix4::orthographicProjection({static_cast<float>(_width), static_cast<float>(_height)}, _near_plane, _far_plane).inverted();
                     return {{projection[0][0], 0., 0.},
                         {projection[1][0], projection[1][1], 0.},
