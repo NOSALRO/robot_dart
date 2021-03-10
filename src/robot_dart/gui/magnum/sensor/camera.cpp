@@ -12,6 +12,7 @@
 #include <Magnum/PixelFormat.h>
 
 #include <Magnum/EigenIntegration/GeometryIntegration.h>
+#include <Magnum/EigenIntegration/Integration.h>
 
 namespace robot_dart {
     namespace gui {
@@ -117,6 +118,18 @@ namespace robot_dart {
                     }
                 }
 
+                Eigen::Matrix3d Camera::camera_intrinsic_matrix() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_camera, "Camera pointer is null!");
+                    return Magnum::EigenIntegration::cast<Eigen::Matrix3d>(Magnum::Matrix3d(_camera->intrinsic_matrix()));
+                }
+
+                Eigen::Matrix4d Camera::camera_extrinsic_matrix() const
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_camera, "Camera pointer is null!");
+                    return Magnum::EigenIntegration::cast<Eigen::Matrix4d>(Magnum::Matrix4d(_camera->extrinsic_matrix()));
+                }
+
                 void Camera::look_at(const Eigen::Vector3d& camera_pos, const Eigen::Vector3d& look_at, const Eigen::Vector3d& up)
                 {
                     float cx = static_cast<float>(camera_pos[0]);
@@ -160,6 +173,15 @@ namespace robot_dart {
                         return GrayscaleImage();
 
                     return gs::depth_from_image(&*depth_image);
+                }
+
+                DepthImage Camera::depth_array()
+                {
+                    auto& depth_image = _camera->depth_image();
+                    if (!depth_image)
+                        return DepthImage();
+
+                    return gs::depth_array_from_image(&*depth_image, _camera->near_plane(), _camera->far_plane());
                 }
             } // namespace sensor
         } // namespace magnum
