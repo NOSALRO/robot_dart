@@ -164,6 +164,12 @@ namespace robot_dart {
                     return _magnum_app->raw_depth_image();
                 }
 
+                DepthImage depth_array() override
+                {
+                    ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
+                    return _magnum_app->depth_array();
+                }
+
                 gs::Camera& camera()
                 {
                     ROBOT_DART_EXCEPTION_ASSERT(_magnum_app, "MagnumApp pointer is null!");
