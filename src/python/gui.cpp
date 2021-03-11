@@ -176,6 +176,8 @@ namespace robot_dart {
                 .def("depth_array", &Graphics::depth_array)
 
                 .def("camera", (Camera & (Graphics::*)()) & Graphics::camera, py::return_value_policy::reference)
+                .def("camera_intrinsic_matrix", &Graphics::camera_intrinsic_matrix)
+                .def("camera_extrinsic_matrix", &Graphics::camera_extrinsic_matrix)
 
                 .def("magnum_app", (gui::magnum::BaseApplication * (Graphics::*)()) & Graphics::magnum_app, py::return_value_policy::reference)
 
@@ -222,6 +224,8 @@ namespace robot_dart {
                 .def("depth_array", &WindowlessGraphics::depth_array)
 
                 .def("camera", (Camera & (WindowlessGraphics::*)()) & WindowlessGraphics::camera, py::return_value_policy::reference)
+                .def("camera_intrinsic_matrix", &WindowlessGraphics::camera_intrinsic_matrix)
+                .def("camera_extrinsic_matrix", &WindowlessGraphics::camera_extrinsic_matrix)
 
                 .def("magnum_app", (gui::magnum::BaseApplication * (WindowlessGraphics::*)()) & WindowlessGraphics::magnum_app, py::return_value_policy::reference)
 
@@ -266,6 +270,8 @@ namespace robot_dart {
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
                 .def("camera", (Camera & (gui::magnum::sensor::Camera::*)()) & gui::magnum::sensor::Camera::camera, py::return_value_policy::reference)
+                .def("camera_intrinsic_matrix", &gui::magnum::sensor::Camera::camera_intrinsic_matrix)
+                .def("camera_extrinsic_matrix", &gui::magnum::sensor::Camera::camera_extrinsic_matrix)
 
                 .def("drawing_debug", &gui::magnum::sensor::Camera::drawing_debug)
                 .def("draw_debug", &gui::magnum::sensor::Camera::draw_debug,
