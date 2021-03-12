@@ -369,16 +369,16 @@ namespace robot_dart {
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);
         if (it != _robots.end()) {
+            _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
             _robots.erase(it);
-
-            _gui_data->remove_robot(robot);
         }
     }
 
     void RobotDARTSimu::remove_robot(size_t index)
     {
         ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", );
+        _gui_data->remove_robot(_robots[index]);
         _world->removeSkeleton(_robots[index]->skeleton());
         _robots.erase(_robots.begin() + index);
     }
@@ -386,6 +386,7 @@ namespace robot_dart {
     void RobotDARTSimu::clear_robots()
     {
         for (auto& robot : _robots) {
+            _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
         }
         _robots.clear();
@@ -472,7 +473,7 @@ namespace robot_dart {
         return _gui_data->add_text(text, tf, color, alignment, draw_bg, bg_color, font_size);
     }
 
-    std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Isometry3d& tf, const std::string& floor_name)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
@@ -489,19 +490,16 @@ namespace robot_dart {
         box_node->getVisualAspect()->setColor(dart::Color::Gray());
 
         // Put the body into position
-        Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-        // tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
-        tf.linear() = dart::math::expMapRot(pose.head(3));
-        tf.translation() = pose.tail(3);
-        tf.translation()[2] -= floor_height / 2.0;
-        body->getParentJoint()->setTransformFromParentBodyNode(tf);
+        Eigen::Isometry3d new_tf = tf;
+        new_tf.translate(Eigen::Vector3d(0., 0., -floor_height / 2.0));
+        body->getParentJoint()->setTransformFromParentBodyNode(new_tf);
 
         auto floor_robot = std::make_shared<Robot>(floor_skel, floor_name);
         add_robot(floor_robot);
         return floor_robot;
     }
 
-    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color, const Eigen::Vector6d& pose, const std::string& floor_name)
+    std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Isometry3d& tf, const std::string& floor_name, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color)
     {
         // We do not want 2 floors with the same name!
         if (_world->getSkeleton(floor_name) != nullptr)
@@ -519,12 +517,9 @@ namespace robot_dart {
         main_body->createShapeNodeWith<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>(box);
 
         // Put the body into position
-        Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-        // tf.translation() = Eigen::Vector3d(x, y, -floor_height / 2.0);
-        tf.linear() = dart::math::expMapRot(pose.head(3));
-        tf.translation() = pose.tail(3);
-        tf.translation()[2] -= floor_height / 2.0;
-        main_body->getParentJoint()->setTransformFromParentBodyNode(tf);
+        Eigen::Isometry3d new_tf = tf;
+        new_tf.translate(Eigen::Vector3d(0., 0., -floor_height / 2.0));
+        main_body->getParentJoint()->setTransformFromParentBodyNode(new_tf);
 
         // Add visual bodies just for visualization
         int step = std::ceil(floor_width / size);
@@ -552,7 +547,7 @@ namespace robot_dart {
 
                 // Put the body into position
                 Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
-                tf.translation() = pose.tail(3) + init_pose;
+                tf.translation() = init_pose;
                 body->getParentJoint()->setTransformFromParentBodyNode(tf);
 
                 c++;
