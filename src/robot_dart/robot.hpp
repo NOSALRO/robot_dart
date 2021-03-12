@@ -271,12 +271,21 @@ namespace robot_dart {
         const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& drawing_axes() const;
 
         // helper functions
-        // pose: Orientation-Position
+        static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
+            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& box_name = "box");
+        // pose: 6D log_map
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
             const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& box_name = "box");
 
+        static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
+            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& ellipsoid_name = "ellipsoid");
+        // pose: 6D log_map
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
             const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),

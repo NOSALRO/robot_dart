@@ -164,16 +164,17 @@ namespace robot_dart {
                 .def("add_floor", &RobotDARTSimu::add_floor,
                     py::arg("floor_width") = 10.,
                     py::arg("floor_height") = 0.1,
-                    py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
                     py::arg("floor_name") = "floor")
+
                 .def("add_checkerboard_floor", &RobotDARTSimu::add_checkerboard_floor,
                     py::arg("floor_width") = 10.,
                     py::arg("floor_height") = 0.1,
                     py::arg("size") = 1.,
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
+                    py::arg("floor_name") = "checkerboard_floor",
                     py::arg("first_color") = dart::Color::White(1.),
-                    py::arg("second_color") = dart::Color::Gray(1.),
-                    py::arg("pose") = Eigen::Vector6d::Zero(),
-                    py::arg("floor_name") = "checkerboard_floor")
+                    py::arg("second_color") = dart::Color::Gray(1.))
 
                 .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
                 .def("collision_detector", &RobotDARTSimu::collision_detector)
