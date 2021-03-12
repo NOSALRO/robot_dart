@@ -435,16 +435,31 @@ namespace robot_dart {
 
                 // .def("drawing_axes", &Robot::drawing_axes)
 
-                .def_static("create_box", &Robot::create_box,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
                     py::arg("box_name") = "box")
-                .def_static("create_ellipsoid", &Robot::create_ellipsoid,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
+                    py::arg("dims"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("box_name") = "box")
+
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("ellipsoid_name") = "ellipsoid")
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
+                    py::arg("dims"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
