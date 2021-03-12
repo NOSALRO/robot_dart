@@ -315,6 +315,47 @@ namespace robot_dart {
                 /* Refresh the graphical models */
                 _dart_world->refresh();
 
+                /* Remove unused/deleted objects */
+                auto& unused = _dart_world->unusedObjects();
+                for (auto& p : unused) {
+                    auto obj = &p->object();
+                    auto it = _drawable_objects.begin();
+                    while (it != _drawable_objects.end()) {
+                        auto obj2 = (it->second->drawable->object().parent());
+                        if (obj == obj2) {
+                            // Update variables
+                            if (_transparent_shadows) {
+                                /* Check if it was transparent */
+                                auto& mats = it->second->drawable->materials();
+                                bool any = false;
+                                for (size_t j = 0; j < mats.size(); j++) {
+                                    // Assume textures are transparent objects so that everything gets drawn better
+                                    // TO-DO: Check if this is okay to do?
+                                    bool isTextured = mats[j].has_diffuse_texture();
+                                    if (isTextured || mats[j].diffuse_color().a() != 1.f) {
+                                        any = true;
+                                        break;
+                                    }
+                                }
+
+                                if (any)
+                                    _transparentSize--;
+                            }
+                            // Remove it from the drawable lists
+                            _drawables.remove(*it->second->drawable);
+                            _shadowed_drawables.remove(*it->second->shadowed);
+                            _shadowed_color_drawables.remove(*it->second->shadowed_color);
+                            _cubemap_drawables.remove(*it->second->cubemapped);
+                            _cubemap_color_drawables.remove(*it->second->cubemapped_color);
+                            // Delete it completely
+                            delete it->second;
+                            _drawable_objects.erase(it);
+                            break;
+                        }
+                        it++;
+                    }
+                }
+
                 /* For each update object */
                 for (Magnum::DartIntegration::Object& object : _dart_world->updatedShapeObjects()) {
                     /* Get material information */
@@ -688,7 +729,6 @@ namespace robot_dart {
                 for (auto& it : _drawable_objects)
                     delete it.second;
                 _drawable_objects.clear();
-                _dart_objects.clear();
                 _lights.clear();
                 _shadow_data.clear();
             }

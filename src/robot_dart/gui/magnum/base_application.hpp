@@ -210,7 +210,6 @@ namespace robot_dart {
                 RobotDARTSimu* _simu;
                 std::unique_ptr<Magnum::DartIntegration::World> _dart_world;
                 std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawable_objects;
-                std::vector<Object3D*> _dart_objects;
                 std::vector<gs::Light> _lights;
 
                 /* Shadows */
