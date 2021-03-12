@@ -1435,7 +1435,6 @@ namespace robot_dart {
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
-        Eigen::Isometry3d bd_trans = bd->getWorldTransform();
 
         return dart::math::logMap(bd->getWorldTransform());
     }
