@@ -369,16 +369,16 @@ namespace robot_dart {
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);
         if (it != _robots.end()) {
+            _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
             _robots.erase(it);
-
-            _gui_data->remove_robot(robot);
         }
     }
 
     void RobotDARTSimu::remove_robot(size_t index)
     {
         ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", );
+        _gui_data->remove_robot(_robots[index]);
         _world->removeSkeleton(_robots[index]->skeleton());
         _robots.erase(_robots.begin() + index);
     }
@@ -386,6 +386,7 @@ namespace robot_dart {
     void RobotDARTSimu::clear_robots()
     {
         for (auto& robot : _robots) {
+            _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
         }
         _robots.clear();
