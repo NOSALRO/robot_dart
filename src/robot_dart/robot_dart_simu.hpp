@@ -128,8 +128,8 @@ namespace robot_dart {
 
         std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3), bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75), double font_size = 28);
 
-        std::shared_ptr<Robot> add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "floor");
-        std::shared_ptr<Robot> add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Vector4d& first_color = dart::Color::White(1.), const Eigen::Vector4d& second_color = dart::Color::Gray(1.), const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& floor_name = "checkerboard_floor");
+        std::shared_ptr<Robot> add_floor(double floor_width = 10.0, double floor_height = 0.1, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& floor_name = "floor");
+        std::shared_ptr<Robot> add_checkerboard_floor(double floor_width = 10.0, double floor_height = 0.1, double size = 1., const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& floor_name = "checkerboard_floor", const Eigen::Vector4d& first_color = dart::Color::White(1.), const Eigen::Vector4d& second_color = dart::Color::Gray(1.));
 
         void set_collision_detector(const std::string& collision_detector); // collision_detector can be "DART", "FCL", "Ode" or "Bullet" (case does not matter)
         const std::string& collision_detector() const;
