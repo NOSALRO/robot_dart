@@ -205,7 +205,7 @@ namespace robot_dart {
                     py::arg("body_index"))
 
                 .def("base_pose", &Robot::base_pose)
-                .def("base_pose_vec", &Robot::base_pose)
+                .def("base_pose_vec", &Robot::base_pose_vec)
 
                 .def("set_base_pose", (void (Robot::*)(const Eigen::Isometry3d&)) & Robot::set_base_pose,
                     py::arg("tf"))
