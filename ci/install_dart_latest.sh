@@ -11,6 +11,7 @@ fi
 
 git clone git://github.com/dartsim/dart.git
 cd dart
+git checkout v6.10.1
 mkdir build
 cd build
 if [ "$PYTHON_TESTS" = "ON" ]; then
@@ -21,7 +22,6 @@ fi
 make -j4
 sudo make install
 if [ "$PYTHON_TESTS" = "ON" ]; then
-    make dartpy -j4
     sudo make install-dartpy
 fi
 sudo ldconfig
