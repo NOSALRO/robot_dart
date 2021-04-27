@@ -57,11 +57,11 @@ sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
 cd /path/to/tmp/folder
 git clone git://github.com/dartsim/dart.git
 cd dart
-git checkout release-6.9
+git checkout v6.10.1
 
 mkdir build
 cd build
-cmake -DDART_ENABLE_SIMD=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 sudo make install
 ```
@@ -84,11 +84,11 @@ brew install urdfdom
 cd /path/to/tmp/folder
 git clone git://github.com/dartsim/dart.git
 cd dart
-git checkout release-6.9
+git checkout v6.10.1
 
 mkdir build
 cd build
-cmake -DDART_ENABLE_SIMD=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 sudo make install
 ```
@@ -182,11 +182,12 @@ For the python bindings of DART, do:
 ```bash
 cd dart
 
-mkdir build_py # we need a different folder
-cd build_py
-cmake -DDART_BUILD_DARTPY=ON -DDART_ENABLE_SIMD=ON ..
+mkdir build
+cd build
+cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 sudo make install
+sudo make install-dartpy
 ```
 
 Then the compilation of robot_dart is almost identical as before:
