@@ -38,6 +38,9 @@ namespace robot_dart {
         dart::dynamics::Joint* joint(const std::string& joint_name);
         dart::dynamics::Joint* joint(size_t joint_index);
 
+        dart::dynamics::DegreeOfFreedom* dof(const std::string& dof_name);
+        dart::dynamics::DegreeOfFreedom* dof(size_t dof_index);
+
         std::vector<RobotDamage> damages() const;
 
         const std::string& name() const;
@@ -83,31 +86,54 @@ namespace robot_dart {
         std::string actuator_type(const std::string& joint_name) const;
         std::vector<std::string> actuator_types(const std::vector<std::string>& joint_names = {}) const;
 
-        void set_position_enforced(size_t dof, bool enforced);
-        void set_position_enforced(const std::vector<bool>& enforced);
-        void set_position_enforced(bool enforced);
+        void set_position_enforced(const std::vector<bool>& enforced, const std::vector<std::string>& dof_names = {});
+        void set_position_enforced(bool enforced, const std::vector<std::string>& dof_names = {});
 
-        bool position_enforced(size_t dof) const;
-        std::vector<bool> position_enforced() const;
+        std::vector<bool> position_enforced(const std::vector<std::string>& dof_names = {}) const;
 
-        void set_damping_coeff(size_t dof, double damp);
-        void set_damping_coeffs(const std::vector<double>& damps);
-        void set_damping_coeffs(double damp);
+        void set_damping_coeffs(const std::vector<double>& damps, const std::vector<std::string>& dof_names = {});
+        void set_damping_coeffs(double damp, const std::vector<std::string>& dof_names = {});
 
-        double damping_coeff(size_t dof) const;
-        std::vector<double> damping_coeffs() const;
+        std::vector<double> damping_coeffs(const std::vector<std::string>& dof_names = {}) const;
 
-        void set_cfriction_coeff(size_t dof, double cfriction);
-        void set_cfriction_coeffs(const std::vector<double>& cfrictions);
-        void set_cfriction_coeffs(double cfriction);
+        void set_coulomb_coeffs(const std::vector<double>& cfrictions, const std::vector<std::string>& dof_names = {});
+        void set_coulomb_coeffs(double cfriction, const std::vector<std::string>& dof_names = {});
 
-        double cfriction_coeff(size_t dof) const;
-        std::vector<double> cfriction_coeffs() const;
+        std::vector<double> coulomb_coeffs(const std::vector<std::string>& dof_names = {}) const;
+
+        void set_spring_stiffnesses(const std::vector<double>& stiffnesses, const std::vector<std::string>& dof_names = {});
+        void set_spring_stiffnesses(double stiffness, const std::vector<std::string>& dof_names = {});
+
+        std::vector<double> spring_stiffnesses(const std::vector<std::string>& dof_names = {}) const;
+
+        // the friction direction is in local frame
+        void set_friction_dir(const std::string& body_name, const Eigen::Vector3d& direction);
+        void set_friction_dir(size_t body_index, const Eigen::Vector3d& direction);
+        Eigen::Vector3d friction_dir(const std::string& body_name);
+        Eigen::Vector3d friction_dir(size_t body_index);
+
+        void set_friction_coeff(const std::string& body_name, double value);
+        void set_friction_coeff(size_t body_index, double value);
+        void set_friction_coeffs(double value);
+        double friction_coeff(const std::string& body_name);
+        double friction_coeff(size_t body_index);
+
+        void set_secondary_friction_coeff(const std::string& body_name, double value);
+        void set_secondary_friction_coeff(size_t body_index, double value);
+        void set_secondary_friction_coeffs(double value);
+        double secondary_friction_coeff(const std::string& body_name);
+        double secondary_friction_coeff(size_t body_index);
+
+        void set_restitution_coeff(const std::string& body_name, double value);
+        void set_restitution_coeff(size_t body_index, double value);
+        void set_restitution_coeffs(double value);
+        double restitution_coeff(const std::string& body_name);
+        double restitution_coeff(size_t body_index);
 
         Eigen::Isometry3d base_pose() const;
-        // Set the pose of the robot base (changes the transformation of the parent joint of the
-        // root body)
+        Eigen::Vector6d base_pose_vec() const;
         void set_base_pose(const Eigen::Isometry3d& tf);
+        void set_base_pose(const Eigen::Vector6d& pose);
 
         size_t num_dofs() const;
         size_t num_joints() const;
@@ -182,6 +208,7 @@ namespace robot_dart {
         std::vector<std::string> body_names() const;
         std::string body_name(size_t body_index) const;
         void set_body_name(size_t body_index, const std::string& body_name);
+        size_t body_index(const std::string& body_name) const;
 
         double body_mass(const std::string& body_name) const;
         double body_mass(size_t body_index) const;
@@ -239,17 +266,26 @@ namespace robot_dart {
         void set_ghost(bool ghost = true);
         bool ghost() const;
 
-        void set_draw_axis(const std::string& body_name, double size = 0.25, bool draw = true);
+        void set_draw_axis(const std::string& body_name, double size = 0.25);
         void remove_all_drawing_axis();
         const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& drawing_axes() const;
 
         // helper functions
-        // pose: Orientation-Position
+        static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
+            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& box_name = "box");
+        // pose: 6D log_map
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
             const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& box_name = "box");
 
+        static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
+            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
+            const std::string& ellipsoid_name = "ellipsoid");
+        // pose: 6D log_map
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
             const Eigen::Vector6d& pose = Eigen::Vector6d::Zero(), const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),

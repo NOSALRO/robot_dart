@@ -8,6 +8,7 @@
 #include <robot_dart/control/robot_control.hpp>
 
 #include <dart/dynamics/BodyNode.hpp>
+#include <dart/dynamics/DegreeOfFreedom.hpp>
 #include <dart/dynamics/Joint.hpp>
 
 namespace robot_dart {
@@ -50,6 +51,12 @@ namespace robot_dart {
 
                 .def("joint", (dart::dynamics::Joint * (Robot::*)(size_t)) & Robot::joint, py::return_value_policy::reference,
                     py::arg("joint_index"))
+
+                .def("dof", (dart::dynamics::DegreeOfFreedom * (Robot::*)(const std::string&)) & Robot::dof, py::return_value_policy::reference,
+                    py::arg("dof_name"))
+
+                .def("dof", (dart::dynamics::DegreeOfFreedom * (Robot::*)(size_t)) & Robot::dof, py::return_value_policy::reference,
+                    py::arg("dof_index"))
 
                 .def("name", &Robot::name)
                 .def("model_filename", &Robot::model_filename)
@@ -103,31 +110,107 @@ namespace robot_dart {
                 .def("actuator_types", &Robot::actuator_types,
                     py::arg("joint_names") = std::vector<std::string>())
 
-                .def("set_position_enforced", (void (Robot::*)(size_t, bool)) & Robot::set_position_enforced)
-                .def("set_position_enforced", (void (Robot::*)(const std::vector<bool>&)) & Robot::set_position_enforced)
-                .def("set_position_enforced", (void (Robot::*)(bool)) & Robot::set_position_enforced)
+                .def("set_position_enforced", (void (Robot::*)(const std::vector<bool>&, const std::vector<std::string>&)) & Robot::set_position_enforced,
+                    py::arg("enforced"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_position_enforced", (void (Robot::*)(bool, const std::vector<std::string>&)) & Robot::set_position_enforced,
+                    py::arg("enforced"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("position_enforced", (bool (Robot::*)(size_t) const) & Robot::position_enforced)
-                .def("position_enforced", (std::vector<bool>(Robot::*)() const) & Robot::position_enforced)
+                .def("position_enforced", &Robot::position_enforced,
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_damping_coeff", &Robot::set_damping_coeff)
-                .def("set_damping_coeffs", (void (Robot::*)(const std::vector<double>&)) & Robot::set_damping_coeffs)
-                .def("set_damping_coeffs", (void (Robot::*)(double)) & Robot::set_damping_coeffs)
+                .def("set_damping_coeffs", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_damping_coeffs,
+                    py::arg("damps"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_damping_coeffs", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_damping_coeffs,
+                    py::arg("damps"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("damping_coeff", &Robot::damping_coeff)
-                .def("damping_coeffs", &Robot::damping_coeffs)
+                .def("damping_coeffs", &Robot::damping_coeffs,
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_cfriction_coeff", &Robot::set_cfriction_coeff)
-                .def("set_cfriction_coeffs", (void (Robot::*)(const std::vector<double>&)) & Robot::set_cfriction_coeffs)
-                .def("set_cfriction_coeffs", (void (Robot::*)(double)) & Robot::set_cfriction_coeffs)
+                .def("set_coulomb_coeffs", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_coulomb_coeffs,
+                    py::arg("cfrictions"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_coulomb_coeffs", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_coulomb_coeffs,
+                    py::arg("cfrictions"),
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("cfriction_coeff", &Robot::cfriction_coeff)
-                .def("cfriction_coeffs", &Robot::cfriction_coeffs)
+                .def("coulomb_coeffs", &Robot::coulomb_coeffs,
+                    py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_base_pose", &Robot::set_base_pose)
+                .def("set_spring_stiffnesses", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_spring_stiffnesses,
+                    py::arg("stiffnesses"),
+                    py::arg("dof_names") = std::vector<std::string>())
+                .def("set_spring_stiffnesses", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_spring_stiffnesses,
+                    py::arg("stiffnesses"),
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("spring_stiffnesses", &Robot::spring_stiffnesses,
+                    py::arg("dof_names") = std::vector<std::string>())
+
+                .def("set_friction_dir", (void (Robot::*)(const std::string&, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                    py::arg("body_name"),
+                    py::arg("direction"))
+                .def("set_friction_dir", (void (Robot::*)(size_t, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                    py::arg("body_index"),
+                    py::arg("direction"))
+
+                .def("friction_dir", (Eigen::Vector3d(Robot::*)(const std::string&)) & Robot::friction_dir,
+                    py::arg("body_name"))
+                .def("friction_dir", (Eigen::Vector3d(Robot::*)(size_t)) & Robot::friction_dir,
+                    py::arg("body_index"))
+
+                .def("set_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_friction_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_friction_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_friction_coeffs", &Robot::set_friction_coeffs,
+                    py::arg("value"))
+
+                .def("friction_coeff", (double (Robot::*)(const std::string&)) & Robot::friction_coeff,
+                    py::arg("body_name"))
+                .def("friction_coeff", (double (Robot::*)(size_t)) & Robot::friction_coeff,
+                    py::arg("body_index"))
+
+                .def("set_secondary_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_secondary_friction_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_secondary_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_secondary_friction_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_secondary_friction_coeffs", &Robot::set_secondary_friction_coeffs,
+                    py::arg("value"))
+
+                .def("secondary_friction_coeff", (double (Robot::*)(const std::string&)) & Robot::secondary_friction_coeff,
+                    py::arg("body_name"))
+                .def("secondary_friction_coeff", (double (Robot::*)(size_t)) & Robot::secondary_friction_coeff,
+                    py::arg("body_index"))
+
+                .def("set_restitution_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_restitution_coeff,
+                    py::arg("body_name"),
+                    py::arg("value"))
+                .def("set_restitution_coeff", (void (Robot::*)(size_t, double)) & Robot::set_restitution_coeff,
+                    py::arg("body_index"),
+                    py::arg("value"))
+                .def("set_restitution_coeffs", &Robot::set_restitution_coeffs,
+                    py::arg("value"))
+
+                .def("restitution_coeff", (double (Robot::*)(const std::string&)) & Robot::restitution_coeff,
+                    py::arg("body_name"))
+                .def("restitution_coeff", (double (Robot::*)(size_t)) & Robot::restitution_coeff,
+                    py::arg("body_index"))
 
                 .def("base_pose", &Robot::base_pose)
-                .def("set_base_pose", &Robot::set_base_pose)
+                .def("base_pose_vec", &Robot::base_pose)
+
+                .def("set_base_pose", (void (Robot::*)(const Eigen::Isometry3d&)) & Robot::set_base_pose,
+                    py::arg("tf"))
+                .def("set_base_pose", (void (Robot::*)(const Eigen::Vector6d&)) & Robot::set_base_pose,
+                    py::arg("pose"))
 
                 .def("num_dofs", &Robot::num_dofs)
                 .def("num_joints", &Robot::num_joints)
@@ -346,23 +429,37 @@ namespace robot_dart {
 
                 .def("set_draw_axis", &Robot::set_draw_axis,
                     py::arg("body_name"),
-                    py::arg("size") = 0.25,
-                    py::arg("draw") = true)
+                    py::arg("size") = 0.25)
 
                 .def("remove_all_drawing_axis", &Robot::remove_all_drawing_axis)
 
                 // .def("drawing_axes", &Robot::drawing_axes)
 
-                .def_static("create_box", &Robot::create_box,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
                     py::arg("box_name") = "box")
-                .def_static("create_ellipsoid", &Robot::create_ellipsoid,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
+                    py::arg("dims"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("box_name") = "box")
+
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("ellipsoid_name") = "ellipsoid")
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
+                    py::arg("dims"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity(),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),

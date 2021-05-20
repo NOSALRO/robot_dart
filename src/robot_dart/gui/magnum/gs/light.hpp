@@ -14,7 +14,7 @@ namespace robot_dart {
                     Light();
 
                     Light(const Magnum::Vector4& position, const Material& material, const Magnum::Vector3& spot_direction,
-                        Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation);
+                        Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4& attenuation, bool cast_shadows = true);
 
                     // Magnum::Vector4& position();
                     Magnum::Vector4 position() const;
@@ -40,6 +40,7 @@ namespace robot_dart {
                     Magnum::Vector4 attenuation() const;
 
                     Magnum::Matrix4 shadow_matrix() const;
+                    bool casts_shadows() const;
 
                     Light& set_position(const Magnum::Vector4& position);
                     Light& set_transformed_position(const Magnum::Vector4& transformed_position);
@@ -54,6 +55,7 @@ namespace robot_dart {
                     Light& set_attenuation(const Magnum::Vector4& attenuation);
 
                     Light& set_shadow_matrix(const Magnum::Matrix4& shadowTransform);
+                    Light& set_casts_shadows(bool cast_shadows);
 
                 protected:
                     // Position for point-lights and spot-lights
@@ -75,6 +77,9 @@ namespace robot_dart {
 
                     // Shadow-Matrix
                     Magnum::Matrix4 _shadow_transform{};
+
+                    // Whether it casts shadows
+                    bool _cast_shadows = true;
                 };
 
                 // Helpers for creating lights

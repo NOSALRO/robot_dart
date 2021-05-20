@@ -8,19 +8,20 @@
 
 int main()
 {
+    std::srand(std::time(NULL));
+
     auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
     robot->fix_to_world();
     robot->set_position_enforced(false);
-    robot->skeleton()->setPosition(0, M_PI);
-    Eigen::Vector3d size(0.0402, 0.05, 1);
 
-    robot_dart::RobotDARTSimu simu(1e-3);
+    robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics>());
 #endif
 
     simu.add_robot(robot);
     simu.set_control_freq(100); // 100 Hz
+
     std::vector<std::string> dofs = {"pendulum_joint_1"};
     while (simu.scheduler().next_time() < 10 && !simu.graphics()->done()) { // simulate 10 seconds
         if (simu.schedule(simu.control_freq())) {

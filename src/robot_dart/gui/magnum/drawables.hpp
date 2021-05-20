@@ -24,7 +24,7 @@ namespace robot_dart {
 
     namespace gui {
         namespace magnum {
-            class DrawableObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            class DrawableObject : public Object3D, public Magnum::SceneGraph::Drawable3D {
             public:
                 explicit DrawableObject(
                     RobotDARTSimu* simu,
@@ -66,7 +66,7 @@ namespace robot_dart {
                 bool _isTransparent;
             };
 
-            class ShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            class ShadowedObject : public Object3D, public Magnum::SceneGraph::Drawable3D {
             public:
                 explicit ShadowedObject(
                     RobotDARTSimu* simu,
@@ -95,7 +95,7 @@ namespace robot_dart {
                 std::vector<Magnum::Vector3> _scalings;
             };
 
-            class ShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            class ShadowedColorObject : public Object3D, public Magnum::SceneGraph::Drawable3D {
             public:
                 explicit ShadowedColorObject(
                     RobotDARTSimu* simu,
@@ -124,7 +124,7 @@ namespace robot_dart {
                 std::vector<Magnum::Vector3> _scalings;
             };
 
-            class CubeMapShadowedObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            class CubeMapShadowedObject : public Object3D, public Magnum::SceneGraph::Drawable3D {
             public:
                 explicit CubeMapShadowedObject(
                     RobotDARTSimu* simu,
@@ -153,7 +153,7 @@ namespace robot_dart {
                 std::vector<Magnum::Vector3> _scalings;
             };
 
-            class CubeMapShadowedColorObject : public Object3D, Magnum::SceneGraph::Drawable3D {
+            class CubeMapShadowedColorObject : public Object3D, public Magnum::SceneGraph::Drawable3D {
             public:
                 explicit CubeMapShadowedColorObject(
                     RobotDARTSimu* simu,

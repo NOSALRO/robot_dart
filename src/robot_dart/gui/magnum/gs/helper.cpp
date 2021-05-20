@@ -34,7 +34,7 @@ namespace robot_dart {
                     img.height = image->size().y();
                     img.data.resize(image->size().product() * sizeof(uint8_t));
 
-                    std::vector<Magnum::Float> data = std::vector<Magnum::Float>(image->size().product() * sizeof(Magnum::Float));
+                    std::vector<Magnum::Float> data = std::vector<Magnum::Float>(image->size().product());
                     Corrade::Containers::StridedArrayView2D<const Magnum::Float> src = image->pixels<Magnum::Float>().flipped<0>();
                     Corrade::Containers::StridedArrayView2D<Magnum::Float> dst{Corrade::Containers::arrayCast<Magnum::Float>(Corrade::Containers::arrayView(data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
                     Corrade::Utility::copy(src, dst);
@@ -47,6 +47,27 @@ namespace robot_dart {
                     Corrade::Containers::StridedArrayView2D<uint8_t> new_dst{Corrade::Containers::arrayCast<uint8_t>(Corrade::Containers::arrayView(img.data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
 
                     Magnum::Math::packInto(dst, new_dst);
+
+                    return img;
+                }
+
+                DepthImage depth_array_from_image(Magnum::Image2D* image, Magnum::Float near_plane, Magnum::Float far_plane)
+                {
+                    DepthImage img;
+                    img.width = image->size().x();
+                    img.height = image->size().y();
+
+                    std::vector<Magnum::Float> data = std::vector<Magnum::Float>(image->size().product());
+                    Corrade::Containers::StridedArrayView2D<const Magnum::Float> src = image->pixels<Magnum::Float>().flipped<0>();
+                    Corrade::Containers::StridedArrayView2D<Magnum::Float> dst{Corrade::Containers::arrayCast<Magnum::Float>(Corrade::Containers::arrayView(data)), {std::size_t(image->size().y()), std::size_t(image->size().x())}};
+                    Corrade::Utility::copy(src, dst);
+
+                    img.data = std::vector<double>(data.begin(), data.end());
+
+                    // zNear * zFar / (zFar + d * (zNear - zFar));
+                    for (auto& depth : img.data)
+                        // depth = (2. * near_plane) / (far_plane + near_plane - depth * (far_plane - near_plane));
+                        depth = (near_plane * far_plane) / (far_plane - depth * (far_plane - near_plane));
 
                     return img;
                 }

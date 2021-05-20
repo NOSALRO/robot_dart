@@ -22,6 +22,7 @@ namespace robot_dart {
         virtual std::shared_ptr<Robot> get_robot(const std::string& name = "robot");
         virtual void free_robot(const std::shared_ptr<Robot>& robot);
 
+        const std::string& model_filename() const { return _model_filename; }
     protected:
         robot_creator_t _robot_creator;
         size_t _pool_size;
