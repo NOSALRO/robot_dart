@@ -11,8 +11,10 @@ static constexpr int NUM_THREADS = 12;
 void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
 {
     robot->set_position_enforced(true);
-    robot->skeleton()->setPosition(5, 1.1);
-    robot->skeleton()->setPosition(2, 1.57);
+    auto positions = robot->positions();
+    positions[2] = M_PI / 2.;
+    positions[5] = 1.1;
+    robot->set_positions(positions);
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");

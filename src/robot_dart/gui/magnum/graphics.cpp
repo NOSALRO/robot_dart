@@ -12,6 +12,11 @@ namespace robot_dart {
                 simu->enable_text_panel(true);
                 simu->enable_status_bar(true);
             }
+
+            GraphicsConfiguration Graphics::default_configuration()
+            {
+                return GraphicsConfiguration();
+            }
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart

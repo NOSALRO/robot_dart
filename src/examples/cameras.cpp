@@ -34,21 +34,21 @@ int main()
     std::srand(std::time(NULL));
 
     std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
+    auto robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
 
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
+    robot->fix_to_world();
+    robot->set_position_enforced(true);
 
-    Eigen::VectorXd ctrl(7);
-    ctrl << 0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.;
+    Eigen::VectorXd ctrl = robot_dart::make_vector({-0.3, M_PI / 3., 0.2, -M_PI / 4., 0., 0., -0.6});
 
-    global_robot->add_controller(std::make_shared<robot_dart::control::PDControl>(ctrl));
-    std::static_pointer_cast<robot_dart::control::PDControl>(global_robot->controllers()[0])->set_pd(500., 50.);
+    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    robot->add_controller(controller);
+    controller->set_pd(500., 50.);
 
     robot_dart::RobotDARTSimu simu(0.001);
 
     // Magnum graphics
-    robot_dart::gui::magnum::GraphicsConfiguration configuration;
+    robot_dart::gui::magnum::GraphicsConfiguration configuration = robot_dart::gui::magnum::Graphics::default_configuration();
     configuration.width = 1024;
     configuration.height = 768;
     auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(configuration);
@@ -72,14 +72,15 @@ int main()
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
     tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
-    camera->attach_to_body(global_robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
+    camera->attach_to_body(robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
 
-    // simu.add_floor(5.);
     simu.add_checkerboard_floor(10.);
-    simu.add_robot(global_robot);
+    simu.add_robot(robot);
     Eigen::Vector6d pose;
-    pose << 0., 0., 0., 1.5, 0., 0.1;
-    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.1}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    pose << 0., 0., 0., 1.5, 0., 0.25;
+    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.5}, pose, "free", 1., dart::Color::Red(1.), "box"));
+    pose << 0., 0., 0., 1.5, -0.5, 0.25;
+    simu.add_robot(robot_dart::Robot::create_ellipsoid({0.2, 0.2, 0.2}, pose, "free", 1., dart::Color::Red(1.), "sphere"));
     simu.add_sensor(camera);
 
     simu.run(10.);
@@ -102,6 +103,34 @@ int main()
     // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
     robot_dart::gui::save_png_image("camera-depth-raw.png", camera->raw_depth_image());
 
-    global_robot.reset();
+    auto depth_image = camera->depth_array();
+
+    auto small_box = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, Eigen::Vector6d::Zero(), "fixed", 1., dart::Color::Blue(1.), "box_pc");
+    std::vector<Eigen::Vector3d> point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+    for (size_t i = 0; i < point_cloud.size(); i++) {
+        if (i % 30 == 0) { // do not display all the points in the cloud
+            Eigen::Vector6d pose;
+            pose << 0., 0., 0., point_cloud[i];
+            auto bbox = small_box->clone_ghost("box_" + std::to_string(i), dart::Color::Blue(1.));
+            bbox->set_base_pose(pose);
+            bbox->set_cast_shadows(false);
+            simu.add_robot(bbox);
+        }
+    }
+
+    simu.set_graphics_freq(20);
+    simu.world()->setTime(0.);
+    simu.scheduler().reset(simu.timestep(), true);
+    while (true) {
+        if (simu.step())
+            break;
+        if (simu.schedule(simu.graphics_freq())) {
+            auto depth_image = camera->depth_array();
+            std::vector<Eigen::Vector3d> point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+            std::cout << simu.scheduler().current_time() << ": " << point_cloud.size() << std::endl;
+        }
+    }
+
+    robot.reset();
     return 0;
 }
