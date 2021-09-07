@@ -419,6 +419,12 @@ namespace robot_dart {
                 .def("set_color_mode", (void (Robot::*)(const std::string&)) & Robot::set_color_mode)
                 .def("set_color_mode", (void (Robot::*)(const std::string&, const std::string&)) & Robot::set_color_mode)
 
+                .def("set_self_collision", &Robot::set_self_collision,
+                    py::arg("enable_self_collisions") = true,
+                    py::arg("enable_adjacent_collisions") = false)
+                .def("self_colliding", &Robot::self_colliding)
+                .def("adjacent_colliding", &Robot::adjacent_colliding)
+
                 .def("set_cast_shadows", &Robot::set_cast_shadows,
                     py::arg("cast_shadows") = true)
                 .def("cast_shadows", &Robot::cast_shadows)

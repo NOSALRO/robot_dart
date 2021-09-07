@@ -1797,6 +1797,22 @@ namespace robot_dart {
         }
     }
 
+    void Robot::set_self_collision(bool enable_self_collisions, bool enable_adjacent_collisions)
+    {
+        _skeleton->setSelfCollisionCheck(enable_self_collisions);
+        _skeleton->setAdjacentBodyCheck(enable_adjacent_collisions);
+    }
+
+    bool Robot::self_colliding() const
+    {
+        return _skeleton->getSelfCollisionCheck();
+    }
+
+    bool Robot::adjacent_colliding() const
+    {
+        return _skeleton->getAdjacentBodyCheck() && self_colliding();
+    }
+
     void Robot::set_cast_shadows(bool cast_shadows) { _cast_shadows = cast_shadows; }
 
     bool Robot::cast_shadows() const { return _cast_shadows; }
