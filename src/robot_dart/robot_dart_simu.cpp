@@ -475,9 +475,8 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Isometry3d& tf, const std::string& floor_name)
     {
-        // We do not want 2 floors with the same name!
-        if (_world->getSkeleton(floor_name) != nullptr)
-            return nullptr;
+        ROBOT_DART_ASSERT((_world->getSkeleton(floor_name) == nullptr), "We cannot have 2 floors with the name '" + floor_name + "'", nullptr);
+        ROBOT_DART_ASSERT((floor_width > 0. && floor_height > 0.), "Floor dimensions should be bigger than zero!", nullptr);
 
         dart::dynamics::SkeletonPtr floor_skel = dart::dynamics::Skeleton::create(floor_name);
 
@@ -501,9 +500,8 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Isometry3d& tf, const std::string& floor_name, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color)
     {
-        // We do not want 2 floors with the same name!
-        if (_world->getSkeleton(floor_name) != nullptr)
-            return nullptr;
+        ROBOT_DART_ASSERT((_world->getSkeleton(floor_name) == nullptr), "We cannot have 2 floors with the name '" + floor_name + "'", nullptr);
+        ROBOT_DART_ASSERT((floor_width > 0. && floor_height > 0. && size > 0.), "Floor dimensions should be bigger than zero!", nullptr);
 
         // Add main floor skeleton
         dart::dynamics::SkeletonPtr main_floor_skel = dart::dynamics::Skeleton::create(floor_name + "_main");
