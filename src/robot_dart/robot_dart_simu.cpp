@@ -42,7 +42,7 @@ namespace robot_dart {
 
                 auto shape1_iter = _bitmask_map.find(shape_node1);
                 auto shape2_iter = _bitmask_map.find(shape_node2);
-                if (shape1_iter != _bitmask_map.end() && shape2_iter != _bitmask_map.end() && ((shape1_iter->second & shape2_iter->second) == 0))
+                if (shape1_iter != _bitmask_map.end() && shape2_iter != _bitmask_map.end() && !((shape1_iter->second & shape2_iter->second) == 0))
                     return true;
 
                 return false;
