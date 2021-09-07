@@ -2075,6 +2075,9 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
     {
+        ROBOT_DART_ASSERT((dims.array() > 0.).all(), "Dimensions should be bigger than zero!", nullptr);
+        ROBOT_DART_ASSERT(mass > 0., "Box mass should be bigger than zero!", nullptr);
+
         dart::dynamics::SkeletonPtr box_skel = dart::dynamics::Skeleton::create(box_name);
 
         // Give the box a body
@@ -2114,17 +2117,17 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
     {
-        dart::dynamics::SkeletonPtr ellipsoid_skel
-            = dart::dynamics::Skeleton::create(ellipsoid_name);
+        ROBOT_DART_ASSERT((dims.array() > 0.).all(), "Dimensions should be bigger than zero!", nullptr);
+        ROBOT_DART_ASSERT(mass > 0., "Box mass should be bigger than zero!", nullptr);
+
+        dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(ellipsoid_name);
 
         // Give the ellipsoid a body
         dart::dynamics::BodyNodePtr body;
         if (type == "free")
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr)
-                       .second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
         else
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr)
-                       .second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
         body->setName(ellipsoid_name);
 
         // Give the body a shape
