@@ -259,6 +259,11 @@ namespace robot_dart {
         void set_color_mode(const std::string& color_mode);
         void set_color_mode(const std::string& color_mode, const std::string& body_name);
 
+        void set_self_collision(bool enable_self_collisions = true, bool enable_adjacent_collisions = false);
+        bool self_colliding() const;
+        // This returns true if self colliding AND adjacent checks are on
+        bool adjacent_colliding() const;
+
         // GUI options
         void set_cast_shadows(bool cast_shadows = true);
         bool cast_shadows() const;
