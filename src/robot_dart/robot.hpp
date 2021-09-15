@@ -277,7 +277,7 @@ namespace robot_dart {
 
         // helper functions
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& box_name = "box");
         // pose: 6D log_map
@@ -287,7 +287,7 @@ namespace robot_dart {
             const std::string& box_name = "box");
 
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& ellipsoid_name = "ellipsoid");
         // pose: 6D log_map
