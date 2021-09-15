@@ -1,0 +1,71 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+name: CI Ubuntu
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch'
+    name: ${{ matrix.build_type }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04]
+        build_type: [Release]
+        build_python: [ON]
+        compiler: [gcc, clang]
+        # dart_master: [ON, OFF]
+        magnum_gui: [ON, OFF]
+        dart_tag: ["v6.11.1"]
+    env:
+      COMPILER: ${{ matrix.compiler }}
+      BUILD_TYPE: ${{ matrix.build_type }}
+      BUILD_PYTHON: ${{ matrix.build_python }}
+      # DART_MASTER: ${{ matrix.dart_master }}
+      MAGNUM_GUI: ${{ matrix.magnum_gui }}
+      DART_TAG: ${{ matrix.dart_tag }}
+      LD_LIBRARY_PATH: "~/.dart_install/lib"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Ubuntu packages
+        run: ${{github.workspace}}/ci/install_packages.sh
+      - name: Cache DART
+        id: cache-dart
+        uses: actions/cache@v2
+        with:
+          path: ~/.dart_install
+          key: dart-${{ matrix.dart_tag }}
+      - name: Build DART
+        if: steps.cache-dart.outputs.cache-hit != 'true'
+        run: ${{github.workspace}}/ci/install_dart_latest.sh
+      - name: Build Magnum
+        if: ${{ matrix.magnum_gui }} == 'ON'
+        run: ${{github.workspace}}/ci/install_magnum.sh
+      - name: Build robot_dart
+        run: |
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+            ./waf configure --python --prefix=/usr ;
+          else
+            ./waf configure --prefix=/usr ;
+          fi
+          ./waf
+      - name: Run tests
+        run: ./waf --tests
+      - name: Build examples
+        run: ./waf examples
+      - name: Install
+        run: sudo ./waf install
+      - name: Run CMake
+        run: cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake .. && make -j4
+      - name: Run Python
+        if: ${{ matrix.build_python }} == 'ON'
+        run: python ${{github.workspace}}/python/ci.py
+
