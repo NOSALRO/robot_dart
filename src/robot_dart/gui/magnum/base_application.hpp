@@ -114,12 +114,12 @@ namespace robot_dart {
             };
 
             struct DebugDrawData {
-                Magnum::Shaders::VertexColor3D* axes_shader;
+                Magnum::Shaders::VertexColorGL3D* axes_shader;
                 Magnum::GL::Mesh* axes_mesh;
-                Magnum::Shaders::Flat2D* background_shader;
+                Magnum::Shaders::FlatGL2D* background_shader;
                 Magnum::GL::Mesh* background_mesh;
 
-                Magnum::Shaders::DistanceFieldVector2D* text_shader;
+                Magnum::Shaders::DistanceFieldVectorGL2D* text_shader;
                 Magnum::GL::Buffer* text_vertices;
                 Magnum::GL::Buffer* text_indices;
                 Magnum::Text::AbstractFont* font;
@@ -229,12 +229,12 @@ namespace robot_dart {
 
                 /* Debug visualization */
                 std::unique_ptr<Magnum::GL::Mesh> _3D_axis_mesh;
-                std::unique_ptr<Magnum::Shaders::VertexColor3D> _3D_axis_shader;
+                std::unique_ptr<Magnum::Shaders::VertexColorGL3D> _3D_axis_shader;
                 std::unique_ptr<Magnum::GL::Mesh> _background_mesh;
-                std::unique_ptr<Magnum::Shaders::Flat2D> _background_shader;
+                std::unique_ptr<Magnum::Shaders::FlatGL2D> _background_shader;
 
                 /* Text visualization */
-                std::unique_ptr<Magnum::Shaders::DistanceFieldVector2D> _text_shader;
+                std::unique_ptr<Magnum::Shaders::DistanceFieldVectorGL2D> _text_shader;
                 Corrade::PluginManager::Manager<Magnum::Text::AbstractFont> _font_manager;
                 Corrade::Containers::Pointer<Magnum::Text::DistanceFieldGlyphCache> _glyph_cache;
                 Corrade::Containers::Pointer<Magnum::Text::AbstractFont> _font;
