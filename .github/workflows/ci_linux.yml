@@ -22,14 +22,12 @@ jobs:
         build_type: [Release]
         build_python: [ON]
         compiler: [gcc, clang]
-        # dart_master: [ON, OFF]
         magnum_gui: [ON, OFF]
         dart_tag: ["v6.11.1"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}
       BUILD_PYTHON: ${{ matrix.build_python }}
-      # DART_MASTER: ${{ matrix.dart_master }}
       MAGNUM_GUI: ${{ matrix.magnum_gui }}
       DART_TAG: ${{ matrix.dart_tag }}
       LD_LIBRARY_PATH: "/home/runner/.dart_install/lib"
