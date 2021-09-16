@@ -6,6 +6,10 @@ if [ "$COMPILER" = "clang" ]; then
 export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
 fi
 
+ls ~/.dart_install/lib/python3.8/site-packages/
+ls ~/.dart_install/lib/python/
+ls ~/.dart_install/lib/
+
 mkdir -p ~/.deps
 cd ~/.deps
 # install Corrade
