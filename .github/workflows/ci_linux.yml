@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     if: github.event_name != 'workflow_dispatch'
-    name: ${{ matrix.build_type }}
+    name: OS:${{ matrix.os }}-Magnum:${{ matrix.magnum_gui }}-Build:${{ matrix.build_type }}-Python:${{ matrix.build_python }}-Compiler:${{ matrix.compiler }}-DART:${{ matrix.dart_tag }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -33,6 +33,7 @@ jobs:
       MAGNUM_GUI: ${{ matrix.magnum_gui }}
       DART_TAG: ${{ matrix.dart_tag }}
       LD_LIBRARY_PATH: "~/.dart_install/lib"
+      CI_HOME: ${{github.workspace}}
     steps:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
@@ -51,10 +52,11 @@ jobs:
         run: ${{github.workspace}}/ci/install_magnum.sh
       - name: Build robot_dart
         run: |
+          cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
-            ./waf configure --python --prefix=/usr ;
+            ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
           else
-            ./waf configure --prefix=/usr ;
+            ./waf configure --prefix=/usr --dart=~/.dart_install ;
           fi
           ./waf
       - name: Run tests
