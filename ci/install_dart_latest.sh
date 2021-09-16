@@ -10,7 +10,7 @@ cmake -DDART_BUILD_DARTPY=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=$BUILD_TY
 else
 cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=~/.dart_install ..
 fi
-make -j6
+make -j4
 sudo make install
 if [ "$BUILD_PYTHON" = "ON" ]; then
     sudo make install-dartpy
