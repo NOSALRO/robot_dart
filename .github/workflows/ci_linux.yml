@@ -83,5 +83,5 @@ jobs:
           cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
       - name: Run Python
         if: ${{ matrix.build_python }} == 'ON'
-        run: python ${{github.workspace}}/python/ci.py
+        run: python ${{github.workspace}}/src/python/ci.py
 
