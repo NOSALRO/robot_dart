@@ -15,5 +15,6 @@ sudo make install
 if [ "$BUILD_PYTHON" = "ON" ]; then
     sudo make install-dartpy
 fi
+ls ~/.dart_install
 sudo ldconfig
 cd $CI_HOME

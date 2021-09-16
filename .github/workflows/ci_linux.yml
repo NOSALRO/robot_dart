@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.dart_install
-          key: dart-${{ matrix.dart_tag }}
+          key: dart-${{ matrix.dart_tag }}-${{ matrix.compiler }}-python_${{ matrix.build_python }}
       - name: Build DART
         if: steps.cache-dart.outputs.cache-hit != 'true'
         run: ${{github.workspace}}/ci/install_dart_latest.sh
@@ -60,7 +60,7 @@ jobs:
           fi
           ./waf
       - name: Run tests
-        run: ./waf --tests
+        run: echo $LD_LIBRARY_PATH && ./waf --tests
       - name: Build examples
         run: ./waf examples
       - name: Install
