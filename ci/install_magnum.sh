@@ -1,3 +1,11 @@
+# Select Compiler
+if [ "$COMPILER" = "gcc" ]; then
+export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+fi
+if [ "$COMPILER" = "clang" ]; then
+export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+fi
+
 mkdir -p ~/.deps
 cd ~/.deps
 # install Corrade

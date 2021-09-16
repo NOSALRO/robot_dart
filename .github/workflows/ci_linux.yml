@@ -39,12 +39,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
         run: ${{github.workspace}}/ci/install_packages.sh
-      - name: Select GCC Compiler
-        if: ${{ matrix.compiler }} == 'gcc'
-        run: export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
-      - name: Select Clang Compiler
-        if: ${{ matrix.compiler }} == 'clang'
-        run: export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
       - name: Cache DART
         id: cache-dart
         uses: actions/cache@v2
@@ -59,6 +53,12 @@ jobs:
         run: ${{github.workspace}}/ci/install_magnum.sh
       - name: Build robot_dart
         run: |
+          if [ "$COMPILER" = "gcc" ]; then
+          export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+          export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
           cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
             ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
@@ -73,7 +73,14 @@ jobs:
       - name: Install
         run: sudo ./waf install
       - name: Run CMake
-        run: cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
+        run: |
+          if [ "$COMPILER" = "gcc" ]; then
+          export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+          export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
+          cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
       - name: Run Python
         if: ${{ matrix.build_python }} == 'ON'
         run: python ${{github.workspace}}/python/ci.py
