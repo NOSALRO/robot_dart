@@ -54,9 +54,9 @@ jobs:
       - name: Build robot_dart
         run: |
           python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
-          export PYTHONPATH=/home/runner/.dart_install/lib/$python_dist_dir
+          export PYTHONPATH=/home/runner/.dart_install/$python_dist_dir
           echo $python_dist_dir
-          ls /home/runner/.dart_install/lib/$python_dist_dir
+          ls /home/runner/.dart_install/$python_dist_dir
           if [ "$COMPILER" = "gcc" ]; then
           export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
           fi
