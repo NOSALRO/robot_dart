@@ -38,4 +38,4 @@ sudo make install
 cd ../..
 
 sudo ldconfig
-cd ${{github.workspace}}
+cd $CI_HOME
