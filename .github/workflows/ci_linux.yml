@@ -39,6 +39,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
         run: ${{github.workspace}}/ci/install_packages.sh
+      - name: Select GCC Compiler
+        if: ${{ matrix.compiler }} == 'gcc'
+        run: export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+      - name: Select Clang Compiler
+        if: ${{ matrix.compiler }} == 'clang'
+        run: export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
       - name: Cache DART
         id: cache-dart
         uses: actions/cache@v2
