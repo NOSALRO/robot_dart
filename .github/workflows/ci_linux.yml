@@ -49,14 +49,13 @@ jobs:
         if: steps.cache-dart.outputs.cache-hit != 'true'
         run: ${{github.workspace}}/ci/install_dart_latest.sh
       - name: Build Magnum
-        if: ${{ matrix.magnum_gui }} = 'ON'
-        run: ${{github.workspace}}/ci/install_magnum.sh
+        run: if [ "$MAGNUM_GUI" = "ON" ]; then ${{github.workspace}}/ci/install_magnum.sh ; fi
       - name: Build robot_dart
         run: |
           python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
           export PYTHONPATH=/home/runner/.dart_install/$python_dist_dir
           echo $python_dist_dir
-          ls /home/runner/.dart_install/$python_dist_dir
+          du -a /home/runner/.dart_install
           if [ "$COMPILER" = "gcc" ]; then
           export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
           fi
@@ -86,9 +85,10 @@ jobs:
           fi
           cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
       - name: Run Python
-        if: ${{ matrix.build_python }} = 'ON'
         run: |
+          if [ "$BUILD_PYTHON" = "ON" ]; then
           python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
           export PYTHONPATH=/home/runner/.dart_install/lib/$python_dist_dir
           python ${{github.workspace}}/src/python/ci.py
+          fi
 
