@@ -32,7 +32,7 @@ jobs:
       # DART_MASTER: ${{ matrix.dart_master }}
       MAGNUM_GUI: ${{ matrix.magnum_gui }}
       DART_TAG: ${{ matrix.dart_tag }}
-      LD_LIBRARY_PATH: "~/.dart_install/lib"
+      LD_LIBRARY_PATH: "/home/runner/.dart_install/lib"
       CI_HOME: ${{github.workspace}}
     steps:
       - uses: actions/checkout@v2
