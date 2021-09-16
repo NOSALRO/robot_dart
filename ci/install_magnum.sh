@@ -32,7 +32,7 @@ cd ../..
 git clone https://github.com/mosra/magnum-integration.git
 cd magnum-integration
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DWITH_DART=ON -DWITH_EIGEN=ON  -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DWITH_DART=ON -DWITH_EIGEN=ON  -DCMAKE_INSTALL_PREFIX=/usr -DDART_DIR=$DART_DIR ..
 make -j
 sudo make install
 cd ../..

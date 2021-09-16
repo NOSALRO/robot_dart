@@ -34,6 +34,7 @@ jobs:
       DART_TAG: ${{ matrix.dart_tag }}
       LD_LIBRARY_PATH: "/home/runner/.dart_install/lib"
       CI_HOME: ${{github.workspace}}
+      DART_DIR: "/home/runner/.dart_install/share/dart/cmake"
     steps:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
@@ -60,13 +61,13 @@ jobs:
           fi
           ./waf
       - name: Run tests
-        run: echo $LD_LIBRARY_PATH && ./waf --tests
+        run: ./waf --tests
       - name: Build examples
         run: ./waf examples
       - name: Install
         run: sudo ./waf install
       - name: Run CMake
-        run: cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake .. && make -j4
+        run: cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
       - name: Run Python
         if: ${{ matrix.build_python }} == 'ON'
         run: python ${{github.workspace}}/python/ci.py
