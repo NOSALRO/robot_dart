@@ -1,5 +1,9 @@
 mkdir -p ~/.deps
 cd ~/.deps
+
+python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
+mkdir -p ~/.dart_install/lib/$python_dist_dir
+
 git clone git://github.com/dartsim/dart.git
 cd dart
 git checkout $DART_TAG
@@ -25,3 +29,5 @@ if [ "$BUILD_PYTHON" = "ON" ]; then
 fi
 sudo ldconfig
 cd $CI_HOME
+
+ls ~/.dart_install/lib/$python_dist_dir
