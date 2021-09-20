@@ -43,6 +43,14 @@ namespace robot_dart {
         void Sensor::set_pose(const Eigen::Isometry3d& tf) { _world_pose = tf; }
         const Eigen::Isometry3d& Sensor::pose() const { return _world_pose; }
 
+        void Sensor::detach() {
+            _attached_to_body = false;
+            _attached_to_joint = false;
+            _body_attached = NULL;
+            _joint_attached = NULL;
+            _active = false;
+        }
+
         void Sensor::refresh(double t)
         {
             if (_attaching_to_body && !_attached_to_body) {

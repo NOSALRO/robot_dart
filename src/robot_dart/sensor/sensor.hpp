@@ -52,6 +52,7 @@ namespace robot_dart {
             virtual void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity());
             void attach_to_joint(const std::shared_ptr<Robot>& robot, const std::string& joint_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) { attach_to_joint(robot->joint(joint_name), tf); }
 
+            void detach();
         protected:
             RobotDARTSimu* _simu = nullptr;
             bool _active;
