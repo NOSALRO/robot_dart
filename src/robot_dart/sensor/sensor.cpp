@@ -53,6 +53,8 @@ namespace robot_dart {
 
         void Sensor::refresh(double t)
         {
+            if (!_active)
+                return;
             if (_attaching_to_body && !_attached_to_body) {
                 attach_to_body(_body_attached, _attached_tf);
             }
@@ -79,7 +81,6 @@ namespace robot_dart {
                 if (body)
                     _world_pose = body->getWorldTransform() * tf * _attached_tf;
             }
-
             calculate(t);
         }
 
@@ -118,6 +119,14 @@ namespace robot_dart {
                 _attaching_to_joint = false;
                 _attached_to_joint = false;
             }
+        }
+        const std::string& Sensor::attached_to() const
+         { 
+            assert(_attached_to_body || _attached_to_joint);
+            if (_attached_to_body)
+                return _body_attached->getName();
+            // attached to joint
+            return _joint_attached->getName();
         }
     } // namespace sensor
 } // namespace robot_dart
