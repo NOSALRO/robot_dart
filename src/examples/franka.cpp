@@ -1,7 +1,7 @@
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <robot_dart/control/pd_control.hpp>
+#include <robot_dart/control/manifold_control.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -25,8 +25,10 @@ int main()
     // set desired positions
     Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.});
 
+    std::vector<int> rotational_joints(ctrl.size(),1);
+
     // add the controller to the robot
-    auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
+    auto controller = std::make_shared<robot_dart::control::ManifoldControl>(rotational_joints,ctrl);
     robot->add_controller(controller);
     controller->set_pd(300., 50.);
 
