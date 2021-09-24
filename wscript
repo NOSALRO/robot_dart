@@ -87,8 +87,7 @@ def configure(conf):
         conf.check_python_module('dartpy')
         conf.check_pybind11(required=True)
         conf.env['BUILD_PYTHON'] = True
-        if conf.env.CXX_NAME in ["gcc", "g++"]:
-            conf.env['py_flags'] = ' -fPIC' # we need -fPIC in some Linux/gcc combinations
+        conf.env['py_flags'] = ' -fPIC' # we need -fPIC
 
     # We require Magnum DartIntegration, EigenIntegration, AssimpImporter, and StbTrueTypeFont
     if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0 and len(conf.env.INCLUDES_MagnumPlugins_AssimpImporter) > 0 and len(conf.env.INCLUDES_MagnumPlugins_StbTrueTypeFont) > 0:
