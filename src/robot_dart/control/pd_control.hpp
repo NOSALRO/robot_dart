@@ -7,6 +7,8 @@
 #include <robot_dart/control/robot_control.hpp>
 #include <robot_dart/robot.hpp>
 
+#include <dart/dynamics/RevoluteJoint.hpp>
+
 namespace robot_dart {
     namespace control {
 
@@ -29,6 +31,16 @@ namespace robot_dart {
         protected:
             Eigen::VectorXd _Kp;
             Eigen::VectorXd _Kd;
+
+            inline double angle_dist(const double alfa, const double beta){
+              double theta = alfa - beta;
+              while (theta < -M_PI)
+                theta += 2 * M_PI;
+              while (theta > M_PI)
+                theta -= 2 * M_PI;
+              return theta;
+            }
+
         };
     } // namespace control
 } // namespace robot_dart

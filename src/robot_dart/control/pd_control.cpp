@@ -8,6 +8,8 @@ namespace robot_dart {
         PDControl::PDControl(const Eigen::VectorXd& ctrl, bool full_control) : RobotControl(ctrl, full_control) {}
         PDControl::PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs) : RobotControl(ctrl, controllable_dofs) {}
 
+
+
         void PDControl::configure()
         {
             if (_ctrl.size() == _control_dof)
@@ -26,9 +28,21 @@ namespace robot_dart {
             Eigen::VectorXd q = robot->positions(_controllable_dofs);
             Eigen::VectorXd dq = robot->velocities(_controllable_dofs);
 
+
+            Eigen::VectorXd error= Eigen::VectorXd::Zero(_control_dof);
+            for(int i=0;i<_control_dof;++i){
+              if(robot->dof(_controllable_dofs[i])->getJoint()->getType() ==
+                  dart::dynamics::RevoluteJoint::getStaticType()){
+                error(i)= angle_dist( target_positions(i), q(i));
+              }
+              else{
+                error(i)= target_positions(i)- q(i);
+              }
+            }
+
             /// Compute the simplest PD controller output:
             /// P gain * (target position - current position) + D gain * (0 - current velocity)
-            Eigen::VectorXd commands = _Kp.array() * (target_positions.array() - q.array()) - _Kd.array() * dq.array();
+            Eigen::VectorXd commands = _Kp.array() * error.array() - _Kd.array() * dq.array();
 
             return commands;
         }
