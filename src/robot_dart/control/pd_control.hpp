@@ -13,8 +13,8 @@ namespace robot_dart {
         class PDControl : public RobotControl {
         public:
             PDControl();
-            PDControl(const Eigen::VectorXd& ctrl, bool full_control = false, const bool angular_errors = true);
-            PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs, const bool angular_errors = true);
+            PDControl(const Eigen::VectorXd& ctrl, bool full_control = false, bool angular_errors = true);
+            PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs, bool angular_errors = true);
 
             void configure() override;
             Eigen::VectorXd calculate(double) override;

@@ -1,13 +1,14 @@
 #include "pd_control.hpp"
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
+
 #include <dart/dynamics/RevoluteJoint.hpp>
 
 namespace robot_dart {
     namespace control {
         PDControl::PDControl() : RobotControl() {}
-        PDControl::PDControl(const Eigen::VectorXd& ctrl, bool full_control, const bool angular_errors) : RobotControl(ctrl, full_control), _angular_errors(angular_errors) {}
-        PDControl::PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs, const bool angular_errors) : RobotControl(ctrl, controllable_dofs), _angular_errors(angular_errors) {}
+        PDControl::PDControl(const Eigen::VectorXd& ctrl, bool full_control, bool angular_errors) : RobotControl(ctrl, full_control), _angular_errors(angular_errors) {}
+        PDControl::PDControl(const Eigen::VectorXd& ctrl, const std::vector<std::string>& controllable_dofs, bool angular_errors) : RobotControl(ctrl, controllable_dofs), _angular_errors(angular_errors) {}
 
         void PDControl::configure()
         {
