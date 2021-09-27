@@ -31,7 +31,7 @@ namespace robot_dart {
             Eigen::VectorXd error = Eigen::VectorXd::Zero(_control_dof);
             for (int i = 0; i < _control_dof; ++i) {
                 if (robot->dof(_controllable_dofs[i])->getJoint()->getType() == dart::dynamics::RevoluteJoint::getStaticType()
-                    and _angular_errors) {
+                    && _angular_errors) {
                     error(i) = _angle_dist(target_positions(i), q(i));
                 }
                 else {
