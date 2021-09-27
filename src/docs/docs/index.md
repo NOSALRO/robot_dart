@@ -33,6 +33,7 @@ In a few words, RobotDART combines:
     * Franka Emika Panda
     * KUKA LBR Iiwa (14kg version)
     * IIT iCub humanoid (without hands)
+    * Unitree A1 quadruped robot
     * Dynamixel-based 6-legged robot
     * A simple arm for educational purposes
     * and you can use any URDF
