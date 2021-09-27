@@ -1,11 +1,4 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-#include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
-
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -13,13 +6,10 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
     std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
     auto robot = std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
-    robot->set_position_enforced(true);
     auto positions = robot->positions();
     positions[2] = M_PI / 2.;
     positions[5] = 1.1;
@@ -27,11 +17,14 @@ int main()
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
+    // Enforce limits (ON by default)
+    robot->set_position_enforced(true);
 
     double dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
+    // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS@
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1280;
     configuration.height = 960;
@@ -40,6 +33,7 @@ int main()
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     graphics->record_video("talos_dancing.mp4");
+    // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS_END@
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
@@ -73,6 +67,5 @@ int main()
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::cout << "benchmark time: " << elapsed_seconds.count() << "s\n";
 
-    robot.reset();
     return 0;
 }

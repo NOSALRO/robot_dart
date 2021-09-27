@@ -36,8 +36,8 @@ We have two URDF files:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
     * compatible with the DART collision detector
-    * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf)]
-    * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
+    * URDF: [[talos_fast.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf)]
+    * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
 
@@ -86,6 +86,19 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
+## Unitree A1
+![Unitree A1 quadruped robot](images/a1.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+
+A1 is a quadruped robot made by the [Unitree Robotics](https://www.unitree.com/products/a1/).
+
+- Depth camera in the head
+- IMU in the torso
+- We do not simulate the foot pressure sensors
+- URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/robots/unitree_a1/a1.urdf)]
+- Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)]
+
+*Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
+
 ## Dynamixel-based hexapod robot (Inria and others)
 ![hexapod robot](images/hexapod.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
@@ -103,7 +116,7 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - A simple arm for educational or debugging purposes
 - 5 degrees of freedom
 - simple URDF (no meshes)
-- URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf)]
+- URDF: [[arm.urdf](https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf)]
 - Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
 
 ## How to use your own URDF?

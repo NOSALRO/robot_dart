@@ -22,15 +22,6 @@ class MyController(rd.RobotControl):
     def clone(self):
         return MyController(self._ctrl, self._controllable_dofs)
 
-class MyDesc(rd.Descriptor):
-    def __init__(self, desc):
-        rd.Descriptor.__init__(self, desc)
-        self._states = []
-
-    def __call__(self):
-        if(self._simu.num_robots()>0):
-            self._states.append(self._simu.robot(0).positions())
-
 # Load robot from URDF
 robot = rd.Robot("arm.urdf", "arm", False)
 robot.fix_to_world()
@@ -45,8 +36,6 @@ print(robot.positions())
 
 # Create simulator object
 simu = rd.RobotDARTSimu(0.001)
-desc = MyDesc(10)
-simu.add_descriptor(desc)
 
 # Create graphics
 graphics = rd.gui.Graphics()
@@ -73,5 +62,3 @@ img = camera.image()
 rd.gui.save_png_image('camera.png', img)
 
 print(robot.positions())
-print(desc._states[-1])
-print(len(desc._states))

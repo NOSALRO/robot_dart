@@ -123,6 +123,8 @@
                 
             <li class="second-level"><a href="#icub-iit">iCub (IIT)</a></li>
                 
+            <li class="second-level"><a href="#unitree-a1">Unitree A1</a></li>
+                
             <li class="second-level"><a href="#dynamixel-based-hexapod-robot-inria-and-others">Dynamixel-based hexapod robot (Inria and others)</a></li>
                 
             <li class="second-level"><a href="#simple-arm">Simple arm</a></li>
@@ -173,8 +175,8 @@
 <li>no collision except for the feet, which are approximated by boxes</li>
 <li>grippers are fixed (no movement is allowed)</li>
 <li>compatible with the DART collision detector</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf">talos.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp">talos.cpp</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf">talos_fast.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp">talos_fast.cpp</a>]</li>
 </ul>
 </li>
 </ul>
@@ -218,6 +220,17 @@
 <li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp">icub.cpp</a>]</li>
 </ul>
 <p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
+<h2 id="unitree-a1">Unitree A1</h2>
+<p><img alt="Unitree A1 quadruped robot" src="../images/a1.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>A1 is a quadruped robot made by the <a href="https://www.unitree.com/products/a1/">Unitree Robotics</a>.</p>
+<ul>
+<li>Depth camera in the head</li>
+<li>IMU in the torso</li>
+<li>We do not simulate the foot pressure sensors</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/unitree_a1/a1.urdf">a1.urdf</a>]</li>
+<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp">a1.cpp</a>]</li>
+</ul>
+<p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
 <h2 id="dynamixel-based-hexapod-robot-inria-and-others">Dynamixel-based hexapod robot (Inria and others)</h2>
 <p><img alt="hexapod robot" src="../images/hexapod.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <p>This hexapod is a simple 6-legged robot based on dynamixel actuators. It is similar to the robot used in the paper <a href="https://www.nature.com/articles/nature14422">`Robots that can adapt like animals'</a> (Cully et al., 2015).</p>
@@ -233,7 +246,7 @@
 <li>A simple arm for educational or debugging purposes</li>
 <li>5 degrees of freedom</li>
 <li>simple URDF (no meshes)</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf">pexod.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf">arm.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
 </ul>
 <h2 id="how-to-use-your-own-urdf">How to use your own URDF?</h2>

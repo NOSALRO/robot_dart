@@ -54,11 +54,23 @@ To enable graphics in your code, you need to do the following:
 
 ## How do I record a video?
 
+In order to record a video of what the main camera "sees", you need to call the function `record_video(path)` of the graphics class:
+
+{{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
+
+You can find a complete example at [talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp).
+
 ## How can I manipulate the camera?
 
 ## How can I display debug information?
 
 ## What do the numbers in the status bar mean?
+
+The status bar looks like this:
+
+![Status Bar](images/FAQ/bar.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+
+Where **simulation time** gives us the total simulated time (in seconds), **wall time** gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number **X.Xx** gives us the real-time factor: for example, **1.1x** means that the simulation runs 1.1 times faster than real-time, whereas **0.7x** means that the simulation runs slower than real-tiem. The value **it: XX ms** reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. **sync** means that RobotDART will slow down the simulation in order for it to be in real-time, whereas **no-sync** means that RobotDART will try to run the simulation as fast as possible.
 
 ## How can I visualize the state of my model?
 
@@ -84,8 +96,55 @@ To enable graphics in your code, you need to do the following:
 
 ## How can I spawn multiple robots in parallel?
 
+The best way to do so is to create a Robot pool. With a robot pool you:
+
+- Minimize the overhead of loading robots (it happens only once!) or cloning robots (it never happens)
+- Make sure that your robots are "clean" once released from each thread
+- Focus on the important stuff rather than handling robots and threads
+
+First we need to include the proper header:
+
+{{ROBOT_POOL_INCLUDE}}
+
+Then we create a `creator` function and the pool object:
+
+{{ROBOT_POOL_GLOBAL_NAMESPACE}}
+
+We create a few threads that utilize the robots:
+
+{{ROBOT_POOL_CREATE_THREADS}}
+
+An example evaluation function:
+
+{{ROBOT_POOL_EVAL}}
+
 ## I need to simulate many worlds with camera sensors in parallel. How can I do this?
 
 ## I do not know how to use waf. How can I detect RobotDART from CMake?
 
+You need to use `waf` to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at [cmake/example](https://github.com/resibots/robot_dart/blob/master/cmake/example). In short the CMake would look like this:
+
+``` cmake
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+project(robot_dart_example)
+# we ask for Magnum because we want to build the graphics
+find_package(RobotDART REQUIRED OPTIONAL_COMPONENTS Magnum)
+
+add_executable(robot_dart_example example.cpp)
+
+target_link_libraries(robot_dart_example
+   RobotDART::Simu
+)
+
+if(RobotDART_Magnum_FOUND)
+  add_executable(robot_dart_example_graphics example.cpp)
+  target_link_libraries(robot_dart_example_graphics
+    RobotDART::Simu
+    RobotDART::Magnum
+  )
+endif()
+```
+
 ## I prefer coding in python. How can I use RobotDART?
+
+RobotDART comes with python bindinds. Please refer to the [installation page](install.md) to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at [example.py](https://github.com/resibots/robot_dart/blob/master/src/python/example.py). There is mostly an one-to-one mapping between C++ and python objects and functions.

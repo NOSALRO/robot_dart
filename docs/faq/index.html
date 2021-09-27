@@ -172,43 +172,43 @@
 <ul>
 <li>We first include the RobotDART headers:</li>
 </ul>
-<pre><code class="language-cpp">#include &lt;robot_dart/robot_dart_simu.hpp&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/robot_dart_simu.hpp&gt;</span><span class="cp"></span>
 
-#ifdef GRAPHIC
-#include &lt;robot_dart/gui/magnum/graphics.hpp&gt;
-#endif
-</code></pre>
+<span class="cp">#ifdef GRAPHIC</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/gui/magnum/graphics.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
 <ul>
 <li>We then load our hexapod robot:</li>
 </ul>
-<pre><code class="language-cpp">auto robot = std::make_shared&lt;robot_dart::Robot&gt;(&quot;pexod.urdf&quot;);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;pexod.urdf&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>We need to place it above the floor to avoid collision (position is given as a screw vector):</li>
 </ul>
-<pre><code class="language-cpp">robot-&gt;set_base_pose(robot_dart::make_tf({0., 0., 0.2}));
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">robot</span><span class="o">-&gt;</span><span class="n">set_base_pose</span><span class="p">(</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">make_tf</span><span class="p">({</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">}));</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>We can now create the simulation object and add the robot and the floor:</li>
 </ul>
-<pre><code class="language-cpp">robot_dart::RobotDARTSimu simu(0.001); // dt=0.001, 1KHz simulation
-simu.add_floor();
-simu.add_robot(robot);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">robot_dart</span><span class="o">::</span><span class="n">RobotDARTSimu</span><span class="w"> </span><span class="nf">simu</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span><span class="w"> </span><span class="c1">// dt=0.001, 1KHz simulation</span>
+<span class="n">simu</span><span class="p">.</span><span class="n">add_floor</span><span class="p">();</span><span class="w"></span>
+<span class="n">simu</span><span class="p">.</span><span class="n">add_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>If needed or wanted, we can add a graphics component to visualize the scene:</li>
 </ul>
-<pre><code class="language-cpp">#ifdef GRAPHIC
-    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
-    simu.set_graphics(graphics);
-    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
-#endif
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifdef GRAPHIC</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.75</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">});</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
 <ul>
 <li>Once everything is configured, we can run our simulation for a few seconds:</li>
 </ul>
-<pre><code class="language-cpp">simu.run(10.);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">simu</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mf">10.</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 <ul>
 <li>Here's how it looks:</li>
 </ul>
@@ -223,16 +223,30 @@ simu.add_robot(robot);
 <li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="install.md">installation page</a> for details.</li>
 <li>Create and set a graphics object in the simulation object. Here's an example:</li>
 </ul>
-<pre><code class="language-cpp">#ifdef GRAPHIC
-    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
-    simu.set_graphics(graphics);
-    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
-#endif
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifdef GRAPHIC</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.75</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">});</span><span class="w"></span>
+<span class="cp">#endif</span>
+</code></pre></div>
 <h2 id="how-do-i-record-a-video">How do I record a video?</h2>
+<p>In order to record a video of what the main camera "sees", you need to call the function <code>record_video(path)</code> of the graphics class:</p>
+<div class="highlight"><pre><span></span><code><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">GraphicsConfiguration</span><span class="w"> </span><span class="n">configuration</span><span class="p">;</span><span class="w"></span>
+<span class="n">configuration</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1280</span><span class="p">;</span><span class="w"></span>
+<span class="n">configuration</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">960</span><span class="p">;</span><span class="w"></span>
+<span class="n">configuration</span><span class="p">.</span><span class="n">bg_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector4d</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">};</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">(</span><span class="n">configuration</span><span class="p">);</span><span class="w"></span>
+<span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
+<span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="p">});</span><span class="w"></span>
+<span class="n">graphics</span><span class="o">-&gt;</span><span class="n">record_video</span><span class="p">(</span><span class="s">&quot;talos_dancing.mp4&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>.</p>
 <h2 id="how-can-i-manipulate-the-camera">How can I manipulate the camera?</h2>
 <h2 id="how-can-i-display-debug-information">How can I display debug information?</h2>
 <h2 id="what-do-the-numbers-in-the-status-bar-mean">What do the numbers in the status bar mean?</h2>
+<p>The status bar looks like this:</p>
+<p><img alt="Status Bar" src="../images/FAQ/bar.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>Where <strong>simulation time</strong> gives us the total simulated time (in seconds), <strong>wall time</strong> gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number <strong>X.Xx</strong> gives us the real-time factor: for example, <strong>1.1x</strong> means that the simulation runs 1.1 times faster than real-time, whereas <strong>0.7x</strong> means that the simulation runs slower than real-tiem. The value <strong>it: XX ms</strong> reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. <strong>sync</strong> means that RobotDART will slow down the simulation in order for it to be in real-time, whereas <strong>no-sync</strong> means that RobotDART will try to run the simulation as fast as possible.</p>
 <h2 id="how-can-i-visualize-the-state-of-my-model">How can I visualize the state of my model?</h2>
 <h2 id="can-i-add-change-the-graphics-scene-eg-change-lighting-conditions">Can I add change the graphics scene (e.g., change lighting conditions)?</h2>
 <h2 id="how-can-i-control-my-robot-can-i-have-a-position-velocity-torque-controlled-robot">How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?</h2>
@@ -245,9 +259,77 @@ simu.add_robot(robot);
 <h2 id="i-want-to-have-multiple-camera-sensors-is-it-possible-how-can-i-attach-a-camera-to-a-moving-link">I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?</h2>
 <h2 id="how-can-i-measure-forces-being-applied-to-my-robot">How can I measure forces being applied to my robot?</h2>
 <h2 id="how-can-i-spawn-multiple-robots-in-parallel">How can I spawn multiple robots in parallel?</h2>
+<p>The best way to do so is to create a Robot pool. With a robot pool you:</p>
+<ul>
+<li>Minimize the overhead of loading robots (it happens only once!) or cloning robots (it never happens)</li>
+<li>Make sure that your robots are "clean" once released from each thread</li>
+<li>Focus on the important stuff rather than handling robots and threads</li>
+</ul>
+<p>First we need to include the proper header:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/robot_pool.hpp&gt;</span><span class="cp"></span>
+</code></pre></div>
+<p>Then we create a <code>creator</code> function and the pool object:</p>
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">pool</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// This function should load one robot: here we load Talos</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="w"> </span><span class="n">robot_creator</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;talos_description&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;talos/talos_description&quot;</span><span class="p">}};</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;talos/talos.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">packages</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// To create the object we need to pass the robot_creator function and the number of maximum parallel threads</span>
+<span class="w">    </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">RobotPool</span><span class="w"> </span><span class="n">robot_pool</span><span class="p">(</span><span class="n">robot_creator</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_THREADS</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace pool</span>
+</code></pre></div>
+<p>We create a few threads that utilize the robots:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// for the example, we run NUM_THREADS threads of eval_robot()</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threads</span><span class="p">(</span><span class="n">NUM_THREADS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// *2 to see some reuse</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threads</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">eval_robot</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// eval_robot is the function that uses the robot</span>
+</code></pre></div>
+<p>An example evaluation function:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">eval_robot</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// We get one available robot</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pool</span><span class="o">::</span><span class="n">robot_pool</span><span class="p">.</span><span class="n">get_robot</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Robot &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; got [&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">robot</span><span class="o">-&gt;</span><span class="n">skeleton</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">/// --- some robot_dart code ---</span>
+<span class="w">    </span><span class="n">simulate_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// --- do something with the result</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;End of simulation &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// CRITICAL : free your robot !</span>
+<span class="w">    </span><span class="n">pool</span><span class="o">::</span><span class="n">robot_pool</span><span class="p">.</span><span class="n">free_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Robot &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; freed!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <h2 id="i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this">I need to simulate many worlds with camera sensors in parallel. How can I do this?</h2>
 <h2 id="i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake">I do not know how to use waf. How can I detect RobotDART from CMake?</h2>
-<h2 id="i-prefer-coding-in-python-how-can-i-use-robotdart">I prefer coding in python. How can I use RobotDART?</h2></div>
+<p>You need to use <code>waf</code> to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/cmake/example">cmake/example</a>. In short the CMake would look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.10</span> <span class="s">FATAL_ERROR</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="p">)</span>
+<span class="c"># we ask for Magnum because we want to build the graphics</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">RobotDART</span> <span class="s">REQUIRED</span> <span class="s">OPTIONAL_COMPONENTS</span> <span class="s">Magnum</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example</span> <span class="s">example.cpp</span><span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example</span>
+   <span class="s">RobotDART::Simu</span>
+<span class="p">)</span>
+
+<span class="nb">if</span><span class="p">(</span><span class="s">RobotDART_Magnum_FOUND</span><span class="p">)</span>
+  <span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span> <span class="s">example.cpp</span><span class="p">)</span>
+  <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span>
+    <span class="s">RobotDART::Simu</span>
+    <span class="s">RobotDART::Magnum</span>
+  <span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="i-prefer-coding-in-python-how-can-i-use-robotdart">I prefer coding in python. How can I use RobotDART?</h2>
+<p>RobotDART comes with python bindinds. Please refer to the <a href="install.md">installation page</a> to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at <a href="https://github.com/resibots/robot_dart/blob/master/src/python/example.py">example.py</a>. There is mostly an one-to-one mapping between C++ and python objects and functions.</p></div>
         
         
     </div>

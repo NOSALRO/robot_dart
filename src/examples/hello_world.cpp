@@ -8,7 +8,6 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
     // @HELLO_WORLD_ROBOT_CREATION@
     auto robot = std::make_shared<robot_dart::Robot>("pexod.urdf");
     // @HELLO_WORLD_ROBOT_CREATION_END@

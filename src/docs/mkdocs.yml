@@ -5,12 +5,18 @@ copyright: 'Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret'
 theme:
   name: null
   custom_dir: 'cinder'
+  features:
+    - content.code.annotate
 nav:
   - Home: index.md
   - Supported robots: robots.md
   - FAQ: faq.md
 markdown_extensions:
   - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: '../../'
 plugins:
     - search
     - macros:
