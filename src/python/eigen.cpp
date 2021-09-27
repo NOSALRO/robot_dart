@@ -5,6 +5,8 @@
 
 #include <pybind11/eigen.h>
 
+#include <dart/math/Geometry.hpp>
+
 namespace robot_dart {
     namespace python {
         void py_eigen(py::module& module)
@@ -129,6 +131,23 @@ namespace robot_dart {
                     //==========================
                     ;
                 ::pybind11::implicitly_convertible<Eigen::Matrix<T, 3, 3>, Class>();
+            }
+
+            // left-overs from DART math
+            {
+                m.def(
+                    "logMap",
+                    +[](const Eigen::Isometry3d& _tf) -> Eigen::Vector6d {
+                        return dart::math::logMap(_tf);
+                    },
+                    ::py::arg("tf"));
+
+                m.def(
+                    "logMap",
+                    +[](const Eigen::Matrix3d& _rot) -> Eigen::Vector3d {
+                        return dart::math::logMap(_rot);
+                    },
+                    ::py::arg("rot"));
             }
         }
     } // namespace python

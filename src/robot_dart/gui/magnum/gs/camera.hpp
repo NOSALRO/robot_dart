@@ -52,6 +52,8 @@ namespace robot_dart {
                     Magnum::Float fov() const { return static_cast<Magnum::Float>(_fov); }
                     Magnum::Int width() const { return _camera->viewport()[0]; }
                     Magnum::Int height() const { return _camera->viewport()[1]; }
+                    Magnum::Matrix3 intrinsic_matrix() const;
+                    Magnum::Matrix4 extrinsic_matrix() const;
 
                     Camera& look_at(const Magnum::Vector3& camera, const Magnum::Vector3& center, const Magnum::Vector3& up = Magnum::Vector3::zAxis());
 
@@ -84,6 +86,7 @@ namespace robot_dart {
                     Magnum::Vector3 _up, _front, _right;
                     Magnum::Float _aspect_ratio, _near_plane, _far_plane;
                     Magnum::Rad _fov;
+                    Magnum::Int _width, _height;
 
                     bool _recording = false, _recording_depth = false;
                     bool _recording_video = false;

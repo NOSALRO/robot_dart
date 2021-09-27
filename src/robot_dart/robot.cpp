@@ -1435,13 +1435,8 @@ namespace robot_dart {
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
-        Eigen::Isometry3d bd_trans = bd->getWorldTransform();
 
-        Eigen::Vector6d pose;
-        pose.head(3) = dart::math::logMap(bd_trans.linear().matrix());
-        pose.tail(3) = bd_trans.translation();
-
-        return pose;
+        return dart::math::logMap(bd->getWorldTransform());
     }
 
     Eigen::Vector6d Robot::body_pose_vec(size_t body_index) const
@@ -1450,11 +1445,7 @@ namespace robot_dart {
 
         Eigen::Isometry3d bd_trans = _skeleton->getBodyNode(body_index)->getWorldTransform();
 
-        Eigen::Vector6d pose;
-        pose.head(3) = dart::math::logMap(bd_trans.linear().matrix());
-        pose.tail(3) = bd_trans.translation();
-
-        return pose;
+        return dart::math::logMap(bd_trans);
     }
 
     Eigen::Vector6d Robot::body_velocity(const std::string& body_name) const
@@ -1806,6 +1797,22 @@ namespace robot_dart {
         }
     }
 
+    void Robot::set_self_collision(bool enable_self_collisions, bool enable_adjacent_collisions)
+    {
+        _skeleton->setSelfCollisionCheck(enable_self_collisions);
+        _skeleton->setAdjacentBodyCheck(enable_adjacent_collisions);
+    }
+
+    bool Robot::self_colliding() const
+    {
+        return _skeleton->getSelfCollisionCheck();
+    }
+
+    bool Robot::adjacent_colliding() const
+    {
+        return _skeleton->getAdjacentBodyCheck() && self_colliding();
+    }
+
     void Robot::set_cast_shadows(bool cast_shadows) { _cast_shadows = cast_shadows; }
 
     bool Robot::cast_shadows() const { return _cast_shadows; }
@@ -1814,7 +1821,7 @@ namespace robot_dart {
 
     bool Robot::ghost() const { return _is_ghost; }
 
-    void Robot::set_draw_axis(const std::string& body_name, double size, bool draw)
+    void Robot::set_draw_axis(const std::string& body_name, double size)
     {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd, "Body name does not exist in skeleton", );
@@ -2077,8 +2084,16 @@ namespace robot_dart {
         return M_ret;
     }
 
+    std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Isometry3d& tf, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
+    {
+        return create_box(dims, dart::math::logMap(tf), type, mass, color, box_name);
+    }
+
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
     {
+        ROBOT_DART_ASSERT((dims.array() > 0.).all(), "Dimensions should be bigger than zero!", nullptr);
+        ROBOT_DART_ASSERT(mass > 0., "Box mass should be bigger than zero!", nullptr);
+
         dart::dynamics::SkeletonPtr box_skel = dart::dynamics::Skeleton::create(box_name);
 
         // Give the box a body
@@ -2106,31 +2121,29 @@ namespace robot_dart {
         if (type == "free") // free floating
             robot->set_positions(pose);
         else // fixed
-        {
-            Eigen::Isometry3d T;
-            T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
-            T.translation() = pose.tail(3);
-            body->getParentJoint()->setTransformFromParentBodyNode(T);
-        }
+            body->getParentJoint()->setTransformFromParentBodyNode(dart::math::expMap(pose));
 
         return robot;
     }
 
-    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims,
-        const Eigen::Vector6d& pose, const std::string& type, double mass,
-        const Eigen::Vector4d& color, const std::string& ellipsoid_name)
+    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Isometry3d& tf, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
     {
-        dart::dynamics::SkeletonPtr ellipsoid_skel
-            = dart::dynamics::Skeleton::create(ellipsoid_name);
+        return create_ellipsoid(dims, dart::math::logMap(tf), type, mass, color, ellipsoid_name);
+    }
+
+    std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
+    {
+        ROBOT_DART_ASSERT((dims.array() > 0.).all(), "Dimensions should be bigger than zero!", nullptr);
+        ROBOT_DART_ASSERT(mass > 0., "Box mass should be bigger than zero!", nullptr);
+
+        dart::dynamics::SkeletonPtr ellipsoid_skel = dart::dynamics::Skeleton::create(ellipsoid_name);
 
         // Give the ellipsoid a body
         dart::dynamics::BodyNodePtr body;
         if (type == "free")
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr)
-                       .second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::FreeJoint>(nullptr).second;
         else
-            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr)
-                       .second;
+            body = ellipsoid_skel->createJointAndBodyNodePair<dart::dynamics::WeldJoint>(nullptr).second;
         body->setName(ellipsoid_name);
 
         // Give the body a shape

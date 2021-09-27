@@ -173,6 +173,9 @@ namespace robot_dart {
                 // Image filled with depth buffer values
                 GrayscaleImage raw_depth_image();
 
+                // "Image" filled with depth buffer values (this returns an array of doubles)
+                DepthImage depth_array();
+
                 // Access to debug data
                 DebugDrawData debug_draw_data()
                 {
@@ -207,7 +210,6 @@ namespace robot_dart {
                 RobotDARTSimu* _simu;
                 std::unique_ptr<Magnum::DartIntegration::World> _dart_world;
                 std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> _drawable_objects;
-                std::vector<Object3D*> _dart_objects;
                 std::vector<gs::Light> _lights;
 
                 /* Shadows */

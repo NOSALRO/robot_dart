@@ -34,6 +34,9 @@ namespace robot_dart {
                     gs::Camera& camera() { return *_camera; }
                     const gs::Camera& camera() const { return *_camera; }
 
+                    Eigen::Matrix3d camera_intrinsic_matrix() const;
+                    Eigen::Matrix4d camera_extrinsic_matrix() const;
+
                     bool drawing_debug() const { return _draw_debug; }
                     void draw_debug(bool draw = true) { _draw_debug = draw; }
 
@@ -72,6 +75,9 @@ namespace robot_dart {
 
                     // Image filled with depth buffer values
                     GrayscaleImage raw_depth_image();
+
+                    // "Image" filled with depth buffer values (this returns an array of doubles)
+                    DepthImage depth_array();
 
                 protected:
                     Magnum::GL::Framebuffer _framebuffer{Magnum::NoCreate};

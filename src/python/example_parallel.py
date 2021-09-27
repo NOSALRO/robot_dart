@@ -33,7 +33,7 @@ def test():
 
     # add the robot and the floor
     simu.add_robot(grobot)
-    simu.add_checkerboard_floor(10., 0.1, 1., np.zeros((6,1)), "floor")
+    simu.add_checkerboard_floor()
 
     # run
     simu.run(20.)

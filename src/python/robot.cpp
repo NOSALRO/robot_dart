@@ -205,7 +205,7 @@ namespace robot_dart {
                     py::arg("body_index"))
 
                 .def("base_pose", &Robot::base_pose)
-                .def("base_pose_vec", &Robot::base_pose)
+                .def("base_pose_vec", &Robot::base_pose_vec)
 
                 .def("set_base_pose", (void (Robot::*)(const Eigen::Isometry3d&)) & Robot::set_base_pose,
                     py::arg("tf"))
@@ -419,6 +419,12 @@ namespace robot_dart {
                 .def("set_color_mode", (void (Robot::*)(const std::string&)) & Robot::set_color_mode)
                 .def("set_color_mode", (void (Robot::*)(const std::string&, const std::string&)) & Robot::set_color_mode)
 
+                .def("set_self_collision", &Robot::set_self_collision,
+                    py::arg("enable_self_collisions") = true,
+                    py::arg("enable_adjacent_collisions") = false)
+                .def("self_colliding", &Robot::self_colliding)
+                .def("adjacent_colliding", &Robot::adjacent_colliding)
+
                 .def("set_cast_shadows", &Robot::set_cast_shadows,
                     py::arg("cast_shadows") = true)
                 .def("cast_shadows", &Robot::cast_shadows)
@@ -429,23 +435,37 @@ namespace robot_dart {
 
                 .def("set_draw_axis", &Robot::set_draw_axis,
                     py::arg("body_name"),
-                    py::arg("size") = 0.25,
-                    py::arg("draw") = true)
+                    py::arg("size") = 0.25)
 
                 .def("remove_all_drawing_axis", &Robot::remove_all_drawing_axis)
 
                 // .def("drawing_axes", &Robot::drawing_axes)
 
-                .def_static("create_box", &Robot::create_box,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
                     py::arg("box_name") = "box")
-                .def_static("create_ellipsoid", &Robot::create_ellipsoid,
+                .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
+                    py::arg("dims"),
+                    py::arg("tf"),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("box_name") = "box")
+
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Vector6d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
                     py::arg("dims"),
                     py::arg("pose") = Eigen::Vector6d::Zero(),
+                    py::arg("type") = "free",
+                    py::arg("mass") = 1.,
+                    py::arg("color") = dart::Color::Red(1.0),
+                    py::arg("ellipsoid_name") = "ellipsoid")
+                .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
+                    py::arg("dims"),
+                    py::arg("tf"),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
