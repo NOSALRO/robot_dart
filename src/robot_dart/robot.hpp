@@ -259,6 +259,11 @@ namespace robot_dart {
         void set_color_mode(const std::string& color_mode);
         void set_color_mode(const std::string& color_mode, const std::string& body_name);
 
+        void set_self_collision(bool enable_self_collisions = true, bool enable_adjacent_collisions = false);
+        bool self_colliding() const;
+        // This returns true if self colliding AND adjacent checks are on
+        bool adjacent_colliding() const;
+
         // GUI options
         void set_cast_shadows(bool cast_shadows = true);
         bool cast_shadows() const;
@@ -272,7 +277,7 @@ namespace robot_dart {
 
         // helper functions
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& box_name = "box");
         // pose: 6D log_map
@@ -282,7 +287,7 @@ namespace robot_dart {
             const std::string& box_name = "box");
 
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& ellipsoid_name = "ellipsoid");
         // pose: 6D log_map
