@@ -112,7 +112,6 @@ namespace robot_dart {
     RobotDARTSimu::~RobotDARTSimu()
     {
         _robots.clear();
-        _descriptors.clear();
         _sensors.clear();
     }
 
@@ -130,14 +129,8 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        if (_scheduler(_physics_freq)) {
+        if (_scheduler(_physics_freq))
             _world->step(reset_commands);
-
-            // update descriptors
-            for (auto& desc : _descriptors)
-                if (_old_index % desc->desc_dump() == 0)
-                    desc->operator()();
-        }
 
         // Update graphics
         if (_scheduler(_graphics_freq)) {
@@ -201,23 +194,6 @@ namespace robot_dart {
     dart::simulation::WorldPtr RobotDARTSimu::world()
     {
         return _world;
-    }
-
-    void RobotDARTSimu::add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
-    {
-        _descriptors.push_back(desc);
-        desc->set_simu(this);
-    }
-
-    std::vector<std::shared_ptr<descriptor::BaseDescriptor>> RobotDARTSimu::descriptors() const
-    {
-        return _descriptors;
-    }
-
-    std::shared_ptr<descriptor::BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
-    {
-        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", nullptr);
-        return _descriptors[index];
     }
 
     void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
@@ -390,25 +366,6 @@ namespace robot_dart {
             _world->removeSkeleton(robot->skeleton());
         }
         _robots.clear();
-    }
-
-    void RobotDARTSimu::remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
-    {
-        auto it = std::find(_descriptors.begin(), _descriptors.end(), desc);
-        if (it != _descriptors.end()) {
-            _descriptors.erase(it);
-        }
-    }
-
-    void RobotDARTSimu::remove_descriptor(size_t index)
-    {
-        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", );
-        _descriptors.erase(_descriptors.begin() + index);
-    }
-
-    void RobotDARTSimu::clear_descriptors()
-    {
-        _descriptors.clear();
     }
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
