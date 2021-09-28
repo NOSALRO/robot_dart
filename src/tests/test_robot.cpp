@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
 
 BOOST_AUTO_TEST_CASE(test_dof_maps)
 {
-    auto pendulum = std::make_shared<Robot>("pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     // check dofs
