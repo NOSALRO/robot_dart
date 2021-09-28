@@ -102,19 +102,23 @@ The best way to do so is to create a Robot pool. With a robot pool you:
 - Make sure that your robots are "clean" once released from each thread
 - Focus on the important stuff rather than handling robots and threads
 
-First we need to include the proper header:
+Let's see a more practical example:
+
+- First we need to include the proper header:
 
 {{ROBOT_POOL_INCLUDE}}
 
-Then we create a `creator` function and the pool object:
+- Then we create a `creator` function and the pool object:
 
 {{ROBOT_POOL_GLOBAL_NAMESPACE}}
 
-We create a few threads that utilize the robots:
+The `creator` function is the function responsible for loading your robot. This should basically look like a standalone code to load or create a robot.
+
+- Next, we create a few threads that utilize the robots (in your code you might be using OpenMP or TBB):
 
 {{ROBOT_POOL_CREATE_THREADS}}
 
-An example evaluation function:
+- An example evaluation function:
 
 {{ROBOT_POOL_EVAL}}
 
