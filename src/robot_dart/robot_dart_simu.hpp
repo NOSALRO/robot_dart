@@ -120,16 +120,22 @@ namespace robot_dart {
         const std::string& collision_detector() const;
 
         // Bitmask collision filtering
-        void set_collision_mask(size_t robot_index, uint16_t mask);
-        void set_collision_mask(size_t robot_index, const std::string& body_name, uint16_t mask);
-        void set_collision_mask(size_t robot_index, size_t body_index, uint16_t mask);
+        void set_collision_masks(size_t robot_index, uint32_t category_mask, uint32_t collision_mask);
+        void set_collision_masks(size_t robot_index, const std::string& body_name, uint32_t category_mask, uint32_t collision_mask);
+        void set_collision_masks(size_t robot_index, size_t body_index, uint32_t category_mask, uint32_t collision_mask);
 
-        uint16_t collision_mask(size_t robot_index, const std::string& body_name);
-        uint16_t collision_mask(size_t robot_index, size_t body_index);
+        uint32_t collision_mask(size_t robot_index, const std::string& body_name);
+        uint32_t collision_mask(size_t robot_index, size_t body_index);
 
-        void remove_collision_mask(size_t robot_index);
-        void remove_collision_mask(size_t robot_index, const std::string& body_name);
-        void remove_collision_mask(size_t robot_index, size_t body_index);
+        uint32_t collision_category(size_t robot_index, const std::string& body_name);
+        uint32_t collision_category(size_t robot_index, size_t body_index);
+
+        std::pair<uint32_t, uint32_t> collision_masks(size_t robot_index, const std::string& body_name);
+        std::pair<uint32_t, uint32_t> collision_masks(size_t robot_index, size_t body_index);
+
+        void remove_collision_masks(size_t robot_index);
+        void remove_collision_masks(size_t robot_index, const std::string& body_name);
+        void remove_collision_masks(size_t robot_index, size_t body_index);
 
         void remove_all_collision_masks();
 
