@@ -133,16 +133,22 @@ namespace robot_dart {
                 .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
                 .def("collision_detector", &RobotDARTSimu::collision_detector)
 
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&, uint16_t)) & RobotDARTSimu::set_collision_mask)
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, const std::string&, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, size_t, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
 
-                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_mask)
-                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_mask)
+                .def("collision_mask", (uint32_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_mask)
+                .def("collision_mask", (uint32_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_mask)
 
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_collision_mask)
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::remove_collision_mask)
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::remove_collision_mask)
+                .def("collision_category", (uint32_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_category)
+                .def("collision_category", (uint32_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_category)
+
+                .def("collision_masks", (std::pair<uint32_t, uint32_t>(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_masks)
+                .def("collision_masks", (std::pair<uint32_t, uint32_t>(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_masks)
+
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_collision_masks)
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::remove_collision_masks)
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::remove_collision_masks)
 
                 .def("remove_all_collision_masks", &RobotDARTSimu::remove_all_collision_masks);
         }
