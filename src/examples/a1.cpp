@@ -15,9 +15,14 @@ int main()
     robot->set_color_mode("material");
 
     robot->set_self_collision(true);
-    // robot->set_actuator_types("servo");
+    robot->set_actuator_types("servo");
     robot->set_position_enforced(true);
-    robot->set_base_pose(robot_dart::make_vector({0.55, 0.3, 0., 0., 0., 1.}));
+    robot->set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.5}));
+
+    auto names = robot->dof_names(true, true, true);
+    names = std::vector<std::string>(names.begin() + 6, names.end());
+    // standing pose
+    robot->set_positions(robot_dart::make_vector({0.0, 0.67, -1.3, -0.0, 0.67, -1.3, 0.0, 0.67, -1.3, -0.0, 0.67, -1.3}), names);
 
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");

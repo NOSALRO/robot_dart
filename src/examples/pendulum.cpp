@@ -9,21 +9,6 @@
 
 int main()
 {
-    // std::vector<robot_dart::RobotDamage> brk = {};
-    // Examples of damages
-    // robot_dart::RobotDamage dmg;
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_4";
-    // dmg.extra = new double(1.0);
-    // brk.push_back(dmg);
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_2";
-    // dmg.extra = nullptr;
-    // brk.push_back(dmg);
-    // dmg.type = "blocked_joint";
-    // dmg.data = "arm_joint_3";
-    // brk.push_back(dmg);
-
     auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
     robot->fix_to_world();
     robot->set_position_enforced(false);
