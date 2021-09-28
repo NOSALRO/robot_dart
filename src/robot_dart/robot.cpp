@@ -267,6 +267,7 @@ namespace robot_dart {
         : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
+        update_joint_dof_maps();
     }
 
     Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows)
@@ -279,6 +280,7 @@ namespace robot_dart {
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
+        update_joint_dof_maps();
         reset();
     }
 
