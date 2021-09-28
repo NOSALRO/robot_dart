@@ -263,24 +263,24 @@ namespace robot_dart {
         }
     } // namespace detail
 
-    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows)
         : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
-        _set_damages(damages);
+        update_joint_dof_maps();
     }
 
-    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
-        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages)
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows)
+        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows)
     {
     }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows)
         : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
-        _set_damages(damages);
+        update_joint_dof_maps();
         reset();
     }
 
@@ -295,7 +295,6 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
-        robot->_damages = _damages;
         robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
@@ -315,7 +314,6 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, ghost_name + "_" + _robot_name);
-        robot->_damages = _damages;
         robot->_model_filename = _model_filename;
 
         // ghost robots have no controllers
@@ -372,8 +370,6 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", nullptr);
         return _skeleton->getDof(dof_index);
     }
-
-    std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
     const std::string& Robot::name() const { return _robot_name; }
 
@@ -1939,24 +1935,6 @@ namespace robot_dart {
         _set_color_mode(dart::dynamics::MeshShape::ColorMode::SHAPE_COLOR, tmp_skel);
 
         return tmp_skel;
-    }
-
-    void Robot::_set_damages(const std::vector<RobotDamage>& damages)
-    {
-        _damages = damages;
-        for (auto dmg : _damages) {
-            if (dmg.type == "blocked_joint") {
-                auto jnt = _skeleton->getJoint(dmg.data);
-                if (dmg.extra)
-                    jnt->setPosition(0, *((double*)dmg.extra));
-                jnt->setActuatorType(dart::dynamics::Joint::LOCKED);
-            }
-            else if (dmg.type == "free_joint") {
-                _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
-            }
-        }
-
-        update_joint_dof_maps();
     }
 
     void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)

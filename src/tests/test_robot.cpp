@@ -45,8 +45,22 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(dummy->name() == "dummy_robot");
     BOOST_CHECK(dummy->name() == dummy->skeleton()->getName());
     BOOST_CHECK(dummy->name() == dummy_skel->getName());
+}
 
-    // TO-DO: Add checks for damages
+BOOST_AUTO_TEST_CASE(test_dof_maps)
+{
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    BOOST_REQUIRE(pendulum);
+
+    // check dofs
+    auto names = pendulum->dof_names();
+    BOOST_CHECK(names.size() == 7);
+
+    // check if joint/dof map is updated
+    std::vector<std::string> name = {"pendulum_joint_1"};
+    pendulum->set_positions(make_vector({0.1}), name);
+
+    BOOST_CHECK(pendulum->positions(name)[0] == 0.1);
 }
 
 BOOST_AUTO_TEST_CASE(test_fix_free)

@@ -10,23 +10,12 @@ namespace robot_dart {
     namespace control {
         class RobotControl;
     }
-    struct RobotDamage {
-        RobotDamage() {}
-        RobotDamage(const std::string& type, const std::string& data, void* extra = nullptr)
-            : type(type), data(data), extra(extra)
-        {
-        }
-
-        std::string type;
-        std::string data;
-        void* extra = nullptr;
-    };
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
-        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
-        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
+        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
+        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true);
 
         std::shared_ptr<Robot> clone() const;
         std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
@@ -40,8 +29,6 @@ namespace robot_dart {
 
         dart::dynamics::DegreeOfFreedom* dof(const std::string& dof_name);
         dart::dynamics::DegreeOfFreedom* dof(size_t dof_index);
-
-        std::vector<RobotDamage> damages() const;
 
         const std::string& name() const;
         // to use the same urdf somewhere else
@@ -300,7 +287,6 @@ namespace robot_dart {
         std::string _get_path(const std::string& filename) const;
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
-        void _set_damages(const std::vector<RobotDamage>& damages);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
         void _set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
@@ -317,7 +303,6 @@ namespace robot_dart {
         std::string _model_filename;
         std::vector<std::pair<std::string, std::string>> _packages;
         dart::dynamics::SkeletonPtr _skeleton;
-        std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;
         std::unordered_map<std::string, size_t> _dof_map, _joint_map;
         bool _cast_shadows;
