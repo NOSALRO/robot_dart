@@ -66,7 +66,7 @@ int main()
     // add the arm to the simulator
     simu.add_robot(arm_robot);
 
-    // run the simulator for 5 seconds
+    // run the simulator for 10 seconds
     simu.run(10.);
     return 0;
 }
