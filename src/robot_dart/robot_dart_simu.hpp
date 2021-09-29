@@ -1,7 +1,11 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <dart/simulation/World.hpp>
+#pragma GCC diagnostic pop
 
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>

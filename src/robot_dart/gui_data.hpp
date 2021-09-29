@@ -6,10 +6,14 @@
 #include <unordered_map>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <Eigen/Geometry>
 
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/ShapeNode.hpp>
+#pragma GCC diagnostic pop
 
 namespace robot_dart {
     namespace simu {

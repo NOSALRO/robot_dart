@@ -18,7 +18,7 @@ namespace robot_dart {
                 _active = true;
         }
 
-        void IMU::calculate(double t)
+        void IMU::calculate(double)
         {
             if (!_attached_to_body)
                 return; // cannot compute anything if not attached to a link

@@ -1,9 +1,14 @@
 #include "helper.hpp"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <Eigen/Dense>
 
+#pragma GCC diagnostic ignored "-Wmissing-declarations"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
+#pragma GCC diagnostic pop
 
 namespace robot_dart {
     namespace gui {

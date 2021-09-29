@@ -115,8 +115,8 @@ namespace robot_dart {
                 .def("configure", &PDControl::configure)
                 .def("calculate", &PDControl::calculate)
 
-                .def("set_pd", (void (PDControl::*)(double, double)) & PDControl::set_pd)
-                .def("set_pd", (void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)) & PDControl::set_pd)
+                .def("set_pd", static_cast<void (PDControl::*)(double, double)>(&PDControl::set_pd))
+                .def("set_pd", static_cast<void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)>(&PDControl::set_pd))
 
                 .def("pd", &PDControl::pd)
 

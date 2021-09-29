@@ -26,7 +26,7 @@ namespace robot_dart {
 
                     void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override;
 
-                    void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                    void attach_to_joint(dart::dynamics::Joint*, const Eigen::Isometry3d&) override
                     {
                         ROBOT_DART_WARNING(true, "You cannot attach a camera to a joint!");
                     }
