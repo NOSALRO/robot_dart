@@ -23,11 +23,17 @@
 
 namespace robot_dart {
     namespace collision_filter {
-        // This is inspired from ign-physics: https://bitbucket.org/ignitionrobotics/ign-physics/src/0feb6cdf616e38ed919692031b9b9b11e19efddd/dartsim/src/EntityManagementFeatures.cc#lines-38:96
+        // This is inspired from Swift: https://developer.apple.com/documentation/spritekit/skphysicsbody#//apple_ref/occ/instp/SKPhysicsBody/collisionBitMask
+        // https://stackoverflow.com/questions/39063949/cant-understand-how-collision-bit-mask-works
         class BitmaskContactFilter : public dart::collision::BodyNodeCollisionFilter {
         public:
             using DartCollisionConstPtr = const dart::collision::CollisionObject*;
             using DartShapeConstPtr = const dart::dynamics::ShapeNode*;
+
+            struct Masks {
+                uint32_t collision_mask = 0xffffffff;
+                uint32_t category_mask = 0xffffffff;
+            };
 
             virtual ~BitmaskContactFilter() = default;
 
@@ -42,22 +48,30 @@ namespace robot_dart {
 
                 auto shape1_iter = _bitmask_map.find(shape_node1);
                 auto shape2_iter = _bitmask_map.find(shape_node2);
-                if (shape1_iter != _bitmask_map.end() && shape2_iter != _bitmask_map.end() && ((shape1_iter->second & shape2_iter->second) == 0))
-                    return true;
+                if (shape1_iter != _bitmask_map.end() && shape2_iter != _bitmask_map.end()) {
+                    auto col_mask1 = shape1_iter->second.collision_mask;
+                    auto cat_mask1 = shape1_iter->second.category_mask;
+
+                    auto col_mask2 = shape2_iter->second.collision_mask;
+                    auto cat_mask2 = shape2_iter->second.category_mask;
+
+                    if ((col_mask1 & cat_mask2) == 0 && (col_mask2 & cat_mask1) == 0)
+                        return true;
+                }
 
                 return false;
             }
 
-            void add_to_map(DartShapeConstPtr shape, const uint16_t mask)
+            void add_to_map(DartShapeConstPtr shape, uint32_t col_mask, uint32_t cat_mask)
             {
-                _bitmask_map[shape] = mask;
+                _bitmask_map[shape] = {col_mask, cat_mask};
             }
 
-            void add_to_map(dart::dynamics::SkeletonPtr skel, const uint16_t mask)
+            void add_to_map(dart::dynamics::SkeletonPtr skel, uint32_t col_mask, uint32_t cat_mask)
             {
                 for (std::size_t i = 0; i < skel->getNumShapeNodes(); ++i) {
                     auto shape = skel->getShapeNode(i);
-                    this->add_to_map(shape, mask);
+                    this->add_to_map(shape, col_mask, cat_mask);
                 }
             }
 
@@ -78,18 +92,18 @@ namespace robot_dart {
 
             void clear_all() { _bitmask_map.clear(); }
 
-            uint16_t mask(DartShapeConstPtr shape) const
+            Masks mask(DartShapeConstPtr shape) const
             {
                 auto shape_iter = _bitmask_map.find(shape);
                 if (shape_iter != _bitmask_map.end())
                     return shape_iter->second;
-                return 0xff;
+                return {0xffffffff, 0xffffffff};
             }
 
         private:
             // We need ShapeNodes and not BodyNodes, since in DART collision checking is performed in ShapeNode-level
             // in RobotDARTSimu, we only allow setting one mask per BodyNode; maybe we can improve the performance of this slightly
-            std::unordered_map<DartShapeConstPtr, uint16_t> _bitmask_map;
+            std::unordered_map<DartShapeConstPtr, Masks> _bitmask_map;
         };
     } // namespace collision_filter
 
@@ -112,7 +126,6 @@ namespace robot_dart {
     RobotDARTSimu::~RobotDARTSimu()
     {
         _robots.clear();
-        _descriptors.clear();
         _sensors.clear();
     }
 
@@ -130,14 +143,8 @@ namespace robot_dart {
 
     bool RobotDARTSimu::step_world(bool reset_commands)
     {
-        if (_scheduler(_physics_freq)) {
+        if (_scheduler(_physics_freq))
             _world->step(reset_commands);
-
-            // update descriptors
-            for (auto& desc : _descriptors)
-                if (_old_index % desc->desc_dump() == 0)
-                    desc->operator()();
-        }
 
         // Update graphics
         if (_scheduler(_graphics_freq)) {
@@ -201,23 +208,6 @@ namespace robot_dart {
     dart::simulation::WorldPtr RobotDARTSimu::world()
     {
         return _world;
-    }
-
-    void RobotDARTSimu::add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
-    {
-        _descriptors.push_back(desc);
-        desc->set_simu(this);
-    }
-
-    std::vector<std::shared_ptr<descriptor::BaseDescriptor>> RobotDARTSimu::descriptors() const
-    {
-        return _descriptors;
-    }
-
-    std::shared_ptr<descriptor::BaseDescriptor> RobotDARTSimu::descriptor(size_t index) const
-    {
-        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", nullptr);
-        return _descriptors[index];
     }
 
     void RobotDARTSimu::add_sensor(const std::shared_ptr<sensor::Sensor>& sensor)
@@ -392,25 +382,6 @@ namespace robot_dart {
         _robots.clear();
     }
 
-    void RobotDARTSimu::remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc)
-    {
-        auto it = std::find(_descriptors.begin(), _descriptors.end(), desc);
-        if (it != _descriptors.end()) {
-            _descriptors.erase(it);
-        }
-    }
-
-    void RobotDARTSimu::remove_descriptor(size_t index)
-    {
-        ROBOT_DART_ASSERT(index < _descriptors.size(), "Descriptor index out of bounds", );
-        _descriptors.erase(_descriptors.begin() + index);
-    }
-
-    void RobotDARTSimu::clear_descriptors()
-    {
-        _descriptors.clear();
-    }
-
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
     void RobotDARTSimu::enable_text_panel(bool enable, double font_size) { _enable(_text_panel, enable, font_size); }
@@ -475,9 +446,8 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotDARTSimu::add_floor(double floor_width, double floor_height, const Eigen::Isometry3d& tf, const std::string& floor_name)
     {
-        // We do not want 2 floors with the same name!
-        if (_world->getSkeleton(floor_name) != nullptr)
-            return nullptr;
+        ROBOT_DART_ASSERT((_world->getSkeleton(floor_name) == nullptr), "We cannot have 2 floors with the name '" + floor_name + "'", nullptr);
+        ROBOT_DART_ASSERT((floor_width > 0. && floor_height > 0.), "Floor dimensions should be bigger than zero!", nullptr);
 
         dart::dynamics::SkeletonPtr floor_skel = dart::dynamics::Skeleton::create(floor_name);
 
@@ -501,9 +471,8 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> RobotDARTSimu::add_checkerboard_floor(double floor_width, double floor_height, double size, const Eigen::Isometry3d& tf, const std::string& floor_name, const Eigen::Vector4d& first_color, const Eigen::Vector4d& second_color)
     {
-        // We do not want 2 floors with the same name!
-        if (_world->getSkeleton(floor_name) != nullptr)
-            return nullptr;
+        ROBOT_DART_ASSERT((_world->getSkeleton(floor_name) == nullptr), "We cannot have 2 floors with the name '" + floor_name + "'", nullptr);
+        ROBOT_DART_ASSERT((floor_width > 0. && floor_height > 0. && size > 0.), "Floor dimensions should be bigger than zero!", nullptr);
 
         // Add main floor skeleton
         dart::dynamics::SkeletonPtr main_floor_skel = dart::dynamics::Skeleton::create(floor_name + "_main");
@@ -587,24 +556,24 @@ namespace robot_dart {
 
     const std::string& RobotDARTSimu::collision_detector() const { return _world->getConstraintSolver()->getCollisionDetector()->getType(); }
 
-    void RobotDARTSimu::set_collision_mask(size_t robot_index, uint16_t mask)
+    void RobotDARTSimu::set_collision_masks(size_t robot_index, uint32_t category_mask, uint32_t collision_mask)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
-        coll_filter->add_to_map(_robots[robot_index]->skeleton(), mask);
+        coll_filter->add_to_map(_robots[robot_index]->skeleton(), collision_mask, category_mask);
     }
 
-    void RobotDARTSimu::set_collision_mask(size_t robot_index, const std::string& body_name, uint16_t mask)
+    void RobotDARTSimu::set_collision_masks(size_t robot_index, const std::string& body_name, uint32_t category_mask, uint32_t collision_mask)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
         for (auto& shape : bd->getShapeNodes())
-            coll_filter->add_to_map(shape, mask);
+            coll_filter->add_to_map(shape, collision_mask, category_mask);
     }
 
-    void RobotDARTSimu::set_collision_mask(size_t robot_index, size_t body_index, uint16_t mask)
+    void RobotDARTSimu::set_collision_masks(size_t robot_index, size_t body_index, uint32_t category_mask, uint32_t collision_mask)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto skel = _robots[robot_index]->skeleton();
@@ -612,46 +581,108 @@ namespace robot_dart {
         auto bd = skel->getBodyNode(body_index);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
         for (auto& shape : bd->getShapeNodes())
-            coll_filter->add_to_map(shape, mask);
+            coll_filter->add_to_map(shape, collision_mask, category_mask);
     }
 
-    uint16_t RobotDARTSimu::collision_mask(size_t robot_index, const std::string& body_name)
+    uint32_t RobotDARTSimu::collision_mask(size_t robot_index, const std::string& body_name)
     {
-        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xff);
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xffffffff);
         auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
-        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0xff);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0xffffffff);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
-        uint16_t mask = 0xff;
+        uint32_t mask = 0xffffffff;
         for (auto& shape : bd->getShapeNodes())
-            mask &= coll_filter->mask(shape);
+            mask &= coll_filter->mask(shape).collision_mask;
 
         return mask;
     }
 
-    uint16_t RobotDARTSimu::collision_mask(size_t robot_index, size_t body_index)
+    uint32_t RobotDARTSimu::collision_mask(size_t robot_index, size_t body_index)
     {
-        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xff);
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xffffffff);
         auto skel = _robots[robot_index]->skeleton();
-        ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", 0xff);
+        ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", 0xffffffff);
         auto bd = skel->getBodyNode(body_index);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
-        uint16_t mask = 0xff;
+        uint32_t mask = 0xffffffff;
         for (auto& shape : bd->getShapeNodes())
-            mask &= coll_filter->mask(shape);
+            mask &= coll_filter->mask(shape).collision_mask;
 
         return mask;
     }
 
-    void RobotDARTSimu::remove_collision_mask(size_t robot_index)
+    uint32_t RobotDARTSimu::collision_category(size_t robot_index, const std::string& body_name)
+    {
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xffffffff);
+        auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", 0xffffffff);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        uint32_t mask = 0xffffffff;
+        for (auto& shape : bd->getShapeNodes())
+            mask &= coll_filter->mask(shape).category_mask;
+
+        return mask;
+    }
+
+    uint32_t RobotDARTSimu::collision_category(size_t robot_index, size_t body_index)
+    {
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", 0xffffffff);
+        auto skel = _robots[robot_index]->skeleton();
+        ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", 0xffffffff);
+        auto bd = skel->getBodyNode(body_index);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        uint32_t mask = 0xffffffff;
+        for (auto& shape : bd->getShapeNodes())
+            mask &= coll_filter->mask(shape).category_mask;
+
+        return mask;
+    }
+
+    std::pair<uint32_t, uint32_t> RobotDARTSimu::collision_masks(size_t robot_index, const std::string& body_name)
+    {
+        std::pair<uint32_t, uint32_t> mask = {0xffffffff, 0xffffffff};
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", mask);
+        auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
+        ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", mask);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        for (auto& shape : bd->getShapeNodes()) {
+            mask.first &= coll_filter->mask(shape).collision_mask;
+            mask.second &= coll_filter->mask(shape).category_mask;
+        }
+
+        return mask;
+    }
+
+    std::pair<uint32_t, uint32_t> RobotDARTSimu::collision_masks(size_t robot_index, size_t body_index)
+    {
+        std::pair<uint32_t, uint32_t> mask = {0xffffffff, 0xffffffff};
+        ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", mask);
+        auto skel = _robots[robot_index]->skeleton();
+        ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", mask);
+        auto bd = skel->getBodyNode(body_index);
+        auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+
+        for (auto& shape : bd->getShapeNodes()) {
+            mask.first &= coll_filter->mask(shape).collision_mask;
+            mask.second &= coll_filter->mask(shape).category_mask;
+        }
+
+        return mask;
+    }
+
+    void RobotDARTSimu::remove_collision_masks(size_t robot_index)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
         coll_filter->remove_from_map(_robots[robot_index]->skeleton());
     }
 
-    void RobotDARTSimu::remove_collision_mask(size_t robot_index, const std::string& body_name)
+    void RobotDARTSimu::remove_collision_masks(size_t robot_index, const std::string& body_name)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
@@ -661,7 +692,7 @@ namespace robot_dart {
             coll_filter->remove_from_map(shape);
     }
 
-    void RobotDARTSimu::remove_collision_mask(size_t robot_index, size_t body_index)
+    void RobotDARTSimu::remove_collision_masks(size_t robot_index, size_t body_index)
     {
         ROBOT_DART_ASSERT(robot_index < _robots.size(), "Robot index out of bounds", );
         auto skel = _robots[robot_index]->skeleton();
