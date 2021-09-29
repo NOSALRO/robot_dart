@@ -20,6 +20,9 @@ endif()
 
 find_dependency(DART 6.0.0 REQUIRED COMPONENTS utils-urdf @DART_EXTRA_LIBS@ CONFIG)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 # Look for components (ie. libraries)
 set(RobotDART_USE_MAGNUM FALSE)
 set(RobotDART_MAGNUM_REQUIRED QUIET)
@@ -42,7 +45,7 @@ set(RobotDART_INCLUDE_DIRS "@RobotDART_INCLUDE_DIRS@")
 set(RobotDART_LIBRARY_DIRS "@RobotDART_LIBRARY_DIRS@")
 
 set(RobotDART_LIBRARY ${RobotDART_LIBRARY_DIRS}/libRobotDARTSimu@RobotDART_LIB_TYPE@)
-set(RobotDART_LIBRARIES "Eigen3::Eigen;${DART_LIBRARIES}")
+set(RobotDART_LIBRARIES "Threads::Threads;Eigen3::Eigen;${DART_LIBRARIES}")
 
 add_library(RobotDART::Simu INTERFACE IMPORTED)
 set_target_properties(RobotDART::Simu PROPERTIES

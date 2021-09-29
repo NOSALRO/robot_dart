@@ -11,43 +11,6 @@ namespace robot_dart {
         void py_simu(py::module& m)
         {
             using namespace robot_dart;
-            using Descriptor = descriptor::BaseDescriptor;
-
-            // Descriptor class
-            class PyDescriptor : public Descriptor {
-            public:
-                using Descriptor::BaseDescriptor;
-
-                /* Trampolines */
-                void operator()() override
-                {
-                    PYBIND11_OVERLOAD_PURE_NAME(
-                        void, /* return type */
-                        descriptor::BaseDescriptor, /* parent class */
-                        "__call__", /* name in python */
-                        operator(), /* name in C++ */
-                        /* arguments */
-                    );
-                }
-            };
-
-            class PublicistDescriptor : public Descriptor {
-            public:
-                using Descriptor::_desc_period;
-                using Descriptor::_simu;
-            };
-
-            py::class_<Descriptor, PyDescriptor, std::shared_ptr<Descriptor>>(m, "Descriptor")
-                .def(py::init<size_t>(),
-                    py::arg("desc_dump") = 1)
-
-                .def_readwrite("_desc_period", &PublicistDescriptor::_desc_period)
-                .def_readonly("_simu", &PublicistDescriptor::_simu)
-
-                .def("desc_dump", &Descriptor::desc_dump)
-                .def("set_desc_dump", &Descriptor::set_desc_dump)
-
-                .def("__call__", &Descriptor::operator());
 
             // TextData
             using simu::TextData;
@@ -97,15 +60,6 @@ namespace robot_dart {
                 .def("set_graphics", &RobotDARTSimu::set_graphics, py::keep_alive<2, 1>())
 
                 .def("world", &RobotDARTSimu::world)
-
-                .def("add_descriptor", (void (RobotDARTSimu::*)(const std::shared_ptr<descriptor::BaseDescriptor>&)) & RobotDARTSimu::add_descriptor, py::keep_alive<2, 1>(),
-                    py::arg("desc_dump") = 1)
-                .def("descriptors", &RobotDARTSimu::descriptors)
-                .def("descriptor", &RobotDARTSimu::descriptor)
-
-                .def("remove_descriptor", (void (RobotDARTSimu::*)(const std::shared_ptr<descriptor::BaseDescriptor>&)) & RobotDARTSimu::remove_descriptor)
-                .def("remove_descriptor", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_descriptor)
-                .def("clear_descriptors", &RobotDARTSimu::clear_descriptors)
 
                 .def("add_sensor", (void (RobotDARTSimu::*)(const std::shared_ptr<sensor::Sensor>&)) & RobotDARTSimu::add_sensor,
                     py::keep_alive<2, 1>(),
@@ -179,16 +133,22 @@ namespace robot_dart {
                 .def("set_collision_detector", &RobotDARTSimu::set_collision_detector)
                 .def("collision_detector", &RobotDARTSimu::collision_detector)
 
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&, uint16_t)) & RobotDARTSimu::set_collision_mask)
-                .def("set_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t, uint16_t)) & RobotDARTSimu::set_collision_mask)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, const std::string&, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
+                .def("set_collision_masks", (void (RobotDARTSimu::*)(size_t, size_t, uint32_t, uint32_t)) & RobotDARTSimu::set_collision_masks)
 
-                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_mask)
-                .def("collision_mask", (uint16_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_mask)
+                .def("collision_mask", (uint32_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_mask)
+                .def("collision_mask", (uint32_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_mask)
 
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_collision_mask)
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::remove_collision_mask)
-                .def("remove_collision_mask", (void (RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::remove_collision_mask)
+                .def("collision_category", (uint32_t(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_category)
+                .def("collision_category", (uint32_t(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_category)
+
+                .def("collision_masks", (std::pair<uint32_t, uint32_t>(RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::collision_masks)
+                .def("collision_masks", (std::pair<uint32_t, uint32_t>(RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::collision_masks)
+
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t)) & RobotDARTSimu::remove_collision_masks)
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t, const std::string&)) & RobotDARTSimu::remove_collision_masks)
+                .def("remove_collision_masks", (void (RobotDARTSimu::*)(size_t, size_t)) & RobotDARTSimu::remove_collision_masks)
 
                 .def("remove_all_collision_masks", &RobotDARTSimu::remove_all_collision_masks);
         }
