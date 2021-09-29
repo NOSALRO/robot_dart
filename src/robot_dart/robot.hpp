@@ -3,8 +3,12 @@
 
 #include <unordered_map>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <dart/dynamics/MeshShape.hpp>
 #include <dart/dynamics/Skeleton.hpp>
+#pragma GCC diagnostic pop
 
 namespace robot_dart {
     namespace control {

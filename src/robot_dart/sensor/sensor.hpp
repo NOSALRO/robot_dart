@@ -4,9 +4,6 @@
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
 
-#include <Eigen/Core>
-#include <Eigen/Geometry>
-
 #include <memory>
 #include <vector>
 

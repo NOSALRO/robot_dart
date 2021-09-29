@@ -2,6 +2,9 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/Joint.hpp>
 
@@ -16,6 +19,7 @@
 #include <dart/dynamics/TranslationalJoint2D.hpp>
 #include <dart/dynamics/UniversalJoint.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
+#pragma GCC diagnostic pop
 
 namespace robot_dart {
     namespace sensor {
@@ -32,7 +36,7 @@ namespace robot_dart {
             _active = true;
         }
 
-        void Torque::calculate(double t)
+        void Torque::calculate(double)
         {
             if (!_attached_to_joint)
                 return; // cannot compute anything if not attached to a joint

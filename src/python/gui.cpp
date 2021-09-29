@@ -1,12 +1,17 @@
 #include "robot_dart.hpp"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #include <pybind11/eigen.h>
 #include <pybind11/functional.h>
 #include <pybind11/stl.h>
 
-#include <robot_dart/robot_dart_simu.hpp>
-
 #include <dart/dynamics/BodyNode.hpp>
+#pragma GCC diagnostic pop
+
+#include <robot_dart/robot_dart_simu.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -175,11 +180,11 @@ namespace robot_dart {
                 .def("raw_depth_image", &Graphics::raw_depth_image)
                 .def("depth_array", &Graphics::depth_array)
 
-                .def("camera", (Camera & (Graphics::*)()) & Graphics::camera, py::return_value_policy::reference)
+                .def("camera", static_cast<Camera& (Graphics::*)()>(&Graphics::camera), py::return_value_policy::reference)
                 .def("camera_intrinsic_matrix", &Graphics::camera_intrinsic_matrix)
                 .def("camera_extrinsic_matrix", &Graphics::camera_extrinsic_matrix)
 
-                .def("magnum_app", (gui::magnum::BaseApplication * (Graphics::*)()) & Graphics::magnum_app, py::return_value_policy::reference)
+                .def("magnum_app", static_cast<gui::magnum::BaseApplication* (Graphics::*)()>(&Graphics::magnum_app), py::return_value_policy::reference)
 
                 .def_static("default_configuration", &Graphics::default_configuration);
 
@@ -223,11 +228,11 @@ namespace robot_dart {
                 .def("raw_depth_image", &WindowlessGraphics::raw_depth_image)
                 .def("depth_array", &WindowlessGraphics::depth_array)
 
-                .def("camera", (Camera & (WindowlessGraphics::*)()) & WindowlessGraphics::camera, py::return_value_policy::reference)
+                .def("camera", static_cast<Camera& (WindowlessGraphics::*)()>(&WindowlessGraphics::camera), py::return_value_policy::reference)
                 .def("camera_intrinsic_matrix", &WindowlessGraphics::camera_intrinsic_matrix)
                 .def("camera_extrinsic_matrix", &WindowlessGraphics::camera_extrinsic_matrix)
 
-                .def("magnum_app", (gui::magnum::BaseApplication * (WindowlessGraphics::*)()) & WindowlessGraphics::magnum_app, py::return_value_policy::reference)
+                .def("magnum_app", static_cast<gui::magnum::BaseApplication* (WindowlessGraphics::*)()>(&WindowlessGraphics::magnum_app), py::return_value_policy::reference)
 
                 .def_static("default_configuration", &WindowlessGraphics::default_configuration);
 
@@ -269,7 +274,7 @@ namespace robot_dart {
                     py::arg("joint"),
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
-                .def("camera", (Camera & (gui::magnum::sensor::Camera::*)()) & gui::magnum::sensor::Camera::camera, py::return_value_policy::reference)
+                .def("camera", static_cast<Camera& (gui::magnum::sensor::Camera::*)()>(&gui::magnum::sensor::Camera::camera), py::return_value_policy::reference)
                 .def("camera_intrinsic_matrix", &gui::magnum::sensor::Camera::camera_intrinsic_matrix)
                 .def("camera_extrinsic_matrix", &gui::magnum::sensor::Camera::camera_extrinsic_matrix)
 
@@ -294,8 +299,8 @@ namespace robot_dart {
                 .def("depth_array", &gui::magnum::sensor::Camera::depth_array);
 
             // Helper functions
-            sm.def("save_png_image", (void (*)(const std::string&, const gui::Image&)) & gui::save_png_image);
-            sm.def("save_png_image", (void (*)(const std::string&, const gui::GrayscaleImage&)) & gui::save_png_image);
+            sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::Image&)>(&gui::save_png_image));
+            sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::GrayscaleImage&)>(&gui::save_png_image));
             sm.def("convert_rgb_to_grayscale", gui::convert_rgb_to_grayscale);
             sm.def("point_cloud_from_depth_array", gui::point_cloud_from_depth_array,
                 py::arg("depth_image"),

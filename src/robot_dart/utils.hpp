@@ -5,11 +5,20 @@
 #include <exception>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <Eigen/Core>
+#include <Eigen/Geometry>
+
+#include <dart/config.hpp>
+#pragma GCC diagnostic pop
 
 #ifndef ROBOT_DART_SHOW_WARNINGS
 #define ROBOT_DART_SHOW_WARNINGS true
 #endif
+
+#define M_PIf static_cast<float>(M_PI)
 
 namespace robot_dart {
 
@@ -39,6 +48,8 @@ namespace robot_dart {
         }
     };
 } // namespace robot_dart
+
+#define ROBOT_DART_UNUSED_VARIABLE(var) (void)(var)
 
 #define ROBOT_DART_WARNING(condition, message)                                   \
     if (ROBOT_DART_SHOW_WARNINGS && (condition)) {                               \

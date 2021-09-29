@@ -15,7 +15,13 @@
 #include <robot_dart/gui/magnum/gs/shadow_map_color.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wold-style-cast"
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #include <dart/simulation/World.hpp>
+
+#include <Magnum/DartIntegration/World.h>
+#pragma GCC diagnostic pop
 
 #include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Framebuffer.h>
@@ -34,8 +40,6 @@
 #include <Magnum/Text/AbstractFont.h>
 #include <Magnum/Text/DistanceFieldGlyphCache.h>
 #include <Magnum/Text/Renderer.h>
-
-#include <Magnum/DartIntegration/World.h>
 
 #define get_gl_context_with_sleep(name, ms_sleep)                             \
     /* Create/Get GLContext */                                                \
