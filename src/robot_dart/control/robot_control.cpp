@@ -2,7 +2,10 @@
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
 
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/DegreeOfFreedom.hpp>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace control {

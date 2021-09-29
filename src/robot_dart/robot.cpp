@@ -3,6 +3,11 @@
 #include <boost/filesystem.hpp>
 #include <unistd.h>
 
+#include <robot_dart/robot.hpp>
+#include <robot_dart/utils.hpp>
+
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/config.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/DegreeOfFreedom.hpp>
@@ -18,9 +23,7 @@
 #include <dart/utils/SkelParser.hpp>
 #include <dart/utils/sdf/SdfParser.hpp>
 #include <dart/utils/urdf/urdf.hpp>
-
-#include <robot_dart/robot.hpp>
-#include <robot_dart/utils.hpp>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 // namespace alias for compatibility
 namespace dart {

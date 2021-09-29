@@ -4,6 +4,8 @@
 
 #include <sstream>
 
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/collision/CollisionFilter.hpp>
 #include <dart/collision/CollisionObject.hpp>
 #include <dart/collision/dart/DARTCollisionDetector.hpp>
@@ -20,6 +22,7 @@
 #if (HAVE_ODE == 1)
 #include <dart/collision/ode/OdeCollisionDetector.hpp>
 #endif
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace collision_filter {

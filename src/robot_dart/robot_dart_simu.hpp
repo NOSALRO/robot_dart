@@ -1,16 +1,15 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
-#include <dart/simulation/World.hpp>
-#pragma GCC diagnostic pop
-
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
 #include <robot_dart/scheduler.hpp>
 #include <robot_dart/sensor/sensor.hpp>
+
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
+#include <dart/simulation/World.hpp>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace simu {
