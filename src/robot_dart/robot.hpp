@@ -7,6 +7,7 @@
 #include <dart/dynamics/Skeleton.hpp>
 
 namespace robot_dart {
+    class RobotDARTSimu;
     namespace control {
         class RobotControl;
     }
@@ -298,6 +299,13 @@ namespace robot_dart {
 
         Eigen::MatrixXd _jacobian(const Eigen::MatrixXd& full_jacobian, const std::vector<std::string>& dof_names) const;
         Eigen::MatrixXd _mass_matrix(const Eigen::MatrixXd& full_mass_matrix, const std::vector<std::string>& dof_names) const;
+
+        /// Function called by RobotDARTSimu object when adding the robot to the world
+        virtual void _post_addition(RobotDARTSimu*) {}
+        /// Function called by RobotDARTSimu object when removing the robot to the world
+        virtual void _post_removal(RobotDARTSimu*) {}
+
+        friend class RobotDARTSimu;
 
         std::string _robot_name;
         std::string _model_filename;
