@@ -5,14 +5,24 @@
 #include <exception>
 #include <iostream>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+#define ROBOT_DART_PRAGMA(x) _Pragma(#x)
+
+#define ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH ROBOT_DART_PRAGMA(GCC diagnostic push)
+#define ROBOT_DART_COMPILER_DIAGNOSTIC_POP ROBOT_DART_PRAGMA(GCC diagnostic pop)
+#define ROBOT_DART_COMPILER_IGNORE_WARNINGS                                     \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wold-style-cast")                \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wzero-as-null-pointer-constant") \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wmaybe-uninitialized")           \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wpedantic")                      \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wmissing-declarations")
+
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
 #include <dart/config.hpp>
-#pragma GCC diagnostic pop
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 #ifndef ROBOT_DART_SHOW_WARNINGS
 #define ROBOT_DART_SHOW_WARNINGS true

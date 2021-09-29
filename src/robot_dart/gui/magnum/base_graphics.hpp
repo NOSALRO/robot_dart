@@ -9,7 +9,10 @@
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
 
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <Magnum/EigenIntegration/Integration.h>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 inline static void robot_dart_initialize_magnum_resources()
 {

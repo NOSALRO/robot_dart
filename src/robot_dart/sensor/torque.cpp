@@ -2,9 +2,8 @@
 
 #include <robot_dart/robot_dart_simu.hpp>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/Joint.hpp>
 
@@ -19,7 +18,7 @@
 #include <dart/dynamics/TranslationalJoint2D.hpp>
 #include <dart/dynamics/UniversalJoint.hpp>
 #include <dart/dynamics/WeldJoint.hpp>
-#pragma GCC diagnostic pop
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace sensor {

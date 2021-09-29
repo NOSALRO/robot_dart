@@ -2,8 +2,11 @@
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
 
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/Joint.hpp>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace sensor {

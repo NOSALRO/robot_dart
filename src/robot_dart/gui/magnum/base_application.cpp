@@ -4,12 +4,11 @@
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/SoftBodyNode.hpp>
 #include <dart/dynamics/SoftMeshShape.hpp>
-#pragma GCC diagnostic pop
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 #include <Corrade/Containers/StridedArrayView.h>
 #include <Corrade/Utility/Resource.h>

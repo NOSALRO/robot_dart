@@ -2,14 +2,13 @@
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/BallJoint.hpp>
 #include <dart/dynamics/EulerJoint.hpp>
 #include <dart/dynamics/FreeJoint.hpp>
 #include <dart/dynamics/RevoluteJoint.hpp>
-#pragma GCC diagnostic pop
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace control {
