@@ -4,14 +4,30 @@
 
 namespace robot_dart {
     namespace robots {
-        Talos::Talos(RobotDARTSimu* simu, size_t frequency, const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
+        Talos::Talos(size_t frequency, const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
             : Robot(urdf, packages),
               _imu(std::make_shared<sensor::IMU>(sensor::IMUConfig(body_node("imu_link"), frequency))),
               _ft_foot_left(std::make_shared<sensor::ForceTorque>(joint("leg_left_6_joint"), frequency)),
               _ft_foot_right(std::make_shared<sensor::ForceTorque>(joint("leg_right_6_joint"), frequency)),
               _ft_wrist_left(std::make_shared<sensor::ForceTorque>(joint("wrist_left_ft_joint"), frequency)),
-              _ft_wrist_right(std::make_shared<sensor::ForceTorque>(joint("wrist_right_ft_joint"), frequency))
+              _ft_wrist_right(std::make_shared<sensor::ForceTorque>(joint("wrist_right_ft_joint"), frequency)),
+              _frequency(frequency)
         {
+            // use position/torque limits
+            set_position_enforced(true);
+
+            // set a position abobe the floor
+            skeleton()->setPosition(5, 1.1);
+
+            // rotate the robot
+            skeleton()->setPosition(2, 1.57);
+        }
+
+        void Talos::_post_addition(RobotDARTSimu* simu)
+        {
+            // We do not want to add sensors if we are a ghost robot
+            if (ghost())
+                return;
             simu->add_sensor(_imu);
 
             simu->add_sensor(_ft_foot_left);
@@ -39,19 +55,24 @@ namespace robot_dart {
 
             };
             for (auto& s : joints) {
-                auto t = std::make_shared<sensor::Torque>(joint(s), frequency);
+                auto t = std::make_shared<sensor::Torque>(joint(s), _frequency);
                 _torques[s] = t;
                 simu->add_sensor(t);
             }
+        }
 
-            // use position/torque limits
-            set_position_enforced(true);
+        void Talos::_post_removal(RobotDARTSimu* simu)
+        {
+            simu->remove_sensor(_imu);
 
-            // set a position abobe the floor
-            skeleton()->setPosition(5, 1.1);
+            simu->remove_sensor(_ft_foot_left);
+            simu->remove_sensor(_ft_foot_right);
+            simu->remove_sensor(_ft_wrist_left);
+            simu->remove_sensor(_ft_wrist_right);
 
-            // rotate the robot
-            skeleton()->setPosition(2, 1.57);
+            for (auto& t : _torques) {
+                simu->remove_sensor(t.second);
+            }
         }
     } // namespace robots
 } // namespace robot_dart

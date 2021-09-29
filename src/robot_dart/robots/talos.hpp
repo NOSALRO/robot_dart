@@ -11,7 +11,7 @@ namespace robot_dart {
         /// datasheet: https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf
         class Talos : public Robot {
         public:
-            Talos(RobotDARTSimu* simu, size_t frequency = 1000, const std::string& urdf = "talos/talos.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}});
+            Talos(size_t frequency = 1000, const std::string& urdf = "talos/talos.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}});
 
             const sensor::IMU& imu() const { return *_imu; }
             const sensor::ForceTorque& ft_foot_left() const { return *_ft_foot_left; }
@@ -29,15 +29,15 @@ namespace robot_dart {
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_left;
             std::shared_ptr<sensor::ForceTorque> _ft_wrist_right;
             torque_map_t _torques;
+            size_t _frequency;
+
+            void _post_addition(RobotDARTSimu* simu) override;
+            void _post_removal(RobotDARTSimu* simu) override;
         };
 
         class TalosLight : public Talos {
         public:
-            TalosLight(RobotDARTSimu* simu,
-                size_t frequency = 1000,
-                const std::string& urdf = "talos/talos_fast.urdf",
-                const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}})
-                : Talos(simu, frequency, urdf, packages) {}
+            TalosLight(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
         };
     } // namespace robots
 } // namespace robot_dart
