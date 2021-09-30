@@ -213,12 +213,11 @@ def check_magnum(conf, *k, **kw):
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
- #           conf.start_msg('Magnum: Checking for OpenGL lib')
-#            if conf.env['DEST_OS'] != 'darwin':
-                # opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
-                # magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
-                # magnum_libs = magnum_libs + ['GL']
-                # conf.end_msg(['GL'])
+            conf.start_msg('Magnum: Checking for OpenGL lib')
+            opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
+            magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
+            magnum_libs = magnum_libs + ['GL']
+            conf.end_msg(['GL'])
 
             conf.start_msg('Magnum: Checking for MagnumGL lib')
             gl_lib_dir = get_directory('libMagnumGL.'+suffix, libs_check)
@@ -295,7 +294,6 @@ def check_magnum(conf, *k, **kw):
                                 magnum_component_libs[component].append(lib_glfw)
                                 break
                             except:
-                                pass
                                 glfw_found = False
 
                         # GlfwApplication needs the libdl.so library
@@ -304,7 +302,6 @@ def check_magnum(conf, *k, **kw):
                             magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
                             magnum_component_libs[component].append('dl')
                         except:
-                            pass
                             glfw_found = False
 
                         if not glfw_found:
