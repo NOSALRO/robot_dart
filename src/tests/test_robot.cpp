@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(5); // get DoF name of DoFu with index = 5
-        pexod->set_position_enforced({false}, {dof_name});
+        pexod->set_position_enforced(false, {dof_name});
         BOOST_CHECK(!pexod->position_enforced({dof_name})[0]);
     }
 
@@ -170,7 +170,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(0); // get DoF name of DoF with index = 0
-        pexod->set_damping_coeffs({10.0}, {dof_name});
+        pexod->set_damping_coeffs(10.0, {dof_name});
         BOOST_CHECK(pexod->damping_coeffs({dof_name})[0] == 10.0);
     }
 
@@ -204,7 +204,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(3); // get DoF name of DoF with index = 3u
-        pexod->set_coulomb_coeffs({10.0}, {dof_name});
+        pexod->set_coulomb_coeffs(10.0, {dof_name});
         BOOST_CHECK(pexod->coulomb_coeffs({dof_name})[0] == 10.0);
     }
 
@@ -238,7 +238,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(3); // get DoF name of DoF with index = 3u
-        pexod->set_spring_stiffnesses({10.0}, {dof_name});
+        pexod->set_spring_stiffnesses(10.0, {dof_name});
         BOOST_CHECK(pexod->spring_stiffnesses({dof_name})[0] == 10.0);
     }
 }
