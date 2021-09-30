@@ -15,7 +15,8 @@
     ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wzero-as-null-pointer-constant") \
     ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wdeprecated-copy")               \
     ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wpedantic")                      \
-    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wmissing-declarations")
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wmissing-declarations")          \
+    ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wunused-parameter")
 #else // #elif defined(__GNUC__) || defined(__GNUG__)
 #define ROBOT_DART_COMPILER_IGNORE_WARNINGS                                     \
     ROBOT_DART_PRAGMA(GCC diagnostic ignored "-Wold-style-cast")                \
