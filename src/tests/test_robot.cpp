@@ -4,12 +4,15 @@
 #include <boost/filesystem.hpp>
 #include <boost/test/unit_test.hpp>
 
+#include <robot_dart/robot.hpp>
+#include <robot_dart/utils.hpp>
+
+ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
+ROBOT_DART_COMPILER_IGNORE_WARNINGS
 #include <dart/dynamics/BodyNode.hpp>
 #include <dart/dynamics/BoxShape.hpp>
 #include <dart/dynamics/EllipsoidShape.hpp>
-
-#include <robot_dart/robot.hpp>
-#include <robot_dart/utils.hpp>
+ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 using namespace robot_dart;
 
