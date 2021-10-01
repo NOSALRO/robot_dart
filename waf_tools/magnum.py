@@ -213,15 +213,15 @@ def check_magnum(conf, *k, **kw):
             magnum_includes = magnum_includes + [opengl_include_dir]
             conf.end_msg(opengl_include_dir)
 
-            conf.start_msg('Magnum: Checking for OpenGL lib')
             # no need to check on osx (it works anyway)
             # Osx 11.3 (Big Sur) does not have libGL.dylib anymore (there is libGL.tbd)
             # but at any rate, OpenGL is a framework so checking the dylib is not really what we need
             if conf.env['DEST_OS'] != 'darwin':
+                conf.start_msg('Magnum: Checking for OpenGL lib')
                 opengl_lib_dir = get_directory('libGL.'+suffix, libs_check)
                 magnum_libpaths = magnum_libpaths + [opengl_lib_dir]
                 magnum_libs = magnum_libs + ['GL']
-            conf.end_msg(['GL'])
+                conf.end_msg(['GL'])
 
             conf.start_msg('Magnum: Checking for MagnumGL lib')
             gl_lib_dir = get_directory('libMagnumGL.'+suffix, libs_check)
