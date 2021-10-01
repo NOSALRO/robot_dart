@@ -1,25 +1,10 @@
 #include "robot_dart_simu.hpp"
 #include "gui_data.hpp"
 #include "utils.hpp"
+#include "utils_headers_dart_collision.hpp"
+#include "utils_headers_dart_dynamics.hpp"
 
 #include <sstream>
-
-#include <dart/collision/CollisionFilter.hpp>
-#include <dart/collision/CollisionObject.hpp>
-#include <dart/collision/dart/DARTCollisionDetector.hpp>
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/config.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
-#include <dart/dynamics/BoxShape.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
-
-#if (HAVE_BULLET == 1)
-#include <dart/collision/bullet/BulletCollisionDetector.hpp>
-#endif
-
-#if (HAVE_ODE == 1)
-#include <dart/collision/ode/OdeCollisionDetector.hpp>
-#endif
 
 namespace robot_dart {
     namespace collision_filter {

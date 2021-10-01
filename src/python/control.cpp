@@ -1,8 +1,5 @@
 #include "robot_dart.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/functional.h>
-#include <pybind11/stl.h>
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
@@ -115,8 +112,8 @@ namespace robot_dart {
                 .def("configure", &PDControl::configure)
                 .def("calculate", &PDControl::calculate)
 
-                .def("set_pd", (void (PDControl::*)(double, double)) & PDControl::set_pd)
-                .def("set_pd", (void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)) & PDControl::set_pd)
+                .def("set_pd", static_cast<void (PDControl::*)(double, double)>(&PDControl::set_pd))
+                .def("set_pd", static_cast<void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)>(&PDControl::set_pd))
 
                 .def("pd", &PDControl::pd)
 

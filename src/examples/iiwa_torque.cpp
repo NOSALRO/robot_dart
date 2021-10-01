@@ -58,7 +58,7 @@ int main()
 
     // Add a torque sensors to the robot
     int ct = 0;
-    std::shared_ptr<robot_dart::sensor::Torque> tq_sensors[robot->num_dofs()];
+    std::vector<std::shared_ptr<robot_dart::sensor::Torque>> tq_sensors(robot->num_dofs());
     for (const auto& joint : robot->dof_names())
         tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::Torque>(robot, joint, 1000);
 

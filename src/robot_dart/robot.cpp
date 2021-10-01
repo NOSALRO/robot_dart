@@ -3,30 +3,10 @@
 #include <boost/filesystem.hpp>
 #include <unistd.h>
 
-#include <dart/config.hpp>
-#include <dart/dynamics/BoxShape.hpp>
-#include <dart/dynamics/DegreeOfFreedom.hpp>
-#include <dart/dynamics/EllipsoidShape.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
-#if DART_VERSION_AT_LEAST(7, 0, 0)
-#include <dart/io/SkelParser.hpp>
-#include <dart/io/sdf/SdfParser.hpp>
-#include <dart/io/urdf/urdf.hpp>
-#else
-#include <dart/utils/SkelParser.hpp>
-#include <dart/utils/sdf/SdfParser.hpp>
-#include <dart/utils/urdf/urdf.hpp>
-
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
-
-// namespace alias for compatibility
-namespace dart {
-    namespace io = utils;
-}
-#endif
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
+#include <robot_dart/utils_headers_dart_io.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -69,6 +49,8 @@ namespace robot_dart {
                     return skeleton->getGravityForces();
                 else if (content == 15)
                     return skeleton->getCoriolisAndGravityForces();
+                else if (content == 16)
+                    return skeleton->getConstraintForces();
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
@@ -81,6 +63,8 @@ namespace robot_dart {
                 tmp = skeleton->getGravityForces();
             else if (content == 15)
                 tmp = skeleton->getCoriolisAndGravityForces();
+            else if (content == 16)
+                tmp = skeleton->getConstraintForces();
 
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
@@ -112,7 +96,7 @@ namespace robot_dart {
                     data(i) = dof->getForceLowerLimit();
                 else if (content == 12)
                     data(i) = dof->getForceUpperLimit();
-                else if (content == 13 || content == 14 || content == 15)
+                else if (content == 13 || content == 14 || content == 15 || content == 16)
                     data(i) = tmp(it->second);
                 else
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
@@ -1638,6 +1622,11 @@ namespace robot_dart {
     Eigen::VectorXd Robot::coriolis_gravity_forces(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<15>(_skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::constraint_forces(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<16>(_skeleton, dof_names, _dof_map);
     }
 
     Eigen::VectorXd Robot::vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const

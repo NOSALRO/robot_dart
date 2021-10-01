@@ -64,10 +64,13 @@ namespace robot_dart {
 
                     img.data = std::vector<double>(data.begin(), data.end());
 
+                    double zNear = static_cast<double>(near_plane);
+                    double zFar = static_cast<double>(far_plane);
+
                     // zNear * zFar / (zFar + d * (zNear - zFar));
                     for (auto& depth : img.data)
-                        // depth = (2. * near_plane) / (far_plane + near_plane - depth * (far_plane - near_plane));
-                        depth = (near_plane * far_plane) / (far_plane - depth * (far_plane - near_plane));
+                        // depth = (2. * zNear) / (zFar + zNear - depth * (zFar - zNear));
+                        depth = (zNear * zFar) / (zFar - depth * (zFar - zNear));
 
                     return img;
                 }
