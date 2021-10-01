@@ -10,12 +10,7 @@
 #include <robot_dart/sensor/imu.hpp>
 #include <robot_dart/sensor/torque.hpp>
 #include <robot_dart/utils.hpp>
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 using namespace robot_dart;
 

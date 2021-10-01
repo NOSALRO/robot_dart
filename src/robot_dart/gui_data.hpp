@@ -2,17 +2,10 @@
 #define ROBOT_DART_SIMU_GUI_DATA_HPP
 
 #include "robot_dart_simu.hpp"
+#include "utils_headers_dart_dynamics.hpp"
 
 #include <unordered_map>
 #include <vector>
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <Eigen/Geometry>
-
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/ShapeNode.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
 
 namespace robot_dart {
     namespace simu {

@@ -1,14 +1,7 @@
 #include "pd_control.hpp"
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/dynamics/BallJoint.hpp>
-#include <dart/dynamics/EulerJoint.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/RevoluteJoint.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include "robot_dart/utils_headers_dart_dynamics.hpp"
 
 namespace robot_dart {
     namespace control {

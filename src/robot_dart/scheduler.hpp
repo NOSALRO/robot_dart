@@ -4,7 +4,6 @@
 #include <robot_dart/utils.hpp>
 
 #include <chrono>
-#include <cmath>
 #include <thread>
 
 namespace robot_dart {

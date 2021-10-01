@@ -3,12 +3,7 @@
 #include <robot_dart/gui/magnum/gs/helper.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/dynamics/SoftBodyNode.hpp>
-#include <dart/dynamics/SoftMeshShape.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 #include <Corrade/Containers/StridedArrayView.h>
 #include <Corrade/Utility/Resource.h>

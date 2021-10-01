@@ -1,13 +1,6 @@
 #include "robot_dart.hpp"
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <pybind11/eigen.h>
-#include <pybind11/functional.h>
-#include <pybind11/stl.h>
-
-#include <dart/dynamics/BodyNode.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include "utils_headers_dart.hpp"
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
 
