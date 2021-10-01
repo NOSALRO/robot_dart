@@ -1,5 +1,5 @@
-#ifndef _TALOS_CLONE_POOL
-#define _TALOS_CLONE_POOL
+#ifndef ROBOT_DART_ROBOT_POOL
+#define ROBOT_DART_ROBOT_POOL
 
 #include <functional>
 #include <memory>
@@ -23,6 +23,7 @@ namespace robot_dart {
         virtual void free_robot(const std::shared_ptr<Robot>& robot);
 
         const std::string& model_filename() const { return _model_filename; }
+
     protected:
         robot_creator_t _robot_creator;
         size_t _pool_size;

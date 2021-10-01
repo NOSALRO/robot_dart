@@ -1,16 +1,11 @@
 #include "robot_dart.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/operators.h>
-#include <pybind11/stl.h>
+#include "utils_headers_dart.hpp"
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/sensor/force_torque.hpp>
 #include <robot_dart/sensor/imu.hpp>
 #include <robot_dart/sensor/sensor.hpp>
-
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
 
 namespace robot_dart {
     namespace python {
@@ -140,20 +135,20 @@ namespace robot_dart {
                     py::arg("t"))
                 .def("type", &Sensor::type)
 
-                .def("attach_to_body", (void (Sensor::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)) & Sensor::attach_to_body,
+                .def("attach_to_body", static_cast<void (Sensor::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)>(&Sensor::attach_to_body),
                     py::arg("body"),
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
-                .def("attach_to_body", (void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)) & Sensor::attach_to_body,
+                .def("attach_to_body", static_cast<void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)>(&Sensor::attach_to_body),
                     py::arg("robot"),
                     py::arg("body_name"),
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
-                .def("attach_to_joint", (void (Sensor::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)) & Sensor::attach_to_joint,
+                .def("attach_to_joint", static_cast<void (Sensor::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)>(&Sensor::attach_to_joint),
                     py::arg("joint"),
                     py::arg("tf") = Eigen::Isometry3d::Identity())
 
-                .def("attach_to_joint", (void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)) & Sensor::attach_to_joint,
+                .def("attach_to_joint", static_cast<void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)>(&Sensor::attach_to_joint),
                     py::arg("robot"),
                     py::arg("joint_name"),
                     py::arg("tf") = Eigen::Isometry3d::Identity());
@@ -189,7 +184,7 @@ namespace robot_dart {
                 .def("torque", &sensor::ForceTorque::torque)
                 .def("wrench", &sensor::ForceTorque::wrench)
 
-                .def("attach_to_body", (void (sensor::ForceTorque::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)) & sensor::ForceTorque::attach_to_body,
+                .def("attach_to_body", static_cast<void (sensor::ForceTorque::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)>(&sensor::ForceTorque::attach_to_body),
                     py::arg("body"),
                     py::arg("tf") = Eigen::Isometry3d::Identity());
 
@@ -237,7 +232,7 @@ namespace robot_dart {
                 .def("angular_velocity", &sensor::IMU::angular_velocity)
                 .def("linear_acceleration", &sensor::IMU::linear_acceleration)
 
-                .def("attach_to_joint", (void (sensor::IMU::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)) & sensor::ForceTorque::attach_to_joint,
+                .def("attach_to_joint", static_cast<void (sensor::IMU::*)(dart::dynamics::Joint*, const Eigen::Isometry3d& tf)>(&sensor::ForceTorque::attach_to_joint),
                     py::arg("joint"),
                     py::arg("tf") = Eigen::Isometry3d::Identity());
         }

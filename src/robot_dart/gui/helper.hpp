@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include <Eigen/Core>
+#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
     namespace gui {
