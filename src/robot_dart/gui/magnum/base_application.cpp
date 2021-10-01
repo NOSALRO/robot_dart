@@ -157,10 +157,10 @@ namespace robot_dart {
                 // _lights.push_back(light);
 
                 /* Initialize 3D axis visualization mesh */
-                _3D_axis_shader.reset(new Magnum::Shaders::VertexColor3D);
+                _3D_axis_shader.reset(new Magnum::Shaders::VertexColorGL3D);
                 _3D_axis_mesh.reset(new Magnum::GL::Mesh);
 
-                _background_shader.reset(new Magnum::Shaders::Flat2D);
+                _background_shader.reset(new Magnum::Shaders::FlatGL2D);
                 _background_mesh.reset(new Magnum::GL::Mesh{Magnum::MeshTools::compile(Magnum::Primitives::squareSolid())});
 
                 Magnum::Trade::MeshData axis_data = Magnum::Primitives::axis3D();
@@ -174,7 +174,7 @@ namespace robot_dart {
 
                 _3D_axis_mesh->setPrimitive(Magnum::GL::MeshPrimitive::Lines)
                     .setCount(axis_data.indexCount())
-                    .addVertexBuffer(std::move(axis_vertices), 0, Magnum::Shaders::VertexColor3D::Position{}, Magnum::Shaders::VertexColor3D::Color4{})
+                    .addVertexBuffer(std::move(axis_vertices), 0, Magnum::Shaders::VertexColorGL3D::Position{}, Magnum::Shaders::VertexColorGL3D::Color4{})
                     .setIndexBuffer(std::move(axis_indices), 0, compressed.second);
 
                 /* Initialize text visualization */
@@ -197,7 +197,7 @@ namespace robot_dart {
                         _text_indices.reset(new Magnum::GL::Buffer);
 
                         /* Initialize text shader */
-                        _text_shader.reset(new Magnum::Shaders::DistanceFieldVector2D);
+                        _text_shader.reset(new Magnum::Shaders::DistanceFieldVectorGL2D);
                         _text_shader->bindVectorTexture(_glyph_cache->texture());
                     }
                 }
