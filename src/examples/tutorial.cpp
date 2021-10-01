@@ -7,7 +7,7 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -18,7 +18,7 @@ std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
     return robot_dart::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
 }
 
-std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -66,7 +66,7 @@ int main()
     // add the arm to the simulator
     simu.add_robot(arm_robot);
 
-    // run the simulator for 5 seconds
+    // run the simulator for 10 seconds
     simu.run(10.);
     return 0;
 }

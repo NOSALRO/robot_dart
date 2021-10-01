@@ -12,13 +12,13 @@ namespace robot_dart {
 
             void init() override;
 
-            void calculate(double t) override;
+            void calculate(double) override;
 
             std::string type() const override;
 
             const Eigen::VectorXd& torques() const;
 
-            void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            void attach_to_body(dart::dynamics::BodyNode*, const Eigen::Isometry3d&) override
             {
                 ROBOT_DART_WARNING(true, "You cannot attach a torque sensor to a body!");
             }

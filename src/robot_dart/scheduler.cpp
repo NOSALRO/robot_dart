@@ -30,6 +30,7 @@ namespace robot_dart {
         _real_start_time = real_time;
         _current_step = 0;
         _max_frequency = -1;
+        _average_it_duration = 0.;
 
         _dt = dt;
         _sync = sync;
@@ -43,6 +44,7 @@ namespace robot_dart {
         auto end = clock_t::now();
         _it_duration = std::chrono::duration<double, std::micro>(end - _last_iteration_time).count();
         _last_iteration_time = end;
+        _average_it_duration = _average_it_duration + (_it_duration - _average_it_duration) / _current_step;
         std::chrono::duration<double, std::micro> real = end - _start_time;
         if (_sync) {
             auto expected = std::chrono::microseconds(int(_current_time * 1e6));

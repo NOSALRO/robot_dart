@@ -202,9 +202,17 @@ def check_corrade(conf, *k, **kw):
     return 1
 
 @conf
-def corrade_enable_pedantic_flags(conf, corrade_var = 'Corrade'):
-    # this has to be called after check_corrade
-    conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS'] + conf.env['CXX_FLAGS_%s' % corrade_var]))
+def corrade_enable_pedantic_flags(conf):
+    corrade_flags = '-Wall \
+                    -Wextra \
+                    -Wold-style-cast \
+                    -Winit-self \
+                    -Werror=return-type \
+                    -Wmissing-declarations \
+                    -pedantic \
+                    -fvisibility=hidden'
+    corrade_flags = corrade_flags.split()
+    conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS'] + corrade_flags))
 
 
 # Corrade TestSuite

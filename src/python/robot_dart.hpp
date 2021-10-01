@@ -1,5 +1,7 @@
 #include <pybind11/pybind11.h>
 
+#include <robot_dart/utils.hpp>
+
 namespace py = pybind11;
 
 namespace robot_dart {
