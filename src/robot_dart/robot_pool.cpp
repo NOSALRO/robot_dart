@@ -1,7 +1,7 @@
 #include <robot_dart/robot_pool.hpp>
 
 namespace robot_dart {
-    RobotPool::RobotPool(const std::function<std::shared_ptr<Robot>()>& robot_creator, size_t pool_size, bool verbose) : _robot_creator(robot_creator), _pool_size(pool_size), _verbose(true)
+    RobotPool::RobotPool(const std::function<std::shared_ptr<Robot>()>& robot_creator, size_t pool_size, bool verbose) : _robot_creator(robot_creator), _pool_size(pool_size), _verbose(verbose)
     {
         if (_verbose) {
             std::cout << "Creating a pool of " << pool_size << " robots: ";

@@ -1,12 +1,10 @@
 #ifndef ROBOT_DART_CONTROL_ROBOT_CONTROL
 #define ROBOT_DART_CONTROL_ROBOT_CONTROL
 
-#include <Eigen/Core>
+#include <robot_dart/utils.hpp>
 
 #include <memory>
 #include <vector>
-
-#include <dart/config.hpp>
 
 namespace robot_dart {
     class Robot;

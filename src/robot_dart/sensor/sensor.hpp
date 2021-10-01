@@ -4,9 +4,6 @@
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
 
-#include <Eigen/Core>
-#include <Eigen/Geometry>
-
 #include <memory>
 #include <vector>
 
@@ -42,7 +39,7 @@ namespace robot_dart {
 
             virtual void init() = 0;
             // TO-DO: Maybe make this const?
-            virtual void calculate(double t) = 0;
+            virtual void calculate(double) = 0;
 
             virtual std::string type() const = 0;
 
@@ -54,6 +51,7 @@ namespace robot_dart {
 
             void detach();
             const std::string& attached_to() const;
+
         protected:
             RobotDARTSimu* _simu = nullptr;
             bool _active;

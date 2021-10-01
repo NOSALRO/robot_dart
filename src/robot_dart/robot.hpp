@@ -3,8 +3,7 @@
 
 #include <unordered_map>
 
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/Skeleton.hpp>
+#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
     namespace control {

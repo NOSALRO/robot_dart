@@ -3,9 +3,7 @@
 #include <robot_dart/gui/magnum/gs/helper.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/utils.hpp>
-
-#include <dart/dynamics/SoftBodyNode.hpp>
-#include <dart/dynamics/SoftMeshShape.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 #include <Corrade/Containers/StridedArrayView.h>
 #include <Corrade/Utility/Resource.h>
@@ -470,7 +468,7 @@ namespace robot_dart {
                 for (size_t i = 0; i < _lights.size(); i++) {
                     if (!_lights[i].casts_shadows())
                         continue;
-                    bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PI / 2.0);
+                    bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PIf / 2.f);
                     bool cullFront = false;
                     Magnum::Matrix4 cameraMatrix;
                     Magnum::Float far_plane = 20.f, near_plane = 0.001f;
@@ -487,7 +485,7 @@ namespace robot_dart {
                             cullFront = false; // if false, peter panning will be quite a bit, but has better acne
                         }
                         /* Spotlights */
-                        else if (_lights[i].spot_cut_off() < M_PI / 2.0) {
+                        else if (_lights[i].spot_cut_off() < M_PIf / 2.f) {
                             Magnum::Vector3 position = _lights[i].position().xyz();
                             cameraMatrix = Magnum::Matrix4::lookAt(position, position + _lights[i].spot_direction().normalized(), Magnum::Vector3::yAxis());
 
@@ -782,7 +780,7 @@ namespace robot_dart {
                 for (size_t i = 0; i < _lights.size(); i++) {
                     /* There's no shadow texture/framebuffer for this light */
                     if (_shadow_data.size() <= i) {
-                        bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PI / 2.0);
+                        bool isPointLight = (_lights[i].position().w() > 0.f) && (_lights[i].spot_cut_off() >= M_PIf / 2.f);
 
                         _shadow_data.push_back({});
 
