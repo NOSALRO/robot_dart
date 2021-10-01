@@ -20,10 +20,7 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <Magnum/EigenIntegration/GeometryIntegration.h>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include <robot_dart/gui/magnum/utils_headers_eigen.hpp>
 
 namespace robot_dart {
     namespace gui {

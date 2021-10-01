@@ -6,11 +6,6 @@
 #include <robot_dart/scheduler.hpp>
 #include <robot_dart/sensor/sensor.hpp>
 
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/simulation/World.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
-
 namespace robot_dart {
     namespace simu {
         struct GUIData;

@@ -1,14 +1,6 @@
 #include "robot_dart.hpp"
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <Eigen/Dense>
-#include <Eigen/Geometry>
-
-#include <pybind11/eigen.h>
-
-#include <dart/math/Geometry.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include "utils_headers_eigen.hpp"
+#include "utils_headers_pybind11.hpp"
 
 namespace robot_dart {
     namespace python {

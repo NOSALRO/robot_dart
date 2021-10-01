@@ -15,12 +15,7 @@
 #include <robot_dart/gui/magnum/gs/shadow_map_color.hpp>
 #include <robot_dart/gui/magnum/types.hpp>
 
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/simulation/World.hpp>
-
-#include <Magnum/DartIntegration/World.h>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include <robot_dart/utils_headers_external_gui.hpp>
 
 #include <Magnum/GL/CubeMapTextureArray.h>
 #include <Magnum/GL/Framebuffer.h>

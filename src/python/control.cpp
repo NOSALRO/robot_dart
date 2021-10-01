@@ -1,8 +1,5 @@
 #include "robot_dart.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/functional.h>
-#include <pybind11/stl.h>
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot.hpp>
 #include <robot_dart/robot_dart_simu.hpp>

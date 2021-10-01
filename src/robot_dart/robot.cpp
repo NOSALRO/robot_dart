@@ -5,31 +5,8 @@
 
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/config.hpp>
-#include <dart/dynamics/BoxShape.hpp>
-#include <dart/dynamics/DegreeOfFreedom.hpp>
-#include <dart/dynamics/EllipsoidShape.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
-#if DART_VERSION_AT_LEAST(7, 0, 0)
-#include <dart/io/SkelParser.hpp>
-#include <dart/io/sdf/SdfParser.hpp>
-#include <dart/io/urdf/urdf.hpp>
-#else
-#include <dart/utils/SkelParser.hpp>
-#include <dart/utils/sdf/SdfParser.hpp>
-#include <dart/utils/urdf/urdf.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
-
-// namespace alias for compatibility
-namespace dart {
-    namespace io = utils;
-}
-#endif
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
+#include <robot_dart/utils_headers_dart_io.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 

@@ -1,24 +1,7 @@
 #include "torque.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
-
-ROBOT_DART_COMPILER_DIAGNOSTIC_PUSH
-ROBOT_DART_COMPILER_IGNORE_WARNINGS
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
-
-#include <dart/dynamics/BallJoint.hpp>
-#include <dart/dynamics/EulerJoint.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/PlanarJoint.hpp>
-#include <dart/dynamics/PrismaticJoint.hpp>
-#include <dart/dynamics/RevoluteJoint.hpp>
-#include <dart/dynamics/ScrewJoint.hpp>
-#include <dart/dynamics/TranslationalJoint.hpp>
-#include <dart/dynamics/TranslationalJoint2D.hpp>
-#include <dart/dynamics/UniversalJoint.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
-ROBOT_DART_COMPILER_DIAGNOSTIC_POP
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 namespace robot_dart {
     namespace sensor {
