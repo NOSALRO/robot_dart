@@ -1,9 +1,7 @@
 #include "sensor.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
-
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
+#include "robot_dart/utils_headers_dart_dynamics.hpp"
 
 namespace robot_dart {
     namespace sensor {
@@ -43,8 +41,19 @@ namespace robot_dart {
         void Sensor::set_pose(const Eigen::Isometry3d& tf) { _world_pose = tf; }
         const Eigen::Isometry3d& Sensor::pose() const { return _world_pose; }
 
+        void Sensor::detach()
+        {
+            _attached_to_body = false;
+            _attached_to_joint = false;
+            _body_attached = nullptr;
+            _joint_attached = nullptr;
+            _active = false;
+        }
+
         void Sensor::refresh(double t)
         {
+            if (!_active)
+                return;
             if (_attaching_to_body && !_attached_to_body) {
                 attach_to_body(_body_attached, _attached_tf);
             }
@@ -71,7 +80,6 @@ namespace robot_dart {
                 if (body)
                     _world_pose = body->getWorldTransform() * tf * _attached_tf;
             }
-
             calculate(t);
         }
 
@@ -110,6 +118,14 @@ namespace robot_dart {
                 _attaching_to_joint = false;
                 _attached_to_joint = false;
             }
+        }
+        const std::string& Sensor::attached_to() const
+        {
+            ROBOT_DART_EXCEPTION_ASSERT(_attached_to_body || _attached_to_joint, "Joint is not attached to anything");
+            if (_attached_to_body)
+                return _body_attached->getName();
+            // attached to joint
+            return _joint_attached->getName();
         }
     } // namespace sensor
 } // namespace robot_dart

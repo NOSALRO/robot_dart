@@ -1,8 +1,5 @@
 #include "robot_dart.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/functional.h>
-#include <pybind11/stl.h>
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
@@ -103,20 +100,26 @@ namespace robot_dart {
             // PDControl class
             py::class_<PDControl, RobotControl, std::shared_ptr<PDControl>>(m, "PDControl")
                 .def(py::init<>())
-                .def(py::init<const Eigen::VectorXd&, bool>(),
+                .def(py::init<const Eigen::VectorXd&, bool, bool>(),
                     py::arg("ctrl"),
-                    py::arg("full_control") = false)
-                .def(py::init<const Eigen::VectorXd&, const std::vector<std::string>&>(),
+                    py::arg("full_control") = false,
+                    py::arg("use_angular_errors") = true)
+                .def(py::init<const Eigen::VectorXd&, const std::vector<std::string>&, bool>(),
                     py::arg("ctrl"),
-                    py::arg("controllable_dofs"))
+                    py::arg("controllable_dofs"),
+                    py::arg("use_angular_errors") = true)
 
                 .def("configure", &PDControl::configure)
                 .def("calculate", &PDControl::calculate)
 
-                .def("set_pd", (void (PDControl::*)(double, double)) & PDControl::set_pd)
-                .def("set_pd", (void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)) & PDControl::set_pd)
+                .def("set_pd", static_cast<void (PDControl::*)(double, double)>(&PDControl::set_pd))
+                .def("set_pd", static_cast<void (PDControl::*)(const Eigen::VectorXd&, const Eigen::VectorXd&)>(&PDControl::set_pd))
 
                 .def("pd", &PDControl::pd)
+
+                .def("using_angular_errors", &PDControl::using_angular_errors)
+                .def("set_use_angular_errors", &PDControl::set_use_angular_errors,
+                    py::arg("enable") = true)
 
                 .def("clone", &PDControl::clone);
 

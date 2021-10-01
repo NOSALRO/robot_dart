@@ -3,30 +3,10 @@
 #include <boost/filesystem.hpp>
 #include <unistd.h>
 
-#include <dart/config.hpp>
-#include <dart/dynamics/BoxShape.hpp>
-#include <dart/dynamics/DegreeOfFreedom.hpp>
-#include <dart/dynamics/EllipsoidShape.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
-#if DART_VERSION_AT_LEAST(7, 0, 0)
-#include <dart/io/SkelParser.hpp>
-#include <dart/io/sdf/SdfParser.hpp>
-#include <dart/io/urdf/urdf.hpp>
-#else
-#include <dart/utils/SkelParser.hpp>
-#include <dart/utils/sdf/SdfParser.hpp>
-#include <dart/utils/urdf/urdf.hpp>
-
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
-
-// namespace alias for compatibility
-namespace dart {
-    namespace io = utils;
-}
-#endif
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
+#include <robot_dart/utils_headers_dart_io.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -69,6 +49,8 @@ namespace robot_dart {
                     return skeleton->getGravityForces();
                 else if (content == 15)
                     return skeleton->getCoriolisAndGravityForces();
+                else if (content == 16)
+                    return skeleton->getConstraintForces();
                 ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
             }
 
@@ -81,6 +63,8 @@ namespace robot_dart {
                 tmp = skeleton->getGravityForces();
             else if (content == 15)
                 tmp = skeleton->getCoriolisAndGravityForces();
+            else if (content == 16)
+                tmp = skeleton->getConstraintForces();
 
             for (size_t i = 0; i < dof_names.size(); i++) {
                 auto it = dof_map.find(dof_names[i]);
@@ -112,7 +96,7 @@ namespace robot_dart {
                     data(i) = dof->getForceLowerLimit();
                 else if (content == 12)
                     data(i) = dof->getForceUpperLimit();
-                else if (content == 13 || content == 14 || content == 15)
+                else if (content == 13 || content == 14 || content == 15 || content == 16)
                     data(i) = tmp(it->second);
                 else
                     ROBOT_DART_EXCEPTION_ASSERT(false, "Unknown type of data!");
@@ -263,24 +247,24 @@ namespace robot_dart {
         }
     } // namespace detail
 
-    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
+    Robot::Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name, bool is_urdf_string, bool cast_shadows)
         : _robot_name(robot_name), _skeleton(_load_model(model_file, packages, is_urdf_string)), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
-        _set_damages(damages);
+        update_joint_dof_maps();
     }
 
-    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows, std::vector<RobotDamage> damages)
-        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows, damages)
+    Robot::Robot(const std::string& model_file, const std::string& robot_name, bool is_urdf_string, bool cast_shadows)
+        : Robot(model_file, std::vector<std::pair<std::string, std::string>>(), robot_name, is_urdf_string, cast_shadows)
     {
     }
 
-    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows, std::vector<RobotDamage> damages)
+    Robot::Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name, bool cast_shadows)
         : _robot_name(robot_name), _skeleton(skeleton), _cast_shadows(cast_shadows), _is_ghost(false)
     {
         ROBOT_DART_EXCEPTION_INTERNAL_ASSERT(_skeleton != nullptr);
         _skeleton->setName(robot_name);
-        _set_damages(damages);
+        update_joint_dof_maps();
         reset();
     }
 
@@ -295,7 +279,6 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
-        robot->_damages = _damages;
         robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
@@ -315,7 +298,6 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, ghost_name + "_" + _robot_name);
-        robot->_damages = _damages;
         robot->_model_filename = _model_filename;
 
         // ghost robots have no controllers
@@ -372,8 +354,6 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(dof_index < _skeleton->getNumDofs(), "Dof index out of bounds", nullptr);
         return _skeleton->getDof(dof_index);
     }
-
-    std::vector<RobotDamage> Robot::damages() const { return _damages; }
 
     const std::string& Robot::name() const { return _robot_name; }
 
@@ -1133,8 +1113,12 @@ namespace robot_dart {
 
     Eigen::Isometry3d Robot::base_pose() const
     {
-        if (free())
-            return dart::math::expMap(_skeleton->getPositions().head(6));
+        if (free()) {
+            Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
+            tf.linear() = dart::math::expMapRot(_skeleton->getPositions().head<6>().head<3>());
+            tf.translation() = _skeleton->getPositions().head<6>().tail<3>();
+            return tf;
+        }
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
         ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!",
             Eigen::Isometry3d::Identity());
@@ -1148,28 +1132,41 @@ namespace robot_dart {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
         ROBOT_DART_ASSERT(jt != nullptr, "Skeleton does not have a proper root BodyNode!",
             Eigen::Vector6d::Zero());
-        return dart::math::logMap(jt->getTransformFromParentBodyNode());
+        Eigen::Isometry3d tf = jt->getTransformFromParentBodyNode();
+        Eigen::Vector6d x;
+        x.head<3>() = dart::math::logMap(tf.linear());
+        x.tail<3>() = tf.translation();
+        return x;
     }
 
     void Robot::set_base_pose(const Eigen::Isometry3d& tf)
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
         if (jt) {
-            if (free())
-                jt->setPositions(dart::math::logMap(tf));
+            if (free()) {
+                Eigen::Vector6d x;
+                x.head<3>() = dart::math::logMap(tf.linear());
+                x.tail<3>() = tf.translation();
+                jt->setPositions(x);
+            }
             else
                 jt->setTransformFromParentBodyNode(tf);
         }
     }
 
+    /// set base pose: pose is a 6D vector (first 3D orientation in angle-axis and last 3D translation)
     void Robot::set_base_pose(const Eigen::Vector6d& pose)
     {
         auto jt = _skeleton->getRootBodyNode()->getParentJoint();
         if (jt) {
             if (free())
                 jt->setPositions(pose);
-            else
-                jt->setTransformFromParentBodyNode(dart::math::expMap(pose));
+            else {
+                Eigen::Isometry3d tf(Eigen::Isometry3d::Identity());
+                tf.linear() = dart::math::expMapRot(pose.head<3>());
+                tf.translation() = pose.tail<3>();
+                jt->setTransformFromParentBodyNode(tf);
+            }
         }
     }
 
@@ -1436,16 +1433,25 @@ namespace robot_dart {
         auto bd = _skeleton->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", Eigen::Vector6d::Zero());
 
-        return dart::math::logMap(bd->getWorldTransform());
+        Eigen::Isometry3d tf = bd->getWorldTransform();
+        Eigen::Vector6d x;
+        x.head<3>() = dart::math::logMap(tf.linear());
+        x.tail<3>() = tf.translation();
+
+        return x;
     }
 
     Eigen::Vector6d Robot::body_pose_vec(size_t body_index) const
     {
         ROBOT_DART_ASSERT(body_index < _skeleton->getNumBodyNodes(), "BodyNode index out of bounds", Eigen::Vector6d::Zero());
 
-        Eigen::Isometry3d bd_trans = _skeleton->getBodyNode(body_index)->getWorldTransform();
+        Eigen::Isometry3d tf = _skeleton->getBodyNode(body_index)->getWorldTransform();
 
-        return dart::math::logMap(bd_trans);
+        Eigen::Vector6d x;
+        x.head<3>() = dart::math::logMap(tf.linear());
+        x.tail<3>() = tf.translation();
+
+        return x;
     }
 
     Eigen::Vector6d Robot::body_velocity(const std::string& body_name) const
@@ -1616,6 +1622,11 @@ namespace robot_dart {
     Eigen::VectorXd Robot::coriolis_gravity_forces(const std::vector<std::string>& dof_names) const
     {
         return detail::dof_data<15>(_skeleton, dof_names, _dof_map);
+    }
+
+    Eigen::VectorXd Robot::constraint_forces(const std::vector<std::string>& dof_names) const
+    {
+        return detail::dof_data<16>(_skeleton, dof_names, _dof_map);
     }
 
     Eigen::VectorXd Robot::vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const
@@ -1941,24 +1952,6 @@ namespace robot_dart {
         return tmp_skel;
     }
 
-    void Robot::_set_damages(const std::vector<RobotDamage>& damages)
-    {
-        _damages = damages;
-        for (auto dmg : _damages) {
-            if (dmg.type == "blocked_joint") {
-                auto jnt = _skeleton->getJoint(dmg.data);
-                if (dmg.extra)
-                    jnt->setPosition(0, *((double*)dmg.extra));
-                jnt->setActuatorType(dart::dynamics::Joint::LOCKED);
-            }
-            else if (dmg.type == "free_joint") {
-                _skeleton->getJoint(dmg.data)->setActuatorType(dart::dynamics::Joint::PASSIVE);
-            }
-        }
-
-        update_joint_dof_maps();
-    }
-
     void Robot::_set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel)
     {
         for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
@@ -2086,7 +2079,11 @@ namespace robot_dart {
 
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Isometry3d& tf, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
     {
-        return create_box(dims, dart::math::logMap(tf), type, mass, color, box_name);
+        Eigen::Vector6d x;
+        x.head<3>() = dart::math::logMap(tf.linear());
+        x.tail<3>() = tf.translation();
+
+        return create_box(dims, x, type, mass, color, box_name);
     }
 
     std::shared_ptr<Robot> Robot::create_box(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& box_name)
@@ -2121,14 +2118,23 @@ namespace robot_dart {
         if (type == "free") // free floating
             robot->set_positions(pose);
         else // fixed
-            body->getParentJoint()->setTransformFromParentBodyNode(dart::math::expMap(pose));
+        {
+            Eigen::Isometry3d T;
+            T.linear() = dart::math::expMapRot(pose.head<3>());
+            T.translation() = pose.tail<3>();
+            body->getParentJoint()->setTransformFromParentBodyNode(T);
+        }
 
         return robot;
     }
 
     std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Isometry3d& tf, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
     {
-        return create_ellipsoid(dims, dart::math::logMap(tf), type, mass, color, ellipsoid_name);
+        Eigen::Vector6d x;
+        x.head<3>() = dart::math::logMap(tf.linear());
+        x.tail<3>() = tf.translation();
+
+        return create_ellipsoid(dims, x, type, mass, color, ellipsoid_name);
     }
 
     std::shared_ptr<Robot> Robot::create_ellipsoid(const Eigen::Vector3d& dims, const Eigen::Vector6d& pose, const std::string& type, double mass, const Eigen::Vector4d& color, const std::string& ellipsoid_name)
@@ -2165,8 +2171,8 @@ namespace robot_dart {
         else // fixed
         {
             Eigen::Isometry3d T;
-            T.linear() = dart::math::eulerXYZToMatrix(pose.head(3));
-            T.translation() = pose.tail(3);
+            T.linear() = dart::math::expMapRot(pose.head<3>());
+            T.translation() = pose.tail<3>();
             body->getParentJoint()->setTransformFromParentBodyNode(T);
         }
 

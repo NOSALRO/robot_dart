@@ -4,15 +4,13 @@
 #include <boost/filesystem.hpp>
 #include <boost/test/unit_test.hpp>
 
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
-
 #include <robot_dart/robot.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/sensor/force_torque.hpp>
 #include <robot_dart/sensor/imu.hpp>
 #include <robot_dart/sensor/torque.hpp>
 #include <robot_dart/utils.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 using namespace robot_dart;
 

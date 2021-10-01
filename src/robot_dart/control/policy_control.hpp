@@ -3,7 +3,6 @@
 
 #include <robot_dart/control/robot_control.hpp>
 #include <robot_dart/robot.hpp>
-#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
     namespace control {

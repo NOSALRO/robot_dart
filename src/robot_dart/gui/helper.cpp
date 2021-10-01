@@ -1,7 +1,5 @@
 #include "helper.hpp"
 
-#include <Eigen/Dense>
-
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
