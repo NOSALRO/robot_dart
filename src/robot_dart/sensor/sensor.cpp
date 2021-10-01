@@ -46,8 +46,8 @@ namespace robot_dart {
         void Sensor::detach() {
             _attached_to_body = false;
             _attached_to_joint = false;
-            _body_attached = NULL;
-            _joint_attached = NULL;
+            _body_attached = nullptr;
+            _joint_attached = nullptr;
             _active = false;
         }
 
@@ -122,7 +122,7 @@ namespace robot_dart {
         }
         const std::string& Sensor::attached_to() const
          { 
-            assert(_attached_to_body || _attached_to_joint);
+            ROBOT_DART_EXCEPTION_ASSERT(_attached_to_body || _attached_to_joint, "Joint is not attached to anything");
             if (_attached_to_body)
                 return _body_attached->getName();
             // attached to joint
