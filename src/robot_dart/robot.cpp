@@ -86,7 +86,7 @@ namespace robot_dart {
                 tmp = skeleton->getGravityForces();
             else if (content == 15)
                 tmp = skeleton->getCoriolisAndGravityForces();
-             else if (content == 16)
+            else if (content == 16)
                 tmp = skeleton->getConstraintForces();
 
             for (size_t i = 0; i < dof_names.size(); i++) {

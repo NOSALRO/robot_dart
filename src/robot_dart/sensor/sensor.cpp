@@ -46,7 +46,8 @@ namespace robot_dart {
         void Sensor::set_pose(const Eigen::Isometry3d& tf) { _world_pose = tf; }
         const Eigen::Isometry3d& Sensor::pose() const { return _world_pose; }
 
-        void Sensor::detach() {
+        void Sensor::detach()
+        {
             _attached_to_body = false;
             _attached_to_joint = false;
             _body_attached = nullptr;
@@ -124,7 +125,7 @@ namespace robot_dart {
             }
         }
         const std::string& Sensor::attached_to() const
-         { 
+        {
             ROBOT_DART_EXCEPTION_ASSERT(_attached_to_body || _attached_to_joint, "Joint is not attached to anything");
             if (_attached_to_body)
                 return _body_attached->getName();
