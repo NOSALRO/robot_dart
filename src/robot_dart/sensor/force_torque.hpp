@@ -12,7 +12,7 @@ namespace robot_dart {
 
             void init() override;
 
-            void calculate(double t) override;
+            void calculate(double) override;
 
             std::string type() const override;
 
@@ -20,7 +20,7 @@ namespace robot_dart {
             Eigen::Vector3d torque() const;
             const Eigen::Vector6d& wrench() const;
 
-            void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            void attach_to_body(dart::dynamics::BodyNode*, const Eigen::Isometry3d&) override
             {
                 ROBOT_DART_WARNING(true, "You cannot attach a force/torque sensor to a body!");
             }

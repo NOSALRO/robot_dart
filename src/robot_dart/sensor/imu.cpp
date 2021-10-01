@@ -1,8 +1,7 @@
 #include "imu.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
-
-#include <dart/dynamics/BodyNode.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 namespace robot_dart {
     namespace sensor {
@@ -18,7 +17,7 @@ namespace robot_dart {
                 _active = true;
         }
 
-        void IMU::calculate(double t)
+        void IMU::calculate(double)
         {
             if (!_attached_to_body)
                 return; // cannot compute anything if not attached to a link

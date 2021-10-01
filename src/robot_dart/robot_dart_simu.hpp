@@ -1,8 +1,6 @@
 #ifndef ROBOT_DART_SIMU_HPP
 #define ROBOT_DART_SIMU_HPP
 
-#include <dart/simulation/World.hpp>
-
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
 #include <robot_dart/scheduler.hpp>

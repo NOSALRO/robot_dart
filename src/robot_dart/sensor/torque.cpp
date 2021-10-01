@@ -1,21 +1,7 @@
 #include "torque.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
-
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
-
-#include <dart/dynamics/BallJoint.hpp>
-#include <dart/dynamics/EulerJoint.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/PlanarJoint.hpp>
-#include <dart/dynamics/PrismaticJoint.hpp>
-#include <dart/dynamics/RevoluteJoint.hpp>
-#include <dart/dynamics/ScrewJoint.hpp>
-#include <dart/dynamics/TranslationalJoint.hpp>
-#include <dart/dynamics/TranslationalJoint2D.hpp>
-#include <dart/dynamics/UniversalJoint.hpp>
-#include <dart/dynamics/WeldJoint.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 namespace robot_dart {
     namespace sensor {
@@ -32,7 +18,7 @@ namespace robot_dart {
             _active = true;
         }
 
-        void Torque::calculate(double t)
+        void Torque::calculate(double)
         {
             if (!_attached_to_joint)
                 return; // cannot compute anything if not attached to a joint

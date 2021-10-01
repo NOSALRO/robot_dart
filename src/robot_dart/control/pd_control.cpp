@@ -1,11 +1,7 @@
 #include "pd_control.hpp"
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
-
-#include <dart/dynamics/BallJoint.hpp>
-#include <dart/dynamics/EulerJoint.hpp>
-#include <dart/dynamics/FreeJoint.hpp>
-#include <dart/dynamics/RevoluteJoint.hpp>
+#include "robot_dart/utils_headers_dart_dynamics.hpp"
 
 namespace robot_dart {
     namespace control {

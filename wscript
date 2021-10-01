@@ -136,8 +136,8 @@ def configure(conf):
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
     
-    # add the prefix
-    conf.env['CXXFLAGS'] = conf.env['CXXFLAGS']
+    # add strict flags for warnings
+    corrade.corrade_enable_pedantic_flags(conf)
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):
