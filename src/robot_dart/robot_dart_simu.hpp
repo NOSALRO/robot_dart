@@ -3,7 +3,6 @@
 
 #include <dart/simulation/World.hpp>
 
-#include <robot_dart/descriptor/base_descriptor.hpp>
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/robot.hpp>
 #include <robot_dart/scheduler.hpp>
@@ -67,20 +66,6 @@ namespace robot_dart {
 
         dart::simulation::WorldPtr world();
 
-        template <typename Descriptor>
-        void add_descriptor(size_t desc_dump = 1)
-        {
-            add_descriptor(std::make_shared<Descriptor>(Descriptor{desc_dump}));
-        }
-
-        void add_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
-        std::vector<std::shared_ptr<descriptor::BaseDescriptor>> descriptors() const;
-        std::shared_ptr<descriptor::BaseDescriptor> descriptor(size_t index) const;
-
-        void remove_descriptor(const std::shared_ptr<descriptor::BaseDescriptor>& desc);
-        void remove_descriptor(size_t index);
-        void clear_descriptors();
-
         template <typename T, typename... Args>
         std::shared_ptr<T> add_sensor(Args&&... args)
         {
@@ -135,16 +120,22 @@ namespace robot_dart {
         const std::string& collision_detector() const;
 
         // Bitmask collision filtering
-        void set_collision_mask(size_t robot_index, uint16_t mask);
-        void set_collision_mask(size_t robot_index, const std::string& body_name, uint16_t mask);
-        void set_collision_mask(size_t robot_index, size_t body_index, uint16_t mask);
+        void set_collision_masks(size_t robot_index, uint32_t category_mask, uint32_t collision_mask);
+        void set_collision_masks(size_t robot_index, const std::string& body_name, uint32_t category_mask, uint32_t collision_mask);
+        void set_collision_masks(size_t robot_index, size_t body_index, uint32_t category_mask, uint32_t collision_mask);
 
-        uint16_t collision_mask(size_t robot_index, const std::string& body_name);
-        uint16_t collision_mask(size_t robot_index, size_t body_index);
+        uint32_t collision_mask(size_t robot_index, const std::string& body_name);
+        uint32_t collision_mask(size_t robot_index, size_t body_index);
 
-        void remove_collision_mask(size_t robot_index);
-        void remove_collision_mask(size_t robot_index, const std::string& body_name);
-        void remove_collision_mask(size_t robot_index, size_t body_index);
+        uint32_t collision_category(size_t robot_index, const std::string& body_name);
+        uint32_t collision_category(size_t robot_index, size_t body_index);
+
+        std::pair<uint32_t, uint32_t> collision_masks(size_t robot_index, const std::string& body_name);
+        std::pair<uint32_t, uint32_t> collision_masks(size_t robot_index, size_t body_index);
+
+        void remove_collision_masks(size_t robot_index);
+        void remove_collision_masks(size_t robot_index, const std::string& body_name);
+        void remove_collision_masks(size_t robot_index, size_t body_index);
 
         void remove_all_collision_masks();
 
@@ -155,7 +146,6 @@ namespace robot_dart {
         size_t _old_index;
         bool _break;
 
-        std::vector<std::shared_ptr<descriptor::BaseDescriptor>> _descriptors;
         std::vector<std::shared_ptr<sensor::Sensor>> _sensors;
         std::vector<robot_t> _robots;
         std::shared_ptr<gui::Base> _graphics;

@@ -1,9 +1,8 @@
 #include <iostream>
 #include <thread>
 
-#include <robot_dart/robot_dart_simu.hpp>
-
 #include <robot_dart/control/pd_control.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 
