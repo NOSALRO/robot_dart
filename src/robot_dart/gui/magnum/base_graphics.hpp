@@ -4,12 +4,11 @@
 #include <robot_dart/gui/base.hpp>
 #include <robot_dart/gui/magnum/glfw_application.hpp>
 #include <robot_dart/gui/magnum/gs/helper.hpp>
+#include <robot_dart/gui/magnum/utils_headers_eigen.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
 // We need this for CORRADE_RESOURCE_INITIALIZE
 #include <Corrade/Utility/Resource.h>
-
-#include <Magnum/EigenIntegration/Integration.h>
 
 inline static void robot_dart_initialize_magnum_resources()
 {

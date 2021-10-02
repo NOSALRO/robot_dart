@@ -7,7 +7,7 @@
 
 static constexpr int NUM_THREADS = 12;
 
-void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
+inline void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
 {
     robot->set_position_enforced(true);
     auto positions = robot->positions();
@@ -52,7 +52,7 @@ void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
 // @ROBOT_POOL_GLOBAL_NAMESPACE@
 namespace pool {
     // This function should load one robot: here we load Talos
-    std::shared_ptr<robot_dart::Robot> robot_creator()
+    inline std::shared_ptr<robot_dart::Robot> robot_creator()
     {
         std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
         return std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
@@ -63,8 +63,7 @@ namespace pool {
 } // namespace pool
 // @ROBOT_POOL_GLOBAL_NAMESPACE_END@
 
-// @ROBOT_POOL_EVAL@
-void eval_robot(int i)
+inline void eval_robot(int i)
 {
     // We get one available robot
     auto robot = pool::robot_pool.get_robot();
@@ -83,7 +82,7 @@ void eval_robot(int i)
 }
 // @ROBOT_POOL_EVAL_END@
 
-int main(int argc, char** argv)
+int main()
 {
     // @ROBOT_POOL_CREATE_THREADS@
     // for the example, we run NUM_THREADS threads of eval_robot()

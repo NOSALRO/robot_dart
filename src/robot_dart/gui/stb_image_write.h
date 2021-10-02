@@ -147,6 +147,8 @@ LICENSE
 
 */
 
+#pragma GCC system_header
+
 #ifndef INCLUDE_STB_IMAGE_WRITE_H
 #define INCLUDE_STB_IMAGE_WRITE_H
 

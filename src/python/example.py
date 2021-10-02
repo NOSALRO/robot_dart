@@ -1,12 +1,13 @@
 import numpy as np
 import RobotDART as rd
-import dartpy # OSX breaks if this is imported before RobotDART
+import dartpy  # OSX breaks if this is imported before RobotDART
 # import magnum
 
 # Create custom controller
 class MyController(rd.RobotControl):
     def __init__(self, ctrl, full_control):
         rd.RobotControl.__init__(self, ctrl, full_control)
+
     def __init__(self, ctrl, controllable_dofs):
         rd.RobotControl.__init__(self, ctrl, controllable_dofs)
 
@@ -21,6 +22,7 @@ class MyController(rd.RobotControl):
     # TO-DO: This is NOT working at the moment!
     def clone(self):
         return MyController(self._ctrl, self._controllable_dofs)
+
 
 # Load robot from URDF
 robot = rd.Robot("arm.urdf", "arm", False)

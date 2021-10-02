@@ -4,7 +4,6 @@
 #include <robot_dart/utils.hpp>
 
 #include <chrono>
-#include <cmath>
 #include <thread>
 
 namespace robot_dart {
@@ -45,10 +44,13 @@ namespace robot_dart {
         // 0.8x => we are simulating at 80% of real time
         double real_time_factor() const { return _dt / it_duration(); }
         // time for a single iteration (wall-clock)
-        double it_duration() const { return _it_duration * 1e-6; }
+        double it_duration() const { return _average_it_duration * 1e-6; }
+        // time of the last iteration (wall-clock)
+        double last_it_duration() const { return _it_duration * 1e-6; }
 
     protected:
         double _current_time = 0., _simu_start_time = 0., _real_time = 0., _real_start_time = 0., _it_duration = 0.;
+        double _average_it_duration = 0.;
         double _dt;
         int _current_step = 0;
         bool _sync;
