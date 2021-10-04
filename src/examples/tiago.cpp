@@ -3,6 +3,7 @@
 #include <iostream>
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/tiago.hpp>
 
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
@@ -15,22 +16,14 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"tiago_description", "tiago/tiago_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("tiago/tiago_steel.urdf", packages);
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
-    robot->set_position_enforced(true);
-    auto positions = robot->positions();
-    positions[2] = M_PI / 2.;
-    positions[5] = 0.001;
-    robot->set_positions(positions);
-
-    // Set actuator types to VELOCITY (for speed)
-    robot->set_actuator_types("velocity");
 
     double dt = 0.01;
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
+
+    auto robot = std::make_shared<robot_dart::robots::Tiago>(&simu);
+    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
+
 #ifdef GRAPHIC
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1280;
