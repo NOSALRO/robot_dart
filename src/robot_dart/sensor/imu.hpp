@@ -31,7 +31,7 @@ namespace robot_dart {
 
             void init() override;
 
-            void calculate(double t) override;
+            void calculate(double) override;
 
             std::string type() const override;
 
@@ -40,7 +40,7 @@ namespace robot_dart {
             const Eigen::Vector3d& angular_velocity() const;
             const Eigen::Vector3d& linear_acceleration() const;
 
-            void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            void attach_to_joint(dart::dynamics::Joint*, const Eigen::Isometry3d&) override
             {
                 ROBOT_DART_WARNING(true, "You cannot attach an IMU sensor to a joint!");
             }

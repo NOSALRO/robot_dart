@@ -1,7 +1,6 @@
 #ifndef ROBOT_DART_CONTROL_PD_CONTROL
 #define ROBOT_DART_CONTROL_PD_CONTROL
 
-#include <Eigen/Core>
 #include <utility>
 
 #include <robot_dart/control/robot_control.hpp>

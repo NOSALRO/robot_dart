@@ -4,9 +4,6 @@
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
 
-#include <Eigen/Core>
-#include <Eigen/Geometry>
-
 #include <memory>
 #include <vector>
 
@@ -42,7 +39,7 @@ namespace robot_dart {
 
             virtual void init() = 0;
             // TO-DO: Maybe make this const?
-            virtual void calculate(double t) = 0;
+            virtual void calculate(double) = 0;
 
             virtual std::string type() const = 0;
 
@@ -51,6 +48,9 @@ namespace robot_dart {
 
             virtual void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity());
             void attach_to_joint(const std::shared_ptr<Robot>& robot, const std::string& joint_name, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) { attach_to_joint(robot->joint(joint_name), tf); }
+
+            void detach();
+            const std::string& attached_to() const;
 
         protected:
             RobotDARTSimu* _simu = nullptr;

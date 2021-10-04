@@ -11,8 +11,7 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
-#include <Magnum/EigenIntegration/GeometryIntegration.h>
-#include <Magnum/EigenIntegration/Integration.h>
+#include <robot_dart/gui/magnum/utils_headers_eigen.hpp>
 
 namespace robot_dart {
     namespace gui {

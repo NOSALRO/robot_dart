@@ -20,7 +20,7 @@
 #include <Magnum/ImageView.h>
 #include <Magnum/PixelFormat.h>
 
-#include <Magnum/EigenIntegration/GeometryIntegration.h>
+#include <robot_dart/gui/magnum/utils_headers_eigen.hpp>
 
 namespace robot_dart {
     namespace gui {
@@ -381,10 +381,10 @@ namespace robot_dart {
                         Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
                         Corrade::Utility::copy(src, dst);
 #ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                        _video_pipe.write((char*)data.data(), data.size());
+                        _video_pipe.write(reinterpret_cast<char*>(data.data()), data.size());
                         _video_pipe.flush();
 #else
-                        write(_video_fd[1], (char*)data.data(), data.size());
+                        write(_video_fd[1], reinterpret_cast<char*>(data.data()), data.size());
 #endif
                     }
                 }

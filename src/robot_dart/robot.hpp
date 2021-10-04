@@ -3,8 +3,7 @@
 
 #include <unordered_map>
 
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/Skeleton.hpp>
+#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
     namespace control {
@@ -218,6 +217,7 @@ namespace robot_dart {
         Eigen::VectorXd coriolis_forces(const std::vector<std::string>& dof_names = {}) const;
         Eigen::VectorXd gravity_forces(const std::vector<std::string>& dof_names = {}) const;
         Eigen::VectorXd coriolis_gravity_forces(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::VectorXd constraint_forces(const std::vector<std::string>& dof_names = {}) const;
 
         // Get only the part of vector for DOFs in dof_names
         Eigen::VectorXd vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const;
