@@ -11,11 +11,13 @@ namespace robot_dart {
         /// datasheet: https://pal-robotics.com/wp-content/uploads/2021/07/Datasheet-complete_TIAGo-2021.pdf
         class Tiago : public Robot {
         public:
-            Tiago(RobotDARTSimu* simu, size_t frequency = 1000, const std::string& urdf = "tiago/tiago_steel.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"tiago_description", "tiago/tiago_description"}});
+            Tiago(size_t frequency = 1000, const std::string& urdf = "tiago/tiago_steel.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"tiago_description", "tiago/tiago_description"}});
 
             const sensor::ForceTorque& ft_wrist() const { return *_ft_wrist; }
         protected:
             std::shared_ptr<sensor::ForceTorque> _ft_wrist;
+            void _post_addition(RobotDARTSimu* simu) override;
+            void _post_removal(RobotDARTSimu* simu) override;
         };
     } // namespace robots
 } // namespace robot_dart

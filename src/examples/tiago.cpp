@@ -16,13 +16,12 @@ int main()
 {
     std::srand(std::time(NULL));
 
+    auto robot = std::make_shared<robot_dart::robots::Tiago>();
+    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
     double dt = 0.01;
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
-
-    auto robot = std::make_shared<robot_dart::robots::Tiago>(&simu);
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
 #ifdef GRAPHIC
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
