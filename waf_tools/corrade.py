@@ -211,7 +211,7 @@ def corrade_enable_pedantic_flags(conf, visibility_hidden=False):
                     -Wmissing-declarations \
                     -pedantic'
     if visibility_hidden:
-        corrade_flags += '-fvisibility=hidden'
+        corrade_flags += ' -fvisibility=hidden'
     corrade_flags = corrade_flags.split()
     conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS'] + corrade_flags))
 
