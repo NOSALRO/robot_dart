@@ -4,6 +4,7 @@ import sys
 import os
 import fnmatch
 import glob
+import copy
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
 VERSION = '1.0.0'
@@ -115,7 +116,7 @@ def configure(conf):
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
         # no-stack-check required for Catalina
-        opt_flags = " -O3 -g -faligned-new  -fno-stack-check" + native
+        opt_flags = " -O3 -g -faligned-new -fno-stack-check" + native
     else:
         gcc_version = int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1])
         if gcc_version < 47:
@@ -129,13 +130,20 @@ def configure(conf):
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
 
+    if conf.env.CXX_NAME in ["icc", "icpc"]:
+        conf.env['PUBLIC_CXXFLAGS'] = native_icc.split(' ')
+    elif conf.env.CXX_NAME in ["clang"]:
+        conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new -fno-stack-check" + native).split(' ')
+    else:
+        conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new" + native).split(' ')
+
     if len(conf.env.CXXFLAGS_DART) > 0:
         if '-std=c++11' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++11')
         if '-std=c++0x' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
-    
+
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
     print(conf.env['CXXFLAGS'])
@@ -246,7 +254,7 @@ def build(bld):
         f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
         f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
         f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
-        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
 
     #### install the URDF library (robots)
@@ -301,7 +309,7 @@ def build(bld):
         if 'dart-collision-ode' in bld.env.LIB_DART:
             dart_extra_libs += ' collision-ode '
 
-        cxx_flags = ''.join(x + ';' for x in bld.env['CXXFLAGS'])
+        cxx_flags = ''.join(x + ';' for x in bld.env['PUBLIC_CXXFLAGS'])
 
         lib_type = '.a'
         if bld.env['lib_type'] == 'cxxshlib':
