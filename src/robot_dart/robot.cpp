@@ -279,6 +279,20 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
+
+        // Deep copy everything
+        for (auto& bd : robot->skeleton()->getBodyNodes()) {
+            auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
+            for (auto& shape : visual_shapes) {
+                if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
+                    shape->setShape(shape->getShape()->copy());
+                else
+                    shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
+            }
+        }
+
+        robot->set_positions(this->positions());
+
         robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
@@ -311,12 +325,25 @@ namespace robot_dart {
                 shape->removeAspect<dart::dynamics::CollisionAspect>();
             }
 
+            // ghost robots do not have dynamics
+            auto& dyn_shapes = bd->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
+            for (auto& shape : dyn_shapes) {
+                shape->removeAspect<dart::dynamics::DynamicsAspect>();
+            }
+
             // ghost robots have a different color (same for all bodies)
             auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
             for (auto& shape : visual_shapes) {
                 shape->getVisualAspect()->setRGBA(ghost_color);
+                if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
+                    shape->setShape(shape->getShape()->copy());
+                else
+                    shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
             }
         }
+
+        // set positions
+        robot->set_positions(this->positions());
 
         // ghost robots, by default, use the color from the VisualAspect
         robot->set_color_mode("aspect");
