@@ -280,6 +280,7 @@ namespace robot_dart {
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
 
+#if DART_VERSION_AT_LEAST(6, 12, 0)
         // Deep copy everything
         for (auto& bd : robot->skeleton()->getBodyNodes()) {
             auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
@@ -290,6 +291,7 @@ namespace robot_dart {
                     shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
             }
         }
+#endif
 
         robot->set_positions(this->positions());
 
@@ -335,10 +337,12 @@ namespace robot_dart {
             auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
             for (auto& shape : visual_shapes) {
                 shape->getVisualAspect()->setRGBA(ghost_color);
+#if DART_VERSION_AT_LEAST(6, 12, 0)
                 if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
                     shape->setShape(shape->getShape()->copy());
                 else
                     shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
+#endif
             }
         }
 
