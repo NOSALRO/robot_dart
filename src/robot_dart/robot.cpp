@@ -286,9 +286,7 @@ namespace robot_dart {
             auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
             for (auto& shape : visual_shapes) {
                 if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
-                    shape->setShape(shape->getShape()->copy());
-                else
-                    shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
+                    shape->setShape(shape->getShape()->clone());
             }
         }
 #endif
@@ -339,9 +337,7 @@ namespace robot_dart {
                 shape->getVisualAspect()->setRGBA(ghost_color);
 #if DART_VERSION_AT_LEAST(6, 12, 0)
                 if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
-                    shape->setShape(shape->getShape()->copy());
-                else
-                    shape->setShape(std::make_shared<dart::dynamics::SoftMeshShape>(static_cast<dart::dynamics::SoftBodyNode*>(bd)));
+                    shape->setShape(shape->getShape()->clone());
 #endif
             }
         }
