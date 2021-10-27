@@ -22,7 +22,12 @@ int main()
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
+    auto ghost = robot->clone_ghost();
 
+    // fix a bug...
+    robot->set_color_mode("material");
+    robot->set_color_mode("aspect", "right_foot");
+    robot->set_color_mode("aspect", "left_foot");
     // Add some visualizations
     //    robot->set_draw_axis(imu_config.body->getName());
     //    robot->set_draw_axis("r_ankle_2");
