@@ -5,12 +5,12 @@
 <!-- =================================================================================== -->
 <!-- icub URDF model -->
 <robot name="icub" xmlns:xacro="http://ros.org/wiki/xacro">
-  <link name="world"/>
+  <!-- <link name="world"/>
   <joint name="reference" type="floating">
     <parent link="world"/>
     <child link="waist"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
-  </joint>
+  </joint> -->
   <!-- INDEX -->
   <!-- just press ctrl+f to search -->
   <!-- LINKS -->
