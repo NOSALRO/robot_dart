@@ -13,7 +13,7 @@ namespace robot_dart {
             set_color_mode("material");
     
             set_position_enforced(true);
-            skeleton()->setPosition(5, 0.5);
+            skeleton()->setPosition(5, 0.46);
             skeleton()->setPosition(2, 1.57);
         }
 
