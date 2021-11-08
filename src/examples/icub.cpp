@@ -26,8 +26,8 @@ int main()
 
     // fix a bug...
     robot->set_color_mode("material");
-    robot->set_color_mode("aspect", "right_foot");
-    robot->set_color_mode("aspect", "left_foot");
+    // robot->set_color_mode("aspect", "right_foot");
+    // robot->set_color_mode("aspect", "left_foot");
     // Add some visualizations
     //    robot->set_draw_axis(imu_config.body->getName());
     //    robot->set_draw_axis("r_ankle_2");
