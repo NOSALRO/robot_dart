@@ -23,7 +23,9 @@ int main()
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
     auto ghost = robot->clone_ghost();
-
+    ghost->skeleton()->setPosition(4, -1.57);
+    ghost->skeleton()->setPosition(5, 1.1);
+    simu.add_robot(ghost);
     // fix a bug...
     robot->set_color_mode("material");
     // robot->set_color_mode("aspect", "right_foot");
