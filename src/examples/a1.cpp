@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/a1.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -10,19 +11,8 @@ int main()
 {
     std::srand(std::time(NULL));
 
-    std::vector<std::pair<std::string, std::string>> packages = {{"a1_description", "unitree_a1/a1_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("unitree_a1/a1.urdf", packages);
-    robot->set_color_mode("material");
-
-    robot->set_self_collision(true);
+    auto robot = std::make_shared<robot_dart::robots::A1>();
     robot->set_actuator_types("servo");
-    robot->set_position_enforced(true);
-    robot->set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.5}));
-
-    auto names = robot->dof_names(true, true, true);
-    names = std::vector<std::string>(names.begin() + 6, names.end());
-    // standing pose
-    robot->set_positions(robot_dart::make_vector({0.0, 0.67, -1.3, -0.0, 0.67, -1.3, 0.0, 0.67, -1.3, -0.0, 0.67, -1.3}), names);
 
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
