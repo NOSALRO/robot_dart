@@ -1,5 +1,6 @@
 #include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/hexapod.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -8,14 +9,8 @@
 int main()
 {
     std::srand(std::time(NULL));
-    auto robot = std::make_shared<robot_dart::Robot>("pexod.urdf");
-
-    robot->set_position_enforced(true);
-
+    auto robot = std::make_shared<robot_dart::robots::Hexapod>();
     robot->set_actuator_types("servo");
-    robot->skeleton()->enableSelfCollisionCheck();
-
-    robot->set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.2}));
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC
