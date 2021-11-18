@@ -16,7 +16,8 @@ namespace robot_dart {
         Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
         Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
         Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true);
-
+        virtual ~Robot() {}
+        
         std::shared_ptr<Robot> clone() const;
         std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
 
