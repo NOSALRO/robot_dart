@@ -1,8 +1,5 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-#include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/talos.hpp>
 
 #include <dart/collision/fcl/FCLCollisionDetector.hpp>
 #include <dart/constraint/ConstraintSolver.hpp>
@@ -11,16 +8,13 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-// full Talos:
+// fast Talos:
 // - use dart for collision detection (instead of FCL) [only handle boxes and spheres]
 // - the collisions are detected only for the feet
 // - the urdf does not have the mimic (used for grippers)
 int main()
 {
-    std::srand(std::time(NULL));
-
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("talos/talos_fast.urdf", packages);
+    auto robot = std::make_shared<robot_dart::robots::Talos>(1000, "talos/talos_fast.urdf");
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
     robot->set_position_enforced(true);

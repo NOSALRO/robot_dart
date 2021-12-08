@@ -1,5 +1,3 @@
-#include <cstdlib>
-#include <iostream>
 #include <robot_dart/control/simple_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/pendulum.hpp>

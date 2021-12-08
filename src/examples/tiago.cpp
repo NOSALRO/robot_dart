@@ -1,13 +1,5 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
-#include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/tiago.hpp>
-
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
