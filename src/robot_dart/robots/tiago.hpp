@@ -14,6 +14,7 @@ namespace robot_dart {
             Tiago(size_t frequency = 1000, const std::string& urdf = "tiago/tiago_steel.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"tiago_description", "tiago/tiago_description"}});
 
             const sensor::ForceTorque& ft_wrist() const { return *_ft_wrist; }
+
         protected:
             std::shared_ptr<sensor::ForceTorque> _ft_wrist;
             void _post_addition(RobotDARTSimu* simu) override;

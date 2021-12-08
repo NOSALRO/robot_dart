@@ -4,10 +4,8 @@
 
 namespace robot_dart {
     namespace robots {
-        Tiago::Tiago(size_t frequency,
-            const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
-            : Robot(urdf, packages),
-              _ft_wrist(std::make_shared<sensor::ForceTorque>(joint("gripper_tool_joint"), frequency))
+        Tiago::Tiago(size_t frequency, const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
+            : Robot(urdf, packages), _ft_wrist(std::make_shared<sensor::ForceTorque>(joint("gripper_tool_joint"), frequency))
         {
             skeleton()->setPosition(2, M_PI / 2.);
             skeleton()->setPosition(5, 0.001);

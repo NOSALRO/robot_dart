@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
+
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/tiago.hpp>
@@ -14,14 +15,13 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
-    auto robot = std::make_shared<robot_dart::robots::Tiago>();
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
     double dt = 0.01;
     robot_dart::RobotDARTSimu simu(dt);
     simu.set_collision_detector("fcl");
+
+    size_t freq = 1. / dt;
+    auto robot = std::make_shared<robot_dart::robots::Tiago>(freq);
+    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
 #ifdef GRAPHIC
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
@@ -31,7 +31,7 @@ int main()
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
-    graphics->record_video("talos_dancing.mp4");
+    graphics->record_video("tiago_dancing.mp4");
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
@@ -50,7 +50,7 @@ int main()
     while (simu.scheduler().next_time() < 20. && !simu.graphics()->done()) {
         if (simu.schedule(simu.control_freq())) {
             Eigen::VectorXd delta_pos(6);
-            delta_pos << sin(simu.scheduler().current_time() * 2.)+ M_PI_2,
+            delta_pos << sin(simu.scheduler().current_time() * 2.) + M_PI_2,
                 sin(simu.scheduler().current_time() * 2.),
                 sin(simu.scheduler().current_time() * 2.),
                 sin(simu.scheduler().current_time() * 2.),
