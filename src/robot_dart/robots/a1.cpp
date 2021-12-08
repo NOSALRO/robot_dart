@@ -1,7 +1,5 @@
-
 #include "robot_dart/robots/a1.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
-#include "robot_dart/robots/franka.hpp"
 
 namespace robot_dart {
     namespace robots {

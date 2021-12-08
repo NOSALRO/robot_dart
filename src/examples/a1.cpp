@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/a1.hpp>
 
@@ -9,8 +7,6 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
     auto robot = std::make_shared<robot_dart::robots::A1>();
     robot->set_actuator_types("servo");
 

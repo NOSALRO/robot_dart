@@ -3,8 +3,6 @@
 
 #include "robot_dart/robot.hpp"
 #include "robot_dart/sensor/force_torque.hpp"
-#include "robot_dart/sensor/imu.hpp"
-#include "robot_dart/sensor/torque.hpp"
 
 namespace robot_dart {
     namespace robots {
