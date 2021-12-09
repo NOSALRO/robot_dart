@@ -1,6 +1,5 @@
-#include <cstdlib>
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/pendulum.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -8,11 +7,7 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
-    auto robot = std::make_shared<robot_dart::Robot>("pendulum.urdf");
-    robot->fix_to_world();
-    robot->set_position_enforced(false);
+    auto robot = std::make_shared<robot_dart::robots::Pendulum>();
 
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC

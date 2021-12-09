@@ -1,10 +1,8 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
 #include <thread>
 
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robot_pool.hpp>
+#include <robot_dart/robots/talos.hpp>
 
 static constexpr int NUM_THREADS = 12;
 
@@ -53,8 +51,7 @@ inline void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
 namespace pool {
     inline std::shared_ptr<robot_dart::Robot> robot_creator()
     {
-        std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-        return std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
+        return std::make_shared<robot_dart::robots::Talos>();
     }
 
     robot_dart::RobotPool robot_pool(robot_creator, NUM_THREADS);

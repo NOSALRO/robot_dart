@@ -25,8 +25,7 @@ class MyController(rd.RobotControl):
 
 
 # Load robot from URDF
-robot = rd.Robot("arm.urdf", "arm", False)
-robot.fix_to_world()
+robot = rd.Arm()
 
 # Initiate custom controller
 control = MyController([0.0, 1.57, -0.5, 0.7], False)

@@ -7,6 +7,10 @@ namespace robot_dart {
     namespace sensor {
         // TO-DO: Implement some noise models (e.g., https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model)
         struct IMUConfig {
+            IMUConfig(dart::dynamics::BodyNode* b, size_t f) : gyro_bias(Eigen::Vector3d::Zero()), accel_bias(Eigen::Vector3d::Zero()), body(b), frequency(f){};
+            IMUConfig(const Eigen::Vector3d& gyro_bias, const Eigen::Vector3d& accel_bias, dart::dynamics::BodyNode* b, size_t f) : gyro_bias(gyro_bias), accel_bias(accel_bias), body(b), frequency(f){};
+            IMUConfig() : gyro_bias(Eigen::Vector3d::Zero()), accel_bias(Eigen::Vector3d::Zero()), body(nullptr), frequency(200) {}
+
             // We assume fixed bias; TO-DO: Make this time-dependent
             Eigen::Vector3d gyro_bias = Eigen::Vector3d::Zero();
             Eigen::Vector3d accel_bias = Eigen::Vector3d::Zero();
