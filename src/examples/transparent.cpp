@@ -1,4 +1,3 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
@@ -33,6 +32,7 @@ inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 
 int main()
 {
+    std::srand(std::time(NULL));
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
 #ifdef GRAPHIC

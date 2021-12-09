@@ -195,6 +195,9 @@ namespace robot_dart {
                     py::arg("accel_bias") = Eigen::Vector3d::Zero(),
                     py::arg("body") = nullptr,
                     py::arg("frequency") = 200)
+                .def(py::init<dart::dynamics::BodyNode*, size_t>(),
+                    py::arg("body") = nullptr,
+                    py::arg("frequency") = 200)
 
                 .def_readwrite("gyro_bias", &sensor::IMUConfig::gyro_bias)
                 .def_readwrite("accel_bias", &sensor::IMUConfig::accel_bias)
