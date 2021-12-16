@@ -8,7 +8,6 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
     auto robot = std::make_shared<robot_dart::robots::Arm>();
     robot->set_actuator_types("velocity");
 

@@ -1,4 +1,3 @@
-
 #include "robot_dart/robots/icub.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 

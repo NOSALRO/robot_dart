@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include <robot_dart/scheduler.hpp>
 
 // this is a simple example to show how the scheduling mechanism works

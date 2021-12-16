@@ -1,4 +1,3 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/franka.hpp>
 
@@ -10,8 +9,6 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
     auto robot = std::make_shared<robot_dart::robots::Franka>();
     robot->set_actuator_types("torque");
 

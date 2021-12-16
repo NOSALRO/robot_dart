@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/iiwa.hpp>
@@ -12,8 +8,6 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-    
     auto robot = std::make_shared<robot_dart::robots::Iiwa>();
 
     Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
