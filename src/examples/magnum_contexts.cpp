@@ -1,21 +1,15 @@
-#include <iostream>
 #include <thread>
 
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/iiwa.hpp>
 
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 
 int main()
 {
-    std::srand(std::time(NULL));
-
     // Load robot from URDF
-    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
-    auto global_robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
-
-    global_robot->fix_to_world();
-    global_robot->set_position_enforced(true);
+    auto global_robot = std::make_shared<robot_dart::robots::Iiwa>();
 
     std::vector<std::thread> workers;
 

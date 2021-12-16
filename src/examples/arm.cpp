@@ -1,5 +1,6 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/arm.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -7,12 +8,7 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-    auto robot = std::make_shared<robot_dart::Robot>("arm.urdf");
-
-    robot->fix_to_world();
-    robot->set_position_enforced(true);
-
+    auto robot = std::make_shared<robot_dart::robots::Arm>();
     robot->set_actuator_types("velocity");
 
     Eigen::VectorXd ctrl = robot_dart::make_vector({0.0, 1.0, -1.5, 1.0});
