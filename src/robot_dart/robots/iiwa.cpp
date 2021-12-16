@@ -1,6 +1,5 @@
-
-#include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/robots/iiwa.hpp"
+#include "robot_dart/robot_dart_simu.hpp"
 
 namespace robot_dart {
     namespace robots {

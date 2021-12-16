@@ -9,7 +9,9 @@ namespace robot_dart {
         class Iiwa : public Robot {
         public:
             Iiwa(size_t frequency = 1000, const std::string& urdf = "iiwa/iiwa.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"iiwa_description", "iiwa/iiwa_description"}});
+
             const sensor::ForceTorque& ft_wrist() const { return *_ft_wrist; }
+
         protected:
             std::shared_ptr<sensor::ForceTorque> _ft_wrist;
             void _post_addition(RobotDARTSimu* simu) override;

@@ -2,7 +2,6 @@
 #define ROBOT_DART_ROBOTS_PENDULUM_HPP
 
 #include "robot_dart/robot.hpp"
-#include "robot_dart/sensor/force_torque.hpp"
 
 namespace robot_dart {
     namespace robots {
