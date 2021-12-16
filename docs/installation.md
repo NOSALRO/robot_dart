@@ -57,7 +57,7 @@ sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
 cd /path/to/tmp/folder
 git clone git://github.com/dartsim/dart.git
 cd dart
-git checkout v6.10.1
+git checkout v6.12.1
 
 mkdir build
 cd build
@@ -84,7 +84,7 @@ brew install urdfdom
 cd /path/to/tmp/folder
 git clone git://github.com/dartsim/dart.git
 cd dart
-git checkout v6.10.1
+git checkout v6.12.1
 
 mkdir build
 cd build
