@@ -10,7 +10,7 @@ namespace robot_dart {
               _ft_foot_right(std::make_shared<sensor::ForceTorque>(joint("r_ankle_roll"), frequency))
         {
             set_color_mode("material");
-    
+
             set_position_enforced(true);
             skeleton()->setPosition(5, 0.46);
             skeleton()->setPosition(2, 1.57);
