@@ -1,4 +1,3 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
@@ -52,6 +51,8 @@ int main()
 
     // add a simple arm
     auto arm_robot = std::make_shared<robot_dart::Robot>("arm.urdf");
+    // alternative : auto arm_robot = std::make_shared<robot_dart::robots::Arm>();
+
     // pin the arm to world
     arm_robot->fix_to_world();
     arm_robot->set_position_enforced(true);

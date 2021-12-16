@@ -1,9 +1,6 @@
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/iiwa.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -11,13 +8,7 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
-    std::vector<std::pair<std::string, std::string>> packages = {{"iiwa_description", "iiwa/iiwa_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("iiwa/iiwa.urdf", packages);
-
-    robot->fix_to_world();
-    robot->set_position_enforced(true);
+    auto robot = std::make_shared<robot_dart::robots::Iiwa>();
 
     Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
