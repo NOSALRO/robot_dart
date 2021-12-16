@@ -22,10 +22,14 @@ int main()
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
-
-    // Add some visualizations
-    //    robot->set_draw_axis(imu_config.body->getName());
-    //    robot->set_draw_axis("r_ankle_2");
+    auto ghost = robot->clone_ghost();
+    ghost->skeleton()->setPosition(4, -1.57);
+    ghost->skeleton()->setPosition(5, 1.1);
+    simu.add_robot(ghost);
+#if DART_VERSION_AT_MOST(6, 12, 99)
+    // fix a bug for older versions of DART
+    robot->set_color_mode("material");
+#endif
 
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
