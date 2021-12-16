@@ -26,13 +26,10 @@ int main()
     ghost->skeleton()->setPosition(4, -1.57);
     ghost->skeleton()->setPosition(5, 1.1);
     simu.add_robot(ghost);
-    // fix a bug...
+#if DART_VERSION_AT_MOST(6, 12, 99)
+    // fix a bug for older versions of DART
     robot->set_color_mode("material");
-    // robot->set_color_mode("aspect", "right_foot");
-    // robot->set_color_mode("aspect", "left_foot");
-    // Add some visualizations
-    //    robot->set_draw_axis(imu_config.body->getName());
-    //    robot->set_draw_axis("r_ankle_2");
+#endif
 
     simu.set_control_freq(100); // 100 Hz
     std::vector<std::string> dofs = {
