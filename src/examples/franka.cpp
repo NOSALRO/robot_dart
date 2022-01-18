@@ -14,7 +14,7 @@ int main()
 
     // add a PD-controller to the arm
     // set desired positions
-    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.});
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4., 0., M_PI / 2., 0., 0.});
 
     // add the controller to the robot
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);

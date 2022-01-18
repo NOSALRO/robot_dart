@@ -222,6 +222,20 @@
             <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3" />
         </inertial>
     </link>
+    <!-- Fixed Joint from link 8 to EE -->
+    <joint name="panda_ee_joint" type="fixed">
+        <parent link="panda_link8" />
+        <child link="panda_ee" />
+        <origin rpy="0 0 -0.785398163397" xyz="0 0 0.103" />
+    </joint>
+    <!-- Panda EE (official) -->
+    <link name="panda_ee">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="1e-10" />
+            <inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6" />
+        </inertial>
+    </link>
     <!-- Fixed Joint Hand from link 8 to hand -->
     <joint name="panda_hand_joint" type="fixed">
         <parent link="panda_link8" />
