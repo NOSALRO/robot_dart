@@ -5,3 +5,4 @@ build
 *.pyc
 res/nao_meshes
 .vscode
+.DS_Store
