@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(test_pd_control)
     BOOST_CHECK(!pd_control->active());
 
     // load a robot
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     // set proper parameters
