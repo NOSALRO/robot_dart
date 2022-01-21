@@ -43,19 +43,26 @@ def options(opt):
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
     opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
+    opt.add_option('--utheque-only', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
+    opt.add_option('--no-robot_dart', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
 
 
 def configure(conf):
-    robot_dart_ok = True
-    try:
-        Logs.pprint("GREEN", "=== Configuring RobotDART ===")
-        configure_robot_dart(conf)
-        Logs.pprint("GREEN", "=== RobotDART ready to build ===")
-        conf.env['BUILD_ROBOT_DART'] = True
-    except:
-        conf.env['BUILD_ROBOT_DART'] = False
+    if not conf.options.utheque_only:
+        robot_dart_ok = True
+        try:
+            Logs.pprint("GREEN", "=== Configuring RobotDART ===")
+            configure_robot_dart(conf)
+            Logs.pprint("GREEN", "=== RobotDART ready to build ===")
+            conf.env['BUILD_ROBOT_DART'] = True
+        except:
+            conf.env['BUILD_ROBOT_DART'] = False
 
-        conf.end_msg("ERROR", color="RED")
+            conf.end_msg("ERROR", color="RED")
+    else:
+            conf.env['BUILD_ROBOT_DART'] = False
+
+    if not conf.env['BUILD_ROBOT_DART']:
         Logs.pprint("RED", "=== RobotDART will NOT be compiled/installed ===")
 
     print("\n=== Summary: ===")
