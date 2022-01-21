@@ -254,13 +254,13 @@ def build(bld):
         f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
         f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
         f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
-        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/utheque/\"\n')
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
 
-    #### install the URDF library (robots)
-    bld.install_files("${PREFIX}/share/robot_dart/robots/",
-                    bld.path.ant_glob('robots/**'),
-                    cwd=bld.path.find_dir('robots/'),
+    #### install the URDF library (utheque)
+    bld.install_files("${PREFIX}/share/utheque/",
+                    bld.path.ant_glob('utheque/**'),
+                    cwd=bld.path.find_dir('utheque/'),
                     relative_trick=True)
 
     #### installation (waf install)

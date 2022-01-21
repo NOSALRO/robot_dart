@@ -1888,8 +1888,8 @@ namespace robot_dart {
             return fs::current_path().string();
 
         // search <current_directory>/robots
-        if (fs::exists(fs::path("robots") / model_file))
-            return (fs::current_path() / fs::path("robots")).string();
+        if (fs::exists(fs::path("utheque") / model_file))
+            return (fs::current_path() / fs::path("utheque")).string();
 
         // search $ROBOT_DART_PATH
         const char* env = std::getenv("ROBOT_DART_PATH");
@@ -1899,8 +1899,8 @@ namespace robot_dart {
                 return env_path.string();
         }
 
-        // search PREFIX/share/robot_dart/robots
-        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
+        // search PREFIX/share/utheque
+        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/utheque");
         if (fs::exists(system_path / model_file))
             return system_path.string();
 
