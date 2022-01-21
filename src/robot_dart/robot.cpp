@@ -1927,7 +1927,14 @@ namespace robot_dart {
             boost::filesystem::path path(model_file);
             std::string extension = path.extension().string();
             if (extension == ".urdf") {
+#if DART_VERSION_AT_LEAST(6, 12, 0)
+                dart::io::DartLoader::Options options;
+                // if links have no inertia, we put ~zero mass and very very small inertia
+                options.mDefaultInertia = dart::dynamics::Inertia(1e-10, Eigen::Vector3d::Zero(), Eigen::Matrix3d::Identity() * 1e-12);
+                dart::io::DartLoader loader(options);
+#else
                 dart::io::DartLoader loader;
+#endif
                 for (size_t i = 0; i < packages.size(); i++) {
                     std::string package = std::get<1>(packages[i]);
                     std::string package_path = _get_path(package);
