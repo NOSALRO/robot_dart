@@ -877,28 +877,4 @@
     <origin rpy="-1.5707 -1.5707 0" xyz="0.025355 0 0.056"/>
     <axis xyz="0 0 1"/>
   </joint>
-  <!-- <link name="table_base_link">
-    <visual>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 -0.02"/>
-      <geometry>
-        <mesh filename="package://ur3e_description/meshes/schunk_hand/visual/ur3e_table.stl"/>
-      </geometry>
-      <material name="Silver">
-        <color rgba="0.75 0.75 0.75 1.0"/>
-      </material>
-      &quot;
-    
-    </visual>
-    <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://ur3e_description/meshes/schunk_hand/collision/ur3e_table.stl"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="table_base_to_base" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="table_base_link"/>
-  </joint> -->
 </robot>
