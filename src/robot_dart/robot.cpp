@@ -10,6 +10,8 @@
 
 #include <robot_dart/control/robot_control.hpp>
 
+#include <utheque/utheque.hpp> // library of URDF
+
 namespace robot_dart {
     namespace detail {
         template <int content>
@@ -1876,38 +1878,7 @@ namespace robot_dart {
 
     const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& Robot::drawing_axes() const { return _axis_shapes; }
 
-    std::string Robot::_get_path(const std::string& filename) const
-    {
-        namespace fs = boost::filesystem;
-        fs::path model_file(boost::trim_copy(filename));
-        if (model_file.string()[0] == '/')
-            return "/";
-
-        // search current directory
-        if (fs::exists(model_file))
-            return fs::current_path().string();
-
-        // search <current_directory>/robots
-        if (fs::exists(fs::path("utheque") / model_file))
-            return (fs::current_path() / fs::path("utheque")).string();
-
-        // search $ROBOT_DART_PATH
-        const char* env = std::getenv("ROBOT_DART_PATH");
-        if (env != nullptr) {
-            fs::path env_path(env);
-            if (fs::exists(env_path / model_file))
-                return env_path.string();
-        }
-
-        // search PREFIX/share/utheque
-        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/utheque");
-        if (fs::exists(system_path / model_file))
-            return system_path.string();
-
-        ROBOT_DART_EXCEPTION_ASSERT(false, std::string("Could not find :") + filename);
-
-        return std::string();
-    }
+    
 
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
@@ -1916,8 +1887,7 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
             // search for the right directory for our files
-            std::string file_dir = _get_path(filename);
-            std::string model_file = file_dir + '/' + boost::trim_copy(filename);
+            std::string model_file = utheque::path(filename);
             // store the name for future use
             _model_filename = model_file;
             _packages = packages;
@@ -1937,7 +1907,7 @@ namespace robot_dart {
 #endif
                 for (size_t i = 0; i < packages.size(); i++) {
                     std::string package = std::get<1>(packages[i]);
-                    std::string package_path = _get_path(package);
+                    std::string package_path = utheque::directory(package);
                     loader.addPackageDirectory(
                         std::get<0>(packages[i]), package_path + "/" + package);
                 }
@@ -1962,7 +1932,7 @@ namespace robot_dart {
             dart::io::DartLoader loader;
             for (size_t i = 0; i < packages.size(); i++) {
                 std::string package = std::get<1>(packages[i]);
-                std::string package_path = _get_path(package);
+                std::string package_path = utheque::directory(package);
                 loader.addPackageDirectory(std::get<0>(packages[i]), package_path + "/" + package);
             }
             tmp_skel = loader.parseSkeletonString(filename, "");
