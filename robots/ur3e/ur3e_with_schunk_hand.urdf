@@ -59,60 +59,6 @@
           package. Users CANNOT rely on this file being available, or stored in
           this location. Nor can they rely on the existence of the macro.
   -->
-  <transmission name="shoulder_pan_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_pan_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_pan_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="shoulder_lift_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_lift_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_lift_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="elbow_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="elbow_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="elbow_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_1_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_1_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_2_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_2_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_3_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_3_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
   <!-- links: main serial chain -->
   <link name="base_link"/>
   <link name="base_link_inertia">
@@ -930,29 +876,5 @@
     <limit effort="1000.0" lower="0.0" upper="0.5829" velocity="1"/>
     <origin rpy="-1.5707 -1.5707 0" xyz="0.025355 0 0.056"/>
     <axis xyz="0 0 1"/>
-  </joint>
-  <link name="table_base_link">
-    <visual>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 -0.02"/>
-      <geometry>
-        <mesh filename="package://ur3e_description/meshes/schunk_hand/visual/ur3e_table.stl"/>
-      </geometry>
-      <material name="Silver">
-        <color rgba="0.75 0.75 0.75 1.0"/>
-      </material>
-      &quot;
-    
-    </visual>
-    <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://ur3e_description/meshes/schunk_hand/collision/ur3e_table.stl"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="table_base_to_base" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="table_base_link"/>
   </joint>
 </robot>

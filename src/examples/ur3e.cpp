@@ -22,13 +22,10 @@ int main()
         "wrist_2_joint",
         "wrist_3_joint"};
     Eigen::VectorXd ctrl = robot_dart::make_vector({0, -M_PI / 2.0, M_PI / 2.0, 0.0, 0.0, 0.0});
-    
     // add the controller to the robot
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl, dofs);
     robot->add_controller(controller);
     controller->set_pd(2500., 250.);
-
-    std::cout<<"PD:"<< controller->calculate(0).transpose()<<std::endl;
 
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
@@ -46,7 +43,6 @@ int main()
     simu.add_robot(robot);
 
     simu.run(30.);
-    std::cout<<robot->positions().transpose()<<std::endl;
     robot.reset();
 
     return 0;

@@ -1930,7 +1930,7 @@ namespace robot_dart {
 #if DART_VERSION_AT_LEAST(6, 12, 0)
                 dart::io::DartLoader::Options options;
                 // if links have no inertia, we put ~zero mass and very very small inertia
-                options.mDefaultInertia = dart::dynamics::Inertia(1e-10, Eigen::Vector3d::Zero(), Eigen::Matrix3d::Identity() * 1e-12);
+                options.mDefaultInertia = dart::dynamics::Inertia(1e-10, Eigen::Vector3d::Zero(), Eigen::Matrix3d::Identity() * 1e-6);
                 dart::io::DartLoader loader(options);
 #else
                 dart::io::DartLoader loader;
