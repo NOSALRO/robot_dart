@@ -1,5 +1,7 @@
 #include <utheque/utheque.hpp> // library of URDF
 
+#include <iostream>
+
 int main()
 {
     std::string model_file = utheque::path("arm.urdf");
