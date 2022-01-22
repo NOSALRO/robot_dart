@@ -12,7 +12,6 @@ set(CMAKE_MODULE_PATH "@Utheque_CMAKE_MODULE_PATH@")
 
 set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
 
-
 find_package(Boost REQUIRED filesystem)
 
 set(Utheque_LIBRARIES "Boost::filesystem")
