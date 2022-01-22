@@ -16,8 +16,10 @@ find_package(Boost REQUIRED filesystem)
 
 set(Utheque_LIBRARIES "Boost::filesystem")
 
+add_library(Utheque INTERFACE IMPORTED)
 set_target_properties(Utheque PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}")
+  INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}"
+  INTERFACE_LINK_LIBRARIES "${Utheque_LIBRARIES}")
 
 # Handle the QUIET and REQUIRED arguments
 find_package_handle_standard_args(

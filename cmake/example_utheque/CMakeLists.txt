@@ -5,6 +5,4 @@ find_package(Utheque REQUIRED)
 
 add_executable(utheque_example example.cpp)
 
-target_link_libraries(utheque_example
-Utheque
-)
+target_link_libraries(utheque_example Utheque)
