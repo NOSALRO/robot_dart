@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from gettext import install
 import sys
 import os
 import fnmatch
@@ -49,7 +48,6 @@ def options(opt):
 
 def configure(conf):
     if not conf.options.utheque_only:
-        robot_dart_ok = True
         try:
             Logs.pprint("GREEN", "=== Configuring RobotDART ===")
             configure_robot_dart(conf)
