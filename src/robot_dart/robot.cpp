@@ -1878,8 +1878,6 @@ namespace robot_dart {
 
     const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& Robot::drawing_axes() const { return _axis_shapes; }
 
-    
-
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
         ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");

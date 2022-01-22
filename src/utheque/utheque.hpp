@@ -1,18 +1,18 @@
 #ifndef UTHEQUE_HPP_
 #define UTHEQUE_HPP_
 
-#include <string>
-#include <exception>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp> // will move to std::filesystem
+#include <exception>
+#include <string>
 
 namespace utheque {
-    static constexpr char* UTHEQUE_DEFAULT_PREFIX = "/usr/local";
+    static constexpr char* UTHEQUE_DEFAULT_PREFIX = const_cast<char*>("/usr/local");
     /// return the directory  where to find the urdf (or urdf package) from the utheque (URDF library)
     /// if start by /, do nothing
-    /// otherwise, search (in this order): 
+    /// otherwise, search (in this order):
     ///    - in the current directory
-    ///    - in <current_directory>/utheque/ 
+    ///    - in <current_directory>/utheque/
     ///    - $UTHEQUE_PATH
     ///    - in <prefix>/share/utheque
     /// @arg urdf or package name (e.g. talos/talos.urdf or talos_description)
@@ -55,12 +55,13 @@ namespace utheque {
     /// @arg urdf or package name (e.g. talos/talos.urdf or talos_description)
     /// @arg prefix /usr/local/
     /// @return full path of the URDF file: (e.g. /usr/local/share/utheque/talos/talos.urdf)
-    static std::string path(const std::string& filename, const std::string& prefix = UTHEQUE_DEFAULT_PREFIX) {
+    static std::string path(const std::string& filename, const std::string& prefix = UTHEQUE_DEFAULT_PREFIX)
+    {
         namespace fs = boost::filesystem;
         auto file_dir = fs::path(directory(filename, prefix));
         auto model_file = file_dir / fs::path(boost::trim_copy(filename));
         return model_file.string();
     }
-}
+} // namespace utheque
 
 #endif

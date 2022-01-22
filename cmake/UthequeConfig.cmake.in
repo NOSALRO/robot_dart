@@ -15,7 +15,7 @@ set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
 
 find_package(Boost REQUIRED filesystem)
 
-set(Utheque_LIBRARIES "Threads::Threads;Eigen3::Eigen;Boost::filesystem")
+set(Utheque_LIBRARIES "Boost::filesystem")
 
 set_target_properties(Utheque PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}")

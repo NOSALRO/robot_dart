@@ -42,7 +42,6 @@ def options(opt):
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
     opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
-    opt.add_option('--utheque-only', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
     opt.add_option('--no-robot_dart', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
 
 
@@ -67,9 +66,9 @@ def configure(conf):
     if conf.env['BUILD_ROBOT_DART']:
         conf.msg("Build/install RobotDart", "yes")
     else:
-        conf.msg("Build/install RobotDart", "no", color="YELLOW")    
+        conf.msg("Build/install RobotDart", "no", color="YELLOW")
     conf.msg("Install Utheque (URDF library)", "yes")
-    
+
 def configure_robot_dart(conf):
     conf.get_env()['BUILD_GRAPHIC'] = False
 
@@ -203,14 +202,14 @@ def build_utheque(bld):
                     cwd=bld.path.find_dir('utheque/'),
                     relative_trick=True)
     ###### HEADER
-    bld.install_files("${PREFIX}/include/utheque/",   
+    bld.install_files("${PREFIX}/include/utheque/",
                     bld.path.ant_glob('src/utheque/**'),
                     cwd=bld.path.find_dir('src/utheque/'),
                     relative_trick=True)
     #### CMake
-    with open('cmake/UthequeConfig.cmake.in') as f:      
+    with open('cmake/UthequeConfig.cmake.in') as f:
         newText=f.read() \
-            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include") 
+            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include")
     with open(blddir + '/UthequeConfig.cmake', "w") as f:
         f.write(newText)
     with open('cmake/UthequeConfigVersion.cmake.in') as f:
@@ -221,7 +220,7 @@ def build_utheque(bld):
     bld.install_files('${PREFIX}/lib/cmake/Utheque/', blddir + '/UthequeConfig.cmake')
     bld.install_files('${PREFIX}/lib/cmake/Utheque/', blddir + '/UthequeConfigVersion.cmake')
 
-    
+
 def build_robot_dart(bld):
     prefix = bld.get_env()['PREFIX']
 
@@ -321,7 +320,6 @@ def build_robot_dart(bld):
         f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/utheque/\"\n')
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
 
-  
     #### installation (waf install)
     install_files = []
     for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/robot_dart/'):
