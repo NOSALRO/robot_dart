@@ -1905,7 +1905,7 @@ namespace robot_dart {
 #endif
                 for (size_t i = 0; i < packages.size(); i++) {
                     std::string package = std::get<1>(packages[i]);
-                    std::string package_path = utheque::directory(package);
+                    std::string package_path = utheque::directory(package, false, std::string(ROBOT_DART_PREFIX));
                     loader.addPackageDirectory(
                         std::get<0>(packages[i]), package_path + "/" + package);
                 }
