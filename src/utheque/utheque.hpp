@@ -27,7 +27,7 @@ namespace utheque {
     /// @arg prefix (default to UTHEQUE_PREFIX)
     /// @arg verbose print search paths
     /// @return the full (absolute) path where to find the URDF (e.g. /usr/local/share/utheque/)
-    static std::string directory(const std::string& filename, const std::string prefix = UTHEQUE_DEFAULT_PREFIX, bool verbose = false)
+    static std::string directory(const std::string& filename, const std::string& prefix = UTHEQUE_DEFAULT_PREFIX, bool verbose = false)
     {
         namespace fs = boost::filesystem;
         fs::path model_file(boost::trim_copy(filename));
