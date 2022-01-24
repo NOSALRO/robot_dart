@@ -1,0 +1,32 @@
+# - Config file for the utheque package
+# example:
+# find_package(Utheque REQUIRED)
+# add_executable(your_example example.cpp)
+# target_link_libraries(your_example Utheque)
+
+include(CMakeFindDependencyMacro)
+include(FindPackageHandleStandardArgs)
+
+# CMAKE_MODULE_PATH
+set(CMAKE_MODULE_PATH "@Utheque_CMAKE_MODULE_PATH@")
+
+find_package(Boost REQUIRED filesystem)
+
+set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
+
+set(Utheque_LIBRARIES "Boost::filesystem")
+
+add_library(Utheque INTERFACE IMPORTED)
+set_target_properties(Utheque PROPERTIES
+  INTERFACE_LINK_LIBRARIES "${Utheque_LIBRARIES}"
+  INTERFACE_COMPILE_DEFINITIONS @Utheque_PREFIX@
+  INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}")
+
+# Handle the QUIET and REQUIRED arguments
+find_package_handle_standard_args(
+    Utheque #Package name
+    DEFAULT_MSG
+    # Variables required to evaluate as TRUE
+    Utheque_INCLUDE_DIRS)
+
+mark_as_advanced(Utheque_INCLUDE_DIRS Utheque_FOUND)
