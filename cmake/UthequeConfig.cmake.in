@@ -10,14 +10,17 @@ include(FindPackageHandleStandardArgs)
 # CMAKE_MODULE_PATH
 set(CMAKE_MODULE_PATH "@Utheque_CMAKE_MODULE_PATH@")
 
-set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
-
-
 find_package(Boost REQUIRED filesystem)
+
+add_library(Utheque INTERFACE)
+
+set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
 
 set(Utheque_LIBRARIES "Boost::filesystem")
 
 set_target_properties(Utheque PROPERTIES
+  INTERFACE_LINK_LIBRARIES "${Utheque_LIBRARIES}"
+  INTERFACE_COMPILE_DEFINITIONS @Utheque_PREFIX@
   INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}")
 
 # Handle the QUIET and REQUIRED arguments
