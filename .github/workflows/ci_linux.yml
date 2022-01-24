@@ -80,6 +80,7 @@ jobs:
           export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
           fi
           cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
+          cd ${{github.workspace}}/cmake/example_utheque && mkdir -p build && cd build && cmake .. && make -j4
       - name: Run Python
         run: |
           if [ "$BUILD_PYTHON" = "ON" ]; then

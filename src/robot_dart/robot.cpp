@@ -1885,7 +1885,7 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
             // search for the right directory for our files
-            std::string model_file = utheque::path(filename);
+            std::string model_file = utheque::path(filename, std::string(ROBOT_DART_PREFIX));
             // store the name for future use
             _model_filename = model_file;
             _packages = packages;
