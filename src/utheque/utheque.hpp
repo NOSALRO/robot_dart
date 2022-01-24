@@ -8,9 +8,9 @@
 
 namespace utheque {
 #ifndef UTHEQUE_PREFIX
-    static constexpr char* UTHEQUE_DEFAULT_PREFIX = const_cast<char*>("/usr/local");
+    static constexpr char* DEFAULT_PREFIX = const_cast<char*>("/usr/local");
 #else
-    static constexpr char* UTHEQUE_DEFAULT_PREFIX = const_cast<char*>(UTHEQUE_PREFIX);
+    static constexpr char* DEFAULT_PREFIX = const_cast<char*>(UTHEQUE_PREFIX);
 #endif
     /// return the directory  where to find the urdf (or urdf package) from the utheque (URDF library)
     /// if start by /, do nothing
