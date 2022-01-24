@@ -212,7 +212,7 @@ def build_utheque(bld):
             .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include")\
             .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/")\
             .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"")
-    
+
     with open(blddir + '/UthequeConfig.cmake', "w") as f:
         f.write(newText)
     with open('cmake/UthequeConfigVersion.cmake.in') as f:
