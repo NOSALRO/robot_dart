@@ -4,11 +4,6 @@ cd ~/.deps
 python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
 mkdir -p ~/.dart_install/$python_dist_dir
 
-git clone git://github.com/dartsim/dart.git
-cd dart
-git checkout $DART_TAG
-mkdir build
-cd build
 # Select Compiler
 if [ "$COMPILER" = "gcc" ]; then
 export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
@@ -25,7 +20,14 @@ if [ "$COMPILER" = "clang" ]; then
     cmake .. -DCMAKE_BUILD_TYPE=Release -DPYBIND11_TEST=OFF
     make -j4
     sudo make install
+    cd ../..
 fi
+
+git clone git://github.com/dartsim/dart.git
+cd dart
+git checkout $DART_TAG
+mkdir build
+cd build
 
 # Build DART
 if [ "$BUILD_PYTHON" = "ON" ]; then
