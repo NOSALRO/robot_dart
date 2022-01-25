@@ -24,9 +24,10 @@ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREF
 fi
 make -j4
 sudo make install
-if [ "$BUILD_PYTHON" = "ON" ]; then
-    sudo make install-dartpy
-fi
+# We do not need this anymore
+# if [ "$BUILD_PYTHON" = "ON" ] && [ "$DART_TAG" = "v6.11.1"]; then
+#     sudo make install-dartpy
+# fi
 sudo ldconfig
 cd $CI_HOME
 
