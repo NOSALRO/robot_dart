@@ -23,7 +23,7 @@ jobs:
         build_python: [ON]
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
-        dart_tag: ["v6.11.1"]
+        dart_tag: ["v6.12.1"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}

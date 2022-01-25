@@ -187,7 +187,7 @@ cd build
 cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 sudo make install
-sudo make install-dartpy
+sudo make install-dartpy # for DART >= v6.12.0, we do not need this
 ```
 
 Then the compilation of robot_dart is almost identical as before:
