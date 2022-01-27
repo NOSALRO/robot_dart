@@ -39,6 +39,13 @@ namespace robot_dart {
         public:
             TalosLight(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
         };
+
+        //for talos_fast_collision.urdf or talos_box.urdf which have simple box collision shapes
+        class TalosFastCollision : public Talos {
+        public:
+            TalosFastCollision(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast_collision.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
+            std::vector<std::tuple<std::string, uint32_t, uint32_t>> collision_vec();
+        };
     } // namespace robots
 } // namespace robot_dart
 #endif
