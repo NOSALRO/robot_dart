@@ -42,11 +42,6 @@ int main()
     simu.add_floor();
     simu.add_robot(robot);
 
-    auto vec = robot->collision_vec();
-    for (auto& t : vec) {
-        std::cout << std::get<0>(t) << std::endl;
-        simu.set_collision_masks(simu.robot_index(robot), std::get<0>(t), std::get<1>(t), std::get<2>(t));
-    }
     simu.set_control_freq(100);
     std::vector<std::string> dofs = {"arm_left_1_joint",
         "arm_left_2_joint",

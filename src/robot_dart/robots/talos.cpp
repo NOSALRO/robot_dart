@@ -74,6 +74,15 @@ namespace robot_dart {
             }
         }
 
+        void TalosFastCollision::_post_addition(RobotDARTSimu* simu)
+        {
+            Talos::_post_addition(simu);
+            auto vec = collision_vec();
+            for (auto& t : vec) {
+                simu->set_collision_masks(simu->robots().size() - 1, std::get<0>(t), std::get<1>(t), std::get<2>(t));
+            }
+        }
+
         std::vector<std::tuple<std::string, uint32_t, uint32_t>> TalosFastCollision::collision_vec()
         {
             std::vector<std::tuple<std::string, uint32_t, uint32_t>> vec;

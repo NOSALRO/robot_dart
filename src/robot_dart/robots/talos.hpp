@@ -45,6 +45,9 @@ namespace robot_dart {
         public:
             TalosFastCollision(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast_collision.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
             std::vector<std::tuple<std::string, uint32_t, uint32_t>> collision_vec();
+
+        protected:
+            void _post_addition(RobotDARTSimu* simu) override;
         };
     } // namespace robots
 } // namespace robot_dart
