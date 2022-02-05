@@ -8,7 +8,8 @@ robot_dart [![Build Status](https://github.com/resibots/robot_dart/actions/workf
 ## Authors
 
 - Author/Maintainer: Konstantinos Chatzilygeroudis
-- Other contributors: Vaios Papaspyros
+- Active contributors: Jean-Baptiste Mouret
+- Other contributors: Antoine Cully, Vassilis Vassiliades, Vaios Papaspyros
 
 ### Using the code
 

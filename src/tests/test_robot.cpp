@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(robot == nullptr);
 
     // well-defined URDF
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     // well-defined skeleton
     dart::dynamics::SkeletonPtr dummy_skel = dart::dynamics::Skeleton::create("dummy");
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
 
 BOOST_AUTO_TEST_CASE(test_dof_maps)
 {
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     // check dofs
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(test_dof_maps)
 
 BOOST_AUTO_TEST_CASE(test_fix_free)
 {
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     pendulum->fix_to_world();
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(test_fix_free)
 
 BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 {
-    auto pexod = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pexod.urdf");
+    auto pexod = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pexod.urdf");
     BOOST_REQUIRE(pexod);
     // fix to world
     pexod->fix_to_world();
