@@ -28,7 +28,7 @@ int main(int argc, char** argv)
         std::cout << "[" << i << "] " << dofs[i]
                   << " -> [" << low[i] << "," << up[i] << "]" << std::endl;
 
-    Eigen::VectorXd ctrl = robot_dart::make_vector({0, -M_PI / 2.0, M_PI / 2.0, 0.0, 0.0, 0.0});
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0, -M_PI / 4.0, M_PI / 2.0,  -M_PI/4.0, M_PI/2., 0});
     // add the controller to the robot
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl, dofs);
     robot->add_controller(controller);
