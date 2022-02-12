@@ -1,5 +1,5 @@
-#include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/robots/talos.hpp"
+#include "robot_dart/robot_dart_simu.hpp"
 
 namespace robot_dart {
     namespace robots {
@@ -77,7 +77,7 @@ namespace robot_dart {
         void TalosFastCollision::_post_addition(RobotDARTSimu* simu)
         {
             Talos::_post_addition(simu);
-            auto vec = collision_vec();
+            auto vec = TalosFastCollision::collision_vec();
             for (auto& t : vec) {
                 simu->set_collision_masks(simu->robots().size() - 1, std::get<0>(t), std::get<1>(t), std::get<2>(t));
             }

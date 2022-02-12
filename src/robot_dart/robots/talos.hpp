@@ -40,11 +40,11 @@ namespace robot_dart {
             TalosLight(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
         };
 
-        //for talos_fast_collision.urdf or talos_box.urdf which have simple box collision shapes
+        // for talos_fast_collision.urdf or talos_box.urdf which have simple box collision shapes
         class TalosFastCollision : public Talos {
         public:
-            TalosFastCollision(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast_collision.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) {}
-            std::vector<std::tuple<std::string, uint32_t, uint32_t>> collision_vec();
+            TalosFastCollision(size_t frequency = 1000, const std::string& urdf = "talos/talos_fast_collision.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}}) : Talos(frequency, urdf, packages) { set_self_collision(); }
+            static std::vector<std::tuple<std::string, uint32_t, uint32_t>> collision_vec();
 
         protected:
             void _post_addition(RobotDARTSimu* simu) override;
