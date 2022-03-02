@@ -4,10 +4,7 @@
 # add_executable(robot_dart_example example.cpp)
 # target_link_libraries(robot_dart_example RobotDART::Simu)
 
-if(__ROBOT_DART_CMAKE_FILE__)
-  return()
-endif()
-set(__ROBOT_DART_CMAKE_FILE__ TRUE)
+include_guard(DIRECTORY)
 
 
 include(CMakeFindDependencyMacro)

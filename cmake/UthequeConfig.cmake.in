@@ -4,11 +4,7 @@
 # add_executable(your_example example.cpp)
 # target_link_libraries(your_example Utheque)
 
-if(__UTHEQUE_CMAKE_FILE__)
-  return()
-endif()
-set(__UTHEQUE_CMAKE_FILE__ TRUE)
-
+include_guard(DIRECTORY)
 
 include(CMakeFindDependencyMacro)
 include(FindPackageHandleStandardArgs)
