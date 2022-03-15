@@ -13,6 +13,11 @@ namespace robot_dart {
 
             const sensor::ForceTorque& ft_wrist() const { return *_ft_wrist; }
 
+            std::vector<std::string> caster_joints() const { return {"caster_back_left_2_joint", "caster_back_left_1_joint", "caster_back_right_2_joint", "caster_back_right_1_joint", "caster_front_left_2_joint", "caster_front_left_1_joint", "caster_front_right_2_joint", "caster_front_right_1_joint"}; }
+
+            void set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names = {}, bool override_mimic = false, bool override_base = false, bool override_caster = false);
+            void set_actuator_type(const std::string& type, const std::string& joint_name, bool override_mimic = false, bool override_base = false, bool override_caster = false);
+
         protected:
             std::shared_ptr<sensor::ForceTorque> _ft_wrist;
             void _post_addition(RobotDARTSimu* simu) override;

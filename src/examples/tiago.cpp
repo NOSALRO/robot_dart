@@ -7,9 +7,10 @@
 
 int main()
 {
-    double dt = 0.01;
+    double dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
-    simu.set_collision_detector("fcl");
+    // this is important for wheel collision; with FCL it does not work well
+    simu.set_collision_detector("bullet");
 
     size_t freq = 1. / dt;
     auto robot = std::make_shared<robot_dart::robots::Tiago>(freq);
@@ -29,14 +30,15 @@ int main()
     simu.add_robot(robot);
 
     simu.set_control_freq(100);
-    std::vector<std::string> dofs = {"arm_1_joint",
+    std::vector<std::string> wheel_dofs = {"wheel_right_joint", "wheel_left_joint"};
+    std::vector<std::string> arm_dofs = {"arm_1_joint",
         "arm_2_joint",
         "arm_3_joint",
         "arm_4_joint",
         "arm_5_joint",
         "torso_lift_joint"};
 
-    Eigen::VectorXd init_positions = robot->positions(dofs);
+    Eigen::VectorXd init_positions = robot->positions(arm_dofs);
 
     auto start = std::chrono::steady_clock::now();
     while (simu.scheduler().next_time() < 20. && !simu.graphics()->done()) {
@@ -48,8 +50,11 @@ int main()
                 sin(simu.scheduler().current_time() * 2.),
                 sin(simu.scheduler().current_time() * 2.),
                 sin(simu.scheduler().current_time() * 2.);
-            Eigen::VectorXd commands = (init_positions + delta_pos) - robot->positions(dofs);
-            robot->set_commands(commands, dofs);
+            Eigen::VectorXd commands = (init_positions + delta_pos) - robot->positions(arm_dofs);
+            robot->set_commands(commands, arm_dofs);
+            Eigen::VectorXd cmd(wheel_dofs.size());
+            cmd << 0., 5.;
+            robot->set_commands(cmd, wheel_dofs);
         }
 
         simu.step_world();

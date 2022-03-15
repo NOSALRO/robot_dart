@@ -535,7 +535,20 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "tiago/tiago_steel.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
-                .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference);
+                .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
+                .def("caster_joints", &Tiago::caster_joints)
+                .def("set_actuator_types", &Tiago::set_actuator_types,
+                    py::arg("type"),
+                    py::arg("joint_names") = std::vector<std::string>(),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false)
+                .def("set_actuator_type", &Tiago::set_actuator_type,
+                    py::arg("type"),
+                    py::arg("joint_name"),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false);
 
             py::class_<ICub, Robot, std::shared_ptr<ICub>>(m, "ICub")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
