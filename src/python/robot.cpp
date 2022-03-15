@@ -574,7 +574,7 @@ namespace robot_dart {
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}))
                 .def("ft_wrist", &Ur3e::ft_wrist, py::return_value_policy::reference);
 
-            py::class_<Ur3eHand, Ur3e, std::shared_ptr<Ur3eHand>>(m, "Ur3e")
+            py::class_<Ur3eHand, Ur3e, std::shared_ptr<Ur3eHand>>(m, "Ur3eHand")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "ur3e/ur3e_with_schunk_hand.urdf",
