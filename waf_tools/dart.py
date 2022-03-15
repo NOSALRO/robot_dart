@@ -158,8 +158,10 @@ def check_dart(conf, *k, **kw):
         if dart_major > 6:
             dart_load_prefix = 'io'
         dart_cxx_flags = ''
-        if dart_major > 6 or (dart_major == 6 and dart_minor >= 9):
+        if dart_major == 6 and dart_minor >= 9:
             dart_cxx_flags = '-std=c++14'
+        if dart_major > 6 or (dart_major == 6 and dart_minor >= 13):
+            dart_cxx_flags = '-std=c++17'
 
         dart_include = []
         dart_include.append(get_directory('dart/dart.hpp', includes_check))
