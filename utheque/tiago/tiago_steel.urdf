@@ -311,12 +311,12 @@
     <dynamics damping="100"/>
     <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>
   </joint>
-  <joint name="wheel_right_joint" type="revolute">
+  <joint name="wheel_right_joint" type="continuous">
     <parent link="suspension_right_link"/>
     <child link="wheel_right_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 -0.2022 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="6.0" velocity="10.152284264" lower="-1.7976931348623157e+308" upper="1.7976931348623157e+308"/>
+    <limit effort="6.0" velocity="10.152284264"/>
   </joint>
   <transmission name="wheel_right_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -368,12 +368,12 @@
     <dynamics damping="100"/>
     <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>
   </joint>
-  <joint name="wheel_left_joint" type="revolute">
+  <joint name="wheel_left_joint" type="continuous">
     <parent link="suspension_left_link"/>
     <child link="wheel_left_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 0.2022 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="6.0" velocity="10.152284264" lower="-1.7976931348623157e+308" upper="1.7976931348623157e+308"/>
+    <limit effort="6.0" velocity="10.152284264"/>
   </joint>
   <transmission name="wheel_left_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -425,14 +425,14 @@
       </geometry>
     </collision>
   </link>
-  <joint name="caster_front_right_1_joint" type="fixed">
+  <joint name="caster_front_right_1_joint" type="continuous">
     <parent link="base_link"/>
     <child link="caster_front_right_1_link"/>
     <origin rpy="0 0 0" xyz="0.1695 -0.102 -0.0335"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_front_right_2_joint" type="fixed">
+  <joint name="caster_front_right_2_joint" type="continuous">
     <parent link="caster_front_right_1_link"/>
     <child link="caster_front_right_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -478,14 +478,14 @@
       </geometry>
     </collision>
   </link>
-  <joint name="caster_front_left_1_joint" type="fixed">
+  <joint name="caster_front_left_1_joint" type="continuous">
     <parent link="base_link"/>
     <child link="caster_front_left_1_link"/>
     <origin rpy="0 0 0" xyz="0.1695 0.102 -0.0335"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_front_left_2_joint" type="fixed">
+  <joint name="caster_front_left_2_joint" type="continuous">
     <parent link="caster_front_left_1_link"/>
     <child link="caster_front_left_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -531,14 +531,14 @@
       </geometry>
     </collision>
   </link>
-  <joint name="caster_back_right_1_joint" type="fixed">
+  <joint name="caster_back_right_1_joint" type="continuous">
     <parent link="base_link"/>
     <child link="caster_back_right_1_link"/>
     <origin rpy="0 0 0" xyz="-0.1735 -0.102 -0.0335"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_back_right_2_joint" type="fixed">
+  <joint name="caster_back_right_2_joint" type="continuous">
     <parent link="caster_back_right_1_link"/>
     <child link="caster_back_right_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
@@ -584,14 +584,14 @@
       </geometry>
     </collision>
   </link>
-  <joint name="caster_back_left_1_joint" type="fixed">
+  <joint name="caster_back_left_1_joint" type="continuous">
     <parent link="base_link"/>
     <child link="caster_back_left_1_link"/>
     <origin rpy="0 0 0" xyz="-0.1735 0.102 -0.0335"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.005" friction="0.0"/>
   </joint>
-  <joint name="caster_back_left_2_joint" type="fixed">
+  <joint name="caster_back_left_2_joint" type="continuous">
     <parent link="caster_back_left_1_link"/>
     <child link="caster_back_left_2_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>
