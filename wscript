@@ -402,7 +402,7 @@ def build_examples(bld):
     print("Bulding examples...")
     libs = 'BOOST EIGEN DART PTHREAD'
     path = bld.path.abspath() + '/res'
-    bld.env.LIB_PTHREAD = ['pthread', 'tbb']
+    bld.env.LIB_PTHREAD = ['pthread']
 
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']
@@ -417,9 +417,6 @@ def build_examples(bld):
             ffile = os.path.join(root, filename)
             basename = filename.replace('.cpp', '')
             # plain version
-            cxxflags = ''
-            if basename == 'mpc':
-                cxxflags = '-ltbb'
             if (filename not in exclude) and (filename not in magnum_only):
                 bld.program(features = 'cxx',
                     install_path = None,

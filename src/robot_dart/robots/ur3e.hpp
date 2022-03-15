@@ -17,6 +17,11 @@ namespace robot_dart {
             void _post_addition(RobotDARTSimu* simu) override;
             void _post_removal(RobotDARTSimu* simu) override;
         };
+
+        class Ur3eHand : public Ur3e {
+        public:
+            Ur3eHand(size_t frequency = 1000, const std::string& urdf = "ur3e/ur3e_with_schunk_hand.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"ur3e_description", "ur3e/ur3e_description"}}) : Ur3e(frequency, urdf, packages) {}
+        };
     } // namespace robots
 } // namespace robot_dart
 #endif

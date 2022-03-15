@@ -15,6 +15,7 @@
 #include <robot_dart/robots/pendulum.hpp>
 #include <robot_dart/robots/talos.hpp>
 #include <robot_dart/robots/tiago.hpp>
+#include <robot_dart/robots/ur3e.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -565,6 +566,19 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "talos/talos_fast.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}));
+
+            py::class_<Ur3e, Robot, std::shared_ptr<Ur3e>>(m, "Ur3e")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}))
+                .def("ft_wrist", &Ur3e::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Ur3eHand, Ur3e, std::shared_ptr<Ur3eHand>>(m, "Ur3e")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e_with_schunk_hand.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}));
         }
     } // namespace python
 } // namespace robot_dart
