@@ -45,7 +45,7 @@ def check_eigen(conf, *k, **kw):
     def get_directory(filename, dirs):
         res = conf.find_file(filename, dirs)
         return res[:-len(filename)-1]
-    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include']
+    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include', '/opt/homebrew/include', '/opt/homebrew/include/eigen3']
 
     required = kw.get('required', False)
     min_version = kw.get('min_version', (3,3,3))
@@ -68,7 +68,7 @@ def check_eigen(conf, *k, **kw):
 
             if world_version == 3 and major_version >= 3:
                 # Check for lapacke and blas
-                extra_libs = ['/usr/lib', '/usr/local/lib', '/usr/local/opt/openblas/lib']
+                extra_libs = ['/usr/lib', '/usr/local/lib', '/usr/local/opt/openblas/lib', '/opt/homebrew/lib']
                 blas_libs = ['blas', 'openblas']
                 blas_lib = ''
                 blas_path = ''

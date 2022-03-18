@@ -102,9 +102,9 @@ def check_magnum_plugins(conf, *k, **kw):
         Logs.pprint('RED', msg)
         return
 
-    includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
-    libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
-    bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
+    includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64', '/opt/homebrew/lib']
+    bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin', '/opt/homebrew/bin']
 
     # Magnum depends on several libraries and we cannot make the assumption that
     # someone installed all of them in the same directory!

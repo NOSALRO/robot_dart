@@ -18,7 +18,7 @@ def check_pybind11(conf, *k, **kw):
     required = kw.get('required', False)
 
     conf.start_msg('Checking for pybind11')
-    includes_check = ['/usr/include/', '/usr/local/include/']
+    includes_check = ['/usr/include/', '/usr/local/include/', '/opt/homebrew/include']
 
     if conf.options.pybind11:
         includes_check = [conf.options.pybind11]
