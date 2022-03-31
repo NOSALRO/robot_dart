@@ -51,7 +51,7 @@ namespace robot_dart {
 #define ROBOT_DART_ASSERT(condition, message, returnValue)                        \
     do {                                                                          \
         if (!(condition)) {                                                       \
-            std::cerr << "robot_dart assertion failed: " << message << std::endl; \
+            std::cerr << __LINE__ << " " << __FILE__<< " -> robot_dart assertion failed: " << message << std::endl; \
             return returnValue;                                                   \
         }                                                                         \
     } while (false)
