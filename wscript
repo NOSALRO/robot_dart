@@ -43,6 +43,7 @@ def options(opt):
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
     opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
     opt.add_option('--no-robot_dart', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
+    opt.add_option('--no-pic', action='store_true', help='do not compile with position independent code', dest='no_pic')
 
 
 def configure(conf):
@@ -113,7 +114,8 @@ def configure_robot_dart(conf):
         conf.check_python_module('dartpy')
         conf.check_pybind11(required=True)
         conf.env['BUILD_PYTHON'] = True
-        conf.env['py_flags'] = ' -fPIC' # we need -fPIC
+        if not conf.options.build_shared:
+            conf.env['py_flags'] = ' -fPIC' # we need -fPIC for python if building static
 
     # We require Magnum DartIntegration, EigenIntegration, AssimpImporter, and StbTrueTypeFont
     if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0 and len(conf.env.INCLUDES_MagnumPlugins_AssimpImporter) > 0 and len(conf.env.INCLUDES_MagnumPlugins_StbTrueTypeFont) > 0:
@@ -152,6 +154,9 @@ def configure_robot_dart(conf):
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
+    if (not conf.options.build_shared) and (not conf.options.no_pic):
+        common_flags += ' -fPIC'
+
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
 
@@ -171,6 +176,9 @@ def configure_robot_dart(conf):
 
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
+
+    # keep only one time each flag
+    conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS']))
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):

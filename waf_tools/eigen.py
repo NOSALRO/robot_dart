@@ -45,7 +45,7 @@ def check_eigen(conf, *k, **kw):
     def get_directory(filename, dirs):
         res = conf.find_file(filename, dirs)
         return res[:-len(filename)-1]
-    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/usr/include', '/usr/local/include', '/opt/homebrew/include', '/opt/homebrew/include/eigen3']
+    includes_check = ['/usr/include/eigen3', '/usr/local/include/eigen3', '/opt/local/include/eigen3', '/sw/include/eigen3', '/opt/homebrew/include/eigen3', '/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
 
     required = kw.get('required', False)
     min_version = kw.get('min_version', (3,3,3))
