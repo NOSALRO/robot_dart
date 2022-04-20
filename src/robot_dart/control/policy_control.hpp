@@ -21,6 +21,8 @@ namespace robot_dart {
                 _policy.set_params(_ctrl);
                 if (_policy.output_size() == _control_dof)
                     _active = true;
+                else
+                    ROBOT_DART_WARNING(_policy.output_size() != _control_dof, "Control DoF != Policy output size. Policy is not active.");
                 auto robot = _robot.lock();
                 if (_full_dt)
                     _dt = robot->skeleton()->getTimeStep();
