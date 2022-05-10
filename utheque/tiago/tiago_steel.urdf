@@ -1272,9 +1272,9 @@
     <origin rpy="0.0 0.0 0.0" xyz="-0.034 0.00000 0.00000"/>
     <axis xyz="1 0 0"/>
     <limit effort="50" lower="0.002" upper="0.034" velocity="0.4"/>
-    <calibration rising="0.0"/>
+    <!-- <calibration rising="0.0"/>
     <dynamics damping="80"/>
-    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="0.002" soft_upper_limit="0.034"/>
+    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="0.002" soft_upper_limit="0.034"/> -->
   </joint>
   <link name="gripper_right_finger_link">
     <inertial>
@@ -1298,12 +1298,12 @@
       </geometry>
     </collision>
   </link>
-  <joint name="gripper_right_finger_joint" type="fixed">
+  <joint name="gripper_right_finger_joint" type="prismatic">
     <parent link="gripper_link"/>
     <child link="gripper_right_finger_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.034 0.00000 0.00000"/>
     <axis xyz="-1 0 0"/>
-    <limit effort="16" lower="0.002" upper="0.034" velocity="0.4"/>
+    <limit effort="50" lower="0.002" upper="0.034" velocity="0.4"/>
     <mimic joint="gripper_finger_joint" multiplier="1.0" offset="0.0"/>
   </joint>
   <!-- Grasping frame -->
