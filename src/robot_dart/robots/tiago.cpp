@@ -8,7 +8,7 @@ namespace robot_dart {
               _ft_wrist(std::make_shared<sensor::ForceTorque>(joint("gripper_tool_joint"), frequency))
         {
             skeleton()->setPosition(2, M_PI / 2.);
-            skeleton()->setPosition(5, 0.01);
+            skeleton()->setPosition(5, 0.);
             set_position_enforced(true);
             // We use servo actuators, but not for the caster joints
             set_actuator_types("servo");
