@@ -59,7 +59,7 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void reset();
+        virtual void reset();
 
         void clear_external_forces();
         void clear_internal_forces();

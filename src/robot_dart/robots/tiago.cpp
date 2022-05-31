@@ -14,6 +14,13 @@ namespace robot_dart {
             set_actuator_types("servo");
         }
 
+        void Tiago::reset()
+        {
+            Robot::reset();
+            skeleton()->setPosition(2, M_PI / 2.);
+            skeleton()->setPosition(5, 0.);
+        }
+
         void Tiago::set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base, bool override_caster)
         {
             auto jt = joint_names;

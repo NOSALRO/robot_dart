@@ -535,6 +535,7 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "tiago/tiago_steel.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
+                .def("reset", &Tiago::reset)
                 .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
                 .def("caster_joints", &Tiago::caster_joints)
                 .def("set_actuator_types", &Tiago::set_actuator_types,
