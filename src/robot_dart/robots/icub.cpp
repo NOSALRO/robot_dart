@@ -12,15 +12,17 @@ namespace robot_dart {
             set_color_mode("material");
 
             set_position_enforced(true);
-            skeleton()->setPosition(5, 0.46);
-            skeleton()->setPosition(2, 1.57);
+
+            // position iCub
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.46}));
         }
 
         void ICub::reset()
         {
             Robot::reset();
-            skeleton()->setPosition(5, 0.46);
-            skeleton()->setPosition(2, 1.57);
+
+            // position iCub
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.46}));
         }
 
         void ICub::_post_addition(RobotDARTSimu* simu)
