@@ -13,6 +13,8 @@ namespace robot_dart {
         public:
             Talos(size_t frequency = 1000, const std::string& urdf = "talos/talos.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"talos_description", "talos/talos_description"}});
 
+            void reset() override;
+
             const sensor::IMU& imu() const { return *_imu; }
             const sensor::ForceTorque& ft_foot_left() const { return *_ft_foot_left; }
             const sensor::ForceTorque& ft_foot_right() const { return *_ft_foot_right; }

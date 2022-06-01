@@ -18,5 +18,18 @@ namespace robot_dart {
             names = std::vector<std::string>(names.begin() + 6, names.end());
             set_positions(robot_dart::make_vector({0.0, 0.67, -1.3, -0.0, 0.67, -1.3, 0.0, 0.67, -1.3, -0.0, 0.67, -1.3}), names);
         }
+
+        void A1::reset()
+        {
+            Robot::reset();
+
+            // put above ground
+            set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.5}));
+
+            // standing pose
+            auto names = dof_names(true, true, true);
+            names = std::vector<std::string>(names.begin() + 6, names.end());
+            set_positions(robot_dart::make_vector({0.0, 0.67, -1.3, -0.0, 0.67, -1.3, 0.0, 0.67, -1.3, -0.0, 0.67, -1.3}), names);
+        }
     } // namespace robots
 } // namespace robot_dart

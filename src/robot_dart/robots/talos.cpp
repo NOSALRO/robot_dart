@@ -22,6 +22,17 @@ namespace robot_dart {
             skeleton()->setPosition(2, 1.57);
         }
 
+        void Talos::reset()
+        {
+            Robot::reset();
+
+            // set a position abobe the floor
+            skeleton()->setPosition(5, 1.1);
+
+            // rotate the robot
+            skeleton()->setPosition(2, 1.57);
+        }
+
         void Talos::_post_addition(RobotDARTSimu* simu)
         {
             // We do not want to add sensors if we are a ghost robot

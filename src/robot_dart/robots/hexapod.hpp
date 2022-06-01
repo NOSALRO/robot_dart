@@ -13,6 +13,12 @@ namespace robot_dart {
                 skeleton()->enableSelfCollisionCheck();
                 set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.2}));
             }
+
+            void reset() override
+            {
+                Robot::reset();
+                set_base_pose(robot_dart::make_vector({0., 0., 0., 0., 0., 0.2}));
+            }
         };
     } // namespace robots
 } // namespace robot_dart

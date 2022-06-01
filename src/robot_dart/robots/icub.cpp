@@ -16,6 +16,13 @@ namespace robot_dart {
             skeleton()->setPosition(2, 1.57);
         }
 
+        void ICub::reset()
+        {
+            Robot::reset();
+            skeleton()->setPosition(5, 0.46);
+            skeleton()->setPosition(2, 1.57);
+        }
+
         void ICub::_post_addition(RobotDARTSimu* simu)
         {
             // We do not want to add sensors if we are a ghost robot
