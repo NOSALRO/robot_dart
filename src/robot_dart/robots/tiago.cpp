@@ -7,18 +7,20 @@ namespace robot_dart {
             : Robot(urdf, packages),
               _ft_wrist(std::make_shared<sensor::ForceTorque>(joint("gripper_tool_joint"), frequency))
         {
-            skeleton()->setPosition(2, M_PI / 2.);
-            skeleton()->setPosition(5, 0.);
             set_position_enforced(true);
             // We use servo actuators, but not for the caster joints
             set_actuator_types("servo");
+
+            // position Tiago
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.}));
         }
 
         void Tiago::reset()
         {
             Robot::reset();
-            skeleton()->setPosition(2, M_PI / 2.);
-            skeleton()->setPosition(5, 0.);
+
+            // position Tiago
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 0.}));
         }
 
         void Tiago::set_actuator_types(const std::string& type, const std::vector<std::string>& joint_names, bool override_mimic, bool override_base, bool override_caster)

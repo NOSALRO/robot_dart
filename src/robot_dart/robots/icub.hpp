@@ -11,6 +11,8 @@ namespace robot_dart {
         public:
             ICub(size_t frequency = 1000, const std::string& urdf = "icub/icub.urdf", const std::vector<std::pair<std::string, std::string>>& packages = {{"icub_description", "icub/icub_description"}});
 
+            void reset() override;
+
             const sensor::IMU& imu() const { return *_imu; }
             const sensor::ForceTorque& ft_foot_left() const { return *_ft_foot_left; }
             const sensor::ForceTorque& ft_foot_right() const { return *_ft_foot_right; }

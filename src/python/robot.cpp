@@ -523,6 +523,10 @@ namespace robot_dart {
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"franka_description", "franka/franka_description"}}))
                 .def("ft_wrist", &Franka::ft_wrist, py::return_value_policy::reference);
 
+            py::class_<Hexapod, Robot, std::shared_ptr<Hexapod>>(m, "Hexapod")
+                .def(py::init<const std::string&>(),
+                    py::arg("urdf") = "pexod.urdf");
+
             py::class_<Iiwa, Robot, std::shared_ptr<Iiwa>>(m, "Iiwa")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
                     py::arg("frequency") = 1000,
@@ -535,7 +539,6 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "tiago/tiago_steel.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
-                .def("reset", &Tiago::reset)
                 .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
                 .def("caster_joints", &Tiago::caster_joints)
                 .def("set_actuator_types", &Tiago::set_actuator_types,

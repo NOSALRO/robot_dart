@@ -15,11 +15,16 @@ namespace robot_dart {
             // use position/torque limits
             set_position_enforced(true);
 
-            // set a position abobe the floor
-            skeleton()->setPosition(5, 1.1);
+            // position Talos
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 1.1}));
+        }
 
-            // rotate the robot
-            skeleton()->setPosition(2, 1.57);
+        void Talos::reset()
+        {
+            Robot::reset();
+
+            // position Talos
+            set_base_pose(robot_dart::make_vector({0., 0., M_PI / 2., 0., 0., 1.1}));
         }
 
         void Talos::_post_addition(RobotDARTSimu* simu)
