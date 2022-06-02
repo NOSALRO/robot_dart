@@ -6,10 +6,10 @@ namespace robot_dart {
         Talos::Talos(size_t frequency, const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
             : Robot(urdf, packages),
               _imu(std::make_shared<sensor::IMU>(sensor::IMUConfig(body_node("imu_link"), frequency))),
-              _ft_foot_left(std::make_shared<sensor::ForceTorque>(joint("leg_left_6_joint"), frequency)),
-              _ft_foot_right(std::make_shared<sensor::ForceTorque>(joint("leg_right_6_joint"), frequency)),
-              _ft_wrist_left(std::make_shared<sensor::ForceTorque>(joint("wrist_left_ft_joint"), frequency)),
-              _ft_wrist_right(std::make_shared<sensor::ForceTorque>(joint("wrist_right_ft_joint"), frequency)),
+              _ft_foot_left(std::make_shared<sensor::ForceTorque>(joint("leg_left_6_joint"), frequency, "parent_to_child")),
+              _ft_foot_right(std::make_shared<sensor::ForceTorque>(joint("leg_right_6_joint"), frequency, "parent_to_child")),
+              _ft_wrist_left(std::make_shared<sensor::ForceTorque>(joint("wrist_left_ft_joint"), frequency, "parent_to_child")),
+              _ft_wrist_right(std::make_shared<sensor::ForceTorque>(joint("wrist_right_ft_joint"), frequency, "parent_to_child")),
               _frequency(frequency)
         {
             // use position/torque limits
