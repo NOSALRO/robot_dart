@@ -510,8 +510,7 @@ namespace robot_dart {
             py::class_<A1, Robot, std::shared_ptr<A1>>(m, "A1")
                 .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
                     py::arg("urdf") = "unitree_a1/a1.urdf",
-                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}))
-                .def("reset", &A1::reset);
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}));
 
             py::class_<Arm, Robot, std::shared_ptr<Arm>>(m, "Arm")
                 .def(py::init<const std::string&>(),
@@ -526,8 +525,7 @@ namespace robot_dart {
 
             py::class_<Hexapod, Robot, std::shared_ptr<Hexapod>>(m, "Hexapod")
                 .def(py::init<const std::string&>(),
-                    py::arg("urdf") = "pexod.urdf")
-                .def("reset", &Hexapod::reset);
+                    py::arg("urdf") = "pexod.urdf");
 
             py::class_<Iiwa, Robot, std::shared_ptr<Iiwa>>(m, "Iiwa")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
@@ -541,7 +539,6 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "tiago/tiago_steel.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
-                .def("reset", &Tiago::reset)
                 .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
                 .def("caster_joints", &Tiago::caster_joints)
                 .def("set_actuator_types", &Tiago::set_actuator_types,
@@ -563,7 +560,6 @@ namespace robot_dart {
                     py::arg("urdf") = "icub/icub.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"icub_description", "icub/icub_description"}}))
 
-                .def("reset", &ICub::reset)
                 .def("imu", &ICub::imu, py::return_value_policy::reference)
                 .def("ft_foot_left", &ICub::ft_foot_left, py::return_value_policy::reference)
                 .def("ft_foot_right", &ICub::ft_foot_right, py::return_value_policy::reference);
@@ -574,7 +570,6 @@ namespace robot_dart {
                     py::arg("urdf") = "talos/talos.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}))
 
-                .def("reset", &Talos::reset)
                 .def("imu", &Talos::imu, py::return_value_policy::reference)
                 .def("ft_foot_left", &Talos::ft_foot_left, py::return_value_policy::reference)
                 .def("ft_foot_right", &Talos::ft_foot_right, py::return_value_policy::reference)
