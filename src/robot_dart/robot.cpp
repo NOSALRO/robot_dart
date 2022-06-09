@@ -723,6 +723,31 @@ namespace robot_dart {
         return pos;
     }
 
+    void Robot::force_position_bounds()
+    {
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            auto dof = _skeleton->getDof(i);
+            auto jt = dof->getJoint();
+#if DART_VERSION_AT_LEAST(6, 10, 0)
+            bool force = jt->areLimitsEnforced();
+#else
+            bool force = jt->isPositionLimitEnforced());
+#endif
+            auto type = jt->getActuatorType();
+            force = force || type == dart::dynamics::Joint::SERVO || type == dart::dynamics::Joint::MIMIC;
+
+            if (force) {
+                double epsilon = 1e-5;
+                if (dof->getPosition() > dof->getPositionUpperLimit()) {
+                    dof->setPosition(dof->getPositionUpperLimit() - epsilon);
+                }
+                else if (dof->getPosition() < dof->getPositionLowerLimit()) {
+                    dof->setPosition(dof->getPositionLowerLimit() + epsilon);
+                }
+            }
+        }
+    }
+
     void Robot::set_damping_coeffs(const std::vector<double>& damps, const std::vector<std::string>& dof_names)
     {
         size_t n_dofs = dof_names.size();

@@ -114,22 +114,26 @@ namespace robot_dart {
         _sensors.clear();
     }
 
-    void RobotDARTSimu::run(double max_duration, bool reset_commands)
+    void RobotDARTSimu::run(double max_duration, bool reset_commands, bool force_position_bounds)
     {
         _break = false;
         double old_time = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_time - max_duration) < -factor) {
-            if (step(reset_commands))
+            if (step(reset_commands, force_position_bounds))
                 break;
         }
     }
 
-    bool RobotDARTSimu::step_world(bool reset_commands)
+    bool RobotDARTSimu::step_world(bool reset_commands, bool force_position_bounds)
     {
-        if (_scheduler(_physics_freq))
+        if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
+            if (force_position_bounds)
+                for (auto& r : _robots)
+                    r->force_position_bounds();
+        }
 
         // Update graphics
         if (_scheduler(_graphics_freq)) {
@@ -167,7 +171,7 @@ namespace robot_dart {
         return _break || _graphics->done();
     }
 
-    bool RobotDARTSimu::step(bool reset_commands)
+    bool RobotDARTSimu::step(bool reset_commands, bool force_position_bounds)
     {
         if (_scheduler(_control_freq)) {
             for (auto& robot : _robots) {
@@ -175,7 +179,7 @@ namespace robot_dart {
             }
         }
 
-        return step_world(reset_commands);
+        return step_world(reset_commands, force_position_bounds);
     }
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const

@@ -151,6 +151,8 @@ namespace robot_dart {
                     py::arg("enforced"),
                     py::arg("dof_names") = std::vector<std::string>())
 
+                .def("force_position_bounds", &Robot::force_position_bounds)
+
                 .def("position_enforced", &Robot::position_enforced,
                     py::arg("dof_names") = std::vector<std::string>())
 
