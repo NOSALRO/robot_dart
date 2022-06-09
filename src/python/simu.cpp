@@ -36,11 +36,14 @@ namespace robot_dart {
 
                 .def("run", &RobotDARTSimu::run,
                     py::arg("max_duration") = 5.,
-                    py::arg("reset_commands") = false)
+                    py::arg("reset_commands") = false,
+                    py::arg("force_position_bounds") = true)
                 .def("step_world", &RobotDARTSimu::step_world,
-                    py::arg("reset_commands") = false)
+                    py::arg("reset_commands") = false,
+                    py::arg("force_position_bounds") = true)
                 .def("step", &RobotDARTSimu::step,
-                    py::arg("reset_commands") = false)
+                    py::arg("reset_commands") = false,
+                    py::arg("force_position_bounds") = true)
 
                 .def("scheduler", static_cast<Scheduler& (RobotDARTSimu::*)(void)>(&RobotDARTSimu::scheduler), py::return_value_policy::reference)
                 .def("schedule", &RobotDARTSimu::schedule)
