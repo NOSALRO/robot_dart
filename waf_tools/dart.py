@@ -67,7 +67,7 @@ def check_dart(conf, *k, **kw):
         try:
             ode_lib = [get_directory('libode.' + suffix, ode_libs)]
         except:
-            ode_lib = [get_directory('libode.a' , ode_libs)] 
+            ode_lib = [get_directory('libode.a' , ode_libs)]
         ode_found = True
     except:
         ode_found = False
@@ -184,7 +184,7 @@ def check_dart(conf, *k, **kw):
         if len(dart_cxx_flags) > 0:
             conf.env.CXXFLAGS_DART = [dart_cxx_flags]
         conf.end_msg(conf.env.LIB_DART)
-      
+
 
         if dart_have_bullet:
             conf.start_msg('DART: Checking for Bullet Collision libs')
