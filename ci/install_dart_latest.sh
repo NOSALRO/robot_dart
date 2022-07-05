@@ -23,7 +23,7 @@ if [ "$COMPILER" = "clang" ]; then
     cd ../..
 fi
 
-git clone git://github.com/dartsim/dart.git
+git clone https://github.com/dartsim/dart.git
 cd dart
 git checkout $DART_TAG
 mkdir build
