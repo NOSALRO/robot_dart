@@ -1,4 +1,5 @@
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/talos.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
@@ -6,14 +7,8 @@
 
 int main()
 {
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
+    auto robot = std::make_shared<robot_dart::robots::Talos>();
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
-    auto positions = robot->positions();
-    positions[2] = M_PI / 2.;
-    positions[5] = 1.1;
-    robot->set_positions(positions);
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
@@ -35,6 +30,7 @@ int main()
     graphics->record_video("talos_dancing.mp4");
     // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS_END@
 #endif
+
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
 

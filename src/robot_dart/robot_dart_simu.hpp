@@ -31,9 +31,9 @@ namespace robot_dart {
 
         ~RobotDARTSimu();
 
-        void run(double max_duration = 5.0, bool reset_commands = false);
-        bool step_world(bool reset_commands = false);
-        bool step(bool reset_commands = false);
+        void run(double max_duration = 5.0, bool reset_commands = false, bool force_position_bounds = true);
+        bool step_world(bool reset_commands = false, bool force_position_bounds = true);
+        bool step(bool reset_commands = false, bool force_position_bounds = true);
 
         Scheduler& scheduler() { return _scheduler; }
         const Scheduler& scheduler() const { return _scheduler; }

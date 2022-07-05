@@ -5,6 +5,7 @@ import subprocess
 import os
 import fnmatch
 import glob
+import copy
 sys.path.insert(0, sys.path[0]+'/waf_tools')
 
 VERSION = '1.0.0'
@@ -42,9 +43,35 @@ def options(opt):
     opt.add_option('--shared', action='store_true', help='build shared library', dest='build_shared')
     opt.add_option('--tests', action='store_true', help='compile tests or not', dest='tests')
     opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
+    opt.add_option('--no-robot_dart', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
+    opt.add_option('--no-pic', action='store_true', help='do not compile with position independent code', dest='no_pic')
 
 
 def configure(conf):
+    if not conf.options.utheque_only:
+        try:
+            Logs.pprint("GREEN", "=== Configuring RobotDART ===")
+            configure_robot_dart(conf)
+            Logs.pprint("GREEN", "=== RobotDART ready to build ===")
+            conf.env['BUILD_ROBOT_DART'] = True
+        except:
+            conf.env['BUILD_ROBOT_DART'] = False
+
+            conf.end_msg("ERROR", color="RED")
+    else:
+            conf.env['BUILD_ROBOT_DART'] = False
+
+    if not conf.env['BUILD_ROBOT_DART']:
+        Logs.pprint("RED", "=== RobotDART will NOT be compiled/installed ===")
+
+    print("\n=== Summary: ===")
+    if conf.env['BUILD_ROBOT_DART']:
+        conf.msg("Build/install RobotDart", "yes")
+    else:
+        conf.msg("Build/install RobotDart", "no", color="YELLOW")
+    conf.msg("Install Utheque (URDF library)", "yes")
+
+def configure_robot_dart(conf):
     conf.get_env()['BUILD_GRAPHIC'] = False
 
     conf.load('compiler_cxx')
@@ -88,7 +115,8 @@ def configure(conf):
         conf.check_python_module('dartpy')
         conf.check_pybind11(required=True)
         conf.env['BUILD_PYTHON'] = True
-        conf.env['py_flags'] = ' -fPIC' # we need -fPIC
+        if not conf.options.build_shared:
+            conf.env['py_flags'] = ' -fPIC' # we need -fPIC for python if building static
 
     # We require Magnum DartIntegration, EigenIntegration, AssimpImporter, and StbTrueTypeFont
     if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0 and len(conf.env.INCLUDES_MagnumPlugins_AssimpImporter) > 0 and len(conf.env.INCLUDES_MagnumPlugins_StbTrueTypeFont) > 0:
@@ -116,7 +144,7 @@ def configure(conf):
     elif conf.env.CXX_NAME in ["clang"]:
         common_flags = "-Wall -std=c++11"
         # no-stack-check required for Catalina
-        opt_flags = " -O3 -g -faligned-new  -fno-stack-check" + native
+        opt_flags = " -O3 -g -faligned-new -fno-stack-check -Wno-narrowing" + native
     else:
         gcc_version = int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1])
         if gcc_version < 47:
@@ -127,8 +155,18 @@ def configure(conf):
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
 
+    if (not conf.options.build_shared) and (not conf.options.no_pic):
+        common_flags += ' -fPIC'
+
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
+
+    if conf.env.CXX_NAME in ["icc", "icpc"]:
+        conf.env['PUBLIC_CXXFLAGS'] = native_icc.split(' ')
+    elif conf.env.CXX_NAME in ["clang"]:
+        conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new -fno-stack-check" + native).split(' ')
+    else:
+        conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new" + native).split(' ')
 
     if len(conf.env.CXXFLAGS_DART) > 0:
         if '-std=c++11' in conf.env['CXXFLAGS']:
@@ -136,9 +174,12 @@ def configure(conf):
         if '-std=c++0x' in conf.env['CXXFLAGS']:
             conf.env['CXXFLAGS'].remove('-std=c++0x')
         conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
-    
+
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
+
+    # keep only one time each flag
+    conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS']))
     print(conf.env['CXXFLAGS'])
 
 def summary(bld):
@@ -152,7 +193,47 @@ def summary(bld):
     if tfail > 0:
         bld.fatal("Build failed, because some tests failed!")
 
+
 def build(bld):
+    if bld.env['BUILD_ROBOT_DART']:
+        Logs.pprint("GREEN", "=== Building RobotDART ===")
+        build_robot_dart(bld)
+    build_utheque(bld)
+
+
+#### install the URDF library (utheque)
+def build_utheque(bld):
+    prefix = bld.get_env()['PREFIX']
+
+    ###### URDF
+    bld.install_files("${PREFIX}/share/utheque/",
+                    bld.path.ant_glob('utheque/**'),
+                    cwd=bld.path.find_dir('utheque/'),
+                    relative_trick=True)
+    ###### HEADER
+    bld.install_files("${PREFIX}/include/utheque/",
+                    bld.path.ant_glob('src/utheque/**'),
+                    cwd=bld.path.find_dir('src/utheque/'),
+                    relative_trick=True)
+    #### CMake
+    with open('cmake/UthequeConfig.cmake.in') as f:
+        newText=f.read() \
+            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include")\
+            .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/")\
+            .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"")
+
+    with open(blddir + '/UthequeConfig.cmake', "w") as f:
+        f.write(newText)
+    with open('cmake/UthequeConfigVersion.cmake.in') as f:
+        newText = f.read().replace('@utheque_VERSION@', str(VERSION))
+    with open(blddir + '/UthequeConfigVersion.cmake', "w") as f:
+        f.write(newText)
+
+    bld.install_files('${PREFIX}/lib/cmake/Utheque/', blddir + '/UthequeConfig.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/Utheque/', blddir + '/UthequeConfigVersion.cmake')
+
+
+def build_robot_dart(bld):
     prefix = bld.get_env()['PREFIX']
 
     if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
@@ -180,6 +261,7 @@ def build(bld):
 
     libs = 'BOOST EIGEN DART PTHREAD'
     defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
+
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
                 includes = './src',
@@ -247,14 +329,8 @@ def build(bld):
         f.write('#define ROBOT_DART_VERSION_MAJOR ' + version[0] + '\n')
         f.write('#define ROBOT_DART_VERSION_MINOR ' + version[1] + '\n')
         f.write('#define ROBOT_DART_VERSION_PATCH ' + version[2] + '\n')
-        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/robot_dart/robots\"\n')        
+        f.write('#define ROBOT_DART_ROBOTS_DIR \"' + prefix + '/share/utheque/\"\n')
     bld.install_files("${PREFIX}/include/robot_dart/", config_file)
-
-    #### install the URDF library (robots)
-    bld.install_files("${PREFIX}/share/robot_dart/robots/",
-                    bld.path.ant_glob('robots/**'),
-                    cwd=bld.path.find_dir('robots/'),
-                    relative_trick=True)
 
     #### installation (waf install)
     install_files = []
@@ -302,7 +378,7 @@ def build(bld):
         if 'dart-collision-ode' in bld.env.LIB_DART:
             dart_extra_libs += ' collision-ode '
 
-        cxx_flags = ''.join(x + ';' for x in bld.env['CXXFLAGS'])
+        cxx_flags = ''.join(x + ';' for x in bld.env['PUBLIC_CXXFLAGS'])
 
         lib_type = '.a'
         if bld.env['lib_type'] == 'cxxshlib':
@@ -390,6 +466,6 @@ class BuildExamples(BuildContext):
     cmd = 'examples'
     fun = 'build_examples'
 
-class BuildDocs(BuildContext):
-    cmd = 'docs'
-    fun = 'build_docs'
+class BuildUtheque(BuildContext):
+    cmd = 'utheque'
+    fun = 'build_utheque'

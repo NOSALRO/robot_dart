@@ -1,9 +1,10 @@
 #include <thread>
-
 #include <robot_dart/robot_dart_simu.hpp>
 // @ROBOT_POOL_INCLUDE@
 #include <robot_dart/robot_pool.hpp>
 // @ROBOT_POOL_INCLUDE_END@
+#include <robot_dart/robots/talos.hpp>
+
 
 static constexpr int NUM_THREADS = 12;
 
@@ -54,8 +55,7 @@ namespace pool {
     // This function should load one robot: here we load Talos
     inline std::shared_ptr<robot_dart::Robot> robot_creator()
     {
-        std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-        return std::make_shared<robot_dart::Robot>("talos/talos.urdf", packages);
+        return std::make_shared<robot_dart::robots::Talos>();
     }
 
     // To create the object we need to pass the robot_creator function and the number of maximum parallel threads

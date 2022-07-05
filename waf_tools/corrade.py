@@ -37,9 +37,9 @@ def check_corrade(conf, *k, **kw):
         Logs.pprint('RED', msg)
         return
 
-    includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include']
-    libs_check = ['/usr/lib', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib/x86_64-linux-gnu/', '/usr/lib64']
-    bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin']
+    includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    libs_check = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
+    bins_check = ['/usr/bin', '/usr/local/bin', '/opt/local/bin', '/sw/bin', '/bin', '/opt/homebrew/bin']
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'
@@ -202,15 +202,16 @@ def check_corrade(conf, *k, **kw):
     return 1
 
 @conf
-def corrade_enable_pedantic_flags(conf):
+def corrade_enable_pedantic_flags(conf, visibility_hidden=False):
     corrade_flags = '-Wall \
                     -Wextra \
                     -Wold-style-cast \
                     -Winit-self \
                     -Werror=return-type \
                     -Wmissing-declarations \
-                    -pedantic \
-                    -fvisibility=hidden'
+                    -pedantic'
+    if visibility_hidden:
+        corrade_flags += ' -fvisibility=hidden'
     corrade_flags = corrade_flags.split()
     conf.env['CXXFLAGS'] = list(set(conf.env['CXXFLAGS'] + corrade_flags))
 

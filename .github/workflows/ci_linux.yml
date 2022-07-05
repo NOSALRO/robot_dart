@@ -23,7 +23,7 @@ jobs:
         build_python: [ON]
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
-        dart_tag: ["v6.11.1"]
+        dart_tag: ["v6.12.1"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}
@@ -46,6 +46,9 @@ jobs:
       - name: Build DART
         if: steps.cache-dart.outputs.cache-hit != 'true'
         run: ${{github.workspace}}/ci/install_dart_latest.sh
+      - name: Build pybind11
+        if: steps.cache-dart.outputs.cache-hit == 'true'
+        run: ${{github.workspace}}/ci/install_pybind11.sh
       - name: Build Magnum
         run: if [ "$MAGNUM_GUI" = "ON" ]; then ${{github.workspace}}/ci/install_magnum.sh ; fi
       - name: Build robot_dart
@@ -80,6 +83,7 @@ jobs:
           export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
           fi
           cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
+          cd ${{github.workspace}}/cmake/example_utheque && mkdir -p build && cd build && cmake .. && make -j4
       - name: Run Python
         run: |
           if [ "$BUILD_PYTHON" = "ON" ]; then

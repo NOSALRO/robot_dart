@@ -1,24 +1,18 @@
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/talos.hpp>
 
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-// Talos fast:
+// fast Talos:
 // - use dart for collision detection (instead of FCL) [only handle boxes and spheres]
 // - the collisions are detected only for the feet
 // - the urdf does not have the mimic (used for grippers)
 int main()
 {
-    std::vector<std::pair<std::string, std::string>> packages = {{"talos_description", "talos/talos_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("talos/talos_fast.urdf", packages);
+    auto robot = std::make_shared<robot_dart::robots::TalosLight>();
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
-    robot->set_position_enforced(true);
-    auto positions = robot->positions();
-    positions[2] = M_PI / 2.;
-    positions[5] = 1.1;
-    robot->set_positions(positions);
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
@@ -31,7 +25,7 @@ int main()
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
-    graphics->record_video("talos.mp4");
+    graphics->record_video("talos_light.mp4");
 #endif
     simu.add_floor();
     simu.add_robot(robot);

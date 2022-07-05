@@ -114,22 +114,26 @@ namespace robot_dart {
         _sensors.clear();
     }
 
-    void RobotDARTSimu::run(double max_duration, bool reset_commands)
+    void RobotDARTSimu::run(double max_duration, bool reset_commands, bool force_position_bounds)
     {
         _break = false;
         double old_time = _world->getTime();
         double factor = _world->getTimeStep() / 2.;
 
         while ((_world->getTime() - old_time - max_duration) < -factor) {
-            if (step(reset_commands))
+            if (step(reset_commands, force_position_bounds))
                 break;
         }
     }
 
-    bool RobotDARTSimu::step_world(bool reset_commands)
+    bool RobotDARTSimu::step_world(bool reset_commands, bool force_position_bounds)
     {
-        if (_scheduler(_physics_freq))
+        if (_scheduler(_physics_freq)) {
             _world->step(reset_commands);
+            if (force_position_bounds)
+                for (auto& r : _robots)
+                    r->force_position_bounds();
+        }
 
         // Update graphics
         if (_scheduler(_graphics_freq)) {
@@ -167,7 +171,7 @@ namespace robot_dart {
         return _break || _graphics->done();
     }
 
-    bool RobotDARTSimu::step(bool reset_commands)
+    bool RobotDARTSimu::step(bool reset_commands, bool force_position_bounds)
     {
         if (_scheduler(_control_freq)) {
             for (auto& robot : _robots) {
@@ -175,7 +179,7 @@ namespace robot_dart {
             }
         }
 
-        return step_world(reset_commands);
+        return step_world(reset_commands, force_position_bounds);
     }
 
     std::shared_ptr<gui::Base> RobotDARTSimu::graphics() const
@@ -307,6 +311,8 @@ namespace robot_dart {
             _robots.push_back(robot);
             _world->addSkeleton(robot->skeleton());
 
+            robot->_post_addition(this);
+
             _gui_data->update_robot(robot);
         }
     }
@@ -332,6 +338,7 @@ namespace robot_dart {
             robot->set_cast_shadows(false);
             // set the ghost/visual flag
             robot->set_ghost(true);
+            robot->_post_addition(this);
 
             _robots.push_back(robot);
             _world->addSkeleton(robot->skeleton());
@@ -344,6 +351,7 @@ namespace robot_dart {
     {
         auto it = std::find(_robots.begin(), _robots.end(), robot);
         if (it != _robots.end()) {
+            robot->_post_removal(this);
             _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
             _robots.erase(it);
@@ -353,6 +361,7 @@ namespace robot_dart {
     void RobotDARTSimu::remove_robot(size_t index)
     {
         ROBOT_DART_ASSERT(index < _robots.size(), "Robot index out of bounds", );
+        _robots[index]->_post_removal(this);
         _gui_data->remove_robot(_robots[index]);
         _world->removeSkeleton(_robots[index]->skeleton());
         _robots.erase(_robots.begin() + index);
@@ -361,6 +370,7 @@ namespace robot_dart {
     void RobotDARTSimu::clear_robots()
     {
         for (auto& robot : _robots) {
+            robot->_post_removal(this);
             _gui_data->remove_robot(robot);
             _world->removeSkeleton(robot->skeleton());
         }

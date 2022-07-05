@@ -33,16 +33,16 @@ def check_dart(conf, *k, **kw):
         includes_check = [conf.options.dart + '/include']
         libs_check = [conf.options.dart + '/lib']
     else:
-        includes_check = ['/usr/local/include', '/usr/include']
-        libs_check = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+        includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+        libs_check = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
 
         if 'RESIBOTS_DIR' in os.environ:
             includes_check = [os.environ['RESIBOTS_DIR'] + '/include'] + includes_check
             libs_check = [os.environ['RESIBOTS_DIR'] + '/lib'] + libs_check
 
     # DART has some optional Bullet features
-    bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet']
-    bullet_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet', '/opt/local/include/bullet', '/sw/include/bullet', '/opt/homebrew/include/bullet', '/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    bullet_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     bullet_include = []
     bullet_lib = []
     bullet_found = False
@@ -57,8 +57,8 @@ def check_dart(conf, *k, **kw):
         bullet_found = False
 
     # DART has some optional ODE features
-    ode_check = ['/usr/local/include', '/usr/include']
-    ode_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    ode_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    ode_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     ode_include = []
     ode_lib = []
     ode_found = False
@@ -73,8 +73,8 @@ def check_dart(conf, *k, **kw):
         ode_found = False
 
     # DART has some optional Octomap dependency
-    octomap_check = ['/usr/local/include', '/usr/include']
-    octomap_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    octomap_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    octomap_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     if 'ROS_DISTRO' in os.environ:
         octomap_check.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/include')
         octomap_libs.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/lib')
@@ -158,8 +158,10 @@ def check_dart(conf, *k, **kw):
         if dart_major > 6:
             dart_load_prefix = 'io'
         dart_cxx_flags = ''
-        if dart_major > 6 or (dart_major == 6 and dart_minor >= 9):
+        if dart_major == 6 and dart_minor >= 9:
             dart_cxx_flags = '-std=c++14'
+        if dart_major > 6 or (dart_major == 6 and dart_minor >= 13):
+            dart_cxx_flags = '-std=c++17'
 
         dart_include = []
         dart_include.append(get_directory('dart/dart.hpp', includes_check))

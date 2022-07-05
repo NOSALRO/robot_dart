@@ -10,6 +10,8 @@
 
 #include <robot_dart/control/robot_control.hpp>
 
+#include <utheque/utheque.hpp> // library of URDF
+
 namespace robot_dart {
     namespace detail {
         template <int content>
@@ -279,6 +281,20 @@ namespace robot_dart {
 #endif
         _skeleton->getMutex().unlock();
         auto robot = std::make_shared<Robot>(tmp_skel, _robot_name);
+
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        // Deep copy everything
+        for (auto& bd : robot->skeleton()->getBodyNodes()) {
+            auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
+            for (auto& shape : visual_shapes) {
+                if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
+                    shape->setShape(shape->getShape()->clone());
+            }
+        }
+#endif
+
+        robot->set_positions(this->positions());
+
         robot->_model_filename = _model_filename;
         robot->_controllers.clear();
         for (auto& ctrl : _controllers) {
@@ -311,12 +327,25 @@ namespace robot_dart {
                 shape->removeAspect<dart::dynamics::CollisionAspect>();
             }
 
+            // ghost robots do not have dynamics
+            auto& dyn_shapes = bd->getShapeNodesWith<dart::dynamics::DynamicsAspect>();
+            for (auto& shape : dyn_shapes) {
+                shape->removeAspect<dart::dynamics::DynamicsAspect>();
+            }
+
             // ghost robots have a different color (same for all bodies)
             auto& visual_shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
             for (auto& shape : visual_shapes) {
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+                if (shape->getShape()->getType() != dart::dynamics::SoftMeshShape::getStaticType())
+                    shape->setShape(shape->getShape()->clone());
+#endif
                 shape->getVisualAspect()->setRGBA(ghost_color);
             }
         }
+
+        // set positions
+        robot->set_positions(this->positions());
 
         // ghost robots, by default, use the color from the VisualAspect
         robot->set_color_mode("aspect");
@@ -692,6 +721,31 @@ namespace robot_dart {
         }
 
         return pos;
+    }
+
+    void Robot::force_position_bounds()
+    {
+        for (size_t i = 0; i < _skeleton->getNumDofs(); ++i) {
+            auto dof = _skeleton->getDof(i);
+            auto jt = dof->getJoint();
+#if DART_VERSION_AT_LEAST(6, 10, 0)
+            bool force = jt->areLimitsEnforced();
+#else
+            bool force = jt->isPositionLimitEnforced());
+#endif
+            auto type = jt->getActuatorType();
+            force = force || type == dart::dynamics::Joint::SERVO || type == dart::dynamics::Joint::MIMIC;
+
+            if (force) {
+                double epsilon = 1e-5;
+                if (dof->getPosition() > dof->getPositionUpperLimit()) {
+                    dof->setPosition(dof->getPositionUpperLimit() - epsilon);
+                }
+                else if (dof->getPosition() < dof->getPositionLowerLimit()) {
+                    dof->setPosition(dof->getPositionLowerLimit() + epsilon);
+                }
+            }
+        }
     }
 
     void Robot::set_damping_coeffs(const std::vector<double>& damps, const std::vector<std::string>& dof_names)
@@ -1849,39 +1903,6 @@ namespace robot_dart {
 
     const std::vector<std::pair<dart::dynamics::BodyNode*, double>>& Robot::drawing_axes() const { return _axis_shapes; }
 
-    std::string Robot::_get_path(const std::string& filename) const
-    {
-        namespace fs = boost::filesystem;
-        fs::path model_file(boost::trim_copy(filename));
-        if (model_file.string()[0] == '/')
-            return "/";
-
-        // search current directory
-        if (fs::exists(model_file))
-            return fs::current_path().string();
-
-        // search <current_directory>/robots
-        if (fs::exists(fs::path("robots") / model_file))
-            return (fs::current_path() / fs::path("robots")).string();
-
-        // search $ROBOT_DART_PATH
-        const char* env = std::getenv("ROBOT_DART_PATH");
-        if (env != nullptr) {
-            fs::path env_path(env);
-            if (fs::exists(env_path / model_file))
-                return env_path.string();
-        }
-
-        // search PREFIX/share/robot_dart/robots
-        fs::path system_path(std::string(ROBOT_DART_PREFIX) + "/share/robot_dart/robots/");
-        if (fs::exists(system_path / model_file))
-            return system_path.string();
-
-        ROBOT_DART_EXCEPTION_ASSERT(false, std::string("Could not find :") + filename);
-
-        return std::string();
-    }
-
     dart::dynamics::SkeletonPtr Robot::_load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages, bool is_urdf_string)
     {
         ROBOT_DART_EXCEPTION_ASSERT(!filename.empty(), "Empty URDF filename");
@@ -1889,8 +1910,7 @@ namespace robot_dart {
         dart::dynamics::SkeletonPtr tmp_skel;
         if (!is_urdf_string) {
             // search for the right directory for our files
-            std::string file_dir = _get_path(filename);
-            std::string model_file = file_dir + '/' + boost::trim_copy(filename);
+            std::string model_file = utheque::path(filename, false, std::string(ROBOT_DART_PREFIX));
             // store the name for future use
             _model_filename = model_file;
             _packages = packages;
@@ -1900,10 +1920,17 @@ namespace robot_dart {
             boost::filesystem::path path(model_file);
             std::string extension = path.extension().string();
             if (extension == ".urdf") {
+#if DART_VERSION_AT_LEAST(6, 12, 0)
+                dart::io::DartLoader::Options options;
+                // if links have no inertia, we put ~zero mass and very very small inertia
+                options.mDefaultInertia = dart::dynamics::Inertia(1e-10, Eigen::Vector3d::Zero(), Eigen::Matrix3d::Identity() * 1e-6);
+                dart::io::DartLoader loader(options);
+#else
                 dart::io::DartLoader loader;
+#endif
                 for (size_t i = 0; i < packages.size(); i++) {
                     std::string package = std::get<1>(packages[i]);
-                    std::string package_path = _get_path(package);
+                    std::string package_path = utheque::directory(package, false, std::string(ROBOT_DART_PREFIX));
                     loader.addPackageDirectory(
                         std::get<0>(packages[i]), package_path + "/" + package);
                 }
@@ -1928,7 +1955,7 @@ namespace robot_dart {
             dart::io::DartLoader loader;
             for (size_t i = 0; i < packages.size(); i++) {
                 std::string package = std::get<1>(packages[i]);
-                std::string package_path = _get_path(package);
+                std::string package_path = utheque::directory(package, false, std::string(ROBOT_DART_PREFIX));
                 loader.addPackageDirectory(std::get<0>(packages[i]), package_path + "/" + package);
             }
             tmp_skel = loader.parseSkeletonString(filename, "");

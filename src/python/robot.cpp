@@ -3,6 +3,19 @@
 #include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
+
+// all robots
+#include <robot_dart/robots/a1.hpp>
+#include <robot_dart/robots/arm.hpp>
+#include <robot_dart/robots/franka.hpp>
+#include <robot_dart/robots/hexapod.hpp>
+#include <robot_dart/robots/icub.hpp>
+#include <robot_dart/robots/iiwa.hpp>
+#include <robot_dart/robots/pendulum.hpp>
+#include <robot_dart/robots/talos.hpp>
+#include <robot_dart/robots/tiago.hpp>
+#include <robot_dart/robots/ur3e.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -11,8 +24,34 @@ namespace robot_dart {
         void py_robot(py::module& m)
         {
             using namespace robot_dart;
+
+            // PyRobot
+            class PyRobot : public Robot {
+            public:
+                using Robot::Robot;
+
+                /* Trampolines */
+                void _post_addition(RobotDARTSimu* simu) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* Return type */
+                        Robot, /* Parent class */
+                        _post_addition, /* Name of function in C++ (must match Python name) */
+                        simu);
+                }
+
+                void _post_removal(RobotDARTSimu* simu) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* Return type */
+                        Robot, /* Parent class */
+                        _post_removal, /* Name of function in C++ (must match Python name) */
+                        simu);
+                }
+            };
+
             // Robot class
-            py::class_<Robot, std::shared_ptr<Robot>>(m, "Robot")
+            py::class_<Robot, PyRobot, std::shared_ptr<Robot>>(m, "Robot")
                 .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&, const std::string&, bool, bool>(),
                     py::arg("model_file"),
                     py::arg("packages"),
@@ -111,6 +150,8 @@ namespace robot_dart {
                 .def("set_position_enforced", static_cast<void (Robot::*)(bool, const std::vector<std::string>&)>(&Robot::set_position_enforced),
                     py::arg("enforced"),
                     py::arg("dof_names") = std::vector<std::string>())
+
+                .def("force_position_bounds", &Robot::force_position_bounds)
 
                 .def("position_enforced", &Robot::position_enforced,
                     py::arg("dof_names") = std::vector<std::string>())
@@ -465,6 +506,98 @@ namespace robot_dart {
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
                     py::arg("ellipsoid_name") = "ellipsoid");
+
+            // Robot classes
+            using namespace robot_dart::robots;
+            py::class_<A1, Robot, std::shared_ptr<A1>>(m, "A1")
+                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("urdf") = "unitree_a1/a1.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}));
+
+            py::class_<Arm, Robot, std::shared_ptr<Arm>>(m, "Arm")
+                .def(py::init<const std::string&>(),
+                    py::arg("urdf") = "arm.urdf");
+
+            py::class_<Franka, Robot, std::shared_ptr<Franka>>(m, "Franka")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "franka/franka.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"franka_description", "franka/franka_description"}}))
+                .def("ft_wrist", &Franka::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Hexapod, Robot, std::shared_ptr<Hexapod>>(m, "Hexapod")
+                .def(py::init<const std::string&>(),
+                    py::arg("urdf") = "pexod.urdf");
+
+            py::class_<Iiwa, Robot, std::shared_ptr<Iiwa>>(m, "Iiwa")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "iiwa/iiwa.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"iiwa_description", "iiwa/iiwa_description"}}))
+                .def("ft_wrist", &Iiwa::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Tiago, Robot, std::shared_ptr<Tiago>>(m, "Tiago")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "tiago/tiago_steel.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
+                .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
+                .def("caster_joints", &Tiago::caster_joints)
+                .def("set_actuator_types", &Tiago::set_actuator_types,
+                    py::arg("type"),
+                    py::arg("joint_names") = std::vector<std::string>(),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false)
+                .def("set_actuator_type", &Tiago::set_actuator_type,
+                    py::arg("type"),
+                    py::arg("joint_name"),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false);
+
+            py::class_<ICub, Robot, std::shared_ptr<ICub>>(m, "ICub")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "icub/icub.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"icub_description", "icub/icub_description"}}))
+
+                .def("imu", &ICub::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &ICub::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &ICub::ft_foot_right, py::return_value_policy::reference);
+
+            py::class_<Talos, Robot, std::shared_ptr<Talos>>(m, "Talos")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}))
+
+                .def("imu", &Talos::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &Talos::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &Talos::ft_foot_right, py::return_value_policy::reference)
+                .def("ft_wrist_left", &Talos::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_wrist_right", &Talos::ft_foot_right, py::return_value_policy::reference)
+
+                .def("torques", &Talos::torques);
+
+            py::class_<TalosLight, Talos, std::shared_ptr<TalosLight>>(m, "TalosLight")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos_fast.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}));
+
+            py::class_<Ur3e, Robot, std::shared_ptr<Ur3e>>(m, "Ur3e")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}))
+                .def("ft_wrist", &Ur3e::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Ur3eHand, Ur3e, std::shared_ptr<Ur3eHand>>(m, "Ur3eHand")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e_with_schunk_hand.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}));
         }
     } // namespace python
 } // namespace robot_dart
