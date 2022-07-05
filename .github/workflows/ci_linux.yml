@@ -62,6 +62,7 @@ jobs:
           export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
           fi
           cd ${{github.workspace}}
+          ls ~/.dart_install/include/dart
           if [ "$BUILD_PYTHON" = "ON" ]; then
             ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
           else
