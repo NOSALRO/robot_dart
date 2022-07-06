@@ -7,6 +7,7 @@ theme:
   custom_dir: 'cinder'
   features:
     - content.code.annotate
+    - content.tabs.link
 nav:
   - Home: index.md
   - Supported robots: robots.md

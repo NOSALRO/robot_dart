@@ -60,8 +60,21 @@ In order to record a video of what the main camera "sees", you need to call the 
 
 You can find a complete example at [talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp).
 
-## How can I manipulate the camera?
+## I want to have multiple camera sensors. Is it possible?
+Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
+{{ADD_NEW_CAMERA}}
 
+## How can I manipulate the camera?
+Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a heigth (that define the aspect ratio), you can manipulate each one seperately:
+{{MANIPULATE_CAM_SEP}}
+or all at once:
+{{MANIPULATE_CAM}}
+
+## How can I attach a camera to a moving link?
+Cameras can be easily attached to a moving link:
+{{CAM_ATTACH}}
+
+You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
 ## How can I display debug information?
 
 ## What do the numbers in the status bar mean?
@@ -90,7 +103,6 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 
 ## What are the supported sensors? How can I use an IMU?
 
-## I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?
 
 ## How can I measure forces being applied to my robot?
 
