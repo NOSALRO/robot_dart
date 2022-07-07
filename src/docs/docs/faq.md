@@ -109,11 +109,17 @@ Now you can add on ore more of the following lights:
 
 ## Is there a way to control the simulation timestep?
 
-## What is the difference between the DART and the FCL collision detector? How can I choose between them?
+## Which collision detectors are available? What are their differences? How can I choose between them?
+| Dart | FCL | ODE | Bullet |
+|------|-----|-----|--------|
+|      |     |     |        |
+|      |     |     |        |
+|      |     |     |        |
 
+{{SET_COLLISION_DETECTOR}}
 ## My robot does not self-collide. How can I change this?
 One possible cause may be the fact that self collision is disabled, you can check and change this:
-{{SELF_COLL}}
+{{SELF_COLLISIONS}}
 ## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
 
 **Kinematic Properties:**

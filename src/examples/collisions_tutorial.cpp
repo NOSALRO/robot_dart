@@ -12,14 +12,17 @@ int main()
     auto robot = std::make_shared<robot_dart::robots::Iiwa>();
     robot->set_actuator_types("servo");
     simu.add_robot(robot);
+    //@SET_COLLISION_DETECTOR@
+    simu.set_collision_detector("FCL"); // collision_detector can be "DART", "FCL", "Ode" or "Bullet" (case does not matter)
+    //@SET_COLLISION_DETECTOR_END@
     // check if self-collision is enabled
-    // @SELF_COLL@
+    // @SELF_COLLISIONS@
     if (!robot->self_colliding()) {
         std::cout << "Self collision is not enabled" << std::endl;
         // set self collisions to true and adjacent collisions to false
         robot->set_self_collision(true, false);
     }
-    // @SELF_COLL_END@
+    // @SELF_COLLISIONS_END@
 
     return 0;
 }
