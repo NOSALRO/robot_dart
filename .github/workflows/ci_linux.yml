@@ -6,9 +6,35 @@ on:
   push:
     branches:
       - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_linux.yml'
   pull_request:
     branches:
       - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_linux.yml'
 
 jobs:
   build:
