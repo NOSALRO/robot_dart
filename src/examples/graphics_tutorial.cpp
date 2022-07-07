@@ -85,33 +85,43 @@ int main()
     Magnum::Float shininess = 1000.f;
     auto custom_material = robot_dart::gui::magnum::gs::Material(ambient, diffuse, specular, shininess);
     // @LIGHT_MATERIAL_END@
-    // @POINT_LIGHT@
-    // create point light
-    Magnum::Vector3 position = {0.f, 0.f, 2.f};
-    Magnum::Float intensity = 1.f;
-    Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
-    auto point_light = robot_dart::gui::magnum::gs::create_point_light(position, custom_material, intensity, attenuation_terms);
-    graphics->add_light(point_light);
-    // @POINT_LIGHT_END@
+    {
+        // @POINT_LIGHT@
+        // create point light
+        Magnum::Vector3 position = {0.f, 0.f, 2.f};
+        Magnum::Float intensity = 1.f;
+        Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
+        auto point_light = robot_dart::gui::magnum::gs::create_point_light(position, custom_material, intensity, attenuation_terms);
+        graphics->add_light(point_light);
+        // @POINT_LIGHT_END@
+    }
     simu.run(1.);
     graphics->clear_lights();
     simu.run(.2);
-    // @DIRECTIONAL_LIGHT@
-    // create directional light
-    Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
-    auto directional_light = robot_dart::gui::magnum::gs::create_directional_light(direction, custom_material);
-    graphics->add_light(directional_light);
-    // @DIRECTIONAL_LIGHT_END@
+    {
+        // @DIRECTIONAL_LIGHT@
+        // create directional light
+        Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
+        auto directional_light = robot_dart::gui::magnum::gs::create_directional_light(direction, custom_material);
+        graphics->add_light(directional_light);
+        // @DIRECTIONAL_LIGHT_END@
+    }
     simu.run(1.);
     graphics->clear_lights();
     simu.run(.2);
-    // @SPOT_LIGHT@
-    position = {0.f, 0.f, 1.f};
-    Magnum::Float spot_exponent = M_PI;
-    Magnum::Float spot_cut_off = M_PI / 8;
-    auto spot_light = robot_dart::gui::magnum::gs::create_spot_light(position, custom_material, direction, spot_exponent, spot_cut_off, intensity, attenuation_terms);
-    // @SPOT_LIGHT_END@
-    graphics->add_light(spot_light);
+    {
+        // @SPOT_LIGHT@
+        Magnum::Vector3 position = {0.f, 0.f, 1.f};
+        Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
+        Magnum::Float intensity = 1.f;
+        Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
+        Magnum::Float spot_exponent = M_PI;
+        Magnum::Float spot_cut_off = M_PI / 8;
+        auto spot_light = robot_dart::gui::magnum::gs::create_spot_light(position, custom_material, direction, spot_exponent, spot_cut_off, intensity, attenuation_terms);
+        // @SPOT_LIGHT_END@
+
+        graphics->add_light(spot_light);
+    }
     simu.run(1.);
 #endif
     return 0;

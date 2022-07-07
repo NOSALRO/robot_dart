@@ -94,7 +94,7 @@ You can also add your own lights, but first you have to clear the default lights
 {{CLR_LIGHT}}
 Then you must create a custom light material:
 {{LIGHT_MATERIAL}}
-Now you are ready to add your own lights, you can add on ore more of the following:<br>
+Now you can add on ore more of the following lights:<br>
 - **Point Light**:
 {{POINT_LIGHT}}
 - **Spot Light**:
