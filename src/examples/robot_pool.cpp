@@ -63,6 +63,7 @@ namespace pool {
 } // namespace pool
 // @ROBOT_POOL_GLOBAL_NAMESPACE_END@
 
+// @ROBOT_POOL_EVAL@
 inline void eval_robot(int i)
 {
     // We get one available robot
