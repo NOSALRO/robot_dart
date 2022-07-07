@@ -1,12 +1,9 @@
 #include <robot_dart/control/pd_control.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #include <robot_dart/gui/magnum/gs/light.hpp>
 #include <robot_dart/gui/magnum/gs/material.hpp>
-#endif
-#include <Magnum/GL/Texture.h>
 
 inline std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
 {
@@ -39,12 +36,11 @@ int main()
     std::srand(std::time(NULL));
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
-#ifdef GRAPHIC
+
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
     graphics->look_at({0., 3., 1.}, {0., 0., 0.});
-#endif
 
     // add floor of square size of 10 meters and height of 0.2 meters
     simu.add_floor(10., 0.2);
@@ -60,7 +56,7 @@ int main()
     arm_robot->fix_to_world();
     arm_robot->set_position_enforced(true);
     simu.add_robot(arm_robot);
-#ifdef GRAPHIC
+
     // @SHADOWS_GRAPHICS@
     // Disable shadows
     graphics->enable_shadows(false, false);
@@ -72,11 +68,14 @@ int main()
     graphics->enable_shadows(true, true);
     simu.run(1.);
     // @SHADOWS_GRAPHICS_END@
+
     // @CLR_LIGHT@
     // Clear Lights
     graphics->clear_lights();
     // @CLR_LIGHT_END@
+
     simu.run(.2);
+
     // @LIGHT_MATERIAL@
     // Create Light material
     Magnum::Color4 ambient = {1.f, 1.f, 1.f, 1.f};
@@ -85,6 +84,7 @@ int main()
     Magnum::Float shininess = 1000.f;
     auto custom_material = robot_dart::gui::magnum::gs::Material(ambient, diffuse, specular, shininess);
     // @LIGHT_MATERIAL_END@
+
     {
         // @POINT_LIGHT@
         // create point light
@@ -95,9 +95,11 @@ int main()
         graphics->add_light(point_light);
         // @POINT_LIGHT_END@
     }
+
     simu.run(1.);
     graphics->clear_lights();
     simu.run(.2);
+
     {
         // @DIRECTIONAL_LIGHT@
         // create directional light
@@ -106,9 +108,11 @@ int main()
         graphics->add_light(directional_light);
         // @DIRECTIONAL_LIGHT_END@
     }
+
     simu.run(1.);
     graphics->clear_lights();
     simu.run(.2);
+
     {
         // @SPOT_LIGHT@
         Magnum::Vector3 position = {0.f, 0.f, 1.f};
@@ -122,7 +126,8 @@ int main()
 
         graphics->add_light(spot_light);
     }
+
     simu.run(1.);
-#endif
+
     return 0;
 }
