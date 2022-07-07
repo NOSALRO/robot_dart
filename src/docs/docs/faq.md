@@ -88,6 +88,8 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 ## How can I visualize the state of my model?
 
 ## Can I add change the graphics scene (e.g., change lighting conditions)?
+You can disable or enable shadows:
+{{SHADOWS_GRAPHICS}}
 
 ## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
 
