@@ -64,15 +64,19 @@ You can find a complete example at [talos.cpp](https://github.com/resibots/robot
 Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
 {{ADD_NEW_CAMERA}}
 
-## How can I manipulate the camera?
-Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a heigth (that define the aspect ratio), you can manipulate each one seperately:
-{{MANIPULATE_CAM_SEP}}
-or all at once:
-{{MANIPULATE_CAM}}
+## How can I position a camera to the environment?
+{{CAM_POSITION}}
 
 ## How can I attach a camera to a moving link?
 Cameras can be easily attached to a moving link:
 {{CAM_ATTACH}}
+## How can I manipulate the camera?
+Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a height (that define the aspect ratio), you can manipulate each one separately:
+{{MANIPULATE_CAM_SEP}}
+or all at once:
+{{MANIPULATE_CAM}}
+
+
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
 ## How can I display debug information?
@@ -83,7 +87,7 @@ The status bar looks like this:
 
 ![Status Bar](images/FAQ/bar.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
-Where **simulation time** gives us the total simulated time (in seconds), **wall time** gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number **X.Xx** gives us the real-time factor: for example, **1.1x** means that the simulation runs 1.1 times faster than real-time, whereas **0.7x** means that the simulation runs slower than real-tiem. The value **it: XX ms** reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. **sync** means that RobotDART will slow down the simulation in order for it to be in real-time, whereas **no-sync** means that RobotDART will try to run the simulation as fast as possible.
+Where **simulation time** gives us the total simulated time (in seconds), **wall time** gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number **X.Xx** gives us the real-time factor: for example, **1.1x** means that the simulation runs 1.1 times faster than real-time, whereas **0.7x** means that the simulation runs slower than real-time. The value **it: XX ms** reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. **sync** means that RobotDART will slow down the simulation in order for it to be in real-time, whereas **no-sync** means that RobotDART will try to run the simulation as fast as possible.
 
 ## How can I visualize the state of my model?
 

@@ -67,7 +67,12 @@ int main()
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
     // cameras can also record video
     camera->record_video("video-camera.mp4");
-    // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
+    // @CAM_POSITION@
+    // set the position of the camera, and the position where the main camera is looking at
+    Eigen::Vector3d cam_pos = {-0.5, -3., 0.75};
+    Eigen::Vector3d cam_looks_at = {0.5, 0., 0.2};
+    camera->look_at(cam_pos, cam_looks_at);
+    // @CAM_POSITION_END@
     // @CAM_ATTACH@
     Eigen::Isometry3d tf;
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
