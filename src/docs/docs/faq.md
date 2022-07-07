@@ -111,7 +111,10 @@ Now you can add on ore more of the following lights:<br>
 ## My robot does not self-collide. How can I change this?
 
 ## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
-
+-Kinematic Properties:
+{{KINEMATICS}}
+-Dynamic Properties:
+{{DYNAMICS}}
 ## Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
 
 ## What are the supported sensors? How can I use an IMU?
