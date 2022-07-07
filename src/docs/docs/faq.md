@@ -112,7 +112,8 @@ Now you can add on ore more of the following lights:
 ## What is the difference between the DART and the FCL collision detector? How can I choose between them?
 
 ## My robot does not self-collide. How can I change this?
-
+One possible cause may be the fact that self collision is disabled, you can check and change this:
+{{SELF_COLL}}
 ## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
 
 **Kinematic Properties:**
