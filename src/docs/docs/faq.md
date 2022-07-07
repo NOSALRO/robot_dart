@@ -90,7 +90,18 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 ## Can I add change the graphics scene (e.g., change lighting conditions)?
 You can disable or enable shadows:
 {{SHADOWS_GRAPHICS}}
+You can also add your own lights, but first you have to clear the default lights:
+{{CLR_LIGHT}}
+Then you must create a custom light material:
+{{LIGHT_MATERIAL}}
+Now you are ready to add your own lights, you can add on ore more of the following:<br>
+- **Point Light**:
+{{POINT_LIGHT}}
+- **Spot Light**:
+{{SPOT_LIGHT}}
+- **Directional Light**:
 
+{{DIRECTIONAL_LIGHT}}
 ## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
 
 ## Is there a way to control the simulation timestep?
