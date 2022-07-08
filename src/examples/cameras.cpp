@@ -65,7 +65,7 @@ int main()
 
     // @MANIPULATE_CAM@
     camera->camera().set_camera_params(5., // far plane
-        0.01f, // new plane
+        0.01f, // near plane
         60.0f, // field of view
         600, // width
         400 // height
