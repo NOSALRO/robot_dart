@@ -11,56 +11,80 @@ int main()
     simu.add_robot(robot);
 
     std::string link_name = "panda_ee";
+
     // @KINEMATICS@
     // Get Joint Positions(Angles)
     auto joint_positions = robot->positions();
+
     // Get Joint Velocities
     auto joint_vels = robot->velocities();
+
     // Get Joint Accelerations
     auto joint_accs = robot->accelerations();
+
     // Get link_name(str) Transformation matrix with respect to the world frame.
     auto eef_tf = robot->body_pose(link_name);
+
     // Get translation vector from transformation matrix
     auto eef_pos = eef_tf.translation();
+
     // Get rotation matrix from tranformation matrix
     auto eef_rot = eef_tf.rotation();
+
     // Get link_name 6d pose vector [logmap(eef_tf.linear()), eef_tf.translation()]
     auto eef_pose_vec = robot->body_pose_vec(link_name);
+
     // Get link_name 6d velocity vector [angular, cartesian]
     auto eef_vel = robot->body_velocity(link_name);
+
     // Get link_name 6d acceleration vector [angular, cartesian]
     auto eef_acc = robot->body_acceleration(link_name);
+
     // Jacobian targeting the origin of link_name(str)
     auto jacobian = robot->jacobian(link_name);
+
     // Jacobian time derivative
     auto jacobian_deriv = robot->jacobian_deriv(link_name);
+
     // Center of Mass Jacobian
     auto com_jacobian = robot->com_jacobian(robot->dof_names());
+
     // Center of Mass Jacobian Time Derivative
     auto com_jacobian_deriv = robot->com_jacobian_deriv(robot->dof_names());
     // @KINEMATICS_END@
+
     // @DYNAMICS@
     // Get Joint Forces
     auto joint_forces = robot->forces();
+
     // Get link's mass
     auto eef_mass = robot->body_mass(link_name);
+
     // Mass Matrix of robot
     auto mass_matrix = robot->mass_matrix();
+
     // Inverse of Mass Matrix
     auto inv_mass_matrix = robot->inv_mass_matrix();
+
     // Augmented Mass matrix
     auto aug_mass_matrix = robot->aug_mass_matrix();
+
     // Inverse of Augmented Mass matrix
     auto inv_aug_mass_matrix = robot->inv_aug_mass_matrix();
+
     // Coriolis Force vector
     auto coriolis = robot->coriolis_forces();
+
     // Gravity Force vector
     auto gravity = robot->gravity_forces();
+
     // Combined vector of Coriolis Force and Gravity Force
     auto coriolis_gravity = robot->coriolis_gravity_forces();
+
     // Constraint Force Vector
     auto constraint_forces = robot->constraint_forces(robot->dof_names());
     // @DYNAMICS_END@
+
     std::cout << "Joint Positions:\n"
               << joint_positions.transpose() << std::endl;
     std::cout << "___________________________" << std::endl;
