@@ -144,13 +144,13 @@ One possible cause may be the fact that self collision is disabled, you can chec
 {{DYNAMICS}}
 
 ## Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
-
+There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:
 {{SET_ACTUATOR}}
-
+To enable position and velocity limits for the actuators:
 {{POSITIONS_ENFORCED}}
-
+Every actuators limits (position, velocity, acceleration, force) can be modified:
 {{MODIFY_LIMITS}}
-
+You can also modify the damping coefficients, coulomb frictions and spring stiffness of every joint:
 {{MODIFY_COEFFS}}
 
 ## What are the supported sensors? How can I use an IMU?
