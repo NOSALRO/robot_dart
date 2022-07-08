@@ -107,12 +107,15 @@ Then you must create a custom light material:
 Now you can add on ore more of the following lights:
 
 **Point Light**:
+
 {{POINT_LIGHT}}
 
 **Spot Light**:
+
 {{SPOT_LIGHT}}
 
 **Directional Light**:
+
 {{DIRECTIONAL_LIGHT}}
 
 ## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
@@ -141,6 +144,12 @@ One possible cause may be the fact that self collision is disabled, you can chec
 {{DYNAMICS}}
 
 ## Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
+
+{{SET_ACTUATOR}}
+
+{{POSITIONS_ENFORCED}}
+
+{{MODIFY_LIMITS}}
 
 ## What are the supported sensors? How can I use an IMU?
 
