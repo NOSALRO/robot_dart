@@ -12,13 +12,18 @@ def make_dirlist(folder, extensions):
 def remove_leading_whitespace(lines):
     min_whites = -1
     for line in lines:
+        if len(line) <= 1:
+            continue
         n = len(line) - len(line.lstrip())
         if n < min_whites or min_whites < 0:
             min_whites = n
 
     new_lines = []
     for line in lines:
-        new_lines.append(line[min_whites:])
+        if len(line) < min_whites:
+            new_lines.append(line)
+        else:
+            new_lines.append(line[min_whites:])
 
     return new_lines
 

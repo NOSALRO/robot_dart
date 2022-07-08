@@ -78,16 +78,16 @@ int main()
 
     // @LIGHT_MATERIAL@
     // Create Light material
-    Magnum::Color4 ambient = {1.f, 1.f, 1.f, 1.f};
-    Magnum::Color4 diffuse = {1.f, 1.f, 1.f, 1.f};
-    Magnum::Color4 specular = {1.f, 1.f, 1.f, 1.f};
     Magnum::Float shininess = 1000.f;
-    auto custom_material = robot_dart::gui::magnum::gs::Material(ambient, diffuse, specular, shininess);
+    Magnum::Color4 white = {1.f, 1.f, 1.f, 1.f};
+
+    // ambient, diffuse, specular
+    auto custom_material = robot_dart::gui::magnum::gs::Material(white, white, white, shininess);
     // @LIGHT_MATERIAL_END@
 
     {
         // @POINT_LIGHT@
-        // create point light
+        // Create point light
         Magnum::Vector3 position = {0.f, 0.f, 2.f};
         Magnum::Float intensity = 1.f;
         Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
@@ -102,7 +102,7 @@ int main()
 
     {
         // @DIRECTIONAL_LIGHT@
-        // create directional light
+        // Create directional light
         Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
         auto directional_light = robot_dart::gui::magnum::gs::create_directional_light(direction, custom_material);
         graphics->add_light(directional_light);
@@ -115,6 +115,7 @@ int main()
 
     {
         // @SPOT_LIGHT@
+        // Create spot light
         Magnum::Vector3 position = {0.f, 0.f, 1.f};
         Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
         Magnum::Float intensity = 1.f;
