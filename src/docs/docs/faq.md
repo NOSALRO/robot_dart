@@ -151,6 +151,8 @@ One possible cause may be the fact that self collision is disabled, you can chec
 
 {{MODIFY_LIMITS}}
 
+{{MODIFY_COEFFS}}
+
 ## What are the supported sensors? How can I use an IMU?
 
 
