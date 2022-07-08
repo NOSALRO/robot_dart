@@ -93,11 +93,17 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 
 ## How can I alter the graphics scene (e.g., change lighting conditions)?
 You can disable or enable shadows:
+
 {{SHADOWS_GRAPHICS}}
+
 You can also add your own lights, but first you have to clear the default lights:
+
 {{CLR_LIGHT}}
+
 Then you must create a custom light material:
+
 {{LIGHT_MATERIAL}}
+
 Now you can add on ore more of the following lights:
 
 **Point Light**:
