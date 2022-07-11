@@ -186,6 +186,7 @@ The `creator` function is the function responsible for loading your robot. This 
 {{ROBOT_POOL_EVAL}}
 
 ## I need to simulate many worlds with camera sensors in parallel. How can I do this?
+On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel
 {{CAMERAS_PARALLEL}}
 ## I do not know how to use waf. How can I detect RobotDART from CMake?
 
