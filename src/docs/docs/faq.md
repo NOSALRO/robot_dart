@@ -77,8 +77,6 @@ or all at once:
 {{MANIPULATE_CAM}}
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
-## I want to visualize a target configuration of my robot, is this possible?
-{{ROBOT_GHOST}}
 
 ## What do the numbers in the status bar mean?
 
@@ -88,7 +86,6 @@ The status bar looks like this:
 
 Where **simulation time** gives us the total simulated time (in seconds), **wall time** gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number **X.Xx** gives us the real-time factor: for example, **1.1x** means that the simulation runs 1.1 times faster than real-time, whereas **0.7x** means that the simulation runs slower than real-time. The value **it: XX ms** reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. **sync** means that RobotDART will slow down the simulation in order for it to be in real-time, whereas **no-sync** means that RobotDART will try to run the simulation as fast as possible.
 
-## How can I visualize the state of my model?
 
 ## How can I alter the graphics scene (e.g., change lighting conditions)?
 You can disable or enable shadows:
@@ -116,6 +113,9 @@ Now you can add on ore more of the following lights:
 **Directional Light**:
 
 {{DIRECTIONAL_LIGHT}}
+
+## I want to visualize a target configuration of my robot, is this possible?
+{{ROBOT_GHOST}}
 
 ## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
 
@@ -160,7 +160,18 @@ You can also modify the damping coefficients, coulomb frictions and spring stiff
 {{MODIFY_COEFFS}}
 
 ## What are the supported sensors? How can I use an IMU?
-
+#### **Torque sensor**
+Torque sensors can be added to every joint of the robot:
+{{TORQUE_SENSOR}}
+{{TORQUE_MEASUREMENT}}
+#### **Force-Torque sensor**
+Force-Torque sensors can be added to every joint of the robot:
+{{FORCE_TORQUE_SENSOR}}
+{{FORCE_TORQUE_MEASUREMENT}}
+#### **IMU sensor**
+Torque sensors can be added to every link of the robot:
+{{IMU_SENSOR}}
+{{IMU_MEASUREMENT}}
 
 ## How can I measure forces being applied to my robot?
 
