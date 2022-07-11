@@ -76,9 +76,9 @@ Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of V
 or all at once:
 {{MANIPULATE_CAM}}
 
-## I want to visualize a target configuration of my robot, is this possible?
-
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
+## I want to visualize a target configuration of my robot, is this possible?
+{{ROBOT_GHOST}}
 
 ## What do the numbers in the status bar mean?
 

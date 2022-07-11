@@ -16,9 +16,6 @@ int main()
     robot->add_controller(controller);
     controller->set_pd(300., 50.);
 
-    // Add a ghost robot; only visuals, no dynamics, no collision
-    auto ghost = robot->clone_ghost();
-
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
 #ifdef GRAPHIC
@@ -29,7 +26,11 @@ int main()
 #endif
     simu.add_checkerboard_floor();
     simu.add_robot(robot);
+    // @ROBOT_GHOST@
+    // Add a ghost robot; only visuals, no dynamics, no collision
+    auto ghost = robot->clone_ghost();
     simu.add_robot(ghost);
+    // @ROBOT_GHOST_END@
     simu.set_text_panel("IIWA simulation");
     simu.run(20.);
 
