@@ -79,7 +79,6 @@ or all at once:
 
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
-## How can I display debug information?
 
 ## What do the numbers in the status bar mean?
 
