@@ -124,6 +124,10 @@ When creating a RobotDARTSimu object you choose the simulation timestep:
 {{INIT_SIMU}}
 which can later be modified by:
 {{MODIFY_SIMU_DT}}
+
+## I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?
+Yes you can modify the gravitational forces 3-dimensional vector of the simulation:
+{{SIMU_GRAVITY}}
 ## Which collision detectors are available? What are their differences? How can I choose between them?
 | Dart | FCL | ODE | Bullet |
 |------|-----|-----|--------|

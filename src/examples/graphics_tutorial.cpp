@@ -10,7 +10,7 @@ inline std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
     // make sure it is above the ground
-    pose(5) += 1.5;
+    pose(5) += 0.5;
     // random size
     Eigen::Vector3d size = Eigen::Vector3d::Random().array() * Eigen::Vector3d(0.1, 0.2, 0.1).array() + 0.3;
     return robot_dart::Robot::create_box(size, pose, "free", 1.,
@@ -23,7 +23,7 @@ inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
     // make sure it is above the ground
-    pose(5) += 1.5;
+    pose(5) += 0.5;
     // random size
     Eigen::Vector3d size = Eigen::Vector3d::Random()[0] * Eigen::Vector3d(0.2, 0.2, 0.2).array() + 0.3;
     return robot_dart::Robot::create_ellipsoid(size, pose, "free", 1.,
@@ -42,6 +42,12 @@ int main()
     // set timestep to 0.005 and update control frequency(bool)
     simu.set_timestep(0.005, true);
     // @MODIFY_SIMU_DT_END@
+
+    // @SIMU_GRAVITY@
+    // Set gravitational force of mars
+    Eigen::Vector3d mars_gravity = {0., 0., -3.721};
+    simu.set_gravity(mars_gravity);
+    // @SIMU_GRAVITY_END@
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
