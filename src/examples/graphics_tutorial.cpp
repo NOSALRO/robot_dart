@@ -34,9 +34,14 @@ inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 int main()
 {
     std::srand(std::time(NULL));
+    // @INIT_SIMU@
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
-
+    // @INIT_SIMU_END@
+    // @MODIFY_SIMU_DT@
+    // set timestep to 0.005 and update control frequency(bool)
+    simu.set_timestep(0.005, true);
+    // @MODIFY_SIMU_DT_END@
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)

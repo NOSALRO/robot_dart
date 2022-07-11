@@ -120,7 +120,10 @@ Now you can add on ore more of the following lights:
 ## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
 
 ## Is there a way to control the simulation timestep?
-
+When creating a RobotDARTSimu object you choose the simulation timestep:
+{{INIT_SIMU}}
+which can later be modified by:
+{{MODIFY_SIMU_DT}}
 ## Which collision detectors are available? What are their differences? How can I choose between them?
 | Dart | FCL | ODE | Bullet |
 |------|-----|-----|--------|
