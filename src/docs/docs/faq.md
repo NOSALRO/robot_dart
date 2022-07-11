@@ -76,7 +76,7 @@ Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of V
 or all at once:
 {{MANIPULATE_CAM}}
 
-
+## I want to visualize a target configuration of my robot, is this possible?
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
 
@@ -186,7 +186,7 @@ The `creator` function is the function responsible for loading your robot. This 
 {{ROBOT_POOL_EVAL}}
 
 ## I need to simulate many worlds with camera sensors in parallel. How can I do this?
-
+{{CAMERAS_PARALLEL}}
 ## I do not know how to use waf. How can I detect RobotDART from CMake?
 
 You need to use `waf` to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at [cmake/example](https://github.com/resibots/robot_dart/blob/master/cmake/example). In short the CMake would look like this:
