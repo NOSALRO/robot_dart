@@ -120,5 +120,8 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
 
 ## How to use your own URDF?
-
-**TO-DO**
+ΤΟ-DO: explain packages and .urdf a little more
+```
+    std::vector<std::pair<std::string, std::string>> your_model_packages = {{"model", "path/to/model/dir"}};
+    auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf", your_model_packages, "packages");
+```
