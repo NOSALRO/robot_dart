@@ -12,6 +12,7 @@ nav:
   - Home: index.md
   - Supported robots: robots.md
   - FAQ: faq.md
+  - Install: install.md
 markdown_extensions:
   - attr_list
   - pymdownx.highlight
