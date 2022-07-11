@@ -6,7 +6,7 @@ inline void print_coeffs(std::vector<std::string> dof_names, std::shared_ptr<rob
     std::cout << "Joint Name\t Damping Coefficients\t Coulomb Frictions\t Spring Stiffness" << std::endl;
     // let's print joints info
     for (size_t i = 0; i < dof_names.size(); i++) {
-        std::cout << dof_names[i] << "\t " << robot->damping_coeffs()[i] <<"\t\t\t "<< robot->coulomb_coeffs()[i] <<"\t\t\t "<< robot->spring_stiffnesses()[i] <<"\t\t\t "<< std::endl;
+        std::cout << dof_names[i] << "\t " << robot->damping_coeffs()[i] << "\t\t\t " << robot->coulomb_coeffs()[i] << "\t\t\t " << robot->spring_stiffnesses()[i] << "\t\t\t " << std::endl;
     }
 }
 
@@ -78,9 +78,9 @@ int main()
     print_limits(dof_names, robot);
 
     /********************************
-    * TO-DO: ADD VALUES TO VECTORS *
-    ********************************/
-    std::cout<<"Before: "<<std::endl;
+     * TO-DO: ADD VALUES TO VECTORS *
+     ********************************/
+    std::cout << "Before: " << std::endl;
     print_coeffs(dof_names, robot);
     // @MODIFY_COEFFS@
     // Modify Damping Coefficients
@@ -88,14 +88,14 @@ int main()
     robot->set_damping_coeffs(damps, dof_names);
 
     // Modify Coulomb Frictions
-    std::vector<double> cfrictions= {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
+    std::vector<double> cfrictions = {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
     robot->set_coulomb_coeffs(cfrictions, dof_names);
 
     // Modify  Spring Stiffness
-    std::vector<double> stiffnesses= {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
+    std::vector<double> stiffnesses = {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
     robot->set_spring_stiffnesses(stiffnesses, dof_names);
     // @MODIFY_COEFFS_END@
-    std::cout<<"After: "<<std::endl;
+    std::cout << "After: " << std::endl;
     print_coeffs(dof_names, robot);
     return 0;
 }
