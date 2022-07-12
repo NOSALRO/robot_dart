@@ -180,14 +180,15 @@ int main()
     // @RGB_SENSOR_MEASURE_END@
 
     // @RGB_D_SENSOR@
-    auto rgb_d_image = camera->depth_image();
-    // @RGB_D_SENSOR_END@
-    // @RGB_D_SENSOR_MEASURE@
     // get the depth image from a camera
     // with a version for visualization or bigger differences in the output
-    robot_dart::gui::save_png_image("camera-depth.png", rgb_d_image);
+    auto rgb_d_image = camera->depth_image();
     // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
-    robot_dart::gui::save_png_image("camera-depth-raw.png", rgb_d_image);
+    auto rgb_d_image_raw = camera->raw_depth_image();
+    // @RGB_D_SENSOR_END@
+    // @RGB_D_SENSOR_MEASURE@
+    robot_dart::gui::save_png_image("camera-depth.png", rgb_d_image);
+    robot_dart::gui::save_png_image("camera-depth-raw.png", rgb_d_image_raw);
     // @RGB_D_SENSOR_MEASURE_END@
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
