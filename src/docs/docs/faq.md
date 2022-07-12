@@ -173,6 +173,12 @@ Torque sensors can be added to every link of the robot:
 {{IMU_SENSOR}}
 {{IMU_MEASUREMENT}}
 
+#### **RGB sensor**
+{{RGB_SENSOR}}
+{{RGB_SENSOR_MEASURE}}
+#### **RGB_D sensor**
+{{RGB_D_SENSOR}}
+{{RGB_D_SENSOR_MEASURE}}
 ## How can I measure forces being applied to my robot?
 
 ## How can I spawn multiple robots in parallel?

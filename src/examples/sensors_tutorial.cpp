@@ -27,7 +27,11 @@ int main()
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
     simu.add_robot(robot);
+    simu.add_checkerboard_floor();
+    Eigen::Vector6d pose;
+    pose << 0., 0., 0., 1.5, 0., 0.25;
 
+    simu.add_robot(robot_dart::Robot::create_box({0.1, 0.1, 0.5}, pose, "free", 1., dart::Color::Red(1.), "box"));
     // Format Eigen to std::cout
     Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n", "", "");
     std::cout.precision(5);
@@ -85,14 +89,8 @@ int main()
     }
     // @IMU_SENSOR_END@
 
-    // @RGB_SENSOR@
     // Cameras can be used as sensors to
     simu.add_sensor(camera);
-    auto rgb_image = camera->image();
-    // @RGB_SENSOR_END@
-    // @RGB_D_SENSOR@
-    auto rgb_d_image = camera->depth_image();
-    // @RGB_D_SENSOR_END@
 
     auto start = std::chrono::steady_clock::now();
     Eigen::Vector3d external_force = Eigen::Vector3d::Zero();
@@ -138,7 +136,6 @@ int main()
             }
             // @IMU_MEASUREMENT_END@
 
-            // @IMU_SENSOR_CALULATION_END@
             std::cout
                 << " Torque sensors' torque:  \n"
                 << torques_measure.transpose().format(fmt) << std::endl;
@@ -148,9 +145,12 @@ int main()
                       << ft_forces_measure.format(fmt) << std::endl;
             std::cout << " Force-Torque sensors' wrench:  \n"
                       << ft_wrench_measure.format(fmt) << std::endl;
-            std::cout << "IMU sensors Angular Position: \n" << imu_angular_positions_measure.format(fmt) << std::endl;
-            std::cout << "IMU sensors Angular Velocity: \n" << imu_angular_positions_measure.format(fmt) << std::endl;
-            std::cout << "IMU sensors Linear Acceleration: \n" << imu_angular_positions_measure.format(fmt) << std::endl;
+            std::cout << "IMU sensors Angular Position: \n"
+                      << imu_angular_positions_measure.format(fmt) << std::endl;
+            std::cout << "IMU sensors Angular Velocity: \n"
+                      << imu_angular_positions_measure.format(fmt) << std::endl;
+            std::cout << "IMU sensors Linear Acceleration: \n"
+                      << imu_angular_positions_measure.format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
         }
 
@@ -161,11 +161,34 @@ int main()
             //std::cout << "Applying force on iiwa_link_4" << std::endl;
         }
         else {
+
             external_force = Eigen::Vector3d::Zero();
         }
 
         robot->set_external_force("iiwa_link_4", external_force);
     }
+    // @RGB_SENSOR@
+    // a nested std::vector (w*h*3) of the last image taken can be retrieved
+    auto rgb_image = camera->image();
+    // @RGB_SENSOR_END@
+    // @RGB_SENSOR_MEASURE@
+    // we can also save them to png
+    robot_dart::gui::save_png_image("camera-small.png", rgb_image);
+    // convert an rgb image to grayscale (useful in some cases)
+    auto gray_image = robot_dart::gui::convert_rgb_to_grayscale(rgb_image);
+    robot_dart::gui::save_png_image("camera-gray.png", gray_image);
+    // @RGB_SENSOR_MEASURE_END@
+
+    // @RGB_D_SENSOR@
+    auto rgb_d_image = camera->depth_image();
+    // @RGB_D_SENSOR_END@
+    // @RGB_D_SENSOR_MEASURE@
+    // get the depth image from a camera
+    // with a version for visualization or bigger differences in the output
+    robot_dart::gui::save_png_image("camera-depth.png", rgb_d_image);
+    // and the raw values that can be used along with the camera parameters to transform the image to point-cloud
+    robot_dart::gui::save_png_image("camera-depth-raw.png", rgb_d_image);
+    // @RGB_D_SENSOR_MEASURE_END@
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::cout << "benchmark time: " << elapsed_seconds.count() << "s\n";
