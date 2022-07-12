@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Install - Documentation of RobotDART</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Documentation of RobotDART</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../robots/">Supported robots</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../faq/">FAQ</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Install</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../faq/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation-robot_dart">Installation robot_dart</a></li>
+            <li class="second-level"><a href="#dependencies">Dependencies</a></li>
+                
+                <li class="third-level"><a href="#required">Required</a></li>
+                <li class="third-level"><a href="#optional">Optional</a></li>
+            <li class="second-level"><a href="#installation-of-the-dependencies">Installation of the dependencies</a></li>
+                
+                <li class="third-level"><a href="#installing-boost-and-eigen3">Installing Boost and Eigen3</a></li>
+                <li class="third-level"><a href="#installing-dart">Installing DART</a></li>
+                <li class="third-level"><a href="#installing-magnum">Installing Magnum</a></li>
+            <li class="second-level"><a href="#compilation-and-running-the-examples">Compilation and running the examples</a></li>
+                
+            <li class="second-level"><a href="#installing-the-library">Installing the library</a></li>
+                
+            <li class="second-level"><a href="#compiling-the-python-bindings">Compiling the python bindings</a></li>
+                
+                <li class="third-level"><a href="#common-issues-with-python-bindings">Common Issues with Python bindings</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="installation-robot_dart">Installation robot_dart</h2>
+<h3 id="dependencies">Dependencies</h3>
+<h4 id="required">Required</h4>
+<ul>
+<li>Ubuntu (it should work on versions &gt;= 14.04) or OSX</li>
+<li>Eigen3 (needed by DART)</li>
+<li>Boost (needed by DART)</li>
+<li>DART, http://dartsim.github.io/</li>
+</ul>
+<h4 id="optional">Optional</h4>
+<ul>
+<li>Magnum (for graphics), https://github.com/mosra/magnum</li>
+</ul>
+<h3 id="installation-of-the-dependencies">Installation of the dependencies</h3>
+<h4 id="installing-boost-and-eigen3">Installing Boost and Eigen3</h4>
+<p>For Ubuntu-based distributions we should use the following commands to install Eigen3 and Boost:</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
+</code></pre>
+<p>For OSX with brew:</p>
+<pre><code class="language-bash">brew install eigen3
+brew install boost
+</code></pre>
+<h4 id="installing-dart">Installing DART</h4>
+<p>Of course in order to use robot_dart, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
+<p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you need to enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> or <code>release-6.9</code> branch (and not the one provided in DART's documentation). In short you should do the following:</p>
+<p><strong>Ubuntu &lt;= 14.04 only</strong></p>
+<pre><code class="language-bash">sudo apt-add-repository ppa:libccd-debs/ppa
+sudo apt-add-repository ppa:fcl-debs/ppa
+</code></pre>
+<p><strong>For all Ubuntu distributions</strong></p>
+<pre><code class="language-bash">sudo apt-add-repository ppa:dartsim/ppa
+sudo apt-get update
+
+sudo apt-get install build-essential cmake pkg-config git
+sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
+
+sudo apt-get install libtinyxml-dev libtinyxml2-dev
+sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
+
+cd /path/to/tmp/folder
+git clone git://github.com/dartsim/dart.git
+cd dart
+git checkout v6.12.1
+
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j4
+sudo make install
+</code></pre>
+<p>If you want to install DART somewhere else than <code>/usr/local</code>, you should use the <code>-DCMAKE_INSTALL_PREFIX=/path/to/install/folder</code> cmake argument.</p>
+<p>For <strong>OSX systems</strong> with homebrew, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_mac.html#install-from-source-using-homebrew">DART documentation website</a>. You need to follow the same procedure as for Ubuntu systems. In short you should do the following:</p>
+<pre><code class="language-bash">brew install eigen
+brew install assimp
+brew install libccd
+brew install dartsim/dart/fcl04
+brew install boost
+
+brew install tinyxml
+brew install tinyxml2
+brew install urdfdom
+
+cd /path/to/tmp/folder
+git clone git://github.com/dartsim/dart.git
+cd dart
+git checkout v6.12.1
+
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j4
+sudo make install
+</code></pre>
+<h4 id="installing-magnum">Installing Magnum</h4>
+<p>Magnum depends on <a href="https://github.com/mosra/corrade">Corrade</a> and we are going to use a few plugins and extras from the library. We are also going to use Glfw and Glx for the back-end. Follow the instrutions below:</p>
+<pre><code class="language-bash">#installation of Glfw and OpenAL
+# Ubuntu
+sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
+# Mac OSX
+brew install glfw3 openal-soft assimp
+
+# installation of Corrade
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/corrade.git
+cd corrade
+mkdir build &amp;&amp; cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j
+sudo make install
+
+# installation of Magnum
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum.git
+cd magnum
+mkdir build &amp;&amp; cd build
+# Ubuntu
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSGLXAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+# Mac OSX
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSCGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+make -j
+sudo make install
+
+# installation of Magnum Plugins
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum-plugins.git
+cd magnum-plugins
+mkdir build &amp;&amp; cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_ASSIMPIMPORTER=ON -DWITH_DDSIMPORTER=ON -DWITH_JPEGIMPORTER=ON -DWITH_OPENGEXIMPORTER=ON -DWITH_PNGIMPORTER=ON -DWITH_TINYGLTFIMPORTER=ON -DWITH_STBTRUETYPEFONT=ON .. # this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+make -j
+sudo make install
+
+# installation of Magnum DART Integration (DART needs to be installed) and Eigen Integration
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum-integration.git
+cd magnum-integration
+mkdir build &amp;&amp; cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_DART=ON -DWITH_EIGEN=ON ..
+make -j
+sudo make install
+</code></pre>
+<h3 id="compilation-and-running-the-examples">Compilation and running the examples</h3>
+<p>The compilation of the library is straight-forward:</p>
+<ul>
+<li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>
+<li><code>cd /path/to/repo/root</code></li>
+<li><code>./waf configure</code></li>
+<li><code>./waf</code></li>
+</ul>
+<p>To build the examples, execute this:
+<code>./waf examples</code></p>
+<p>Now you can run the examples. For example, to run the arm example you need to type the following: <code>./build/arm</code> (or <code>./build/arm_plain</code> to run it without graphics).</p>
+<h3 id="installing-the-library">Installing the library</h3>
+<p>To install the library (assuming that you have already compiled it), you need only to run:</p>
+<ul>
+<li><code>./waf install</code></li>
+</ul>
+<p>By default the library will be installed in <code>/usr/local/lib</code> (for this maybe <code>sudo ./waf install</code> might be needed) and a static library will be generated. You can change the defaults as follows:</p>
+<ul>
+<li><code>./waf configure --prefix=/path/to/install/dir --shared</code></li>
+<li><code>./waf install</code></li>
+</ul>
+<p>In short, with <code>--prefix</code> you can change the directory where the library will be installed and if <code>--shared</code> is present a shared library will be created instead of a static one.</p>
+<h3 id="compiling-the-python-bindings">Compiling the python bindings</h3>
+<p>For the python bindings of robot_dart, we need <code>numpy</code> to be installed, <code>pybind11</code> and the python bindings of DART (dartpy).</p>
+<p>For <code>numpy</code> one can install it with <code>pip</code> or standard packages. For <code>pybind11</code> please follow the instructions on the <a href="http://dartsim.github.io/install_dartpy_on_ubuntu.html#install-dartpy-from-source">dart website</a> (focus on the pybind11 part, for the other parts follow our instructions above).</p>
+<p>For the python bindings of DART, do:</p>
+<pre><code class="language-bash">cd dart
+
+mkdir build
+cd build
+cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j4
+sudo make install
+sudo make install-dartpy # for DART &gt;= v6.12.0, we do not need this
+</code></pre>
+<p>Then the compilation of robot_dart is almost identical as before:</p>
+<ul>
+<li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>
+<li><code>cd /path/to/repo/root</code></li>
+<li><code>./waf configure --python</code> (<code>--python</code> enables the python bindings)</li>
+<li><code>./waf</code></li>
+<li>Install the library (including the python bindings) as before (no change is needed)</li>
+<li>Depending on your installation directory you might need to update your <code>PYTHONPATH</code>, e.g. <code>export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.8/site-packages/</code></li>
+</ul>
+<p>To run the python examples (for the python examples you need to have enabled the graphics, that is, install Magnum library), run:</p>
+<ul>
+<li><code>cd /path/to/repo/root</code></li>
+<li><code>python src/python/example.py</code> or <code>python src/python/example_parallel.py</code></li>
+</ul>
+<h4 id="common-issues-with-python-bindings">Common Issues with Python bindings</h4>
+<p>One of the most common issue with the python bindings is the fact that DART bindings might be compiled and installed for python 3 and the robot_dart ones for python 2. To force the usage of python 3 for robot_dart, you use <code>python3 ./waf</code> instead of just <code>./waf</code> in all the commands above.</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../javascripts/mathjax.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

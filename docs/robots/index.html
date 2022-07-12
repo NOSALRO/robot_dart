@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="author" content="Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret">
+    <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
     
     <link rel="shortcut icon" href="../img/favicon.ico">
 
@@ -83,6 +83,12 @@
                 
                     <li >
                         <a href="../faq/">FAQ</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../install/">Install</a>
                     </li>
                 
                 
@@ -250,7 +256,10 @@
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
 </ul>
 <h2 id="how-to-use-your-own-urdf">How to use your own URDF?</h2>
-<p><strong>TO-DO</strong></p></div>
+<p>ΤΟ-DO: explain packages and .urdf a little more</p>
+<pre><code>    std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt; your_model_packages = ('model', 'path/to/model/dir');
+    auto your_robot = std::make_shared&lt;robot_dart::Robot&gt;(&quot;path/to/model.urdf&quot;, your_model_packages, &quot;packages&quot;);
+</code></pre></div>
         
         
     </div>
@@ -261,7 +270,7 @@
           
             <hr>
             <p>
-            <small>Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret</small><br>
+            <small>Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret</small><br>
             
             <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
             </p>
@@ -283,6 +292,9 @@
     <script>var base_url = ".."</script>
     
     <script src="../js/base.js"></script>
+    <script src="../javascripts/mathjax.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

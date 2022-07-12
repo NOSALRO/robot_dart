@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="author" content="Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret">
+    <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
     
     <link rel="shortcut icon" href="../img/favicon.ico">
 
@@ -86,6 +86,12 @@
                     </li>
                 
                 
+                
+                    <li >
+                        <a href="../install/">Install</a>
+                    </li>
+                
+                
                 </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -99,8 +105,8 @@
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../install/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -125,32 +131,42 @@
                 
             <li class="second-level"><a href="#how-do-i-record-a-video">How do I record a video?</a></li>
                 
-            <li class="second-level"><a href="#how-can-i-manipulate-the-camera">How can I manipulate the camera?</a></li>
+            <li class="second-level"><a href="#i-want-to-have-multiple-camera-sensors-is-it-possible">I want to have multiple camera sensors. Is it possible?</a></li>
                 
-            <li class="second-level"><a href="#how-can-i-display-debug-information">How can I display debug information?</a></li>
+            <li class="second-level"><a href="#how-can-i-position-a-camera-to-the-environment">How can I position a camera to the environment?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-attach-a-camera-to-a-moving-link">How can I attach a camera to a moving link?</a></li>
+                
+            <li class="second-level"><a href="#how-can-i-manipulate-the-camera">How can I manipulate the camera?</a></li>
                 
             <li class="second-level"><a href="#what-do-the-numbers-in-the-status-bar-mean">What do the numbers in the status bar mean?</a></li>
                 
-            <li class="second-level"><a href="#how-can-i-visualize-the-state-of-my-model">How can I visualize the state of my model?</a></li>
+            <li class="second-level"><a href="#how-can-i-alter-the-graphics-scene-eg-change-lighting-conditions">How can I alter the graphics scene (e.g., change lighting conditions)?</a></li>
                 
-            <li class="second-level"><a href="#can-i-add-change-the-graphics-scene-eg-change-lighting-conditions">Can I add change the graphics scene (e.g., change lighting conditions)?</a></li>
+            <li class="second-level"><a href="#i-want-to-visualize-a-target-configuration-of-my-robot-is-this-possible">I want to visualize a target configuration of my robot, is this possible?</a></li>
                 
             <li class="second-level"><a href="#how-can-i-control-my-robot-can-i-have-a-position-velocity-torque-controlled-robot">How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?</a></li>
                 
             <li class="second-level"><a href="#is-there-a-way-to-control-the-simulation-timestep">Is there a way to control the simulation timestep?</a></li>
                 
-            <li class="second-level"><a href="#what-is-the-difference-between-the-dart-and-the-fcl-collision-detector-how-can-i-choose-between-them">What is the difference between the DART and the FCL collision detector? How can I choose between them?</a></li>
+            <li class="second-level"><a href="#i-want-to-simulate-a-mars-environment-is-it-possible-to-change-the-gravitational-force-of-the-simulation-environment">I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?</a></li>
+                
+            <li class="second-level"><a href="#which-collision-detectors-are-available-what-are-their-differences-how-can-i-choose-between-them">Which collision detectors are available? What are their differences? How can I choose between them?</a></li>
                 
             <li class="second-level"><a href="#my-robot-does-not-self-collide-how-can-i-change-this">My robot does not self-collide. How can I change this?</a></li>
                 
             <li class="second-level"><a href="#how-can-i-compute-kinematicdynamic-properties-of-my-robot-eg-jacobians-mass-matrix">How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?</a></li>
                 
+                <li class="third-level"><a href="#test-tbd">[TEST, TBD]</a></li>
             <li class="second-level"><a href="#is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass">Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?</a></li>
                 
             <li class="second-level"><a href="#what-are-the-supported-sensors-how-can-i-use-an-imu">What are the supported sensors? How can I use an IMU?</a></li>
                 
-            <li class="second-level"><a href="#i-want-to-have-multiple-camera-sensors-is-it-possible-how-can-i-attach-a-camera-to-a-moving-link">I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?</a></li>
-                
+                <li class="third-level"><a href="#torque-sensor">Torque sensor</a></li>
+                <li class="third-level"><a href="#force-torque-sensor">Force-Torque sensor</a></li>
+                <li class="third-level"><a href="#imu-sensor">IMU sensor</a></li>
+                <li class="third-level"><a href="#rgb-sensor">RGB sensor</a></li>
+                <li class="third-level"><a href="#rgb_d-sensor">RGB_D sensor</a></li>
             <li class="second-level"><a href="#how-can-i-measure-forces-being-applied-to-my-robot">How can I measure forces being applied to my robot?</a></li>
                 
             <li class="second-level"><a href="#how-can-i-spawn-multiple-robots-in-parallel">How can I spawn multiple robots in parallel?</a></li>
@@ -172,43 +188,43 @@
 <ul>
 <li>We first include the RobotDART headers:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/robot_dart_simu.hpp&gt;</span><span class="cp"></span>
+<pre><code class="language-cpp">#include &lt;robot_dart/robot_dart_simu.hpp&gt;
 
-<span class="cp">#ifdef GRAPHIC</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/gui/magnum/graphics.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#endif</span>
-</code></pre></div>
+#ifdef GRAPHIC
+#include &lt;robot_dart/gui/magnum/graphics.hpp&gt;
+#endif
+</code></pre>
 <ul>
 <li>We then load our hexapod robot:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;pexod.urdf&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
+<pre><code class="language-cpp">auto robot = std::make_shared&lt;robot_dart::Robot&gt;(&quot;pexod.urdf&quot;);
+</code></pre>
 <ul>
 <li>We need to place it above the floor to avoid collision (position is given as a screw vector):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">robot</span><span class="o">-&gt;</span><span class="n">set_base_pose</span><span class="p">(</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">make_tf</span><span class="p">({</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">}));</span><span class="w"></span>
-</code></pre></div>
+<pre><code class="language-cpp">robot-&gt;set_base_pose(robot_dart::make_tf({0., 0., 0.2}));
+</code></pre>
 <ul>
 <li>We can now create the simulation object and add the robot and the floor:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">robot_dart</span><span class="o">::</span><span class="n">RobotDARTSimu</span><span class="w"> </span><span class="nf">simu</span><span class="p">(</span><span class="mf">0.001</span><span class="p">);</span><span class="w"> </span><span class="c1">// dt=0.001, 1KHz simulation</span>
-<span class="n">simu</span><span class="p">.</span><span class="n">add_floor</span><span class="p">();</span><span class="w"></span>
-<span class="n">simu</span><span class="p">.</span><span class="n">add_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
+<pre><code class="language-cpp">robot_dart::RobotDARTSimu simu(0.001); // dt=0.001, 1KHz simulation
+simu.add_floor();
+simu.add_robot(robot);
+</code></pre>
 <ul>
 <li>If needed or wanted, we can add a graphics component to visualize the scene:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">#ifdef GRAPHIC</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.75</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">});</span><span class="w"></span>
-<span class="cp">#endif</span>
-</code></pre></div>
+<pre><code class="language-cpp">#ifdef GRAPHIC
+    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
+    simu.set_graphics(graphics);
+    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+#endif
+</code></pre>
 <ul>
 <li>Once everything is configured, we can run our simulation for a few seconds:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">simu</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mf">10.</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
+<pre><code class="language-cpp">simu.run(10.);
+</code></pre>
 <ul>
 <li>Here's how it looks:</li>
 </ul>
@@ -220,43 +236,390 @@
 <h2 id="how-do-i-enable-graphics-in-my-code">How do I enable graphics in my code?</h2>
 <p>To enable graphics in your code, you need to do the following:</p>
 <ul>
-<li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="install.md">installation page</a> for details.</li>
+<li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="../install/">installation page</a> for details.</li>
 <li>Create and set a graphics object in the simulation object. Here's an example:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">#ifdef GRAPHIC</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.75</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">});</span><span class="w"></span>
-<span class="cp">#endif</span>
-</code></pre></div>
+<pre><code class="language-cpp">#ifdef GRAPHIC
+    auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;();
+    simu.set_graphics(graphics);
+    graphics-&gt;look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
+#endif
+</code></pre>
 <h2 id="how-do-i-record-a-video">How do I record a video?</h2>
 <p>In order to record a video of what the main camera "sees", you need to call the function <code>record_video(path)</code> of the graphics class:</p>
-<div class="highlight"><pre><span></span><code><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">GraphicsConfiguration</span><span class="w"> </span><span class="n">configuration</span><span class="p">;</span><span class="w"></span>
-<span class="n">configuration</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1280</span><span class="p">;</span><span class="w"></span>
-<span class="n">configuration</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">960</span><span class="p">;</span><span class="w"></span>
-<span class="n">configuration</span><span class="p">.</span><span class="n">bg_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector4d</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">};</span><span class="w"></span>
-<span class="k">auto</span><span class="w"> </span><span class="n">graphics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">Graphics</span><span class="o">&gt;</span><span class="p">(</span><span class="n">configuration</span><span class="p">);</span><span class="w"></span>
-<span class="n">simu</span><span class="p">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">);</span><span class="w"></span>
-<span class="n">graphics</span><span class="o">-&gt;</span><span class="n">look_at</span><span class="p">({</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="p">});</span><span class="w"></span>
-<span class="n">graphics</span><span class="o">-&gt;</span><span class="n">record_video</span><span class="p">(</span><span class="s">&quot;talos_dancing.mp4&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
+<pre><code class="language-cpp">robot_dart::gui::magnum::GraphicsConfiguration configuration;
+configuration.width = 1280;
+configuration.height = 960;
+configuration.bg_color = Eigen::Vector4d{1.0, 1.0, 1.0, 1.0};
+auto graphics = std::make_shared&lt;robot_dart::gui::magnum::Graphics&gt;(configuration);
+simu.set_graphics(graphics);
+graphics-&gt;look_at({0., 3.5, 2.}, {0., 0., 0.25});
+graphics-&gt;record_video(&quot;talos_dancing.mp4&quot;);
+</code></pre>
 <p>You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>.</p>
+<h2 id="i-want-to-have-multiple-camera-sensors-is-it-possible">I want to have multiple camera sensors. Is it possible?</h2>
+<p>Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in <a href="#how-do-i-record-a-video">How do I record a video</a>:</p>
+<pre><code class="language-cpp">// Add camera
+auto camera = std::make_shared&lt;robot_dart::sensor::Camera&gt;(graphics-&gt;magnum_app(), 256, 256);
+</code></pre>
+<h2 id="how-can-i-position-a-camera-to-the-environment">How can I position a camera to the environment?</h2>
+<pre><code class="language-cpp">// set the position of the camera, and the position where the main camera is looking at
+Eigen::Vector3d cam_pos = {-0.5, -3., 0.75};
+Eigen::Vector3d cam_looks_at = {0.5, 0., 0.2};
+camera-&gt;look_at(cam_pos, cam_looks_at);
+</code></pre>
+<h2 id="how-can-i-attach-a-camera-to-a-moving-link">How can I attach a camera to a moving link?</h2>
+<p>Cameras can be easily attached to a moving link:</p>
+<pre><code class="language-cpp">Eigen::Isometry3d tf;
+tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
+tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
+tf.translation() = Eigen::Vector3d(0., 0., 0.1);
+camera-&gt;attach_to_body(robot-&gt;body_node(&quot;iiwa_link_ee&quot;), tf); // cameras are looking towards -z by default
+</code></pre>
 <h2 id="how-can-i-manipulate-the-camera">How can I manipulate the camera?</h2>
-<h2 id="how-can-i-display-debug-information">How can I display debug information?</h2>
+<p>Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a height (that define the aspect ratio), you can manipulate each one separately:</p>
+<pre><code class="language-cpp">camera-&gt;camera().set_far_plane(5.f);
+camera-&gt;camera().set_near_plane(0.01f);
+camera-&gt;camera().set_fov(60.0f);
+</code></pre>
+<p>or all at once:</p>
+<pre><code class="language-cpp">camera-&gt;camera().set_camera_params(5., // far plane
+    0.01f, // near plane
+    60.0f, // field of view
+    600, // width
+    400 // height
+);
+</code></pre>
+<p>You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp">cameras.cpp</a>.</p>
 <h2 id="what-do-the-numbers-in-the-status-bar-mean">What do the numbers in the status bar mean?</h2>
 <p>The status bar looks like this:</p>
 <p><img alt="Status Bar" src="../images/FAQ/bar.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
-<p>Where <strong>simulation time</strong> gives us the total simulated time (in seconds), <strong>wall time</strong> gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number <strong>X.Xx</strong> gives us the real-time factor: for example, <strong>1.1x</strong> means that the simulation runs 1.1 times faster than real-time, whereas <strong>0.7x</strong> means that the simulation runs slower than real-tiem. The value <strong>it: XX ms</strong> reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. <strong>sync</strong> means that RobotDART will slow down the simulation in order for it to be in real-time, whereas <strong>no-sync</strong> means that RobotDART will try to run the simulation as fast as possible.</p>
-<h2 id="how-can-i-visualize-the-state-of-my-model">How can I visualize the state of my model?</h2>
-<h2 id="can-i-add-change-the-graphics-scene-eg-change-lighting-conditions">Can I add change the graphics scene (e.g., change lighting conditions)?</h2>
+<p>Where <strong>simulation time</strong> gives us the total simulated time (in seconds), <strong>wall time</strong> gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number <strong>X.Xx</strong> gives us the real-time factor: for example, <strong>1.1x</strong> means that the simulation runs 1.1 times faster than real-time, whereas <strong>0.7x</strong> means that the simulation runs slower than real-time. The value <strong>it: XX ms</strong> reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. <strong>sync</strong> means that RobotDART will slow down the simulation in order for it to be in real-time, whereas <strong>no-sync</strong> means that RobotDART will try to run the simulation as fast as possible.</p>
+<h2 id="how-can-i-alter-the-graphics-scene-eg-change-lighting-conditions">How can I alter the graphics scene (e.g., change lighting conditions)?</h2>
+<p>You can disable or enable shadows:</p>
+<pre><code class="language-cpp">// Disable shadows
+graphics-&gt;enable_shadows(false, false);
+simu.run(1.);
+// Enable non-transparent shadows
+graphics-&gt;enable_shadows(true, false);
+simu.run(1.);
+// Enable transparent shadows
+graphics-&gt;enable_shadows(true, true);
+simu.run(1.);
+</code></pre>
+<p>You can also add your own lights, but first you have to clear the default lights:</p>
+<pre><code class="language-cpp">// Clear Lights
+graphics-&gt;clear_lights();
+</code></pre>
+<p>Then you must create a custom light material:</p>
+<pre><code class="language-cpp">// Create Light material
+Magnum::Float shininess = 1000.f;
+Magnum::Color4 white = {1.f, 1.f, 1.f, 1.f};
+
+// ambient, diffuse, specular
+auto custom_material = robot_dart::gui::magnum::gs::Material(white, white, white, shininess);
+</code></pre>
+<p>Now you can add on ore more of the following lights:</p>
+<p><strong>Point Light</strong>:</p>
+<pre><code class="language-cpp">// Create point light
+Magnum::Vector3 position = {0.f, 0.f, 2.f};
+Magnum::Float intensity = 1.f;
+Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
+auto point_light = robot_dart::gui::magnum::gs::create_point_light(position, custom_material, intensity, attenuation_terms);
+graphics-&gt;add_light(point_light);
+</code></pre>
+<p><strong>Spot Light</strong>:</p>
+<pre><code class="language-cpp">// Create spot light
+Magnum::Vector3 position = {0.f, 0.f, 1.f};
+Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
+Magnum::Float intensity = 1.f;
+Magnum::Vector3 attenuation_terms = {1.f, 0.f, 0.f};
+Magnum::Float spot_exponent = M_PI;
+Magnum::Float spot_cut_off = M_PI / 8;
+auto spot_light = robot_dart::gui::magnum::gs::create_spot_light(position, custom_material, direction, spot_exponent, spot_cut_off, intensity, attenuation_terms);
+</code></pre>
+<p><strong>Directional Light</strong>:</p>
+<pre><code class="language-cpp">// Create directional light
+Magnum::Vector3 direction = {-1.f, -1.f, -1.f};
+auto directional_light = robot_dart::gui::magnum::gs::create_directional_light(direction, custom_material);
+graphics-&gt;add_light(directional_light);
+</code></pre>
+<h2 id="i-want-to-visualize-a-target-configuration-of-my-robot-is-this-possible">I want to visualize a target configuration of my robot, is this possible?</h2>
+<pre><code class="language-cpp">// Add a ghost robot; only visuals, no dynamics, no collision
+auto ghost = robot-&gt;clone_ghost();
+simu.add_robot(ghost);
+</code></pre>
 <h2 id="how-can-i-control-my-robot-can-i-have-a-position-velocity-torque-controlled-robot">How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?</h2>
 <h2 id="is-there-a-way-to-control-the-simulation-timestep">Is there a way to control the simulation timestep?</h2>
-<h2 id="what-is-the-difference-between-the-dart-and-the-fcl-collision-detector-how-can-i-choose-between-them">What is the difference between the DART and the FCL collision detector? How can I choose between them?</h2>
+<p>When creating a RobotDARTSimu object you choose the simulation timestep:</p>
+<pre><code class="language-cpp">// choose time step of 0.001 seconds
+robot_dart::RobotDARTSimu simu(0.001);
+</code></pre>
+<p>which can later be modified by:</p>
+<pre><code class="language-cpp">// set timestep to 0.005 and update control frequency(bool)
+simu.set_timestep(0.005, true);
+</code></pre>
+<h2 id="i-want-to-simulate-a-mars-environment-is-it-possible-to-change-the-gravitational-force-of-the-simulation-environment">I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?</h2>
+<p>Yes you can modify the gravitational forces 3-dimensional vector of the simulation:</p>
+<pre><code class="language-cpp">// Set gravitational force of mars
+Eigen::Vector3d mars_gravity = {0., 0., -3.721};
+simu.set_gravity(mars_gravity);
+</code></pre>
+<h2 id="which-collision-detectors-are-available-what-are-their-differences-how-can-i-choose-between-them">Which collision detectors are available? What are their differences? How can I choose between them?</h2>
+<table>
+<thead>
+<tr>
+<th>Dart</th>
+<th>FCL</th>
+<th>ODE</th>
+<th>Bullet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-cpp">simu.set_collision_detector(&quot;fcl&quot;); // collision_detector can be &quot;dart&quot;, &quot;fcl&quot;, &quot;ode&quot; or &quot;bullet&quot; (case does not matter)
+</code></pre>
 <h2 id="my-robot-does-not-self-collide-how-can-i-change-this">My robot does not self-collide. How can I change this?</h2>
+<p>One possible cause may be the fact that self collision is disabled, you can check and change this:</p>
+<pre><code class="language-cpp">if (!robot-&gt;self_colliding()) {
+    std::cout &lt;&lt; &quot;Self collision is not enabled&quot; &lt;&lt; std::endl;
+    // set self collisions to true and adjacent collisions to false
+    robot-&gt;set_self_collision(true, false);
+}
+</code></pre>
 <h2 id="how-can-i-compute-kinematicdynamic-properties-of-my-robot-eg-jacobians-mass-matrix">How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?</h2>
+<p><strong>Kinematic Properties:</strong>
+<br></p>
+<h3 id="test-tbd"><strong>[TEST, TBD]</strong></h3>
+<p>RobotDART give you the ability to calculate</p>
+<ul>
+<li>Joint Positions <span class="arithmatex">\(\boldsymbol{\theta} \in \rm I\!R^{N}\)</span>, where <span class="arithmatex">\(N\)</span> is the number of joints</li>
+<li>Joint Velocities <span class="arithmatex">\(\boldsymbol{\dot{\theta}} \in \rm I\!R^{N}\)</span>, where <span class="arithmatex">\(N\)</span> is the number of joints</li>
+<li>Joint Accelerations <span class="arithmatex">\(\boldsymbol{\ddot{\theta}} \in \rm I\!R^{N}\)</span>, where <span class="arithmatex">\(N\)</span> is the number of joints</li>
+<li>Transformation matrix  <span class="arithmatex">\(\boldsymbol{T} = \begin{bmatrix} R \ t \\ 0\ 1 \end{bmatrix} \in \rm I\!R^{4\times4}\)</span></li>
+<li>Rotation Matrix <span class="arithmatex">\(R \in \rm I\!R^{3\times3}\)</span></li>
+<li>Translation vector <span class="arithmatex">\(\boldsymbol{t} \in \rm I\!R^{3}\)</span></li>
+</ul>
+<pre><code class="language-cpp">// Get Joint Positions(Angles)
+auto joint_positions = robot-&gt;positions();
+
+// Get Joint Velocities
+auto joint_vels = robot-&gt;velocities();
+
+// Get Joint Accelerations
+auto joint_accs = robot-&gt;accelerations();
+
+// Get link_name(str) Transformation matrix with respect to the world frame.
+auto eef_tf = robot-&gt;body_pose(link_name);
+
+// Get translation vector from transformation matrix
+auto eef_pos = eef_tf.translation();
+
+// Get rotation matrix from tranformation matrix
+auto eef_rot = eef_tf.rotation();
+
+// Get link_name 6d pose vector [logmap(eef_tf.linear()), eef_tf.translation()]
+auto eef_pose_vec = robot-&gt;body_pose_vec(link_name);
+
+// Get link_name 6d velocity vector [angular, cartesian]
+auto eef_vel = robot-&gt;body_velocity(link_name);
+
+// Get link_name 6d acceleration vector [angular, cartesian]
+auto eef_acc = robot-&gt;body_acceleration(link_name);
+
+// Jacobian targeting the origin of link_name(str)
+auto jacobian = robot-&gt;jacobian(link_name);
+
+// Jacobian time derivative
+auto jacobian_deriv = robot-&gt;jacobian_deriv(link_name);
+
+// Center of Mass Jacobian
+auto com_jacobian = robot-&gt;com_jacobian(robot-&gt;dof_names());
+
+// Center of Mass Jacobian Time Derivative
+auto com_jacobian_deriv = robot-&gt;com_jacobian_deriv(robot-&gt;dof_names());
+</code></pre>
+<p><strong>Dynamic Properties:</strong></p>
+<pre><code class="language-cpp">// Get Joint Forces
+auto joint_forces = robot-&gt;forces();
+
+// Get link's mass
+auto eef_mass = robot-&gt;body_mass(link_name);
+
+// Mass Matrix of robot
+auto mass_matrix = robot-&gt;mass_matrix();
+
+// Inverse of Mass Matrix
+auto inv_mass_matrix = robot-&gt;inv_mass_matrix();
+
+// Augmented Mass matrix
+auto aug_mass_matrix = robot-&gt;aug_mass_matrix();
+
+// Inverse of Augmented Mass matrix
+auto inv_aug_mass_matrix = robot-&gt;inv_aug_mass_matrix();
+
+// Coriolis Force vector
+auto coriolis = robot-&gt;coriolis_forces();
+
+// Gravity Force vector
+auto gravity = robot-&gt;gravity_forces();
+
+// Combined vector of Coriolis Force and Gravity Force
+auto coriolis_gravity = robot-&gt;coriolis_gravity_forces();
+
+// Constraint Force Vector
+auto constraint_forces = robot-&gt;constraint_forces(robot-&gt;dof_names());
+</code></pre>
 <h2 id="is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass">Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?</h2>
+<p>There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:</p>
+<pre><code class="language-cpp">// Set all DoFs to same actuator
+robot-&gt;set_actuator_types(&quot;servo&quot;); // actuator types can be &quot;servo&quot;, &quot;torque&quot;, &quot;velocity&quot;, &quot;passive&quot;, &quot;locked&quot;, &quot;mimic&quot;
+// You can also set actuator types separately
+robot-&gt;set_actuator_type(&quot;torque&quot;, &quot;iiwa_joint_5&quot;);
+</code></pre>
+<p>To enable position and velocity limits for the actuators:</p>
+<pre><code class="language-cpp">// Εnforce joint position and velocity limits
+robot-&gt;set_position_enforced(true);
+</code></pre>
+<p>Every actuators limits (position, velocity, acceleration, force) can be modified:</p>
+<pre><code class="language-cpp">// Modify Position Limits
+Eigen::VectorXd pos_upper_lims(7);
+pos_upper_lims &lt;&lt; 2.096, 2.096, 2.096, 2.096, 2.096, 2.096, 2.096;
+robot-&gt;set_position_upper_limits(pos_upper_lims, dof_names);
+robot-&gt;set_position_lower_limits(-pos_upper_lims, dof_names);
+
+// Modify Velocity Limits
+
+Eigen::VectorXd vel_upper_lims(7);
+vel_upper_lims &lt;&lt; 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5;
+robot-&gt;set_velocity_upper_limits(vel_upper_lims, dof_names);
+robot-&gt;set_velocity_lower_limits(-vel_upper_lims, dof_names);
+
+// Modify Force Limits
+
+Eigen::VectorXd force_upper_lims(7);
+force_upper_lims &lt;&lt; 150, 150, 150, 150, 150, 150, 150;
+robot-&gt;set_force_upper_limits(force_upper_lims, dof_names);
+robot-&gt;set_force_lower_limits(-force_upper_lims, dof_names);
+
+// Modify Acceleration Limits
+Eigen::VectorXd acc_upper_lims(7);
+acc_upper_lims &lt;&lt; 1500, 1500, 1500, 1500, 1500, 1500, 1500;
+robot-&gt;set_acceleration_upper_limits(acc_upper_lims, dof_names);
+robot-&gt;set_acceleration_lower_limits(-acc_upper_lims, dof_names);
+</code></pre>
+<p>You can also modify the damping coefficients, coulomb frictions and spring stiffness of every joint:</p>
+<pre><code class="language-cpp">// Modify Damping Coefficients
+std::vector&lt;double&gt; damps = {0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4};
+robot-&gt;set_damping_coeffs(damps, dof_names);
+
+// Modify Coulomb Frictions
+std::vector&lt;double&gt; cfrictions = {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
+robot-&gt;set_coulomb_coeffs(cfrictions, dof_names);
+
+// Modify  Spring Stiffness
+std::vector&lt;double&gt; stiffnesses = {0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001};
+robot-&gt;set_spring_stiffnesses(stiffnesses, dof_names);
+</code></pre>
 <h2 id="what-are-the-supported-sensors-how-can-i-use-an-imu">What are the supported sensors? How can I use an IMU?</h2>
-<h2 id="i-want-to-have-multiple-camera-sensors-is-it-possible-how-can-i-attach-a-camera-to-a-moving-link">I want to have multiple camera sensors. Is it possible? How can I attach a camera to a moving link?</h2>
+<h4 id="torque-sensor"><strong>Torque sensor</strong></h4>
+<p>Torque sensors can be added to every joint of the robot:</p>
+<pre><code class="language-cpp">// Add torque sensors to the robot
+int ct = 0;
+std::vector&lt;std::shared_ptr&lt;robot_dart::sensor::Torque&gt;&gt; tq_sensors(robot-&gt;num_dofs());
+for (const auto&amp; joint : robot-&gt;dof_names())
+    tq_sensors[ct++] = simu.add_sensor&lt;robot_dart::sensor::Torque&gt;(robot, joint, 1000);
+</code></pre>
+<p>Torque sensors measure the torque <span class="arithmatex">\(\tau \in \rm I\!R\)</span> of the attached joint:</p>
+<pre><code class="language-cpp">// vector that contains the torque measurement for every joint (scalar)
+Eigen::VectorXd torques_measure(robot-&gt;num_dofs());
+for (const auto&amp; tq_sens : tq_sensors)
+    torques_measure.block&lt;1, 1&gt;(ct++, 0) = tq_sens-&gt;torques();
+</code></pre>
+<h4 id="force-torque-sensor"><strong>Force-Torque sensor</strong></h4>
+<p>Force-Torque sensors can be added to every joint of the robot:</p>
+<pre><code class="language-cpp">// Add force-torque sensors to the robot
+ct = 0;
+std::vector&lt;std::shared_ptr&lt;robot_dart::sensor::ForceTorque&gt;&gt; f_tq_sensors(robot-&gt;num_dofs());
+for (const auto&amp; joint : robot-&gt;dof_names())
+    f_tq_sensors[ct++] = simu.add_sensor&lt;robot_dart::sensor::ForceTorque&gt;(robot, joint, 1000, &quot;parent_to_child&quot;);
+</code></pre>
+<p>Torque sensors measure the force <span class="arithmatex">\(\boldsymbol{F} \in \rm I\!R^3\)</span>, the torque <span class="arithmatex">\(\boldsymbol{\tau} \in \rm I\!R^3\)</span> and the wrench <span class="arithmatex">\(\boldsymbol{\mathcal{F}} =\begin{bmatrix} \tau, F\end{bmatrix}\in \rm I\!R^6\)</span> of the attached joint:</p>
+<pre><code class="language-cpp">//  matrix that contains the torque measurement for every joint (3d vector)
+Eigen::MatrixXd ft_torques_measure(robot-&gt;num_dofs(), 3);
+//  matrix that contains the force measurement for every joint (3d vector)
+Eigen::MatrixXd ft_forces_measure(robot-&gt;num_dofs(), 3);
+//  matrix that contains the wrench measurement for every joint (6d vector)[torque, force]
+Eigen::MatrixXd ft_wrench_measure(robot-&gt;num_dofs(), 6);
+ct = 0;
+for (const auto&amp; f_tq_sens : f_tq_sensors) {
+    ft_torques_measure.block&lt;1, 3&gt;(ct, 0) = f_tq_sens-&gt;torque();
+    ft_forces_measure.block&lt;1, 3&gt;(ct, 0) = f_tq_sens-&gt;force();
+    ft_wrench_measure.block&lt;1, 6&gt;(ct, 0) = f_tq_sens-&gt;wrench();
+    ct++;
+}
+</code></pre>
+<h4 id="imu-sensor"><strong>IMU sensor</strong></h4>
+<p>Imu sensors can be added to every link of the robot:</p>
+<pre><code class="language-cpp">// Add IMU sensors to the robot
+ct = 0;
+std::vector&lt;std::shared_ptr&lt;robot_dart::sensor::IMU&gt;&gt; imu_sensors(robot-&gt;num_bodies());
+for (const auto&amp; body_node : robot-&gt;body_names()) {
+    // _imu(std::make_shared&lt;sensor::IMU&gt;(sensor::IMUConfig(body_node(&quot;head&quot;), frequency))),
+    imu_sensors[ct++] = simu.add_sensor&lt;robot_dart::sensor::IMU&gt;(robot_dart::sensor::IMUConfig(robot-&gt;body_node(body_node), 1000));
+}
+</code></pre>
+<p>Imu sensors measure the angular position vector <span class="arithmatex">\(\boldsymbol{\theta} \in \rm I\!R^3\)</span>, the angular velocity <span class="arithmatex">\(\boldsymbol{\omega} \in \rm I\!R^3\)</span>  and the linear acceleration <span class="arithmatex">\(\boldsymbol{\alpha} \in \rm I\!R^3\)</span> of the attached link:</p>
+<pre><code class="language-cpp">Eigen::MatrixXd imu_angular_positions_measure(robot-&gt;num_bodies(), 3);
+Eigen::MatrixXd imu_angular_velocities_measure(robot-&gt;num_bodies(), 3);
+Eigen::MatrixXd imu_linear_acceleration_measure(robot-&gt;num_bodies(), 3);
+ct = 0;
+for (const auto&amp; imu_sens : imu_sensors) {
+    imu_angular_positions_measure.block&lt;1, 3&gt;(ct, 0) = imu_sens-&gt;angular_position_vec();
+    imu_angular_velocities_measure.block&lt;1, 3&gt;(ct, 0) = imu_sens-&gt;angular_velocity();
+    imu_linear_acceleration_measure.block&lt;1, 3&gt;(ct, 0) = imu_sens-&gt;linear_acceleration();
+    ct++;
+}
+</code></pre>
+<h4 id="rgb-sensor"><strong>RGB sensor</strong></h4>
+<pre><code class="language-cpp">// a nested std::vector (w*h*3) of the last image taken can be retrieved
+auto rgb_image = camera-&gt;image();
+</code></pre>
+<pre><code class="language-cpp">// we can also save them to png
+robot_dart::gui::save_png_image(&quot;camera-small.png&quot;, rgb_image);
+// convert an rgb image to grayscale (useful in some cases)
+auto gray_image = robot_dart::gui::convert_rgb_to_grayscale(rgb_image);
+robot_dart::gui::save_png_image(&quot;camera-gray.png&quot;, gray_image);
+</code></pre>
+<h4 id="rgb_d-sensor"><strong>RGB_D sensor</strong></h4>
+<pre><code class="language-cpp">// get the depth image from a camera
+// with a version for visualization or bigger differences in the output
+auto rgb_d_image = camera-&gt;depth_image();
+// and the raw values that can be used along with the camera parameters to transform the image to point-cloud
+auto rgb_d_image_raw = camera-&gt;raw_depth_image();
+</code></pre>
+<pre><code class="language-cpp">robot_dart::gui::save_png_image(&quot;camera-depth.png&quot;, rgb_d_image);
+robot_dart::gui::save_png_image(&quot;camera-depth-raw.png&quot;, rgb_d_image_raw);
+</code></pre>
 <h2 id="how-can-i-measure-forces-being-applied-to-my-robot">How can I measure forces being applied to my robot?</h2>
 <h2 id="how-can-i-spawn-multiple-robots-in-parallel">How can I spawn multiple robots in parallel?</h2>
 <p>The best way to do so is to create a Robot pool. With a robot pool you:</p>
@@ -269,59 +632,141 @@
 <ul>
 <li>First we need to include the proper header:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/robot_pool.hpp&gt;</span><span class="cp"></span>
-</code></pre></div>
+<pre><code class="language-cpp">#include &lt;robot_dart/robot_pool.hpp&gt;
+</code></pre>
 <ul>
 <li>Then we create a <code>creator</code> function and the pool object:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">pool</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// This function should load one robot: here we load Talos</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="w"> </span><span class="n">robot_creator</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;talos_description&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;talos/talos_description&quot;</span><span class="p">}};</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;talos/talos.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">packages</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<pre><code class="language-cpp">namespace pool {
+    // This function should load one robot: here we load Talos
+    inline std::shared_ptr&lt;robot_dart::Robot&gt; robot_creator()
+    {
+        return std::make_shared&lt;robot_dart::robots::Talos&gt;();
+    }
 
-<span class="w">    </span><span class="c1">// To create the object we need to pass the robot_creator function and the number of maximum parallel threads</span>
-<span class="w">    </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">RobotPool</span><span class="w"> </span><span class="n">robot_pool</span><span class="p">(</span><span class="n">robot_creator</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_THREADS</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="c1">// namespace pool</span>
-</code></pre></div>
+    // To create the object we need to pass the robot_creator function and the number of maximum parallel threads
+    robot_dart::RobotPool robot_pool(robot_creator, NUM_THREADS);
+} // namespace pool
+</code></pre>
 <p>The <code>creator</code> function is the function responsible for loading your robot. This should basically look like a standalone code to load or create a robot.</p>
 <ul>
 <li>Next, we create a few threads that utilize the robots (in your code you might be using OpenMP or TBB):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">// for the example, we run NUM_THREADS threads of eval_robot()</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threads</span><span class="p">(</span><span class="n">NUM_THREADS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// *2 to see some reuse</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threads</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">eval_robot</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// eval_robot is the function that uses the robot</span>
-</code></pre></div>
+<pre><code class="language-cpp">// for the example, we run NUM_THREADS threads of eval_robot()
+std::vector&lt;std::thread&gt; threads(NUM_THREADS * 2); // *2 to see some reuse
+for (size_t i = 0; i &lt; threads.size(); ++i)
+    threads[i] = std::thread(eval_robot, i); // eval_robot is the function that uses the robot
+</code></pre>
 <ul>
 <li>An example evaluation function:</li>
 </ul>
+<pre><code class="language-cpp">inline void eval_robot(int i)
+{
+    // We get one available robot
+    auto robot = pool::robot_pool.get_robot();
+    std::cout &lt;&lt; &quot;Robot &quot; &lt;&lt; i &lt;&lt; &quot; got [&quot; &lt;&lt; robot-&gt;skeleton() &lt;&lt; &quot;]&quot; &lt;&lt; std::endl;
+
+    /// --- some robot_dart code ---
+    simulate_robot(robot);
+    // --- do something with the result
+
+    std::cout &lt;&lt; &quot;End of simulation &quot; &lt;&lt; i &lt;&lt; std::endl;
+
+    // CRITICAL : free your robot !
+    pool::robot_pool.free_robot(robot);
+
+    std::cout &lt;&lt; &quot;Robot &quot; &lt;&lt; i &lt;&lt; &quot; freed!&quot; &lt;&lt; std::endl;
+}
+</code></pre>
 <h2 id="i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this">I need to simulate many worlds with camera sensors in parallel. How can I do this?</h2>
+<p>On <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp">magnum_contexts.cpp</a> you can find an example showcasing the use of many worlds with camera sensors in parallel</p>
+<pre><code class="language-cpp">// Load robot from URDF
+auto global_robot = std::make_shared&lt;robot_dart::robots::Iiwa&gt;();
+
+std::vector&lt;std::thread&gt; workers;
+
+// Set maximum number of parallel GL contexts (this is GPU-dependent)
+robot_dart::gui::magnum::GlobalData::instance()-&gt;set_max_contexts(4);
+
+// We want 15 parallel simulations with different GL context each
+size_t N_workers = 15;
+std::mutex mutex;
+size_t id = 0;
+// Launch the workers
+for (size_t i = 0; i &lt; N_workers; i++) {
+    workers.push_back(std::thread([&amp;] {
+        mutex.lock();
+        size_t index = id++;
+        mutex.unlock();
+
+        // Get the GL context -- this is a blocking call
+        // will wait until one GL context is available
+        // get_gl_context(gl_context); // this call will not sleep between failed queries
+        get_gl_context_with_sleep(gl_context, 20); // this call will sleep 20ms between each failed query
+
+        // Do the simulation
+        auto robot = global_robot-&gt;clone();
+
+        robot_dart::RobotDARTSimu simu(0.001);
+
+        Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
+
+        auto controller = std::make_shared&lt;robot_dart::control::PDControl&gt;(ctrl);
+        robot-&gt;add_controller(controller);
+        controller-&gt;set_pd(300., 50.);
+
+        // Magnum graphics
+        robot_dart::gui::magnum::GraphicsConfiguration configuration = robot_dart::gui::magnum::WindowlessGraphics::default_configuration();
+
+        configuration.width = 1024;
+        configuration.height = 768;
+        auto graphics = std::make_shared&lt;robot_dart::gui::magnum::WindowlessGraphics&gt;(configuration);
+        simu.set_graphics(graphics);
+        // Position the camera differently for each thread to visualize the difference
+        graphics-&gt;look_at({0.4 * index, 3.5 - index * 0.1, 2.}, {0., 0., 0.25});
+        // record images from main camera/graphics
+        // graphics-&gt;set_recording(true); // WindowlessGLApplication records images by default
+
+        simu.add_robot(robot);
+        simu.run(6);
+
+        // Save the image for verification
+        robot_dart::gui::save_png_image(&quot;camera_&quot; + std::to_string(index) + &quot;.png&quot;,
+            graphics-&gt;image());
+
+        // Release the GL context for another thread to use
+        release_gl_context(gl_context);
+    }));
+}
+
+// Wait for all the workers
+for (size_t i = 0; i &lt; workers.size(); i++) {
+    workers[i].join();
+}
+</code></pre>
 <h2 id="i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake">I do not know how to use waf. How can I detect RobotDART from CMake?</h2>
 <p>You need to use <code>waf</code> to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/cmake/example">cmake/example</a>. In short the CMake would look like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.10</span> <span class="s">FATAL_ERROR</span><span class="p">)</span>
-<span class="nb">project</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="p">)</span>
-<span class="c"># we ask for Magnum because we want to build the graphics</span>
-<span class="nb">find_package</span><span class="p">(</span><span class="s">RobotDART</span> <span class="s">REQUIRED</span> <span class="s">OPTIONAL_COMPONENTS</span> <span class="s">Magnum</span><span class="p">)</span>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+project(robot_dart_example)
+# we ask for Magnum because we want to build the graphics
+find_package(RobotDART REQUIRED OPTIONAL_COMPONENTS Magnum)
 
-<span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example</span> <span class="s">example.cpp</span><span class="p">)</span>
+add_executable(robot_dart_example example.cpp)
 
-<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example</span>
-   <span class="s">RobotDART::Simu</span>
-<span class="p">)</span>
+target_link_libraries(robot_dart_example
+   RobotDART::Simu
+)
 
-<span class="nb">if</span><span class="p">(</span><span class="s">RobotDART_Magnum_FOUND</span><span class="p">)</span>
-  <span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span> <span class="s">example.cpp</span><span class="p">)</span>
-  <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span>
-    <span class="s">RobotDART::Simu</span>
-    <span class="s">RobotDART::Magnum</span>
-  <span class="p">)</span>
-<span class="nb">endif</span><span class="p">()</span>
-</code></pre></div>
+if(RobotDART_Magnum_FOUND)
+  add_executable(robot_dart_example_graphics example.cpp)
+  target_link_libraries(robot_dart_example_graphics
+    RobotDART::Simu
+    RobotDART::Magnum
+  )
+endif()
+</code></pre>
 <h2 id="i-prefer-coding-in-python-how-can-i-use-robotdart">I prefer coding in python. How can I use RobotDART?</h2>
-<p>RobotDART comes with python bindinds. Please refer to the <a href="install.md">installation page</a> to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at <a href="https://github.com/resibots/robot_dart/blob/master/src/python/example.py">example.py</a>. There is mostly an one-to-one mapping between C++ and python objects and functions.</p></div>
+<p>RobotDART comes with python bindinds. Please refer to the <a href="../install/">installation page</a> to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at <a href="https://github.com/resibots/robot_dart/blob/master/src/python/example.py">example.py</a>. There is mostly an one-to-one mapping between C++ and python objects and functions.</p></div>
         
         
     </div>
@@ -332,7 +777,7 @@
           
             <hr>
             <p>
-            <small>Konstantinos Chatzilygeroudis, Jean-Baptiste Mouret</small><br>
+            <small>Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret</small><br>
             
             <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
             </p>
@@ -354,6 +799,9 @@
     <script>var base_url = ".."</script>
     
     <script src="../js/base.js"></script>
+    <script src="../javascripts/mathjax.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
