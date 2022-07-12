@@ -15,8 +15,8 @@ nav:
   - Install: install.md
 markdown_extensions:
   - attr_list
-  - pymdownx.highlight
-  - pymdownx.superfences
+  # - pymdownx.highlight
+  # - pymdownx.superfences
   - pymdownx.snippets:
       base_path: '../../'
 plugins:
