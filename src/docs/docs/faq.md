@@ -142,6 +142,17 @@ One possible cause may be the fact that self collision is disabled, you can chec
 ## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
 
 **Kinematic Properties:**
+<br>
+###**[TEST, TBD]**
+
+RobotDART give you the ability to calculate
+
+- Joint Positions $\boldsymbol{\theta} \in \rm I\!R^{N}$, where $N$ is the number of joints
+- Joint Velocities $\boldsymbol{\dot{\theta}} \in \rm I\!R^{N}$, where $N$ is the number of joints
+- Joint Accelerations $\boldsymbol{\ddot{\theta}} \in \rm I\!R^{N}$, where $N$ is the number of joints
+- Transformation matrix  $\boldsymbol{T} = \begin{bmatrix} R \ t \\ 0\ 1 \end{bmatrix} \in \rm I\!R^{4\times4}$
+- Rotation Matrix $R \in \rm I\!R^{3\times3}$
+- Translation vector $\boldsymbol{t} \in \rm I\!R^{3}$
 
 {{KINEMATICS}}
 
@@ -163,14 +174,17 @@ You can also modify the damping coefficients, coulomb frictions and spring stiff
 #### **Torque sensor**
 Torque sensors can be added to every joint of the robot:
 {{TORQUE_SENSOR}}
+Torque sensors measure the torque $\tau \in \rm I\!R$ of the attached joint:
 {{TORQUE_MEASUREMENT}}
 #### **Force-Torque sensor**
 Force-Torque sensors can be added to every joint of the robot:
 {{FORCE_TORQUE_SENSOR}}
+Torque sensors measure the force $\boldsymbol{F} \in \rm I\!R^3$, the torque $\boldsymbol{\tau} \in \rm I\!R^3$ and the wrench $\boldsymbol{\mathcal{F}} =\begin{bmatrix} \tau, F\end{bmatrix}\in \rm I\!R^6$ of the attached joint:
 {{FORCE_TORQUE_MEASUREMENT}}
 #### **IMU sensor**
-Torque sensors can be added to every link of the robot:
+Imu sensors can be added to every link of the robot:
 {{IMU_SENSOR}}
+Imu sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!R^3$, the angular velocity $\boldsymbol{\omega} \in \rm I\!R^3$  and the linear acceleration $\boldsymbol{\alpha} \in \rm I\!R^3$ of the attached link:
 {{IMU_MEASUREMENT}}
 
 #### **RGB sensor**
