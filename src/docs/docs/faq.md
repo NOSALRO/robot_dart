@@ -6,7 +6,7 @@
 
 This pages provides a user guide of the library through Frequently Asked Questions (FAQ).
 
-## "What is a minimal working example of RobotDART"
+## What is a minimal working example of RobotDART?
 
 You can find a minimal working example at [hello_world.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hello_world.cpp). This example is creating a world where a hexapod robot is placed just above a floor and left to fall. The robot has no actuation, and there is the simplest graphics configuration. Let's split it down.
 
