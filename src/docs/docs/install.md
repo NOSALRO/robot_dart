@@ -1,3 +1,7 @@
+---
+  hide:
+    -navigation
+---
 ## Installation robot_dart
 
 ### Dependencies

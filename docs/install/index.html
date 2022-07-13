@@ -1,268 +1,767 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
     
-    <link rel="shortcut icon" href="../img/favicon.ico">
-
     
-    <title>Install - Documentation of RobotDART</title>
+      
+        <title>Install - Documentation of RobotDART</title>
+      
     
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
-    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="../css/base.min.css" rel="stylesheet">
-    <link href="../css/cinder.min.css" rel="stylesheet">
-
     
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
         
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
+      
     
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-        <![endif]-->
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
     
-
-     
-</head>
-
-<body>
-
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
-
-            <!-- Main title -->
-
-            
-              <a class="navbar-brand" href="..">Documentation of RobotDART</a>
-            
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-                <!-- Main navigation -->
-                <ul class="nav navbar-nav">
-                
-                
-                    <li >
-                        <a href="..">Home</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../robots/">Supported robots</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../faq/">FAQ</a>
-                    </li>
-                
-                
-                
-                    <li class="active">
-                        <a href="./">Install</a>
-                    </li>
-                
-                
-                </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                            <i class="fas fa-search"></i> Search
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="prev" href="../faq/">
-                            <i class="fas fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li class="disabled">
-                        <a rel="next" >
-                            Next <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
-            </ul>
-        </div>
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-robot_dart" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Documentation of RobotDART" class="md-header__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation of RobotDART
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Install
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    resibots/robot_dart
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
 
-    <div class="container">
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
         
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../robots/" class="md-tabs__link">
+      Supported robots
+    </a>
+  </li>
+
+      
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#installation-robot_dart">Installation robot_dart</a></li>
-            <li class="second-level"><a href="#dependencies">Dependencies</a></li>
-                
-                <li class="third-level"><a href="#required">Required</a></li>
-                <li class="third-level"><a href="#optional">Optional</a></li>
-            <li class="second-level"><a href="#installation-of-the-dependencies">Installation of the dependencies</a></li>
-                
-                <li class="third-level"><a href="#installing-boost-and-eigen3">Installing Boost and Eigen3</a></li>
-                <li class="third-level"><a href="#installing-dart">Installing DART</a></li>
-                <li class="third-level"><a href="#installing-magnum">Installing Magnum</a></li>
-            <li class="second-level"><a href="#compilation-and-running-the-examples">Compilation and running the examples</a></li>
-                
-            <li class="second-level"><a href="#installing-the-library">Installing the library</a></li>
-                
-            <li class="second-level"><a href="#compiling-the-python-bindings">Compiling the python bindings</a></li>
-                
-                <li class="third-level"><a href="#common-issues-with-python-bindings">Common Issues with Python bindings</a></li>
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../faq/" class="md-tabs__link">
+      FAQ
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Install
+    </a>
+  </li>
+
+      
     </ul>
-</div></div>
-        <div class="col-md-9" role="main">
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
-<h2 id="installation-robot_dart">Installation robot_dart</h2>
-<h3 id="dependencies">Dependencies</h3>
-<h4 id="required">Required</h4>
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Documentation of RobotDART" class="md-nav__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    Documentation of RobotDART
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    resibots/robot_dart
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../robots/" class="md-nav__link">
+        Supported robots
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Install
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-robot_dart" class="md-nav__link">
+    Installation robot_dart
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation robot_dart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-of-the-dependencies" class="md-nav__link">
+    Installation of the dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation of the dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-boost-and-eigen3" class="md-nav__link">
+    Installing Boost and Eigen3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-dart" class="md-nav__link">
+    Installing DART
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-magnum" class="md-nav__link">
+    Installing Magnum
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-and-running-the-examples" class="md-nav__link">
+    Compilation and running the examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-library" class="md-nav__link">
+    Installing the library
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-the-python-bindings" class="md-nav__link">
+    Compiling the python bindings
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling the python bindings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-with-python-bindings" class="md-nav__link">
+    Common Issues with Python bindings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-robot_dart" class="md-nav__link">
+    Installation robot_dart
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation robot_dart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-of-the-dependencies" class="md-nav__link">
+    Installation of the dependencies
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation of the dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-boost-and-eigen3" class="md-nav__link">
+    Installing Boost and Eigen3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-dart" class="md-nav__link">
+    Installing DART
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-magnum" class="md-nav__link">
+    Installing Magnum
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-and-running-the-examples" class="md-nav__link">
+    Compilation and running the examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-library" class="md-nav__link">
+    Installing the library
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiling-the-python-bindings" class="md-nav__link">
+    Compiling the python bindings
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling the python bindings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-with-python-bindings" class="md-nav__link">
+    Common Issues with Python bindings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/resibots/robot_dart/edit/master/docs/install.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+  <h1>Install</h1>
+
+<h2 id="installation-robot_dart">Installation robot_dart<a class="headerlink" href="#installation-robot_dart" title="Permanent link">&para;</a></h2>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<h4 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Ubuntu (it should work on versions &gt;= 14.04) or OSX</li>
 <li>Eigen3 (needed by DART)</li>
 <li>Boost (needed by DART)</li>
-<li>DART, http://dartsim.github.io/</li>
+<li>DART, <a href="http://dartsim.github.io/">http://dartsim.github.io/</a></li>
 </ul>
-<h4 id="optional">Optional</h4>
+<h4 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Magnum (for graphics), https://github.com/mosra/magnum</li>
+<li>Magnum (for graphics), <a href="https://github.com/mosra/magnum">https://github.com/mosra/magnum</a></li>
 </ul>
-<h3 id="installation-of-the-dependencies">Installation of the dependencies</h3>
-<h4 id="installing-boost-and-eigen3">Installing Boost and Eigen3</h4>
+<h3 id="installation-of-the-dependencies">Installation of the dependencies<a class="headerlink" href="#installation-of-the-dependencies" title="Permanent link">&para;</a></h3>
+<h4 id="installing-boost-and-eigen3">Installing Boost and Eigen3<a class="headerlink" href="#installing-boost-and-eigen3" title="Permanent link">&para;</a></h4>
 <p>For Ubuntu-based distributions we should use the following commands to install Eigen3 and Boost:</p>
-<pre><code class="language-bash">sudo apt-get update
-sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt-get update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
+</code></pre></div>
 <p>For OSX with brew:</p>
-<pre><code class="language-bash">brew install eigen3
-brew install boost
-</code></pre>
-<h4 id="installing-dart">Installing DART</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew install eigen3
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew install boost
+</code></pre></div>
+<h4 id="installing-dart">Installing DART<a class="headerlink" href="#installing-dart" title="Permanent link">&para;</a></h4>
 <p>Of course in order to use robot_dart, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
 <p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you need to enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> or <code>release-6.9</code> branch (and not the one provided in DART's documentation). In short you should do the following:</p>
 <p><strong>Ubuntu &lt;= 14.04 only</strong></p>
-<pre><code class="language-bash">sudo apt-add-repository ppa:libccd-debs/ppa
-sudo apt-add-repository ppa:fcl-debs/ppa
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo apt-add-repository ppa:libccd-debs/ppa
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo apt-add-repository ppa:fcl-debs/ppa
+</code></pre></div>
 <p><strong>For all Ubuntu distributions</strong></p>
-<pre><code class="language-bash">sudo apt-add-repository ppa:dartsim/ppa
-sudo apt-get update
-
-sudo apt-get install build-essential cmake pkg-config git
-sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
-
-sudo apt-get install libtinyxml-dev libtinyxml2-dev
-sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
-
-cd /path/to/tmp/folder
-git clone git://github.com/dartsim/dart.git
-cd dart
-git checkout v6.12.1
-
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo apt-add-repository ppa:dartsim/ppa
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo apt-get update
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo apt-get install build-essential cmake pkg-config git
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>sudo apt-get install libtinyxml-dev libtinyxml2-dev
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>git clone git://github.com/dartsim/dart.git
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">cd</span> dart
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>git checkout v6.12.1
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>mkdir build
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">cd</span> build
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>make -j4
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>sudo make install
+</code></pre></div>
 <p>If you want to install DART somewhere else than <code>/usr/local</code>, you should use the <code>-DCMAKE_INSTALL_PREFIX=/path/to/install/folder</code> cmake argument.</p>
 <p>For <strong>OSX systems</strong> with homebrew, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_mac.html#install-from-source-using-homebrew">DART documentation website</a>. You need to follow the same procedure as for Ubuntu systems. In short you should do the following:</p>
-<pre><code class="language-bash">brew install eigen
-brew install assimp
-brew install libccd
-brew install dartsim/dart/fcl04
-brew install boost
-
-brew install tinyxml
-brew install tinyxml2
-brew install urdfdom
-
-cd /path/to/tmp/folder
-git clone git://github.com/dartsim/dart.git
-cd dart
-git checkout v6.12.1
-
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
-</code></pre>
-<h4 id="installing-magnum">Installing Magnum</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>brew install eigen
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>brew install assimp
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>brew install libccd
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>brew install dartsim/dart/fcl04
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>brew install boost
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>brew install tinyxml
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>brew install tinyxml2
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>brew install urdfdom
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>git clone git://github.com/dartsim/dart.git
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">cd</span> dart
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>git checkout v6.12.1
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>mkdir build
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nb">cd</span> build
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>make -j4
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>sudo make install
+</code></pre></div>
+<h4 id="installing-magnum">Installing Magnum<a class="headerlink" href="#installing-magnum" title="Permanent link">&para;</a></h4>
 <p>Magnum depends on <a href="https://github.com/mosra/corrade">Corrade</a> and we are going to use a few plugins and extras from the library. We are also going to use Glfw and Glx for the back-end. Follow the instrutions below:</p>
-<pre><code class="language-bash">#installation of Glfw and OpenAL
-# Ubuntu
-sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
-# Mac OSX
-brew install glfw3 openal-soft assimp
-
-# installation of Corrade
-cd /path/to/tmp/folder
-git clone https://github.com/mosra/corrade.git
-cd corrade
-mkdir build &amp;&amp; cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j
-sudo make install
-
-# installation of Magnum
-cd /path/to/tmp/folder
-git clone https://github.com/mosra/magnum.git
-cd magnum
-mkdir build &amp;&amp; cd build
-# Ubuntu
-cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSGLXAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
-# Mac OSX
-cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSCGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
-make -j
-sudo make install
-
-# installation of Magnum Plugins
-cd /path/to/tmp/folder
-git clone https://github.com/mosra/magnum-plugins.git
-cd magnum-plugins
-mkdir build &amp;&amp; cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DWITH_ASSIMPIMPORTER=ON -DWITH_DDSIMPORTER=ON -DWITH_JPEGIMPORTER=ON -DWITH_OPENGEXIMPORTER=ON -DWITH_PNGIMPORTER=ON -DWITH_TINYGLTFIMPORTER=ON -DWITH_STBTRUETYPEFONT=ON .. # this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
-make -j
-sudo make install
-
-# installation of Magnum DART Integration (DART needs to be installed) and Eigen Integration
-cd /path/to/tmp/folder
-git clone https://github.com/mosra/magnum-integration.git
-cd magnum-integration
-mkdir build &amp;&amp; cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DWITH_DART=ON -DWITH_EIGEN=ON ..
-make -j
-sudo make install
-</code></pre>
-<h3 id="compilation-and-running-the-examples">Compilation and running the examples</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#installation of Glfw and OpenAL</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Ubuntu</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Mac OSX</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>brew install glfw3 openal-soft assimp
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># installation of Corrade</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>git clone https://github.com/mosra/corrade.git
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nb">cd</span> corrade
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>make -j
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>sudo make install
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># installation of Magnum</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>git clone https://github.com/mosra/magnum.git
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nb">cd</span> magnum
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="c1"># Ubuntu</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_AUDIO<span class="o">=</span>ON -DWITH_DEBUGTOOLS<span class="o">=</span>ON -DWITH_GL<span class="o">=</span>ON -DWITH_MESHTOOLS<span class="o">=</span>ON -DWITH_PRIMITIVES<span class="o">=</span>ON -DWITH_SCENEGRAPH<span class="o">=</span>ON -DWITH_SHADERS<span class="o">=</span>ON -DWITH_TEXT<span class="o">=</span>ON -DWITH_TEXTURETOOLS<span class="o">=</span>ON -DWITH_TRADE<span class="o">=</span>ON -DWITH_GLFWAPPLICATION<span class="o">=</span>ON -DWITH_WINDOWLESSGLXAPPLICATION<span class="o">=</span>ON -DWITH_OPENGLTESTER<span class="o">=</span>ON -DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON -DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON -DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON -DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON -DWITH_MAGNUMFONT<span class="o">=</span>ON -DWITH_OBJIMPORTER<span class="o">=</span>ON -DWITH_TGAIMPORTER<span class="o">=</span>ON -DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON .. <span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># Mac OSX</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_AUDIO<span class="o">=</span>ON -DWITH_DEBUGTOOLS<span class="o">=</span>ON -DWITH_GL<span class="o">=</span>ON -DWITH_MESHTOOLS<span class="o">=</span>ON -DWITH_PRIMITIVES<span class="o">=</span>ON -DWITH_SCENEGRAPH<span class="o">=</span>ON -DWITH_SHADERS<span class="o">=</span>ON -DWITH_TEXT<span class="o">=</span>ON -DWITH_TEXTURETOOLS<span class="o">=</span>ON -DWITH_TRADE<span class="o">=</span>ON -DWITH_GLFWAPPLICATION<span class="o">=</span>ON -DWITH_WINDOWLESSCGLAPPLICATION<span class="o">=</span>ON -DWITH_OPENGLTESTER<span class="o">=</span>ON -DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON -DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON -DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON -DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON -DWITH_MAGNUMFONT<span class="o">=</span>ON -DWITH_OBJIMPORTER<span class="o">=</span>ON -DWITH_TGAIMPORTER<span class="o">=</span>ON -DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON .. <span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>make -j
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>sudo make install
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1"># installation of Magnum Plugins</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>git clone https://github.com/mosra/magnum-plugins.git
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">cd</span> magnum-plugins
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_ASSIMPIMPORTER<span class="o">=</span>ON -DWITH_DDSIMPORTER<span class="o">=</span>ON -DWITH_JPEGIMPORTER<span class="o">=</span>ON -DWITH_OPENGEXIMPORTER<span class="o">=</span>ON -DWITH_PNGIMPORTER<span class="o">=</span>ON -DWITH_TINYGLTFIMPORTER<span class="o">=</span>ON -DWITH_STBTRUETYPEFONT<span class="o">=</span>ON .. <span class="c1"># this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>make -j
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>sudo make install
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="c1"># installation of Magnum DART Integration (DART needs to be installed) and Eigen Integration</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="nb">cd</span> /path/to/tmp/folder
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>git clone https://github.com/mosra/magnum-integration.git
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="nb">cd</span> magnum-integration
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_DART<span class="o">=</span>ON -DWITH_EIGEN<span class="o">=</span>ON ..
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>make -j
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>sudo make install
+</code></pre></div>
+<h3 id="compilation-and-running-the-examples">Compilation and running the examples<a class="headerlink" href="#compilation-and-running-the-examples" title="Permanent link">&para;</a></h3>
 <p>The compilation of the library is straight-forward:</p>
 <ul>
 <li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>
@@ -273,7 +772,7 @@ sudo make install
 <p>To build the examples, execute this:
 <code>./waf examples</code></p>
 <p>Now you can run the examples. For example, to run the arm example you need to type the following: <code>./build/arm</code> (or <code>./build/arm_plain</code> to run it without graphics).</p>
-<h3 id="installing-the-library">Installing the library</h3>
+<h3 id="installing-the-library">Installing the library<a class="headerlink" href="#installing-the-library" title="Permanent link">&para;</a></h3>
 <p>To install the library (assuming that you have already compiled it), you need only to run:</p>
 <ul>
 <li><code>./waf install</code></li>
@@ -284,19 +783,19 @@ sudo make install
 <li><code>./waf install</code></li>
 </ul>
 <p>In short, with <code>--prefix</code> you can change the directory where the library will be installed and if <code>--shared</code> is present a shared library will be created instead of a static one.</p>
-<h3 id="compiling-the-python-bindings">Compiling the python bindings</h3>
+<h3 id="compiling-the-python-bindings">Compiling the python bindings<a class="headerlink" href="#compiling-the-python-bindings" title="Permanent link">&para;</a></h3>
 <p>For the python bindings of robot_dart, we need <code>numpy</code> to be installed, <code>pybind11</code> and the python bindings of DART (dartpy).</p>
 <p>For <code>numpy</code> one can install it with <code>pip</code> or standard packages. For <code>pybind11</code> please follow the instructions on the <a href="http://dartsim.github.io/install_dartpy_on_ubuntu.html#install-dartpy-from-source">dart website</a> (focus on the pybind11 part, for the other parts follow our instructions above).</p>
 <p>For the python bindings of DART, do:</p>
-<pre><code class="language-bash">cd dart
-
-mkdir build
-cd build
-cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
-sudo make install-dartpy # for DART &gt;= v6.12.0, we do not need this
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span> dart
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>mkdir build
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span> build
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cmake -DDART_BUILD_DARTPY<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>make -j4
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sudo make install
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo make install-dartpy <span class="c1"># for DART &gt;= v6.12.0, we do not need this</span>
+</code></pre></div>
 <p>Then the compilation of robot_dart is almost identical as before:</p>
 <ul>
 <li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>
@@ -311,111 +810,84 @@ sudo make install-dartpy # for DART &gt;= v6.12.0, we do not need this
 <li><code>cd /path/to/repo/root</code></li>
 <li><code>python src/python/example.py</code> or <code>python src/python/example_parallel.py</code></li>
 </ul>
-<h4 id="common-issues-with-python-bindings">Common Issues with Python bindings</h4>
-<p>One of the most common issue with the python bindings is the fact that DART bindings might be compiled and installed for python 3 and the robot_dart ones for python 2. To force the usage of python 3 for robot_dart, you use <code>python3 ./waf</code> instead of just <code>./waf</code> in all the commands above.</p></div>
-        
-        
-    </div>
+<h4 id="common-issues-with-python-bindings">Common Issues with Python bindings<a class="headerlink" href="#common-issues-with-python-bindings" title="Permanent link">&para;</a></h4>
+<p>One of the most common issue with the python bindings is the fact that DART bindings might be compiled and installed for python 3 and the robot_dart ones for python 2. To force the usage of python 3 for robot_dart, you use <code>python3 ./waf</code> instead of just <code>./waf</code> in all the commands above.</p>
 
-    
-      <footer class="col-md-12 text-center">
-          
-          
-            <hr>
-            <p>
-            <small>Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret</small><br>
+              
+            </article>
             
-            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
-            </p>
-          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
-          
-          
-      </footer>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../js/bootstrap-3.0.3.min.js"></script>
-
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+          </div>
+        </div>
         
-    <script>hljs.initHighlightingOnLoad();</script>
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
     
-
-    <script>var base_url = ".."</script>
+      
     
-    <script src="../js/base.js"></script>
-    <script src="../javascripts/mathjax.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../search/main.js"></script>
-
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../faq/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FAQ" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              FAQ
             </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-    </body>
-
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "content.tabs.link", "content.code.annotate"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
 </html>

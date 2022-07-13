@@ -1,14 +1,17 @@
+---
+  hide:
+    -navigation
+---
 # Frequently Asked Questions
 
 This pages provides a user guide of the library through Frequently Asked Questions (FAQ).
 
-## What is a minimal working example of RobotDART
+## "What is a minimal working example of RobotDART"
 
 You can find a minimal working example at [hello_world.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hello_world.cpp). This example is creating a world where a hexapod robot is placed just above a floor and left to fall. The robot has no actuation, and there is the simplest graphics configuration. Let's split it down.
 
-- We first include the RobotDART headers:
-
 {{HELLO_WORLD_INCLUDE}}
+
 
 - We then load our hexapod robot:
 
@@ -33,6 +36,7 @@ You can find a minimal working example at [hello_world.cpp](https://github.com/r
 - Here's how it looks:
 
 ![Hello World example](images/FAQ/hello_world.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+</details>
 
 ## What robots are supported in RobotDART?
 
@@ -142,17 +146,6 @@ One possible cause may be the fact that self collision is disabled, you can chec
 ## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
 
 **Kinematic Properties:**
-<br>
-###**[TEST, TBD]**
-
-RobotDART give you the ability to calculate
-
-- Joint Positions $\boldsymbol{\theta} \in \rm I\!R^{N}$, where $N$ is the number of joints
-- Joint Velocities $\boldsymbol{\dot{\theta}} \in \rm I\!R^{N}$, where $N$ is the number of joints
-- Joint Accelerations $\boldsymbol{\ddot{\theta}} \in \rm I\!R^{N}$, where $N$ is the number of joints
-- Transformation matrix  $\boldsymbol{T} = \begin{bmatrix} R \ t \\ 0\ 1 \end{bmatrix} \in \rm I\!R^{4\times4}$
-- Rotation Matrix $R \in \rm I\!R^{3\times3}$
-- Translation vector $\boldsymbol{t} \in \rm I\!R^{3}$
 
 {{KINEMATICS}}
 

@@ -1,26 +1,85 @@
 site_name: Documentation of RobotDART
 site_dir: '../../docs'
+repo_url: https://github.com/resibots/robot_dart
+repo_name: resibots/robot_dart
+
 site_author: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'
 copyright: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'
 theme:
-  name: null
-  custom_dir: 'cinder'
+  name: material
+  # custom_dir: 'cinder'
+  icon:
+    logo: material/book-open-page-variant
+    repo: fontawesome/brands/github
+  palette:
+      # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+
+
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
-    - content.code.annotate
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.instant
     - content.tabs.link
+    - content.code.annotate
+
 nav:
   - Home: index.md
   - Supported robots: robots.md
   - FAQ: faq.md
   - Install: install.md
 markdown_extensions:
+  - abbr
+  - admonition
   - attr_list
-  # - pymdownx.highlight
-  # - pymdownx.superfences
-  - pymdownx.snippets:
-      base_path: '../../'
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
 
 extra_javascript:
   - javascripts/mathjax.js
