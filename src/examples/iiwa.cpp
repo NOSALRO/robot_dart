@@ -8,8 +8,9 @@
 
 int main()
 {
+    // @IIWA@
     auto robot = std::make_shared<robot_dart::robots::Iiwa>();
-
+    // @IIWA_END@
     Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 3., 0., -M_PI / 4., 0., 0., 0.});
 
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);

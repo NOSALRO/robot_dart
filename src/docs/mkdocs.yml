@@ -9,32 +9,39 @@ theme:
   name: material
   # custom_dir: 'cinder'
   icon:
-    logo: material/book-open-page-variant
+    logo: material/robot
     repo: fontawesome/brands/github
   palette:
       # Palette toggle for light mode
     - scheme: default
+      primary: deep purple
+      accent: pink
       toggle:
-        icon: material/brightness-7 
+        icon: material/lightbulb
 
 
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
+      primary: deep purple
+      accent: pink
+
       toggle:
-        icon: material/brightness-4
+        icon: material/lightbulb-outline
         name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
+    # - navigation.tabs.sticky
     - navigation.top
     - navigation.instant
     - content.tabs.link
     - content.code.annotate
+    - toc.follow
+    # - toc.integrate
 
 nav:
   - Home: index.md

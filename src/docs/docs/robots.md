@@ -36,6 +36,9 @@ We have two URDF files:
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
 
+??? "Load Talos"
+{{TALOS}}
+
 - `robot/talos/talos_fast.urdf`:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
@@ -44,6 +47,8 @@ We have two URDF files:
     * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
+??? "Load Talos Fast"
+{{TALOS_FAST}}
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
@@ -62,9 +67,9 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 The URDF includes the gripper.
 
 
-??? Example
-    === "C++"
+??? "Load Franka"
 {{FRANKA}}
+    
 
 ## LBR iiwa (KUKA)
 ![LBR iiwa robot](images/iiwa.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -77,6 +82,9 @@ The LBR iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 - 7 degrees of freedom
 - URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/robots/iiwa/iiwa.urdf)]
 - Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)]
+
+??? "Load LBR iiwa"
+{{IIWA}}
 
 ## iCub (IIT)
 ![iCub humanoid robot](images/icub.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -93,7 +101,12 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 - Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)]
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
-
+??? "Load iCub"
+{{LOAD_IICUB}}
+??? "Print IMU sensor measurements"
+{{ICUB_PRINT_IMU}}
+??? "Print Force-Torque sensor measurements"
+{{ICUB_PRINT_FT}}
 ## Unitree A1
 ![Unitree A1 quadruped robot](images/a1.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 

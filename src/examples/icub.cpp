@@ -7,13 +7,13 @@
 
 int main()
 {
+    // @LOAD_IICUB@
     auto robot = std::make_shared<robot_dart::robots::ICub>();
     // Set actuator types to VELOCITY motors so that they stay in position without any controller
     robot->set_actuator_types("velocity");
-
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");
-
+    // @LOAD_IICUB_END@
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
@@ -69,17 +69,21 @@ int main()
 
         // Print IMU measurements
         if (simu.schedule(robot->imu().frequency())) {
+            // @ICUB_PRINT_IMU@
             std::cout << "Angular    Position: " << robot->imu().angular_position_vec().transpose().format(fmt) << std::endl;
             std::cout << "Angular    Velocity: " << robot->imu().angular_velocity().transpose().format(fmt) << std::endl;
             std::cout << "Linear Acceleration: " << robot->imu().linear_acceleration().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
+            // @ICUB_PRINT_IMU_END@
         }
 
         // Print FT measurements
         if (simu.schedule(robot->ft_foot_left().frequency())) {
+            // @ICUB_PRINT_FT@
             std::cout << "FT ( force): " << robot->ft_foot_left().force().transpose().format(fmt) << std::endl;
             std::cout << "FT (torque): " << robot->ft_foot_left().torque().transpose().format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
+            // @ICUB_PRINT_FT_END@
         }
     }
     auto end = std::chrono::steady_clock::now();

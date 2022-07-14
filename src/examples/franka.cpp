@@ -9,7 +9,9 @@
 
 int main()
 {
+    // @FRANKA@
     auto robot = std::make_shared<robot_dart::robots::Franka>();
+    // @FRANKA_END@
     robot->set_actuator_types("torque");
 
     // add a PD-controller to the arm
@@ -38,5 +40,6 @@ int main()
 
     simu.run(30.);
     robot.reset();
+
     return 0;
 }

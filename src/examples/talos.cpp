@@ -7,8 +7,9 @@
 
 int main()
 {
+    // @TALOS@
+    // load talos
     auto robot = std::make_shared<robot_dart::robots::Talos>();
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
@@ -17,7 +18,9 @@ int main()
 
     double dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
+    // must use fcl collision detector
     simu.set_collision_detector("fcl");
+    // @TALOS_END@
 #ifdef GRAPHIC
     // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS@
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
