@@ -45,9 +45,9 @@ theme:
 
 nav:
   - Home: index.md
+  - Install: install.md
   - Supported robots: robots.md
   - FAQ: faq.md
-  - Install: install.md
 markdown_extensions:
   - abbr
   - admonition

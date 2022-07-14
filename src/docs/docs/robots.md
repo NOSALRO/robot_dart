@@ -4,15 +4,17 @@
 ---
 # Supported robots
 
-Every robot is a defined as a URDF, which will be installed `$PREFIX/shared/robot_dart/robots`. Some robots (Talos, iCub) have pre-defined "robot classes" that define sensors and other properties; for the other robot, you will have to add the sensors/properties via the generic robot class.
+Every robot is a defined as a URDF, which will be installed `$PREFIX/share/utheque`. All robots have pre-defined "robot classes" that define sensors and other properties; for your custom/new robots, you will have to add the sensors/properties via the generic robot class (or create a new robot class).
 
-The URDF files are loaded using the following rules (see `Robot::_get_path()`):
+The URDF files are loaded using the following rules (see `utheque::path()`):
 
 - First check in the current directory
-- If not found, check in `current_directory/robots`
-- If not found, check in `$ROBOT_DART_PATH/robots`
-- If not found, check in the robot dart installation path/robots (e.g., `/usr/share/robot_dart/robots` or `$HOME/share/robot_dart/robots`)
+- If not found, check in `current_directory/utheque`
+- If not found, check in `$ROBOT_DART_PATH/utheque`
+- If not found, check in the robot dart installation path/robots (e.g., `/usr/share/utheque` or `$HOME/share/utheque`)
 - Otherwise, report failure
+
+`utheque` is a separate header-only library that gets installed together with RobotDART (or even alone), that can be used in libraries that do not want to interfere with RobotDART and use the curated URDF files.
 
 ## Talos (PAL Robotics)
 ![Talos humanoid robot](images/talos.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -33,7 +35,7 @@ We have two URDF files:
     * accurate (simplified but made of polygons) collision meshes
     * mimic joints for the gripper
     * Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)
-    * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos.urdf)]
+    * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
 
 ??? "Load Talos"
@@ -43,7 +45,7 @@ We have two URDF files:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
     * compatible with the DART collision detector
-    * URDF: [[talos_fast.urdf](https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf)]
+    * URDF: [[talos_fast.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos_fast.urdf)]
     * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
@@ -62,7 +64,7 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 - Can be controlled in torque
 - 18 kg
 - workspace: 855 mm (horizontal), 1190 mm (vertical)
-- URDF: [[franka.urdf](https://github.com/resibots/robot_dart/blob/master/robots/franka/franka.urdf)]
+- URDF: [[franka.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/franka/franka.urdf)]
 - Example: [[franka.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp)]
 The URDF includes the gripper.
 
@@ -80,7 +82,7 @@ The LBR iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 - We implement the 14 kg version
 - 29.5 kg
 - 7 degrees of freedom
-- URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/robots/iiwa/iiwa.urdf)]
+- URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/iiwa.urdf)]
 - Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)]
 
 ??? "Load LBR iiwa"
@@ -97,7 +99,7 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 - We do to simulate the skin
 - We do not simulate the hands
 - Our model is close to the [Inria's iCub](https://members.loria.fr/JBMouret/robots.html), but it has not been checked in detail.
-- URDF: [[icub.urdf](https://github.com/resibots/robot_dart/blob/master/robots/iiwa/icub.urdf)]
+- URDF: [[icub.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/icub.urdf)]
 - Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)]
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
@@ -112,10 +114,11 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 
 A1 is a quadruped robot made by the [Unitree Robotics](https://www.unitree.com/products/a1/).
 
-- Depth camera in the head
+<!-- - Depth camera in the head -->
 - IMU in the torso
-- We do not simulate the foot pressure sensors
-- URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/robots/unitree_a1/a1.urdf)]
+- We do not simulate the foot pressure sensors (yet)
+- One can easily add a depth camera on the head
+- URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf)]
 - Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)]
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
@@ -127,7 +130,7 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 
 - 6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)
 - simple URDF (no meshes)
-- URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/robots/pexod.urdf)]
+- URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf)]
 - Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)]
 
 
@@ -137,7 +140,7 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - A simple arm for educational or debugging purposes
 - 5 degrees of freedom
 - simple URDF (no meshes)
-- URDF: [[arm.urdf](https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf)]
+- URDF: [[arm.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf)]
 - Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
 
 ## Loading Custom Robots
