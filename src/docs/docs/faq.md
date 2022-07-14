@@ -2,11 +2,11 @@
   hide:
     -navigation
 ---
-# Frequently Asked Questions
+# **Frequently Asked Questions**
 
 This pages provides a user guide of the library through Frequently Asked Questions (FAQ).
 
-## What is a minimal working example of RobotDART?
+## **What is a minimal working example of RobotDART?**
 
 You can find a minimal working example at [hello_world.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hello_world.cpp). This example is creating a world where a hexapod robot is placed just above a floor and left to fall. The robot has no actuation, and there is the simplest graphics configuration. Let's split it down.
 
@@ -38,15 +38,15 @@ You can find a minimal working example at [hello_world.cpp](https://github.com/r
 ![Hello World example](images/FAQ/hello_world.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 </details>
 
-## What robots are supported in RobotDART?
+## **What robots are supported in RobotDART?**
 
 RobotDART supports any robot that can be described by a URDF, SDF, SKEL or MJCF file. Nevertheless, we have a curated list of robots with edited and optimized models to be used with RobotDART (see the [robots page](robots.md) for details and examples).
 
-## How can I load my own URDF/SDF/SKEL/MJCF file?
+## **How can I load my own URDF/SDF/SKEL/MJCF file?**
 
 See the [robots page](robots.md) for details.
 
-## How do I enable graphics in my code?
+## **How do I enable graphics in my code?**
 
 To enable graphics in your code, you need to do the following:
 
@@ -56,7 +56,7 @@ To enable graphics in your code, you need to do the following:
 {{HELLO_WORLD_ROBOT_GRAPHIC}}
 
 
-## How do I record a video?
+## **How do I record a video?**
 
 In order to record a video of what the main camera "sees", you need to call the function `record_video(path)` of the graphics class:
 
@@ -64,17 +64,17 @@ In order to record a video of what the main camera "sees", you need to call the 
 
 You can find a complete example at [talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp).
 
-## I want to have multiple camera sensors. Is it possible?
+## **I want to have multiple camera sensors. Is it possible?**
 Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
 {{ADD_NEW_CAMERA}}
 
-## How can I position a camera to the environment?
+## **How can I position a camera to the environment?**
 {{CAM_POSITION}}
 
-## How can I attach a camera to a moving link?
+## **How can I attach a camera to a moving link?**
 Cameras can be easily attached to a moving link:
 {{CAM_ATTACH}}
-## How can I manipulate the camera?
+## **How can I manipulate the camera?**
 Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a height (that define the aspect ratio), you can manipulate each one separately:
 {{MANIPULATE_CAM_SEP}}
 or all at once:
@@ -82,7 +82,7 @@ or all at once:
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
 
-## What do the numbers in the status bar mean?
+## **What do the numbers in the status bar mean?**
 
 The status bar looks like this:
 
@@ -91,7 +91,7 @@ The status bar looks like this:
 Where **simulation time** gives us the total simulated time (in seconds), **wall time** gives us the total time (in seconds) that has passed in real-time once we have started simulating. The next number **X.Xx** gives us the real-time factor: for example, **1.1x** means that the simulation runs 1.1 times faster than real-time, whereas **0.7x** means that the simulation runs slower than real-time. The value **it: XX ms** reports the time it took the last iteration (in milliseconds). The last part gives us whether the simulation tries to adhere to real-time or not. **sync** means that RobotDART will slow down the simulation in order for it to be in real-time, whereas **no-sync** means that RobotDART will try to run the simulation as fast as possible.
 
 
-## How can I alter the graphics scene (e.g., change lighting conditions)?
+## **How can I alter the graphics scene (e.g., change lighting conditions)?**
 You can disable or enable shadows:
 
 {{SHADOWS_GRAPHICS}}
@@ -118,21 +118,21 @@ Now you can add on ore more of the following lights:
 
 {{DIRECTIONAL_LIGHT}}
 
-## I want to visualize a target configuration of my robot, is this possible?
+## **I want to visualize a target configuration of my robot, is this possible?**
 {{ROBOT_GHOST}}
 
-## How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?
+## **How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?**
 
-## Is there a way to control the simulation timestep?
+## **Is there a way to control the simulation timestep?**
 When creating a RobotDARTSimu object you choose the simulation timestep:
 {{INIT_SIMU}}
 which can later be modified by:
 {{MODIFY_SIMU_DT}}
 
-## I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?
+## **I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?**
 Yes you can modify the gravitational forces 3-dimensional vector of the simulation:
 {{SIMU_GRAVITY}}
-## Which collision detectors are available? What are their differences? How can I choose between them?
+## **Which collision detectors are available? What are their differences? How can I choose between them?**
 | Dart | FCL | ODE | Bullet |
 |------|-----|-----|--------|
 |      |     |     |        |
@@ -140,10 +140,10 @@ Yes you can modify the gravitational forces 3-dimensional vector of the simulati
 |      |     |     |        |
 
 {{SET_COLLISION_DETECTOR}}
-## My robot does not self-collide. How can I change this?
+## **My robot does not self-collide. How can I change this?**
 One possible cause may be the fact that self collision is disabled, you can check and change this:
 {{SELF_COLLISIONS}}
-## How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?
+## **How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?**
 
 **Kinematic Properties:**
 
@@ -153,7 +153,7 @@ One possible cause may be the fact that self collision is disabled, you can chec
 
 {{DYNAMICS}}
 
-## Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
+## **Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?**
 There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:
 {{SET_ACTUATOR}}
 To enable position and velocity limits for the actuators:
@@ -163,7 +163,7 @@ Every actuators limits (position, velocity, acceleration, force) can be modified
 You can also modify the damping coefficients, coulomb frictions and spring stiffness of every joint:
 {{MODIFY_COEFFS}}
 
-## What are the supported sensors? How can I use an IMU?
+## **What are the supported sensors? How can I use an IMU?**
 #### **Torque sensor**
 Torque sensors can be added to every joint of the robot:
 {{TORQUE_SENSOR}}
@@ -186,9 +186,9 @@ Imu sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!
 #### **RGB_D sensor**
 {{RGB_D_SENSOR}}
 {{RGB_D_SENSOR_MEASURE}}
-## How can I measure forces being applied to my robot?
+## **How can I measure forces being applied to my robot?**
 
-## How can I spawn multiple robots in parallel?
+## **How can I spawn multiple robots in parallel?**
 
 The best way to do so is to create a Robot pool. With a robot pool you:
 
@@ -216,10 +216,10 @@ The `creator` function is the function responsible for loading your robot. This 
 
 {{ROBOT_POOL_EVAL}}
 
-## I need to simulate many worlds with camera sensors in parallel. How can I do this?
+## **I need to simulate many worlds with camera sensors in parallel. How can I do this?**
 On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel
 {{CAMERAS_PARALLEL}}
-## I do not know how to use waf. How can I detect RobotDART from CMake?
+## **I do not know how to use waf. How can I detect RobotDART from CMake?**
 
 You need to use `waf` to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at [cmake/example](https://github.com/resibots/robot_dart/blob/master/cmake/example). In short the CMake would look like this:
 
@@ -244,6 +244,6 @@ if(RobotDART_Magnum_FOUND)
 endif()
 ```
 
-## I prefer coding in python. How can I use RobotDART?
+## **I prefer coding in python. How can I use RobotDART?**
 
 RobotDART comes with python bindinds. Please refer to the [installation page](install.md) to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at [example.py](https://github.com/resibots/robot_dart/blob/master/src/python/example.py). There is mostly an one-to-one mapping between C++ and python objects and functions.
