@@ -47,10 +47,10 @@ int main()
     auto jacobian_deriv = robot->jacobian_deriv(link_name);
 
     // Center of Mass Jacobian
-    auto com_jacobian = robot->com_jacobian(robot->dof_names());
+    auto com_jacobian = robot->com_jacobian();
 
     // Center of Mass Jacobian Time Derivative
-    auto com_jacobian_deriv = robot->com_jacobian_deriv(robot->dof_names());
+    auto com_jacobian_deriv = robot->com_jacobian_deriv();
     // @KINEMATICS_END@
 
     // @DYNAMICS@
@@ -82,7 +82,7 @@ int main()
     auto coriolis_gravity = robot->coriolis_gravity_forces();
 
     // Constraint Force Vector
-    auto constraint_forces = robot->constraint_forces(robot->dof_names());
+    auto constraint_forces = robot->constraint_forces();
     // @DYNAMICS_END@
 
     std::cout << "Joint Positions:\n"

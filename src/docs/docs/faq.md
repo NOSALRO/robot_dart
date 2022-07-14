@@ -18,7 +18,7 @@ You can find a minimal working example at [hello_world.cpp](https://github.com/r
 
 {{HELLO_WORLD_ROBOT_CREATION}}
 
-- We need to place it above the floor to avoid collision (position is given as a screw vector):
+- We need to place it above the floor to avoid collision (we can use RobotDART's helpers ;)):
 
 {{HELLO_WORLD_ROBOT_PLACING}}
 
@@ -56,18 +56,18 @@ To enable graphics in your code, you need to do the following:
 
 {{HELLO_WORLD_ROBOT_GRAPHIC}}
 
-
-## **How do I record a video?**
-
-In order to record a video of what the main camera "sees", you need to call the function `record_video(path)` of the graphics class:
-{{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
-
-You can find a complete example at [talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp).
-
 ## **I want to have multiple camera sensors. Is it possible?**
 
 Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
 {{ADD_NEW_CAMERA}}
+
+## **How do I record a video?**
+
+In order to record a video of what the main or any other camera "sees", you need to call the function `record_video(path)` of the graphics class:
+{{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
+
+Or the camera class:
+{{RECORD_VIDEO_CAMERA}}
 
 ## **How can I position a camera to the environment?**
 
@@ -77,13 +77,19 @@ In order to position a camera inside the world, we need to use the `lookAt` meth
 ## **How can I attach a camera to a moving link?**
 Cameras can be easily attached to a moving link:
 {{CAM_ATTACH}}
-## **How can I manipulate the camera?**
+
+## **How can I manipulate the camera object?**
 Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a height (that define the aspect ratio), you can manipulate each one separately:
 {{MANIPULATE_CAM_SEP}}
+
 or all at once:
 {{MANIPULATE_CAM}}
 
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
+
+## **How can I interact with the camera?**
+
+We can move translate the cameras with the `WASD` keys, zoom in and out using the `mouse wheel` and rotate the camera with holding the `left mouse key` and moving the mouse.
 
 ## **What do the numbers in the status bar mean?**
 
@@ -95,10 +101,13 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 
 
 ## **How can I alter the graphics scene (e.g., change lighting conditions)?**
-You can disable or enable shadows:
+When creating a graphics object, you can pass a `GraphicsConfiguration` object that changes the default values:
+{{GRAPHICS_PARAMS}}
+
+You can disable or enable shadows on the fly as well:
 {{SHADOWS_GRAPHICS}}
 
-You can also add your own lights, but first you have to clear the default lights:
+You can also add your own lights. The application by default creates 2 light sources and the maximum number of lights is 3 (you can change this once before the creation of the graphics object via the `GraphicsConfiguration` object). So usually before you add your lights, you have to clear the default lights:
 {{CLR_LIGHT}}
 
 Then you must create a custom light material:
@@ -135,11 +144,11 @@ Yes you can modify the gravitational forces 3-dimensional vector of the simulati
 
 ## **Which collision detectors are available? What are their differences? How can I choose between them?**
 
-| Dart | FCL | ODE | Bullet |
-|------|-----|-----|--------|
-|      |     |     |        |
-|      |     |     |        |
-|      |     |     |        |
+| DART | FCL | ODE | Bullet |
+|-------------------------------|-----|-----|--------|
+| Support only basic shapes     | Full-featured collision detector fully integrated by DART | External collision detector of ODE | External collision detector of Bullet |
+| This is building along with DART | This is a required dependency of DART | Needs an external library | Needs an external library |
+| Very fast for small scenes | Accurate detailed collisions, but not very fast | Fast collision detection (the integration is not complete) | Fast and accurate collision detection (works well for wheels as well) |
 
 We can easily select one of the available collision detectors using the simulator object:
 {{SET_COLLISION_DETECTOR}}
@@ -165,18 +174,21 @@ There are 6 types of actuators available, you can set the same actuator to multi
 To enable position and velocity limits for the actuators:
 {{POSITIONS_ENFORCED}}
 
-Every actuators limits (position, velocity, acceleration, force) can be modified:
+Every DOF's limits (position, velocity, acceleration, force) can be modified:
 {{MODIFY_LIMITS}}
 
-You can also modify the damping coefficients, coulomb frictions and spring stiffness of every joint:
+You can also modify the damping coefficients, coulomb frictions and spring stiffness of every DOF:
 {{MODIFY_COEFFS}}
 
 ## **What are the supported sensors? How can I use an IMU?**
+
+Sensors in RobotDART can be added only through the simulator object. All of the sensors can be added without being attached to any body or joint but some of them can operate only when attached to something (e.g. `ForceTorque` sensors).
+
 #### **Torque sensor**
 Torque sensors can be added to every joint of the robot:
 {{TORQUE_SENSOR}}
 
-Torque sensors measure the torque $\tau \in \rm I\!R$ of the attached joint:
+Torque sensors measure the torque $\tau \in \rm I\!R^n$ of the attached joint (where $n$ is the DOFs of the joint):
 {{TORQUE_MEASUREMENT}}
 
 #### **Force-Torque sensor**
@@ -189,10 +201,10 @@ Torque sensors measure the force $\boldsymbol{F} \in \rm I\!R^3$, the torque $\b
 
 #### **IMU sensor**
 
-Imu sensors can be added to every link of the robot:
+IMU sensors can be added to every link of the robot:
 {{IMU_SENSOR}}
 
-Imu sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!R^3$, the angular velocity $\boldsymbol{\omega} \in \rm I\!R^3$  and the linear acceleration $\boldsymbol{\alpha} \in \rm I\!R^3$ of the attached link:
+IMU sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!R^3$, the angular velocity $\boldsymbol{\omega} \in \rm I\!R^3$  and the linear acceleration $\boldsymbol{\alpha} \in \rm I\!R^3$ of the attached link:
 {{IMU_MEASUREMENT}}
 
 #### **RGB sensor**
@@ -206,6 +218,9 @@ We can easily save the image and/or transform it to grayscale:
 #### **RGB_D sensor**
 
 Any camera can also be configured to also record depth:
+{{CAMERA_SENSOR_RGBD_RECORD_DEPTH}}
+
+We can then read the RGB and depth images:
 {{RGB_D_SENSOR}}
 
 We can save the depth images as well:
@@ -242,8 +257,9 @@ The `creator` function is the function responsible for loading your robot. This 
 {{ROBOT_POOL_EVAL}}
 
 ## **I need to simulate many worlds with camera sensors in parallel. How can I do this?**
-On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel
+On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.
 {{CAMERAS_PARALLEL}}
+
 ## **I do not know how to use waf. How can I detect RobotDART from CMake?**
 
 You need to use `waf` to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at [cmake/example](https://github.com/resibots/robot_dart/blob/master/cmake/example). In short the CMake would look like this:

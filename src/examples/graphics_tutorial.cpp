@@ -48,7 +48,33 @@ int main()
     Eigen::Vector3d mars_gravity = {0., 0., -3.721};
     simu.set_gravity(mars_gravity);
     // @SIMU_GRAVITY_END@
-    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
+    // @GRAPHICS_PARAMS@
+    robot_dart::gui::magnum::GraphicsConfiguration configuration;
+    // We can change the width/height of the window (or camera image dimensions)
+    configuration.width = 1280;
+    configuration.height = 960;
+    configuration.title = "Graphics Tutorial"; // We can set a title for our window
+
+    // We can change the configuration for shadows
+    configuration.shadowed = true;
+    configuration.transparent_shadows = true;
+    configuration.shadow_map_size = 1024;
+
+    // We can also alter some specifications for the lighting
+    configuration.max_lights = 3; // maximum number of lights for our scene [default=3]
+    configuration.specular_strength = 0.25; // strength of the specular component
+
+    // Some extra configuration for the main camera
+    configuration.draw_main_camera = true;
+    configuration.draw_debug = true;
+    configuration.draw_text = true;
+
+    // We can also change the background color [default=black]
+    configuration.bg_color = Eigen::Vector4d{1.0, 1.0, 1.0, 1.0};
+
+    // Create the graphics object with the configuration as parameter
+    auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(configuration);
+    // @GRAPHICS_PARAMS_END@
     simu.set_graphics(graphics);
     // set the camera at position (0, 3, 1) looking at the center (0, 0, 0)
     graphics->look_at({0., 3., 1.}, {0., 0., 0.});
@@ -72,10 +98,10 @@ int main()
     // Disable shadows
     graphics->enable_shadows(false, false);
     simu.run(1.);
-    // Enable non-transparent shadows
+    // Enable shadows only for non-transparent objects
     graphics->enable_shadows(true, false);
     simu.run(1.);
-    // Enable transparent shadows
+    // Enable shadows for transparent objects as well
     graphics->enable_shadows(true, true);
     simu.run(1.);
     // @SHADOWS_GRAPHICS_END@
@@ -134,9 +160,8 @@ int main()
         Magnum::Float spot_exponent = M_PI;
         Magnum::Float spot_cut_off = M_PI / 8;
         auto spot_light = robot_dart::gui::magnum::gs::create_spot_light(position, custom_material, direction, spot_exponent, spot_cut_off, intensity, attenuation_terms);
-        // @SPOT_LIGHT_END@
-
         graphics->add_light(spot_light);
+        // @SPOT_LIGHT_END@
     }
 
     simu.run(1.);

@@ -73,8 +73,10 @@ int main()
     // @MANIPULATE_CAM_END@
 
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
+    // @RECORD_VIDEO_CAMERA@
     // cameras can also record video
     camera->record_video("video-camera.mp4");
+    // @RECORD_VIDEO_CAMERA_END@
 
     // @CAM_POSITION@
     // set the position of the camera, and the position where the main camera is looking at

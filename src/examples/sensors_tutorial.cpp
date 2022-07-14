@@ -52,7 +52,9 @@ int main()
     }
     auto camera = std::make_shared<robot_dart::sensor::Camera>(graphics->magnum_app(), 256, 256);
 
+    // @CAMERA_SENSOR_RGBD_RECORD_DEPTH@
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
+    // @CAMERA_SENSOR_RGBD_RECORD_DEPTH_END@
     // cameras can also record video
     camera->record_video("video-camera.mp4");
 
@@ -89,7 +91,7 @@ int main()
     }
     // @IMU_SENSOR_END@
 
-    // Cameras can be used as sensors to
+    // Cameras can be used as sensors too
     simu.add_sensor(camera);
 
     auto start = std::chrono::steady_clock::now();

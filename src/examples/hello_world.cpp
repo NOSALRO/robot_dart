@@ -21,13 +21,13 @@ int main()
     simu.add_robot(robot);
     // @HELLO_WORLD_ROBOT_SIMU_END@
 
-    // @HELLO_WORLD_ROBOT_GRAPHIC@
 #ifdef GRAPHIC
+    // @HELLO_WORLD_ROBOT_GRAPHIC@
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
-#endif
     // @HELLO_WORLD_ROBOT_GRAPHIC_END@
+#endif
     // @HELLO_WORLD_ROBOT_RUN@
     simu.run(10.);
     // @HELLO_WORLD_ROBOT_RUN_END@
