@@ -59,8 +59,12 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 - workspace: 855 mm (horizontal), 1190 mm (vertical)
 - URDF: [[franka.urdf](https://github.com/resibots/robot_dart/blob/master/robots/franka/franka.urdf)]
 - Example: [[franka.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp)]
-
 The URDF includes the gripper.
+
+
+??? Example
+    === "C++"
+{{FRANKA}}
 
 ## LBR iiwa (KUKA)
 ![LBR iiwa robot](images/iiwa.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}

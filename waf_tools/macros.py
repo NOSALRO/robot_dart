@@ -21,9 +21,9 @@ def remove_leading_whitespace(lines):
     new_lines = []
     for line in lines:
         if len(line) < min_whites:
-            new_lines.append(line)
+            new_lines.append("\t"+line)
         else:
-            new_lines.append(line[min_whites:])
+            new_lines.append("\t"+line[min_whites:])
 
     return new_lines
 
@@ -69,6 +69,6 @@ def grab(delimiter='@'):
         for (v, s,e) in ret:
             my_lines = remove_leading_whitespace(lines[s+1:e])
             variables[v] = ''.join(my_lines)
-            variables[v] = '```cpp\n' + variables[v] + '```'
+            variables[v] = '\t```cpp\n' + variables[v] + '\t```'
 
     return variables
