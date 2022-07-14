@@ -15,7 +15,7 @@
     
     
       
-        <title>Install - Documentation of RobotDART</title>
+        <title>Manual Installation - Documentation of RobotDART</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation-robot_dart" class="md-skip">
+        <a href="#manual-installation-of-robotdart" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install
+              Manual Installation
             
           </span>
         </div>
@@ -208,6 +208,32 @@
 
 
   <li class="md-tabs__item">
+    <a href="../quick_install/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Manual Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
     <a href="../robots/" class="md-tabs__link">
       Supported robots
     </a>
@@ -222,20 +248,6 @@
   <li class="md-tabs__item">
     <a href="../faq/" class="md-tabs__link">
       FAQ
-    </a>
-  </li>
-
-      
-        
-  
-  
-    
-  
-
-
-  <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
-      Install
     </a>
   </li>
 
@@ -309,23 +321,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../robots/" class="md-nav__link">
-        Supported robots
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
+      <a href="../quick_install/" class="md-nav__link">
+        Installation
       </a>
     </li>
   
@@ -347,12 +344,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Install
+          Manual Installation
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Install
+        Manual Installation
       </a>
       
         
@@ -369,11 +366,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation-robot_dart" class="md-nav__link">
-    Installation robot_dart
+  <a href="#manual-installation-of-robotdart" class="md-nav__link">
+    Manual Installation of RobotDART
   </a>
   
-    <nav class="md-nav" aria-label="Installation robot_dart">
+    <nav class="md-nav" aria-label="Manual Installation of RobotDART">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -484,6 +481,36 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../robots/" class="md-nav__link">
+        Supported robots
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -511,11 +538,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation-robot_dart" class="md-nav__link">
-    Installation robot_dart
+  <a href="#manual-installation-of-robotdart" class="md-nav__link">
+    Manual Installation of RobotDART
   </a>
   
-    <nav class="md-nav" aria-label="Installation robot_dart">
+    <nav class="md-nav" aria-label="Manual Installation of RobotDART">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -636,9 +663,9 @@
 
 
 
-  <h1>Install</h1>
+  <h1>Manual Installation</h1>
 
-<h2 id="installation-robot_dart">Installation robot_dart<a class="headerlink" href="#installation-robot_dart" title="Permanent link">&para;</a></h2>
+<h2 id="manual-installation-of-robotdart">Manual Installation of RobotDART<a class="headerlink" href="#manual-installation-of-robotdart" title="Permanent link">&para;</a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h4>
 <ul>
@@ -662,8 +689,8 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew install boost
 </code></pre></div>
 <h4 id="installing-dart">Installing DART<a class="headerlink" href="#installing-dart" title="Permanent link">&para;</a></h4>
-<p>Of course in order to use robot_dart, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
-<p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you need to enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> or <code>release-6.9</code> branch (and not the one provided in DART's documentation). In short you should do the following:</p>
+<p>In order to use RobotDART, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
+<p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you can enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> branch or <code>v6.12.1</code> tag (and not the one provided in DART's documentation). In short you should do the following:</p>
 <p><strong>Ubuntu &lt;= 14.04 only</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo apt-add-repository ppa:libccd-debs/ppa
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo apt-add-repository ppa:fcl-debs/ppa
@@ -834,7 +861,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../faq/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FAQ" rel="prev">
+        <a href="../quick_install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -843,11 +870,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              FAQ
+              Installation
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../robots/" class="md-footer__link md-footer__link--next" aria-label="Next: Supported robots" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Supported robots
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

@@ -45,7 +45,8 @@ theme:
 
 nav:
   - Home: index.md
-  - Install: install.md
+  - Installation: quick_install.md
+  - Manual Installation: install.md
   - Supported robots: robots.md
   - FAQ: faq.md
 markdown_extensions:

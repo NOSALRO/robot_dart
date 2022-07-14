@@ -205,6 +205,30 @@
         
   
   
+
+
+  <li class="md-tabs__item">
+    <a href="../quick_install/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../install/" class="md-tabs__link">
+      Manual Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
     
   
 
@@ -224,18 +248,6 @@
   <li class="md-tabs__item">
     <a href="../faq/" class="md-tabs__link">
       FAQ
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../install/" class="md-tabs__link">
-      Install
     </a>
   </li>
 
@@ -296,6 +308,36 @@
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick_install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Manual Installation
       </a>
     </li>
   
@@ -421,21 +463,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        Install
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -539,15 +566,16 @@
 
 
 <h1 id="supported-robots">Supported robots<a class="headerlink" href="#supported-robots" title="Permanent link">&para;</a></h1>
-<p>Every robot is a defined as a URDF, which will be installed <code>$PREFIX/shared/robot_dart/robots</code>. Some robots (Talos, iCub) have pre-defined "robot classes" that define sensors and other properties; for the other robot, you will have to add the sensors/properties via the generic robot class.</p>
-<p>The URDF files are loaded using the following rules (see <code>Robot::_get_path()</code>):</p>
+<p>Every robot is a defined as a URDF, which will be installed <code>$PREFIX/share/utheque</code>. All robots have pre-defined "robot classes" that define sensors and other properties; for your custom/new robots, you will have to add the sensors/properties via the generic robot class (or create a new robot class).</p>
+<p>The URDF files are loaded using the following rules (see <code>utheque::path()</code>):</p>
 <ul>
 <li>First check in the current directory</li>
-<li>If not found, check in <code>current_directory/robots</code></li>
-<li>If not found, check in <code>$ROBOT_DART_PATH/robots</code></li>
-<li>If not found, check in the robot dart installation path/robots (e.g., <code>/usr/share/robot_dart/robots</code> or <code>$HOME/share/robot_dart/robots</code>)</li>
+<li>If not found, check in <code>current_directory/utheque</code></li>
+<li>If not found, check in <code>$ROBOT_DART_PATH/utheque</code></li>
+<li>If not found, check in the robot dart installation path/robots (e.g., <code>/usr/share/utheque</code> or <code>$HOME/share/utheque</code>)</li>
 <li>Otherwise, report failure</li>
 </ul>
+<p><code>utheque</code> is a separate header-only library that gets installed together with RobotDART (or even alone), that can be used in libraries that do not want to interfere with RobotDART and use the curated URDF files.</p>
 <h2 id="talos-pal-robotics">Talos (PAL Robotics)<a class="headerlink" href="#talos-pal-robotics" title="Permanent link">&para;</a></h2>
 <p><img alt="Talos humanoid robot" src="../images/talos.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <p>Talos is a humanoid robot made by <a href="https://pal-robotics.com/robots/talos/">PAL Robotics</a>.</p>
@@ -566,7 +594,7 @@
 <li>accurate (simplified but made of polygons) collision meshes</li>
 <li>mimic joints for the gripper</li>
 <li>Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos.urdf">talos.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf">talos.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>]</li>
 </ul>
 </li>
@@ -592,7 +620,7 @@
 <li>no collision except for the feet, which are approximated by boxes</li>
 <li>grippers are fixed (no movement is allowed)</li>
 <li>compatible with the DART collision detector</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/talos/talos_fast.urdf">talos_fast.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos_fast.urdf">talos_fast.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp">talos_fast.cpp</a>]</li>
 </ul>
 </li>
@@ -622,7 +650,7 @@
 <li>Can be controlled in torque</li>
 <li>18 kg</li>
 <li>workspace: 855 mm (horizontal), 1190 mm (vertical)</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/franka/franka.urdf">franka.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/franka/franka.urdf">franka.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp">franka.cpp</a>]
 The URDF includes the gripper.</li>
 </ul>
@@ -639,7 +667,7 @@ The URDF includes the gripper.</li>
 <li>We implement the 14 kg version</li>
 <li>29.5 kg</li>
 <li>7 degrees of freedom</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/iiwa/iiwa.urdf">iiwa.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/iiwa.urdf">iiwa.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp">iiwa.cpp</a>]</li>
 </ul>
 <details>
@@ -657,7 +685,7 @@ The URDF includes the gripper.</li>
 <li>We do to simulate the skin</li>
 <li>We do not simulate the hands</li>
 <li>Our model is close to the <a href="https://members.loria.fr/JBMouret/robots.html">Inria's iCub</a>, but it has not been checked in detail.</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/iiwa/icub.urdf">icub.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/icub.urdf">icub.urdf</a>]</li>
 <li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp">icub.cpp</a>]</li>
 </ul>
 <p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
@@ -688,11 +716,12 @@ The URDF includes the gripper.</li>
 <h2 id="unitree-a1">Unitree A1<a class="headerlink" href="#unitree-a1" title="Permanent link">&para;</a></h2>
 <p><img alt="Unitree A1 quadruped robot" src="../images/a1.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <p>A1 is a quadruped robot made by the <a href="https://www.unitree.com/products/a1/">Unitree Robotics</a>.</p>
+<!-- - Depth camera in the head -->
 <ul>
-<li>Depth camera in the head</li>
 <li>IMU in the torso</li>
-<li>We do not simulate the foot pressure sensors</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/unitree_a1/a1.urdf">a1.urdf</a>]</li>
+<li>We do not simulate the foot pressure sensors (yet)</li>
+<li>One can easily add a depth camera on the head</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf">a1.urdf</a>]</li>
 <li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp">a1.cpp</a>]</li>
 </ul>
 <p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
@@ -702,7 +731,7 @@ The URDF includes the gripper.</li>
 <ul>
 <li>6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)</li>
 <li>simple URDF (no meshes)</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/pexod.urdf">pexod.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf">pexod.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp">hexapod.cpp</a>]</li>
 </ul>
 <h2 id="simple-arm">Simple arm<a class="headerlink" href="#simple-arm" title="Permanent link">&para;</a></h2>
@@ -711,7 +740,7 @@ The URDF includes the gripper.</li>
 <li>A simple arm for educational or debugging purposes</li>
 <li>5 degrees of freedom</li>
 <li>simple URDF (no meshes)</li>
-<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/robots/arm.urdf">arm.urdf</a>]</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf">arm.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
 </ul>
 <h2 id="loading-custom-robots">Loading Custom Robots<a class="headerlink" href="#loading-custom-robots" title="Permanent link">&para;</a></h2>
@@ -746,7 +775,7 @@ You can also import packages (e.g. STL, DAE meshes) for your robot:
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+        <a href="../install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Manual Installation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -755,7 +784,7 @@ You can also import packages (e.g. STL, DAE meshes) for your robot:
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Manual Installation
             </div>
           </div>
         </a>

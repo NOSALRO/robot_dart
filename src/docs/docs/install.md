@@ -2,7 +2,7 @@
   hide:
     -navigation
 ---
-## Installation robot_dart
+## Manual Installation of RobotDART
 
 ### Dependencies
 
@@ -35,9 +35,9 @@ brew install boost
 
 #### Installing DART
 
-Of course in order to use robot\_dart, you need to install [DART](http://dartsim.github.io/) (from source).
+In order to use RobotDART, you need to install [DART](http://dartsim.github.io/) (from source).
 
-For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you need to enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependency: **DART Parsers**. Lastly, it is recommended to use either the `master` or `release-6.9` branch (and not the one provided in DART's documentation). In short you should do the following:
+For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you can enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependency: **DART Parsers**. Lastly, it is recommended to use either the `master` branch or `v6.12.1` tag (and not the one provided in DART's documentation). In short you should do the following:
 
 **Ubuntu <= 14.04 only**
 
