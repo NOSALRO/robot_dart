@@ -21,9 +21,9 @@ def remove_leading_whitespace(lines):
     new_lines = []
     for line in lines:
         if len(line) < min_whites:
-            new_lines.append("\t"+line)
+            new_lines.append("\t" + line)
         else:
-            new_lines.append("\t"+line[min_whites:])
+            new_lines.append("\t" + line[min_whites:])
 
     return new_lines
 

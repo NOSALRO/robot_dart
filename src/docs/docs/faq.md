@@ -10,8 +10,9 @@ This pages provides a user guide of the library through Frequently Asked Questio
 
 You can find a minimal working example at [hello_world.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hello_world.cpp). This example is creating a world where a hexapod robot is placed just above a floor and left to fall. The robot has no actuation, and there is the simplest graphics configuration. Let's split it down.
 
-{{HELLO_WORLD_INCLUDE}}
+- We first include the appropriate files:
 
+{{HELLO_WORLD_INCLUDE}}
 
 - We then load our hexapod robot:
 
@@ -59,16 +60,18 @@ To enable graphics in your code, you need to do the following:
 ## **How do I record a video?**
 
 In order to record a video of what the main camera "sees", you need to call the function `record_video(path)` of the graphics class:
-
 {{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
 
 You can find a complete example at [talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp).
 
 ## **I want to have multiple camera sensors. Is it possible?**
+
 Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
 {{ADD_NEW_CAMERA}}
 
 ## **How can I position a camera to the environment?**
+
+In order to position a camera inside the world, we need to use the `lookAt` method of the camera/graphics object:
 {{CAM_POSITION}}
 
 ## **How can I attach a camera to a moving link?**
@@ -93,32 +96,28 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 
 ## **How can I alter the graphics scene (e.g., change lighting conditions)?**
 You can disable or enable shadows:
-
 {{SHADOWS_GRAPHICS}}
 
 You can also add your own lights, but first you have to clear the default lights:
-
 {{CLR_LIGHT}}
 
 Then you must create a custom light material:
-
 {{LIGHT_MATERIAL}}
 
 Now you can add on ore more of the following lights:
 
 **Point Light**:
-
 {{POINT_LIGHT}}
 
 **Spot Light**:
-
 {{SPOT_LIGHT}}
 
 **Directional Light**:
-
 {{DIRECTIONAL_LIGHT}}
 
 ## **I want to visualize a target configuration of my robot, is this possible?**
+
+Yes this is possible. RobotDART gives the ability to create a clone of your robot that has no physics, no contacts, just visuals:
 {{ROBOT_GHOST}}
 
 ## **How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?**
@@ -130,36 +129,45 @@ which can later be modified by:
 {{MODIFY_SIMU_DT}}
 
 ## **I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?**
+
 Yes you can modify the gravitational forces 3-dimensional vector of the simulation:
 {{SIMU_GRAVITY}}
+
 ## **Which collision detectors are available? What are their differences? How can I choose between them?**
+
 | Dart | FCL | ODE | Bullet |
 |------|-----|-----|--------|
 |      |     |     |        |
 |      |     |     |        |
 |      |     |     |        |
 
+We can easily select one of the available collision detectors using the simulator object:
 {{SET_COLLISION_DETECTOR}}
+
 ## **My robot does not self-collide. How can I change this?**
+
 One possible cause may be the fact that self collision is disabled, you can check and change this:
 {{SELF_COLLISIONS}}
+
 ## **How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?**
 
 **Kinematic Properties:**
-
 {{KINEMATICS}}
 
 **Dynamic Properties:**
-
 {{DYNAMICS}}
 
 ## **Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?**
+
 There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:
 {{SET_ACTUATOR}}
+
 To enable position and velocity limits for the actuators:
 {{POSITIONS_ENFORCED}}
+
 Every actuators limits (position, velocity, acceleration, force) can be modified:
 {{MODIFY_LIMITS}}
+
 You can also modify the damping coefficients, coulomb frictions and spring stiffness of every joint:
 {{MODIFY_COEFFS}}
 
@@ -167,25 +175,42 @@ You can also modify the damping coefficients, coulomb frictions and spring stiff
 #### **Torque sensor**
 Torque sensors can be added to every joint of the robot:
 {{TORQUE_SENSOR}}
+
 Torque sensors measure the torque $\tau \in \rm I\!R$ of the attached joint:
 {{TORQUE_MEASUREMENT}}
+
 #### **Force-Torque sensor**
+
 Force-Torque sensors can be added to every joint of the robot:
 {{FORCE_TORQUE_SENSOR}}
+
 Torque sensors measure the force $\boldsymbol{F} \in \rm I\!R^3$, the torque $\boldsymbol{\tau} \in \rm I\!R^3$ and the wrench $\boldsymbol{\mathcal{F}} =\begin{bmatrix} \tau, F\end{bmatrix}\in \rm I\!R^6$ of the attached joint:
 {{FORCE_TORQUE_MEASUREMENT}}
+
 #### **IMU sensor**
+
 Imu sensors can be added to every link of the robot:
 {{IMU_SENSOR}}
+
 Imu sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!R^3$, the angular velocity $\boldsymbol{\omega} \in \rm I\!R^3$  and the linear acceleration $\boldsymbol{\alpha} \in \rm I\!R^3$ of the attached link:
 {{IMU_MEASUREMENT}}
 
 #### **RGB sensor**
+
+Any camera can be used as an RGB sensor:
 {{RGB_SENSOR}}
+
+We can easily save the image and/or transform it to grayscale:
 {{RGB_SENSOR_MEASURE}}
+
 #### **RGB_D sensor**
+
+Any camera can also be configured to also record depth:
 {{RGB_D_SENSOR}}
+
+We can save the depth images as well:
 {{RGB_D_SENSOR_MEASURE}}
+
 ## **How can I measure forces being applied to my robot?**
 
 ## **How can I spawn multiple robots in parallel?**
