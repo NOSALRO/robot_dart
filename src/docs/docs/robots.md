@@ -120,6 +120,14 @@ A1 is a quadruped robot made by the [Unitree Robotics](https://www.unitree.com/p
 - One can easily add a depth camera on the head
 - URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf)]
 - Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)]
+??? "Load A1"
+{{A1}}
+
+??? "Print IMU sensor measurements"
+{{A1_PRINT_IMU}}
+
+??? "Add a depth camera on the head"
+    [How can I attach a camera to a moving link?](../faq/#how-can-i-attach-a-camera-to-a-moving-link)
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
