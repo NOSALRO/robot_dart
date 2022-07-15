@@ -133,6 +133,11 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf)]
 - Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)]
 
+??? "Load Hexapod"
+{{HEXAPOD}}
+
+??? "Load Pexod"
+{{HELLO_WORLD_ROBOT_CREATION}}
 
 ## Simple arm
 ![simple arm robot](images/arm.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}

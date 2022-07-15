@@ -7,7 +7,9 @@
 
 int main()
 {
+    // @HEXAPOD@
     auto robot = std::make_shared<robot_dart::robots::Hexapod>();
+    // @HEXAPOD_END@
     robot->set_actuator_types("servo");
 
     robot_dart::RobotDARTSimu simu(0.001);
