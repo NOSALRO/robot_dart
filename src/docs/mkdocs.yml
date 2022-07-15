@@ -7,15 +7,15 @@ site_author: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Moure
 copyright: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'
 theme:
   name: material
+  logo: images/resibots_logo.png
   # custom_dir: 'cinder'
   icon:
-    logo: material/robot
     repo: fontawesome/brands/github
   palette:
       # Palette toggle for light mode
     - scheme: default
-      primary: deep purple
-      accent: pink
+      primary: deep puprle
+      accent: purple
       toggle:
         icon: material/lightbulb
 
@@ -25,7 +25,7 @@ theme:
     # Palette toggle for dark mode
     - scheme: slate
       primary: deep purple
-      accent: pink
+      accent: purple
 
       toggle:
         icon: material/lightbulb-outline
@@ -42,7 +42,7 @@ theme:
     - content.code.annotate
     - toc.follow
     # - toc.integrate
-
+  favicon: images/resibots_square.png
 nav:
   - Home: index.md
   - Installation: quick_install.md
