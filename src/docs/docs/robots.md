@@ -152,11 +152,13 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 {{SIMPLE_ARM}}
 ## Loading Custom Robots
 RobotDART gives you the ability to load custom robots  that are defined in [URDF](http://wiki.ros.org/urdf/Tutorials), [SDF](https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels), [SKEL](https://dartsim.github.io/skel_file_format.html) or [MJCF](https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms) files. For example, you can load a urdf model using:
-``` c++
-    auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf");
-```
-You can also import packages (e.g. STL, DAE meshes) for your robot:
-``` c++
-    std::vector<std::pair<std::string, std::string>> your_model_packages = {{"model", "path/to/model/dir"}};
-    auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf", your_model_packages, "packages");
-```
+
+??? "Load custom Robot"
+    ``` c++
+        auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf");
+    ```
+??? "Load custom Robot with packages (e.g STL, DAE meshes)"
+    ``` c++
+        std::vector<std::pair<std::string, std::string>> your_model_packages = {{"model", "path/to/model/dir"}};
+        auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf", your_model_packages, "packages");
+    ```
