@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="pink">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple">
   
     
     
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
@@ -565,6 +565,12 @@
 
 
 
+<style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+</style>
 <h1 id="supported-robots">Supported robots<a class="headerlink" href="#supported-robots" title="Permanent link">&para;</a></h1>
 <p>Every robot is a defined as a URDF, which will be installed <code>$PREFIX/share/utheque</code>. All robots have pre-defined "robot classes" that define sensors and other properties; for your custom/new robots, you will have to add the sensors/properties via the generic robot class (or create a new robot class).</p>
 <p>The URDF files are loaded using the following rules (see <code>utheque::path()</code>):</p>
@@ -724,6 +730,23 @@ The URDF includes the gripper.</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf">a1.urdf</a>]</li>
 <li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp">a1.cpp</a>]</li>
 </ul>
+<details>
+<summary>Load A1</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">A1</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+</details>
+<details>
+<summary>Print IMU sensor measurements</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Angular    Position: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">robot</span><span class="o">-&gt;</span><span class="n">imu</span><span class="p">().</span><span class="n">angular_position_vec</span><span class="p">().</span><span class="n">transpose</span><span class="p">().</span><span class="n">format</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Angular    Velocity: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">robot</span><span class="o">-&gt;</span><span class="n">imu</span><span class="p">().</span><span class="n">angular_velocity</span><span class="p">().</span><span class="n">transpose</span><span class="p">().</span><span class="n">format</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Linear Acceleration: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">robot</span><span class="o">-&gt;</span><span class="n">imu</span><span class="p">().</span><span class="n">linear_acceleration</span><span class="p">().</span><span class="n">transpose</span><span class="p">().</span><span class="n">format</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=================================&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+</details>
+<details>
+<summary>Add a depth camera on the head</summary>
+<p><a href="../faq/#how-can-i-attach-a-camera-to-a-moving-link">How can I attach a camera to a moving link?</a></p>
+</details>
 <p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
 <h2 id="dynamixel-based-hexapod-robot-inria-and-others">Dynamixel-based hexapod robot (Inria and others)<a class="headerlink" href="#dynamixel-based-hexapod-robot-inria-and-others" title="Permanent link">&para;</a></h2>
 <p><img alt="hexapod robot" src="../images/hexapod.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
@@ -734,6 +757,16 @@ The URDF includes the gripper.</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf">pexod.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp">hexapod.cpp</a>]</li>
 </ul>
+<details>
+<summary>Load Hexapod</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Hexapod</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+</details>
+<details>
+<summary>Load Pexod</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;pexod.urdf&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+</details>
 <h2 id="simple-arm">Simple arm<a class="headerlink" href="#simple-arm" title="Permanent link">&para;</a></h2>
 <p><img alt="simple arm robot" src="../images/arm.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <ul>
@@ -743,14 +776,24 @@ The URDF includes the gripper.</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf">arm.urdf</a>]</li>
 <li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
 </ul>
-<h2 id="loading-custom-robots">Loading Custom Robots<a class="headerlink" href="#loading-custom-robots" title="Permanent link">&para;</a></h2>
-<p>RobotDART gives you the ability to load custom robots  that are defined in <a href="http://wiki.ros.org/urdf/Tutorials">URDF</a>, <a href="https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels">SDF</a>, <a href="https://dartsim.github.io/skel_file_format.html">SKEL</a> or <a href="https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms">MJCF</a> files. For example, you can load a urdf model using:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">);</span><span class="w"></span>
+<details>
+<summary>Load Simple Arm</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Arm</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
 </code></pre></div>
-You can also import packages (e.g. STL, DAE meshes) for your robot:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">your_model_packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">model</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">dir</span><span class="err">&#39;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">your_model_packages</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;packages&quot;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div></p>
+</details>
+<h2 id="loading-custom-robots">Loading Custom Robots<a class="headerlink" href="#loading-custom-robots" title="Permanent link">&para;</a></h2>
+<p>RobotDART gives you the ability to load custom robots  that are defined in <a href="http://wiki.ros.org/urdf/Tutorials">URDF</a>, <a href="https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels">SDF</a>, <a href="https://dartsim.github.io/skel_file_format.html">SKEL</a> or <a href="https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms">MJCF</a> files. For example, you can load a urdf model using:</p>
+<details>
+<summary>Load custom Robot</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+</details>
+<details>
+<summary>Load custom Robot with packages (e.g STL, DAE meshes)</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">your_model_packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">model</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">dir</span><span class="err">&#39;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">your_model_packages</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;packages&quot;</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+</details>
 
               
             </article>

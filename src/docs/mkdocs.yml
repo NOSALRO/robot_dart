@@ -7,9 +7,10 @@ site_author: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Moure
 copyright: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'
 theme:
   name: material
-  logo: images/resibots_logo.png
+  # logo: images/resibots_logo.png
   # custom_dir: 'cinder'
   icon:
+    logo: material/robot
     repo: fontawesome/brands/github
   palette:
       # Palette toggle for light mode
@@ -42,7 +43,7 @@ theme:
     - content.code.annotate
     - toc.follow
     # - toc.integrate
-  favicon: images/resibots_square.png
+  # favicon: images/resibots_square.png
 nav:
   - Home: index.md
   - Installation: quick_install.md

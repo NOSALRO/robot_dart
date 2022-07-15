@@ -2,6 +2,12 @@
   hide:
     -navigation
 ---
+<style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+</style>
 ## Scripts for Quick Installation of RobotDART
 In this page we provide standalone scripts for installing RobotDART for `Ubuntu` (20.04) and `OSX`. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the `/opt` folder. This way, one can be rest assured that their system will be clean.
 

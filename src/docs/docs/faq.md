@@ -2,6 +2,12 @@
   hide:
     -navigation
 ---
+<style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+</style>
 # **Frequently Asked Questions**
 
 This pages provides a user guide of the library through Frequently Asked Questions (FAQ).
