@@ -13,7 +13,7 @@ int main()
     auto robot = std::make_shared<robot_dart::robots::Franka>();
     // @FRANKA_END@
     robot->set_actuator_types("torque");
-
+    // @PD_CONTROL@
     // add a PD-controller to the arm
     // set desired positions
     Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4., 0., M_PI / 2., 0., 0.});
@@ -22,7 +22,7 @@ int main()
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);
     robot->add_controller(controller);
     controller->set_pd(300., 50.);
-
+    // @PD_CONTROL_END@
     // choose time step of 0.001 seconds
     robot_dart::RobotDARTSimu simu(0.001);
     simu.set_collision_detector("fcl");

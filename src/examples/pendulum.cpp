@@ -12,9 +12,10 @@ int main()
 
     Eigen::VectorXd ctrl(1);
     ctrl << 0.0;
-
+    // @SIMPLE_CONTROL@
     auto controller1 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
     robot->add_controller(controller1);
+    // @SIMPLE_CONTROL_END@
     ctrl << -1.0;
     auto controller2 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
     robot->add_controller(controller2, 5.);

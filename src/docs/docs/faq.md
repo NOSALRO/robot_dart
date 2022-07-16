@@ -135,7 +135,13 @@ Now you can add on ore more of the following lights:
 Yes this is possible. RobotDART gives the ability to create a clone of your robot that has no physics, no contacts, just visuals:
 {{ROBOT_GHOST}}
 
-## **How can I control my robot? Can I have a position-,velocity-,torque-controlled robot?**
+## **How can I control my robot ?**
+*PD control*
+{{PD_CONTROL}}
+*Simple control*
+{{SIMPLE_CONTROL}}
+*Robot control*
+{{ROBOT_CONTROL}}
 
 ## **Is there a way to control the simulation timestep?**
 When creating a RobotDARTSimu object you choose the simulation timestep:
