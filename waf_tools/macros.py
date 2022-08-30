@@ -1,5 +1,9 @@
-import fnmatch,re
-import os, shutil, sys
+import fnmatch
+import re
+import os
+import shutil
+import sys
+
 
 def make_dirlist(folder, extensions):
     matches = []
@@ -8,6 +12,7 @@ def make_dirlist(folder, extensions):
             for filename in fnmatch.filter(filenames, '*' + ext):
                 matches.append(os.path.join(root, filename))
     return matches
+
 
 def remove_leading_whitespace(lines):
     min_whites = -1
@@ -26,6 +31,7 @@ def remove_leading_whitespace(lines):
             new_lines.append("\t" + line[min_whites:])
 
     return new_lines
+
 
 def grab(delimiter='@'):
     # cpp
@@ -66,9 +72,53 @@ def grab(delimiter='@'):
                     q.append((val, line_number - 1))
                     curr = val
 
-        for (v, s,e) in ret:
+        for (v, s, e) in ret:
             my_lines = remove_leading_whitespace(lines[s+1:e])
             variables[v] = ''.join(my_lines)
             variables[v] = '\t```cpp\n' + variables[v] + '\t```'
+    
+
+    # python
+    py = make_dirlist('src/python', ['.py'])
+    for fname in py:
+        input_data = open(fname, 'r')
+        line_number = 0
+        q = []
+        curr = None
+
+        ret = []
+        lines = []
+        for line in input_data:
+            lines.append(line)
+            ll = line.strip()
+            dels = [m.start() for m in re.finditer(delimiter, ll)]
+            line_number = line_number + 1
+            if len(dels) < 2 or len(dels) >= 2 and ll[:1] != '#':
+                continue
+            start = dels[0] + 1
+            end = dels[-1]
+
+            val = ll[start:end]
+            if curr == None:
+                q.append((val, line_number - 1))
+                curr = val
+            else:
+                if 'END' == val[-3:]:
+                    
+                    vv, num = q.pop()
+                    ret.append((vv, num, line_number - 1))
+                    if len(q) == 0:
+                        curr = None
+                    else:
+                        curr = q[-1][0]
+                else:
+                    q.append((val, line_number - 1))
+                    curr = val
+
+        for (v, s, e) in ret:
+            my_lines = remove_leading_whitespace(lines[s+1:e])
+            variables[v] = ''.join(my_lines)
+            variables[v] = '\t```python\n' + variables[v] + '\t```'
+    
 
     return variables
