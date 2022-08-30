@@ -18,28 +18,39 @@ You can find a minimal working example at [hello_world.cpp](https://github.com/r
 
 - We first include the appropriate files:
 
+=== "C++"
 {{HELLO_WORLD_INCLUDE}}
-
+=== "Python"
+{{HELLO_WORLD_INCLUDE_PYTHON}}
 - We then load our hexapod robot:
 
+=== "C++"
 {{HELLO_WORLD_ROBOT_CREATION}}
-
+=== "Python"
+{{HELLO_WORLD_ROBOT_CREATION_PYTHON}}
 - We need to place it above the floor to avoid collision (we can use RobotDART's helpers ;)):
 
+=== "C++"
 {{HELLO_WORLD_ROBOT_PLACING}}
-
+=== "Python"
+{{HELLO_WORLD_ROBOT_PLACING_PYTHON}}
 - We can now create the simulation object and add the robot and the floor:
-
+=== "C++"
 {{HELLO_WORLD_ROBOT_SIMU}}
-
+=== "Python"
+{{HELLO_WORLD_ROBOT_SIMU_PYTHON}}
 - If needed or wanted, we can add a graphics component to visualize the scene:
-
+=== "C++"
 {{HELLO_WORLD_ROBOT_GRAPHIC}}
+=== "Python"
+{{HELLO_WORLD_ROBOT_GRAPHIC_PYTHON}}
 
 - Once everything is configured, we can run our simulation for a few seconds:
 
+=== "C++"
 {{HELLO_WORLD_ROBOT_RUN}}
-
+=== "Python"
+{{HELLO_WORLD_ROBOT_RUN_PYTHON}}
 - Here's how it looks:
 
 ![Hello World example](images/FAQ/hello_world.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
