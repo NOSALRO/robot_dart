@@ -298,7 +298,7 @@ namespace robot_dart {
                 py::arg("intrinsic_matrix"),
                 py::arg("tf"),
                 py::arg("far_plane") = 1000.);
-            sm.def("point_cloud_from_depth_array", static_cast<void (*)(Eigen::Ref<Eigen::MatrixXd>, const gui::DepthImage&, const Eigen::Matrix3d&, const Eigen::Matrix4d&, double)>(&gui::point_cloud_from_depth_array),
+            sm.def("point_cloud_from_depth_array", static_cast<int (*)(Eigen::Ref<Eigen::MatrixXd>, const gui::DepthImage&, const Eigen::Matrix3d&, const Eigen::Matrix4d&, double)>(&gui::point_cloud_from_depth_array),
                 py::arg("point_cloud"),
                 py::arg("depth_image"),
                 py::arg("intrinsic_matrix"),
