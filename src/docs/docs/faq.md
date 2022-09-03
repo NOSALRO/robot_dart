@@ -18,10 +18,12 @@ You can find a minimal working example at [hello_world.cpp](https://github.com/r
 
 - We first include the appropriate files:
 
+
 === "C++"
 {{HELLO_WORLD_INCLUDE}}
 === "Python"
 {{HELLO_WORLD_INCLUDE_PYTHON}}
+
 - We then load our hexapod robot:
 
 === "C++"
@@ -71,37 +73,60 @@ To enable graphics in your code, you need to do the following:
 - Install [Magnum](http://magnum.graphics). See the [installation page](install.md) for details.
 - Create and set a graphics object in the simulation object. Here's an example:
 
+=== "C++"
 {{HELLO_WORLD_ROBOT_GRAPHIC}}
+=== "Python"
+{{HELLO_WORLD_ROBOT_GRAPHIC_PYTHON}}
 
 ## **I want to have multiple camera sensors. Is it possible?**
 
 Having multiple camera sensors is indeed possible. We can add as many cameras as we wish along the main camera defined in [How do I record a video](#how-do-i-record-a-video):
+=== "C++"
 {{ADD_NEW_CAMERA}}
-
+=== "Python"
+{{ADD_NEW_CAMERA_PYTHON}}
 ## **How do I record a video?**
 
 In order to record a video of what the main or any other camera "sees", you need to call the function `record_video(path)` of the graphics class:
+=== "C++"
 {{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
+=== "Python"
+    ```python
+    graphics.record_video("talos_dancing.mp4")
+    ```
+<!-- example not yet implemented^^  -->
 
 Or the camera class:
+=== "C++"
 {{RECORD_VIDEO_CAMERA}}
+=== "Python"
+{{RECORD_VIDEO_CAMERA_PYTHON}}
 
 ## **How can I position a camera to the environment?**
 
 In order to position a camera inside the world, we need to use the `lookAt` method of the camera/graphics object:
+=== "C++"
 {{CAM_POSITION}}
-
+=== "Python"
+{{CAM_POSITION_PYTHON}}
 ## **How can I attach a camera to a moving link?**
 Cameras can be easily attached to a moving link:
+=== "C++"
 {{CAM_ATTACH}}
+=== "Python"
+{{CAM_ATTACH_PYTHON}}
 
 ## **How can I manipulate the camera object?**
 Every camera has its own parameters, i.e a Near plane, a far plane, a Field Of View (FOV), a width and a height (that define the aspect ratio), you can manipulate each one separately:
+=== "C++"
 {{MANIPULATE_CAM_SEP}}
-
+=== "Python"
+{{MANIPULATE_CAM_SEP_PYTHON}}
 or all at once:
+=== "C++"
 {{MANIPULATE_CAM}}
-
+=== "Python"
+{{MANIPULATE_CAM_PYTHON}}
 You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
 
 ## **How can I interact with the camera?**

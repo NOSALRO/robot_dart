@@ -10,6 +10,8 @@ theme:
   # logo: images/resibots_logo.png
   # custom_dir: 'cinder'
   icon:
+    admonition:
+      note: fontawesome/solid/code
     logo: material/robot
     repo: fontawesome/brands/github
   palette:
@@ -39,7 +41,7 @@ theme:
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.instant
-    - content.tabs.link
+    # - content.tabs.link
     - content.code.annotate
     - toc.follow
     # - toc.integrate
