@@ -144,28 +144,42 @@ Where **simulation time** gives us the total simulated time (in seconds), **wall
 
 ## **How can I alter the graphics scene (e.g., change lighting conditions)?**
 When creating a graphics object, you can pass a `GraphicsConfiguration` object that changes the default values:
+=== "C++"
 {{GRAPHICS_PARAMS}}
-
+=== "Python"
+{{GRAPHICS_PARAMS_PYTHON}}
 You can disable or enable shadows on the fly as well:
+=== "C++"
 {{SHADOWS_GRAPHICS}}
-
+=== "Python"
+{{SHADOWS_GRAPHICS_PYTHON}}
 You can also add your own lights. The application by default creates 2 light sources and the maximum number of lights is 3 (you can change this once before the creation of the graphics object via the `GraphicsConfiguration` object). So usually before you add your lights, you have to clear the default lights:
+=== "C++"
 {{CLR_LIGHT}}
-
+=== "Python"
+{{CLR_LIGHT_PYTHON}}
 Then you must create a custom light material:
+=== "C++"
 {{LIGHT_MATERIAL}}
-
+=== "Python"
+{{LIGHT_MATERIAL_PYTHON}}
 Now you can add on ore more of the following lights:
 
 **Point Light**:
+=== "C++"
 {{POINT_LIGHT}}
-
+=== "Python"
+{{POINT_LIGHT_PYTHON}}
 **Spot Light**:
+=== "C++"
 {{SPOT_LIGHT}}
-
+=== "Python"
+{{SPOT_LIGHT_PYTHON}}
 **Directional Light**:
+=== "C++"
 {{DIRECTIONAL_LIGHT}}
-
+=== "Python"
+{{DIRECTIONAL_LIGHT_PYTHON}}
 ## **I want to visualize a target configuration of my robot, is this possible?**
 
 Yes this is possible. RobotDART gives the ability to create a clone of your robot that has no physics, no contacts, just visuals:
