@@ -10,7 +10,9 @@
 #define ROBOT_DART_SHOW_WARNINGS true
 #endif
 
+#ifndef M_PIf
 #define M_PIf static_cast<float>(M_PI)
+#endif
 
 namespace robot_dart {
 
