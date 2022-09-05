@@ -61,8 +61,8 @@ camera.look_at(cam_pos, cam_looks_at)
 
 # @CAM_ATTACH_PYTHON@
 tf = dartpy.math.Isometry3()
-rot =  dartpy.math.AngleAxis(3.14,[1., 0., 0.])
-rot = rot.multiply( dartpy.math.AngleAxis(1.57,[0., 0., 1.])).to_rotation_matrix()
+rot =  dartpy.math.AngleAxis(3.14, [1., 0., 0.])
+rot = rot.multiply( dartpy.math.AngleAxis(1.57, [0., 0., 1.])).to_rotation_matrix()
 tf.set_translation([0., 0., 0.1])
 camera.attach_to_body(robot.body_node("iiwa_link_ee"), tf) # cameras are looking towards -z by default
 # @CAM_ATTACH_PYTHON_END@
@@ -72,9 +72,9 @@ simu.add_robot(robot)
 
 
 pose = [ 0., 0., 0., 1.5, 0., 0.25]
-simu.add_robot(rd.Robot.create_box([0.1, 0.1, 0.5], pose, "free", 1., [1,0,0,1],"box"))
+simu.add_robot(rd.Robot.create_box([0.1, 0.1, 0.5], pose, "free", 1., [1, 0, 0, 1], "box"))
 pose = [ 0., 0., 0., 1.5, -0.5, 0.25]
-simu.add_robot(rd.Robot.create_ellipsoid([0.2, 0.2, 0.2], pose, "free", 1., [1,0,0,1], "sphere"))
+simu.add_robot(rd.Robot.create_ellipsoid([0.2, 0.2, 0.2], pose, "free", 1., [1, 0, 0, 1], "sphere"))
 simu.add_sensor(camera)
 
 simu.run(10.)
@@ -120,6 +120,6 @@ while (True):
         depth_image = camera.depth_array()
         point_cloud = rd.gui.point_cloud_from_depth_array(depth_image, camera.camera_intrinsic_matrix(), camera.camera_extrinsic_matrix(), camera.camera().far_plane())
         print( simu.scheduler().current_time(), ": ", len(point_cloud))
-        
+
 
 robot.reset()
