@@ -403,6 +403,7 @@ def build_robot_dart(bld):
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindEGL.cmake')
 
 def build_examples(bld):
     # we first build the library
