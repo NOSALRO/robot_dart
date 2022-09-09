@@ -1,5 +1,5 @@
-robot_dart [![Build Status](https://travis-ci.org/resibots/robot_dart.svg?branch=master)](https://travis-ci.org/resibots/robot_dart)
-=====================================================================================================================================
+robot_dart [![Build Status](https://github.com/resibots/robot_dart/actions/workflows/ci_linux.yml/badge.svg?branch=master)](https://github.com/resibots/robot_dart/actions/workflows/ci_linux.yml)
+=====================================================================================================================================================================================================
 
 ### CAUTION: The library is under-going a serious re-structure and development. Expect breaking of API/ABI, and out-of-date guides. We will soon provide a new release with many new features and a proper documentation.
 
@@ -8,7 +8,8 @@ robot_dart [![Build Status](https://travis-ci.org/resibots/robot_dart.svg?branch
 ## Authors
 
 - Author/Maintainer: Konstantinos Chatzilygeroudis
-- Other contributors: Vaios Papaspyros
+- Active contributors: Jean-Baptiste Mouret
+- Other contributors: Antoine Cully, Vassilis Vassiliades, Vaios Papaspyros
 
 ### Using the code
 

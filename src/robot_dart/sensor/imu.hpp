@@ -7,6 +7,10 @@ namespace robot_dart {
     namespace sensor {
         // TO-DO: Implement some noise models (e.g., https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model)
         struct IMUConfig {
+            IMUConfig(dart::dynamics::BodyNode* b, size_t f) : gyro_bias(Eigen::Vector3d::Zero()), accel_bias(Eigen::Vector3d::Zero()), body(b), frequency(f){};
+            IMUConfig(const Eigen::Vector3d& gyro_bias, const Eigen::Vector3d& accel_bias, dart::dynamics::BodyNode* b, size_t f) : gyro_bias(gyro_bias), accel_bias(accel_bias), body(b), frequency(f){};
+            IMUConfig() : gyro_bias(Eigen::Vector3d::Zero()), accel_bias(Eigen::Vector3d::Zero()), body(nullptr), frequency(200) {}
+
             // We assume fixed bias; TO-DO: Make this time-dependent
             Eigen::Vector3d gyro_bias = Eigen::Vector3d::Zero();
             Eigen::Vector3d accel_bias = Eigen::Vector3d::Zero();
@@ -29,7 +33,7 @@ namespace robot_dart {
 
             void init() override;
 
-            void calculate(double t) override;
+            void calculate(double) override;
 
             std::string type() const override;
 
@@ -38,7 +42,7 @@ namespace robot_dart {
             const Eigen::Vector3d& angular_velocity() const;
             const Eigen::Vector3d& linear_acceleration() const;
 
-            void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+            void attach_to_joint(dart::dynamics::Joint*, const Eigen::Isometry3d&) override
             {
                 ROBOT_DART_WARNING(true, "You cannot attach an IMU sensor to a joint!");
             }

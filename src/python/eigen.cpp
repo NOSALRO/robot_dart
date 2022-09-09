@@ -1,11 +1,6 @@
 #include "robot_dart.hpp"
-
-#include <Eigen/Dense>
-#include <Eigen/Geometry>
-
-#include <pybind11/eigen.h>
-
-#include <dart/math/Geometry.hpp>
+#include "utils_headers_eigen.hpp"
+#include "utils_headers_pybind11.hpp"
 
 namespace robot_dart {
     namespace python {

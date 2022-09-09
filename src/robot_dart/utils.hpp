@@ -1,14 +1,17 @@
 #ifndef ROBOT_DART_UTILS_HPP
 #define ROBOT_DART_UTILS_HPP
 
-#include <cstdlib>
 #include <exception>
 #include <iostream>
 
-#include <Eigen/Core>
+#include <robot_dart/utils_headers_external.hpp>
 
 #ifndef ROBOT_DART_SHOW_WARNINGS
 #define ROBOT_DART_SHOW_WARNINGS true
+#endif
+
+#ifndef M_PIf
+#define M_PIf static_cast<float>(M_PI)
 #endif
 
 namespace robot_dart {
@@ -40,17 +43,19 @@ namespace robot_dart {
     };
 } // namespace robot_dart
 
+#define ROBOT_DART_UNUSED_VARIABLE(var) (void)(var)
+
 #define ROBOT_DART_WARNING(condition, message)                                   \
     if (ROBOT_DART_SHOW_WARNINGS && (condition)) {                               \
         std::cerr << "[robot_dart WARNING]: \"" << message << "\"" << std::endl; \
     }
 
-#define ROBOT_DART_ASSERT(condition, message, returnValue)                        \
-    do {                                                                          \
-        if (!(condition)) {                                                       \
-            std::cerr << "robot_dart assertion failed: " << message << std::endl; \
-            return returnValue;                                                   \
-        }                                                                         \
+#define ROBOT_DART_ASSERT(condition, message, returnValue)                                                           \
+    do {                                                                                                             \
+        if (!(condition)) {                                                                                          \
+            std::cerr << __LINE__ << " " << __FILE__ << " -> robot_dart assertion failed: " << message << std::endl; \
+            return returnValue;                                                                                      \
+        }                                                                                                            \
     } while (false)
 
 #define ROBOT_DART_EXCEPTION_ASSERT(condition, message) \

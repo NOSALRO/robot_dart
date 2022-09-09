@@ -1,4 +1,3 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
@@ -7,7 +6,7 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -18,7 +17,7 @@ std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
     return robot_dart::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
 }
 
-std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();

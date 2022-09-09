@@ -1,7 +1,6 @@
 #include "force_torque.hpp"
 
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/Joint.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 namespace robot_dart {
     namespace sensor {
@@ -18,7 +17,7 @@ namespace robot_dart {
             _active = true;
         }
 
-        void ForceTorque::calculate(double t)
+        void ForceTorque::calculate(double)
         {
             if (!_attached_to_joint)
                 return; // cannot compute anything if not attached to a joint

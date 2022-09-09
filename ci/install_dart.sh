@@ -14,7 +14,7 @@ else
     HOMEBREW_NO_AUTO_UPDATE=1 brew install dartsim
     if [ "$PYTHON_TESTS" = "ON" ]; then
         # HOMEBREW_NO_AUTO_UPDATE=1 brew install dartpy
-        git clone git://github.com/dartsim/dart.git
+        git clone https://github.com/dartsim/dart.git
         cd dart
         git checkout v6.9.2
         mkdir build_py

@@ -1,23 +1,57 @@
 #include "robot_dart.hpp"
-
-#include <pybind11/eigen.h>
-#include <pybind11/stl.h>
+#include "utils_headers_dart.hpp"
+#include "utils_headers_pybind11.hpp"
 
 #include <robot_dart/robot.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
+
+// all robots
+#include <robot_dart/robots/a1.hpp>
+#include <robot_dart/robots/arm.hpp>
+#include <robot_dart/robots/franka.hpp>
+#include <robot_dart/robots/hexapod.hpp>
+#include <robot_dart/robots/icub.hpp>
+#include <robot_dart/robots/iiwa.hpp>
+#include <robot_dart/robots/pendulum.hpp>
+#include <robot_dart/robots/talos.hpp>
+#include <robot_dart/robots/tiago.hpp>
+#include <robot_dart/robots/ur3e.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
-
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/DegreeOfFreedom.hpp>
-#include <dart/dynamics/Joint.hpp>
 
 namespace robot_dart {
     namespace python {
         void py_robot(py::module& m)
         {
             using namespace robot_dart;
+
+            // PyRobot
+            class PyRobot : public Robot {
+            public:
+                using Robot::Robot;
+
+                /* Trampolines */
+                void _post_addition(RobotDARTSimu* simu) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* Return type */
+                        Robot, /* Parent class */
+                        _post_addition, /* Name of function in C++ (must match Python name) */
+                        simu);
+                }
+
+                void _post_removal(RobotDARTSimu* simu) override
+                {
+                    PYBIND11_OVERLOAD(
+                        void, /* Return type */
+                        Robot, /* Parent class */
+                        _post_removal, /* Name of function in C++ (must match Python name) */
+                        simu);
+                }
+            };
+
             // Robot class
-            py::class_<Robot, std::shared_ptr<Robot>>(m, "Robot")
+            py::class_<Robot, PyRobot, std::shared_ptr<Robot>>(m, "Robot")
                 .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&, const std::string&, bool, bool>(),
                     py::arg("model_file"),
                     py::arg("packages"),
@@ -40,22 +74,22 @@ namespace robot_dart {
                     py::arg("ghost_color") = Eigen::Vector4d{0.3, 0.3, 0.3, 0.7})
                 .def("skeleton", &Robot::skeleton)
 
-                .def("body_node", (dart::dynamics::BodyNode * (Robot::*)(const std::string&)) & Robot::body_node, py::return_value_policy::reference,
+                .def("body_node", static_cast<dart::dynamics::BodyNode* (Robot::*)(const std::string&)>(&Robot::body_node), py::return_value_policy::reference,
                     py::arg("body_name"))
 
-                .def("body_node", (dart::dynamics::BodyNode * (Robot::*)(size_t)) & Robot::body_node, py::return_value_policy::reference,
+                .def("body_node", static_cast<dart::dynamics::BodyNode* (Robot::*)(size_t)>(&Robot::body_node), py::return_value_policy::reference,
                     py::arg("body_index"))
 
-                .def("joint", (dart::dynamics::Joint * (Robot::*)(const std::string&)) & Robot::joint, py::return_value_policy::reference,
+                .def("joint", static_cast<dart::dynamics::Joint* (Robot::*)(const std::string&)>(&Robot::joint), py::return_value_policy::reference,
                     py::arg("joint_name"))
 
-                .def("joint", (dart::dynamics::Joint * (Robot::*)(size_t)) & Robot::joint, py::return_value_policy::reference,
+                .def("joint", static_cast<dart::dynamics::Joint* (Robot::*)(size_t)>(&Robot::joint), py::return_value_policy::reference,
                     py::arg("joint_index"))
 
-                .def("dof", (dart::dynamics::DegreeOfFreedom * (Robot::*)(const std::string&)) & Robot::dof, py::return_value_policy::reference,
+                .def("dof", static_cast<dart::dynamics::DegreeOfFreedom* (Robot::*)(const std::string&)>(&Robot::dof), py::return_value_policy::reference,
                     py::arg("dof_name"))
 
-                .def("dof", (dart::dynamics::DegreeOfFreedom * (Robot::*)(size_t)) & Robot::dof, py::return_value_policy::reference,
+                .def("dof", static_cast<dart::dynamics::DegreeOfFreedom* (Robot::*)(size_t)>(&Robot::dof), py::return_value_policy::reference,
                     py::arg("dof_index"))
 
                 .def("name", &Robot::name)
@@ -72,8 +106,8 @@ namespace robot_dart {
                 .def("add_controller", &Robot::add_controller, py::keep_alive<2, 1>(),
                     py::arg("controller"),
                     py::arg("weight") = 1.)
-                .def("remove_controller", (void (Robot::*)(const std::shared_ptr<control::RobotControl>&)) & Robot::remove_controller)
-                .def("remove_controller", (void (Robot::*)(size_t)) & Robot::remove_controller)
+                .def("remove_controller", static_cast<void (Robot::*)(const std::shared_ptr<control::RobotControl>&)>(&Robot::remove_controller))
+                .def("remove_controller", static_cast<void (Robot::*)(size_t)>(&Robot::remove_controller))
                 .def("clear_controllers", &Robot::clear_controllers)
 
                 .def("fix_to_world", &Robot::fix_to_world)
@@ -110,106 +144,108 @@ namespace robot_dart {
                 .def("actuator_types", &Robot::actuator_types,
                     py::arg("joint_names") = std::vector<std::string>())
 
-                .def("set_position_enforced", (void (Robot::*)(const std::vector<bool>&, const std::vector<std::string>&)) & Robot::set_position_enforced,
+                .def("set_position_enforced", static_cast<void (Robot::*)(const std::vector<bool>&, const std::vector<std::string>&)>(&Robot::set_position_enforced),
                     py::arg("enforced"),
                     py::arg("dof_names") = std::vector<std::string>())
-                .def("set_position_enforced", (void (Robot::*)(bool, const std::vector<std::string>&)) & Robot::set_position_enforced,
+                .def("set_position_enforced", static_cast<void (Robot::*)(bool, const std::vector<std::string>&)>(&Robot::set_position_enforced),
                     py::arg("enforced"),
                     py::arg("dof_names") = std::vector<std::string>())
+
+                .def("force_position_bounds", &Robot::force_position_bounds)
 
                 .def("position_enforced", &Robot::position_enforced,
                     py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_damping_coeffs", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_damping_coeffs,
+                .def("set_damping_coeffs", static_cast<void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)>(&Robot::set_damping_coeffs),
                     py::arg("damps"),
                     py::arg("dof_names") = std::vector<std::string>())
-                .def("set_damping_coeffs", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_damping_coeffs,
+                .def("set_damping_coeffs", static_cast<void (Robot::*)(double, const std::vector<std::string>&)>(&Robot::set_damping_coeffs),
                     py::arg("damps"),
                     py::arg("dof_names") = std::vector<std::string>())
 
                 .def("damping_coeffs", &Robot::damping_coeffs,
                     py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_coulomb_coeffs", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_coulomb_coeffs,
+                .def("set_coulomb_coeffs", static_cast<void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)>(&Robot::set_coulomb_coeffs),
                     py::arg("cfrictions"),
                     py::arg("dof_names") = std::vector<std::string>())
-                .def("set_coulomb_coeffs", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_coulomb_coeffs,
+                .def("set_coulomb_coeffs", static_cast<void (Robot::*)(double, const std::vector<std::string>&)>(&Robot::set_coulomb_coeffs),
                     py::arg("cfrictions"),
                     py::arg("dof_names") = std::vector<std::string>())
 
                 .def("coulomb_coeffs", &Robot::coulomb_coeffs,
                     py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_spring_stiffnesses", (void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)) & Robot::set_spring_stiffnesses,
+                .def("set_spring_stiffnesses", static_cast<void (Robot::*)(const std::vector<double>&, const std::vector<std::string>&)>(&Robot::set_spring_stiffnesses),
                     py::arg("stiffnesses"),
                     py::arg("dof_names") = std::vector<std::string>())
-                .def("set_spring_stiffnesses", (void (Robot::*)(double, const std::vector<std::string>&)) & Robot::set_spring_stiffnesses,
+                .def("set_spring_stiffnesses", static_cast<void (Robot::*)(double, const std::vector<std::string>&)>(&Robot::set_spring_stiffnesses),
                     py::arg("stiffnesses"),
                     py::arg("dof_names") = std::vector<std::string>())
 
                 .def("spring_stiffnesses", &Robot::spring_stiffnesses,
                     py::arg("dof_names") = std::vector<std::string>())
 
-                .def("set_friction_dir", (void (Robot::*)(const std::string&, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                .def("set_friction_dir", static_cast<void (Robot::*)(const std::string&, const Eigen::Vector3d&)>(&Robot::set_friction_dir),
                     py::arg("body_name"),
                     py::arg("direction"))
-                .def("set_friction_dir", (void (Robot::*)(size_t, const Eigen::Vector3d&)) & Robot::set_friction_dir,
+                .def("set_friction_dir", static_cast<void (Robot::*)(size_t, const Eigen::Vector3d&)>(&Robot::set_friction_dir),
                     py::arg("body_index"),
                     py::arg("direction"))
 
-                .def("friction_dir", (Eigen::Vector3d(Robot::*)(const std::string&)) & Robot::friction_dir,
+                .def("friction_dir", static_cast<Eigen::Vector3d (Robot::*)(const std::string&)>(&Robot::friction_dir),
                     py::arg("body_name"))
-                .def("friction_dir", (Eigen::Vector3d(Robot::*)(size_t)) & Robot::friction_dir,
+                .def("friction_dir", static_cast<Eigen::Vector3d (Robot::*)(size_t)>(&Robot::friction_dir),
                     py::arg("body_index"))
 
-                .def("set_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_friction_coeff,
+                .def("set_friction_coeff", static_cast<void (Robot::*)(const std::string&, double)>(&Robot::set_friction_coeff),
                     py::arg("body_name"),
                     py::arg("value"))
-                .def("set_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_friction_coeff,
+                .def("set_friction_coeff", static_cast<void (Robot::*)(size_t, double)>(&Robot::set_friction_coeff),
                     py::arg("body_index"),
                     py::arg("value"))
                 .def("set_friction_coeffs", &Robot::set_friction_coeffs,
                     py::arg("value"))
 
-                .def("friction_coeff", (double (Robot::*)(const std::string&)) & Robot::friction_coeff,
+                .def("friction_coeff", static_cast<double (Robot::*)(const std::string&)>(&Robot::friction_coeff),
                     py::arg("body_name"))
-                .def("friction_coeff", (double (Robot::*)(size_t)) & Robot::friction_coeff,
+                .def("friction_coeff", static_cast<double (Robot::*)(size_t)>(&Robot::friction_coeff),
                     py::arg("body_index"))
 
-                .def("set_secondary_friction_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_secondary_friction_coeff,
+                .def("set_secondary_friction_coeff", static_cast<void (Robot::*)(const std::string&, double)>(&Robot::set_secondary_friction_coeff),
                     py::arg("body_name"),
                     py::arg("value"))
-                .def("set_secondary_friction_coeff", (void (Robot::*)(size_t, double)) & Robot::set_secondary_friction_coeff,
+                .def("set_secondary_friction_coeff", static_cast<void (Robot::*)(size_t, double)>(&Robot::set_secondary_friction_coeff),
                     py::arg("body_index"),
                     py::arg("value"))
                 .def("set_secondary_friction_coeffs", &Robot::set_secondary_friction_coeffs,
                     py::arg("value"))
 
-                .def("secondary_friction_coeff", (double (Robot::*)(const std::string&)) & Robot::secondary_friction_coeff,
+                .def("secondary_friction_coeff", static_cast<double (Robot::*)(const std::string&)>(&Robot::secondary_friction_coeff),
                     py::arg("body_name"))
-                .def("secondary_friction_coeff", (double (Robot::*)(size_t)) & Robot::secondary_friction_coeff,
+                .def("secondary_friction_coeff", static_cast<double (Robot::*)(size_t)>(&Robot::secondary_friction_coeff),
                     py::arg("body_index"))
 
-                .def("set_restitution_coeff", (void (Robot::*)(const std::string&, double)) & Robot::set_restitution_coeff,
+                .def("set_restitution_coeff", static_cast<void (Robot::*)(const std::string&, double)>(&Robot::set_restitution_coeff),
                     py::arg("body_name"),
                     py::arg("value"))
-                .def("set_restitution_coeff", (void (Robot::*)(size_t, double)) & Robot::set_restitution_coeff,
+                .def("set_restitution_coeff", static_cast<void (Robot::*)(size_t, double)>(&Robot::set_restitution_coeff),
                     py::arg("body_index"),
                     py::arg("value"))
                 .def("set_restitution_coeffs", &Robot::set_restitution_coeffs,
                     py::arg("value"))
 
-                .def("restitution_coeff", (double (Robot::*)(const std::string&)) & Robot::restitution_coeff,
+                .def("restitution_coeff", static_cast<double (Robot::*)(const std::string&)>(&Robot::restitution_coeff),
                     py::arg("body_name"))
-                .def("restitution_coeff", (double (Robot::*)(size_t)) & Robot::restitution_coeff,
+                .def("restitution_coeff", static_cast<double (Robot::*)(size_t)>(&Robot::restitution_coeff),
                     py::arg("body_index"))
 
                 .def("base_pose", &Robot::base_pose)
-                .def("base_pose_vec", &Robot::base_pose)
+                .def("base_pose_vec", &Robot::base_pose_vec)
 
-                .def("set_base_pose", (void (Robot::*)(const Eigen::Isometry3d&)) & Robot::set_base_pose,
+                .def("set_base_pose", static_cast<void (Robot::*)(const Eigen::Isometry3d&)>(&Robot::set_base_pose),
                     py::arg("tf"))
-                .def("set_base_pose", (void (Robot::*)(const Eigen::Vector6d&)) & Robot::set_base_pose,
+                .def("set_base_pose", static_cast<void (Robot::*)(const Eigen::Vector6d&)>(&Robot::set_base_pose),
                     py::arg("pose"))
 
                 .def("num_dofs", &Robot::num_dofs)
@@ -296,74 +332,74 @@ namespace robot_dart {
 
                 .def("force_torque", &Robot::force_torque)
 
-                .def("set_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force,
+                .def("set_external_force", static_cast<void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)>(&Robot::set_external_force),
                     py::arg("body_name"),
                     py::arg("force"),
                     py::arg("offset") = Eigen::Vector3d::Zero(),
                     py::arg("force_local") = false,
                     py::arg("offset_local") = true)
-                .def("set_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::set_external_force,
+                .def("set_external_force", static_cast<void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)>(&Robot::set_external_force),
                     py::arg("body_index"),
                     py::arg("force"),
                     py::arg("offset") = Eigen::Vector3d::Zero(),
                     py::arg("force_local") = false,
                     py::arg("offset_local") = true)
-                .def("add_external_force", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force,
+                .def("add_external_force", static_cast<void (Robot::*)(const std::string&, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)>(&Robot::add_external_force),
                     py::arg("body_name"),
                     py::arg("force"),
                     py::arg("offset") = Eigen::Vector3d::Zero(),
                     py::arg("force_local") = false,
                     py::arg("offset_local") = true)
-                .def("add_external_force", (void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)) & Robot::add_external_force,
+                .def("add_external_force", static_cast<void (Robot::*)(size_t, const Eigen::Vector3d&, const Eigen::Vector3d&, bool, bool)>(&Robot::add_external_force),
                     py::arg("body_index"),
                     py::arg("force"),
                     py::arg("offset") = Eigen::Vector3d::Zero(),
                     py::arg("force_local") = false,
                     py::arg("offset_local") = true)
 
-                .def("set_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::set_external_torque,
+                .def("set_external_torque", static_cast<void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)>(&Robot::set_external_torque),
                     py::arg("body_name"),
                     py::arg("torque"),
                     py::arg("local") = false)
-                .def("set_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::set_external_torque,
+                .def("set_external_torque", static_cast<void (Robot::*)(size_t, const Eigen::Vector3d&, bool)>(&Robot::set_external_torque),
                     py::arg("body_index"),
                     py::arg("torque"),
                     py::arg("local") = false)
-                .def("add_external_torque", (void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)) & Robot::add_external_torque,
+                .def("add_external_torque", static_cast<void (Robot::*)(const std::string&, const Eigen::Vector3d&, bool)>(&Robot::add_external_torque),
                     py::arg("body_name"),
                     py::arg("torque"),
                     py::arg("local") = false)
-                .def("add_external_torque", (void (Robot::*)(size_t, const Eigen::Vector3d&, bool)) & Robot::add_external_torque,
+                .def("add_external_torque", static_cast<void (Robot::*)(size_t, const Eigen::Vector3d&, bool)>(&Robot::add_external_torque),
                     py::arg("body_index"),
                     py::arg("torque"),
                     py::arg("local") = false)
 
-                .def("external_forces", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::external_forces)
-                .def("external_forces", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::external_forces)
+                .def("external_forces", static_cast<Eigen::Vector6d (Robot::*)(const std::string& body_name) const>(&Robot::external_forces))
+                .def("external_forces", static_cast<Eigen::Vector6d (Robot::*)(size_t body_index) const>(&Robot::external_forces))
 
-                .def("body_pose", (Eigen::Isometry3d(Robot::*)(const std::string& body_name) const) & Robot::body_pose)
-                .def("body_pose", (Eigen::Isometry3d(Robot::*)(size_t body_index) const) & Robot::body_pose)
+                .def("body_pose", static_cast<Eigen::Isometry3d (Robot::*)(const std::string& body_name) const>(&Robot::body_pose))
+                .def("body_pose", static_cast<Eigen::Isometry3d (Robot::*)(size_t body_index) const>(&Robot::body_pose))
 
-                .def("body_pose_vec", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_pose_vec)
-                .def("body_pose_vec", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_pose_vec)
+                .def("body_pose_vec", static_cast<Eigen::Vector6d (Robot::*)(const std::string& body_name) const>(&Robot::body_pose_vec))
+                .def("body_pose_vec", static_cast<Eigen::Vector6d (Robot::*)(size_t body_index) const>(&Robot::body_pose_vec))
 
-                .def("body_velocity", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_velocity)
-                .def("body_velocity", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_velocity)
+                .def("body_velocity", static_cast<Eigen::Vector6d (Robot::*)(const std::string& body_name) const>(&Robot::body_velocity))
+                .def("body_velocity", static_cast<Eigen::Vector6d (Robot::*)(size_t body_index) const>(&Robot::body_velocity))
 
-                .def("body_acceleration", (Eigen::Vector6d(Robot::*)(const std::string& body_name) const) & Robot::body_acceleration)
-                .def("body_acceleration", (Eigen::Vector6d(Robot::*)(size_t body_index) const) & Robot::body_acceleration)
+                .def("body_acceleration", static_cast<Eigen::Vector6d (Robot::*)(const std::string& body_name) const>(&Robot::body_acceleration))
+                .def("body_acceleration", static_cast<Eigen::Vector6d (Robot::*)(size_t body_index) const>(&Robot::body_acceleration))
 
                 .def("body_names", &Robot::body_names)
                 .def("body_name", &Robot::body_name)
                 .def("set_body_name", &Robot::set_body_name)
 
-                .def("body_mass", (double (Robot::*)(const std::string& body_name) const) & Robot::body_mass)
-                .def("body_mass", (double (Robot::*)(size_t body_index) const) & Robot::body_mass)
+                .def("body_mass", static_cast<double (Robot::*)(const std::string& body_name) const>(&Robot::body_mass))
+                .def("body_mass", static_cast<double (Robot::*)(size_t body_index) const>(&Robot::body_mass))
 
-                .def("set_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::set_body_mass)
-                .def("set_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::set_body_mass)
-                .def("add_body_mass", (void (Robot::*)(const std::string& body_name, double mass)) & Robot::add_body_mass)
-                .def("add_body_mass", (void (Robot::*)(size_t body_index, double mass)) & Robot::add_body_mass)
+                .def("set_body_mass", static_cast<void (Robot::*)(const std::string& body_name, double mass)>(&Robot::set_body_mass))
+                .def("set_body_mass", static_cast<void (Robot::*)(size_t body_index, double mass)>(&Robot::set_body_mass))
+                .def("add_body_mass", static_cast<void (Robot::*)(const std::string& body_name, double mass)>(&Robot::add_body_mass))
+                .def("add_body_mass", static_cast<void (Robot::*)(size_t body_index, double mass)>(&Robot::add_body_mass))
 
                 .def("jacobian", &Robot::jacobian,
                     py::arg("body_name"),
@@ -416,8 +452,14 @@ namespace robot_dart {
                 .def("set_joint_name", &Robot::set_joint_name)
                 .def("joint_index", &Robot::joint_index)
 
-                .def("set_color_mode", (void (Robot::*)(const std::string&)) & Robot::set_color_mode)
-                .def("set_color_mode", (void (Robot::*)(const std::string&, const std::string&)) & Robot::set_color_mode)
+                .def("set_color_mode", static_cast<void (Robot::*)(const std::string&)>(&Robot::set_color_mode))
+                .def("set_color_mode", static_cast<void (Robot::*)(const std::string&, const std::string&)>(&Robot::set_color_mode))
+
+                .def("set_self_collision", &Robot::set_self_collision,
+                    py::arg("enable_self_collisions") = true,
+                    py::arg("enable_adjacent_collisions") = false)
+                .def("self_colliding", &Robot::self_colliding)
+                .def("adjacent_colliding", &Robot::adjacent_colliding)
 
                 .def("set_cast_shadows", &Robot::set_cast_shadows,
                     py::arg("cast_shadows") = true)
@@ -444,7 +486,7 @@ namespace robot_dart {
                     py::arg("box_name") = "box")
                 .def_static("create_box", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_box),
                     py::arg("dims"),
-                    py::arg("tf") = Eigen::Isometry3d::Identity(),
+                    py::arg("tf"),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
@@ -459,11 +501,103 @@ namespace robot_dart {
                     py::arg("ellipsoid_name") = "ellipsoid")
                 .def_static("create_ellipsoid", static_cast<std::shared_ptr<Robot> (*)(const Eigen::Vector3d&, const Eigen::Isometry3d&, const std::string&, double, const Eigen::Vector4d&, const std::string&)>(&Robot::create_ellipsoid),
                     py::arg("dims"),
-                    py::arg("tf") = Eigen::Isometry3d::Identity(),
+                    py::arg("tf"),
                     py::arg("type") = "free",
                     py::arg("mass") = 1.,
                     py::arg("color") = dart::Color::Red(1.0),
                     py::arg("ellipsoid_name") = "ellipsoid");
+
+            // Robot classes
+            using namespace robot_dart::robots;
+            py::class_<A1, Robot, std::shared_ptr<A1>>(m, "A1")
+                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("urdf") = "unitree_a1/a1.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}));
+
+            py::class_<Arm, Robot, std::shared_ptr<Arm>>(m, "Arm")
+                .def(py::init<const std::string&>(),
+                    py::arg("urdf") = "arm.urdf");
+
+            py::class_<Franka, Robot, std::shared_ptr<Franka>>(m, "Franka")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "franka/franka.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"franka_description", "franka/franka_description"}}))
+                .def("ft_wrist", &Franka::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Hexapod, Robot, std::shared_ptr<Hexapod>>(m, "Hexapod")
+                .def(py::init<const std::string&>(),
+                    py::arg("urdf") = "pexod.urdf");
+
+            py::class_<Iiwa, Robot, std::shared_ptr<Iiwa>>(m, "Iiwa")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "iiwa/iiwa.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"iiwa_description", "iiwa/iiwa_description"}}))
+                .def("ft_wrist", &Iiwa::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Tiago, Robot, std::shared_ptr<Tiago>>(m, "Tiago")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "tiago/tiago_steel.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"tiago_description", "tiago/tiago_description"}}))
+                .def("ft_wrist", &Tiago::ft_wrist, py::return_value_policy::reference)
+                .def("caster_joints", &Tiago::caster_joints)
+                .def("set_actuator_types", &Tiago::set_actuator_types,
+                    py::arg("type"),
+                    py::arg("joint_names") = std::vector<std::string>(),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false)
+                .def("set_actuator_type", &Tiago::set_actuator_type,
+                    py::arg("type"),
+                    py::arg("joint_name"),
+                    py::arg("override_mimic") = false,
+                    py::arg("override_base") = false,
+                    py::arg("override_caster") = false);
+
+            py::class_<ICub, Robot, std::shared_ptr<ICub>>(m, "ICub")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "icub/icub.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"icub_description", "icub/icub_description"}}))
+
+                .def("imu", &ICub::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &ICub::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &ICub::ft_foot_right, py::return_value_policy::reference);
+
+            py::class_<Talos, Robot, std::shared_ptr<Talos>>(m, "Talos")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}))
+
+                .def("imu", &Talos::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &Talos::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &Talos::ft_foot_right, py::return_value_policy::reference)
+                .def("ft_wrist_left", &Talos::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_wrist_right", &Talos::ft_foot_right, py::return_value_policy::reference)
+
+                .def("torques", &Talos::torques);
+
+            py::class_<TalosLight, Talos, std::shared_ptr<TalosLight>>(m, "TalosLight")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos_fast.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}));
+
+            py::class_<Ur3e, Robot, std::shared_ptr<Ur3e>>(m, "Ur3e")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}))
+                .def("ft_wrist", &Ur3e::ft_wrist, py::return_value_policy::reference);
+
+            py::class_<Ur3eHand, Ur3e, std::shared_ptr<Ur3eHand>>(m, "Ur3eHand")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "ur3e/ur3e_with_schunk_hand.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}));
         }
     } // namespace python
 } // namespace robot_dart

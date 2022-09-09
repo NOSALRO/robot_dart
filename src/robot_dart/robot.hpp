@@ -3,30 +3,20 @@
 
 #include <unordered_map>
 
-#include <dart/dynamics/MeshShape.hpp>
-#include <dart/dynamics/Skeleton.hpp>
+#include <robot_dart/utils.hpp>
 
 namespace robot_dart {
+    class RobotDARTSimu;
     namespace control {
         class RobotControl;
     }
-    struct RobotDamage {
-        RobotDamage() {}
-        RobotDamage(const std::string& type, const std::string& data, void* extra = nullptr)
-            : type(type), data(data), extra(extra)
-        {
-        }
-
-        std::string type;
-        std::string data;
-        void* extra = nullptr;
-    };
 
     class Robot : public std::enable_shared_from_this<Robot> {
     public:
-        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
-        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true, std::vector<RobotDamage> damages = {});
-        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true, std::vector<RobotDamage> damages = {});
+        Robot(const std::string& model_file, const std::vector<std::pair<std::string, std::string>>& packages, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
+        Robot(const std::string& model_file, const std::string& robot_name = "robot", bool is_urdf_string = false, bool cast_shadows = true);
+        Robot(dart::dynamics::SkeletonPtr skeleton, const std::string& robot_name = "robot", bool cast_shadows = true);
+        virtual ~Robot() {}
 
         std::shared_ptr<Robot> clone() const;
         std::shared_ptr<Robot> clone_ghost(const std::string& ghost_name = "ghost", const Eigen::Vector4d& ghost_color = {0.3, 0.3, 0.3, 0.7}) const;
@@ -40,8 +30,6 @@ namespace robot_dart {
 
         dart::dynamics::DegreeOfFreedom* dof(const std::string& dof_name);
         dart::dynamics::DegreeOfFreedom* dof(size_t dof_index);
-
-        std::vector<RobotDamage> damages() const;
 
         const std::string& name() const;
         // to use the same urdf somewhere else
@@ -71,7 +59,7 @@ namespace robot_dart {
         bool fixed() const;
         bool free() const;
 
-        void reset();
+        virtual void reset();
 
         void clear_external_forces();
         void clear_internal_forces();
@@ -90,6 +78,8 @@ namespace robot_dart {
         void set_position_enforced(bool enforced, const std::vector<std::string>& dof_names = {});
 
         std::vector<bool> position_enforced(const std::vector<std::string>& dof_names = {}) const;
+
+        void force_position_bounds();
 
         void set_damping_coeffs(const std::vector<double>& damps, const std::vector<std::string>& dof_names = {});
         void set_damping_coeffs(double damp, const std::vector<std::string>& dof_names = {});
@@ -231,6 +221,7 @@ namespace robot_dart {
         Eigen::VectorXd coriolis_forces(const std::vector<std::string>& dof_names = {}) const;
         Eigen::VectorXd gravity_forces(const std::vector<std::string>& dof_names = {}) const;
         Eigen::VectorXd coriolis_gravity_forces(const std::vector<std::string>& dof_names = {}) const;
+        Eigen::VectorXd constraint_forces(const std::vector<std::string>& dof_names = {}) const;
 
         // Get only the part of vector for DOFs in dof_names
         Eigen::VectorXd vec_dof(const Eigen::VectorXd& vec, const std::vector<std::string>& dof_names) const;
@@ -259,6 +250,11 @@ namespace robot_dart {
         void set_color_mode(const std::string& color_mode);
         void set_color_mode(const std::string& color_mode, const std::string& body_name);
 
+        void set_self_collision(bool enable_self_collisions = true, bool enable_adjacent_collisions = false);
+        bool self_colliding() const;
+        // This returns true if self colliding AND adjacent checks are on
+        bool adjacent_colliding() const;
+
         // GUI options
         void set_cast_shadows(bool cast_shadows = true);
         bool cast_shadows() const;
@@ -272,7 +268,7 @@ namespace robot_dart {
 
         // helper functions
         static std::shared_ptr<Robot> create_box(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& box_name = "box");
         // pose: 6D log_map
@@ -282,7 +278,7 @@ namespace robot_dart {
             const std::string& box_name = "box");
 
         static std::shared_ptr<Robot> create_ellipsoid(const Eigen::Vector3d& dims,
-            const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity(), const std::string& type = "free",
+            const Eigen::Isometry3d& tf, const std::string& type = "free",
             double mass = 1.0, const Eigen::Vector4d& color = dart::Color::Red(1.0),
             const std::string& ellipsoid_name = "ellipsoid");
         // pose: 6D log_map
@@ -295,7 +291,6 @@ namespace robot_dart {
         std::string _get_path(const std::string& filename) const;
         dart::dynamics::SkeletonPtr _load_model(const std::string& filename, const std::vector<std::pair<std::string, std::string>>& packages = std::vector<std::pair<std::string, std::string>>(), bool is_urdf_string = false);
 
-        void _set_damages(const std::vector<RobotDamage>& damages);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::SkeletonPtr skel);
         void _set_color_mode(dart::dynamics::MeshShape::ColorMode color_mode, dart::dynamics::ShapeNode* sn);
         void _set_actuator_type(size_t joint_index, dart::dynamics::Joint::ActuatorType type, bool override_mimic = false, bool override_base = false);
@@ -308,11 +303,17 @@ namespace robot_dart {
         Eigen::MatrixXd _jacobian(const Eigen::MatrixXd& full_jacobian, const std::vector<std::string>& dof_names) const;
         Eigen::MatrixXd _mass_matrix(const Eigen::MatrixXd& full_mass_matrix, const std::vector<std::string>& dof_names) const;
 
+        /// Function called by RobotDARTSimu object when adding the robot to the world
+        virtual void _post_addition(RobotDARTSimu*) {}
+        /// Function called by RobotDARTSimu object when removing the robot to the world
+        virtual void _post_removal(RobotDARTSimu*) {}
+
+        friend class RobotDARTSimu;
+
         std::string _robot_name;
         std::string _model_filename;
         std::vector<std::pair<std::string, std::string>> _packages;
         dart::dynamics::SkeletonPtr _skeleton;
-        std::vector<RobotDamage> _damages;
         std::vector<std::shared_ptr<control::RobotControl>> _controllers;
         std::unordered_map<std::string, size_t> _dof_map, _joint_map;
         bool _cast_shadows;

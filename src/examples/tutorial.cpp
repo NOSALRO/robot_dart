@@ -1,4 +1,3 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
@@ -7,7 +6,7 @@
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif
 
-std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -18,7 +17,7 @@ std::shared_ptr<robot_dart::Robot> random_box(size_t num = 0)
     return robot_dart::Robot::create_box(size, pose, "free", 1., dart::Color::Red(1.0), "box_" + std::to_string(num));
 }
 
-std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
+inline std::shared_ptr<robot_dart::Robot> random_sphere(size_t num = 0)
 {
     // random pose
     Eigen::Vector6d pose = Eigen::Vector6d::Random();
@@ -52,6 +51,8 @@ int main()
 
     // add a simple arm
     auto arm_robot = std::make_shared<robot_dart::Robot>("arm.urdf");
+    // alternative : auto arm_robot = std::make_shared<robot_dart::robots::Arm>();
+
     // pin the arm to world
     arm_robot->fix_to_world();
     arm_robot->set_position_enforced(true);
@@ -66,7 +67,7 @@ int main()
     // add the arm to the simulator
     simu.add_robot(arm_robot);
 
-    // run the simulator for 5 seconds
+    // run the simulator for 10 seconds
     simu.run(10.);
     return 0;
 }

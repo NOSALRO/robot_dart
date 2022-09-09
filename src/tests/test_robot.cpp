@@ -4,12 +4,9 @@
 #include <boost/filesystem.hpp>
 #include <boost/test/unit_test.hpp>
 
-#include <dart/dynamics/BodyNode.hpp>
-#include <dart/dynamics/BoxShape.hpp>
-#include <dart/dynamics/EllipsoidShape.hpp>
-
 #include <robot_dart/robot.hpp>
 #include <robot_dart/utils.hpp>
+#include <robot_dart/utils_headers_dart_dynamics.hpp>
 
 using namespace robot_dart;
 
@@ -31,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(robot == nullptr);
 
     // well-defined URDF
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
     // well-defined skeleton
     dart::dynamics::SkeletonPtr dummy_skel = dart::dynamics::Skeleton::create("dummy");
@@ -45,13 +42,27 @@ BOOST_AUTO_TEST_CASE(test_constructors)
     BOOST_CHECK(dummy->name() == "dummy_robot");
     BOOST_CHECK(dummy->name() == dummy->skeleton()->getName());
     BOOST_CHECK(dummy->name() == dummy_skel->getName());
+}
 
-    // TO-DO: Add checks for damages
+BOOST_AUTO_TEST_CASE(test_dof_maps)
+{
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
+    BOOST_REQUIRE(pendulum);
+
+    // check dofs
+    auto names = pendulum->dof_names();
+    BOOST_CHECK(names.size() == 7);
+
+    // check if joint/dof map is updated
+    std::vector<std::string> name = {"pendulum_joint_1"};
+    pendulum->set_positions(make_vector({0.1}), name);
+
+    BOOST_CHECK(pendulum->positions(name)[0] == 0.1);
 }
 
 BOOST_AUTO_TEST_CASE(test_fix_free)
 {
-    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pendulum.urdf");
+    auto pendulum = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pendulum.urdf");
     BOOST_REQUIRE(pendulum);
 
     pendulum->fix_to_world();
@@ -69,7 +80,7 @@ BOOST_AUTO_TEST_CASE(test_fix_free)
 
 BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 {
-    auto pexod = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/robots/pexod.urdf");
+    auto pexod = std::make_shared<Robot>(std::string(ROBOT_DART_BUILD_DIR) + "/utheque/pexod.urdf");
     BOOST_REQUIRE(pexod);
     // fix to world
     pexod->fix_to_world();
@@ -119,7 +130,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(5); // get DoF name of DoFu with index = 5
-        pexod->set_position_enforced({false}, {dof_name});
+        pexod->set_position_enforced(false, {dof_name});
         BOOST_CHECK(!pexod->position_enforced({dof_name})[0]);
     }
 
@@ -153,7 +164,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(0); // get DoF name of DoF with index = 0
-        pexod->set_damping_coeffs({10.0}, {dof_name});
+        pexod->set_damping_coeffs(10.0, {dof_name});
         BOOST_CHECK(pexod->damping_coeffs({dof_name})[0] == 10.0);
     }
 
@@ -187,7 +198,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(3); // get DoF name of DoF with index = 3u
-        pexod->set_coulomb_coeffs({10.0}, {dof_name});
+        pexod->set_coulomb_coeffs(10.0, {dof_name});
         BOOST_CHECK(pexod->coulomb_coeffs({dof_name})[0] == 10.0);
     }
 
@@ -221,7 +232,7 @@ BOOST_AUTO_TEST_CASE(test_actuators_and_dofs)
 
         // check simple dof setting
         auto dof_name = pexod->dof_name(3); // get DoF name of DoF with index = 3u
-        pexod->set_spring_stiffnesses({10.0}, {dof_name});
+        pexod->set_spring_stiffnesses(10.0, {dof_name});
         BOOST_CHECK(pexod->spring_stiffnesses({dof_name})[0] == 10.0);
     }
 }

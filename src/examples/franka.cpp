@@ -1,5 +1,5 @@
-#include <iostream>
 #include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/franka.hpp>
 
 #include <robot_dart/control/pd_control.hpp>
 
@@ -9,21 +9,12 @@
 
 int main()
 {
-    std::srand(std::time(NULL));
-
-    std::vector<std::pair<std::string, std::string>> packages = {{"franka_description", "franka/franka_description"}};
-    auto robot = std::make_shared<robot_dart::Robot>("franka/franka.urdf", packages);
-    robot->set_color_mode("material");
-
-    // pin the arm to world
-    robot->fix_to_world();
-    robot->set_position_enforced(true);
-
+    auto robot = std::make_shared<robot_dart::robots::Franka>();
     robot->set_actuator_types("torque");
 
     // add a PD-controller to the arm
     // set desired positions
-    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4, 0., M_PI / 2., 0., 0.});
+    Eigen::VectorXd ctrl = robot_dart::make_vector({0., M_PI / 4., 0., -M_PI / 4., 0., M_PI / 2., 0., 0.});
 
     // add the controller to the robot
     auto controller = std::make_shared<robot_dart::control::PDControl>(ctrl);

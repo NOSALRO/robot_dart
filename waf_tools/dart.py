@@ -33,16 +33,16 @@ def check_dart(conf, *k, **kw):
         includes_check = [conf.options.dart + '/include']
         libs_check = [conf.options.dart + '/lib']
     else:
-        includes_check = ['/usr/local/include', '/usr/include']
-        libs_check = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+        includes_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+        libs_check = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
 
         if 'RESIBOTS_DIR' in os.environ:
             includes_check = [os.environ['RESIBOTS_DIR'] + '/include'] + includes_check
             libs_check = [os.environ['RESIBOTS_DIR'] + '/lib'] + libs_check
 
     # DART has some optional Bullet features
-    bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet']
-    bullet_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    bullet_check = ['/usr/local/include/bullet', '/usr/include/bullet', '/opt/local/include/bullet', '/sw/include/bullet', '/opt/homebrew/include/bullet', '/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    bullet_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     bullet_include = []
     bullet_lib = []
     bullet_found = False
@@ -57,8 +57,8 @@ def check_dart(conf, *k, **kw):
         bullet_found = False
 
     # DART has some optional ODE features
-    ode_check = ['/usr/local/include', '/usr/include']
-    ode_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    ode_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    ode_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     ode_include = []
     ode_lib = []
     ode_found = False
@@ -73,8 +73,8 @@ def check_dart(conf, *k, **kw):
         ode_found = False
 
     # DART has some optional Octomap dependency
-    octomap_check = ['/usr/local/include', '/usr/include']
-    octomap_libs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/']
+    octomap_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    octomap_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     if 'ROS_DISTRO' in os.environ:
         octomap_check.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/include')
         octomap_libs.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/lib')
@@ -87,6 +87,23 @@ def check_dart(conf, *k, **kw):
         octomap_found = True
     except:
         octomap_found = False
+
+    # DART has some URDF dependency
+    urdfdom_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
+    urdfdom_check = urdfdom_check + [i + '/urdfdom_headers' for i in urdfdom_check]
+    urdfdom_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
+    if 'ROS_DISTRO' in os.environ:
+        urdfdom_check.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/include')
+        urdfdom_libs.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/lib')
+    urdfdom_include = []
+    urdfdom_lib = []
+    urdfdom_found = False
+    try:
+        urdfdom_include = [get_directory('urdf_model/model.h', urdfdom_check)]
+        # urdfdom_lib = [get_directory('liburdfdom_model.' + suffix, urdfdom_libs)]
+        urdfdom_found = True
+    except:
+        urdfdom_found = False
 
     dart_load_prefix = 'utils'
     dart_include = []
@@ -158,25 +175,30 @@ def check_dart(conf, *k, **kw):
         if dart_major > 6:
             dart_load_prefix = 'io'
         dart_cxx_flags = ''
-        if dart_major > 6 or (dart_major == 6 and dart_minor >= 9):
+        if dart_major == 6 and dart_minor >= 9:
             dart_cxx_flags = '-std=c++14'
+        if dart_major > 6 or (dart_major == 6 and dart_minor >= 13):
+            dart_cxx_flags = '-std=c++17'
 
         dart_include = []
+        if urdfdom_found:
+            dart_include += urdfdom_include
+        else:
+            fail('urdfdom_headers not found', required)
         dart_include.append(get_directory('dart/dart.hpp', includes_check))
         dart_include.append(get_directory('dart/'+dart_load_prefix+'/'+dart_load_prefix+'.hpp', includes_check))
         dart_include.append(get_directory('dart/'+dart_load_prefix+'/urdf/urdf.hpp', includes_check))
         dart_include = list(set(dart_include))
         conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_include[0])
 
-        more_includes = []
-
         conf.start_msg('Checking for DART libs (including io/urdf)')
+
         dart_lib = []
         dart_lib.append(get_directory('libdart.' + suffix, libs_check))
         dart_lib.append(get_directory('libdart-'+dart_load_prefix+'.' + suffix, libs_check))
         dart_lib.append(get_directory('libdart-'+dart_load_prefix+'-urdf.' + suffix, libs_check))
         dart_lib = list(set(dart_lib))
-        conf.env.INCLUDES_DART = dart_include + more_includes
+        conf.env.INCLUDES_DART = dart_include
         conf.env.LIBPATH_DART = dart_lib
         conf.env.LIB_DART = ['dart', 'dart-'+dart_load_prefix, 'dart-'+dart_load_prefix+'-urdf']
         if len(dart_cxx_flags) > 0:
