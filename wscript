@@ -98,7 +98,7 @@ def configure_robot_dart(conf):
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
-        conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
+        conf.env['magnum_dep_libs'] += ' WindowlessEglApplication'
     if len(conf.env.INCLUDES_Corrade):
         conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     if len(conf.env.INCLUDES_Magnum):
@@ -403,6 +403,7 @@ def build_robot_dart(bld):
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindEGL.cmake')
 
 def build_examples(bld):
     # we first build the library
