@@ -246,10 +246,15 @@ One possible cause may be the fact that self collision is disabled, you can chec
 ## **How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?**
 
 **Kinematic Properties:**
+=== "C++"
 {{KINEMATICS}}
-
+=== "Python"
+{{KINEMATICS_PYTHON}}
 **Dynamic Properties:**
+=== "C++"
 {{DYNAMICS}}
+=== "Python"
+{{DYNAMICS_PYTHON}}
 
 ## **Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?**
 
