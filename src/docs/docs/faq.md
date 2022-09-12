@@ -190,7 +190,10 @@ Yes this is possible. RobotDART gives the ability to create a clone of your robo
 
 ## **How can I control my robot ?**
 *PD control*
+=== "C++"
 {{PD_CONTROL}}
+=== "Python"
+{{PD_CONTROL_PYTHON}}
 *Simple control*
 {{SIMPLE_CONTROL}}
 *Robot control*
