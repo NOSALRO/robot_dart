@@ -195,7 +195,10 @@ Yes this is possible. RobotDART gives the ability to create a clone of your robo
 === "Python"
 {{PD_CONTROL_PYTHON}}
 *Simple control*
+=== "C++"
 {{SIMPLE_CONTROL}}
+=== "Python"
+{{SIMPLE_CONTROL_PYTHON}}
 *Robot control*
 {{ROBOT_CONTROL}}
 
