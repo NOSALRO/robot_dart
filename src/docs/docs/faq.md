@@ -231,13 +231,18 @@ Yes you can modify the gravitational forces 3-dimensional vector of the simulati
 | Very fast for small scenes | Accurate detailed collisions, but not very fast | Fast collision detection (the integration is not complete) | Fast and accurate collision detection (works well for wheels as well) |
 
 We can easily select one of the available collision detectors using the simulator object:
+=== "C++"
 {{SET_COLLISION_DETECTOR}}
+=== "Python"
+{{SET_COLLISION_DETECTOR_PYTHON}}
 
 ## **My robot does not self-collide. How can I change this?**
 
 One possible cause may be the fact that self collision is disabled, you can check and change this:
+=== "C++"
 {{SELF_COLLISIONS}}
-
+=== "Python"
+{{SELF_COLLISIONS_PYTHON}}
 ## **How can I compute kinematic/dynamic properties of my robot (e.g., Jacobians, Mass Matrix)?**
 
 **Kinematic Properties:**
