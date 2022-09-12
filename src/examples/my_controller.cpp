@@ -34,21 +34,30 @@ public:
 
 int main()
 {
+    // Load robot from URDF
     auto robot = std::make_shared<robot_dart::robots::Arm>();
+
+    // Initiate custom controller
     Eigen::VectorXd ctrl(4);
     ctrl << 0.0, 1.57, -0.5, 0.7;
     auto control = std::make_shared<MyController>(ctrl, false);
+    // Add it to the robot
     robot->add_controller(control, 1.);
+
+    // Print initial positions of the robot
     std::cout << robot->positions() << std::endl;
 
+    // Create simulator object
     robot_dart::RobotDARTSimu simu(0.001); // dt=0.001, 1KHz simulation
-    simu.add_floor();
-    simu.add_robot(robot);
+
+    // Create graphics
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
     graphics->look_at({0.5, 3., 0.75}, {0.5, 0., 0.2});
 #endif
-
+    // Add robot and floor to the simulation
+    simu.add_floor();
+    simu.add_robot(robot);
     simu.run(5.);
 }

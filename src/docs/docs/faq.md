@@ -200,8 +200,10 @@ Yes this is possible. RobotDART gives the ability to create a clone of your robo
 === "Python"
 {{SIMPLE_CONTROL_PYTHON}}
 *Robot control*
+=== "C++"
 {{ROBOT_CONTROL}}
-
+=== "Python"
+{{ROBOT_CONTROL_PYTHON}}
 ## **Is there a way to control the simulation timestep?**
 When creating a RobotDARTSimu object you choose the simulation timestep:
 {{INIT_SIMU}}
