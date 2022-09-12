@@ -206,15 +206,22 @@ Yes this is possible. RobotDART gives the ability to create a clone of your robo
 {{ROBOT_CONTROL_PYTHON}}
 ## **Is there a way to control the simulation timestep?**
 When creating a RobotDARTSimu object you choose the simulation timestep:
+=== "C++"
 {{INIT_SIMU}}
+=== "Python"
+{{INIT_SIMU_PYTHON}}
 which can later be modified by:
+=== "C++"
 {{MODIFY_SIMU_DT}}
-
+=== "Python"
+{{MODIFY_SIMU_DT_PYTHON}}
 ## **I want to simulate a mars environment, is it possible to change the gravitational force of the simulation environment?**
 
 Yes you can modify the gravitational forces 3-dimensional vector of the simulation:
+=== "C++"
 {{SIMU_GRAVITY}}
-
+=== "Python"
+{{SIMU_GRAVITY_PYTHON}}
 ## **Which collision detectors are available? What are their differences? How can I choose between them?**
 
 | DART | FCL | ODE | Bullet |

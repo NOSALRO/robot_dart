@@ -679,6 +679,7 @@
     display: none;
   }
 </style>
+
 <h2 id="manual-installation-of-robotdart">Manual Installation of RobotDART<a class="headerlink" href="#manual-installation-of-robotdart" title="Permanent link">&para;</a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h4>
@@ -698,10 +699,12 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt-get update
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
 </code></pre></div>
+
 <p>For OSX with brew:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew install eigen3
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew install boost
 </code></pre></div>
+
 <h4 id="installing-dart">Installing DART<a class="headerlink" href="#installing-dart" title="Permanent link">&para;</a></h4>
 <p>In order to use RobotDART, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
 <p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you can enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> branch or <code>v6.12.1</code> tag (and not the one provided in DART's documentation). In short you should do the following:</p>
@@ -709,6 +712,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo apt-add-repository ppa:libccd-debs/ppa
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo apt-add-repository ppa:fcl-debs/ppa
 </code></pre></div>
+
 <p><strong>For all Ubuntu distributions</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo apt-add-repository ppa:dartsim/ppa
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo apt-get update
@@ -730,6 +734,7 @@
 <a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>make -j4
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>sudo make install
 </code></pre></div>
+
 <p>If you want to install DART somewhere else than <code>/usr/local</code>, you should use the <code>-DCMAKE_INSTALL_PREFIX=/path/to/install/folder</code> cmake argument.</p>
 <p>For <strong>OSX systems</strong> with homebrew, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_mac.html#install-from-source-using-homebrew">DART documentation website</a>. You need to follow the same procedure as for Ubuntu systems. In short you should do the following:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>brew install eigen
@@ -753,6 +758,7 @@
 <a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>make -j4
 <a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>sudo make install
 </code></pre></div>
+
 <h4 id="installing-magnum">Installing Magnum<a class="headerlink" href="#installing-magnum" title="Permanent link">&para;</a></h4>
 <p>Magnum depends on <a href="https://github.com/mosra/corrade">Corrade</a> and we are going to use a few plugins and extras from the library. We are also going to use Glfw and Glx for the back-end. Follow the instrutions below:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#installation of Glfw and OpenAL</span>
@@ -800,6 +806,7 @@
 <a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>make -j
 <a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>sudo make install
 </code></pre></div>
+
 <h3 id="compilation-and-running-the-examples">Compilation and running the examples<a class="headerlink" href="#compilation-and-running-the-examples" title="Permanent link">&para;</a></h3>
 <p>The compilation of the library is straight-forward:</p>
 <ul>
@@ -835,6 +842,7 @@
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sudo make install
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo make install-dartpy <span class="c1"># for DART &gt;= v6.12.0, we do not need this</span>
 </code></pre></div>
+
 <p>Then the compilation of robot_dart is almost identical as before:</p>
 <ul>
 <li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>

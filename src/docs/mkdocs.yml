@@ -38,10 +38,10 @@ theme:
     code: Roboto Mono
   features:
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.instant
-    # - content.tabs.link
+    - content.tabs.link
     - content.code.annotate
     - toc.follow
     # - toc.integrate
