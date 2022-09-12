@@ -2,10 +2,6 @@
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/iiwa.hpp>
 
-#ifdef GRAPHIC
-#include <robot_dart/gui/magnum/graphics.hpp>
-#endif
-
 int main()
 {
     robot_dart::RobotDARTSimu simu(0.001);
