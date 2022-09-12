@@ -183,7 +183,10 @@ Now you can add on ore more of the following lights:
 ## **I want to visualize a target configuration of my robot, is this possible?**
 
 Yes this is possible. RobotDART gives the ability to create a clone of your robot that has no physics, no contacts, just visuals:
+=== "C++"
 {{ROBOT_GHOST}}
+=== "Python"
+{{ROBOT_GHOST_PYTHON}}
 
 ## **How can I control my robot ?**
 *PD control*
