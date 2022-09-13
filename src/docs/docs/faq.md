@@ -259,17 +259,25 @@ One possible cause may be the fact that self collision is disabled, you can chec
 ## **Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?**
 
 There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:
+=== "C++"
 {{SET_ACTUATOR}}
-
+=== "Python"
+{{SET_ACTUATOR_PYTHON}}
 To enable position and velocity limits for the actuators:
+=== "C++"
 {{POSITIONS_ENFORCED}}
-
+=== "Python"
+{{POSITIONS_ENFORCED_PYTHON}}
 Every DOF's limits (position, velocity, acceleration, force) can be modified:
+=== "C++"
 {{MODIFY_LIMITS}}
-
+=== "Python"
+{{MODIFY_LIMITS_PYTHON}}
 You can also modify the damping coefficients, coulomb frictions and spring stiffness of every DOF:
+=== "C++"
 {{MODIFY_COEFFS}}
-
+=== "Python"
+{{MODIFY_COEFFS_PYTHON}}
 ## **What are the supported sensors? How can I use an IMU?**
 
 Sensors in RobotDART can be added only through the simulator object. All of the sensors can be added without being attached to any body or joint but some of them can operate only when attached to something (e.g. `ForceTorque` sensors).
