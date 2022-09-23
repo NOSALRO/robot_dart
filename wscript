@@ -88,11 +88,12 @@ def configure_robot_dart(conf):
         conf.load('python')
         conf.load('pybind')
 
-    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     # we need pthread for video saving
     conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True, min_version=(3,2,92))
     conf.check_dart(required=True)
+    if conf.env['DART_REQUIRES_BOOST']:
+        conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication Text MagnumFont'
     if conf.env['DEST_OS'] == 'darwin':
@@ -137,19 +138,20 @@ def configure_robot_dart(conf):
     if conf.options.build_shared:
         conf.env['lib_type'] = 'cxxshlib'
 
+    # We require C++17
     if conf.env.CXX_NAME in ["icc", "icpc"]:
-        common_flags = "-Wall -std=c++11"
+        common_flags = "-Wall -std=c++17"
         opt_flags = " -O3 -xHost -unroll -g " + native_icc
     elif conf.env.CXX_NAME in ["clang"]:
-        common_flags = "-Wall -std=c++11"
+        common_flags = "-Wall -std=c++17"
         # no-stack-check required for Catalina
         opt_flags = " -O3 -g -faligned-new -fno-stack-check -Wno-narrowing" + native
     else:
         gcc_version = int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1])
-        if gcc_version < 47:
-            common_flags = "-Wall -std=c++0x"
+        if gcc_version < 50:
+            conf.fatal('We need C++17 features. Your compiler does not support them!')
         else:
-            common_flags = "-Wall -std=c++11"
+            common_flags = "-Wall -std=c++17"
         opt_flags = " -O3 -g" + native
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
@@ -166,13 +168,6 @@ def configure_robot_dart(conf):
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new -fno-stack-check" + native).split(' ')
     else:
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new" + native).split(' ')
-
-    if len(conf.env.CXXFLAGS_DART) > 0:
-        if '-std=c++11' in conf.env['CXXFLAGS']:
-            conf.env['CXXFLAGS'].remove('-std=c++11')
-        if '-std=c++0x' in conf.env['CXXFLAGS']:
-            conf.env['CXXFLAGS'].remove('-std=c++0x')
-        conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
 
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
@@ -235,7 +230,7 @@ def build_utheque(bld):
 def build_robot_dart(bld):
     prefix = bld.get_env()['PREFIX']
 
-    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
+    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or (bld.env['DART_REQUIRES_BOOST'] and len(bld.env.INCLUDES_BOOST) == 0):
         bld.fatal('Some libraries were not found! Cannot proceed!')
 
     if bld.options.tests:

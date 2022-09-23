@@ -1,9 +1,12 @@
 #ifndef UTHEQUE_HPP_
 #define UTHEQUE_HPP_
 
-#include <boost/algorithm/string.hpp>
-#include <boost/filesystem.hpp> // will move to std::filesystem
+#include <algorithm>
+#include <cctype>
 #include <exception>
+#include <filesystem>
+#include <functional>
+#include <locale>
 #include <string>
 
 namespace utheque {
@@ -12,6 +15,51 @@ namespace utheque {
 #else
     static constexpr char* DEFAULT_PREFIX = const_cast<char*>(UTHEQUE_PREFIX);
 #endif
+
+    // Helpers functions for string trimming
+    // trim from start (in place)
+    static inline void ltrim(std::string& s)
+    {
+        s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+    }
+
+    // trim from end (in place)
+    static inline void rtrim(std::string& s)
+    {
+        s.erase(std::find_if(s.rbegin(), s.rend(),
+                    std::not1(std::ptr_fun<int, int>(std::isspace)))
+                    .base(),
+            s.end());
+    }
+
+    // trim from both ends (in place)
+    static inline void trim(std::string& s)
+    {
+        ltrim(s);
+        rtrim(s);
+    }
+
+    // trim from start (copying)
+    static inline std::string ltrim_copy(std::string s)
+    {
+        ltrim(s);
+        return s;
+    }
+
+    // trim from end (copying)
+    static inline std::string rtrim_copy(std::string s)
+    {
+        rtrim(s);
+        return s;
+    }
+
+    // trim from both ends (copying)
+    static inline std::string trim_copy(std::string s)
+    {
+        trim(s);
+        return s;
+    }
+
     /// return the directory  where to find the urdf (or urdf package) from the utheque (URDF library)
     /// if start by /, do nothing
     /// otherwise, search (in this order):
@@ -29,8 +77,8 @@ namespace utheque {
     /// @return the full (absolute) path where to find the URDF (e.g. /usr/local/share/utheque/)
     static std::string directory(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
     {
-        namespace fs = boost::filesystem;
-        fs::path model_file(boost::trim_copy(filename));
+        namespace fs = std::filesystem;
+        fs::path model_file(trim_copy(filename));
         if (verbose)
             std::cout << "utheque: searching for [" << model_file.string() << "]" << std::endl;
 
@@ -88,9 +136,9 @@ namespace utheque {
     /// @return full path of the URDF file: (e.g. /usr/local/share/utheque/talos/talos.urdf)
     static std::string path(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
     {
-        namespace fs = boost::filesystem;
+        namespace fs = std::filesystem;
         auto file_dir = fs::path(directory(filename, verbose, prefix));
-        auto model_file = file_dir / fs::path(boost::trim_copy(filename));
+        auto model_file = file_dir / fs::path(trim_copy(filename));
         return model_file.string();
     }
 } // namespace utheque

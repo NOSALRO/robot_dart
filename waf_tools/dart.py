@@ -179,6 +179,9 @@ def check_dart(conf, *k, **kw):
             dart_cxx_flags = '-std=c++14'
         if dart_major > 6 or (dart_major == 6 and dart_minor >= 13):
             dart_cxx_flags = '-std=c++17'
+        conf.env['DART_REQUIRES_BOOST'] = False
+        if dart_major < 6 or (dart_major == 6 and dart_minor <= 12):
+            conf.env['DART_REQUIRES_BOOST'] = True
 
         dart_include = []
         if urdfdom_found:

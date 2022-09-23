@@ -1,13 +1,13 @@
-#include <sys/errno.h>
-
 #include "camera.hpp"
 #include "robot_dart/gui/magnum/base_application.hpp"
 #include "robot_dart/gui_data.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
 
+#include <external/subprocess.hpp>
+
 #include <algorithm>
-#include <signal.h>
+#include <filesystem>
 
 #include <Corrade/Containers/ArrayViewStl.h>
 #include <Corrade/Containers/StridedArrayView.h>
@@ -26,6 +26,35 @@ namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
+
+                static std::filesystem::path search_path(const std::filesystem::path& filename)
+                {
+                    std::string path = std::getenv("PATH");
+                    std::string delimiter = ":";
+
+                    size_t pos = 0;
+                    std::string token;
+
+                    std::vector<std::filesystem::path> all_paths;
+                    while ((pos = path.find(delimiter)) != std::string::npos) {
+                        token = path.substr(0, pos);
+                        if (token.size() > 0)
+                            all_paths.push_back(token);
+                        path.erase(0, pos + delimiter.length());
+                    }
+                    if (path.size() > 0)
+                        all_paths.push_back(path);
+
+                    for (const std::filesystem::path& pp : all_paths) {
+                        auto p = pp / filename;
+                        std::error_code ec;
+                        if (std::filesystem::is_regular_file(p, ec))
+                            return p;
+                    }
+
+                    return "";
+                }
+
                 Camera::Camera(Object3D& object, Magnum::Int width, Magnum::Int height) : Object3D{&object}
                 {
                     _yaw_object = new Object3D{this};
@@ -58,17 +87,7 @@ namespace robot_dart {
 
                 Camera::~Camera()
                 {
-#ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                    if (_ffmpeg_process.id() > 0) {
-                        // we let ffmpeg finish nicely by detaching it and sending the signal
-                        // terminates() send a violent SIGTERM...
-                        _ffmpeg_process.detach();
-                        kill(_ffmpeg_process.id(), SIGINT);
-                    }
-#else
-                    if (_video_pid != 0)
-                        kill(_video_pid, SIGINT);
-#endif
+                    _clean_up_subprocess();
                 }
 
                 Camera3D& Camera::camera() const
@@ -217,16 +236,16 @@ namespace robot_dart {
 
                 void Camera::record_video(const std::string& video_fname, int fps)
                 {
-                    // we use boost process: https://www.boost.org/doc/libs/1_73_0/doc/html/boost_process/tutorial.html
-#ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                    namespace bp = boost::process;
+                    // first clean up previous recording if necessary
+                    _clean_up_subprocess();
+
                     // search for ffmpeg
-                    boost::filesystem::path ffmpeg = bp::search_path("ffmpeg");
+                    std::filesystem::path ffmpeg = search_path("ffmpeg");
                     if (ffmpeg.empty()) {
                         ROBOT_DART_WARNING(ffmpeg.empty(), "ffmpeg not found in the PATH. RobotDART will not be able to record videos!");
                         return;
                     }
-#endif
+
                     // std::cout << "Found FFMPEG:" << ffmpeg << std::endl;
                     _recording_video = true;
                     // list our options
@@ -241,36 +260,8 @@ namespace robot_dart {
                         "-vcodec", "mpeg4",
                         "-vb", "20M",
                         video_fname};
-#ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                    // clang-format off
-                    _ffmpeg_process = bp::child(ffmpeg, bp::args(args), bp::std_in < _video_pipe, bp::std_out > "/dev/null", bp::std_err > "/dev/null");
-                    // clang-format on
 
-#else
-                    // we do it the old way
-                    // this could should be removed in the future once boost.process is on every computer...
-                    pipe(_video_fd);
-                    //  Data written to fd[1] appears on (i.e., can be read from) fd[0].
-                    _video_pid = fork();
-                    if (_video_pid != 0) { // main process
-                        close(_video_fd[0]); // we close the input on this side
-                    }
-                    else { // ffmpeg process
-                        args.push_back("-loglevel");
-                        args.push_back("quiet");
-                        close(_video_fd[1]); // ffmpeg does not write here
-                        dup2(_video_fd[0], STDIN_FILENO); // ffmpeg will read the fd[0] as stdin
-                        char** argv = (char**)calloc(args.size() + 2, sizeof(char*)); // we need the 0 at the end AND the ffffmpeg at the beginning
-                        argv[0] = (char*)"ffmpeg";
-                        for (size_t i = 0; i < args.size(); ++i)
-                            argv[i + 1] = (char*)args[i].c_str();
-                        int ret = execvp("ffmpeg", argv);
-                        if (ret == -1) {
-                            std::cerr << "Video recording: cannot execute ffmpeg! [" << strerror(errno) << "]" << std::endl;
-                            exit(0); // we are in the fork
-                        }
-                    }
-#endif
+                    _ffmpeg_process = new subprocess::popen(ffmpeg, args);
                 }
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, const DebugDrawData& debug_data, bool draw_debug)
@@ -380,13 +371,20 @@ namespace robot_dart {
                         Corrade::Containers::StridedArrayView2D<const Magnum::Color3ub> src = image.pixels<Magnum::Color3ub>().flipped<0>();
                         Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
                         Corrade::Utility::copy(src, dst);
-#ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                        _video_pipe.write(reinterpret_cast<char*>(data.data()), data.size());
-                        _video_pipe.flush();
-#else
-                        write(_video_fd[1], reinterpret_cast<char*>(data.data()), data.size());
-#endif
+
+                        _ffmpeg_process->stdin().write(reinterpret_cast<char*>(data.data()), data.size());
+                        _ffmpeg_process->stdin().flush();
                     }
+                }
+
+                void Camera::_clean_up_subprocess()
+                {
+                    if (_ffmpeg_process) {
+                        _ffmpeg_process->close();
+                        delete _ffmpeg_process;
+                    }
+
+                    _ffmpeg_process = nullptr;
                 }
             } // namespace gs
         } // namespace magnum

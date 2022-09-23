@@ -5,18 +5,16 @@
 #include <robot_dart/gui/magnum/types.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
 
-#include <boost/version.hpp>
-#if ((BOOST_VERSION / 100000) > 1) || ((BOOST_VERSION / 100000) == 1 && ((BOOST_VERSION / 100 % 1000) >= 64))
-#include <boost/process.hpp> // for launching ffmpeg
-#define ROBOT_DART_HAS_BOOST_PROCESS
-#endif
-
 #include <Corrade/Containers/Optional.h>
 #include <Magnum/GL/Mesh.h>
 #include <Magnum/Image.h>
 #include <Magnum/Shaders/DistanceFieldVector.h>
 #include <Magnum/Shaders/VertexColor.h>
 #include <Magnum/Text/Renderer.h>
+
+namespace subprocess {
+    class popen;
+}
 
 namespace robot_dart {
     namespace gui {
@@ -92,14 +90,9 @@ namespace robot_dart {
                     bool _recording_video = false;
                     Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
 
-#ifdef ROBOT_DART_HAS_BOOST_PROCESS
-                    // pipe to write a video
-                    boost::process::opstream _video_pipe;
-                    boost::process::child _ffmpeg_process;
-#else
-                    pid_t _video_pid = 0;
-                    int _video_fd[2];
-#endif
+                    subprocess::popen* _ffmpeg_process = nullptr;
+
+                    void _clean_up_subprocess();
                 };
             } // namespace gs
         } // namespace magnum
