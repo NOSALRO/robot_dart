@@ -37,6 +37,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
         run: ${{github.workspace}}/ci/install_packages.sh
+      - name: Check g++ version
+        run: g++ --version
       - name: Cache DART
         id: cache-dart
         uses: actions/cache@v2
