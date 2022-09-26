@@ -37,8 +37,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Ubuntu packages
         run: ${{github.workspace}}/ci/install_packages.sh
-      - name: Check g++ version
-        run: g++ --version
+      - name: Check g++ supported flags
+        run: g++ -v --help 2> /dev/null | sed -n '/^ *-std=\([^<][^ ]\+\).*/ {s//\1/p}'
       - name: Cache DART
         id: cache-dart
         uses: actions/cache@v2
