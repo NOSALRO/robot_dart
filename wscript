@@ -212,11 +212,13 @@ def build_utheque(bld):
                     cwd=bld.path.find_dir('src/utheque/'),
                     relative_trick=True)
     #### CMake
+    cxx_flags = ''.join(x + ';' for x in bld.env['PUBLIC_CXXFLAGS'])
     with open('cmake/UthequeConfig.cmake.in') as f:
         newText=f.read() \
-            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include")\
-            .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/")\
-            .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"")
+            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include") \
+            .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/") \
+            .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"") \
+            .replace('@RobotDART_CXX_FLAGS@', cxx_flags)
 
     with open(blddir + '/UthequeConfig.cmake', "w") as f:
         f.write(newText)

@@ -4,5 +4,5 @@ project(utheque_example)
 find_package(Utheque REQUIRED)
 
 add_executable(utheque_example example_utheque.cpp)
-set_target_properties(utheque_example PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED YES)
+set_target_properties(utheque_example PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES) # This is not really needed!
 target_link_libraries(utheque_example PUBLIC Utheque)
