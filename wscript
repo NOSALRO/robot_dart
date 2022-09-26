@@ -168,6 +168,8 @@ def configure_robot_dart(conf):
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new -fno-stack-check" + native).split(' ')
     else:
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new" + native).split(' ')
+    # We require C++17
+    conf.env['PUBLIC_CXXFLAGS'] += ['-std=c++17']
 
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
