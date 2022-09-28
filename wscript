@@ -70,6 +70,17 @@ def configure(conf):
         conf.msg("Build/install RobotDart", "no", color="YELLOW")
     conf.msg("Install Utheque (URDF library)", "yes")
 
+def test_filesystem(bld, experimental = False):
+    fl_node = bld.srcnode.make_node('fl.cpp')
+    fl_node.parent.mkdir()
+    lflags = []
+    if experimental:
+        fl_node.write('#include <experimental/filesystem>\nint main(void) { return 0;}\n', 'w')
+        lflags = ['-lstdc++fs']
+    else:
+        fl_node.write('#include <filesystem>\nint main(void) { return 0;}\n', 'w')
+    bld(features='cxx cxxprogram', source=[fl_node], linkflags=lflags, cxxflags=['-std=c++17'], target='fl')
+
 def configure_robot_dart(conf):
     conf.get_env()['BUILD_GRAPHIC'] = False
 
@@ -159,6 +170,15 @@ def configure_robot_dart(conf):
     if (not conf.options.build_shared) and (not conf.options.no_pic):
         common_flags += ' -fPIC'
 
+    has_filesystem = conf.check(build_fun=test_filesystem, msg='Checking support for <filesystem>', mandatory=False)
+    has_experimental_filesystem = None
+    if has_filesystem is None:
+        has_experimental_filesystem = conf.check(build_fun=lambda c : test_filesystem(c, True), msg='Checking support for <experimental/filesystem>', mandatory=False)
+
+    if has_filesystem is None and has_experimental_filesystem is None:
+        conf.fatal('We need std::filesystem or std::experimental::filesystem')
+    elif has_filesystem is None:
+        conf.env.LIB_CPPFS = ['stdc++fs']
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
 
@@ -213,12 +233,16 @@ def build_utheque(bld):
                     relative_trick=True)
     #### CMake
     cxx_flags = ''.join(x + ';' for x in bld.env['PUBLIC_CXXFLAGS'])
+    cmake_deps = ''
+    if 'LIB_CPPFS' in bld.env and len(bld.env.LIB_CPPFS) > 0:
+        cmake_deps = '\nINTERFACE_LINK_LIBRARIES "stdc++fs"'
     with open('cmake/UthequeConfig.cmake.in') as f:
         newText=f.read() \
             .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include") \
             .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/") \
             .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"") \
-            .replace('@RobotDART_CXX_FLAGS@', cxx_flags)
+            .replace('@Utheque_CXX_FLAGS@', cxx_flags) \
+            .replace('@Utheque_DEPS@', cmake_deps)
 
     with open(blddir + '/UthequeConfig.cmake', "w") as f:
         f.write(newText)
@@ -257,7 +281,7 @@ def build_robot_dart(bld):
     magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
-    libs = 'BOOST EIGEN DART PTHREAD'
+    libs = 'BOOST EIGEN DART PTHREAD CPPFS'
     defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
 
     bld.program(features = 'cxx ' + bld.env['lib_type'],
@@ -359,6 +383,9 @@ def build_robot_dart(bld):
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
     #### installation of the cmake config (waf install)
+    cmake_deps = ''
+    if 'LIB_CPPFS' in bld.env and len(bld.env.LIB_CPPFS) > 0:
+        cmake_deps = ';stdc++fs'
     # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         magnum_dep_libs = bld.get_env()['magnum_dep_libs']
@@ -390,7 +417,8 @@ def build_robot_dart(bld):
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', magnum_dep_libs) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
-            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
+            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/") \
+            .replace('@RobotDART_EXTRA_LIBS@', cmake_deps)
     with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
     # CMAKE configVersion
@@ -407,9 +435,8 @@ def build_examples(bld):
     # we first build the library
     build(bld)
     print("Bulding examples...")
-    libs = 'BOOST EIGEN DART PTHREAD'
+    libs = 'BOOST EIGEN DART PTHREAD CPPFS'
     path = bld.path.abspath() + '/res'
-    bld.env.LIB_PTHREAD = ['pthread']
 
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp']

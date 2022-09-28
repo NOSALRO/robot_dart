@@ -4,10 +4,17 @@
 #include <algorithm>
 #include <cctype>
 #include <exception>
-#include <filesystem>
 #include <functional>
 #include <locale>
 #include <string>
+
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
 
 namespace utheque {
 #ifndef UTHEQUE_PREFIX
@@ -75,9 +82,8 @@ namespace utheque {
     /// @arg prefix (default to UTHEQUE_PREFIX)
     /// @arg verbose print search paths
     /// @return the full (absolute) path where to find the URDF (e.g. /usr/local/share/utheque/)
-    static std::string directory(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
+    static inline std::string directory(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
     {
-        namespace fs = std::filesystem;
         fs::path model_file(trim_copy(filename));
         if (verbose)
             std::cout << "utheque: searching for [" << model_file.string() << "]" << std::endl;
@@ -134,9 +140,8 @@ namespace utheque {
     /// @arg urdf or package name (e.g. talos/talos.urdf or talos_description)
     /// @arg prefix /usr/local/
     /// @return full path of the URDF file: (e.g. /usr/local/share/utheque/talos/talos.urdf)
-    static std::string path(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
+    static inline std::string path(const std::string& filename, bool verbose = false, const std::string& prefix = DEFAULT_PREFIX)
     {
-        namespace fs = std::filesystem;
         auto file_dir = fs::path(directory(filename, verbose, prefix));
         auto model_file = file_dir / fs::path(trim_copy(filename));
         return model_file.string();

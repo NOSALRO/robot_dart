@@ -1,4 +1,3 @@
-#include <filesystem>
 #include <unistd.h>
 
 #include <robot_dart/robot.hpp>
@@ -1914,7 +1913,7 @@ namespace robot_dart {
             _packages = packages;
             // std::cout << "RobotDART:: using: " << model_file << std::endl;
 
-            std::filesystem::path path(model_file);
+            fs::path path(model_file);
             std::string extension = path.extension().string();
             if (extension == ".urdf") {
 #if DART_VERSION_AT_LEAST(6, 12, 0)

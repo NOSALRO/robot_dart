@@ -7,7 +7,6 @@
 #include <external/subprocess.hpp>
 
 #include <algorithm>
-#include <filesystem>
 
 #include <Corrade/Containers/ArrayViewStl.h>
 #include <Corrade/Containers/StridedArrayView.h>
@@ -21,13 +20,14 @@
 #include <Magnum/PixelFormat.h>
 
 #include <robot_dart/gui/magnum/utils_headers_eigen.hpp>
+#include <utheque/utheque.hpp>
 
 namespace robot_dart {
     namespace gui {
         namespace magnum {
             namespace gs {
 
-                static std::filesystem::path search_path(const std::filesystem::path& filename)
+                static fs::path search_path(const fs::path& filename)
                 {
                     std::string path = std::getenv("PATH");
                     std::string delimiter = ":";
@@ -35,7 +35,7 @@ namespace robot_dart {
                     size_t pos = 0;
                     std::string token;
 
-                    std::vector<std::filesystem::path> all_paths;
+                    std::vector<fs::path> all_paths;
                     while ((pos = path.find(delimiter)) != std::string::npos) {
                         token = path.substr(0, pos);
                         if (token.size() > 0)
@@ -45,10 +45,10 @@ namespace robot_dart {
                     if (path.size() > 0)
                         all_paths.push_back(path);
 
-                    for (const std::filesystem::path& pp : all_paths) {
+                    for (const fs::path& pp : all_paths) {
                         auto p = pp / filename;
                         std::error_code ec;
-                        if (std::filesystem::is_regular_file(p, ec))
+                        if (fs::is_regular_file(p, ec))
                             return p;
                     }
 
@@ -240,7 +240,7 @@ namespace robot_dart {
                     _clean_up_subprocess();
 
                     // search for ffmpeg
-                    std::filesystem::path ffmpeg = search_path("ffmpeg");
+                    fs::path ffmpeg = search_path("ffmpeg");
                     if (ffmpeg.empty()) {
                         ROBOT_DART_WARNING(ffmpeg.empty(), "ffmpeg not found in the PATH. RobotDART will not be able to record videos!");
                         return;

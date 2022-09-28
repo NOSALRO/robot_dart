@@ -17,8 +17,8 @@ set(Utheque_INCLUDE_DIRS "@Utheque_INCLUDE_DIRS@")
 add_library(Utheque INTERFACE IMPORTED)
 set_target_properties(Utheque PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS @Utheque_PREFIX@
-  INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}"
-  INTERFACE_COMPILE_OPTIONS "@RobotDART_CXX_FLAGS@")
+  INTERFACE_INCLUDE_DIRECTORIES "${Utheque_INCLUDE_DIRS}"@Utheque_DEPS@
+  INTERFACE_COMPILE_OPTIONS "@Utheque_CXX_FLAGS@")
 
 # Handle the QUIET and REQUIRED arguments
 find_package_handle_standard_args(
