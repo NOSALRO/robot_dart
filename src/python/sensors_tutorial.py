@@ -79,7 +79,7 @@ for joint in robot.dof_names():
     f_tq_sensors[ct] = simu.sensors()[-1]
     print(f_tq_sensors)
     ct += 1
-# @TORQUE_FORCE_SENSOR_PYTHON_END@
+# @FORCE_TORQUE_SENSOR_PYTHON_END@
 
 # @IMU_SENSOR_PYTHON@
 # Add IMU sensors to the robot
@@ -102,16 +102,16 @@ while (simu.scheduler().next_time() < 20 and not simu.graphics().done()):
 
     # Print torque sensor measurement
     if (simu.schedule(tq_sensors[0].frequency())):
-        ct = 0
+        
         # @TORQUE_MEASUREMENT_PYTHON@
         # vector that contains the torque measurement for every joint (scalar)
         torques_measure = np.empty(robot.num_dofs())
+        ct = 0
         for tq_sens in tq_sensors:
-            # torques_measure.block<1, 1>(ct++, 0) = tq_sens.torques()
             torques_measure[ct] = tq_sens.torques()
             ct += 1
-
         # @TORQUE_MEASUREMENT_PYTHON_END@
+        
         # @FORCE_TORQUE_MEASUREMENT_PYTHON@
         #  matrix that contains the torque measurement for every joint (3d vector)
         ft_torques_measure = np.empty([robot.num_dofs(), 3])
@@ -134,11 +134,9 @@ while (simu.scheduler().next_time() < 20 and not simu.graphics().done()):
         imu_linear_acceleration_measure = np.empty([robot.num_bodies(), 3])
         ct = 0
         for imu_sens in imu_sensors:
-            imu_angular_positions_measure[ct,
-                                          :] = imu_sens.angular_position_vec()
+            imu_angular_positions_measure[ct,:] = imu_sens.angular_position_vec()
             imu_angular_velocities_measure[ct, :] = imu_sens.angular_velocity()
-            imu_linear_acceleration_measure[ct,
-                                            :] = imu_sens.linear_acceleration()
+            imu_linear_acceleration_measure[ct,:] = imu_sens.linear_acceleration()
             ct += 1
 
         # @IMU_MEASUREMENT_PYTHON_END@
@@ -180,14 +178,14 @@ gray_image = rd.gui.convert_rgb_to_grayscale(rgb_image)
 rd.gui.save_png_image("camera-gray.png", gray_image)
 # @RGB_SENSOR_MEASURE_PYTHON_END@
 
-# @RGB_D_SENSOR@
+# @RGB_D_SENSOR_PYTHON@
 # get the depth image from a camera
 # with a version for visualization or bigger differences in the output
 rgb_d_image = camera.depth_image()
 # and the raw values that can be used along with the camera parameters to transform the image to point-cloud
 rgb_d_image_raw = camera.raw_depth_image()
 # @RGB_D_SENSOR_PYTHON_END@
-# @RGB_D_SENSOR_MEASURE@
+# @RGB_D_SENSOR_MEASURE_PYTHON@
 rd.gui.save_png_image("camera-depth.png", rgb_d_image)
 rd.gui.save_png_image("camera-depth-raw.png", rgb_d_image_raw)
 # @RGB_D_SENSOR_MEASURE_PYTHON_END@

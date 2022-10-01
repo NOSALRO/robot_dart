@@ -79,7 +79,7 @@ int main()
     std::vector<std::shared_ptr<robot_dart::sensor::ForceTorque>> f_tq_sensors(robot->num_dofs());
     for (const auto& joint : robot->dof_names())
         f_tq_sensors[ct++] = simu.add_sensor<robot_dart::sensor::ForceTorque>(robot, joint, 1000, "parent_to_child");
-    // @TORQUE_FORCE_SENSOR_END@
+    // @FORCE_TORQUE_SENSOR_END@
 
     // @IMU_SENSOR@
     // Add IMU sensors to the robot

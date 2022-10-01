@@ -284,47 +284,74 @@ Sensors in RobotDART can be added only through the simulator object. All of the 
 
 #### **Torque sensor**
 Torque sensors can be added to every joint of the robot:
+=== "C++"
 {{TORQUE_SENSOR}}
+=== "Python"
+{{TORQUE_SENSOR_PYTHON}}
 
 Torque sensors measure the torque $\tau \in \rm I\!R^n$ of the attached joint (where $n$ is the DOFs of the joint):
+=== "C++"
 {{TORQUE_MEASUREMENT}}
-
+=== "Python"
+{{TORQUE_MEASUREMENT_PYTHON}}
 #### **Force-Torque sensor**
 
 Force-Torque sensors can be added to every joint of the robot:
+=== "C++"
 {{FORCE_TORQUE_SENSOR}}
+=== "Python"
+{{FORCE_TORQUE_SENSOR_PYTHON}}
 
 Torque sensors measure the force $\boldsymbol{F} \in \rm I\!R^3$, the torque $\boldsymbol{\tau} \in \rm I\!R^3$ and the wrench $\boldsymbol{\mathcal{F}} =\begin{bmatrix} \tau, F\end{bmatrix}\in \rm I\!R^6$ of the attached joint:
+=== "C++"
 {{FORCE_TORQUE_MEASUREMENT}}
+=== "Python"
+{{FORCE_TORQUE_MEASUREMENT_PYTHON}}
 
 #### **IMU sensor**
 
 IMU sensors can be added to every link of the robot:
+=== "C++"
 {{IMU_SENSOR}}
+=== "Python"
+{{IMU_SENSOR_PYTHON}}
 
 IMU sensors measure the angular position vector $\boldsymbol{\theta} \in \rm I\!R^3$, the angular velocity $\boldsymbol{\omega} \in \rm I\!R^3$  and the linear acceleration $\boldsymbol{\alpha} \in \rm I\!R^3$ of the attached link:
+=== "C++"
 {{IMU_MEASUREMENT}}
-
+=== "Python"
+{{IMU_MEASUREMENT_PYTHON}}
 #### **RGB sensor**
 
 Any camera can be used as an RGB sensor:
+=== "C++"
 {{RGB_SENSOR}}
-
+=== "Python"
+{{RGB_SENSOR_PYTHON}}
 We can easily save the image and/or transform it to grayscale:
-{{RGB_SENSOR_MEASURE}}
+=== "C++"
+{{RGB_SENSOR}}
+=== "Python"
+{{RGB_SENSOR_PYTHON}}
 
 #### **RGB_D sensor**
 
 Any camera can also be configured to also record depth:
+=== "C++"
 {{CAMERA_SENSOR_RGBD_RECORD_DEPTH}}
-
+=== "Python"
+{{CAMERA_SENSOR_RGBD_RECORD_DEPTH_PYTHON}}
 We can then read the RGB and depth images:
+=== "C++"
 {{RGB_D_SENSOR}}
+=== "Python"
+{{RGB_D_SENSOR_PYTHON}}
 
 We can save the depth images as well:
+=== "C++"
 {{RGB_D_SENSOR_MEASURE}}
-
-## **How can I measure forces being applied to my robot?**
+=== "Python"
+{{RGB_D_SENSOR_MEASURE_PYTHON}}
 
 ## **How can I spawn multiple robots in parallel?**
 
