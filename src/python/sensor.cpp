@@ -10,7 +10,8 @@
 
 namespace robot_dart {
     namespace python {
-        void py_sensors(py::module& m) {
+        void py_sensors(py::module& m) 
+        {
             auto sensormodule = m.def_submodule("sensor");
 
             using namespace robot_dart;
@@ -22,7 +23,8 @@ namespace robot_dart {
                 using Sensor::Sensor;
 
                 /* Trampolines */
-                void init() override {
+                void init() override 
+                {
                     PYBIND11_OVERLOAD_PURE(
                         void, /* return type */
                         Sensor, /* parent class */
@@ -31,7 +33,8 @@ namespace robot_dart {
                     );
                 }
 
-                void calculate(double t) override {
+                void calculate(double t) override 
+                {
                     PYBIND11_OVERLOAD_PURE(
                         void, /* return type */
                         Sensor, /* parent class */
@@ -41,7 +44,8 @@ namespace robot_dart {
                     );
                 }
 
-                std::string type() const override {
+                std::string type() const override 
+                {
                     PYBIND11_OVERLOAD_PURE(
                         std::string, /* return type */
                         Sensor, /* parent class */
@@ -50,7 +54,8 @@ namespace robot_dart {
                     );
                 }
 
-                void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override {
+                void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override 
+                {
                     PYBIND11_OVERLOAD(
                         void, /* return type */
                         Sensor, /* parent class */
@@ -61,7 +66,8 @@ namespace robot_dart {
                     );
                 }
 
-                void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override {
+                void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override 
+                {
                     PYBIND11_OVERLOAD(
                         void, /* return type */
                         Sensor, /* parent class */

@@ -150,7 +150,7 @@ int main()
             std::cout << "IMU sensors Angular Position: \n"
                       << imu_angular_positions_measure.format(fmt) << std::endl;
             std::cout << "IMU sensors Angular Velocity: \n"
-                      << imu_angular_positions_measure.format(fmt) << std::endl;
+                      << imu_angular_velocities_measure.format(fmt) << std::endl;
             std::cout << "IMU sensors Linear Acceleration: \n"
                       << imu_angular_positions_measure.format(fmt) << std::endl;
             std::cout << "=================================" << std::endl;
