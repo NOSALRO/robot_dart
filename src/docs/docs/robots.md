@@ -58,8 +58,11 @@ We have two URDF files:
     * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
-??? "Load Talos Fast"
+
+=== "C++"
 {{TALOS_FAST}}
+=== "Python"
+{{TALOS_FAST_PYTHON}}
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 
