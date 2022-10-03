@@ -582,7 +582,19 @@ namespace robot_dart {
                 .def("ft_wrist_right", &Talos::ft_foot_right, py::return_value_policy::reference)
 
                 .def("torques", &Talos::torques);
+            py::class_<TalosFastCollision, Talos, std::shared_ptr<TalosFastCollision>>(m, "TalosFastCollision")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos_fast_collision.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}))
 
+                .def("imu", &TalosFastCollision::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &TalosFastCollision::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &TalosFastCollision::ft_foot_right, py::return_value_policy::reference)
+                .def("ft_wrist_left", &TalosFastCollision::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_wrist_right", &TalosFastCollision::ft_foot_right, py::return_value_policy::reference)
+
+                .def("torques", &TalosFastCollision::torques);
             py::class_<TalosLight, Talos, std::shared_ptr<TalosLight>>(m, "TalosLight")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
                     py::arg("frequency") = 1000,
