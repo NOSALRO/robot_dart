@@ -44,9 +44,12 @@ We have two URDF files:
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
 
-??? "Load Talos"
-{{TALOS}}
 
+=== "C++"
+{{TALOS}}
+=== "Python"
+{{TALOS_PYTHON}}
+    
 - `robot/talos/talos_fast.urdf`:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
