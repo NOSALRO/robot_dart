@@ -3,7 +3,7 @@ import numpy as np
 
 # @IIWA_PYTHON@
 robot = rd.Iiwa()
-# @IIWA_END_PYTHON@
+# @IIWA_PYTHON_END@
 ctrl = [0., np.pi / 3., 0., -np.pi / 4., 0., 0., 0.]
 controller = rd.PDControl(ctrl)
 robot.add_controller(controller)

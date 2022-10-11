@@ -8,9 +8,8 @@
 int main()
 {
     // @TALOS@
-    // load talos
     auto robot = std::make_shared<robot_dart::robots::Talos>();
-
+    // @TALOS_END@
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
     // Enforce limits (ON by default)
@@ -20,7 +19,7 @@ int main()
     robot_dart::RobotDARTSimu simu(dt);
     // must use fcl collision detector
     simu.set_collision_detector("fcl");
-    // @TALOS_END@
+    
 #ifdef GRAPHIC
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1280;

@@ -79,7 +79,7 @@ def grab(delimiter='@'):
     
 
     # python
-    py = make_dirlist('src/python', ['.py'])
+    py = make_dirlist('src/examples/python', ['.py'])
     for fname in py:
         input_data = open(fname, 'r')
         line_number = 0

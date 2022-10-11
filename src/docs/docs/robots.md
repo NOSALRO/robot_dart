@@ -44,10 +44,10 @@ We have two URDF files:
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf)]
     * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
 
-
-=== "C++"
+!!! note "Load Talos"
+    === "C++"
 {{TALOS}}
-=== "Python"
+    === "Python"
 {{TALOS_PYTHON}}
     
 - `robot/talos/talos_fast.urdf`:
@@ -58,10 +58,10 @@ We have two URDF files:
     * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
-
-=== "C++"
+!!! note "Load Talos Fast"
+    === "C++"
 {{TALOS_FAST}}
-=== "Python"
+    === "Python"
 {{TALOS_FAST_PYTHON}}
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
@@ -79,11 +79,11 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 - URDF: [[franka.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/franka/franka.urdf)]
 - Example: [[franka.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp)]
 The URDF includes the gripper.
-
-
-??? "Load Franka"
+!!! note "Load Franka"
+    === "C++"
 {{FRANKA}}
-    
+    === "Python"
+{{FRANKA_PYTHON}}
 
 ## LBR iiwa (KUKA)
 ![LBR iiwa robot](images/iiwa.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -97,8 +97,11 @@ The LBR iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 - URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/iiwa.urdf)]
 - Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)]
 
-??? "Load LBR iiwa"
+!!! note "Load Iiwa"
+    === "C++"
 {{IIWA}}
+    === "Python"
+{{IIWA_PYTHON}}
 
 ## iCub (IIT)
 ![iCub humanoid robot](images/icub.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -115,12 +118,23 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 - Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)]
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
-??? "Load iCub"
+!!! note "Load iCub"
+    === "C++"
 {{LOAD_IICUB}}
-??? "Print IMU sensor measurements"
+    === "Python"
+{{LOAD_IICUB_PYTHON}}
+
+!!! note "Print IMU sensor measurements"
+    === "C++"
 {{ICUB_PRINT_IMU}}
-??? "Print Force-Torque sensor measurements"
+    === "Python"
+{{ICUB_PRINT_IMU_PYTHON}}
+
+!!! note "Print Force-Torque sensor measurements"
+    === "C++"
 {{ICUB_PRINT_FT}}
+    === "Python"
+{{ICUB_PRINT_FT_PYTHON}}
 ## Unitree A1
 ![Unitree A1 quadruped robot](images/a1.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
@@ -132,13 +146,20 @@ A1 is a quadruped robot made by the [Unitree Robotics](https://www.unitree.com/p
 - One can easily add a depth camera on the head
 - URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf)]
 - Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)]
-??? "Load A1"
+!!! note "Load A1"
+    === "C++"
 {{A1}}
+    === "Python"
+{{A1_PYTHON}}
 
-??? "Print IMU sensor measurements"
+
+!!! note "Print IMU sensor measurements"
+    === "C++"
 {{A1_PRINT_IMU}}
+    === "Python"
+{{A1_PRINT_IMU_PYTHON}}
 
-??? "Add a depth camera on the head"
+!!! note "Add a depth camera on the head"
     [How can I attach a camera to a moving link?](../faq/#how-can-i-attach-a-camera-to-a-moving-link)
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
@@ -153,11 +174,18 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf)]
 - Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)]
 
-??? "Load Hexapod"
+!!! note "Load Hexapod"
+    === "C++"
 {{HEXAPOD}}
+    === "Python"
+{{HEXAPOD_PYTHON}}
 
-??? "Load Pexod"
+
+!!! note "Load Pexod"
+    === "C++"
 {{HELLO_WORLD_ROBOT_CREATION}}
+    === "Python"
+{{HELLO_WORLD_ROBOT_CREATION_PYTHON}}
 
 ## Simple arm
 ![simple arm robot](images/arm.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
@@ -168,17 +196,34 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - URDF: [[arm.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf)]
 - Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
 
-??? "Load Simple Arm"
+!!! note "Load Simple Arm"
+    === "C++"
 {{SIMPLE_ARM}}
+    === "Python"
+{{SIMPLE_ARM_PYTHON}}
+
 ## Loading Custom Robots
 RobotDART gives you the ability to load custom robots  that are defined in [URDF](http://wiki.ros.org/urdf/Tutorials), [SDF](https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels), [SKEL](https://dartsim.github.io/skel_file_format.html) or [MJCF](https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms) files. For example, you can load a urdf model using:
 
-??? "Load custom Robot"
-    ``` c++
+!!! note "Load custom Robot"
+    === "C++"
+    ``` C++
         auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf");
     ```
-??? "Load custom Robot with packages (e.g STL, DAE meshes)"
-    ``` c++
+    === "Python"
+    ``` Python
+        your_robot = robot_dart.Robot("path/to/model.urdf")
+    ```
+!!! note "Load custom Robot with packages (e.g STL, DAE meshes)"
+    === "C++"
+    ``` C++
         std::vector<std::pair<std::string, std::string>> your_model_packages = {{"model", "path/to/model/dir"}};
         auto your_robot = std::make_shared<robot_dart::Robot>("path/to/model.urdf", your_model_packages, "packages");
     ```
+    === "Python"
+    ``` Python
+        your_model_packages = [("model", "path/to/model/dir")]
+        your_robot = robot_dart.Robot("path/to/model.urdf", your_model_packages)
+    ```
+
+    
