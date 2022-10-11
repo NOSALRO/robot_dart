@@ -410,6 +410,8 @@ if(RobotDART_Magnum_FOUND)
 endif()
 ```
 
-## **I prefer coding in python. How can I use RobotDART?**
+## **Where can I find complete working examples for either c++ or python?**
 
-RobotDART comes with python bindinds. Please refer to the [installation page](install.md) to see how to install them. Once the python bindings are installed, we can use RobotDART from python! An example is available at [example.py](https://github.com/resibots/robot_dart/blob/master/src/python/example.py). There is mostly an one-to-one mapping between C++ and python objects and functions.
+!!! note "[C++ examples](https://github.com/resibots/robot_dart/tree/new_docs/src/examples)"
+
+!!! note "[Python examples](https://github.com/resibots/robot_dart/tree/new_docs/src/examples/python)"
