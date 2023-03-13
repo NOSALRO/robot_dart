@@ -346,12 +346,14 @@ def check_magnum(conf, *k, **kw):
 
                         # GlfwApplication needs the libdl.so library (except on mac)
                         if conf.env['DEST_OS'] != 'darwin':
-                            try:
-                                lib_dir = get_directory('libdl.'+suffix, libs_check)
-                                magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
-                                magnum_component_libs[component].append('dl')
-                            except:
-                                glfw_found = False
+                            libdl_libs = ['libdl.'+suffix, 'libdl.'+suffix+'.2']
+                            for libdl_lib in libdl_libs:
+                                try:
+                                    lib_dir = get_directory(libdl_lib, libs_check)
+                                    magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                                    magnum_component_libs[component].append('dl')
+                                except:
+                                    glfw_found = False
 
                         if not glfw_found:
                             fatal(required, 'Not found')
@@ -388,13 +390,16 @@ def check_magnum(conf, *k, **kw):
                         magnum_component_libpaths[component] = magnum_component_libpaths[component] + conf.env['LIBPATH_MAGNUM_SDL']
                         magnum_component_libs[component] = magnum_component_libs[component] + conf.env['LIB_MAGNUM_SDL']
                         # Sdl2Application needs the libdl.so library
-                        try:
-                            lib_dir = get_directory('libdl.'+suffix, libs_check)
-                            magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
-                            magnum_component_libs[component].append('dl')
-                        except:
-                            fatal(required, 'Not found')
-                            return
+                        if conf.env['DEST_OS'] != 'darwin':
+                            libdl_libs = ['libdl.'+suffix, 'libdl.'+suffix+'.2']
+                            for libdl_lib in libdl_libs:
+                                try:
+                                    lib_dir = get_directory(libdl_lib, libs_check)
+                                    magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
+                                    magnum_component_libs[component].append('dl')
+                                except:
+                                    fatal(required, 'Not found')
+                                    return
                         # to-do: maybe copy flags?
                     elif component == 'WindowlessEglApplication':
                         if not egl_found:
