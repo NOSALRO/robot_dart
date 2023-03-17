@@ -352,6 +352,8 @@ def check_magnum(conf, *k, **kw):
                                     lib_dir = get_directory(libdl_lib, libs_check)
                                     magnum_component_libpaths[component] = magnum_component_libpaths[component] + [lib_dir]
                                     magnum_component_libs[component].append('dl')
+
+                                    glfw_found = True
                                 except:
                                     glfw_found = False
 
