@@ -319,7 +319,7 @@ def corrade_add_resource(bld, name, config_file, corrade_var = 'Corrade'):
     bld.add_to_group(read1)
 
     bld(rule='cp ${SRC} ${TGT}', source=config_file, target=target_depends)
-    bld(rule=corrade_bin + ' ' + name + ' ' + full_config_path+'/'+short_config + ' ${TGT}', source=read1.outputs, target=target_resource)
+    bld(rule=corrade_bin + ' ' + name + ' "' + full_config_path+'/'+short_config + '" "${TGT}"', source=read1.outputs, target=target_resource)
 
     return target_resource
 
