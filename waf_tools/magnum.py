@@ -354,6 +354,7 @@ def check_magnum(conf, *k, **kw):
                                     magnum_component_libs[component].append('dl')
 
                                     glfw_found = True
+                                    break
                                 except:
                                     glfw_found = False
 
