@@ -283,6 +283,7 @@ def build_robot_dart(bld):
 
     libs = 'BOOST EIGEN DART PTHREAD CPPFS'
     defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
+    defines += ["UTHEQUE_PREFIX=\"" + bld.env['PREFIX'] + "\""]
 
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
