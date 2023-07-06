@@ -335,8 +335,9 @@ def build_robot_dart(bld):
         py_srcs = " ".join(py_files)
 
         # Read suffix to be sure! Do not rely on waf!
-        py_suffix = bld.cmd_and_log('%s --extension-suffix' % bld.env['PYTHON_CONFIG'][0], quiet=True)[:-1] # ignore end of line!
-        bld.env['pyext_PATTERN'] = "%s" + py_suffix
+        if len(bld.env['PYTHON_CONFIG']) > 0 and len(bld.env['PYTHON_CONFIG'][0]) > 0:
+            py_suffix = bld.cmd_and_log('%s --extension-suffix' % bld.env['PYTHON_CONFIG'][0], quiet=True)[:-1] # ignore end of line!
+            bld.env['pyext_PATTERN'] = "%s" + py_suffix
         bld.program(features = 'c cshlib pyext',
                     source = './src/python/robot_dart.cc ' + py_srcs,
                     includes = './src',
