@@ -728,7 +728,7 @@ namespace robot_dart {
 #if DART_VERSION_AT_LEAST(6, 10, 0)
             bool force = jt->areLimitsEnforced();
 #else
-            bool force = jt->isPositionLimitEnforced());
+            bool force = jt->isPositionLimitEnforced();
 #endif
             auto type = jt->getActuatorType();
             force = force || type == dart::dynamics::Joint::SERVO || type == dart::dynamics::Joint::MIMIC;
