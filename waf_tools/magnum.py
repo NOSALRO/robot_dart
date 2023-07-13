@@ -162,7 +162,7 @@ def check_magnum(conf, *k, **kw):
     magnum_var = kw.get('uselib_store', 'Magnum')
     # to-do: enforce C++11/14
 
-    magnum_possible_configs = ["BUILD_DEPRECATED", "BUILD_STATIC", "BUILD_MULTITHREADED", "TARGET_GL", "TARGET_GLES", "TARGET_GLES2", "TARGET_GLES3", "TARGET_DESKTOP_GLES", "TARGET_WEBGL", "TARGET_HEADLESS"]
+    magnum_possible_configs = ["BUILD_DEPRECATED", "BUILD_STATIC", "BUILD_MULTITHREADED", "TARGET_GL", "TARGET_GLES", "TARGET_GLES2", "TARGET_GLES3", "TARGET_DESKTOP_GLES", "TARGET_WEBGL", "TARGET_HEADLESS", "TARGET_EGL"]
     magnum_config = []
 
     magnum_components, magnum_component_type, magnum_dependencies = get_magnum_components()
@@ -193,6 +193,10 @@ def check_magnum(conf, *k, **kw):
             index = find_in_string(config_content, '#define MAGNUM_' + config)
             if index > -1:
                 magnum_config.append(config)
+            else:
+                index = find_in_string(config_content, '#define  MAGNUM_' + config)
+                if index > -1:
+                    magnum_config.append(config)
         conf.end_msg(magnum_config)
 
         if 'TARGET_GL' in magnum_config:
@@ -234,7 +238,7 @@ def check_magnum(conf, *k, **kw):
 
         egl_found = False
         glx_found = False
-        if 'TARGET_HEADLESS' in magnum_config:
+        if 'TARGET_HEADLESS' in magnum_config or 'TARGET_EGL' in magnum_config:
             # TARGET_HEADLESS requires EGL
             egl_inc = get_directory('EGL/egl.h', includes_check)
 
