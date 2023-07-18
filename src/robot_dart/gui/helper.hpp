@@ -29,7 +29,7 @@ namespace robot_dart {
 
         GrayscaleImage convert_rgb_to_grayscale(const Image& rgb);
 
-        std::vector<Eigen::Vector3d> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane = 1000.);
+        std::vector<double> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane = 1000.);
     } // namespace gui
 } // namespace robot_dart
 

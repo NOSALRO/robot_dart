@@ -58,7 +58,7 @@ namespace robot_dart {
             return gray;
         }
 
-        std::vector<Eigen::Vector3d> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane)
+        std::vector<double> point_cloud_from_depth_array(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane)
         {
             // This is assuming that K is normal intrisinc matrix (i.e., camera pointing to +Z),
             // but an OpenGL camera (i.e., pointing to -Z). Thus it transforms the points accordingly
@@ -80,7 +80,7 @@ namespace robot_dart {
                 return p;
             };
 
-            std::vector<Eigen::Vector3d> point_cloud;
+            std::vector<double> point_cloud;
 
             size_t height = depth_image.height;
             size_t width = depth_image.width;
@@ -94,7 +94,9 @@ namespace robot_dart {
                     pp.tail(1) << 1.;
                     pp = tf.inverse() * pp;
 
-                    point_cloud.push_back(pp.head(3));
+                    point_cloud.push_back(pp[0]);
+                    point_cloud.push_back(pp[1]);
+                    point_cloud.push_back(pp[2]);
                 }
             }
 
