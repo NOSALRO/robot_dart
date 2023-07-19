@@ -16,6 +16,7 @@
 #include <robot_dart/robots/talos.hpp>
 #include <robot_dart/robots/tiago.hpp>
 #include <robot_dart/robots/ur3e.hpp>
+#include <robot_dart/robots/vx300.hpp>
 
 #include <robot_dart/control/robot_control.hpp>
 
@@ -598,6 +599,11 @@ namespace robot_dart {
                     py::arg("frequency") = 1000,
                     py::arg("urdf") = "ur3e/ur3e_with_schunk_hand.urdf",
                     py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"ur3e_description", "ur3e/ur3e_description"}}));
+
+            py::class_<Vx300, Robot, std::shared_ptr<Vx300>>(m, "Vx300")
+                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("urdf") = "vx300/vx300.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"interbotix_xsarm_descriptions", "vx300"}}));
         }
     } // namespace python
 } // namespace robot_dart
