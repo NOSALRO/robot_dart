@@ -120,7 +120,7 @@ int main()
         if (simu.schedule(simu.graphics_freq())) {
             auto depth_image = camera->depth_array();
             Eigen::MatrixXd data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
-            std::cout << simu.scheduler().current_time() << ": " << (data.size()) << std::endl;
+            std::cout << simu.scheduler().current_time() << ": " << (data.cols()) << std::endl;
         }
     }
 
