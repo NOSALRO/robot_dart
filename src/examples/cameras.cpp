@@ -99,8 +99,7 @@ int main()
     auto depth_image = camera->depth_array();
 
     auto small_box = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, Eigen::Vector6d::Zero(), "fixed", 1., dart::Color::Blue(1.), "box_pc");
-    std::vector<double> data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
-    Eigen::MatrixXd point_cloud = Eigen::MatrixXd::Map(data.data(), 3, data.size() / 3);
+    Eigen::MatrixXd point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
     for (int i = 0; i < point_cloud.cols(); i++) {
         if (i % 30 == 0) { // do not display all the points in the cloud
             Eigen::Vector6d pose;
@@ -120,8 +119,8 @@ int main()
             break;
         if (simu.schedule(simu.graphics_freq())) {
             auto depth_image = camera->depth_array();
-            std::vector<double> data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
-            std::cout << simu.scheduler().current_time() << ": " << (data.size() / 3) << std::endl;
+            Eigen::MatrixXd data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+            std::cout << simu.scheduler().current_time() << ": " << (data.size()) << std::endl;
         }
     }
 

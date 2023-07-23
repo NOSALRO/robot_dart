@@ -293,7 +293,7 @@ namespace robot_dart {
             sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::Image&)>(&gui::save_png_image));
             sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::GrayscaleImage&)>(&gui::save_png_image));
             sm.def("convert_rgb_to_grayscale", gui::convert_rgb_to_grayscale);
-            sm.def("point_cloud_from_depth_array", gui::point_cloud_from_depth_array,
+            sm.def("point_cloud_from_depth_array", gui::point_cloud_from_depth_array_vector,
                 py::arg("depth_image"),
                 py::arg("intrinsic_matrix"),
                 py::arg("tf"),
