@@ -266,9 +266,11 @@
       <material name="interbotix_black"/>
     </visual>
     <collision>
-      <origin rpy="1.5707963267948966 -3.141592653589793 1.5707963267948966" xyz="-0.0404 -0.0575 0"/>
+      <!-- <origin rpy="1.5707963267948966 -3.141592653589793 1.5707963267948966" xyz="-0.0404 -0.0575 0"/> -->
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
-        <mesh filename="package://interbotix_xsarm_descriptions/vx300_meshes/vx300_9_gripper_finger.stl" scale="0.001 0.001 0.001"/>
+        <!-- <mesh filename="package://interbotix_xsarm_descriptions/vx300_meshes/vx300_9_gripper_finger.stl" scale="0.001 0.001 0.001"/> -->
+        <box size="0.08 0.02575 0.05"/>
       </geometry>
     </collision>
     <inertial>
@@ -295,9 +297,11 @@
       <material name="interbotix_black"/>
     </visual>
     <collision>
-      <origin rpy="-1.5707963267948966 3.141592653589793 -1.5707963267948966" xyz="-0.0404 0.0575 0 "/>
+      <!-- <origin rpy="-1.5707963267948966 3.141592653589793 -1.5707963267948966" xyz="-0.0404 0.0575 0 "/> -->
+      <origin rpy="0 0 0" xyz="0.04 0 0"/>
       <geometry>
-        <mesh filename="package://interbotix_xsarm_descriptions/vx300_meshes/vx300_9_gripper_finger.stl" scale="0.001 0.001 0.001"/>
+        <!-- <mesh filename="package://interbotix_xsarm_descriptions/vx300_meshes/vx300_9_gripper_finger.stl" scale="0.001 0.001 0.001"/> -->
+        <box size="0.08 0.02575 0.05"/>
       </geometry>
     </collision>
     <inertial>
