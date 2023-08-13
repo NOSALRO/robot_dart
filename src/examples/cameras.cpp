@@ -76,6 +76,8 @@ int main()
     simu.add_robot(robot_dart::Robot::create_ellipsoid({0.2, 0.2, 0.2}, pose, "free", 1., dart::Color::Red(1.), "sphere"));
     simu.add_sensor(camera);
 
+    simu.set_graphics_freq(20);
+
     simu.run(10.);
 
     // a nested std::vector (w*h*3) of the last image taken can be retrieved
@@ -99,10 +101,9 @@ int main()
     auto depth_image = camera->depth_array();
 
     auto small_box = robot_dart::Robot::create_box({0.01, 0.01, 0.01}, Eigen::Vector6d::Zero(), "fixed", 1., dart::Color::Blue(1.), "box_pc");
-    std::vector<double> data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
-    Eigen::MatrixXd point_cloud = Eigen::MatrixXd::Map(data.data(), 3, data.size() / 3);
+    Eigen::MatrixXd point_cloud = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
     for (int i = 0; i < point_cloud.cols(); i++) {
-        if (i % 30 == 0) { // do not display all the points in the cloud
+        if (i % 100 == 0) { // do not display all the points in the cloud
             Eigen::Vector6d pose;
             pose << 0., 0., 0., point_cloud.col(i);
             auto bbox = small_box->clone_ghost("box_" + std::to_string(i), dart::Color::Blue(1.));
@@ -112,16 +113,18 @@ int main()
         }
     }
 
-    simu.set_graphics_freq(20);
     simu.world()->setTime(0.);
     simu.scheduler().reset(simu.timestep(), true);
     while (true) {
         if (simu.step())
             break;
         if (simu.schedule(simu.graphics_freq())) {
+            auto start = std::chrono::high_resolution_clock::now();
             auto depth_image = camera->depth_array();
-            std::vector<double> data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
-            std::cout << simu.scheduler().current_time() << ": " << (data.size() / 3) << std::endl;
+            Eigen::MatrixXd data = robot_dart::gui::point_cloud_from_depth_array(depth_image, camera->camera_intrinsic_matrix(), camera->camera_extrinsic_matrix(), camera->camera().far_plane());
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> t_pc = (end - start);
+            std::cout << simu.scheduler().current_time() << ": " << (data.cols()) << " -> " << t_pc.count() << "ms" << std::endl;
         }
     }
 
