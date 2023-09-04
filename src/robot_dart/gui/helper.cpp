@@ -80,10 +80,12 @@ namespace robot_dart {
                 return p;
             };
 
-            std::vector<double> point_cloud;
-
             size_t height = depth_image.height;
             size_t width = depth_image.width;
+
+            std::vector<double> point_cloud;
+            point_cloud.reserve(height * width * 3);
+
             for (size_t h = 0; h < height; h++) {
                 for (size_t w = 0; w < width; w++) {
                     int id = w + h * width;
