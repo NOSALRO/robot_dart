@@ -10,6 +10,23 @@
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 #endif
 
+void pointcloud_wrapper(const DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane, py::array_t<double>& in_results) {
+    if (in_results.ndim() != 2)
+        throw std::runtime_error("Results should be a 2-D Numpy array!");
+
+    auto buf = in_results.request();
+    double* ptr = (double*)buf.ptr;
+
+    size_t N = in_results.shape()[0];
+    size_t M = in_results.shape()[1];
+
+    std::vector<double> v_p = robot_dart::gui::point_cloud_from_depth_array_vector(depth_image, intrinsic_matrix, tf, far_plane);
+    if (v_p.size() != (N * M))
+        throw std::runtime_error("Wrong size of Numpy array!");
+
+    memcpy(ptr, v_p.data(), v_p.size() * sizeof(double));
+}
+
 namespace robot_dart {
     namespace python {
 #ifdef GRAPHIC
@@ -293,11 +310,12 @@ namespace robot_dart {
             sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::Image&)>(&gui::save_png_image));
             sm.def("save_png_image", static_cast<void (*)(const std::string&, const gui::GrayscaleImage&)>(&gui::save_png_image));
             sm.def("convert_rgb_to_grayscale", gui::convert_rgb_to_grayscale);
-            sm.def("point_cloud_from_depth_array", gui::point_cloud_from_depth_array_vector,
+            sm.def("point_cloud_from_depth_array", pointcloud_wrapper,
                 py::arg("depth_image"),
                 py::arg("intrinsic_matrix"),
                 py::arg("tf"),
-                py::arg("far_plane") = 1000.);
+                py::arg("far_plane") = 1000.,
+                py::arg("array"));
 
             // Material class
             using Material = gui::magnum::gs::Material;
