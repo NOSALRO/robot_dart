@@ -10,7 +10,7 @@
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 #endif
 
-void pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane, py::array_t<double>& in_results) {
+int pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane, py::array_t<double>& in_results) {
     if (in_results.ndim() != 2)
         throw std::runtime_error("Results should be a 2-D Numpy array!");
 
@@ -25,6 +25,8 @@ void pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const Ei
         throw std::runtime_error("Wrong size of Numpy array!");
 
     memcpy(ptr, v_p.data(), v_p.size() * sizeof(double));
+
+    return v_p.size();
 }
 
 namespace robot_dart {
