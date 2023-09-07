@@ -86,15 +86,16 @@ namespace robot_dart {
             std::vector<double> point_cloud;
             point_cloud.reserve(height * width * 3);
 
+            Eigen::Matrix3d R_inv = tf.block<3, 3>(0, 0).transpose();
+            Eigen::Vector3d t_inv = -R_inv * tf.block<3, 1>(0, 3);
+
+            Eigen::Vector3d pp;
             for (size_t h = 0; h < height; h++) {
                 for (size_t w = 0; w < width; w++) {
                     int id = w + h * width;
                     if (depth_image.data[id] >= 0.99 * far_plane) // close to far plane
                         continue;
-                    Eigen::Vector4d pp;
-                    pp.head(3) = point_3d(intrinsic_matrix, w, h, depth_image.data[id]);
-                    pp.tail(1) << 1.;
-                    pp = tf.inverse() * pp;
+                    pp = R_inv * point_3d(intrinsic_matrix, w, h, depth_image.data[id]) + t_inv;
 
                     point_cloud.push_back(pp[0]);
                     point_cloud.push_back(pp[1]);
