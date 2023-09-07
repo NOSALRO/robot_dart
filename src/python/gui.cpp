@@ -10,23 +10,22 @@
 #include <robot_dart/gui/magnum/windowless_graphics.hpp>
 #endif
 
-int pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane, py::array_t<double>& in_results) {
+size_t pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const Eigen::Matrix3d& intrinsic_matrix, const Eigen::Matrix4d& tf, double far_plane, py::array_t<double>& in_results) {
     if (in_results.ndim() != 2)
         throw std::runtime_error("Results should be a 2-D Numpy array!");
-
-    auto buf = in_results.request();
-    double* ptr = (double*)buf.ptr;
 
     size_t N = in_results.shape()[0];
     size_t M = in_results.shape()[1];
 
-    std::vector<double> v_p = robot_dart::gui::point_cloud_from_depth_array_vector(depth_image, intrinsic_matrix, tf, far_plane);
-    if (v_p.size() != (N * M))
+    if (N != 3 || (depth_image.width * depth_image.height) != M)
         throw std::runtime_error("Wrong size of Numpy array!");
 
-    memcpy(ptr, v_p.data(), v_p.size() * sizeof(double));
+    std::vector<double> v_p = robot_dart::gui::point_cloud_from_depth_array_vector(depth_image, intrinsic_matrix, tf, far_plane);
 
-    return v_p.size();
+    auto buf = in_results.request();
+    memcpy(static_cast<double*>(buf.ptr), v_p.data(), v_p.size() * sizeof(double));
+
+    return v_p.size() / 3;
 }
 
 namespace robot_dart {
