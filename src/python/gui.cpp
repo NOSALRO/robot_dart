@@ -17,7 +17,7 @@ size_t pointcloud_wrapper(const robot_dart::gui::DepthImage& depth_image, const 
     size_t N = in_results.shape()[0];
     size_t M = in_results.shape()[1];
 
-    if (N != 3 || (depth_image.width * depth_image.height) != M)
+    if (M != 3 || (depth_image.width * depth_image.height) != N)
         throw std::runtime_error("Wrong size of Numpy array!");
 
     std::vector<double> v_p = robot_dart::gui::point_cloud_from_depth_array_vector(depth_image, intrinsic_matrix, tf, far_plane);
