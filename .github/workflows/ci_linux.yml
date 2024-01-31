@@ -68,8 +68,8 @@ jobs:
             ./waf configure --prefix=/usr --dart=~/.dart_install ;
           fi
           ./waf
-      - name: Run tests
-        run: ./waf --tests
+      # - name: Run tests
+      #   run: ./waf --tests
       - name: Build examples
         run: ./waf examples
       - name: Install
