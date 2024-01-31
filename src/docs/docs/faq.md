@@ -256,7 +256,7 @@ One possible cause may be the fact that self collision is disabled, you can chec
 === "Python"
 {{DYNAMICS_PYTHON}}
 
-## **Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?**
+## **Is there a way to change the joint properties (e.g., actuation, friction)?**
 
 There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:
 === "C++"
@@ -355,6 +355,9 @@ We can save the depth images as well:
 
 ## **How can I spawn multiple robots in parallel?**
 
+
+### Robot Pool (only in C++)
+
 The best way to do so is to create a Robot pool. With a robot pool you:
 
 - Minimize the overhead of loading robots (it happens only once!) or cloning robots (it never happens)
@@ -365,24 +368,31 @@ Let's see a more practical example:
 
 - First we need to include the proper header:
 
+=== "C++"
 {{ROBOT_POOL_INCLUDE}}
 
 - Then we create a `creator` function and the pool object:
 
+=== "C++"
 {{ROBOT_POOL_GLOBAL_NAMESPACE}}
 
 The `creator` function is the function responsible for loading your robot. This should basically look like a standalone code to load or create a robot.
 
 - Next, we create a few threads that utilize the robots (in your code you might be using OpenMP or TBB):
 
+=== "C++"
 {{ROBOT_POOL_CREATE_THREADS}}
 
 - An example evaluation function:
 
+=== "C++"
 {{ROBOT_POOL_EVAL}}
 
 ## **I need to simulate many worlds with camera sensors in parallel. How can I do this?**
+
 On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.
+
+=== "C++"
 {{CAMERAS_PARALLEL}}
 
 ## **I do not know how to use waf. How can I detect RobotDART from CMake?**

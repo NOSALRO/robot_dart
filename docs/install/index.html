@@ -10,8 +10,14 @@
         <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
       
       
+      
+        <link rel="prev" href="../quick_install/">
+      
+      
+        <link rel="next" href="../robots/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.5">
     
     
       
@@ -19,11 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
-        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
       
       
   
@@ -32,7 +37,8 @@
     
   
   
-  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="m414.8 40.79-128 448.01c-4.9 17-22.6 26.8-39.6 22-17-4.9-26.8-22.6-22-39.6l128-447.99c4.9-16.994 22.6-26.834 39.6-21.978 17 4.855 26.8 22.568 22 39.558zm103.8 80.61 112 112c12.5 12.5 12.5 32.7 0 45.2l-112 112c-12.5 12.5-32.7 12.5-45.2 0s-12.5-32.7 0-45.2l89.3-89.4-89.3-89.4c-12.5-12.5-12.5-32.7 0-45.2s32.7-12.5 45.2 0zm-352 45.2L77.25 256l89.35 89.4c12.5 12.5 12.5 32.7 0 45.2s-32.7 12.5-45.2 0L9.372 278.6c-12.496-12.5-12.496-32.7 0-45.2l112.028-112c12.5-12.5 32.7-12.5 45.2 0s12.5 32.7 0 45.2z"/></svg>');}</style>
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>');}</style>
+
 
     
     
@@ -50,6 +56,7 @@
     
       
 
+    
     
     
   </head>
@@ -119,7 +126,6 @@
       <form class="md-header__option" data-md-component="palette">
         
           
-          
           <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
@@ -127,7 +133,6 @@
             </label>
           
         
-          
           
           <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
@@ -154,7 +159,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -166,7 +171,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -178,7 +183,7 @@
         <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
   </div>
   <div class="md-source__repository">
     resibots/robot_dart
@@ -298,7 +303,7 @@
       <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
   </div>
   <div class="md-source__repository">
     resibots/robot_dart
@@ -663,13 +668,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-  <a href="https://github.com/resibots/robot_dart/edit/master/docs/install.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+                  
+
+  
+  
 
 
 
@@ -681,7 +687,6 @@
     display: none;
   }
 </style>
-
 <h2 id="manual-installation-of-robotdart">Manual Installation of RobotDART<a class="headerlink" href="#manual-installation-of-robotdart" title="Permanent link">&para;</a></h2>
 <h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h4>
@@ -698,117 +703,111 @@
 <h3 id="installation-of-the-dependencies">Installation of the dependencies<a class="headerlink" href="#installation-of-the-dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="installing-boost-and-eigen3">Installing Boost and Eigen3<a class="headerlink" href="#installing-boost-and-eigen3" title="Permanent link">&para;</a></h4>
 <p>For Ubuntu-based distributions we should use the following commands to install Eigen3 and Boost:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt-get update
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libeigen3-dev<span class="w"> </span>libboost-filesystem-dev<span class="w"> </span>libboost-system-dev<span class="w"> </span>libboost-regex-dev
 </code></pre></div>
-
 <p>For OSX with brew:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew install eigen3
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew install boost
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>install<span class="w"> </span>eigen3
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>boost
 </code></pre></div>
-
 <h4 id="installing-dart">Installing DART<a class="headerlink" href="#installing-dart" title="Permanent link">&para;</a></h4>
 <p>In order to use RobotDART, you need to install <a href="http://dartsim.github.io/">DART</a> (from source).</p>
 <p>For <strong>Ubuntu systems</strong>, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies">DART documentation website</a>. Make sure that you don't forget to add the PPAs as detailed <a href="http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies">here</a>. What is more, you can enable the <code>-DART_ENABLE_SIMD</code> flag in the CMake configuration. In addition, you need the following optional dependency: <strong>DART Parsers</strong>. Lastly, it is recommended to use either the <code>master</code> branch or <code>v6.12.1</code> tag (and not the one provided in DART's documentation). In short you should do the following:</p>
 <p><strong>Ubuntu &lt;= 14.04 only</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo apt-add-repository ppa:libccd-debs/ppa
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo apt-add-repository ppa:fcl-debs/ppa
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-add-repository<span class="w"> </span>ppa:libccd-debs/ppa
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt-add-repository<span class="w"> </span>ppa:fcl-debs/ppa
 </code></pre></div>
-
 <p><strong>For all Ubuntu distributions</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo apt-add-repository ppa:dartsim/ppa
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo apt-get update
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt-add-repository<span class="w"> </span>ppa:dartsim/ppa
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo apt-get install build-essential cmake pkg-config git
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>pkg-config<span class="w"> </span>git
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libeigen3-dev<span class="w"> </span>libassimp-dev<span class="w"> </span>libccd-dev<span class="w"> </span>libfcl-dev<span class="w"> </span>libboost-regex-dev<span class="w"> </span>libboost-system-dev
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>sudo apt-get install libtinyxml-dev libtinyxml2-dev
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libtinyxml-dev<span class="w"> </span>libtinyxml2-dev
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>liburdfdom-dev<span class="w"> </span>liburdfdom-headers-dev
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>git clone git://github.com/dartsim/dart.git
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">cd</span> dart
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>git checkout v6.12.1
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>git<span class="w"> </span>clone<span class="w"> </span>git://github.com/dartsim/dart.git
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">cd</span><span class="w"> </span>dart
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>git<span class="w"> </span>checkout<span class="w"> </span>v6.12.1
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>mkdir build
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">cd</span> build
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>make -j4
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>sudo make install
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>mkdir<span class="w"> </span>build
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>..
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>make<span class="w"> </span>-j4
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
-
 <p>If you want to install DART somewhere else than <code>/usr/local</code>, you should use the <code>-DCMAKE_INSTALL_PREFIX=/path/to/install/folder</code> cmake argument.</p>
 <p>For <strong>OSX systems</strong> with homebrew, please follow the detailed installation instructions on the <a href="http://dartsim.github.io/install_dart_on_mac.html#install-from-source-using-homebrew">DART documentation website</a>. You need to follow the same procedure as for Ubuntu systems. In short you should do the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>brew install eigen
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>brew install assimp
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>brew install libccd
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>brew install dartsim/dart/fcl04
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>brew install boost
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>brew<span class="w"> </span>install<span class="w"> </span>eigen
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>brew<span class="w"> </span>install<span class="w"> </span>assimp
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>brew<span class="w"> </span>install<span class="w"> </span>libccd
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>brew<span class="w"> </span>install<span class="w"> </span>dartsim/dart/fcl04
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>brew<span class="w"> </span>install<span class="w"> </span>boost
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>brew install tinyxml
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>brew install tinyxml2
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>brew install urdfdom
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>brew<span class="w"> </span>install<span class="w"> </span>tinyxml
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>brew<span class="w"> </span>install<span class="w"> </span>tinyxml2
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>brew<span class="w"> </span>install<span class="w"> </span>urdfdom
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>git clone git://github.com/dartsim/dart.git
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">cd</span> dart
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>git checkout v6.12.1
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>git<span class="w"> </span>clone<span class="w"> </span>git://github.com/dartsim/dart.git
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">cd</span><span class="w"> </span>dart
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>git<span class="w"> </span>checkout<span class="w"> </span>v6.12.1
 <a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>mkdir build
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nb">cd</span> build
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>make -j4
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>sudo make install
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>mkdir<span class="w"> </span>build
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>..
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>make<span class="w"> </span>-j4
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
-
 <h4 id="installing-magnum">Installing Magnum<a class="headerlink" href="#installing-magnum" title="Permanent link">&para;</a></h4>
 <p>Magnum depends on <a href="https://github.com/mosra/corrade">Corrade</a> and we are going to use a few plugins and extras from the library. We are also going to use Glfw and Glx for the back-end. Follow the instrutions below:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#installation of Glfw and OpenAL</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Ubuntu</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libglfw3-dev<span class="w"> </span>libglfw3<span class="w"> </span>libopenal-dev<span class="w"> </span>libassimp-dev
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Mac OSX</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>brew install glfw3 openal-soft assimp
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>brew<span class="w"> </span>install<span class="w"> </span>glfw3<span class="w"> </span>openal-soft<span class="w"> </span>assimp
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># installation of Corrade</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>git clone https://github.com/mosra/corrade.git
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nb">cd</span> corrade
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>make -j
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>sudo make install
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mosra/corrade.git
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nb">cd</span><span class="w"> </span>corrade
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>..
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>make<span class="w"> </span>-j
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 <a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># installation of Magnum</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>git clone https://github.com/mosra/magnum.git
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nb">cd</span> magnum
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mosra/magnum.git
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nb">cd</span><span class="w"> </span>magnum
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="c1"># Ubuntu</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_AUDIO<span class="o">=</span>ON -DWITH_DEBUGTOOLS<span class="o">=</span>ON -DWITH_GL<span class="o">=</span>ON -DWITH_MESHTOOLS<span class="o">=</span>ON -DWITH_PRIMITIVES<span class="o">=</span>ON -DWITH_SCENEGRAPH<span class="o">=</span>ON -DWITH_SHADERS<span class="o">=</span>ON -DWITH_TEXT<span class="o">=</span>ON -DWITH_TEXTURETOOLS<span class="o">=</span>ON -DWITH_TRADE<span class="o">=</span>ON -DWITH_GLFWAPPLICATION<span class="o">=</span>ON -DWITH_WINDOWLESSGLXAPPLICATION<span class="o">=</span>ON -DWITH_OPENGLTESTER<span class="o">=</span>ON -DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON -DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON -DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON -DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON -DWITH_MAGNUMFONT<span class="o">=</span>ON -DWITH_OBJIMPORTER<span class="o">=</span>ON -DWITH_TGAIMPORTER<span class="o">=</span>ON -DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON .. <span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DWITH_AUDIO<span class="o">=</span>ON<span class="w"> </span>-DWITH_DEBUGTOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_GL<span class="o">=</span>ON<span class="w"> </span>-DWITH_MESHTOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_PRIMITIVES<span class="o">=</span>ON<span class="w"> </span>-DWITH_SCENEGRAPH<span class="o">=</span>ON<span class="w"> </span>-DWITH_SHADERS<span class="o">=</span>ON<span class="w"> </span>-DWITH_TEXT<span class="o">=</span>ON<span class="w"> </span>-DWITH_TEXTURETOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_TRADE<span class="o">=</span>ON<span class="w"> </span>-DWITH_GLFWAPPLICATION<span class="o">=</span>ON<span class="w"> </span>-DWITH_WINDOWLESSEGLAPPLICATION<span class="o">=</span>ON<span class="w"> </span>-DWITH_OPENGLTESTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_MAGNUMFONT<span class="o">=</span>ON<span class="w"> </span>-DWITH_OBJIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_TGAIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DTARGET_HEADLESS<span class="o">=</span>ON<span class="w"> </span>..<span class="w"> </span><span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># Mac OSX</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_AUDIO<span class="o">=</span>ON -DWITH_DEBUGTOOLS<span class="o">=</span>ON -DWITH_GL<span class="o">=</span>ON -DWITH_MESHTOOLS<span class="o">=</span>ON -DWITH_PRIMITIVES<span class="o">=</span>ON -DWITH_SCENEGRAPH<span class="o">=</span>ON -DWITH_SHADERS<span class="o">=</span>ON -DWITH_TEXT<span class="o">=</span>ON -DWITH_TEXTURETOOLS<span class="o">=</span>ON -DWITH_TRADE<span class="o">=</span>ON -DWITH_GLFWAPPLICATION<span class="o">=</span>ON -DWITH_WINDOWLESSCGLAPPLICATION<span class="o">=</span>ON -DWITH_OPENGLTESTER<span class="o">=</span>ON -DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON -DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON -DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON -DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON -DWITH_MAGNUMFONT<span class="o">=</span>ON -DWITH_OBJIMPORTER<span class="o">=</span>ON -DWITH_TGAIMPORTER<span class="o">=</span>ON -DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON .. <span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>make -j
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>sudo make install
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DWITH_AUDIO<span class="o">=</span>ON<span class="w"> </span>-DWITH_DEBUGTOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_GL<span class="o">=</span>ON<span class="w"> </span>-DWITH_MESHTOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_PRIMITIVES<span class="o">=</span>ON<span class="w"> </span>-DWITH_SCENEGRAPH<span class="o">=</span>ON<span class="w"> </span>-DWITH_SHADERS<span class="o">=</span>ON<span class="w"> </span>-DWITH_TEXT<span class="o">=</span>ON<span class="w"> </span>-DWITH_TEXTURETOOLS<span class="o">=</span>ON<span class="w"> </span>-DWITH_TRADE<span class="o">=</span>ON<span class="w"> </span>-DWITH_GLFWAPPLICATION<span class="o">=</span>ON<span class="w"> </span>-DWITH_WINDOWLESSCGLAPPLICATION<span class="o">=</span>ON<span class="w"> </span>-DWITH_OPENGLTESTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYAUDIOIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYIMAGECONVERTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYIMAGEIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_ANYSCENEIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_MAGNUMFONT<span class="o">=</span>ON<span class="w"> </span>-DWITH_OBJIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_TGAIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_WAVAUDIOIMPORTER<span class="o">=</span>ON<span class="w"> </span>..<span class="w"> </span><span class="c1"># this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>make<span class="w"> </span>-j
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
 <a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1"># installation of Magnum Plugins</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>git clone https://github.com/mosra/magnum-plugins.git
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">cd</span> magnum-plugins
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_ASSIMPIMPORTER<span class="o">=</span>ON -DWITH_DDSIMPORTER<span class="o">=</span>ON -DWITH_JPEGIMPORTER<span class="o">=</span>ON -DWITH_OPENGEXIMPORTER<span class="o">=</span>ON -DWITH_PNGIMPORTER<span class="o">=</span>ON -DWITH_TINYGLTFIMPORTER<span class="o">=</span>ON -DWITH_STBTRUETYPEFONT<span class="o">=</span>ON .. <span class="c1"># this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>make -j
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>sudo make install
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mosra/magnum-plugins.git
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">cd</span><span class="w"> </span>magnum-plugins
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DWITH_ASSIMPIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_DDSIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_JPEGIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_OPENGEXIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_PNGIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_TINYGLTFIMPORTER<span class="o">=</span>ON<span class="w"> </span>-DWITH_STBTRUETYPEFONT<span class="o">=</span>ON<span class="w"> </span>..<span class="w"> </span><span class="c1"># this will enable quite a few Magnum Plugins that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>make<span class="w"> </span>-j
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 <a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
 <a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="c1"># installation of Magnum DART Integration (DART needs to be installed) and Eigen Integration</span>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="nb">cd</span> /path/to/tmp/folder
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>git clone https://github.com/mosra/magnum-integration.git
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="nb">cd</span> magnum-integration
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DWITH_DART<span class="o">=</span>ON -DWITH_EIGEN<span class="o">=</span>ON ..
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>make -j
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>sudo make install
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="nb">cd</span><span class="w"> </span>/path/to/tmp/folder
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mosra/magnum-integration.git
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="nb">cd</span><span class="w"> </span>magnum-integration
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DWITH_DART<span class="o">=</span>ON<span class="w"> </span>-DWITH_EIGEN<span class="o">=</span>ON<span class="w"> </span>..
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>make<span class="w"> </span>-j
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
-
 <h3 id="compilation-and-running-the-examples">Compilation and running the examples<a class="headerlink" href="#compilation-and-running-the-examples" title="Permanent link">&para;</a></h3>
 <p>The compilation of the library is straight-forward:</p>
 <ul>
@@ -835,16 +834,15 @@
 <p>For the python bindings of robot_dart, we need <code>numpy</code> to be installed, <code>pybind11</code> and the python bindings of DART (dartpy).</p>
 <p>For <code>numpy</code> one can install it with <code>pip</code> or standard packages. For <code>pybind11</code> please follow the instructions on the <a href="http://dartsim.github.io/install_dartpy_on_ubuntu.html#install-dartpy-from-source">dart website</a> (focus on the pybind11 part, for the other parts follow our instructions above).</p>
 <p>For the python bindings of DART, do:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span> dart
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>dart
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>mkdir build
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span> build
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cmake -DDART_BUILD_DARTPY<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr ..
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>make -j4
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sudo make install
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo make install-dartpy <span class="c1"># for DART &gt;= v6.12.0, we do not need this</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>mkdir<span class="w"> </span>build
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span><span class="w"> </span>build
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>cmake<span class="w"> </span>-DDART_BUILD_DARTPY<span class="o">=</span>ON<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>..
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>make<span class="w"> </span>-j4
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sudo<span class="w"> </span>make<span class="w"> </span>install-dartpy<span class="w"> </span><span class="c1"># for DART &gt;= v6.12.0, we do not need this</span>
 </code></pre></div>
-
 <p>Then the compilation of robot_dart is almost identical as before:</p>
 <ul>
 <li>retrieve the code, for instance with <code>git clone https://github.com/resibots/robot_dart.git</code></li>
@@ -867,12 +865,14 @@
   
 
 
-              
-            </article>
-            
+
+                
+              </article>
+            </div>
+          
+          
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
-          </div>
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -883,44 +883,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    
-      
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../quick_install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Installation
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../robots/" class="md-footer__link md-footer__link--next" aria-label="Next: Supported robots" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Supported robots
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -947,10 +909,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "content.tabs.link", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "content.tabs.link", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
       
         <script src="../javascripts/mathjax.js"></script>
       
