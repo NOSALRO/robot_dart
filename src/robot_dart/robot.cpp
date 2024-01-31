@@ -1,6 +1,3 @@
-
-#include <boost/algorithm/string.hpp>
-#include <boost/filesystem.hpp>
 #include <unistd.h>
 
 #include <robot_dart/robot.hpp>
@@ -731,7 +728,7 @@ namespace robot_dart {
 #if DART_VERSION_AT_LEAST(6, 10, 0)
             bool force = jt->areLimitsEnforced();
 #else
-            bool force = jt->isPositionLimitEnforced());
+            bool force = jt->isPositionLimitEnforced();
 #endif
             auto type = jt->getActuatorType();
             force = force || type == dart::dynamics::Joint::SERVO || type == dart::dynamics::Joint::MIMIC;
@@ -1916,8 +1913,7 @@ namespace robot_dart {
             _packages = packages;
             // std::cout << "RobotDART:: using: " << model_file << std::endl;
 
-            // in C++17 we would use std::filesystem!
-            boost::filesystem::path path(model_file);
+            fs::path path(model_file);
             std::string extension = path.extension().string();
             if (extension == ".urdf") {
 #if DART_VERSION_AT_LEAST(6, 12, 0)

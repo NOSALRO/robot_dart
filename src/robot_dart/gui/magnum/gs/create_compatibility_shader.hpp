@@ -27,6 +27,8 @@
 #include <Magnum/GL/Extensions.h>
 #include <Magnum/GL/Shader.h>
 
+#include <string>
+
 namespace robot_dart {
     namespace gui {
         namespace magnum {

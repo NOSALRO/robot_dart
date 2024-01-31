@@ -71,6 +71,17 @@ def configure(conf):
         conf.msg("Build/install RobotDart", "no", color="YELLOW")
     conf.msg("Install Utheque (URDF library)", "yes")
 
+def test_filesystem(bld, experimental = False):
+    fl_node = bld.srcnode.make_node('fl.cpp')
+    fl_node.parent.mkdir()
+    lflags = []
+    if experimental:
+        fl_node.write('#include <experimental/filesystem>\nint main(void) { return 0;}\n', 'w')
+        lflags = ['-lstdc++fs']
+    else:
+        fl_node.write('#include <filesystem>\nint main(void) { return 0;}\n', 'w')
+    bld(features='cxx cxxprogram', source=[fl_node], linkflags=lflags, cxxflags=['-std=c++17'], target='fl')
+
 def configure_robot_dart(conf):
     conf.get_env()['BUILD_GRAPHIC'] = False
 
@@ -89,17 +100,18 @@ def configure_robot_dart(conf):
         conf.load('python')
         conf.load('pybind')
 
-    conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     # we need pthread for video saving
     conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True, min_version=(3,2,92))
     conf.check_dart(required=True)
+    if conf.env['DART_REQUIRES_BOOST']:
+        conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication Text MagnumFont'
     if conf.env['DEST_OS'] == 'darwin':
         conf.env['magnum_dep_libs'] += ' WindowlessCglApplication'
     else:
-        conf.env['magnum_dep_libs'] += ' WindowlessGlxApplication'
+        conf.env['magnum_dep_libs'] += ' WindowlessEglApplication'
     if len(conf.env.INCLUDES_Corrade):
         conf.check_magnum(components=conf.env['magnum_dep_libs'], required=False)
     if len(conf.env.INCLUDES_Magnum):
@@ -138,19 +150,20 @@ def configure_robot_dart(conf):
     if conf.options.build_shared:
         conf.env['lib_type'] = 'cxxshlib'
 
+    # We require C++17
     if conf.env.CXX_NAME in ["icc", "icpc"]:
-        common_flags = "-Wall -std=c++11"
+        common_flags = "-Wall -std=c++17"
         opt_flags = " -O3 -xHost -unroll -g " + native_icc
     elif conf.env.CXX_NAME in ["clang"]:
-        common_flags = "-Wall -std=c++11"
+        common_flags = "-Wall -std=c++17"
         # no-stack-check required for Catalina
         opt_flags = " -O3 -g -faligned-new -fno-stack-check -Wno-narrowing" + native
     else:
         gcc_version = int(conf.env['CC_VERSION'][0]+conf.env['CC_VERSION'][1])
-        if gcc_version < 47:
-            common_flags = "-Wall -std=c++0x"
+        if gcc_version < 50:
+            conf.fatal('We need C++17 features. Your compiler does not support them!')
         else:
-            common_flags = "-Wall -std=c++11"
+            common_flags = "-Wall -std=c++17"
         opt_flags = " -O3 -g" + native
         if gcc_version >= 71:
             opt_flags = opt_flags + " -faligned-new"
@@ -158,6 +171,15 @@ def configure_robot_dart(conf):
     if (not conf.options.build_shared) and (not conf.options.no_pic):
         common_flags += ' -fPIC'
 
+    has_filesystem = conf.check(build_fun=test_filesystem, msg='Checking support for <filesystem>', mandatory=False)
+    has_experimental_filesystem = None
+    if has_filesystem is None:
+        has_experimental_filesystem = conf.check(build_fun=lambda c : test_filesystem(c, True), msg='Checking support for <experimental/filesystem>', mandatory=False)
+
+    if has_filesystem is None and has_experimental_filesystem is None:
+        conf.fatal('We need std::filesystem or std::experimental::filesystem')
+    elif has_filesystem is None:
+        conf.env.LIB_CPPFS = ['stdc++fs']
     all_flags = common_flags + conf.env['py_flags'] + opt_flags
     conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + all_flags.split(' ')
 
@@ -167,13 +189,8 @@ def configure_robot_dart(conf):
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new -fno-stack-check" + native).split(' ')
     else:
         conf.env['PUBLIC_CXXFLAGS'] = ("-faligned-new" + native).split(' ')
-
-    if len(conf.env.CXXFLAGS_DART) > 0:
-        if '-std=c++11' in conf.env['CXXFLAGS']:
-            conf.env['CXXFLAGS'].remove('-std=c++11')
-        if '-std=c++0x' in conf.env['CXXFLAGS']:
-            conf.env['CXXFLAGS'].remove('-std=c++0x')
-        conf.env['CXXFLAGS'] = conf.env['CXXFLAGS'] + conf.env.CXXFLAGS_DART
+    # We require C++17
+    conf.env['PUBLIC_CXXFLAGS'] += ['-std=c++17']
 
     # add strict flags for warnings
     corrade.corrade_enable_pedantic_flags(conf)
@@ -216,11 +233,17 @@ def build_utheque(bld):
                     cwd=bld.path.find_dir('src/utheque/'),
                     relative_trick=True)
     #### CMake
+    cxx_flags = ''.join(x + ';' for x in bld.env['PUBLIC_CXXFLAGS'])
+    cmake_deps = ''
+    if 'LIB_CPPFS' in bld.env and len(bld.env.LIB_CPPFS) > 0:
+        cmake_deps = '\nINTERFACE_LINK_LIBRARIES "stdc++fs"'
     with open('cmake/UthequeConfig.cmake.in') as f:
         newText=f.read() \
-            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include")\
-            .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/")\
-            .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"")
+            .replace('@Utheque_INCLUDE_DIRS@', prefix + "/include") \
+            .replace('@Utheque_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/Utheque/") \
+            .replace('@Utheque_PREFIX@', "UTHEQUE_PREFIX=\"" + prefix + "\"") \
+            .replace('@Utheque_CXX_FLAGS@', cxx_flags) \
+            .replace('@Utheque_DEPS@', cmake_deps)
 
     with open(blddir + '/UthequeConfig.cmake', "w") as f:
         f.write(newText)
@@ -236,7 +259,7 @@ def build_utheque(bld):
 def build_robot_dart(bld):
     prefix = bld.get_env()['PREFIX']
 
-    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or len(bld.env.INCLUDES_BOOST) == 0:
+    if len(bld.env.INCLUDES_DART) == 0 or len(bld.env.INCLUDES_EIGEN) == 0 or (bld.env['DART_REQUIRES_BOOST'] and len(bld.env.INCLUDES_BOOST) == 0):
         bld.fatal('Some libraries were not found! Cannot proceed!')
 
     if bld.options.tests:
@@ -259,8 +282,9 @@ def build_robot_dart(bld):
     magnum_files = [f[len(bld.path.abspath())+1:] for f in magnum_files]
     robot_dart_magnum_srcs = " ".join(magnum_files)
 
-    libs = 'BOOST EIGEN DART PTHREAD'
+    libs = 'BOOST EIGEN DART PTHREAD CPPFS'
     defines = ["ROBOT_DART_PREFIX=\"" + bld.env['PREFIX'] + "\""]
+    defines += ["UTHEQUE_PREFIX=\"" + bld.env['PREFIX'] + "\""]
 
     bld.program(features = 'cxx ' + bld.env['lib_type'],
                 source = robot_dart_srcs,
@@ -312,6 +336,10 @@ def build_robot_dart(bld):
         py_files = [f[len(bld.path.abspath())+1:] for f in py_files]
         py_srcs = " ".join(py_files)
 
+        # Read suffix to be sure! Do not rely on waf!
+        if len(bld.env['PYTHON_CONFIG']) > 0 and len(bld.env['PYTHON_CONFIG'][0]) > 0:
+            py_suffix = bld.cmd_and_log('%s --extension-suffix' % bld.env['PYTHON_CONFIG'][0], quiet=True)[:-1] # ignore end of line!
+            bld.env['pyext_PATTERN'] = "%s" + py_suffix
         bld.program(features = 'c cshlib pyext',
                     source = './src/python/robot_dart.cc ' + py_srcs,
                     includes = './src',
@@ -361,6 +389,9 @@ def build_robot_dart(bld):
             bld.install_files('${PREFIX}/lib', blddir + '/libRobotDARTMagnum.' + suffix)
 
     #### installation of the cmake config (waf install)
+    cmake_deps = ''
+    if 'LIB_CPPFS' in bld.env and len(bld.env.LIB_CPPFS) > 0:
+        cmake_deps = ';stdc++fs'
     # CMAKE config
     with open('cmake/RobotDARTConfig.cmake.in') as f:
         magnum_dep_libs = bld.get_env()['magnum_dep_libs']
@@ -392,7 +423,8 @@ def build_robot_dart(bld):
             .replace('@RobotDART_MAGNUM_DEP_LIBS@', magnum_dep_libs) \
             .replace('@RobotDART_MAGNUM_DEFINITIONS@', defines_magnum) \
             .replace('@RobotDART_MAGNUM_LIBS@', magnum_libs) \
-            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/")
+            .replace('@RobotDART_CMAKE_MODULE_PATH@', prefix + "/lib/cmake/RobotDART/") \
+            .replace('@RobotDART_EXTRA_LIBS@', cmake_deps)
     with open(blddir + '/RobotDARTConfig.cmake', "w") as f:
         f.write(newText)
     # CMAKE configVersion
@@ -404,14 +436,14 @@ def build_robot_dart(bld):
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfig.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', blddir + '/RobotDARTConfigVersion.cmake')
     bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindGLFW.cmake')
+    bld.install_files('${PREFIX}/lib/cmake/RobotDART/', 'cmake/FindEGL.cmake')
 
 def build_examples(bld):
     # we first build the library
     build(bld)
     print("Bulding examples...")
-    libs = 'BOOST EIGEN DART PTHREAD'
+    libs = 'BOOST EIGEN DART PTHREAD CPPFS'
     path = bld.path.abspath() + '/res'
-    bld.env.LIB_PTHREAD = ['pthread']
 
     # these examples should not be compiled without magnum
     magnum_only = ['magnum_contexts.cpp', 'cameras.cpp', 'transparent.cpp', 'graphics_tutorial.cpp', 'sensors_tutorial.cpp']
