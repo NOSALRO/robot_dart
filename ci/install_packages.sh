@@ -7,9 +7,9 @@ sudo apt-get install -y --no-install-recommends build-essential cmake pkg-config
 sudo ln -s /usr/bin/python3 /usr/bin/python
 
 # if gcc, we can safely use the official package, for clang we need to build it
-if [ "$COMPILER" = "gcc" ]; then
-    sudo apt-get install -y --no-install-recommends pybind11-dev
-fi
+# if [ "$COMPILER" = "gcc" ]; then
+sudo apt-get install -y --no-install-recommends pybind11-dev
+# fi
 
 if [ "$MAGNUM_GUI" = "ON" ]; then
     sudo apt-get install -y --no-install-recommends libopenal-dev libglfw3-dev libsdl2-dev libdevil-dev libpng-dev libfaad-dev libfreetype6-dev libglm-dev
