@@ -275,6 +275,11 @@ def build_robot_dart(bld):
                 magnum_files.append(ffile)
             else:
                 files.append(ffile)
+    # External (TinyProcessLib)
+    for root, dirnames, filenames in os.walk(bld.path.abspath()+'/src/external/'):
+        for filename in fnmatch.filter(filenames, '*.cpp'):
+            ffile = os.path.join(root, filename)
+            magnum_files.append(ffile)
 
     files = [f[len(bld.path.abspath())+1:] for f in files]
     robot_dart_srcs = " ".join(files)
