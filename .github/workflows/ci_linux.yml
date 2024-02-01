@@ -72,9 +72,6 @@ jobs:
       - name: Build DART
         if: steps.cache-dart.outputs.cache-hit != 'true'
         run: ${{github.workspace}}/ci/install_dart_latest.sh
-      - name: Build pybind11
-        if: steps.cache-dart.outputs.cache-hit == 'true'
-        run: ${{github.workspace}}/ci/install_pybind11.sh
       - name: Build Magnum
         run: if [ "$MAGNUM_GUI" = "ON" ]; then ${{github.workspace}}/ci/install_magnum.sh ; fi
       - name: Build robot_dart
