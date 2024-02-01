@@ -1,0 +1,1504 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1RobotDARTSimu" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::RobotDARTSimu</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classrobot__dart_1_1RobotDARTSimu_1a68d6b750f99e87ebbf7f7155283d46ca" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt;</type>
+        <definition>using robot_dart::RobotDARTSimu::robot_t =  std::shared_ptr&lt;Robot&gt;</definition>
+        <argsstring></argsstring>
+        <name>robot_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="28" column="9" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a973512975558ad45f6e986e8a2af233a" prot="protected" static="no" mutable="no">
+        <type>dart::simulation::WorldPtr</type>
+        <definition>dart::simulation::WorldPtr robot_dart::RobotDARTSimu::_world</definition>
+        <argsstring></argsstring>
+        <name>_world</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="143" column="36" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1ad480ceb9e8cd413fb348927498f7915d" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::RobotDARTSimu::_old_index</definition>
+        <argsstring></argsstring>
+        <name>_old_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="144" column="16" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1aebae59874da8c245568424d25116c818" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotDARTSimu::_break</definition>
+        <argsstring></argsstring>
+        <name>_break</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="145" column="14" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a18f32f8326b64c0d1aa83364e8460955" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Sensor" kindref="compound">sensor::Sensor</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;sensor::Sensor&gt; &gt; robot_dart::RobotDARTSimu::_sensors</definition>
+        <argsstring></argsstring>
+        <name>_sensors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="147" column="21" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a315d13f4fb65669c0a86aa0b0dfc39f2" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; robot_t &gt;</type>
+        <definition>std::vector&lt;robot_t&gt; robot_dart::RobotDARTSimu::_robots</definition>
+        <argsstring></argsstring>
+        <name>_robots</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="148" column="21" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1af2134e8d4f682eeba71f612267ff4b66" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1Base" kindref="compound">gui::Base</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;gui::Base&gt; robot_dart::RobotDARTSimu::_graphics</definition>
+        <argsstring></argsstring>
+        <name>_graphics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="149" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a6d49515f27c3404b623675a60370979f" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1GUIData" kindref="compound">simu::GUIData</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;simu::GUIData&gt; robot_dart::RobotDARTSimu::_gui_data</definition>
+        <argsstring></argsstring>
+        <name>_gui_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="150" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a5dd8e27210866af3a91085349c115512" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;simu::TextData&gt; robot_dart::RobotDARTSimu::_text_panel</definition>
+        <argsstring></argsstring>
+        <name>_text_panel</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="151" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1adc5d74cb7bf1f92351305379002c7e98" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;simu::TextData&gt; robot_dart::RobotDARTSimu::_status_bar</definition>
+        <argsstring></argsstring>
+        <name>_status_bar</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="152" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a1232abeb7ad7ff35bb00365b3868696f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1Scheduler" kindref="compound">Scheduler</ref></type>
+        <definition>Scheduler robot_dart::RobotDARTSimu::_scheduler</definition>
+        <argsstring></argsstring>
+        <name>_scheduler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="154" column="19" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a83a95d2d29f99d935817d049ab6e491c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::_physics_freq</definition>
+        <argsstring></argsstring>
+        <name>_physics_freq</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="155" column="13" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1a3e7dd7922948dcbf5fbe0f7aa6bce189" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::_control_freq</definition>
+        <argsstring></argsstring>
+        <name>_control_freq</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="155" column="28" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotDARTSimu_1ac9f1c41144e25bfae5b5cd9fd4539023" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::_graphics_freq</definition>
+        <argsstring></argsstring>
+        <name>_graphics_freq</name>
+        <initializer>= 40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="155" column="43" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a5f191971ffa66ff57801134e40543add" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::RobotDARTSimu::RobotDARTSimu</definition>
+        <argsstring>(double timestep=0.015)</argsstring>
+        <name>RobotDARTSimu</name>
+        <param>
+          <type>double</type>
+          <declname>timestep</declname>
+          <defval>0.015</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="30" column="9" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="95" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a71187067529f0d79995ffed115cdb0f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::RobotDARTSimu::~RobotDARTSimu</definition>
+        <argsstring>()</argsstring>
+        <name>~RobotDARTSimu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="32" column="9" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="111" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ae6d809ea397ab0a69261fed9f4247413" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::run</definition>
+        <argsstring>(double max_duration=5.0, bool reset_commands=false, bool force_position_bounds=true)</argsstring>
+        <name>run</name>
+        <param>
+          <type>double</type>
+          <declname>max_duration</declname>
+          <defval>5.0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reset_commands</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_position_bounds</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="34" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="117" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a9871d0bc50ef9be93965975503774f31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotDARTSimu::step_world</definition>
+        <argsstring>(bool reset_commands=false, bool force_position_bounds=true)</argsstring>
+        <name>step_world</name>
+        <param>
+          <type>bool</type>
+          <declname>reset_commands</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_position_bounds</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="35" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="129" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a35646d3cfcdb92f4d26ea23cb971bd24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotDARTSimu::step</definition>
+        <argsstring>(bool reset_commands=false, bool force_position_bounds=true)</argsstring>
+        <name>step</name>
+        <param>
+          <type>bool</type>
+          <declname>reset_commands</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_position_bounds</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="36" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="174" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a72de7c529ed28722897451b9bd4e0d56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1Scheduler" kindref="compound">Scheduler</ref> &amp;</type>
+        <definition>Scheduler &amp; robot_dart::RobotDARTSimu::scheduler</definition>
+        <argsstring>()</argsstring>
+        <name>scheduler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="38" column="19" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a757bcbbea8743e398a5f67be2fab6628" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classrobot__dart_1_1Scheduler" kindref="compound">Scheduler</ref> &amp;</type>
+        <definition>const Scheduler &amp; robot_dart::RobotDARTSimu::scheduler</definition>
+        <argsstring>() const</argsstring>
+        <name>scheduler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="39" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ace6737eb424fa14edfd0b009608f1dc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotDARTSimu::schedule</definition>
+        <argsstring>(int freq)</argsstring>
+        <name>schedule</name>
+        <param>
+          <type>int</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="40" column="14" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a681f350f16cc7052004dd7616762ccaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::physics_freq</definition>
+        <argsstring>() const</argsstring>
+        <name>physics_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="42" column="13" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a686c70463088e695f6c6c71b2829280d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::control_freq</definition>
+        <argsstring>() const</argsstring>
+        <name>control_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="43" column="13" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1aa3859dabca7a54d23f6b8faa5d081c64" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_control_freq</definition>
+        <argsstring>(int frequency)</argsstring>
+        <name>set_control_freq</name>
+        <param>
+          <type>int</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="45" column="14" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="45" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a129f2df44896b524cfdf1eff5411e770" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::graphics_freq</definition>
+        <argsstring>() const</argsstring>
+        <name>graphics_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="52" column="13" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a5a0744adacb3aa426e30756a48b7260b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_graphics_freq</definition>
+        <argsstring>(int frequency)</argsstring>
+        <name>set_graphics_freq</name>
+        <param>
+          <type>int</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="54" column="14" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="54" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1adbfb1fea0b8024c655e9bc584273e745" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1Base" kindref="compound">gui::Base</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; gui::Base &gt; robot_dart::RobotDARTSimu::graphics</definition>
+        <argsstring>() const</argsstring>
+        <name>graphics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="62" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="185" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a1ab1ca261842e9bcd1a50a9b45538ead" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_graphics</definition>
+        <argsstring>(const std::shared_ptr&lt; gui::Base &gt; &amp;graphics)</argsstring>
+        <name>set_graphics</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1Base" kindref="compound">gui::Base</ref> &gt; &amp;</type>
+          <declname>graphics</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="63" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="190" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ad4e3801053dca7984a8b6049b28ad736" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dart::simulation::WorldPtr</type>
+        <definition>dart::simulation::WorldPtr robot_dart::RobotDARTSimu::world</definition>
+        <argsstring>()</argsstring>
+        <name>world</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="65" column="36" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="197" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ac1370b088e32e0e20de3556cebdcd375" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; T &gt;</type>
+        <definition>std::shared_ptr&lt; T &gt; robot_dart::RobotDARTSimu::add_sensor</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>add_sensor</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="68" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ad2b36de3b7bf436295f2941b36d29705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::add_sensor</definition>
+        <argsstring>(const std::shared_ptr&lt; sensor::Sensor &gt; &amp;sensor)</argsstring>
+        <name>add_sensor</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Sensor" kindref="compound">sensor::Sensor</ref> &gt; &amp;</type>
+          <declname>sensor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="74" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="202" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a6deb0d99f4c3700d6947975b323b274d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Sensor" kindref="compound">sensor::Sensor</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; std::shared_ptr&lt; sensor::Sensor &gt; &gt; robot_dart::RobotDARTSimu::sensors</definition>
+        <argsstring>() const</argsstring>
+        <name>sensors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="75" column="21" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="209" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1afca355d1091492b16f4f1931c5e3a35d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Sensor" kindref="compound">sensor::Sensor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; sensor::Sensor &gt; robot_dart::RobotDARTSimu::sensor</definition>
+        <argsstring>(size_t index) const</argsstring>
+        <name>sensor</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="76" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="214" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a9bd6297dcb3c6a374713adbe6d592932" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_sensor</definition>
+        <argsstring>(const std::shared_ptr&lt; sensor::Sensor &gt; &amp;sensor)</argsstring>
+        <name>remove_sensor</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Sensor" kindref="compound">sensor::Sensor</ref> &gt; &amp;</type>
+          <declname>sensor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="78" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="220" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1add28af1d0ca1ca67b46894a80b736175" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_sensor</definition>
+        <argsstring>(size_t index)</argsstring>
+        <name>remove_sensor</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="79" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="228" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1af6e2bac26fc8de57adffd8f6c3be91ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_sensors</definition>
+        <argsstring>(const std::string &amp;type)</argsstring>
+        <name>remove_sensors</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="80" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="234" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ab18f6d86672c4e023977e6f68031b772" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::clear_sensors</definition>
+        <argsstring>()</argsstring>
+        <name>clear_sensors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="81" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="245" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1abb6f36d132633cf6df3005aa30bc650b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::RobotDARTSimu::timestep</definition>
+        <argsstring>() const</argsstring>
+        <name>timestep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="83" column="16" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="250" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ae787abd47d81abd48786ccdcadaabd94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_timestep</definition>
+        <argsstring>(double timestep, bool update_control_freq=true)</argsstring>
+        <name>set_timestep</name>
+        <param>
+          <type>double</type>
+          <declname>timestep</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>update_control_freq</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="84" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="255" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a4fbf96634b4879e9e03b394d2f84e629" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d robot_dart::RobotDARTSimu::gravity</definition>
+        <argsstring>() const</argsstring>
+        <name>gravity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="86" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="265" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1abcca16d47af960ea03400922d7b97884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_gravity</definition>
+        <argsstring>(const Eigen::Vector3d &amp;gravity)</argsstring>
+        <name>set_gravity</name>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>gravity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="87" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ac5cea86b6d75a64fb967d305198d2384" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::stop_sim</definition>
+        <argsstring>(bool disable=true)</argsstring>
+        <name>stop_sim</name>
+        <param>
+          <type>bool</type>
+          <declname>disable</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="89" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="275" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a4c3fc5c26b6bbba42af7c8518515f96e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotDARTSimu::halted_sim</definition>
+        <argsstring>() const</argsstring>
+        <name>halted_sim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="90" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="280" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1af0c265ee929aae362ed7a2c15c95b89d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t robot_dart::RobotDARTSimu::num_robots</definition>
+        <argsstring>() const</argsstring>
+        <name>num_robots</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="92" column="16" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="285" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ad7be58d8bd4f2eb411118b2b1a8dc521" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::vector&lt; robot_t &gt; &amp;</type>
+        <definition>const std::vector&lt; std::shared_ptr&lt; Robot &gt; &gt; &amp; robot_dart::RobotDARTSimu::robots</definition>
+        <argsstring>() const</argsstring>
+        <name>robots</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="93" column="27" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="290" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a7b52d90a5a97476ac3fb27b3be8406e7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>robot_t</type>
+        <definition>std::shared_ptr&lt; Robot &gt; robot_dart::RobotDARTSimu::robot</definition>
+        <argsstring>(size_t index) const</argsstring>
+        <name>robot</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="94" column="17" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="295" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ac6017f92f974b5b7d26910255f13d232" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int robot_dart::RobotDARTSimu::robot_index</definition>
+        <argsstring>(const robot_t &amp;robot) const</argsstring>
+        <name>robot_index</name>
+        <param>
+          <type>const robot_t &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="95" column="13" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="301" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a7a85bdf315dc93e1209eb6a34b53c8c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::add_robot</definition>
+        <argsstring>(const robot_t &amp;robot)</argsstring>
+        <name>add_robot</name>
+        <param>
+          <type>const robot_t &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="97" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="308" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a0a8a96bb27d82b6bd41cef9e26690c3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::add_visual_robot</definition>
+        <argsstring>(const robot_t &amp;robot)</argsstring>
+        <name>add_visual_robot</name>
+        <param>
+          <type>const robot_t &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="98" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="320" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a12e7ff5442bfd8d837da9e86aab9d9a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_robot</definition>
+        <argsstring>(const robot_t &amp;robot)</argsstring>
+        <name>remove_robot</name>
+        <param>
+          <type>const robot_t &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="99" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1aa9f1b266a0522f4695bab44ddb8e6dde" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_robot</definition>
+        <argsstring>(size_t index)</argsstring>
+        <name>remove_robot</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="100" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="361" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a8bc7795fffb295cd575f3bb21eef8180" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::clear_robots</definition>
+        <argsstring>()</argsstring>
+        <name>clear_robots</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="101" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="370" bodyend="378"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a97c4d2b1b74e342743eb47bcb140bb85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1simu_1_1GUIData" kindref="compound">simu::GUIData</ref> *</type>
+        <definition>simu::GUIData * robot_dart::RobotDARTSimu::gui_data</definition>
+        <argsstring>()</argsstring>
+        <name>gui_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="103" column="23" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="380" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1adb1ae43293a7499191084467c0f48957" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::enable_text_panel</definition>
+        <argsstring>(bool enable=true, double font_size=-1)</argsstring>
+        <name>enable_text_panel</name>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>font_size</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="105" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="382" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a2d2e3c616b718943f7a72a6bfae43056" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string robot_dart::RobotDARTSimu::text_panel_text</definition>
+        <argsstring>() const</argsstring>
+        <name>text_panel_text</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="106" column="21" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="414" bodyend="418"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a59651c4ee53d133f6f73feb9e3ba2d68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_text_panel</definition>
+        <argsstring>(const std::string &amp;str)</argsstring>
+        <name>set_text_panel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="107" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="408" bodyend="412"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a22a6cc3b1754a83c1b5c4991461bbe6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::enable_status_bar</definition>
+        <argsstring>(bool enable=true, double font_size=-1)</argsstring>
+        <name>enable_status_bar</name>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>font_size</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="109" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="384" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a0b37f04758a650ef1de860852aa709d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string robot_dart::RobotDARTSimu::status_bar_text</definition>
+        <argsstring>() const</argsstring>
+        <name>status_bar_text</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="110" column="21" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="420" bodyend="435"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1af279b9958f2c288fc9e992dedc4587d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; simu::TextData &gt; robot_dart::RobotDARTSimu::add_text</definition>
+        <argsstring>(const std::string &amp;text, const Eigen::Affine2d &amp;tf=Eigen::Affine2d::Identity(), Eigen::Vector4d color=Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment=(1|3&lt;&lt; 3), bool draw_bg=false, Eigen::Vector4d bg_color=Eigen::Vector4d(0, 0, 0, 0.75), double font_size=28)</argsstring>
+        <name>add_text</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>const Eigen::Affine2d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Affine2d::Identity()</defval>
+        </param>
+        <param>
+          <type>Eigen::Vector4d</type>
+          <declname>color</declname>
+          <defval>Eigen::Vector4d(1, 1, 1, 1)</defval>
+        </param>
+        <param>
+          <type>std::uint8_t</type>
+          <declname>alignment</declname>
+          <defval>(1|3&lt;&lt; 3)</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>draw_bg</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>Eigen::Vector4d</type>
+          <declname>bg_color</declname>
+          <defval>Eigen::Vector4d(0, 0, 0, 0.75)</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>font_size</declname>
+          <defval>28</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="112" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="437" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a58fc310a49848b46e4f42f19e34b3473" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Robot &gt; robot_dart::RobotDARTSimu::add_floor</definition>
+        <argsstring>(double floor_width=10.0, double floor_height=0.1, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity(), const std::string &amp;floor_name=&quot;floor&quot;)</argsstring>
+        <name>add_floor</name>
+        <param>
+          <type>double</type>
+          <declname>floor_width</declname>
+          <defval>10.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>floor_height</declname>
+          <defval>0.1</defval>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>floor_name</declname>
+          <defval>&quot;floor&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="114" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="442" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1aefaa6b043ea320c106018290c25acd23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Robot &gt; robot_dart::RobotDARTSimu::add_checkerboard_floor</definition>
+        <argsstring>(double floor_width=10.0, double floor_height=0.1, double size=1., const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity(), const std::string &amp;floor_name=&quot;checkerboard_floor&quot;, const Eigen::Vector4d &amp;first_color=dart::Color::White(1.), const Eigen::Vector4d &amp;second_color=dart::Color::Gray(1.))</argsstring>
+        <name>add_checkerboard_floor</name>
+        <param>
+          <type>double</type>
+          <declname>floor_width</declname>
+          <defval>10.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>floor_height</declname>
+          <defval>0.1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>size</declname>
+          <defval>1.</defval>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>floor_name</declname>
+          <defval>&quot;checkerboard_floor&quot;</defval>
+        </param>
+        <param>
+          <type>const Eigen::Vector4d &amp;</type>
+          <declname>first_color</declname>
+          <defval>dart::Color::White(1.)</defval>
+        </param>
+        <param>
+          <type>const Eigen::Vector4d &amp;</type>
+          <declname>second_color</declname>
+          <defval>dart::Color::Gray(1.)</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="115" column="25" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="467" bodyend="524"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a46261047190705981a4c53e480578813" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_collision_detector</definition>
+        <argsstring>(const std::string &amp;collision_detector)</argsstring>
+        <name>set_collision_detector</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>collision_detector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="117" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="526" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ad9a10d337ccc35802333d568c7f193de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; robot_dart::RobotDARTSimu::collision_detector</definition>
+        <argsstring>() const</argsstring>
+        <name>collision_detector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="118" column="27" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="552" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a723727aed13e5808de8036ef144af285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_collision_masks</definition>
+        <argsstring>(size_t robot_index, uint32_t category_mask, uint32_t collision_mask)</argsstring>
+        <name>set_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>category_mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>collision_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="121" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="554" bodyend="559"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a3883dd1e5494ae9782b7878351636681" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_collision_masks</definition>
+        <argsstring>(size_t robot_index, const std::string &amp;body_name, uint32_t category_mask, uint32_t collision_mask)</argsstring>
+        <name>set_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>category_mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>collision_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="122" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="561" bodyend="569"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a9d3584157326c4c58aa759d7b117af45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::set_collision_masks</definition>
+        <argsstring>(size_t robot_index, size_t body_index, uint32_t category_mask, uint32_t collision_mask)</argsstring>
+        <name>set_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>body_index</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>category_mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>collision_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="123" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="571" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a4af40804ca69b02c8b71ebab61bda6ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::RobotDARTSimu::collision_mask</definition>
+        <argsstring>(size_t robot_index, const std::string &amp;body_name)</argsstring>
+        <name>collision_mask</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="125" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="582" bodyend="594"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1abe3e3115adceb5f2f534fbd7287f67a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::RobotDARTSimu::collision_mask</definition>
+        <argsstring>(size_t robot_index, size_t body_index)</argsstring>
+        <name>collision_mask</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>body_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="126" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="596" bodyend="609"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a91fbe7905a68f5b20cb1d1381259aa15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::RobotDARTSimu::collision_category</definition>
+        <argsstring>(size_t robot_index, const std::string &amp;body_name)</argsstring>
+        <name>collision_category</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="128" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="611" bodyend="623"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a8dcff8e7ed4812560e62602cbe366f04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::RobotDARTSimu::collision_category</definition>
+        <argsstring>(size_t robot_index, size_t body_index)</argsstring>
+        <name>collision_category</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>body_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="129" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="625" bodyend="638"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a8f67284bb646b78405cf72d69155b105" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; uint32_t, uint32_t &gt;</type>
+        <definition>std::pair&lt; uint32_t, uint32_t &gt; robot_dart::RobotDARTSimu::collision_masks</definition>
+        <argsstring>(size_t robot_index, const std::string &amp;body_name)</argsstring>
+        <name>collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="131" column="19" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="640" bodyend="654"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a6b07f72de4ca6475af538e20aa19c6d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; uint32_t, uint32_t &gt;</type>
+        <definition>std::pair&lt; uint32_t, uint32_t &gt; robot_dart::RobotDARTSimu::collision_masks</definition>
+        <argsstring>(size_t robot_index, size_t body_index)</argsstring>
+        <name>collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>body_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="132" column="19" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="656" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1a3ec315c724f13fa37179953c5a0abbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_collision_masks</definition>
+        <argsstring>(size_t robot_index)</argsstring>
+        <name>remove_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="134" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="673" bodyend="678"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1aece49f06af1e6618c9577b4b2a1f6f5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_collision_masks</definition>
+        <argsstring>(size_t robot_index, const std::string &amp;body_name)</argsstring>
+        <name>remove_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="135" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="680" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1af75ce479841f1d6469eecf3181272f40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_collision_masks</definition>
+        <argsstring>(size_t robot_index, size_t body_index)</argsstring>
+        <name>remove_collision_masks</name>
+        <param>
+          <type>size_t</type>
+          <declname>robot_index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>body_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="136" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="690" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1ad26a49b55b766702ce0516a0a3096686" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::remove_all_collision_masks</definition>
+        <argsstring>()</argsstring>
+        <name>remove_all_collision_masks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="138" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="701" bodyend="705"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classrobot__dart_1_1RobotDARTSimu_1aa1ad9759d68e9e735be07d0919ffd832" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotDARTSimu::_enable</definition>
+        <argsstring>(std::shared_ptr&lt; simu::TextData &gt; &amp;text, bool enable, double font_size)</argsstring>
+        <name>_enable</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt; &amp;</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>font_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="141" column="14" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="394" bodyend="406"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>robot_dart::RobotDARTSimu</label>
+        <link refid="classrobot__dart_1_1RobotDARTSimu"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>_scheduler</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::Scheduler</label>
+        <link refid="classrobot__dart_1_1Scheduler"/>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/robot_dart_simu.hpp" line="26" column="5" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="26" bodyend="156"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aebae59874da8c245568424d25116c818" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_break</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a3e7dd7922948dcbf5fbe0f7aa6bce189" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_control_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aa1ad9759d68e9e735be07d0919ffd832" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_enable</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1af2134e8d4f682eeba71f612267ff4b66" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_graphics</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ac9f1c41144e25bfae5b5cd9fd4539023" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_graphics_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a6d49515f27c3404b623675a60370979f" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_gui_data</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad480ceb9e8cd413fb348927498f7915d" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_old_index</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a83a95d2d29f99d935817d049ab6e491c" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_physics_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a315d13f4fb65669c0a86aa0b0dfc39f2" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_robots</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a1232abeb7ad7ff35bb00365b3868696f" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_scheduler</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a18f32f8326b64c0d1aa83364e8460955" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_sensors</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1adc5d74cb7bf1f92351305379002c7e98" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_status_bar</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a5dd8e27210866af3a91085349c115512" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_text_panel</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a973512975558ad45f6e986e8a2af233a" prot="protected" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>_world</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aefaa6b043ea320c106018290c25acd23" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_checkerboard_floor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a58fc310a49848b46e4f42f19e34b3473" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_floor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a7a85bdf315dc93e1209eb6a34b53c8c2" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ac1370b088e32e0e20de3556cebdcd375" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_sensor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad2b36de3b7bf436295f2941b36d29705" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_sensor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1af279b9958f2c288fc9e992dedc4587d3" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_text</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a0a8a96bb27d82b6bd41cef9e26690c3a" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>add_visual_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a8bc7795fffb295cd575f3bb21eef8180" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>clear_robots</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ab18f6d86672c4e023977e6f68031b772" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>clear_sensors</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a91fbe7905a68f5b20cb1d1381259aa15" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_category</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a8dcff8e7ed4812560e62602cbe366f04" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_category</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad9a10d337ccc35802333d568c7f193de" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_detector</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a4af40804ca69b02c8b71ebab61bda6ed" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_mask</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1abe3e3115adceb5f2f534fbd7287f67a1" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_mask</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a8f67284bb646b78405cf72d69155b105" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a6b07f72de4ca6475af538e20aa19c6d6" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a686c70463088e695f6c6c71b2829280d" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>control_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a22a6cc3b1754a83c1b5c4991461bbe6c" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>enable_status_bar</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1adb1ae43293a7499191084467c0f48957" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>enable_text_panel</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1adbfb1fea0b8024c655e9bc584273e745" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>graphics</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a129f2df44896b524cfdf1eff5411e770" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>graphics_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a4fbf96634b4879e9e03b394d2f84e629" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>gravity</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a97c4d2b1b74e342743eb47bcb140bb85" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>gui_data</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a4c3fc5c26b6bbba42af7c8518515f96e" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>halted_sim</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1af0c265ee929aae362ed7a2c15c95b89d" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>num_robots</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a681f350f16cc7052004dd7616762ccaf" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>physics_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad26a49b55b766702ce0516a0a3096686" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_all_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a3ec315c724f13fa37179953c5a0abbcd" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aece49f06af1e6618c9577b4b2a1f6f5e" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1af75ce479841f1d6469eecf3181272f40" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a12e7ff5442bfd8d837da9e86aab9d9a2" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aa9f1b266a0522f4695bab44ddb8e6dde" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a9bd6297dcb3c6a374713adbe6d592932" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_sensor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1add28af1d0ca1ca67b46894a80b736175" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_sensor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1af6e2bac26fc8de57adffd8f6c3be91ca" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>remove_sensors</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a7b52d90a5a97476ac3fb27b3be8406e7" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>robot</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ac6017f92f974b5b7d26910255f13d232" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>robot_index</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a68d6b750f99e87ebbf7f7155283d46ca" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>robot_t</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a5f191971ffa66ff57801134e40543add" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>RobotDARTSimu</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad7be58d8bd4f2eb411118b2b1a8dc521" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>robots</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ae6d809ea397ab0a69261fed9f4247413" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>run</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ace6737eb424fa14edfd0b009608f1dc7" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>schedule</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a72de7c529ed28722897451b9bd4e0d56" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>scheduler</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a757bcbbea8743e398a5f67be2fab6628" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>scheduler</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1afca355d1091492b16f4f1931c5e3a35d" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>sensor</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a6deb0d99f4c3700d6947975b323b274d" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>sensors</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a46261047190705981a4c53e480578813" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_collision_detector</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a723727aed13e5808de8036ef144af285" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a3883dd1e5494ae9782b7878351636681" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a9d3584157326c4c58aa759d7b117af45" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_collision_masks</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1aa3859dabca7a54d23f6b8faa5d081c64" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_control_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a1ab1ca261842e9bcd1a50a9b45538ead" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_graphics</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a5a0744adacb3aa426e30756a48b7260b" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_graphics_freq</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1abcca16d47af960ea03400922d7b97884" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_gravity</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a59651c4ee53d133f6f73feb9e3ba2d68" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_text_panel</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ae787abd47d81abd48786ccdcadaabd94" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>set_timestep</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a0b37f04758a650ef1de860852aa709d2" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>status_bar_text</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a35646d3cfcdb92f4d26ea23cb971bd24" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>step</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a9871d0bc50ef9be93965975503774f31" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>step_world</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ac5cea86b6d75a64fb967d305198d2384" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>stop_sim</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a2d2e3c616b718943f7a72a6bfae43056" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>text_panel_text</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1abb6f36d132633cf6df3005aa30bc650b" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>timestep</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1ad4e3801053dca7984a8b6049b28ad736" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>world</name></member>
+      <member refid="classrobot__dart_1_1RobotDARTSimu_1a71187067529f0d79995ffed115cdb0f4" prot="public" virt="non-virtual"><scope>robot_dart::RobotDARTSimu</scope><name>~RobotDARTSimu</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

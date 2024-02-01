@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::ObjectStruct</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1afe8d2e7485f03de57f9f7672e88c9243" prot="public" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> *</type>
+        <definition>DrawableObject* robot_dart::gui::magnum::ObjectStruct::drawable</definition>
+        <argsstring></argsstring>
+        <name>drawable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="191" column="32" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aae8a97af8dbfa64eabc794e73c047bf9" prot="public" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kindref="compound">ShadowedObject</ref> *</type>
+        <definition>ShadowedObject* robot_dart::gui::magnum::ObjectStruct::shadowed</definition>
+        <argsstring></argsstring>
+        <name>shadowed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="192" column="32" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1ad8bfad47f8e3a8bb119ea3e8fce2901d" prot="public" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject" kindref="compound">ShadowedColorObject</ref> *</type>
+        <definition>ShadowedColorObject* robot_dart::gui::magnum::ObjectStruct::shadowed_color</definition>
+        <argsstring></argsstring>
+        <name>shadowed_color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="193" column="37" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aa2afd50e6a740b666158ea1c84d7d899" prot="public" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject" kindref="compound">CubeMapShadowedObject</ref> *</type>
+        <definition>CubeMapShadowedObject* robot_dart::gui::magnum::ObjectStruct::cubemapped</definition>
+        <argsstring></argsstring>
+        <name>cubemapped</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="194" column="39" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1a38b4b4a59591579d9ed4e76473f02098" prot="public" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kindref="compound">CubeMapShadowedColorObject</ref> *</type>
+        <definition>CubeMapShadowedColorObject* robot_dart::gui::magnum::ObjectStruct::cubemapped_color</definition>
+        <argsstring></argsstring>
+        <name>cubemapped_color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="195" column="44" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="3">
+        <label>Object3D</label>
+      </node>
+      <node id="8">
+        <label>robot_dart::gui::magnum::CubeMapShadowedColorObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>robot_dart::gui::magnum::CubeMapShadowedObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::gui::magnum::DrawableObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::ObjectStruct</label>
+        <link refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>drawable</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>shadowed</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>shadowed_color</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>cubemapped</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>cubemapped_color</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>robot_dart::gui::magnum::ShadowedColorObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>robot_dart::gui::magnum::ShadowedObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="190" column="13" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="190" bodyend="196"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aa2afd50e6a740b666158ea1c84d7d899" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ObjectStruct</scope><name>cubemapped</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1a38b4b4a59591579d9ed4e76473f02098" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ObjectStruct</scope><name>cubemapped_color</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1afe8d2e7485f03de57f9f7672e88c9243" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ObjectStruct</scope><name>drawable</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aae8a97af8dbfa64eabc794e73c047bf9" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ObjectStruct</scope><name>shadowed</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1ad8bfad47f8e3a8bb119ea3e8fce2901d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ObjectStruct</scope><name>shadowed_color</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

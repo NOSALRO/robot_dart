@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::ShadowedObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::SceneGraph::Drawable3D</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1ab2226955f29aad3b9eb808d6b9895c6b" prot="private" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu* robot_dart::gui::magnum::ShadowedObject::_simu</definition>
+        <argsstring></argsstring>
+        <name>_simu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="90" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a10335d6c98b338c6fbbc1b128f4324b6" prot="private" static="no" mutable="no">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode* robot_dart::gui::magnum::ShadowedObject::_shape</definition>
+        <argsstring></argsstring>
+        <name>_shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="91" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0a7af5fa9691f00b8cd149e509445479" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt;</type>
+        <definition>std::vector&lt;std::reference_wrapper&lt;Magnum::GL::Mesh&gt; &gt; robot_dart::gui::magnum::ShadowedObject::_meshes</definition>
+        <argsstring></argsstring>
+        <name>_meshes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="92" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afe0dd6095a5376efb397ff36e1b08dc0" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::ShadowMap&gt; robot_dart::gui::magnum::ShadowedObject::_shader</definition>
+        <argsstring></argsstring>
+        <name>_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="93" column="40" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afb2ae143417d7554d47598a3dd2c5490" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::ShadowMap&gt; robot_dart::gui::magnum::ShadowedObject::_texture_shader</definition>
+        <argsstring></argsstring>
+        <name>_texture_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="93" column="48" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1af8d220ec9d374deee6410cb0bd04473b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt;</type>
+        <definition>std::vector&lt;gs::Material&gt; robot_dart::gui::magnum::ShadowedObject::_materials</definition>
+        <argsstring></argsstring>
+        <name>_materials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="94" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a184ca6f2f11c6266e9ae7650da697725" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Magnum::Vector3 &gt;</type>
+        <definition>std::vector&lt;Magnum::Vector3&gt; robot_dart::gui::magnum::ShadowedObject::_scalings</definition>
+        <argsstring></argsstring>
+        <name>_scalings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="95" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a1b8a85b9c3bdf7fec7a31a927738a60f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::ShadowedObject::ShadowedObject</definition>
+        <argsstring>(RobotDARTSimu *simu, dart::dynamics::ShapeNode *shape, const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes, gs::ShadowMap &amp;shader, gs::ShadowMap &amp;texture_shader, Object3D *parent, Magnum::SceneGraph::DrawableGroup3D *group)</argsstring>
+        <name>ShadowedObject</name>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::ShapeNode *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &amp;</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &amp;</type>
+          <declname>texture_shader</declname>
+        </param>
+        <param>
+          <type>Object3D *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::DrawableGroup3D *</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="71" column="26" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="129" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a5424d9755b4bf3644f558ff19a484a20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kindref="compound">ShadowedObject</ref> &amp;</type>
+        <definition>ShadowedObject &amp; robot_dart::gui::magnum::ShadowedObject::set_meshes</definition>
+        <argsstring>(const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes)</argsstring>
+        <name>set_meshes</name>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="80" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="145" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1acc286d1ba28143da484aa58f642d0ad2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kindref="compound">ShadowedObject</ref> &amp;</type>
+        <definition>ShadowedObject &amp; robot_dart::gui::magnum::ShadowedObject::set_materials</definition>
+        <argsstring>(const std::vector&lt; gs::Material &gt; &amp;materials)</argsstring>
+        <name>set_materials</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt; &amp;</type>
+          <declname>materials</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="81" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="151" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a3c555943a0ba5858df58f53531935bc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kindref="compound">ShadowedObject</ref> &amp;</type>
+        <definition>ShadowedObject &amp; robot_dart::gui::magnum::ShadowedObject::set_scalings</definition>
+        <argsstring>(const std::vector&lt; Magnum::Vector3 &gt; &amp;scalings)</argsstring>
+        <name>set_scalings</name>
+        <param>
+          <type>const std::vector&lt; Magnum::Vector3 &gt; &amp;</type>
+          <declname>scalings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="82" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="157" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a7e2b7ff0759a73b127c535e76426292c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu * robot_dart::gui::magnum::ShadowedObject::simu</definition>
+        <argsstring>() const</argsstring>
+        <name>simu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="84" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a35ac8cff0c7ca9407f5268fcfe77444f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode * robot_dart::gui::magnum::ShadowedObject::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="85" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0fbd2120b75241d5721265f93de5dbe5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::ShadowedObject::draw</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;transformationMatrix, Magnum::SceneGraph::Camera3D &amp;camera) override</argsstring>
+        <name>draw</name>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>transformationMatrix</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::Camera3D &amp;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="88" column="22" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="163" bodyend="186"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::ShadowedObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::ShadowedObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="69" column="13" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="69" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1af8d220ec9d374deee6410cb0bd04473b" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0a7af5fa9691f00b8cd149e509445479" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a184ca6f2f11c6266e9ae7650da697725" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afe0dd6095a5376efb397ff36e1b08dc0" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a10335d6c98b338c6fbbc1b128f4324b6" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1ab2226955f29aad3b9eb808d6b9895c6b" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afb2ae143417d7554d47598a3dd2c5490" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0fbd2120b75241d5721265f93de5dbe5" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>draw</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1acc286d1ba28143da484aa58f642d0ad2" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>set_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a5424d9755b4bf3644f558ff19a484a20" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>set_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a3c555943a0ba5858df58f53531935bc4" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>set_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a1b8a85b9c3bdf7fec7a31a927738a60f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>ShadowedObject</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a35ac8cff0c7ca9407f5268fcfe77444f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a7e2b7ff0759a73b127c535e76426292c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowedObject</scope><name>simu</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

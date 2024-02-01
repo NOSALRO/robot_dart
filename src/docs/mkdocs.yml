@@ -52,6 +52,28 @@ nav:
   - Manual Installation: install.md
   - Supported robots: robots.md
   - FAQ: faq.md
+  - API:
+      - 'Links': 'api/links.md'
+      - 'Classes':
+          - 'Class List': 'api/annotated.md'
+          - 'Class Index': 'api/classes.md'
+          - 'Class Hierarchy': 'api/hierarchy.md'
+          - 'Class Members': 'api/class_members.md'
+          - 'Class Member Functions': 'api/class_member_functions.md'
+          - 'Class Member Variables': 'api/class_member_variables.md'
+          - 'Class Member Typedefs': 'api/class_member_typedefs.md'
+          - 'Class Member Enumerations': 'api/class_member_enums.md'
+      - 'Namespaces':
+          - 'Namespace List': 'api/namespaces.md'
+          - 'Namespace Members': 'api/namespace_members.md'
+          - 'Namespace Member Functions': 'api/namespace_member_functions.md'
+          - 'Namespace Member Variables': 'api/namespace_member_variables.md'
+          - 'Namespace Member Typedefs': 'api/namespace_member_typedefs.md'
+          - 'Namespace Member Enumerations': 'api/namespace_member_enums.md'
+      - 'Functions': 'api/functions.md'
+      - 'Variables': 'api/variables.md'
+      - 'Macros': 'api/macros.md'
+      - 'Files': 'api/files.md'
 markdown_extensions:
   - abbr
   - admonition
@@ -100,6 +122,19 @@ extra_javascript:
 
 plugins:
     - search
+    - mkdoxy:
+        projects:
+          api:
+            src-dirs: "../robot_dart"
+            full-doc: True
+            doxy-cfg:
+              FILE_PATTERNS: "*.cpp *.h*"
+              RECURSIVE: True
+              FULL_PATH_NAMES: YES
+              SHOW_USED_FILES: NO
+              SHOW_INCLUDE_FILES: NO
+              STRIP_FROM_PATH: "../"
+              STRIP_FROM_INC_PATH: "../"
     - macros:
         module_name: include/macros
         include_dir: include

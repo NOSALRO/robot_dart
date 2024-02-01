@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1sensor_1_1IMUConfig" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::sensor::IMUConfig</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a336a6c4a6983e94f624ac61f2bb03248" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d robot_dart::sensor::IMUConfig::gyro_bias</definition>
+        <argsstring></argsstring>
+        <name>gyro_bias</name>
+        <initializer>= Eigen::Vector3d::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="15" column="29" bodyfile="robot_dart/sensor/imu.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a34eea3eefe88463eea3dc460ca2d3b51" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d robot_dart::sensor::IMUConfig::accel_bias</definition>
+        <argsstring></argsstring>
+        <name>accel_bias</name>
+        <initializer>= Eigen::Vector3d::Zero()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="16" column="29" bodyfile="robot_dart/sensor/imu.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a40e40e277f8a30c843d44ca5ab4dbd7e" prot="public" static="no" mutable="no">
+        <type>dart::dynamics::BodyNode *</type>
+        <definition>dart::dynamics::BodyNode* robot_dart::sensor::IMUConfig::body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="23" column="38" bodyfile="robot_dart/sensor/imu.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1sensor_1_1IMUConfig_1ad117b8ec6cd0d6efc2e879e14a35cd5a" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::sensor::IMUConfig::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <initializer>= 200</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="27" column="20" bodyfile="robot_dart/sensor/imu.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a4c5b190bc68d7596f8245efea647ad12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
+        <argsstring>(dart::dynamics::BodyNode *b, size_t f)</argsstring>
+        <name>IMUConfig</name>
+        <param>
+          <type>dart::dynamics::BodyNode *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="10" column="13" bodyfile="robot_dart/sensor/imu.hpp" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1sensor_1_1IMUConfig_1aa83183ea185ccc9ca995d744b85aab38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
+        <argsstring>(const Eigen::Vector3d &amp;gyro_bias, const Eigen::Vector3d &amp;accel_bias, dart::dynamics::BodyNode *b, size_t f)</argsstring>
+        <name>IMUConfig</name>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>gyro_bias</declname>
+        </param>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>accel_bias</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::BodyNode *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="11" column="13" bodyfile="robot_dart/sensor/imu.hpp" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a21db967ed62772d477313e53e665b927" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
+        <argsstring>()</argsstring>
+        <name>IMUConfig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/imu.hpp" line="12" column="13" bodyfile="robot_dart/sensor/imu.hpp" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/sensor/imu.hpp" line="9" column="9" bodyfile="robot_dart/sensor/imu.hpp" bodystart="9" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a34eea3eefe88463eea3dc460ca2d3b51" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>accel_bias</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a40e40e277f8a30c843d44ca5ab4dbd7e" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>body</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1ad117b8ec6cd0d6efc2e879e14a35cd5a" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>frequency</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a336a6c4a6983e94f624ac61f2bb03248" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>gyro_bias</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a4c5b190bc68d7596f8245efea647ad12" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>IMUConfig</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1aa83183ea185ccc9ca995d744b85aab38" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>IMUConfig</name></member>
+      <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a21db967ed62772d477313e53e665b927" prot="public" virt="non-virtual"><scope>robot_dart::sensor::IMUConfig</scope><name>IMUConfig</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

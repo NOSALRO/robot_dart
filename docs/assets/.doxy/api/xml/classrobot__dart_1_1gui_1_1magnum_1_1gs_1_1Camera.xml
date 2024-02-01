@@ -1,0 +1,898 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::gs::Camera</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc2cec50368bd212fa651fc8ff1854e2" prot="private" static="no" mutable="no">
+        <type>Object3D *</type>
+        <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_yaw_object</definition>
+        <argsstring></argsstring>
+        <name>_yaw_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="77" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ae2f0280fa70bedaa7b9137c0eede4219" prot="private" static="no" mutable="no">
+        <type>Object3D *</type>
+        <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_pitch_object</definition>
+        <argsstring></argsstring>
+        <name>_pitch_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="78" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5824f1ef18d89241708240068a672f6e" prot="private" static="no" mutable="no">
+        <type>Object3D *</type>
+        <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_camera_object</definition>
+        <argsstring></argsstring>
+        <name>_camera_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="79" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a244361d4e4045a4ab4ee043c6a46e0e0" prot="private" static="no" mutable="no">
+        <type>Camera3D *</type>
+        <definition>Camera3D* robot_dart::gui::magnum::gs::Camera::_camera</definition>
+        <argsstring></argsstring>
+        <name>_camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="81" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad236ea719c548a5a022a3a97f2250bb0" prot="private" static="no" mutable="no">
+        <type>Magnum::Vector2</type>
+        <definition>Magnum::Vector2 robot_dart::gui::magnum::gs::Camera::_speed</definition>
+        <argsstring></argsstring>
+        <name>_speed</name>
+        <initializer>{-0.01f, 0.01f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="82" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a291058c5ff18dedee82b7487bfcd40e2" prot="private" static="no" mutable="no">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_up</definition>
+        <argsstring></argsstring>
+        <name>_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="84" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6868f6e1e60f16ddc6f6d6b722c73606" prot="private" static="no" mutable="no">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_front</definition>
+        <argsstring></argsstring>
+        <name>_front</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="84" column="41" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aff529c1452d6cfe34ddb5eb44e091de6" prot="private" static="no" mutable="no">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_right</definition>
+        <argsstring></argsstring>
+        <name>_right</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="84" column="48" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc9dac6725f14028c58302f26fa460f7" prot="private" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_aspect_ratio</definition>
+        <argsstring></argsstring>
+        <name>_aspect_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="85" column="35" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a36cf62b3de356645fed07283ca9dc12f" prot="private" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_near_plane</definition>
+        <argsstring></argsstring>
+        <name>_near_plane</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="85" column="49" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5a48779e4ccc7c2011b1f76812143fb9" prot="private" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_far_plane</definition>
+        <argsstring></argsstring>
+        <name>_far_plane</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="85" column="61" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab91c773f4e73a2a9fe1c582401f1bed6" prot="private" static="no" mutable="no">
+        <type>Magnum::Rad</type>
+        <definition>Magnum::Rad robot_dart::gui::magnum::gs::Camera::_fov</definition>
+        <argsstring></argsstring>
+        <name>_fov</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="86" column="33" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a345f0161816f1eabe9f218e94e8b78d5" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::_width</definition>
+        <argsstring></argsstring>
+        <name>_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="87" column="33" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a25c06bb35a8b7670901a08d8475197bd" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::_height</definition>
+        <argsstring></argsstring>
+        <name>_height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="87" column="40" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72d2d2d2a9d9e5cd75bde9622dfffdf6" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Camera::_recording</definition>
+        <argsstring></argsstring>
+        <name>_recording</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="89" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6f0d23a686c0b2778e1d1629fc6382c8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Camera::_recording_depth</definition>
+        <argsstring></argsstring>
+        <name>_recording_depth</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="89" column="38" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a407be2c7f7bc428bb4c94fd096540907" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Camera::_recording_video</definition>
+        <argsstring></argsstring>
+        <name>_recording_video</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="90" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34b4782fea742d6d73f3626cb66f5ad7" prot="private" static="no" mutable="no">
+        <type>Corrade::Containers::Optional&lt; Magnum::Image2D &gt;</type>
+        <definition>Corrade::Containers::Optional&lt;Magnum::Image2D&gt; robot_dart::gui::magnum::gs::Camera::_image</definition>
+        <argsstring></argsstring>
+        <name>_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="91" column="51" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a88ace9be2280be5597dcc6d478b32a1f" prot="private" static="no" mutable="no">
+        <type>Corrade::Containers::Optional&lt; Magnum::Image2D &gt;</type>
+        <definition>Corrade::Containers::Optional&lt;Magnum::Image2D&gt; robot_dart::gui::magnum::gs::Camera::_depth_image</definition>
+        <argsstring></argsstring>
+        <name>_depth_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="91" column="58" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2a10fe387794eda8660b7de892a26448" prot="private" static="no" mutable="no">
+        <type>subprocess::popen *</type>
+        <definition>subprocess::popen* robot_dart::gui::magnum::gs::Camera::_ffmpeg_process</definition>
+        <argsstring></argsstring>
+        <name>_ffmpeg_process</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="93" column="39" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::Camera::Camera</definition>
+        <argsstring>(Object3D &amp;object, Magnum::Int width, Magnum::Int height)</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>Object3D &amp;</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="28" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="58" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72a15b93144c904d52f4983a0894a789" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::Camera::~Camera</definition>
+        <argsstring>()</argsstring>
+        <name>~Camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="29" column="21" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="88" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Camera3D &amp;</type>
+        <definition>Camera3D &amp; robot_dart::gui::magnum::gs::Camera::camera</definition>
+        <argsstring>() const</argsstring>
+        <name>camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="31" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acfd1256bfb4100dece47955078c0a5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Object3D &amp;</type>
+        <definition>Object3D &amp; robot_dart::gui::magnum::gs::Camera::root_object</definition>
+        <argsstring>()</argsstring>
+        <name>root_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="32" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a7d9c11e138585c15c30dd727c880e5ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Object3D &amp;</type>
+        <definition>Object3D &amp; robot_dart::gui::magnum::gs::Camera::camera_object</definition>
+        <argsstring>() const</argsstring>
+        <name>camera_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="33" column="30" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34f8ee4c56f877f7bdfaf8d5077f29a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_viewport</definition>
+        <argsstring>(const Magnum::Vector2i &amp;size)</argsstring>
+        <name>set_viewport</name>
+        <param>
+          <type>const Magnum::Vector2i &amp;</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="35" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="108" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a17299b233ae87271034e97f0f5ac462f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::move</definition>
+        <argsstring>(const Magnum::Vector2i &amp;shift)</argsstring>
+        <name>move</name>
+        <param>
+          <type>const Magnum::Vector2i &amp;</type>
+          <declname>shift</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="37" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="119" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1afdecc8ca467d58db7019679b73cba771" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::forward</definition>
+        <argsstring>(Magnum::Float speed)</argsstring>
+        <name>forward</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="38" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="129" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a10be35dba8f5527eb295c17755242d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::strafe</definition>
+        <argsstring>(Magnum::Float speed)</argsstring>
+        <name>strafe</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="39" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="136" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1be75804ae632895c7cb2b5ab0ee39f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_speed</definition>
+        <argsstring>(const Magnum::Vector2 &amp;speed)</argsstring>
+        <name>set_speed</name>
+        <param>
+          <type>const Magnum::Vector2 &amp;</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="41" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="143" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6bc826da9ea43303dd2673ed8fd401d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_near_plane</definition>
+        <argsstring>(Magnum::Float near_plane)</argsstring>
+        <name>set_near_plane</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>near_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="42" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="149" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28955f8b1bbfa607292750890d31820e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_far_plane</definition>
+        <argsstring>(Magnum::Float far_plane)</argsstring>
+        <name>set_far_plane</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="43" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="157" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1ad2449acd1f7236c744cd0c5937f374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_fov</definition>
+        <argsstring>(Magnum::Float fov)</argsstring>
+        <name>set_fov</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>fov</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="44" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="165" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aad998f2c9267881e91f55b23395a9199" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_camera_params</definition>
+        <argsstring>(Magnum::Float near_plane, Magnum::Float far_plane, Magnum::Float fov, Magnum::Int width, Magnum::Int height)</argsstring>
+        <name>set_camera_params</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>near_plane</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>fov</declname>
+        </param>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="45" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="174" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2909a81378985d762354c4bb4a261348" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Vector2</type>
+        <definition>Magnum::Vector2 robot_dart::gui::magnum::gs::Camera::speed</definition>
+        <argsstring>() const</argsstring>
+        <name>speed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="47" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a30c5e0243c819f1525b1dcf1e4921832" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::near_plane</definition>
+        <argsstring>() const</argsstring>
+        <name>near_plane</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="48" column="35" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab20d50119735506030b3e2d4e2348f76" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::far_plane</definition>
+        <argsstring>() const</argsstring>
+        <name>far_plane</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="49" column="35" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac55df97bd8c576b35b80b2ee5d20e585" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::fov</definition>
+        <argsstring>() const</argsstring>
+        <name>fov</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="50" column="35" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6c804bfdf9944cceaf536b6423492923" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::width</definition>
+        <argsstring>() const</argsstring>
+        <name>width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="51" column="33" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a9e7d383d72facffd5ed634f49ca5a146" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::height</definition>
+        <argsstring>() const</argsstring>
+        <name>height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="52" column="33" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adb1ab8a8abface444086f01d3c181e0a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Matrix3</type>
+        <definition>Magnum::Matrix3 robot_dart::gui::magnum::gs::Camera::intrinsic_matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>intrinsic_matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="53" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="190" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a12c0f959128ce86df8104a90f15c5ee6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Matrix4</type>
+        <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Camera::extrinsic_matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>extrinsic_matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="54" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="201" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72dd39a0300708f8d06d02ee0c2f07ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">Camera</ref> &amp;</type>
+        <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::look_at</definition>
+        <argsstring>(const Magnum::Vector3 &amp;camera, const Magnum::Vector3 &amp;center, const Magnum::Vector3 &amp;up=Magnum::Vector3::zAxis())</argsstring>
+        <name>look_at</name>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>camera</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>up</declname>
+          <defval>Magnum::Vector3::zAxis()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="56" column="28" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="206" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a923df4878c15486ae9919185bbc168fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::gs::Camera::transform_lights</definition>
+        <argsstring>(std::vector&lt; gs::Light &gt; &amp;lights) const</argsstring>
+        <name>transform_lights</name>
+        <param>
+          <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &gt; &amp;</type>
+          <declname>lights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="58" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="219" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac86b5d656c6830830427327c279aec96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::gs::Camera::record</definition>
+        <argsstring>(bool recording, bool recording_depth=false)</argsstring>
+        <name>record</name>
+        <param>
+          <type>bool</type>
+          <declname>recording</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recording_depth</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="60" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6a90a471293740353af96cfe6cf1242e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::gs::Camera::record_video</definition>
+        <argsstring>(const std::string &amp;video_fname, int fps)</argsstring>
+        <name>record_video</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>video_fname</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="67" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="237" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70a5f58cd4e0ab433635c1fb213f7152" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Camera::recording</definition>
+        <argsstring>()</argsstring>
+        <name>recording</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="68" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a01ce9cdcc0b14bce7576aa59f9566c93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Camera::recording_depth</definition>
+        <argsstring>()</argsstring>
+        <name>recording_depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="69" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a64935309f6bf4a731ddcef0b5a624e5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp;</type>
+        <definition>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp; robot_dart::gui::magnum::gs::Camera::image</definition>
+        <argsstring>()</argsstring>
+        <name>image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="71" column="51" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad96ed2fb36dc008232f01cb8a111b271" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp;</type>
+        <definition>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp; robot_dart::gui::magnum::gs::Camera::depth_image</definition>
+        <argsstring>()</argsstring>
+        <name>depth_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="72" column="51" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adea6a630731ae14515f89d4a0a19ac3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::gs::Camera::draw</definition>
+        <argsstring>(Magnum::SceneGraph::DrawableGroup3D &amp;drawables, Magnum::GL::AbstractFramebuffer &amp;framebuffer, Magnum::PixelFormat format, RobotDARTSimu *simu, const DebugDrawData &amp;debug_data, bool draw_debug=true)</argsstring>
+        <name>draw</name>
+        <param>
+          <type>Magnum::SceneGraph::DrawableGroup3D &amp;</type>
+          <declname>drawables</declname>
+        </param>
+        <param>
+          <type>Magnum::GL::AbstractFramebuffer &amp;</type>
+          <declname>framebuffer</declname>
+        </param>
+        <param>
+          <type>Magnum::PixelFormat</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData" kindref="compound">DebugDrawData</ref> &amp;</type>
+          <declname>debug_data</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>draw_debug</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="74" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="267" bodyend="378"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac1a31db480956997bfacff227d822ab2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::gs::Camera::_clean_up_subprocess</definition>
+        <argsstring>()</argsstring>
+        <name>_clean_up_subprocess</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="95" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="380" bodyend="388"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::Camera</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::Camera</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/gs/camera.hpp" line="26" column="17" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="26" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc9dac6725f14028c58302f26fa460f7" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_aspect_ratio</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a244361d4e4045a4ab4ee043c6a46e0e0" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5824f1ef18d89241708240068a672f6e" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_camera_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac1a31db480956997bfacff227d822ab2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_clean_up_subprocess</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a88ace9be2280be5597dcc6d478b32a1f" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5a48779e4ccc7c2011b1f76812143fb9" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_far_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2a10fe387794eda8660b7de892a26448" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_ffmpeg_process</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab91c773f4e73a2a9fe1c582401f1bed6" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_fov</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6868f6e1e60f16ddc6f6d6b722c73606" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_front</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a25c06bb35a8b7670901a08d8475197bd" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_height</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34b4782fea742d6d73f3626cb66f5ad7" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a36cf62b3de356645fed07283ca9dc12f" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_near_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ae2f0280fa70bedaa7b9137c0eede4219" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_pitch_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72d2d2d2a9d9e5cd75bde9622dfffdf6" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_recording</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6f0d23a686c0b2778e1d1629fc6382c8" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_recording_depth</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a407be2c7f7bc428bb4c94fd096540907" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_recording_video</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aff529c1452d6cfe34ddb5eb44e091de6" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_right</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad236ea719c548a5a022a3a97f2250bb0" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_speed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a291058c5ff18dedee82b7487bfcd40e2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_up</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a345f0161816f1eabe9f218e94e8b78d5" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_width</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc2cec50368bd212fa651fc8ff1854e2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_yaw_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>Camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a7d9c11e138585c15c30dd727c880e5ee" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>camera_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad96ed2fb36dc008232f01cb8a111b271" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adea6a630731ae14515f89d4a0a19ac3b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>draw</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a12c0f959128ce86df8104a90f15c5ee6" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>extrinsic_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab20d50119735506030b3e2d4e2348f76" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>far_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1afdecc8ca467d58db7019679b73cba771" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>forward</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac55df97bd8c576b35b80b2ee5d20e585" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>fov</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a9e7d383d72facffd5ed634f49ca5a146" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>height</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a64935309f6bf4a731ddcef0b5a624e5f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adb1ab8a8abface444086f01d3c181e0a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>intrinsic_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72dd39a0300708f8d06d02ee0c2f07ce" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>look_at</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a17299b233ae87271034e97f0f5ac462f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>move</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a30c5e0243c819f1525b1dcf1e4921832" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>near_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac86b5d656c6830830427327c279aec96" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>record</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6a90a471293740353af96cfe6cf1242e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>record_video</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70a5f58cd4e0ab433635c1fb213f7152" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>recording</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a01ce9cdcc0b14bce7576aa59f9566c93" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>recording_depth</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acfd1256bfb4100dece47955078c0a5ae" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>root_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aad998f2c9267881e91f55b23395a9199" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_camera_params</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28955f8b1bbfa607292750890d31820e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_far_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1ad2449acd1f7236c744cd0c5937f374" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_fov</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6bc826da9ea43303dd2673ed8fd401d0" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_near_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1be75804ae632895c7cb2b5ab0ee39f4" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_speed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34f8ee4c56f877f7bdfaf8d5077f29a8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>set_viewport</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2909a81378985d762354c4bb4a261348" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>speed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a10be35dba8f5527eb295c17755242d51" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>strafe</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a923df4878c15486ae9919185bbc168fe" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>transform_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6c804bfdf9944cceaf536b6423492923" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>width</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72a15b93144c904d52f4983a0894a789" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>~Camera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

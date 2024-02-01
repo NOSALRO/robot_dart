@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1GrayscaleImage" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::GrayscaleImage</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1GrayscaleImage_1a21a5f8087a2636651d406c9c066c099c" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::GrayscaleImage::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="18" column="20" bodyfile="robot_dart/gui/helper.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1GrayscaleImage_1affe344caa912c21909b047b94ab85765" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::GrayscaleImage::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="18" column="27" bodyfile="robot_dart/gui/helper.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1GrayscaleImage_1a26bf3da92e65ee06cb202b584c9681ae" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; uint8_t &gt;</type>
+        <definition>std::vector&lt;uint8_t&gt; robot_dart::gui::GrayscaleImage::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="19" column="25" bodyfile="robot_dart/gui/helper.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/helper.hpp" line="17" column="9" bodyfile="robot_dart/gui/helper.hpp" bodystart="17" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1a26bf3da92e65ee06cb202b584c9681ae" prot="public" virt="non-virtual"><scope>robot_dart::gui::GrayscaleImage</scope><name>data</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1affe344caa912c21909b047b94ab85765" prot="public" virt="non-virtual"><scope>robot_dart::gui::GrayscaleImage</scope><name>height</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1a21a5f8087a2636651d406c9c066c099c" prot="public" virt="non-virtual"><scope>robot_dart::gui::GrayscaleImage</scope><name>width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

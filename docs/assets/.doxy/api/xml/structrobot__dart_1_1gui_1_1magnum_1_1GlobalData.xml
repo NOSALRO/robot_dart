@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::GlobalData</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a74f4ff05c4080c59f3c5b3db48dc186f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Magnum::Platform::WindowlessGLContext &gt;</type>
+        <definition>std::vector&lt;Magnum::Platform::WindowlessGLContext&gt; robot_dart::gui::magnum::GlobalData::_gl_contexts</definition>
+        <argsstring></argsstring>
+        <name>_gl_contexts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="84" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac17552862eaea4f0bc3e9d9aaea16e46" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt;bool&gt; robot_dart::gui::magnum::GlobalData::_used</definition>
+        <argsstring></argsstring>
+        <name>_used</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="85" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a4238bdcc1849d1cbc231d91fc4cd8293" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex robot_dart::gui::magnum::GlobalData::_context_mutex</definition>
+        <argsstring></argsstring>
+        <name>_context_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="86" column="28" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a6b31f6269ac1c8baa124ddf29c6e2f5f" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::magnum::GlobalData::_max_contexts</definition>
+        <argsstring></argsstring>
+        <name>_max_contexts</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="87" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a00af2d89c2e045217178b9ca906bfe2d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" kindref="compound">GlobalData</ref> *</type>
+        <definition>static GlobalData * robot_dart::gui::magnum::GlobalData::instance</definition>
+        <argsstring>()</argsstring>
+        <name>instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="63" column="35" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="63" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac991e057d8c8001eacf627dc44897c55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::GlobalData::GlobalData</definition>
+        <argsstring>(const GlobalData &amp;)=delete</argsstring>
+        <name>GlobalData</name>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" kindref="compound">GlobalData</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="69" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ad0b4a97db96f903c2151477c4baf2030" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlobalData::operator=</definition>
+        <argsstring>(const GlobalData &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" kindref="compound">GlobalData</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="70" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a475eb08df5b3a17397617cc2b670debd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Platform::WindowlessGLContext *</type>
+        <definition>Magnum::Platform::WindowlessGLContext * robot_dart::gui::magnum::GlobalData::gl_context</definition>
+        <argsstring>()</argsstring>
+        <name>gl_context</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="72" column="55" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="29" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a1628b1eda6a5837357fad93048497746" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlobalData::free_gl_context</definition>
+        <argsstring>(Magnum::Platform::WindowlessGLContext *context)</argsstring>
+        <name>free_gl_context</name>
+        <param>
+          <type>Magnum::Platform::WindowlessGLContext *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="73" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="48" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a3d418cb7bab2a1d27895b43a8e2baa13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlobalData::set_max_contexts</definition>
+        <argsstring>(size_t N)</argsstring>
+        <name>set_max_contexts</name>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="76" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="63" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a61266aad181312f9d25fb2bc0a227cd5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::GlobalData::GlobalData</definition>
+        <argsstring>()=default</argsstring>
+        <name>GlobalData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="79" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1afb564373f32dac71b5d9184ec3fc8179" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::GlobalData::~GlobalData</definition>
+        <argsstring>()=default</argsstring>
+        <name>~GlobalData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="80" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a18353fa5fa23e09a3778443382856862" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlobalData::_create_contexts</definition>
+        <argsstring>()</argsstring>
+        <name>_create_contexts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="82" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="73" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/base_application.hpp" line="61" column="13" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="61" bodyend="88"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a4238bdcc1849d1cbc231d91fc4cd8293" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>_context_mutex</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a18353fa5fa23e09a3778443382856862" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>_create_contexts</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a74f4ff05c4080c59f3c5b3db48dc186f" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>_gl_contexts</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a6b31f6269ac1c8baa124ddf29c6e2f5f" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>_max_contexts</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac17552862eaea4f0bc3e9d9aaea16e46" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>_used</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a1628b1eda6a5837357fad93048497746" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>free_gl_context</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a475eb08df5b3a17397617cc2b670debd" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>gl_context</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac991e057d8c8001eacf627dc44897c55" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>GlobalData</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a61266aad181312f9d25fb2bc0a227cd5" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>GlobalData</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a00af2d89c2e045217178b9ca906bfe2d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>instance</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ad0b4a97db96f903c2151477c4baf2030" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>operator=</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a3d418cb7bab2a1d27895b43a8e2baa13" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>set_max_contexts</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1afb564373f32dac71b5d9184ec3fc8179" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::GlobalData</scope><name>~GlobalData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

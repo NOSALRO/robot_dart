@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="dir_1a1ccbdd0954eb7721b1a771872472c9" kind="dir">
+    <compoundname>robot_dart/control</compoundname>
+    <innerfile refid="pd__control_8cpp">pd_control.cpp</innerfile>
+    <innerfile refid="pd__control_8hpp">pd_control.hpp</innerfile>
+    <innerfile refid="policy__control_8hpp">policy_control.hpp</innerfile>
+    <innerfile refid="robot__control_8cpp">robot_control.cpp</innerfile>
+    <innerfile refid="robot__control_8hpp">robot_control.hpp</innerfile>
+    <innerfile refid="simple__control_8cpp">simple_control.cpp</innerfile>
+    <innerfile refid="simple__control_8hpp">simple_control.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/control/"/>
+  </compounddef>
+</doxygen>

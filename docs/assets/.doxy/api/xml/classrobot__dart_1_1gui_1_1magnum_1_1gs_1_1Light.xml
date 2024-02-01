@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::gs::Light</compoundname>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af8138e3fc1e19a3a04186c1d5f550c15" prot="protected" static="no" mutable="no">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_position</definition>
+        <argsstring></argsstring>
+        <name>_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="63" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa626307a465c8f16a78d4c37d11c6542" prot="protected" static="no" mutable="no">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_transformed_position</definition>
+        <argsstring></argsstring>
+        <name>_transformed_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="65" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae49be510e4e36a45717d191ea9b87319" prot="protected" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref></type>
+        <definition>Material robot_dart::gui::magnum::gs::Light::_material</definition>
+        <argsstring></argsstring>
+        <name>_material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="66" column="30" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0933d02a5b25bf67a872be3f74157fee" prot="protected" static="no" mutable="no">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_spot_direction</definition>
+        <argsstring></argsstring>
+        <name>_spot_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="67" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a99e1e51e2f9f09a48e1f54431d905be7" prot="protected" static="no" mutable="no">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_transformed_spot_direction</definition>
+        <argsstring></argsstring>
+        <name>_transformed_spot_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="69" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ace45ee76a91974dac21117d058dfbaf8" prot="protected" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_exponent</definition>
+        <argsstring></argsstring>
+        <name>_spot_exponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="70" column="35" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a84d01a943d36d4f3b5c54924087a77e6" prot="protected" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_cut_off</definition>
+        <argsstring></argsstring>
+        <name>_spot_cut_off</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="70" column="50" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a1c281f188197583337dd0a90cd423fdb" prot="protected" static="no" mutable="no">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_attenuation</definition>
+        <argsstring></argsstring>
+        <name>_attenuation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="76" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa3cf118668c48dae6d05e24a4ea708f2" prot="protected" static="no" mutable="no">
+        <type>Magnum::Matrix4</type>
+        <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::_shadow_transform</definition>
+        <argsstring></argsstring>
+        <name>_shadow_transform</name>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="79" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae2b6f8acac43e047f4780c4858e6281a" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Light::_cast_shadows</definition>
+        <argsstring></argsstring>
+        <name>_cast_shadows</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="82" column="26" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af10d77fa11ea91a05a65a08ea9ab0f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::Light::Light</definition>
+        <argsstring>()</argsstring>
+        <name>Light</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="14" column="21" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="9" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae845a4115b1e87dcfb4c7ab1d831061c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::Light::Light</definition>
+        <argsstring>(const Magnum::Vector4 &amp;position, const Material &amp;material, const Magnum::Vector3 &amp;spot_direction, Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4 &amp;attenuation, bool cast_shadows=true)</argsstring>
+        <name>Light</name>
+        <param>
+          <type>const Magnum::Vector4 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>spot_direction</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_exponent</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_cut_off</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector4 &amp;</type>
+          <declname>attenuation</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>cast_shadows</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="16" column="21" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="18" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a32ad704b2bb58a96b705754c57e10790" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::position</definition>
+        <argsstring>() const</argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="20" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2fe0d0be826ee784693f2ab01b0b319e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector4 &amp;</type>
+        <definition>Magnum::Vector4 &amp; robot_dart::gui::magnum::gs::Light::transformed_position</definition>
+        <argsstring>()</argsstring>
+        <name>transformed_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="21" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae8e13f27fd7b72e0979d9844c295a526" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::transformed_position</definition>
+        <argsstring>() const</argsstring>
+        <name>transformed_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="22" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6d1d714656abf3432c0c28a2abbc8977" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+        <definition>Material &amp; robot_dart::gui::magnum::gs::Light::material</definition>
+        <argsstring>()</argsstring>
+        <name>material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="24" column="30" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6e53a436cc4db93d4c2152ee86048dbc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref></type>
+        <definition>Material robot_dart::gui::magnum::gs::Light::material</definition>
+        <argsstring>() const</argsstring>
+        <name>material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="25" column="30" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8721f917fd675eeaf0fd9a3ce68868f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::spot_direction</definition>
+        <argsstring>() const</argsstring>
+        <name>spot_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="28" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac56a2774efb10e7ed4cb33c824439fc9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector3 &amp;</type>
+        <definition>Magnum::Vector3 &amp; robot_dart::gui::magnum::gs::Light::transformed_spot_direction</definition>
+        <argsstring>()</argsstring>
+        <name>transformed_spot_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="30" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a40cf6cee59632957ddcd4276462328c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector3</type>
+        <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::transformed_spot_direction</definition>
+        <argsstring>() const</argsstring>
+        <name>transformed_spot_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="31" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a47a5d82aba81aba6911652ae8d9d385a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Float &amp;</type>
+        <definition>Magnum::Float &amp; robot_dart::gui::magnum::gs::Light::spot_exponent</definition>
+        <argsstring>()</argsstring>
+        <name>spot_exponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="33" column="35" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aba35bd334d43590f04446e5aaec45e29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::spot_exponent</definition>
+        <argsstring>() const</argsstring>
+        <name>spot_exponent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="34" column="35" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3f435d83f403b510ef8182698a8f5ca3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Float &amp;</type>
+        <definition>Magnum::Float &amp; robot_dart::gui::magnum::gs::Light::spot_cut_off</definition>
+        <argsstring>()</argsstring>
+        <name>spot_cut_off</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="36" column="35" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a481d3148c2a6c2c0f02bd43b635d5d33" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::spot_cut_off</definition>
+        <argsstring>() const</argsstring>
+        <name>spot_cut_off</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="37" column="35" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0903251d3f15c34de94c9099c7922136" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector4 &amp;</type>
+        <definition>Magnum::Vector4 &amp; robot_dart::gui::magnum::gs::Light::attenuation</definition>
+        <argsstring>()</argsstring>
+        <name>attenuation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="39" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ab1986bd4108bfed3489b1eab9fc984cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Vector4</type>
+        <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::attenuation</definition>
+        <argsstring>() const</argsstring>
+        <name>attenuation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="40" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3dc247ebe69c23cd75dd29667ced011e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Matrix4</type>
+        <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::shadow_matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>shadow_matrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="42" column="37" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a781c6f280b6da38418e544567b9d4319" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::gs::Light::casts_shadows</definition>
+        <argsstring>() const</argsstring>
+        <name>casts_shadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="43" column="26" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8fc92806f8e4bacb8c1e766ad53646cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_position</definition>
+        <argsstring>(const Magnum::Vector4 &amp;position)</argsstring>
+        <name>set_position</name>
+        <param>
+          <type>const Magnum::Vector4 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="45" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="56" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a5568943dd7dce465ad66ceb69f1777d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_transformed_position</definition>
+        <argsstring>(const Magnum::Vector4 &amp;transformed_position)</argsstring>
+        <name>set_transformed_position</name>
+        <param>
+          <type>const Magnum::Vector4 &amp;</type>
+          <declname>transformed_position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="46" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="63" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2f21e75b35a94af46fecf04d11b6f3e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_material</definition>
+        <argsstring>(const Material &amp;material)</argsstring>
+        <name>set_material</name>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="48" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="69" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac7326f10cb400b7b0ac98a51440be2e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_direction</definition>
+        <argsstring>(const Magnum::Vector3 &amp;spot_direction)</argsstring>
+        <name>set_spot_direction</name>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>spot_direction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="50" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="75" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aaca8cd7dd907935b771d2100ba5b3af3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_transformed_spot_direction</definition>
+        <argsstring>(const Magnum::Vector3 &amp;transformed_spot_direction)</argsstring>
+        <name>set_transformed_spot_direction</name>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>transformed_spot_direction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="51" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="82" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0d41bddc6b983ce8cc9ca162aee6bbfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_exponent</definition>
+        <argsstring>(Magnum::Float spot_exponent)</argsstring>
+        <name>set_spot_exponent</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_exponent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="52" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="88" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8d6d6648d48d423a5f946e0658d18b70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_cut_off</definition>
+        <argsstring>(Magnum::Float spot_cut_off)</argsstring>
+        <name>set_spot_cut_off</name>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_cut_off</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="53" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="94" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a4c4d888981d304e683b3c0245ff17f37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_attenuation</definition>
+        <argsstring>(const Magnum::Vector4 &amp;attenuation)</argsstring>
+        <name>set_attenuation</name>
+        <param>
+          <type>const Magnum::Vector4 &amp;</type>
+          <declname>attenuation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="55" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="100" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a56c2e217f0b84cb687afe0e8118c07ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_shadow_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;shadowTransform)</argsstring>
+        <name>set_shadow_matrix</name>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>shadowTransform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="57" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="106" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a07f4c8cdc28cd3ac920729046578060c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+        <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_casts_shadows</definition>
+        <argsstring>(bool cast_shadows)</argsstring>
+        <name>set_casts_shadows</name>
+        <param>
+          <type>bool</type>
+          <declname>cast_shadows</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="58" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="112" bodyend="116"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::Light</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>_material</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::gui::magnum::gs::Material</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material"/>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/gs/light.hpp" line="12" column="17" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="12" bodyend="83"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a1c281f188197583337dd0a90cd423fdb" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_attenuation</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae2b6f8acac43e047f4780c4858e6281a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_cast_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae49be510e4e36a45717d191ea9b87319" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af8138e3fc1e19a3a04186c1d5f550c15" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa3cf118668c48dae6d05e24a4ea708f2" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_shadow_transform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a84d01a943d36d4f3b5c54924087a77e6" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_spot_cut_off</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0933d02a5b25bf67a872be3f74157fee" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ace45ee76a91974dac21117d058dfbaf8" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_spot_exponent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa626307a465c8f16a78d4c37d11c6542" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_transformed_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a99e1e51e2f9f09a48e1f54431d905be7" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>_transformed_spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0903251d3f15c34de94c9099c7922136" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>attenuation</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ab1986bd4108bfed3489b1eab9fc984cc" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>attenuation</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a781c6f280b6da38418e544567b9d4319" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>casts_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af10d77fa11ea91a05a65a08ea9ab0f64" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>Light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae845a4115b1e87dcfb4c7ab1d831061c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>Light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6d1d714656abf3432c0c28a2abbc8977" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6e53a436cc4db93d4c2152ee86048dbc" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a32ad704b2bb58a96b705754c57e10790" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a4c4d888981d304e683b3c0245ff17f37" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_attenuation</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a07f4c8cdc28cd3ac920729046578060c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_casts_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2f21e75b35a94af46fecf04d11b6f3e4" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8fc92806f8e4bacb8c1e766ad53646cf" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a56c2e217f0b84cb687afe0e8118c07ae" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_shadow_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8d6d6648d48d423a5f946e0658d18b70" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_spot_cut_off</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac7326f10cb400b7b0ac98a51440be2e2" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0d41bddc6b983ce8cc9ca162aee6bbfe" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_spot_exponent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a5568943dd7dce465ad66ceb69f1777d6" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_transformed_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aaca8cd7dd907935b771d2100ba5b3af3" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>set_transformed_spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3dc247ebe69c23cd75dd29667ced011e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>shadow_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3f435d83f403b510ef8182698a8f5ca3" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>spot_cut_off</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a481d3148c2a6c2c0f02bd43b635d5d33" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>spot_cut_off</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8721f917fd675eeaf0fd9a3ce68868f9" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a47a5d82aba81aba6911652ae8d9d385a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>spot_exponent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aba35bd334d43590f04446e5aaec45e29" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>spot_exponent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2fe0d0be826ee784693f2ab01b0b319e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>transformed_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae8e13f27fd7b72e0979d9844c295a526" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>transformed_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac56a2774efb10e7ed4cb33c824439fc9" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>transformed_spot_direction</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a40cf6cee59632957ddcd4276462328c5" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Light</scope><name>transformed_spot_direction</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

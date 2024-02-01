@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::DrawableObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::SceneGraph::Drawable3D</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a302035d0fb69a8c82f0b26b6cdab975c" prot="private" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu* robot_dart::gui::magnum::DrawableObject::_simu</definition>
+        <argsstring></argsstring>
+        <name>_simu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="57" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a071ebb3b4a8b4e477c120605bd772006" prot="private" static="no" mutable="no">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode* robot_dart::gui::magnum::DrawableObject::_shape</definition>
+        <argsstring></argsstring>
+        <name>_shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="58" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aa2b2c0872ae09a4fe519eeb02bc633e2" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt;</type>
+        <definition>std::vector&lt;std::reference_wrapper&lt;Magnum::GL::Mesh&gt; &gt; robot_dart::gui::magnum::DrawableObject::_meshes</definition>
+        <argsstring></argsstring>
+        <name>_meshes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="59" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a214ef5896aeae522a8cccd9da31c76d3" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::PhongMultiLight&gt; robot_dart::gui::magnum::DrawableObject::_color_shader</definition>
+        <argsstring></argsstring>
+        <name>_color_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="60" column="40" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8cd7649abc60e24a6a96e16837dc59b4" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::PhongMultiLight&gt; robot_dart::gui::magnum::DrawableObject::_texture_shader</definition>
+        <argsstring></argsstring>
+        <name>_texture_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="61" column="40" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a170ff68f15dbf1b6abfe316cb47fc21b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt;</type>
+        <definition>std::vector&lt;gs::Material&gt; robot_dart::gui::magnum::DrawableObject::_materials</definition>
+        <argsstring></argsstring>
+        <name>_materials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="62" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a08f975142035112af8eba9f342dd0a76" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Magnum::Vector3 &gt;</type>
+        <definition>std::vector&lt;Magnum::Vector3&gt; robot_dart::gui::magnum::DrawableObject::_scalings</definition>
+        <argsstring></argsstring>
+        <name>_scalings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="63" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a66748bddc16593cb840e80f4f40da477" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt;bool&gt; robot_dart::gui::magnum::DrawableObject::_has_negative_scaling</definition>
+        <argsstring></argsstring>
+        <name>_has_negative_scaling</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="64" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af45cc8339fb7606c9f186592046b03cc" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt;bool&gt; robot_dart::gui::magnum::DrawableObject::_is_soft_body</definition>
+        <argsstring></argsstring>
+        <name>_is_soft_body</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="65" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a0145e58758b522bc1577d5633005a750" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::DrawableObject::_isTransparent</definition>
+        <argsstring></argsstring>
+        <name>_isTransparent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="66" column="22" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a59663b5497e984e222a2f127f1e5d060" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::DrawableObject::DrawableObject</definition>
+        <argsstring>(RobotDARTSimu *simu, dart::dynamics::ShapeNode *shape, const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes, const std::vector&lt; gs::Material &gt; &amp;materials, gs::PhongMultiLight &amp;color, gs::PhongMultiLight &amp;texture, Object3D *parent, Magnum::SceneGraph::DrawableGroup3D *group)</argsstring>
+        <name>DrawableObject</name>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::ShapeNode *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt; &amp;</type>
+          <declname>materials</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &amp;</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>Object3D *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::DrawableGroup3D *</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="29" column="26" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="18" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a61d163ae317d57907e087a6cf4b8050f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_meshes</definition>
+        <argsstring>(const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes)</argsstring>
+        <name>set_meshes</name>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="39" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="39" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af107583e6560c90f7ecd953f26d645b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_materials</definition>
+        <argsstring>(const std::vector&lt; gs::Material &gt; &amp;materials)</argsstring>
+        <name>set_materials</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt; &amp;</type>
+          <declname>materials</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="40" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="45" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a79d3a02be4f31b57748fd878ed7781ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_soft_bodies</definition>
+        <argsstring>(const std::vector&lt; bool &gt; &amp;softBody)</argsstring>
+        <name>set_soft_bodies</name>
+        <param>
+          <type>const std::vector&lt; bool &gt; &amp;</type>
+          <declname>softBody</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="41" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ad722312ab470dcbdb8c020f4bd81bf02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_scalings</definition>
+        <argsstring>(const std::vector&lt; Magnum::Vector3 &gt; &amp;scalings)</argsstring>
+        <name>set_scalings</name>
+        <param>
+          <type>const std::vector&lt; Magnum::Vector3 &gt; &amp;</type>
+          <declname>scalings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="42" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="57" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a197ba8847f0bfc2d6b3a1463f29b5b0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_transparent</definition>
+        <argsstring>(bool transparent=true)</argsstring>
+        <name>set_transparent</name>
+        <param>
+          <type>bool</type>
+          <declname>transparent</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="43" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1acc155fc3972f43cf1ce6f9fc1bb8b97f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_color_shader</definition>
+        <argsstring>(std::reference_wrapper&lt; gs::PhongMultiLight &gt; shader)</argsstring>
+        <name>set_color_shader</name>
+        <param>
+          <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="45" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="80" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a07a024e39be5719508a4828116f87008" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kindref="compound">DrawableObject</ref> &amp;</type>
+        <definition>DrawableObject &amp; robot_dart::gui::magnum::DrawableObject::set_texture_shader</definition>
+        <argsstring>(std::reference_wrapper&lt; gs::PhongMultiLight &gt; shader)</argsstring>
+        <name>set_texture_shader</name>
+        <param>
+          <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="46" column="32" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="86" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ae77eedf83cf91725c216f4e7a7b42b11" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt; gs::Material &gt; &amp; robot_dart::gui::magnum::DrawableObject::materials</definition>
+        <argsstring>() const</argsstring>
+        <name>materials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="48" column="35" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8759137a0a5708e14b8135e2b580ccd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::DrawableObject::transparent</definition>
+        <argsstring>() const</argsstring>
+        <name>transparent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="49" column="22" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a574ddb63759750869cb61d0b60714e6d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu * robot_dart::gui::magnum::DrawableObject::simu</definition>
+        <argsstring>() const</argsstring>
+        <name>simu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="51" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a860e1a254b3a49739c34509ff8d9cbe1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode * robot_dart::gui::magnum::DrawableObject::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="52" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aab0261f0bd22d3cbbca3544ed5508d62" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::DrawableObject::draw</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;transformationMatrix, Magnum::SceneGraph::Camera3D &amp;camera) override</argsstring>
+        <name>draw</name>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>transformationMatrix</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::Camera3D &amp;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="55" column="22" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="92" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::DrawableObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::DrawableObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="27" column="13" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="27" bodyend="67"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a214ef5896aeae522a8cccd9da31c76d3" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a66748bddc16593cb840e80f4f40da477" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_has_negative_scaling</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af45cc8339fb7606c9f186592046b03cc" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_is_soft_body</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a0145e58758b522bc1577d5633005a750" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_isTransparent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a170ff68f15dbf1b6abfe316cb47fc21b" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aa2b2c0872ae09a4fe519eeb02bc633e2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a08f975142035112af8eba9f342dd0a76" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a071ebb3b4a8b4e477c120605bd772006" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a302035d0fb69a8c82f0b26b6cdab975c" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8cd7649abc60e24a6a96e16837dc59b4" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aab0261f0bd22d3cbbca3544ed5508d62" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>draw</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a59663b5497e984e222a2f127f1e5d060" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>DrawableObject</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ae77eedf83cf91725c216f4e7a7b42b11" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1acc155fc3972f43cf1ce6f9fc1bb8b97f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af107583e6560c90f7ecd953f26d645b5" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a61d163ae317d57907e087a6cf4b8050f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ad722312ab470dcbdb8c020f4bd81bf02" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a79d3a02be4f31b57748fd878ed7781ab" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_soft_bodies</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a07a024e39be5719508a4828116f87008" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a197ba8847f0bfc2d6b3a1463f29b5b0c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>set_transparent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a860e1a254b3a49739c34509ff8d9cbe1" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a574ddb63759750869cb61d0b60714e6d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8759137a0a5708e14b8135e2b580ccd8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::DrawableObject</scope><name>transparent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

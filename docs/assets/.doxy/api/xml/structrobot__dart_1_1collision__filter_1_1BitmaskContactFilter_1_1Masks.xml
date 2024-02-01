@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::collision_filter::BitmaskContactFilter::Masks</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a45af2034bb51a8990f53da0180e3e3e5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::collision_filter::BitmaskContactFilter::Masks::collision_mask</definition>
+        <argsstring></argsstring>
+        <name>collision_mask</name>
+        <initializer>= 0xffffffff</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="19" column="26" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a66eff343184952f484382204e215ddfb" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t robot_dart::collision_filter::BitmaskContactFilter::Masks::category_mask</definition>
+        <argsstring></argsstring>
+        <name>category_mask</name>
+        <initializer>= 0xffffffff</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="20" column="26" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robot_dart_simu.cpp" line="18" column="13" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a66eff343184952f484382204e215ddfb" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter::Masks</scope><name>category_mask</name></member>
+      <member refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a45af2034bb51a8990f53da0180e3e3e5" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter::Masks</scope><name>collision_mask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

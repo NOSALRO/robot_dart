@@ -1,0 +1,1804 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
+      
+      
+      
+        <link rel="prev" href="../class_members/">
+      
+      
+        <link rel="next" href="../class_member_variables/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.5">
+    
+    
+      
+        <title>Class Member Functions - Documentation of RobotDART</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-member-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentation of RobotDART" class="md-header__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation of RobotDART
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class Member Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    resibots/robot_dart
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../quick_install/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../install/" class="md-tabs__link">
+      Manual Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../robots/" class="md-tabs__link">
+      Supported robots
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../faq/" class="md-tabs__link">
+      FAQ
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../links/" class="md-tabs__link md-tabs__link--active">
+        API
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentation of RobotDART" class="md-nav__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5Z"/></svg>
+
+    </a>
+    Documentation of RobotDART
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/resibots/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    resibots/robot_dart
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        Manual Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robots/" class="md-nav__link">
+        Supported robots
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="true">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        Links
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2" tabindex="0" aria-expanded="true">
+          Classes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Classes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Classes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        Class List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        Class Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        Class Hierarchy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_members/" class="md-nav__link">
+        Class Members
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Class Member Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Class Member Functions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    a
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    b
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    c
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    d
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    e
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    f
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    g
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    h
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    i
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    j
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    k
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    l
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    m
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    n
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    o
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    p
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    r
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    s
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    t
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    u
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v" class="md-nav__link">
+    v
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    w
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ~
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_" class="md-nav__link">
+    _
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_variables/" class="md-nav__link">
+        Class Member Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_typedefs/" class="md-nav__link">
+        Class Member Typedefs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_enums/" class="md-nav__link">
+        Class Member Enumerations
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3" tabindex="0" aria-expanded="false">
+          Namespaces
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Namespaces" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Namespaces
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        Namespace List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_members/" class="md-nav__link">
+        Namespace Members
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_functions/" class="md-nav__link">
+        Namespace Member Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_variables/" class="md-nav__link">
+        Namespace Member Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_typedefs/" class="md-nav__link">
+        Namespace Member Typedefs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_enums/" class="md-nav__link">
+        Namespace Member Enumerations
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        Macros
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    a
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    b
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    c
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    d
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    e
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    f
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    g
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    h
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    i
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    j
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    k
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    l
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    m
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    n
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    o
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    p
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    r
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    s
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    t
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    u
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v" class="md-nav__link">
+    v
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    w
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ~
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_" class="md-nav__link">
+    _
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="class-member-functions">Class Member Functions<a class="headerlink" href="#class-member-functions" title="Permanent link">&para;</a></h1>
+<h2 id="a">a<a class="headerlink" href="#a" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Assertion</strong> (<a href="../classrobot__dart_1_1Assertion/"><strong>robot_dart::Assertion</strong></a>)</li>
+<li><strong>acceleration_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>acceleration_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>accelerations</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>active_controllers</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>actuator_type</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>actuator_types</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>add_body_mass</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>add_controller</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>add_external_force</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>add_external_torque</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>adjacent_colliding</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>aug_mass_matrix</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>add_checkerboard_floor</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>add_floor</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>add_robot</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>add_sensor</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>add_text</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>, <a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+<li><strong>add_visual_robot</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>add_to_map</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>activate</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>active</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>add_light</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>attach_camera</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>attenuation</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>ambient_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>ambient_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>attach_to_body</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+<li><strong>attach_to_joint</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>A1</strong> (<a href="../classrobot__dart_1_1robots_1_1A1/"><strong>robot_dart::robots::A1</strong></a>)</li>
+<li><strong>Arm</strong> (<a href="../classrobot__dart_1_1robots_1_1Arm/"><strong>robot_dart::robots::Arm</strong></a>)</li>
+<li><strong>angular_position</strong> (<a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>)</li>
+<li><strong>angular_position_vec</strong> (<a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>)</li>
+<li><strong>angular_velocity</strong> (<a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>)</li>
+<li><strong>attached_to</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+</ul>
+<h2 id="b">b<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>base_pose</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>base_pose_vec</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_acceleration</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_index</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_mass</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_node</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_pose</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_pose_vec</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>body_velocity</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>Base</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>)</li>
+<li><strong>BaseApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>BaseGraphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>bind_cube_map_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>bind_cube_map_color_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>bind_shadow_color_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>bind_shadow_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+</ul>
+<h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>cast_shadows</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+<li><strong>clear_controllers</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>clear_external_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>clear_internal_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>clone</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1SimpleControl/"><strong>robot_dart::control::SimpleControl</strong></a>)</li>
+<li><strong>clone_ghost</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>com</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>com_acceleration</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>com_jacobian</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>com_jacobian_deriv</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>com_velocity</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>commands</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>constraint_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>controller</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>controllers</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>coriolis_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>coriolis_gravity_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>coulomb_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>create_box</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>create_ellipsoid</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>clear_robots</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>clear_sensors</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>collision_category</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>collision_detector</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>collision_mask</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>collision_masks</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>control_freq</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>current_time</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>clear_all</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>calculate</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1SimpleControl/"><strong>robot_dart::control::SimpleControl</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+<li><strong>configure</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1control_1_1SimpleControl/"><strong>robot_dart::control::SimpleControl</strong></a>)</li>
+<li><strong>controllable_dofs</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>camera</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>clear_lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>camera_extrinsic_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>camera_intrinsic_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>CubeMapShadowedColorObject</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>)</li>
+<li><strong>CubeMapShadowedObject</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>)</li>
+<li><strong>Camera</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>camera_object</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>CubeMap</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>)</li>
+<li><strong>CubeMapColor</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>)</li>
+<li><strong>casts_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>collision_vec</strong> (<a href="../classrobot__dart_1_1robots_1_1TalosFastCollision/"><strong>robot_dart::robots::TalosFastCollision</strong></a>)</li>
+<li><strong>caster_joints</strong> (<a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>)</li>
+</ul>
+<h2 id="d">d<a class="headerlink" href="#d" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>damping_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>dof</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>dof_index</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>dof_map</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>dof_name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>dof_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>drawing_axes</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+<li><strong>dt</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>depth_array</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>depth_image</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>done</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>debug_draw_data</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>drawables</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>draw</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>DrawableObject</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>drawEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>default_configuration</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1Graphics/"><strong>robot_dart::gui::magnum::Graphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics/"><strong>robot_dart::gui::magnum::WindowlessGraphics</strong></a>)</li>
+<li><strong>diffuse_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>diffuse_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>draw_debug</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>drawing_debug</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>detach</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>drawing_texts</strong> (<a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+</ul>
+<h2 id="e">e<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>external_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>enable_status_bar</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>enable_text_panel</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>enable_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>exitEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>exec</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication/"><strong>robot_dart::gui::magnum::WindowlessGLApplication</strong></a>)</li>
+<li><strong>extrinsic_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+</ul>
+<h2 id="f">f<a class="headerlink" href="#f" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>fix_to_world</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>fixed</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>force_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>force_position_bounds</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>force_torque</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>force_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>free</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>free_from_world</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>friction_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>friction_dir</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>free_robot</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>free_gl_context</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>far_plane</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>forward</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>fov</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>flags</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMapColor</strong></a>)</li>
+<li><strong>Franka</strong> (<a href="../classrobot__dart_1_1robots_1_1Franka/"><strong>robot_dart::robots::Franka</strong></a>)</li>
+<li><strong>ft_wrist</strong> (<a href="../classrobot__dart_1_1robots_1_1Franka/"><strong>robot_dart::robots::Franka</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Iiwa/"><strong>robot_dart::robots::Iiwa</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Ur3e/"><strong>robot_dart::robots::Ur3e</strong></a>)</li>
+<li><strong>ft_foot_left</strong> (<a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>ft_foot_right</strong> (<a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>ft_wrist_left</strong> (<a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>ft_wrist_right</strong> (<a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>ForceTorque</strong> (<a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>)</li>
+<li><strong>force</strong> (<a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>)</li>
+<li><strong>frequency</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+</ul>
+<h2 id="g">g<a class="headerlink" href="#g" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ghost</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+<li><strong>gravity_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>graphics</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>graphics_freq</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>gravity</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>gui_data</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>get_robot</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>GlfwApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>GlobalData</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>gl_context</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>Graphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1Graphics/"><strong>robot_dart::gui::magnum::Graphics</strong></a>)</li>
+</ul>
+<h2 id="h">h<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>halted_sim</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>h_params</strong> (<a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>)</li>
+<li><strong>height</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>has_ambient_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>has_diffuse_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>has_specular_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>Hexapod</strong> (<a href="../classrobot__dart_1_1robots_1_1Hexapod/"><strong>robot_dart::robots::Hexapod</strong></a>)</li>
+</ul>
+<h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>inv_aug_mass_matrix</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>inv_mass_matrix</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>it_duration</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>ignoresCollision</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>init</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+<li><strong>image</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>instance</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>intrinsic_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>imu</strong> (<a href="../classrobot__dart_1_1robots_1_1A1/"><strong>robot_dart::robots::A1</strong></a>, <a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>ICub</strong> (<a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>)</li>
+<li><strong>Iiwa</strong> (<a href="../classrobot__dart_1_1robots_1_1Iiwa/"><strong>robot_dart::robots::Iiwa</strong></a>)</li>
+<li><strong>IMU</strong> (<a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>)</li>
+<li><strong>IMUConfig</strong> (<a href="../structrobot__dart_1_1sensor_1_1IMUConfig/"><strong>robot_dart::sensor::IMUConfig</strong></a>)</li>
+</ul>
+<h2 id="j">j<a class="headerlink" href="#j" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>jacobian</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>jacobian_deriv</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>joint</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>joint_index</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>joint_map</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>joint_name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>joint_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+</ul>
+<h2 id="k">k<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>keyPressEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>keyReleaseEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+</ul>
+<h2 id="l">l<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>locked_dof_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>last_it_duration</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>light</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>look_at</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>Light</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>linear_acceleration</strong> (<a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>)</li>
+</ul>
+<h2 id="m">m<a class="headerlink" href="#m" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>mass_matrix</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>mimic_dof_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>model_filename</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>model_packages</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>mask</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>magnum_app</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>magnum_image</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>materials</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>mouseMoveEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>mouseScrollEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>move</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>material</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>Material</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>max_lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>magnum_depth_image</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+</ul>
+<h2 id="n">n<a class="headerlink" href="#n" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>num_bodies</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>num_controllers</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>num_dofs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>num_joints</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>num_robots</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>next_time</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>num_lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>near_plane</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+</ul>
+<h2 id="o">o<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>operator=</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>, <a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>operator()</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+</ul>
+<h2 id="p">p<a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>passive_dof_names</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>position_enforced</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>position_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>position_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>positions</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>physics_freq</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>PDControl</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>pd</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>PolicyControl</strong> (<a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>)</li>
+<li><strong>parameters</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>position</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>PhongMultiLight</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>Pendulum</strong> (<a href="../classrobot__dart_1_1robots_1_1Pendulum/"><strong>robot_dart::robots::Pendulum</strong></a>)</li>
+<li><strong>pose</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+</ul>
+<h2 id="r">r<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Robot</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>reinit_controllers</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>remove_all_drawing_axis</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>remove_controller</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>reset</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>, <a href="../classrobot__dart_1_1robots_1_1A1/"><strong>robot_dart::robots::A1</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Hexapod/"><strong>robot_dart::robots::Hexapod</strong></a>, <a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>)</li>
+<li><strong>reset_commands</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>restitution_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>RobotDARTSimu</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>remove_all_collision_masks</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>remove_collision_masks</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>remove_robot</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>, <a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+<li><strong>remove_sensor</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>remove_sensors</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>robot</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>, <a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>robot_index</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>robots</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>run</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>RobotPool</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>real_time</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>real_time_factor</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>remove_from_map</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>RobotControl</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>raw_depth_image</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>refresh</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>record_video</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>render</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication/"><strong>robot_dart::gui::magnum::WindowlessGLApplication</strong></a>)</li>
+<li><strong>render_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>record</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>recording</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>recording_depth</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>root_object</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>remove_text</strong> (<a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+</ul>
+<h2 id="s">s<a class="headerlink" href="#s" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>secondary_friction_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>self_colliding</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_acceleration_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_acceleration_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_accelerations</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_actuator_type</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>)</li>
+<li><strong>set_actuator_types</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>)</li>
+<li><strong>set_base_pose</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_body_mass</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_body_name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_cast_shadows</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_color_mode</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_commands</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_coulomb_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_damping_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_draw_axis</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_external_force</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_external_torque</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_force_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_force_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_forces</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_friction_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_friction_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_friction_dir</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_ghost</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_joint_name</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_mimic</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_position_enforced</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_position_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_position_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_positions</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_restitution_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_restitution_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_secondary_friction_coeff</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_secondary_friction_coeffs</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_self_collision</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_spring_stiffnesses</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_velocities</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_velocity_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>set_velocity_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>skeleton</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>spring_stiffnesses</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>schedule</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>, <a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>scheduler</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>sensor</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>sensors</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_collision_detector</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_collision_masks</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_control_freq</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_graphics</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_graphics_freq</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_gravity</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_text_panel</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>set_timestep</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>status_bar_text</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>step</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>, <a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>step_world</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>stop_sim</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>Scheduler</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>set_sync</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>sync</strong> (<a href="../classrobot__dart_1_1Scheduler/"><strong>robot_dart::Scheduler</strong></a>)</li>
+<li><strong>set_pd</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>set_use_angular_errors</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>set_h_params</strong> (<a href="../classrobot__dart_1_1control_1_1PolicyControl/"><strong>robot_dart::control::PolicyControl</strong></a>)</li>
+<li><strong>set_parameters</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>set_robot</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>set_weight</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>SimpleControl</strong> (<a href="../classrobot__dart_1_1control_1_1SimpleControl/"><strong>robot_dart::control::SimpleControl</strong></a>)</li>
+<li><strong>set_enable</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>set_fps</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>set_render_period</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>)</li>
+<li><strong>set_simu</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1Graphics/"><strong>robot_dart::gui::magnum::Graphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics/"><strong>robot_dart::gui::magnum::WindowlessGraphics</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>simu</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>scene</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>shadowed</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>set_materials</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>)</li>
+<li><strong>set_meshes</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>)</li>
+<li><strong>set_scalings</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>)</li>
+<li><strong>shape</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject/"><strong>robot_dart::gui::magnum::CubeMapShadowedObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>)</li>
+<li><strong>set_color_shader</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>set_soft_bodies</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>set_texture_shader</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>set_transparent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>set_max_contexts</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>ShadowedColorObject</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject/"><strong>robot_dart::gui::magnum::ShadowedColorObject</strong></a>)</li>
+<li><strong>ShadowedObject</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject/"><strong>robot_dart::gui::magnum::ShadowedObject</strong></a>)</li>
+<li><strong>set_camera_params</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>set_far_plane</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_fov</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>set_near_plane</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>set_speed</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>set_viewport</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>speed</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>strafe</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>set_light_index</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>)</li>
+<li><strong>set_light_position</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>)</li>
+<li><strong>set_material</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMapColor</strong></a>)</li>
+<li><strong>set_shadow_matrices</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>)</li>
+<li><strong>set_transformation_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:CubeMapColor</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMapColor</strong></a>)</li>
+<li><strong>set_attenuation</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_casts_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_position</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_shadow_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_spot_cut_off</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_spot_direction</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_spot_exponent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_transformed_position</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_transformed_spot_direction</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>shadow_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>spot_cut_off</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>spot_direction</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>spot_exponent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>set_ambient_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_ambient_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_diffuse_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_diffuse_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_shininess</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_specular_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_specular_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>shininess</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>specular_color</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>specular_texture</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Material</strong></a>)</li>
+<li><strong>set_camera_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_is_shadowed</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_light</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_normal_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_projection_matrix</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMap</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMapColor</strong></a>)</li>
+<li><strong>set_specular_strength</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>set_transparent_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:PhongMultiLight</strong></a>)</li>
+<li><strong>ShadowMap</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMap</strong></a>)</li>
+<li><strong>ShadowMapColor</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:ShadowMapColor</strong></a>)</li>
+<li><strong>Sensor</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>set_frequency</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+<li><strong>set_pose</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+</ul>
+<h2 id="t">t<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>text_panel_text</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>timestep</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>transparent_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>transparent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject/"><strong>robot_dart::gui::magnum::DrawableObject</strong></a>)</li>
+<li><strong>transform_lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>transformed_position</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>transformed_spot_direction</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a>)</li>
+<li><strong>type</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1IMU/"><strong>robot_dart::sensor::IMU</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+<li><strong>Talos</strong> (<a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>)</li>
+<li><strong>torques</strong> (<a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>, <a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+<li><strong>TalosFastCollision</strong> (<a href="../classrobot__dart_1_1robots_1_1TalosFastCollision/"><strong>robot_dart::robots::TalosFastCollision</strong></a>)</li>
+<li><strong>TalosLight</strong> (<a href="../classrobot__dart_1_1robots_1_1TalosLight/"><strong>robot_dart::robots::TalosLight</strong></a>)</li>
+<li><strong>Tiago</strong> (<a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>)</li>
+<li><strong>torque</strong> (<a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>)</li>
+<li><strong>Torque</strong> (<a href="../classrobot__dart_1_1sensor_1_1Torque/"><strong>robot_dart::sensor::Torque</strong></a>)</li>
+</ul>
+<h2 id="u">u<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>update</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>update_joint_dof_maps</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>using_angular_errors</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>update_graphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>update_lights</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>Ur3e</strong> (<a href="../classrobot__dart_1_1robots_1_1Ur3e/"><strong>robot_dart::robots::Ur3e</strong></a>)</li>
+<li><strong>Ur3eHand</strong> (<a href="../classrobot__dart_1_1robots_1_1Ur3eHand/"><strong>robot_dart::robots::Ur3eHand</strong></a>)</li>
+<li><strong>update_robot</strong> (<a href="../structrobot__dart_1_1simu_1_1GUIData/"><strong>robot_dart::simu::GUIData</strong></a>)</li>
+</ul>
+<h2 id="v">v<a class="headerlink" href="#v" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>vec_dof</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>velocities</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>velocity_lower_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>velocity_upper_limits</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>viewportEvent</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>Vx300</strong> (<a href="../classrobot__dart_1_1robots_1_1Vx300/"><strong>robot_dart::robots::Vx300</strong></a>)</li>
+</ul>
+<h2 id="w">w<a class="headerlink" href="#w" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>what</strong> (<a href="../classrobot__dart_1_1Assertion/"><strong>robot_dart::Assertion</strong></a>)</li>
+<li><strong>world</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>weight</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>width</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+<li><strong>WindowlessGLApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication/"><strong>robot_dart::gui::magnum::WindowlessGLApplication</strong></a>)</li>
+<li><strong>WindowlessGraphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics/"><strong>robot_dart::gui::magnum::WindowlessGraphics</strong></a>)</li>
+<li><strong>wrench</strong> (<a href="../classrobot__dart_1_1sensor_1_1ForceTorque/"><strong>robot_dart::sensor::ForceTorque</strong></a>)</li>
+</ul>
+<h2 id="_1">~<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>~Robot</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>~RobotDARTSimu</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>~RobotPool</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>~BitmaskContactFilter</strong> (<a href="../classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter/"><strong>robot_dart::collision_filter::BitmaskContactFilter</strong></a>)</li>
+<li><strong>~RobotControl</strong> (<a href="../classrobot__dart_1_1control_1_1RobotControl/"><strong>robot_dart::control::RobotControl</strong></a>)</li>
+<li><strong>~Base</strong> (<a href="../classrobot__dart_1_1gui_1_1Base/"><strong>robot_dart::gui::Base</strong></a>)</li>
+<li><strong>~BaseApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>~BaseGraphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics/"><strong>robot_dart::gui::magnum::BaseGraphics</strong></a>)</li>
+<li><strong>~GlfwApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication/"><strong>robot_dart::gui::magnum::GlfwApplication</strong></a>)</li>
+<li><strong>~GlobalData</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>~Graphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1Graphics/"><strong>robot_dart::gui::magnum::Graphics</strong></a>)</li>
+<li><strong>~WindowlessGLApplication</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication/"><strong>robot_dart::gui::magnum::WindowlessGLApplication</strong></a>)</li>
+<li><strong>~WindowlessGraphics</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics/"><strong>robot_dart::gui::magnum::WindowlessGraphics</strong></a>)</li>
+<li><strong>~Camera</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>, <a href="../classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera/"><strong>robot_dart::gui::magnum::sensor::Camera</strong></a>)</li>
+<li><strong>~Sensor</strong> (<a href="../classrobot__dart_1_1sensor_1_1Sensor/"><strong>robot_dart::sensor::Sensor</strong></a>)</li>
+</ul>
+<h2 id="_">_<a class="headerlink" href="#_" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>_make_message</strong> (<a href="../classrobot__dart_1_1Assertion/"><strong>robot_dart::Assertion</strong></a>)</li>
+<li><strong>_actuator_type</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_actuator_types</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_get_path</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_jacobian</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_load_model</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_mass_matrix</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_post_addition</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Franka/"><strong>robot_dart::robots::Franka</strong></a>, <a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Iiwa/"><strong>robot_dart::robots::Iiwa</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>, <a href="../classrobot__dart_1_1robots_1_1TalosFastCollision/"><strong>robot_dart::robots::TalosFastCollision</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Ur3e/"><strong>robot_dart::robots::Ur3e</strong></a>)</li>
+<li><strong>_post_removal</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Franka/"><strong>robot_dart::robots::Franka</strong></a>, <a href="../classrobot__dart_1_1robots_1_1ICub/"><strong>robot_dart::robots::ICub</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Iiwa/"><strong>robot_dart::robots::Iiwa</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Talos/"><strong>robot_dart::robots::Talos</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Tiago/"><strong>robot_dart::robots::Tiago</strong></a>, <a href="../classrobot__dart_1_1robots_1_1Ur3e/"><strong>robot_dart::robots::Ur3e</strong></a>)</li>
+<li><strong>_set_actuator_type</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_set_actuator_types</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_set_color_mode</strong> (<a href="../classrobot__dart_1_1Robot/"><strong>robot_dart::Robot</strong></a>)</li>
+<li><strong>_enable</strong> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>robot_dart::RobotDARTSimu</strong></a>)</li>
+<li><strong>_reset_robot</strong> (<a href="../classrobot__dart_1_1RobotPool/"><strong>robot_dart::RobotPool</strong></a>)</li>
+<li><strong>_angle_dist</strong> (<a href="../classrobot__dart_1_1control_1_1PDControl/"><strong>robot_dart::control::PDControl</strong></a>)</li>
+<li><strong>_gl_clean_up</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>_prepare_shadows</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>robot_dart::gui::magnum::BaseApplication</strong></a>)</li>
+<li><strong>_create_contexts</strong> (<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GlobalData/"><strong>robot_dart::gui::magnum::GlobalData</strong></a>)</li>
+<li><strong>_clean_up_subprocess</strong> (<a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>robot_dart::gui::magnum:<img alt="🇬🇸" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f1ec-1f1f8.svg" title=":gs:" />:Camera</strong></a>)</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "content.tabs.link", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

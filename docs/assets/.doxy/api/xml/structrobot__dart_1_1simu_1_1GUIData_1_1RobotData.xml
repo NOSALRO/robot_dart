@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData" kind="struct" language="C++" prot="private">
+    <compoundname>robot_dart::simu::GUIData::RobotData</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a30f1382b1fc0b5141d6ba38d88238833" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::simu::GUIData::RobotData::casting_shadows</definition>
+        <argsstring></argsstring>
+        <name>casting_shadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="15" column="22" bodyfile="robot_dart/gui_data.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a4698e698f2839ebc3361e887b571ee37" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::simu::GUIData::RobotData::is_ghost</definition>
+        <argsstring></argsstring>
+        <name>is_ghost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="16" column="22" bodyfile="robot_dart/gui_data.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui_data.hpp" line="14" column="13" bodyfile="robot_dart/gui_data.hpp" bodystart="14" bodyend="17"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a30f1382b1fc0b5141d6ba38d88238833" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData::RobotData</scope><name>casting_shadows</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a4698e698f2839ebc3361e887b571ee37" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData::RobotData</scope><name>is_ghost</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

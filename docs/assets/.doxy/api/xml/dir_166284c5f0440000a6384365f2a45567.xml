@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="dir_166284c5f0440000a6384365f2a45567" kind="dir">
+    <compoundname>robot_dart</compoundname>
+    <innerdir refid="dir_1a1ccbdd0954eb7721b1a771872472c9">robot_dart/control</innerdir>
+    <innerdir refid="dir_6a9d4b7ec29c938d1d9a486c655cfc8a">robot_dart/gui</innerdir>
+    <innerdir refid="dir_087fbdcd93b501a5d3f98df93e9f8cc4">robot_dart/robots</innerdir>
+    <innerdir refid="dir_d1adb19f0b40b70b30ee0daf1901679b">robot_dart/sensor</innerdir>
+    <innerfile refid="gui__data_8hpp">gui_data.hpp</innerfile>
+    <innerfile refid="robot_8cpp">robot.cpp</innerfile>
+    <innerfile refid="robot_8hpp">robot.hpp</innerfile>
+    <innerfile refid="robot__dart__simu_8cpp">robot_dart_simu.cpp</innerfile>
+    <innerfile refid="robot__dart__simu_8hpp">robot_dart_simu.hpp</innerfile>
+    <innerfile refid="robot__pool_8cpp">robot_pool.cpp</innerfile>
+    <innerfile refid="robot__pool_8hpp">robot_pool.hpp</innerfile>
+    <innerfile refid="scheduler_8cpp">scheduler.cpp</innerfile>
+    <innerfile refid="scheduler_8hpp">scheduler.hpp</innerfile>
+    <innerfile refid="utils_8hpp">utils.hpp</innerfile>
+    <innerfile refid="utils__headers__dart__collision_8hpp">utils_headers_dart_collision.hpp</innerfile>
+    <innerfile refid="utils__headers__dart__dynamics_8hpp">utils_headers_dart_dynamics.hpp</innerfile>
+    <innerfile refid="utils__headers__dart__io_8hpp">utils_headers_dart_io.hpp</innerfile>
+    <innerfile refid="utils__headers__external_8hpp">utils_headers_external.hpp</innerfile>
+    <innerfile refid="utils__headers__external__gui_8hpp">utils_headers_external_gui.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/"/>
+  </compounddef>
+</doxygen>

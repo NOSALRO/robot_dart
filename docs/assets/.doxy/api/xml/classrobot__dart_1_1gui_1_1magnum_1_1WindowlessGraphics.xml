@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::WindowlessGraphics</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1ac050b3b02229942bcb3aa1d45a0d39bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::WindowlessGraphics::WindowlessGraphics</definition>
+        <argsstring>(const GraphicsConfiguration &amp;configuration=default_configuration())</argsstring>
+        <name>WindowlessGraphics</name>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
+          <declname>configuration</declname>
+          <defval>default_configuration()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/windowless_graphics.hpp" line="12" column="17" bodyfile="robot_dart/gui/magnum/windowless_graphics.hpp" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a738206461e284185e94be86faee2bff5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::WindowlessGraphics::~WindowlessGraphics</definition>
+        <argsstring>()</argsstring>
+        <name>~WindowlessGraphics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/windowless_graphics.hpp" line="13" column="17" bodyfile="robot_dart/gui/magnum/windowless_graphics.hpp" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a52f24e007f78b158c28deecd8809ed14" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::WindowlessGraphics::set_simu</definition>
+        <argsstring>(RobotDARTSimu *simu) override</argsstring>
+        <name>set_simu</name>
+        <reimplements refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5">set_simu</reimplements>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/windowless_graphics.hpp" line="15" column="22" bodyfile="robot_dart/gui/magnum/windowless_graphics.cpp" bodystart="6" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a1e896933f724b64efa09c5b373313199" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref></type>
+        <definition>GraphicsConfiguration robot_dart::gui::magnum::WindowlessGraphics::default_configuration</definition>
+        <argsstring>()</argsstring>
+        <name>default_configuration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/windowless_graphics.hpp" line="17" column="46" bodyfile="robot_dart/gui/magnum/windowless_graphics.cpp" bodystart="16" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart::gui::Base</label>
+        <link refid="classrobot__dart_1_1gui_1_1Base"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::WindowlessGraphics</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart::RobotDARTSimu</label>
+        <link refid="classrobot__dart_1_1RobotDARTSimu"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_scheduler</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>robot_dart::Scheduler</label>
+        <link refid="classrobot__dart_1_1Scheduler"/>
+      </node>
+      <node id="3">
+        <label>robot_dart::gui::Base</label>
+        <link refid="classrobot__dart_1_1gui_1_1Base"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::WindowlessGraphics</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/windowless_graphics.hpp" line="10" column="13" bodyfile="robot_dart/gui/magnum/windowless_graphics.hpp" bodystart="10" bodyend="18"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad27c88af2164ba0906c9017574a3213e" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_configuration</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a314dc7cf8d1b39c46ca1e34f5dd2b73a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_enabled</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a47c8330a5c81c6d3905816fac82a6ecc" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_fps</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ab4412c47213f7b0c5464eb958f7acfa5" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_magnum_app</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae00263d66c43d83e40795164a5d07387" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_magnum_silence_output</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1Base_1af92e4d7bca3de2f9fd0d8571fbbf3db0" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa6266bd35ad4e8d8c8957dd200c50438" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>add_light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1Base_1aeb004d9cd85642f35078589723d82902" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>Base</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0d7a97cf1e026c792a306e5e3f009b7b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>BaseGraphics</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9fb0573fad29b272a7b878904ad011fe" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a550e8c8dba5b38057e9638dd14fda939" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1afb3a535894bf24d1e7a03fae0e065879" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>camera_extrinsic_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a724818bf39f2bd3f98b7d10ac460311c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>camera_intrinsic_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1abc15de9714f8dc47fa44e5dc17f6a546" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>clear_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a1e896933f724b64efa09c5b373313199" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>default_configuration</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a1ab8652c4f3cc48fc83196d5ea4e6218" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>depth_array</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ac694dcf459c5c211e877093d26e249ba" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9e8d3b3dd531414fd3cdda9465c08813" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>done</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a11f4168170747c3edf12e52b2e655b79" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>enable_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0358b0597f49560ac5bb82499f1cfd31" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>height</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a419d98e1f7d5a769702717e98fdc1410" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa64e4878491d8496d7b3791c3a78fd53" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1acb452c190f12f234971cd29a6e70927c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70877ee98052fec3fa61dc7b92aa771" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>look_at</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a871440799d1c4b7f8d53a0516af8cd74" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>magnum_app</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6766433c1e087de3dfcaebb4bb63df1e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>magnum_app</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa3e8ddfdb02318e50fefdbcccddab0a6" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>magnum_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1add818d88a291e554cacea1eebb858d5d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>num_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad00bce74f533975eb392ce0ada74960d" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>raw_depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a573a238481b2be0a1b0fafc4ef2761f7" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>record_video</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1af8e4b002d42747fef19832d43a94b8c6" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>refresh</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0186dc83856cbe287d1f0efe02889f25" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>set_enable</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a5175098c8e74befdd36a6b70af4a7a5e" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>set_fps</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1Base_1aa21630a78ce1033c3640a5ca5bbaacc6" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>set_render_period</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a52f24e007f78b158c28deecd8809ed14" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>set_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae855427738d82a088f9b768f02921a60" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>shadowed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1Base_1a680aba7fb9f9013fae2ecb0f474f86bd" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aec5a8ed003a7a0ef1a7f977d8d10946a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>transparent_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70397ca9b425a87f78b5ca2321594f8" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>width</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1ac050b3b02229942bcb3aa1d45a0d39bf" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>WindowlessGraphics</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1Base_1a90567d26b2446b3accc761c194e12d21" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>~Base</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a388379d4754009655d689759fa05d529" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>~BaseGraphics</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a738206461e284185e94be86faee2bff5" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::WindowlessGraphics</scope><name>~WindowlessGraphics</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

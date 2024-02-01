@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+  <compounddef id="utils__headers__eigen_8hpp" kind="file" language="C++">
+    <compoundname>utils_headers_eigen.hpp</compoundname>
+    <includes local="no">Magnum/EigenIntegration/GeometryIntegration.h</includes>
+    <includes local="no">Magnum/EigenIntegration/Integration.h</includes>
+    <includedby refid="base__graphics_8hpp" local="no">robot_dart/gui/magnum/base_graphics.hpp</includedby>
+    <includedby refid="gs_2camera_8cpp" local="no">robot_dart/gui/magnum/gs/camera.cpp</includedby>
+    <includedby refid="sensor_2camera_8cpp" local="no">robot_dart/gui/magnum/sensor/camera.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>robot_dart/gui/magnum/utils_headers_eigen.hpp</label>
+        <link refid="utils__headers__eigen_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Magnum/EigenIntegration/GeometryIntegration.h</label>
+      </node>
+      <node id="3">
+        <label>Magnum/EigenIntegration/Integration.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>robot_dart/gui/magnum/base_graphics.hpp</label>
+        <link refid="base__graphics_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart/gui/magnum/graphics.hpp</label>
+        <link refid="graphics_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>robot_dart/gui/magnum/utils_headers_eigen.hpp</label>
+        <link refid="utils__headers__eigen_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart/gui/magnum/windowless_graphics.hpp</label>
+        <link refid="windowless__graphics_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_GUI_MAGNUM_UTILS_HEADERS_EXTERNAL_GUI_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_GUI_MAGNUM_UTILS_HEADERS_EXTERNAL_GUI_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>GCC<sp/>system_header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/EigenIntegration/GeometryIntegration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/EigenIntegration/Integration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/gui/magnum/utils_headers_eigen.hpp"/>
+  </compounddef>
+</doxygen>
