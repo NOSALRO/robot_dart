@@ -375,7 +375,7 @@
         
           <li class="md-nav__item">
   <a href="#ubuntu-2004" class="md-nav__link">
-    Ubuntu 20.04
+    Ubuntu &gt;=20.04
   </a>
   
 </li>
@@ -481,7 +481,7 @@
         
           <li class="md-nav__item">
   <a href="#ubuntu-2004" class="md-nav__link">
-    Ubuntu 20.04
+    Ubuntu &gt;=20.04
   </a>
   
 </li>
@@ -525,22 +525,37 @@
     display: none;
   }
 </style>
+
 <h2 id="scripts-for-quick-installation-of-robotdart">Scripts for Quick Installation of RobotDART<a class="headerlink" href="#scripts-for-quick-installation-of-robotdart" title="Permanent link">&para;</a></h2>
-<p>In this page we provide standalone scripts for installing RobotDART for <code>Ubuntu</code> (20.04) and <code>OSX</code>. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the <code>/opt</code> folder. This way, one can be rest assured that their system will be clean.</p>
-<h3 id="ubuntu-2004">Ubuntu 20.04<a class="headerlink" href="#ubuntu-2004" title="Permanent link">&para;</a></h3>
-<p>To quickly install RobotDART on <code>Ubuntu 20.04</code>, we just need to run <code>./scripts/install_ubuntu.sh</code> from the root of the repo. In more detail:</p>
+<p>In this page we provide standalone scripts for installing RobotDART for <code>Ubuntu</code> (&gt;=20.04) and <code>OSX</code>. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the <code>/opt</code> folder. This way, one can be rest assured that their system will be clean.</p>
+<h3 id="ubuntu-2004">Ubuntu &gt;=20.04<a class="headerlink" href="#ubuntu-2004" title="Permanent link">&para;</a></h3>
+<p>To quickly install RobotDART on <code>Ubuntu &gt;=20.04</code>, we just need to run <code>./scripts/install_ubuntu.sh</code> from the root of the repo. In more detail:</p>
 <ul>
 <li><code>git clone https://github.com/resibots/robot_dart.git</code></li>
 <li><code>cd robot_dart</code></li>
 <li><code>./scripts/install_ubuntu.sh</code></li>
 </ul>
-<p>This will install everything needed! Once the script is successfully executed, one should add the following to their <code>~/.bashrc</code> or <code>~/.zshrc</code> file:</p>
+<p>This will install everything needed! Once the script is successfully executed, one should add the following to their <code>~/.bashrc</code> or <code>~/.zshrc</code> file (you may need to swap the python version to yours<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/magnum/bin:<span class="nv">$PATH</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/dart/lib:/opt/magnum/lib:/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.8/site-packages:<span class="nv">$PYTHONPATH</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/magnum/lib:/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/robot_dart/lib/python3.10/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
+<!-- ```bash
+export PATH=/opt/magnum/bin:$PATH
+export LD_LIBRARY_PATH=/opt/dart/lib:/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.8/site-packages:$PYTHONPATH
+``` -->
+
 <h3 id="osx">OSX<a class="headerlink" href="#osx" title="Permanent link">&para;</a></h3>
 <p><strong>Coming soon</strong></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>You can run <code>python --version</code> to see your version. We only keep the major.minor (ignoring the patch version)&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 

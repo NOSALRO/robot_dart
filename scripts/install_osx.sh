@@ -1,18 +1,6 @@
 set -x
-# sudo apt-add-repository -y ppa:dartsim/ppa
-# sudo apt update
-# sudo apt install -y build-essential cmake pkg-config git
-# sudo apt install -y libeigen3-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev libbullet-dev libode-dev liboctomap-dev
-# sudo apt install -y libtinyxml-dev libtinyxml2-dev
-# sudo apt install -y liburdfdom-dev liburdfdom-headers-dev python3-pip python3-numpy
-# sudo apt install -y libxi-dev libxmu-dev freeglut3-dev libopenscenegraph-dev
-# sudo apt install -y libassimp-dev pybind11-dev
-# sudo apt install -y libopenal-dev libglfw3-dev libsdl2-dev libopenexr-dev
-# sudo apt install -y libdevil-dev libpng-dev libfaad-dev libfreetype6-dev libglm-dev
-# sudo apt install -y python-is-python3
 
-
-brew install cmake eigen fcl tinyxml tinyxml2 urdfdom assimp boost numpy
+brew install cmake eigen fcl tinyxml tinyxml2 urdfdom assimp boost numpy fmt
 python -m pip install numpy pytest
 
 # Remove previous attempts
@@ -69,7 +57,7 @@ cd ../..
 git clone  --depth 1 https://github.com/mosra/magnum-integration.git
 cd magnum-integration
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_DART=ON -DMAGNUM_WITH_EIGEN=ON -DMAGNUM_WITH_BULLET=ON -DMAGNUM_WITH_GLM=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_DART=ON -DMAGNUM_WITH_EIGEN=ON -DMAGNUM_WITH_BULLET=ON -DMAGNUM_WITH_GLM=OFF ..
 make -j
 sudo make install
 cd ../..
@@ -78,16 +66,16 @@ pwd
 export PATH=/opt/magnum/bin:$PATH
 export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
 
-# sudo ln -s /usr/bin/python3 /usr/bin/python
 pwd
 cd ../
 pwd
 rm -rf temp_robot_dart
 cd ..
 pwd
+
 # RobotDART
 ./waf configure --prefix /opt/robot_dart --python --dart /opt/dart --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
 ./waf -j8
 ./waf examples -j8
-#sudo ./waf install
+sudo ./waf install
 

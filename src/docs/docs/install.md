@@ -8,99 +8,40 @@
     display: none;
   }
 </style>
+
 ## Manual Installation of RobotDART
+
+For the quick installation manual, see the [quick installation page](quick_install.md).
 
 ### Dependencies
 
 #### Required
 - Ubuntu (it should work on versions >= 14.04) or OSX
-- Eigen3 (needed by DART)
-- Boost (needed by DART)
+- Eigen3
 - DART, http://dartsim.github.io/
 
 #### Optional
+- Boost (for unit tests)
 - Magnum (for graphics), https://github.com/mosra/magnum
 
 ### Installation of the dependencies
 
-#### Installing Boost and Eigen3
+**Note:** The following instructions are high-level and assume people with some experience in building/installing software.
 
-For Ubuntu-based distributions we should use the following commands to install Eigen3 and Boost:
+#### Installing system-wide packages
+
+For Ubuntu-based distributions (>=20.04) we should use the following commands:
 
 ```bash
 sudo apt-get update
-sudo apt-get install libeigen3-dev libboost-filesystem-dev libboost-system-dev libboost-regex-dev
+sudo apt-get install build-essential cmake pkg-config git libboost-regex-dev libboost-system-dev libboost-test-dev pybind11-dev
+sudo apt-get install libdart-all-dev
 ```
 
 For OSX with brew:
 
 ```bash
-brew install eigen3
-brew install boost
-```
-
-#### Installing DART
-
-In order to use RobotDART, you need to install [DART](http://dartsim.github.io/) (from source).
-
-For **Ubuntu systems**, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_ubuntu.html#install-required-dependencies). Make sure that you don't forget to add the PPAs as detailed [here](http://dartsim.github.io/install_dart_on_ubuntu.html#adding-personal-package-archives-ppas-for-dart-and-dependencies). What is more, you can enable the `-DART_ENABLE_SIMD` flag in the CMake configuration. In addition, you need the following optional dependency: **DART Parsers**. Lastly, it is recommended to use either the `master` branch or `v6.12.1` tag (and not the one provided in DART's documentation). In short you should do the following:
-
-**Ubuntu <= 14.04 only**
-
-```bash
-sudo apt-add-repository ppa:libccd-debs/ppa
-sudo apt-add-repository ppa:fcl-debs/ppa
-```
-
-**For all Ubuntu distributions**
-
-```bash
-sudo apt-add-repository ppa:dartsim/ppa
-sudo apt-get update
-
-sudo apt-get install build-essential cmake pkg-config git
-sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
-
-sudo apt-get install libtinyxml-dev libtinyxml2-dev
-sudo apt-get install liburdfdom-dev liburdfdom-headers-dev
-
-cd /path/to/tmp/folder
-git clone git://github.com/dartsim/dart.git
-cd dart
-git checkout v6.12.1
-
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
-```
-
-If you want to install DART somewhere else than `/usr/local`, you should use the `-DCMAKE_INSTALL_PREFIX=/path/to/install/folder` cmake argument.
-
-For **OSX systems** with homebrew, please follow the detailed installation instructions on the [DART documentation website](http://dartsim.github.io/install_dart_on_mac.html#install-from-source-using-homebrew). You need to follow the same procedure as for Ubuntu systems. In short you should do the following:
-
-```bash
-brew install eigen
-brew install assimp
-brew install libccd
-brew install dartsim/dart/fcl04
-brew install boost
-
-brew install tinyxml
-brew install tinyxml2
-brew install urdfdom
-
-cd /path/to/tmp/folder
-git clone git://github.com/dartsim/dart.git
-cd dart
-git checkout v6.12.1
-
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
+brew install dartsim
 ```
 
 #### Installing Magnum
@@ -110,7 +51,7 @@ Magnum depends on [Corrade](https://github.com/mosra/corrade) and we are going t
 ```bash
 #installation of Glfw and OpenAL
 # Ubuntu
-sudo apt-get install libglfw3-dev libglfw3 libopenal-dev libassimp-dev
+sudo apt-get install libglfw3-dev libglfw3 libassimp-dev libopenal-dev libglfw3-dev libsdl2-dev libopenexr-dev libdevil-dev libpng-dev libfaad-dev libfreetype6-dev
 # Mac OSX
 brew install glfw3 openal-soft assimp
 
@@ -129,7 +70,7 @@ git clone https://github.com/mosra/magnum.git
 cd magnum
 mkdir build && cd build
 # Ubuntu
-cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSEGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON -DTARGET_HEADLESS=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSEGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON -DTARGET_EGL=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
 # Mac OSX
 cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSCGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON .. # this will enable almost all features of Magnum that are not necessarily needed for robot_dart (please refer to the documentation of Magnum for more details on selecting only the ones that you need)
 make -j
@@ -185,20 +126,7 @@ In short, with `--prefix` you can change the directory where the library will be
 
 For the python bindings of robot_dart, we need `numpy` to be installed, `pybind11` and the python bindings of DART (dartpy).
 
-For `numpy` one can install it with `pip` or standard packages. For `pybind11` please follow the instructions on the [dart website](http://dartsim.github.io/install_dartpy_on_ubuntu.html#install-dartpy-from-source) (focus on the pybind11 part, for the other parts follow our instructions above).
-
-For the python bindings of DART, do:
-
-```bash
-cd dart
-
-mkdir build
-cd build
-cmake -DDART_BUILD_DARTPY=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-make -j4
-sudo make install
-sudo make install-dartpy # for DART >= v6.12.0, we do not need this
-```
+For `numpy` one can install it with `pip` or standard packages. `dartpy` should be installed via the packages above. If not, please see the installation instructions on the main DART website.
 
 Then the compilation of robot_dart is almost identical as before:
 
@@ -207,7 +135,7 @@ Then the compilation of robot_dart is almost identical as before:
 - `./waf configure --python` (`--python` enables the python bindings)
 - `./waf`
 - Install the library (including the python bindings) as before (no change is needed)
-- Depending on your installation directory you might need to update your `PYTHONPATH`, e.g. `export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.8/site-packages/`
+- Depending on your installation directory you might need to update your `PYTHONPATH`, e.g. `export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.10/site-packages/`
 
 To run the python examples (for the python examples you need to have enabled the graphics, that is, install Magnum library), run:
 

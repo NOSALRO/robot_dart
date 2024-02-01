@@ -70,7 +70,7 @@ See the [robots page](robots.md) for details.
 
 To enable graphics in your code, you need to do the following:
 
-- Install [Magnum](http://magnum.graphics). See the [installation page](install.md) for details.
+- Install [Magnum](http://magnum.graphics). See the [installation page](quick_install.md) for details.
 - Create and set a graphics object in the simulation object. Here's an example:
 
 === "C++"
@@ -355,7 +355,6 @@ We can save the depth images as well:
 
 ## **How can I spawn multiple robots in parallel?**
 
-
 ### Robot Pool (only in C++)
 
 The best way to do so is to create a Robot pool. With a robot pool you:
@@ -388,12 +387,20 @@ The `creator` function is the function responsible for loading your robot. This 
 === "C++"
 {{ROBOT_POOL_EVAL}}
 
+### Python
+
+We have not implemented this feature in `Python` yet. One can emulate the `RobotPool` behavior or create a custom parallel robot loader.
+
 ## **I need to simulate many worlds with camera sensors in parallel. How can I do this?**
 
-On [magnum_contexts.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp) you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.
+Below you can find an example showcasing the use of many worlds with camera sensors in parallel.
 
 === "C++"
 {{CAMERAS_PARALLEL}}
+=== "Python"
+{{CAMERAS_PARALLEL_PYTHON}}
+
+In C++ you are also able to pre-allocate a custom number of OpenGL contexts so that you can take advantage of stronger GPUs.
 
 ## **I do not know how to use waf. How can I detect RobotDART from CMake?**
 

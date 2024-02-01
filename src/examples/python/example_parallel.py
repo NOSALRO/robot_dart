@@ -5,6 +5,7 @@ from multiprocessing import Process, Lock
 from timeit import default_timer as timer
 import os
 
+# @CAMERAS_PARALLEL_PYTHON@
 robot = rd.Robot("arm.urdf", "arm", False)
 robot.fix_to_world()
 
@@ -61,6 +62,7 @@ start = timer()
 runInParallel(N)
 end = timer()
 print('Time:', end-start)
+# @CAMERAS_PARALLEL_PYTHON_END@
 
 # print('Running sequential evaluations')
 # start = timer()

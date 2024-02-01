@@ -615,6 +615,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -880,6 +887,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1049,7 +1063,7 @@
 <h2 id="how-do-i-enable-graphics-in-my-code"><strong>How do I enable graphics in my code?</strong><a class="headerlink" href="#how-do-i-enable-graphics-in-my-code" title="Permanent link">&para;</a></h2>
 <p>To enable graphics in your code, you need to do the following:</p>
 <ul>
-<li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="../install/">installation page</a> for details.</li>
+<li>Install <a href="http://magnum.graphics">Magnum</a>. See the <a href="../quick_install/">installation page</a> for details.</li>
 <li>Create and set a graphics object in the simulation object. Here's an example:</li>
 </ul>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">C++</label><label for="__tabbed_7_2">Python</label></div>
@@ -2245,9 +2259,11 @@
 </div>
 </div>
 </div>
+<h3 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<p>We have not implemented this feature in <code>Python</code> yet. One can emulate the <code>RobotPool</code> behavior or create a custom parallel robot loader.</p>
 <h2 id="i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this"><strong>I need to simulate many worlds with camera sensors in parallel. How can I do this?</strong><a class="headerlink" href="#i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this" title="Permanent link">&para;</a></h2>
-<p>On <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp">magnum_contexts.cpp</a> you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="52:1"><input checked="checked" id="__tabbed_52_1" name="__tabbed_52" type="radio" /><div class="tabbed-labels"><label for="__tabbed_52_1">C++</label></div>
+<p>Below you can find an example showcasing the use of many worlds with camera sensors in parallel.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="52:2"><input checked="checked" id="__tabbed_52_1" name="__tabbed_52" type="radio" /><input id="__tabbed_52_2" name="__tabbed_52" type="radio" /><div class="tabbed-labels"><label for="__tabbed_52_1">C++</label><label for="__tabbed_52_2">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="c1">// Load robot from URDF</span>
@@ -2315,28 +2331,88 @@
 <a id="__codelineno-98-63" name="__codelineno-98-63" href="#__codelineno-98-63"></a><span class="p">}</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;arm.urdf&quot;</span><span class="p">,</span> <span class="s2">&quot;arm&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a><span class="n">robot</span><span class="o">.</span><span class="n">fix_to_world</span><span class="p">()</span>
+<a id="__codelineno-99-3" name="__codelineno-99-3" href="#__codelineno-99-3"></a>
+<a id="__codelineno-99-4" name="__codelineno-99-4" href="#__codelineno-99-4"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+<a id="__codelineno-99-5" name="__codelineno-99-5" href="#__codelineno-99-5"></a>    <span class="n">pid</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
+<a id="__codelineno-99-6" name="__codelineno-99-6" href="#__codelineno-99-6"></a>    <span class="n">ii</span> <span class="o">=</span> <span class="n">pid</span><span class="o">%</span><span class="mi">15</span>
+<a id="__codelineno-99-7" name="__codelineno-99-7" href="#__codelineno-99-7"></a>
+<a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a>    <span class="c1"># create the controller</span>
+<a id="__codelineno-99-9" name="__codelineno-99-9" href="#__codelineno-99-9"></a>    <span class="n">pdcontrol</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">PDControl</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-99-10" name="__codelineno-99-10" href="#__codelineno-99-10"></a>
+<a id="__codelineno-99-11" name="__codelineno-99-11" href="#__codelineno-99-11"></a>    <span class="c1"># clone the robot</span>
+<a id="__codelineno-99-12" name="__codelineno-99-12" href="#__codelineno-99-12"></a>    <span class="n">grobot</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<a id="__codelineno-99-13" name="__codelineno-99-13" href="#__codelineno-99-13"></a>
+<a id="__codelineno-99-14" name="__codelineno-99-14" href="#__codelineno-99-14"></a>    <span class="c1"># add the controller to the robot</span>
+<a id="__codelineno-99-15" name="__codelineno-99-15" href="#__codelineno-99-15"></a>    <span class="n">grobot</span><span class="o">.</span><span class="n">add_controller</span><span class="p">(</span><span class="n">pdcontrol</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<a id="__codelineno-99-16" name="__codelineno-99-16" href="#__codelineno-99-16"></a>    <span class="n">pdcontrol</span><span class="o">.</span><span class="n">set_pd</span><span class="p">(</span><span class="mf">200.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">)</span>
+<a id="__codelineno-99-17" name="__codelineno-99-17" href="#__codelineno-99-17"></a>
+<a id="__codelineno-99-18" name="__codelineno-99-18" href="#__codelineno-99-18"></a>    <span class="c1"># create the simulation object</span>
+<a id="__codelineno-99-19" name="__codelineno-99-19" href="#__codelineno-99-19"></a>    <span class="n">simu</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">RobotDARTSimu</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+<a id="__codelineno-99-20" name="__codelineno-99-20" href="#__codelineno-99-20"></a>
+<a id="__codelineno-99-21" name="__codelineno-99-21" href="#__codelineno-99-21"></a>    <span class="c1"># set the graphics</span>
+<a id="__codelineno-99-22" name="__codelineno-99-22" href="#__codelineno-99-22"></a>    <span class="n">graphics</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">WindowlessGraphics</span><span class="p">()</span>
+<a id="__codelineno-99-23" name="__codelineno-99-23" href="#__codelineno-99-23"></a>    <span class="n">simu</span><span class="o">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="n">graphics</span><span class="p">)</span>
+<a id="__codelineno-99-24" name="__codelineno-99-24" href="#__codelineno-99-24"></a>
+<a id="__codelineno-99-25" name="__codelineno-99-25" href="#__codelineno-99-25"></a>    <span class="n">graphics</span><span class="o">.</span><span class="n">look_at</span><span class="p">([</span><span class="mf">0.4</span> <span class="o">*</span> <span class="n">ii</span><span class="p">,</span> <span class="mf">3.5</span> <span class="o">-</span> <span class="n">ii</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<a id="__codelineno-99-26" name="__codelineno-99-26" href="#__codelineno-99-26"></a>
+<a id="__codelineno-99-27" name="__codelineno-99-27" href="#__codelineno-99-27"></a>    <span class="c1"># add the robot and the floor</span>
+<a id="__codelineno-99-28" name="__codelineno-99-28" href="#__codelineno-99-28"></a>    <span class="n">simu</span><span class="o">.</span><span class="n">add_robot</span><span class="p">(</span><span class="n">grobot</span><span class="p">)</span>
+<a id="__codelineno-99-29" name="__codelineno-99-29" href="#__codelineno-99-29"></a>    <span class="n">simu</span><span class="o">.</span><span class="n">add_checkerboard_floor</span><span class="p">()</span>
+<a id="__codelineno-99-30" name="__codelineno-99-30" href="#__codelineno-99-30"></a>
+<a id="__codelineno-99-31" name="__codelineno-99-31" href="#__codelineno-99-31"></a>    <span class="c1"># run</span>
+<a id="__codelineno-99-32" name="__codelineno-99-32" href="#__codelineno-99-32"></a>    <span class="n">simu</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mf">20.</span><span class="p">)</span>
+<a id="__codelineno-99-33" name="__codelineno-99-33" href="#__codelineno-99-33"></a>
+<a id="__codelineno-99-34" name="__codelineno-99-34" href="#__codelineno-99-34"></a>    <span class="c1"># save last frame for visualization purposes</span>
+<a id="__codelineno-99-35" name="__codelineno-99-35" href="#__codelineno-99-35"></a>    <span class="n">img</span> <span class="o">=</span> <span class="n">graphics</span><span class="o">.</span><span class="n">image</span><span class="p">()</span>
+<a id="__codelineno-99-36" name="__codelineno-99-36" href="#__codelineno-99-36"></a>    <span class="n">rd</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">save_png_image</span><span class="p">(</span><span class="s1">&#39;camera-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<a id="__codelineno-99-37" name="__codelineno-99-37" href="#__codelineno-99-37"></a>
+<a id="__codelineno-99-38" name="__codelineno-99-38" href="#__codelineno-99-38"></a><span class="c1"># helper function to run in parallel</span>
+<a id="__codelineno-99-39" name="__codelineno-99-39" href="#__codelineno-99-39"></a><span class="k">def</span> <span class="nf">runInParallel</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<a id="__codelineno-99-40" name="__codelineno-99-40" href="#__codelineno-99-40"></a>  <span class="n">proc</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-99-41" name="__codelineno-99-41" href="#__codelineno-99-41"></a>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<a id="__codelineno-99-42" name="__codelineno-99-42" href="#__codelineno-99-42"></a>    <span class="c1"># rd.gui.run_with_gl_context accepts 2 parameters:</span>
+<a id="__codelineno-99-43" name="__codelineno-99-43" href="#__codelineno-99-43"></a>    <span class="c1">#    (func, wait_time_in_ms)</span>
+<a id="__codelineno-99-44" name="__codelineno-99-44" href="#__codelineno-99-44"></a>    <span class="c1">#    the func needs to be of the following format: void(), aka no return, no arguments</span>
+<a id="__codelineno-99-45" name="__codelineno-99-45" href="#__codelineno-99-45"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">rd</span><span class="o">.</span><span class="n">gui</span><span class="o">.</span><span class="n">run_with_gl_context</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<a id="__codelineno-99-46" name="__codelineno-99-46" href="#__codelineno-99-46"></a>    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-99-47" name="__codelineno-99-47" href="#__codelineno-99-47"></a>    <span class="n">proc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a id="__codelineno-99-48" name="__codelineno-99-48" href="#__codelineno-99-48"></a>  <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">proc</span><span class="p">:</span>
+<a id="__codelineno-99-49" name="__codelineno-99-49" href="#__codelineno-99-49"></a>    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<a id="__codelineno-99-50" name="__codelineno-99-50" href="#__codelineno-99-50"></a>
+<a id="__codelineno-99-51" name="__codelineno-99-51" href="#__codelineno-99-51"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running parallel evaluations&#39;</span><span class="p">)</span>
+<a id="__codelineno-99-52" name="__codelineno-99-52" href="#__codelineno-99-52"></a><span class="n">N</span> <span class="o">=</span> <span class="mi">15</span>
+<a id="__codelineno-99-53" name="__codelineno-99-53" href="#__codelineno-99-53"></a><span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<a id="__codelineno-99-54" name="__codelineno-99-54" href="#__codelineno-99-54"></a><span class="n">runInParallel</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<a id="__codelineno-99-55" name="__codelineno-99-55" href="#__codelineno-99-55"></a><span class="n">end</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<a id="__codelineno-99-56" name="__codelineno-99-56" href="#__codelineno-99-56"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time:&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
+</div>
+<p>In C++ you are also able to pre-allocate a custom number of OpenGL contexts so that you can take advantage of stronger GPUs.</p>
 <h2 id="i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake"><strong>I do not know how to use waf. How can I detect RobotDART from CMake?</strong><a class="headerlink" href="#i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake" title="Permanent link">&para;</a></h2>
 <p>You need to use <code>waf</code> to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/cmake/example">cmake/example</a>. In short the CMake would look like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.10</span><span class="w"> </span><span class="s">FATAL_ERROR</span><span class="p">)</span>
-<a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a><span class="nb">project</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="p">)</span>
-<a id="__codelineno-99-3" name="__codelineno-99-3" href="#__codelineno-99-3"></a><span class="c"># we ask for Magnum because we want to build the graphics</span>
-<a id="__codelineno-99-4" name="__codelineno-99-4" href="#__codelineno-99-4"></a><span class="nb">find_package</span><span class="p">(</span><span class="s">RobotDART</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">OPTIONAL_COMPONENTS</span><span class="w"> </span><span class="s">Magnum</span><span class="p">)</span>
-<a id="__codelineno-99-5" name="__codelineno-99-5" href="#__codelineno-99-5"></a>
-<a id="__codelineno-99-6" name="__codelineno-99-6" href="#__codelineno-99-6"></a><span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="w"> </span><span class="s">example.cpp</span><span class="p">)</span>
-<a id="__codelineno-99-7" name="__codelineno-99-7" href="#__codelineno-99-7"></a>
-<a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example</span>
-<a id="__codelineno-99-9" name="__codelineno-99-9" href="#__codelineno-99-9"></a><span class="w">   </span><span class="s">RobotDART::Simu</span>
-<a id="__codelineno-99-10" name="__codelineno-99-10" href="#__codelineno-99-10"></a><span class="p">)</span>
-<a id="__codelineno-99-11" name="__codelineno-99-11" href="#__codelineno-99-11"></a>
-<a id="__codelineno-99-12" name="__codelineno-99-12" href="#__codelineno-99-12"></a><span class="nb">if</span><span class="p">(</span><span class="s">RobotDART_Magnum_FOUND</span><span class="p">)</span>
-<a id="__codelineno-99-13" name="__codelineno-99-13" href="#__codelineno-99-13"></a><span class="w">  </span><span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span><span class="w"> </span><span class="s">example.cpp</span><span class="p">)</span>
-<a id="__codelineno-99-14" name="__codelineno-99-14" href="#__codelineno-99-14"></a><span class="w">  </span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span>
-<a id="__codelineno-99-15" name="__codelineno-99-15" href="#__codelineno-99-15"></a><span class="w">    </span><span class="s">RobotDART::Simu</span>
-<a id="__codelineno-99-16" name="__codelineno-99-16" href="#__codelineno-99-16"></a><span class="w">    </span><span class="s">RobotDART::Magnum</span>
-<a id="__codelineno-99-17" name="__codelineno-99-17" href="#__codelineno-99-17"></a><span class="w">  </span><span class="p">)</span>
-<a id="__codelineno-99-18" name="__codelineno-99-18" href="#__codelineno-99-18"></a><span class="nb">endif</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.10</span><span class="w"> </span><span class="s">FATAL_ERROR</span><span class="p">)</span>
+<a id="__codelineno-100-2" name="__codelineno-100-2" href="#__codelineno-100-2"></a><span class="nb">project</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="p">)</span>
+<a id="__codelineno-100-3" name="__codelineno-100-3" href="#__codelineno-100-3"></a><span class="c"># we ask for Magnum because we want to build the graphics</span>
+<a id="__codelineno-100-4" name="__codelineno-100-4" href="#__codelineno-100-4"></a><span class="nb">find_package</span><span class="p">(</span><span class="s">RobotDART</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">OPTIONAL_COMPONENTS</span><span class="w"> </span><span class="s">Magnum</span><span class="p">)</span>
+<a id="__codelineno-100-5" name="__codelineno-100-5" href="#__codelineno-100-5"></a>
+<a id="__codelineno-100-6" name="__codelineno-100-6" href="#__codelineno-100-6"></a><span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example</span><span class="w"> </span><span class="s">example.cpp</span><span class="p">)</span>
+<a id="__codelineno-100-7" name="__codelineno-100-7" href="#__codelineno-100-7"></a>
+<a id="__codelineno-100-8" name="__codelineno-100-8" href="#__codelineno-100-8"></a><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example</span>
+<a id="__codelineno-100-9" name="__codelineno-100-9" href="#__codelineno-100-9"></a><span class="w">   </span><span class="s">RobotDART::Simu</span>
+<a id="__codelineno-100-10" name="__codelineno-100-10" href="#__codelineno-100-10"></a><span class="p">)</span>
+<a id="__codelineno-100-11" name="__codelineno-100-11" href="#__codelineno-100-11"></a>
+<a id="__codelineno-100-12" name="__codelineno-100-12" href="#__codelineno-100-12"></a><span class="nb">if</span><span class="p">(</span><span class="s">RobotDART_Magnum_FOUND</span><span class="p">)</span>
+<a id="__codelineno-100-13" name="__codelineno-100-13" href="#__codelineno-100-13"></a><span class="w">  </span><span class="nb">add_executable</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span><span class="w"> </span><span class="s">example.cpp</span><span class="p">)</span>
+<a id="__codelineno-100-14" name="__codelineno-100-14" href="#__codelineno-100-14"></a><span class="w">  </span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">robot_dart_example_graphics</span>
+<a id="__codelineno-100-15" name="__codelineno-100-15" href="#__codelineno-100-15"></a><span class="w">    </span><span class="s">RobotDART::Simu</span>
+<a id="__codelineno-100-16" name="__codelineno-100-16" href="#__codelineno-100-16"></a><span class="w">    </span><span class="s">RobotDART::Magnum</span>
+<a id="__codelineno-100-17" name="__codelineno-100-17" href="#__codelineno-100-17"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-100-18" name="__codelineno-100-18" href="#__codelineno-100-18"></a><span class="nb">endif</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="where-can-i-find-complete-working-examples-for-either-c-or-python"><strong>Where can I find complete working examples for either c++ or python?</strong><a class="headerlink" href="#where-can-i-find-complete-working-examples-for-either-c-or-python" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
