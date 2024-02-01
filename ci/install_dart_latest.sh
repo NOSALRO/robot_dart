@@ -12,16 +12,16 @@ if [ "$COMPILER" = "clang" ]; then
 export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
 fi
 
-# Build pybind11 if needed; for clang we need at least v2.5.0
-if [ "$COMPILER" = "clang" ]; then
-    git clone https://github.com/pybind/pybind11 -b 'v2.5.0' --single-branch --depth 1
-    cd pybind11
-    mkdir build && cd build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DPYBIND11_TEST=OFF
-    make -j4
-    sudo make install
-    cd ../..
-fi
+# # Build pybind11 if needed; for clang we need at least v2.5.0
+# if [ "$COMPILER" = "clang" ]; then
+#     git clone https://github.com/pybind/pybind11 -b 'v2.5.0' --single-branch --depth 1
+#     cd pybind11
+#     mkdir build && cd build
+#     cmake .. -DCMAKE_BUILD_TYPE=Release -DPYBIND11_TEST=OFF
+#     make -j4
+#     sudo make install
+#     cd ../..
+# fi
 
 git clone https://github.com/dartsim/dart.git
 cd dart
@@ -45,7 +45,7 @@ sudo ldconfig
 cd $CI_HOME
 
 # Hack for dartpy installation
-python_file=/usr/lib/python3/dist-packages/dartpy.cpython-38-x86_64-linux-gnu.so
+python_file=/usr/lib/python3/dist-packages/dartpy.cpython-310-x86_64-linux-gnu.so
 if [ -f "$python_file" ]; then
 cp $python_file ~/.dart_install/$python_dist_dir
 fi
