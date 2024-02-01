@@ -63,13 +63,13 @@ jobs:
           fi
           cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
-            ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --python --prefix=/usr --dart=~/.dart_install ;
           else
-            ./waf configure --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --prefix=/usr --dart=~/.dart_install ;
           fi
           ./waf
-      # - name: Run tests
-      #   run: ./waf --tests
+      - name: Run tests
+        run: ./waf --tests
       - name: Build examples
         run: ./waf examples
       - name: Install
