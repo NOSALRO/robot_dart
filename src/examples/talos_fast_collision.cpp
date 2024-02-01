@@ -15,6 +15,7 @@ int main()
     // @TALOS_FAST@
     // load talos fast
     auto robot = std::make_shared<robot_dart::robots::TalosFastCollision>();
+    // @TALOS_FAST_END@
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
@@ -23,7 +24,7 @@ int main()
     robot_dart::RobotDARTSimu simu(dt);
     // we can use the DART (fast) collision detector
     simu.set_collision_detector("dart");
-    // @TALOS_FAST_END@
+
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);
