@@ -546,8 +546,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass" class="md-nav__link">
-    Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
+  <a href="#is-there-a-way-to-change-the-joint-properties-eg-actuation-friction" class="md-nav__link">
+    Is there a way to change the joint properties (e.g., actuation, friction)?
   </a>
   
 </li>
@@ -604,6 +604,19 @@
   <a href="#how-can-i-spawn-multiple-robots-in-parallel" class="md-nav__link">
     How can I spawn multiple robots in parallel?
   </a>
+  
+    <nav class="md-nav" aria-label="How can I spawn multiple robots in parallel?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#robot-pool-only-in-c" class="md-nav__link">
+    Robot Pool (only in C++)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -798,8 +811,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass" class="md-nav__link">
-    Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?
+  <a href="#is-there-a-way-to-change-the-joint-properties-eg-actuation-friction" class="md-nav__link">
+    Is there a way to change the joint properties (e.g., actuation, friction)?
   </a>
   
 </li>
@@ -856,6 +869,19 @@
   <a href="#how-can-i-spawn-multiple-robots-in-parallel" class="md-nav__link">
     How can I spawn multiple robots in parallel?
   </a>
+  
+    <nav class="md-nav" aria-label="How can I spawn multiple robots in parallel?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#robot-pool-only-in-c" class="md-nav__link">
+    Robot Pool (only in C++)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1764,7 +1790,7 @@
 </div>
 </div>
 </div>
-<h2 id="is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass"><strong>Is there a way to change the joint or link (body) properties (e.g., actuation, mass)?</strong><a class="headerlink" href="#is-there-a-way-to-change-the-joint-or-link-body-properties-eg-actuation-mass" title="Permanent link">&para;</a></h2>
+<h2 id="is-there-a-way-to-change-the-joint-properties-eg-actuation-friction"><strong>Is there a way to change the joint properties (e.g., actuation, friction)?</strong><a class="headerlink" href="#is-there-a-way-to-change-the-joint-properties-eg-actuation-friction" title="Permanent link">&para;</a></h2>
 <p>There are 6 types of actuators available, you can set the same actuator to multiple joints at once, or you can set each sensor separately:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="33:2"><input checked="checked" id="__tabbed_33_1" name="__tabbed_33" type="radio" /><input id="__tabbed_33_2" name="__tabbed_33" type="radio" /><div class="tabbed-labels"><label for="__tabbed_33_1">C++</label><label for="__tabbed_33_2">Python</label></div>
 <div class="tabbed-content">
@@ -2138,6 +2164,7 @@
 </div>
 </div>
 <h2 id="how-can-i-spawn-multiple-robots-in-parallel"><strong>How can I spawn multiple robots in parallel?</strong><a class="headerlink" href="#how-can-i-spawn-multiple-robots-in-parallel" title="Permanent link">&para;</a></h2>
+<h3 id="robot-pool-only-in-c">Robot Pool (only in C++)<a class="headerlink" href="#robot-pool-only-in-c" title="Permanent link">&para;</a></h3>
 <p>The best way to do so is to create a Robot pool. With a robot pool you:</p>
 <ul>
 <li>Minimize the overhead of loading robots (it happens only once!) or cloning robots (it never happens)</li>
@@ -2146,13 +2173,22 @@
 </ul>
 <p>Let's see a more practical example:</p>
 <ul>
-<li>
-<p>First we need to include the proper header:</p>
+<li>First we need to include the proper header:</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="48:1"><input checked="checked" id="__tabbed_48_1" name="__tabbed_48" type="radio" /><div class="tabbed-labels"><label for="__tabbed_48_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;robot_dart/robot_pool.hpp&gt;</span>
 </code></pre></div>
-</li>
-<li>
-<p>Then we create a <code>creator</code> function and the pool object:</p>
+</div>
+</div>
+</div>
+<ul>
+<li>Then we create a <code>creator</code> function and the pool object:</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="49:1"><input checked="checked" id="__tabbed_49_1" name="__tabbed_49" type="radio" /><div class="tabbed-labels"><label for="__tabbed_49_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">pool</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a><span class="w">    </span><span class="c1">// This function should load one robot: here we load Talos</span>
 <a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="w"> </span><span class="n">robot_creator</span><span class="p">()</span>
@@ -2164,20 +2200,30 @@
 <a id="__codelineno-95-9" name="__codelineno-95-9" href="#__codelineno-95-9"></a><span class="w">    </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">RobotPool</span><span class="w"> </span><span class="n">robot_pool</span><span class="p">(</span><span class="n">robot_creator</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_THREADS</span><span class="p">);</span>
 <a id="__codelineno-95-10" name="__codelineno-95-10" href="#__codelineno-95-10"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace pool</span>
 </code></pre></div>
-</li>
-</ul>
+</div>
+</div>
+</div>
 <p>The <code>creator</code> function is the function responsible for loading your robot. This should basically look like a standalone code to load or create a robot.</p>
 <ul>
-<li>
-<p>Next, we create a few threads that utilize the robots (in your code you might be using OpenMP or TBB):</p>
+<li>Next, we create a few threads that utilize the robots (in your code you might be using OpenMP or TBB):</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="50:1"><input checked="checked" id="__tabbed_50_1" name="__tabbed_50" type="radio" /><div class="tabbed-labels"><label for="__tabbed_50_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a><span class="c1">// for the example, we run NUM_THREADS threads of eval_robot()</span>
 <a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threads</span><span class="p">(</span><span class="n">NUM_THREADS</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// *2 to see some reuse</span>
 <a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threads</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
 <a id="__codelineno-96-4" name="__codelineno-96-4" href="#__codelineno-96-4"></a><span class="w">    </span><span class="n">threads</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">eval_robot</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// eval_robot is the function that uses the robot</span>
 </code></pre></div>
-</li>
-<li>
-<p>An example evaluation function:</p>
+</div>
+</div>
+</div>
+<ul>
+<li>An example evaluation function:</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="51:1"><input checked="checked" id="__tabbed_51_1" name="__tabbed_51" type="radio" /><div class="tabbed-labels"><label for="__tabbed_51_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">eval_robot</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
 <a id="__codelineno-97-2" name="__codelineno-97-2" href="#__codelineno-97-2"></a><span class="p">{</span>
 <a id="__codelineno-97-3" name="__codelineno-97-3" href="#__codelineno-97-3"></a><span class="w">    </span><span class="c1">// We get one available robot</span>
@@ -2196,11 +2242,15 @@
 <a id="__codelineno-97-16" name="__codelineno-97-16" href="#__codelineno-97-16"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Robot &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; freed!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <a id="__codelineno-97-17" name="__codelineno-97-17" href="#__codelineno-97-17"></a><span class="p">}</span>
 </code></pre></div>
-</li>
-</ul>
+</div>
+</div>
+</div>
 <h2 id="i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this"><strong>I need to simulate many worlds with camera sensors in parallel. How can I do this?</strong><a class="headerlink" href="#i-need-to-simulate-many-worlds-with-camera-sensors-in-parallel-how-can-i-do-this" title="Permanent link">&para;</a></h2>
-<p>On <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp">magnum_contexts.cpp</a> you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="c1">// Load robot from URDF</span>
+<p>On <a href="https://github.com/resibots/robot_dart/blob/master/src/examples/magnum_contexts.cpp">magnum_contexts.cpp</a> you can find an example showcasing the use of many worlds with camera sensors in parallel. The main takeaway is that we need to pre-allocate OpenGL contexts so that each thread can take one and use it to render their worlds.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="52:1"><input checked="checked" id="__tabbed_52_1" name="__tabbed_52" type="radio" /><div class="tabbed-labels"><label for="__tabbed_52_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="c1">// Load robot from URDF</span>
 <a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">global_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Iiwa</span><span class="o">&gt;</span><span class="p">();</span>
 <a id="__codelineno-98-3" name="__codelineno-98-3" href="#__codelineno-98-3"></a>
 <a id="__codelineno-98-4" name="__codelineno-98-4" href="#__codelineno-98-4"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="w"> </span><span class="n">workers</span><span class="p">;</span>
@@ -2263,7 +2313,10 @@
 <a id="__codelineno-98-61" name="__codelineno-98-61" href="#__codelineno-98-61"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">workers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-98-62" name="__codelineno-98-62" href="#__codelineno-98-62"></a><span class="w">    </span><span class="n">workers</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">join</span><span class="p">();</span>
 <a id="__codelineno-98-63" name="__codelineno-98-63" href="#__codelineno-98-63"></a><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake"><strong>I do not know how to use waf. How can I detect RobotDART from CMake?</strong><a class="headerlink" href="#i-do-not-know-how-to-use-waf-how-can-i-detect-robotdart-from-cmake" title="Permanent link">&para;</a></h2>
 <p>You need to use <code>waf</code> to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at <a href="https://github.com/resibots/robot_dart/blob/master/cmake/example">cmake/example</a>. In short the CMake would look like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.10</span><span class="w"> </span><span class="s">FATAL_ERROR</span><span class="p">)</span>
