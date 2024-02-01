@@ -104,7 +104,7 @@ def configure_robot_dart(conf):
     conf.check(features='cxx cxxprogram', lib=['pthread'], uselib_store='PTHREAD')
     conf.check_eigen(required=True, min_version=(3,2,92))
     conf.check_dart(required=True)
-    if conf.env['DART_REQUIRES_BOOST']:
+    if conf.env['DART_REQUIRES_BOOST'] or conf.options.tests:
         conf.check_boost(lib='regex system filesystem unit_test_framework', min_version='1.58')
     conf.check_corrade(components='Utility PluginManager', required=False)
     conf.env['magnum_dep_libs'] = 'MeshTools Primitives Shaders SceneGraph GlfwApplication Text MagnumFont'

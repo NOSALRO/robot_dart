@@ -44,12 +44,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         build_type: [Release]
         build_python: [ON]
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
-        dart_tag: ["v6.12.1"]
+        dart_tag: ["v6.13.1"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}
@@ -89,9 +89,9 @@ jobs:
           fi
           cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
-            ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --python --prefix=/usr --dart=~/.dart_install ;
           else
-            ./waf configure --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --prefix=/usr --dart=~/.dart_install ;
           fi
           ./waf
       - name: Run tests
