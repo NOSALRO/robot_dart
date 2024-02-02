@@ -23,7 +23,7 @@ This work was partly supported by the [Hellenic Foundation for Research and Inno
 
 This work was partly supported by the ResiBots ERC Project (http://www.resibots.eu).
 
-<p aling="center">
+<p align="center">
 <img src="http://resibots.eu/_static/resibots_logo_black_200px.png" alt="logo_resibots"/>
 </p>
 
