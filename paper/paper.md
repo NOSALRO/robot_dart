@@ -11,7 +11,7 @@ authors:
     corresponding: true
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
   - name: Dionis Totsila
-    # orcid: 0000-0002-2513-027X
+    orcid: 0009-0008-0664-2676
     equal-contrib: false
     corresponding: false
     affiliation: "3, 4"
