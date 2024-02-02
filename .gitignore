@@ -5,3 +5,6 @@ build
 *.pyc
 res/nao_meshes
 .vscode
+paper/*.crossref
+paper/*.pdf
+paper/*.tex
