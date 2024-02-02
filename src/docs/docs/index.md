@@ -10,7 +10,7 @@
 </style>
 # RobotDART
 
-RobotDART is a **C++11 robot simulator** (with optional Python bindings) built on top of the [DART] physics engine. The RobotDART simulator is **intended to be used by *Robotics and Machine Learning researchers*** who want to write controllers or test learning algorithms **without the delays and overhead** that usually comes with other simulators (e.g., [Gazebo], [Coppelia-sim]).
+RobotDART is a **C++ robot simulator** (with optional Python bindings) built on top of the [DART] physics engine. The RobotDART simulator is **intended to be used by *Robotics and Machine Learning researchers*** who want to write controllers or test learning algorithms **without the delays and overhead** that usually comes with other simulators (e.g., [Gazebo], [Coppelia-sim]).
 
 For this reason, **the simulator runs headless by default**, and there is the possibility of *rendering the scene (e.g., through a camera sensor) without opening a graphics window*. All RobotDART's code is **thread-safe** (including *graphics and camera sensors*), and thus enables its users to **use their code in parallel jobs in multicore computers**.
 
