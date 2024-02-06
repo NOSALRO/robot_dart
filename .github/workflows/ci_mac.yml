@@ -70,7 +70,7 @@ jobs:
             brew install dartsim ;
           fi
       - name: Build Magnum
-        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install mosra/magnum/magnum && brew install mosra/magnum/magnum-plugins && brew install mosra/magnum/magnum-integration --with-dartsim ; fi
+        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install --HEAD mosra/magnum/corrade && brew install --HEAD mosra/magnum/magnum && brew install --HEAD mosra/magnum/magnum-plugins && brew install --HEAD mosra/magnum/magnum-integration --with-dartsim ; fi
       - name: Build robot_dart
         run: |
           if [ "$COMPILER" = "gcc" ]; then
