@@ -135,7 +135,11 @@ def configure_robot_dart(conf):
         conf.get_env()['BUILD_MAGNUM'] = True
         conf.env['magnum_libs'] = magnum.get_magnum_dependency_libs(conf, conf.env['magnum_dep_libs']) + magnum_integration.get_magnum_integration_dependency_libs(conf, 'Dart Eigen')
 
-    avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
+    try:
+        avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
+    except:
+        print("ERROR!")
+        avx_dart = False
 
     native = ''
     native_icc = ''

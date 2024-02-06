@@ -58,6 +58,8 @@ jobs:
       CI_HOME: ${{github.workspace}}
     steps:
       - uses: actions/checkout@v2
+      - name: Install deps
+        run: brew install binutils
       - name: Install DART
         run: brew install dartsim
       - name: Build Magnum
