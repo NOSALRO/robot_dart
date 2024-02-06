@@ -118,10 +118,14 @@ def configure_robot_dart(conf):
         conf.check_magnum_plugins(components='AssimpImporter StbTrueTypeFont', required=False)
         conf.check_magnum_integration(components='Dart Eigen', required=False)
 
+    print("~~~~~PYTHON~~~~~~")
+
     conf.env['py_flags'] = ''
     conf.env['BUILD_PYTHON'] = False
     if conf.options.pybind:
+        print("~~~~~PYTHON#2~~~~~~")
         conf.check_python_version((2, 7))
+        print("~~~~~PYTHON#3~~~~~~")
         conf.check_python_headers(features='pyext')
         conf.check_python_module('numpy')
         conf.check_python_module('dartpy')
@@ -129,6 +133,8 @@ def configure_robot_dart(conf):
         conf.env['BUILD_PYTHON'] = True
         if not conf.options.build_shared:
             conf.env['py_flags'] = ' -fPIC' # we need -fPIC for python if building static
+        print("~~~~~PYTHON#4~~~~~~")
+    print("~~~~~PYTHON#5~~~~~~")
 
     # We require Magnum DartIntegration, EigenIntegration, AssimpImporter, and StbTrueTypeFont
     if len(conf.env.INCLUDES_MagnumIntegration_Dart) > 0 and len(conf.env.INCLUDES_MagnumIntegration_Eigen) > 0 and len(conf.env.INCLUDES_MagnumPlugins_AssimpImporter) > 0 and len(conf.env.INCLUDES_MagnumPlugins_StbTrueTypeFont) > 0:
