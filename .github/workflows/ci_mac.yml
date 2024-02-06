@@ -59,11 +59,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
-        run: brew install binutils
+        run: brew install binutils pybind11
       - name: Install numpy
         run: pip3 install numpy
       - name: Install DART
         run: brew install dartsim
+      - name: Install dartpy
+        run: if [ "$BUILD_PYTHON" = "ON" ]; then pip3 install dartpy ; fi
       - name: Build Magnum
         run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install mosra/magnum/magnum && brew install mosra/magnum/magnum-plugins && brew install mosra/magnum/magnum-integration --with-dartsim ; fi
       - name: Build robot_dart
