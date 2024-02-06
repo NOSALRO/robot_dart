@@ -57,7 +57,7 @@ jobs:
       DART_TAG: ${{ matrix.dart_tag }}
       CI_HOME: ${{github.workspace}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install deps
         run: brew install binutils pybind11
       - name: Install numpy
