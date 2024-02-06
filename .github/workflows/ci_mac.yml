@@ -81,9 +81,9 @@ jobs:
           fi
           cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
-            ./waf configure --tests --python --prefix=/usr ;
+            ./waf configure --tests --python --prefix=/usr/local ;
           else
-            ./waf configure --tests --prefix=/usr ;
+            ./waf configure --tests --prefix=/usr/local ;
           fi
           ./waf
       - name: Run tests
@@ -100,7 +100,7 @@ jobs:
           if [ "$COMPILER" = "clang" ]; then
           export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
           fi
-          cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
+          cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake .. && make -j4
           cd ${{github.workspace}}/cmake/example_utheque && mkdir -p build && cd build && cmake .. && make -j4
       - name: Run Python
         run: |
