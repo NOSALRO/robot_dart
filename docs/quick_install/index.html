@@ -932,12 +932,21 @@ export PYTHONPATH=/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python
 ``` -->
 
 <h3 id="osx">OSX<a class="headerlink" href="#osx" title="Permanent link">&para;</a></h3>
-<p><strong>Coming soon</strong></p>
+<p>To quickly install RobotDART on <code>Mac OSX</code>, we just need to run <code>./scripts/install_osx.sh</code> from the root of the repo. In more detail:</p>
+<ul>
+<li><code>git clone https://github.com/resibots/robot_dart.git</code></li>
+<li><code>cd robot_dart</code></li>
+<li><code>./scripts/install_osx.sh</code></li>
+</ul>
+<p>This will install everything needed! Once the script is successfully executed, one should add the following to their <code>~/.bashrc</code> or <code>~/.zshrc</code> file (you may need to swap the python version to yours<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/robot_dart/lib/python3.10/site-packages:<span class="nv">$PYTHONPATH</span>
+</code></pre></div>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>You can run <code>python --version</code> to see your version. We only keep the major.minor (ignoring the patch version)&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>You can run <code>python --version</code> to see your version. We only keep the major.minor (ignoring the patch version)&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

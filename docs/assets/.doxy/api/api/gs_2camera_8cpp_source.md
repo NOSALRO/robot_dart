@@ -14,7 +14,7 @@
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
 
-#include <external/subprocess.hpp>
+#include <external/process.hpp>
 
 #include <algorithm>
 
@@ -271,7 +271,9 @@ namespace robot_dart {
                         "-vb", "20M",
                         video_fname};
 
-                    _ffmpeg_process = new subprocess::popen(ffmpeg, args);
+                    args.insert(args.begin(), ffmpeg);
+                    _ffmpeg_process = new TinyProcessLib::Process(
+                        args, "", [](const char*, size_t) {}, [](const char*, size_t) {}, true);
                 }
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, const DebugDrawData& debug_data, bool draw_debug)
@@ -382,15 +384,14 @@ namespace robot_dart {
                         Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
                         Corrade::Utility::copy(src, dst);
 
-                        _ffmpeg_process->stdin().write(reinterpret_cast<char*>(data.data()), data.size());
-                        _ffmpeg_process->stdin().flush();
+                        _ffmpeg_process->write(reinterpret_cast<char*>(data.data()), data.size());
                     }
                 }
 
                 void Camera::_clean_up_subprocess()
                 {
                     if (_ffmpeg_process) {
-                        _ffmpeg_process->close();
+                        _ffmpeg_process->close_stdin();
                         delete _ffmpeg_process;
                     }
 

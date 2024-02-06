@@ -10,6 +10,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**SceneGraph**](namespaceMagnum_1_1SceneGraph.md) 
     * **namespace** [**Shaders**](namespaceMagnum_1_1Shaders.md)     
         * **namespace** [**Implementation**](namespaceMagnum_1_1Shaders_1_1Implementation.md)     
+* **namespace** [**TinyProcessLib**](namespaceTinyProcessLib.md) 
 * **namespace** [**dart**](namespacedart.md)     
     * **namespace** [**collision**](namespacedart_1_1collision.md) 
     * **namespace** [**dynamics**](namespacedart_1_1dynamics.md) 
@@ -88,5 +89,4 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **namespace** [**@21**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
 * **struct** [**RobotData**](structrobot__dart_1_1simu_1_1GUIData_1_1RobotData.md)     
 * **namespace** [**std**](namespacestd.md) 
-* **namespace** [**subprocess**](namespacesubprocess.md) 
 

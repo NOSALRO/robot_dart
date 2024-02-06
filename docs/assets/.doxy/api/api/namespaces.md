@@ -10,6 +10,7 @@ Here is a list of all namespaces with brief descriptions:
     * **namespace** [**SceneGraph**](namespaceMagnum_1_1SceneGraph.md) 
     * **namespace** [**Shaders**](namespaceMagnum_1_1Shaders.md)     
         * **namespace** [**Implementation**](namespaceMagnum_1_1Shaders_1_1Implementation.md)     
+* **namespace** [**TinyProcessLib**](namespaceTinyProcessLib.md) 
 * **namespace** [**dart**](namespacedart.md)     
     * **namespace** [**collision**](namespacedart_1_1collision.md) 
     * **namespace** [**dynamics**](namespacedart_1_1dynamics.md) 
@@ -26,5 +27,4 @@ Here is a list of all namespaces with brief descriptions:
     * **namespace** [**simu**](namespacerobot__dart_1_1simu.md)     
 * **namespace** [**@21**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
 * **namespace** [**std**](namespacestd.md) 
-* **namespace** [**subprocess**](namespacesubprocess.md) 
 

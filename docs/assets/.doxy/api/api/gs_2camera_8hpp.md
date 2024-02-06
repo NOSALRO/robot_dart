@@ -36,11 +36,11 @@
 
 | Type | Name |
 | ---: | :--- |
+| namespace | [**TinyProcessLib**](namespaceTinyProcessLib.md) <br> |
 | namespace | [**robot\_dart**](namespacerobot__dart.md) <br> |
 | namespace | [**gui**](namespacerobot__dart_1_1gui.md) <br> |
 | namespace | [**magnum**](namespacerobot__dart_1_1gui_1_1magnum.md) <br> |
 | namespace | [**gs**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs.md) <br> |
-| namespace | [**subprocess**](namespacesubprocess.md) <br> |
 
 
 ## Classes

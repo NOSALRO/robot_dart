@@ -95,6 +95,8 @@ make -j
 sudo make install
 ```
 
+**For OSX you can also install Magnum via brew:** `brew install --HEAD mosra/magnum/corrade && brew install --HEAD mosra/magnum/magnum && brew install --HEAD mosra/magnum/magnum-plugins && brew install --HEAD mosra/magnum/magnum-integration --with-dartsim`
+
 ### Compilation and running the examples
 
 The compilation of the library is straight-forward:

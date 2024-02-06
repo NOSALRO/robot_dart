@@ -22,8 +22,8 @@
 #include <Magnum/Shaders/VertexColor.h>
 #include <Magnum/Text/Renderer.h>
 
-namespace subprocess {
-    class popen;
+namespace TinyProcessLib {
+    class Process;
 }
 
 namespace robot_dart {
@@ -100,7 +100,7 @@ namespace robot_dart {
                     bool _recording_video = false;
                     Corrade::Containers::Optional<Magnum::Image2D> _image, _depth_image;
 
-                    subprocess::popen* _ffmpeg_process = nullptr;
+                    TinyProcessLib::Process* _ffmpeg_process = nullptr;
 
                     void _clean_up_subprocess();
                 };

@@ -181,7 +181,7 @@
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a407be2c7f7bc428bb4c94fd096540907" kind="variable"><name>_recording_video</name></member>
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34b4782fea742d6d73f3626cb66f5ad7" kind="variable"><name>_image</name></member>
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a88ace9be2280be5597dcc6d478b32a1f" kind="variable"><name>_depth_image</name></member>
-    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2a10fe387794eda8660b7de892a26448" kind="variable"><name>_ffmpeg_process</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab5be26300c7d62e538ca28497e4b2d63" kind="variable"><name>_ffmpeg_process</name></member>
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" kind="function"><name>Camera</name></member>
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72a15b93144c904d52f4983a0894a789" kind="function"><name>~Camera</name></member>
     <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" kind="function"><name>camera</name></member>
@@ -1324,7 +1324,7 @@
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
-  <compound refid="namespacesubprocess" kind="namespace"><name>subprocess</name>
+  <compound refid="namespaceTinyProcessLib" kind="namespace"><name>TinyProcessLib</name>
   </compound>
   <compound refid="pd__control_8cpp" kind="file"><name>pd_control.cpp</name>
   </compound>
