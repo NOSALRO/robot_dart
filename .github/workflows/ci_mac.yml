@@ -64,10 +64,10 @@ jobs:
       - name: Install DART
         run: brew install dartsim
       - name: Install Corrade
-        run: brew install corrade
+        run: brew install mosra/magnum/corrade
       - name: Install Magnum
-        run: brew install magnum
+        run: brew install mosra/magnum/magnum
       - name: Install Magnum Plugins
-        run: brew install magnum-plugins
+        run: brew install mosra/magnum/magnum-plugins
       - name: Install Magnum Integration
-        run: brew install magnum-integration --with-dart
+        run: brew install mosra/magnum/magnum-integration --with-dart
