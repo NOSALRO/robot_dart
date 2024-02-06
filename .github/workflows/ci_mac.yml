@@ -1,0 +1,73 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+name: CI Ubuntu
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_mac.yml'
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_mac.yml'
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch'
+    name: OS:${{ matrix.os }}-Magnum:${{ matrix.magnum_gui }}-Build:${{ matrix.build_type }}-Python:${{ matrix.build_python }}-Compiler:${{ matrix.compiler }}-DART:${{ matrix.dart_tag }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-12]
+        build_type: [Release]
+        build_python: [ON]
+        compiler: [gcc, clang]
+        magnum_gui: [ON, OFF]
+        dart_tag: ["v6.13.1"]
+    env:
+      COMPILER: ${{ matrix.compiler }}
+      BUILD_TYPE: ${{ matrix.build_type }}
+      BUILD_PYTHON: ${{ matrix.build_python }}
+      MAGNUM_GUI: ${{ matrix.magnum_gui }}
+      DART_TAG: ${{ matrix.dart_tag }}
+      LD_LIBRARY_PATH: "/home/runner/.dart_install/lib"
+      CI_HOME: ${{github.workspace}}
+      DART_DIR: "/home/runner/.dart_install/share/dart/cmake"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install DART
+        run: brew install dartsim
+      - name: Install Corrade
+        run: brew install corrade
+      - name: Install Magnum
+        run: brew install magnum
+      - name: Install Magnum Plugins
+        run: brew install magnum-plugins
+      - name: Install Magnum Integration
+        run: brew install magnum-integration --with-dart
