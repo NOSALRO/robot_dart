@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: CI Ubuntu
+name: CI MacOS
 
 on:
   push:
@@ -60,6 +60,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install deps
         run: brew install binutils
+      - name: Install python
+        run: if [ "$BUILD_PYTHON" = "ON" ]; then brew install python ; fi
       - name: Install DART
         run: brew install dartsim
       - name: Build Magnum

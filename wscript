@@ -138,7 +138,6 @@ def configure_robot_dart(conf):
     try:
         avx_dart = conf.check_avx(lib='dart', required=['dart', 'dart-utils', 'dart-utils-urdf'])
     except:
-        print("ERROR!")
         avx_dart = False
 
     native = ''
