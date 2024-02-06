@@ -238,8 +238,8 @@ def check_magnum(conf, *k, **kw):
 
         egl_found = False
         glx_found = False
-        if 'TARGET_HEADLESS' in magnum_config or 'TARGET_EGL' in magnum_config:
-            if conf.env['DEST_OS'] != 'darwin': # EGL is available only in Linux
+        if conf.env['DEST_OS'] != 'darwin': # EGL/GLX is available only in Linux
+            if 'TARGET_HEADLESS' in magnum_config or 'TARGET_EGL' in magnum_config:
                 # TARGET_HEADLESS requires EGL
                 egl_inc = get_directory('EGL/egl.h', includes_check)
 
@@ -260,26 +260,26 @@ def check_magnum(conf, *k, **kw):
                 if not egl_found:
                     fatal(required, 'Not found')
                     return
-        else: # we need GLX
-            glx_inc = get_directory('GL/glx.h', includes_check)
+            else: # we need GLX
+                glx_inc = get_directory('GL/glx.h', includes_check)
 
-            magnum_includes = magnum_includes + [glx_inc]
+                magnum_includes = magnum_includes + [glx_inc]
 
-            libs_glx = ['GLX', 'X11']
-            for lib_glx in libs_glx:
-                try:
-                    lib_dir = get_directory('lib'+lib_glx+'.so', libs_check)
-                    glx_found = True
+                libs_glx = ['GLX', 'X11']
+                for lib_glx in libs_glx:
+                    try:
+                        lib_dir = get_directory('lib'+lib_glx+'.so', libs_check)
+                        glx_found = True
 
-                    magnum_libpaths = magnum_libpaths + [lib_dir]
-                    magnum_libs.append(lib_glx)
-                    # break
-                except:
-                    glx_found = False
+                        magnum_libpaths = magnum_libpaths + [lib_dir]
+                        magnum_libs.append(lib_glx)
+                        # break
+                    except:
+                        glx_found = False
 
-            if not glx_found:
-                fatal(required, 'Not found')
-                return
+                if not glx_found:
+                    fatal(required, 'Not found')
+                    return
 
         conf.start_msg('Checking for Magnum components')
         # only check for components that can exist
