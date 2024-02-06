@@ -63,7 +63,7 @@ jobs:
       - name: Install numpy
         run: pip3 install numpy
       - name: Install DART
-        run: brew install dartsim
+        run: brew install -v dartsim
       - name: Install dartpy
         run: if [ "$BUILD_PYTHON" = "ON" ]; then pip3 install dartpy ; fi
       - name: Build Magnum
