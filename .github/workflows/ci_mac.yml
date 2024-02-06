@@ -46,7 +46,7 @@ jobs:
       matrix:
         os: [macos-12]
         build_type: [Release]
-        build_python: [ON]
+        build_python: [OFF] # Let's remove python for now from Mac CI
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
     env:
