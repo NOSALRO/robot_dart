@@ -49,25 +49,52 @@ jobs:
         build_python: [ON]
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
-        dart_tag: ["v6.13.1"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}
       BUILD_PYTHON: ${{ matrix.build_python }}
       MAGNUM_GUI: ${{ matrix.magnum_gui }}
       DART_TAG: ${{ matrix.dart_tag }}
-      LD_LIBRARY_PATH: "/home/runner/.dart_install/lib"
       CI_HOME: ${{github.workspace}}
-      DART_DIR: "/home/runner/.dart_install/share/dart/cmake"
     steps:
       - uses: actions/checkout@v2
       - name: Install DART
         run: brew install dartsim
-      - name: Install Corrade
-        run: brew install mosra/magnum/corrade
-      - name: Install Magnum
-        run: brew install mosra/magnum/magnum
-      - name: Install Magnum Plugins
-        run: brew install mosra/magnum/magnum-plugins
-      - name: Install Magnum Integration
-        run: brew install mosra/magnum/magnum-integration --with-dart
+      - name: Build Magnum
+        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install mosra/magnum/magnum && brew install mosra/magnum/magnum-plugins && brew install mosra/magnum/magnum-integration --with-dart ; fi
+      - name: Build robot_dart
+        run: |
+          if [ "$COMPILER" = "gcc" ]; then
+          export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+          export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
+          cd ${{github.workspace}}
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+            ./waf configure --tests --python --prefix=/usr ;
+          else
+            ./waf configure --tests --prefix=/usr ;
+          fi
+          ./waf
+      - name: Run tests
+        run: ./waf --tests
+      - name: Build examples
+        run: ./waf examples
+      - name: Install
+        run: sudo ./waf install
+      - name: Run CMake
+        run: |
+          if [ "$COMPILER" = "gcc" ]; then
+          export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+          export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
+          cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake -DDART_DIR=$DART_DIR .. && make -j4
+          cd ${{github.workspace}}/cmake/example_utheque && mkdir -p build && cd build && cmake .. && make -j4
+      - name: Run Python
+        run: |
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+          python ${{github.workspace}}/src/examples/python/ci.py
+          fi
