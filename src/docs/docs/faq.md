@@ -127,7 +127,7 @@ or all at once:
 {{MANIPULATE_CAM}}
 === "Python"
 {{MANIPULATE_CAM_PYTHON}}
-You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp).
+You can find a complete example at [cameras.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/cameras.cpp) and [cameras.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/cameras.py).
 
 ## **How can I interact with the camera?**
 
