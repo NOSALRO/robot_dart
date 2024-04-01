@@ -54,10 +54,16 @@ namespace robot_dart {
 
                 for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
                     auto bd = skel->getBodyNode(i);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+                    bd->eachShapeNodeWith<dart::dynamics::VisualAspect>([this, cast, ghost](dart::dynamics::ShapeNode* shapeNode) {
+                        robot_data[shapeNode] = {cast, ghost};
+                    });
+#else
                     auto& shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
                     for (size_t j = 0; j < shapes.size(); j++) {
                         robot_data[shapes[j]] = {cast, ghost};
                     }
+#endif
                 }
 
                 auto& axes = robot->drawing_axes();

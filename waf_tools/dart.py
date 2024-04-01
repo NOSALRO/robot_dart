@@ -91,6 +91,7 @@ def check_dart(conf, *k, **kw):
     # DART has some URDF dependency
     urdfdom_check = ['/usr/local/include', '/usr/include', '/opt/local/include', '/sw/include', '/opt/homebrew/include']
     urdfdom_check = urdfdom_check + [i + '/urdfdom_headers' for i in urdfdom_check]
+    urdfdom_check = urdfdom_check + [i + '/urdfdom' for i in urdfdom_check]
     urdfdom_libs = ['/usr/lib', '/usr/local/lib64', '/usr/local/lib', '/opt/local/lib', '/sw/lib', '/lib', '/usr/lib64', '/usr/lib/x86_64-linux-gnu/', '/usr/local/lib/x86_64-linux-gnu/', '/usr/lib/aarch64-linux-gnu/', '/usr/local/lib/aarch64-linux-gnu/', '/opt/homebrew/lib']
     if 'ROS_DISTRO' in os.environ:
         urdfdom_check.append('/opt/ros/' + os.environ['ROS_DISTRO'] + '/include')
@@ -100,6 +101,7 @@ def check_dart(conf, *k, **kw):
     urdfdom_found = False
     try:
         urdfdom_include = [get_directory('urdf_model/model.h', urdfdom_check)]
+        urdfdom_include += [get_directory('urdf_parser/urdf_parser.h', urdfdom_check)]
         # urdfdom_lib = [get_directory('liburdfdom_model.' + suffix, urdfdom_libs)]
         urdfdom_found = True
     except:
@@ -179,15 +181,18 @@ def check_dart(conf, *k, **kw):
             conf.env['DART_REQUIRES_BOOST'] = True
 
         dart_include = []
+        dart_incl_dir = get_directory('dart/dart.hpp', includes_check)
+        dart_include.append(dart_incl_dir)
+        dart_include.append(get_directory('dart/'+dart_load_prefix+'/'+dart_load_prefix+'.hpp', includes_check))
+        dart_include.append(get_directory('dart/'+dart_load_prefix+'/urdf/urdf.hpp', includes_check))
+
         if urdfdom_found:
             dart_include += urdfdom_include
         else:
             fail('urdfdom_headers not found', required)
-        dart_include.append(get_directory('dart/dart.hpp', includes_check))
-        dart_include.append(get_directory('dart/'+dart_load_prefix+'/'+dart_load_prefix+'.hpp', includes_check))
-        dart_include.append(get_directory('dart/'+dart_load_prefix+'/urdf/urdf.hpp', includes_check))
+
         dart_include = list(set(dart_include))
-        conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_include[0])
+        conf.end_msg(str(dart_major)+'.'+str(dart_minor)+'.'+str(dart_patch)+' in '+dart_incl_dir)
 
         conf.start_msg('Checking for DART libs (including io/urdf)')
 

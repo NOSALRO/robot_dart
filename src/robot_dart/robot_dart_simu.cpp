@@ -324,11 +324,17 @@ namespace robot_dart {
             // visual robots do not do physics updates
             robot->skeleton()->setMobile(false);
             for (auto& bd : robot->skeleton()->getBodyNodes()) {
+#if DART_VERSION_AT_LEAST(6, 13, 0)
                 // visual robots do not have collisions
+                bd->eachShapeNodeWith<dart::dynamics::CollisionAspect>([](dart::dynamics::ShapeNode* shape) {
+                    shape->removeAspect<dart::dynamics::CollisionAspect>();
+                });
+#else
                 auto& collision_shapes = bd->getShapeNodesWith<dart::dynamics::CollisionAspect>();
                 for (auto& shape : collision_shapes) {
                     shape->removeAspect<dart::dynamics::CollisionAspect>();
                 }
+#endif
             }
 
             // visual robots, by default, use the color from the VisualAspect
@@ -564,8 +570,12 @@ namespace robot_dart {
         auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, collision_mask, category_mask](dart::dynamics::ShapeNode* shape) { coll_filter->add_to_map(shape, collision_mask, category_mask); });
+#else
         for (auto& shape : bd->getShapeNodes())
             coll_filter->add_to_map(shape, collision_mask, category_mask);
+#endif
     }
 
     void RobotDARTSimu::set_collision_masks(size_t robot_index, size_t body_index, uint32_t category_mask, uint32_t collision_mask)
@@ -575,8 +585,12 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = skel->getBodyNode(body_index);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, collision_mask, category_mask](dart::dynamics::ShapeNode* shape) { coll_filter->add_to_map(shape, collision_mask, category_mask); });
+#else
         for (auto& shape : bd->getShapeNodes())
             coll_filter->add_to_map(shape, collision_mask, category_mask);
+#endif
     }
 
     uint32_t RobotDARTSimu::collision_mask(size_t robot_index, const std::string& body_name)
@@ -587,8 +601,12 @@ namespace robot_dart {
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
         uint32_t mask = 0xffffffff;
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) { mask &= coll_filter->mask(shape).collision_mask; });
+#else
         for (auto& shape : bd->getShapeNodes())
             mask &= coll_filter->mask(shape).collision_mask;
+#endif
 
         return mask;
     }
@@ -602,8 +620,12 @@ namespace robot_dart {
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
         uint32_t mask = 0xffffffff;
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) { mask &= coll_filter->mask(shape).collision_mask; });
+#else
         for (auto& shape : bd->getShapeNodes())
             mask &= coll_filter->mask(shape).collision_mask;
+#endif
 
         return mask;
     }
@@ -616,8 +638,12 @@ namespace robot_dart {
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
         uint32_t mask = 0xffffffff;
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) { mask &= coll_filter->mask(shape).category_mask; });
+#else
         for (auto& shape : bd->getShapeNodes())
             mask &= coll_filter->mask(shape).category_mask;
+#endif
 
         return mask;
     }
@@ -631,8 +657,12 @@ namespace robot_dart {
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
         uint32_t mask = 0xffffffff;
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) { mask &= coll_filter->mask(shape).category_mask; });
+#else
         for (auto& shape : bd->getShapeNodes())
             mask &= coll_filter->mask(shape).category_mask;
+#endif
 
         return mask;
     }
@@ -645,10 +675,17 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", mask);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) {
+            mask.first &= coll_filter->mask(shape).collision_mask;
+            mask.second &= coll_filter->mask(shape).category_mask;
+        });
+#else
         for (auto& shape : bd->getShapeNodes()) {
             mask.first &= coll_filter->mask(shape).collision_mask;
             mask.second &= coll_filter->mask(shape).category_mask;
         }
+#endif
 
         return mask;
     }
@@ -662,10 +699,17 @@ namespace robot_dart {
         auto bd = skel->getBodyNode(body_index);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
 
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter, &mask](dart::dynamics::ShapeNode* shape) {
+            mask.first &= coll_filter->mask(shape).collision_mask;
+            mask.second &= coll_filter->mask(shape).category_mask;
+        });
+#else
         for (auto& shape : bd->getShapeNodes()) {
             mask.first &= coll_filter->mask(shape).collision_mask;
             mask.second &= coll_filter->mask(shape).category_mask;
         }
+#endif
 
         return mask;
     }
@@ -683,8 +727,12 @@ namespace robot_dart {
         auto bd = _robots[robot_index]->skeleton()->getBodyNode(body_name);
         ROBOT_DART_ASSERT(bd != nullptr, "BodyNode does not exist in skeleton!", );
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter](dart::dynamics::ShapeNode* shape) { coll_filter->remove_from_map(shape); });
+#else
         for (auto& shape : bd->getShapeNodes())
             coll_filter->remove_from_map(shape);
+#endif
     }
 
     void RobotDARTSimu::remove_collision_masks(size_t robot_index, size_t body_index)
@@ -694,8 +742,12 @@ namespace robot_dart {
         ROBOT_DART_ASSERT(body_index < skel->getNumBodyNodes(), "BodyNode index out of bounds", );
         auto bd = skel->getBodyNode(body_index);
         auto coll_filter = std::static_pointer_cast<collision_filter::BitmaskContactFilter>(_world->getConstraintSolver()->getCollisionOption().collisionFilter);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+        bd->eachShapeNode([coll_filter](dart::dynamics::ShapeNode* shape) { coll_filter->remove_from_map(shape); });
+#else
         for (auto& shape : bd->getShapeNodes())
             coll_filter->remove_from_map(shape);
+#endif
     }
 
     void RobotDARTSimu::remove_all_collision_masks()
