@@ -15,17 +15,17 @@ Documentation is available at: [https://nosalro.github.io/robot_dart/](https://n
 
 ## Acknowledgments
 
-This work was partly supported by the [Hellenic Foundation for Research and Innovation](https://www.elidek.gr/en/homepage/) (H.F.R.I.) under the "3rd Call for H.F.R.I. Research Projects to support Post-Doctoral Researchers" (Project Acronym: [NOSALRO](), Project Number: 7541).
+This work was supported by the [Hellenic Foundation for Research and Innovation](https://www.elidek.gr/en/homepage/) (H.F.R.I.) under the "3rd Call for H.F.R.I. Research Projects to support Post-Doctoral Researchers" (Project Acronym: [NOSALRO](), Project Number: 7541).
 
 <p align="center">
 <img src="https://www.elidek.gr/wp-content/themes/elidek/images/elidek_logo_en.png" alt="logo_elidek"/>
 <p/>
 
-This work was partly supported by the ResiBots ERC Project (http://www.resibots.eu).
+<!-- This work was partly supported by the ResiBots ERC Project (http://www.resibots.eu).
 
 <p align="center">
 <img src="http://resibots.eu/_static/resibots_logo_black_200px.png" alt="logo_resibots"/>
-</p>
+</p> -->
 
 
 ## License
