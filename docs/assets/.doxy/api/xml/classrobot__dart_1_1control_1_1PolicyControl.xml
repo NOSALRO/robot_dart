@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1control_1_1PolicyControl" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::control::PolicyControl</compoundname>
     <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
@@ -8,12 +8,13 @@
         <type>typename Policy</type>
       </param>
     </templateparamlist>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1af6226c74372b09b84a3cc610a27faa11" prot="protected" static="no" mutable="no">
         <type>int</type>
         <definition>int robot_dart::control::PolicyControl&lt; Policy &gt;::_i</definition>
         <argsstring></argsstring>
         <name>_i</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_i</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,6 +28,7 @@
         <definition>Policy robot_dart::control::PolicyControl&lt; Policy &gt;::_policy</definition>
         <argsstring></argsstring>
         <name>_policy</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_policy</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_dt</definition>
         <argsstring></argsstring>
         <name>_dt</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_dt</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -53,6 +56,7 @@
         <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_prev_time</definition>
         <argsstring></argsstring>
         <name>_prev_time</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_prev_time</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,6 +70,7 @@
         <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_threshold</definition>
         <argsstring></argsstring>
         <name>_threshold</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_threshold</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,6 +84,7 @@
         <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::_prev_commands</definition>
         <argsstring></argsstring>
         <name>_prev_commands</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_prev_commands</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -92,6 +98,7 @@
         <definition>bool robot_dart::control::PolicyControl&lt; Policy &gt;::_first</definition>
         <argsstring></argsstring>
         <name>_first</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_first</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -105,6 +112,7 @@
         <definition>bool robot_dart::control::PolicyControl&lt; Policy &gt;::_full_dt</definition>
         <argsstring></argsstring>
         <name>_full_dt</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_full_dt</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -113,13 +121,14 @@
         </inbodydescription>
         <location file="robot_dart/control/policy_control.hpp" line="68" column="25" bodyfile="robot_dart/control/policy_control.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1aa81c00c0525fcbaa252027adc6d7d024" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
         <argsstring>()</argsstring>
         <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -133,6 +142,7 @@
         <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
         <argsstring>(double dt, const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
         <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
         <param>
           <type>double</type>
           <declname>dt</declname>
@@ -159,6 +169,7 @@
         <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
         <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -181,6 +192,7 @@
         <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
         <argsstring>(double dt, const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
         <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
         <param>
           <type>double</type>
           <declname>dt</declname>
@@ -206,6 +218,7 @@
         <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
         <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -227,6 +240,7 @@
         <definition>void robot_dart::control::PolicyControl&lt; Policy &gt;::configure</definition>
         <argsstring>() override</argsstring>
         <name>configure</name>
+        <qualifiedname>robot_dart::control::PolicyControl::configure</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
         <briefdescription>
         </briefdescription>
@@ -241,6 +255,7 @@
         <definition>void robot_dart::control::PolicyControl&lt; Policy &gt;::set_h_params</definition>
         <argsstring>(const Eigen::VectorXd &amp;h_params)</argsstring>
         <name>set_h_params</name>
+        <qualifiedname>robot_dart::control::PolicyControl::set_h_params</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>h_params</declname>
@@ -258,6 +273,7 @@
         <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::h_params</definition>
         <argsstring>() const</argsstring>
         <name>h_params</name>
+        <qualifiedname>robot_dart::control::PolicyControl::h_params</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -271,6 +287,7 @@
         <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::calculate</definition>
         <argsstring>(double t) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::control::PolicyControl::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
         <param>
           <type>double</type>
@@ -289,6 +306,7 @@
         <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::PolicyControl&lt; Policy &gt;::clone</definition>
         <argsstring>() const override</argsstring>
         <name>clone</name>
+        <qualifiedname>robot_dart::control::PolicyControl::clone</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
         <briefdescription>
         </briefdescription>
@@ -298,7 +316,7 @@
         </inbodydescription>
         <location file="robot_dart/control/policy_control.hpp" line="58" column="29" bodyfile="robot_dart/control/policy_control.hpp" bodystart="58" bodyend="61"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -102,6 +102,8 @@ Magnum::GL::Mesh* robot_dart::gui::magnum::DebugDrawData::axes_mesh;
 
 
 
+<hr>
+
 
 
 ### variable axes\_shader 
@@ -112,6 +114,8 @@ Magnum::Shaders::VertexColorGL3D* robot_dart::gui::magnum::DebugDrawData::axes_s
 
 
 
+
+<hr>
 
 
 
@@ -124,6 +128,8 @@ Magnum::GL::Mesh* robot_dart::gui::magnum::DebugDrawData::background_mesh;
 
 
 
+<hr>
+
 
 
 ### variable background\_shader 
@@ -134,6 +140,8 @@ Magnum::Shaders::FlatGL2D* robot_dart::gui::magnum::DebugDrawData::background_sh
 
 
 
+
+<hr>
 
 
 
@@ -146,6 +154,8 @@ Magnum::Text::DistanceFieldGlyphCache* robot_dart::gui::magnum::DebugDrawData::c
 
 
 
+<hr>
+
 
 
 ### variable font 
@@ -156,6 +166,8 @@ Magnum::Text::AbstractFont* robot_dart::gui::magnum::DebugDrawData::font;
 
 
 
+
+<hr>
 
 
 
@@ -168,6 +180,8 @@ Magnum::GL::Buffer* robot_dart::gui::magnum::DebugDrawData::text_indices;
 
 
 
+<hr>
+
 
 
 ### variable text\_shader 
@@ -179,6 +193,8 @@ Magnum::Shaders::DistanceFieldVectorGL2D* robot_dart::gui::magnum::DebugDrawData
 
 
 
+<hr>
+
 
 
 ### variable text\_vertices 
@@ -189,6 +205,8 @@ Magnum::GL::Buffer* robot_dart::gui::magnum::DebugDrawData::text_vertices;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.hpp`

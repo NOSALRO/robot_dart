@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](drawables_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_DRAWABLES_HPP
 #define ROBOT_DART_GUI_MAGNUM_DRAWABLES_HPP
 
@@ -208,6 +208,6 @@ namespace robot_dart {
     } // namespace gui
 } // namespace robot_dart
 #endif
-
 ```
+
 

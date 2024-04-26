@@ -86,7 +86,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**simu**](namespacerobot__dart_1_1simu.md)     
         * **struct** [**GUIData**](structrobot__dart_1_1simu_1_1GUIData.md)     
         * **struct** [**TextData**](structrobot__dart_1_1simu_1_1TextData.md)     
-* **namespace** [**@21**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
+* **namespace** [**gs**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
 * **struct** [**RobotData**](structrobot__dart_1_1simu_1_1GUIData_1_1RobotData.md)     
 * **namespace** [**std**](namespacestd.md) 
 

@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](create__compatibility__shader_8hpp.md)
 
-```C++
 
+```C++
 #ifndef Magnum_Shaders_Implementation_CreateCompatibilityShader_h
 #define Magnum_Shaders_Implementation_CreateCompatibilityShader_h
 /*
@@ -90,6 +90,6 @@ namespace Magnum {
 } // namespace Magnum
 
 #endif
-
 ```
+
 

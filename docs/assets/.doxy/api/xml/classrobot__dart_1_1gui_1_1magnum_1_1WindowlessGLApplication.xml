@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::WindowlessGLApplication</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseApplication</basecompoundref>
     <basecompoundref prot="public" virt="non-virtual">Magnum::Platform::WindowlessApplication</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a3d478de33bd7bed177585734a42ca704" prot="protected" static="no" mutable="no">
         <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
         <definition>RobotDARTSimu* robot_dart::gui::magnum::WindowlessGLApplication::_simu</definition>
         <argsstring></argsstring>
         <name>_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_simu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>bool robot_dart::gui::magnum::WindowlessGLApplication::_draw_main_camera</definition>
         <argsstring></argsstring>
         <name>_draw_main_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_draw_main_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>bool robot_dart::gui::magnum::WindowlessGLApplication::_draw_debug</definition>
         <argsstring></argsstring>
         <name>_draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_draw_debug</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,6 +52,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::WindowlessGLApplication::_bg_color</definition>
         <argsstring></argsstring>
         <name>_bg_color</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_bg_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -62,6 +66,7 @@
         <definition>Magnum::GL::Framebuffer robot_dart::gui::magnum::WindowlessGLApplication::_framebuffer</definition>
         <argsstring></argsstring>
         <name>_framebuffer</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_framebuffer</qualifiedname>
         <initializer>{Magnum::NoCreate}</initializer>
         <briefdescription>
         </briefdescription>
@@ -69,13 +74,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="23" column="41" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="23" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="23" column="41" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1af463c12e66d476469053b5ae43823be0" prot="protected" static="no" mutable="no">
         <type>Magnum::PixelFormat</type>
         <definition>Magnum::PixelFormat robot_dart::gui::magnum::WindowlessGLApplication::_format</definition>
         <argsstring></argsstring>
         <name>_format</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_format</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -89,6 +95,7 @@
         <definition>Magnum::GL::Renderbuffer robot_dart::gui::magnum::WindowlessGLApplication::_color</definition>
         <argsstring></argsstring>
         <name>_color</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_color</qualifiedname>
         <initializer>{Magnum::NoCreate}</initializer>
         <briefdescription>
         </briefdescription>
@@ -96,13 +103,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="25" column="42" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="25" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="25" column="42" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="25" bodyend="25"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a9d722d9d88dafa351bc8e569c1e36582" prot="protected" static="no" mutable="no">
         <type>Magnum::GL::Renderbuffer</type>
         <definition>Magnum::GL::Renderbuffer robot_dart::gui::magnum::WindowlessGLApplication::_depth</definition>
         <argsstring></argsstring>
         <name>_depth</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::_depth</qualifiedname>
         <initializer>{Magnum::NoCreate}</initializer>
         <briefdescription>
         </briefdescription>
@@ -110,15 +118,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="25" column="49" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="25" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="25" column="49" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="25" bodyend="25"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a6bd6c145ebbbe3cd9fd786b4dd628fa2" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::WindowlessGLApplication::WindowlessGLApplication</definition>
         <argsstring>(int argc, char **argv, RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
         <name>WindowlessGLApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::WindowlessGLApplication</qualifiedname>
         <param>
           <type>int</type>
           <declname>argc</declname>
@@ -149,6 +158,7 @@
         <definition>robot_dart::gui::magnum::WindowlessGLApplication::~WindowlessGLApplication</definition>
         <argsstring>()</argsstring>
         <name>~WindowlessGLApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::~WindowlessGLApplication</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -162,6 +172,7 @@
         <definition>void robot_dart::gui::magnum::WindowlessGLApplication::render</definition>
         <argsstring>() override</argsstring>
         <name>render</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::render</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a16d1087b2a12045167c0c6924fff6062">render</reimplements>
         <briefdescription>
         </briefdescription>
@@ -171,13 +182,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="17" column="22" bodyfile="robot_dart/gui/magnum/windowless_gl_application.cpp" bodystart="58" bodyend="90"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a57784150c337b1ac9c8d4ee7c4240557" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
         <definition>virtual int robot_dart::gui::magnum::WindowlessGLApplication::exec</definition>
         <argsstring>() override</argsstring>
         <name>exec</name>
+        <qualifiedname>robot_dart::gui::magnum::WindowlessGLApplication::exec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -186,7 +198,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/windowless_gl_application.hpp" line="28" column="29" bodyfile="robot_dart/gui/magnum/windowless_gl_application.hpp" bodystart="28" bodyend="28"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

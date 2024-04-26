@@ -119,6 +119,8 @@ inline Light robot_dart::gui::magnum::gs::create_directional_light (
 
 
 
+<hr>
+
 
 
 ### function create\_point\_light 
@@ -134,6 +136,8 @@ inline Light robot_dart::gui::magnum::gs::create_point_light (
 
 
 
+
+<hr>
 
 
 
@@ -154,6 +158,8 @@ inline Light robot_dart::gui::magnum::gs::create_spot_light (
 
 
 
+<hr>
+
 
 
 ### function depth\_array\_from\_image 
@@ -168,6 +174,8 @@ DepthImage robot_dart::gui::magnum::gs::depth_array_from_image (
 
 
 
+
+<hr>
 
 
 
@@ -185,6 +193,8 @@ GrayscaleImage robot_dart::gui::magnum::gs::depth_from_image (
 
 
 
+<hr>
+
 
 
 ### function rgb\_from\_image 
@@ -197,6 +207,8 @@ Image robot_dart::gui::magnum::gs::rgb_from_image (
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -212,6 +224,8 @@ static fs::path robot_dart::gui::magnum::gs::search_path (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/camera.cpp`

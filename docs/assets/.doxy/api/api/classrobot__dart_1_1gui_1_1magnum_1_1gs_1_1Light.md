@@ -135,6 +135,8 @@ robot_dart::gui::magnum::gs::Light::Light ()
 
 
 
+<hr>
+
 
 
 ### function Light [2/2]
@@ -154,6 +156,8 @@ robot_dart::gui::magnum::gs::Light::Light (
 
 
 
+<hr>
+
 
 
 ### function attenuation [1/2]
@@ -164,6 +168,8 @@ Magnum::Vector4 & robot_dart::gui::magnum::gs::Light::attenuation ()
 
 
 
+
+<hr>
 
 
 
@@ -176,6 +182,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::attenuation () const
 
 
 
+<hr>
+
 
 
 ### function casts\_shadows 
@@ -186,6 +194,8 @@ bool robot_dart::gui::magnum::gs::Light::casts_shadows () const
 
 
 
+
+<hr>
 
 
 
@@ -198,6 +208,8 @@ Material & robot_dart::gui::magnum::gs::Light::material ()
 
 
 
+<hr>
+
 
 
 ### function material [2/2]
@@ -209,6 +221,8 @@ Material robot_dart::gui::magnum::gs::Light::material () const
 
 
 
+<hr>
+
 
 
 ### function position 
@@ -219,6 +233,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::position () const
 
 
 
+
+<hr>
 
 
 
@@ -233,6 +249,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_attenuation (
 
 
 
+<hr>
+
 
 
 ### function set\_casts\_shadows 
@@ -245,6 +263,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_casts_shadows (
 
 
 
+
+<hr>
 
 
 
@@ -259,6 +279,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_material (
 
 
 
+<hr>
+
 
 
 ### function set\_position 
@@ -271,6 +293,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_position (
 
 
 
+
+<hr>
 
 
 
@@ -285,6 +309,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_shadow_matrix (
 
 
 
+<hr>
+
 
 
 ### function set\_spot\_cut\_off 
@@ -297,6 +323,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_spot_cut_off (
 
 
 
+
+<hr>
 
 
 
@@ -311,6 +339,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_spot_direction (
 
 
 
+<hr>
+
 
 
 ### function set\_spot\_exponent 
@@ -323,6 +353,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_spot_exponent (
 
 
 
+
+<hr>
 
 
 
@@ -337,6 +369,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_transformed_position (
 
 
 
+<hr>
+
 
 
 ### function set\_transformed\_spot\_direction 
@@ -350,6 +384,8 @@ Light & robot_dart::gui::magnum::gs::Light::set_transformed_spot_direction (
 
 
 
+<hr>
+
 
 
 ### function shadow\_matrix 
@@ -360,6 +396,8 @@ Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::shadow_matrix () const
 
 
 
+
+<hr>
 
 
 
@@ -372,6 +410,8 @@ Magnum::Float & robot_dart::gui::magnum::gs::Light::spot_cut_off ()
 
 
 
+<hr>
+
 
 
 ### function spot\_cut\_off [2/2]
@@ -382,6 +422,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Light::spot_cut_off () const
 
 
 
+
+<hr>
 
 
 
@@ -394,6 +436,8 @@ Magnum::Vector3 robot_dart::gui::magnum::gs::Light::spot_direction () const
 
 
 
+<hr>
+
 
 
 ### function spot\_exponent [1/2]
@@ -404,6 +448,8 @@ Magnum::Float & robot_dart::gui::magnum::gs::Light::spot_exponent ()
 
 
 
+
+<hr>
 
 
 
@@ -416,6 +462,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Light::spot_exponent () const
 
 
 
+<hr>
+
 
 
 ### function transformed\_position [1/2]
@@ -426,6 +474,8 @@ Magnum::Vector4 & robot_dart::gui::magnum::gs::Light::transformed_position ()
 
 
 
+
+<hr>
 
 
 
@@ -438,6 +488,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::transformed_position () cons
 
 
 
+<hr>
+
 
 
 ### function transformed\_spot\_direction [1/2]
@@ -449,6 +501,8 @@ Magnum::Vector3 & robot_dart::gui::magnum::gs::Light::transformed_spot_direction
 
 
 
+<hr>
+
 
 
 ### function transformed\_spot\_direction [2/2]
@@ -459,6 +513,8 @@ Magnum::Vector3 robot_dart::gui::magnum::gs::Light::transformed_spot_direction (
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -473,6 +529,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_attenuation;
 
 
 
+<hr>
+
 
 
 ### variable \_cast\_shadows 
@@ -483,6 +541,8 @@ bool robot_dart::gui::magnum::gs::Light::_cast_shadows;
 
 
 
+
+<hr>
 
 
 
@@ -495,6 +555,8 @@ Material robot_dart::gui::magnum::gs::Light::_material;
 
 
 
+<hr>
+
 
 
 ### variable \_position 
@@ -505,6 +567,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_position;
 
 
 
+
+<hr>
 
 
 
@@ -517,6 +581,8 @@ Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::_shadow_transform;
 
 
 
+<hr>
+
 
 
 ### variable \_spot\_cut\_off 
@@ -527,6 +593,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_cut_off;
 
 
 
+
+<hr>
 
 
 
@@ -539,6 +607,8 @@ Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_spot_direction;
 
 
 
+<hr>
+
 
 
 ### variable \_spot\_exponent 
@@ -549,6 +619,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_exponent;
 
 
 
+
+<hr>
 
 
 
@@ -561,6 +633,8 @@ Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_transformed_position;
 
 
 
+<hr>
+
 
 
 ### variable \_transformed\_spot\_direction 
@@ -571,6 +645,8 @@ Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_transformed_spot_direction;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/light.hpp`

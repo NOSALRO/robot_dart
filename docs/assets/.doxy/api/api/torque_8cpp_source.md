@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](torque_8cpp.md)
 
-```C++
 
+```C++
 #include "torque.hpp"
 
 #include <robot_dart/robot_dart_simu.hpp>
@@ -51,6 +51,6 @@ namespace robot_dart {
         }
     } // namespace sensor
 } // namespace robot_dart
-
 ```
+
 

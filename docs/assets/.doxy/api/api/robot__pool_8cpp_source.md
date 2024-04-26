@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](robot__pool_8cpp.md)
 
-```C++
 
+```C++
 #include <robot_dart/robot_pool.hpp>
 
 namespace robot_dart {
@@ -64,6 +64,6 @@ namespace robot_dart {
         robot->reset();
     }
 } // namespace robot_dart
-
 ```
+
 

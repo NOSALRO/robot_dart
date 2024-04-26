@@ -261,6 +261,8 @@ explicit robot_dart::gui::magnum::WindowlessGLApplication::WindowlessGLApplicati
 
 
 
+<hr>
+
 
 
 ### function render 
@@ -274,6 +276,8 @@ virtual void robot_dart::gui::magnum::WindowlessGLApplication::render () overrid
 Implements [*robot\_dart::gui::magnum::BaseApplication::render*](classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication.md#function-render)
 
 
+<hr>
+
 
 
 ### function ~WindowlessGLApplication 
@@ -284,6 +288,8 @@ robot_dart::gui::magnum::WindowlessGLApplication::~WindowlessGLApplication ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -298,6 +304,8 @@ Magnum::Color4 robot_dart::gui::magnum::WindowlessGLApplication::_bg_color;
 
 
 
+<hr>
+
 
 
 ### variable \_color 
@@ -308,6 +316,8 @@ Magnum::GL::Renderbuffer robot_dart::gui::magnum::WindowlessGLApplication::_colo
 
 
 
+
+<hr>
 
 
 
@@ -320,6 +330,8 @@ Magnum::GL::Renderbuffer robot_dart::gui::magnum::WindowlessGLApplication::_dept
 
 
 
+<hr>
+
 
 
 ### variable \_draw\_debug 
@@ -330,6 +342,8 @@ bool robot_dart::gui::magnum::WindowlessGLApplication::_draw_debug;
 
 
 
+
+<hr>
 
 
 
@@ -342,6 +356,8 @@ bool robot_dart::gui::magnum::WindowlessGLApplication::_draw_main_camera;
 
 
 
+<hr>
+
 
 
 ### variable \_format 
@@ -352,6 +368,8 @@ Magnum::PixelFormat robot_dart::gui::magnum::WindowlessGLApplication::_format;
 
 
 
+
+<hr>
 
 
 
@@ -364,6 +382,8 @@ Magnum::GL::Framebuffer robot_dart::gui::magnum::WindowlessGLApplication::_frame
 
 
 
+<hr>
+
 
 
 ### variable \_simu 
@@ -374,6 +394,8 @@ RobotDARTSimu* robot_dart::gui::magnum::WindowlessGLApplication::_simu;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -387,6 +409,8 @@ inline virtual int robot_dart::gui::magnum::WindowlessGLApplication::exec () ove
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/windowless_gl_application.hpp`

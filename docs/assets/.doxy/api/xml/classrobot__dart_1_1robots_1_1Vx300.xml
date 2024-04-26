@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Vx300" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Vx300</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Vx300_1a0c9620de7cb946cf7a9f050b9d789732" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Vx300::Vx300</definition>
         <argsstring>(const std::string &amp;urdf=&quot;vx300/vx300.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;interbotix_xsarm_descriptions&quot;, &quot;vx300&quot;}})</argsstring>
         <name>Vx300</name>
+        <qualifiedname>robot_dart::robots::Vx300::Vx300</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>urdf</declname>
@@ -27,7 +28,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/vx300.hpp" line="10" column="13" bodyfile="robot_dart/robots/vx300.hpp" bodystart="10" bodyend="15"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

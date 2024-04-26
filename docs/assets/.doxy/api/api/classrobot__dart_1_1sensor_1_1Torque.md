@@ -200,6 +200,8 @@ robot_dart::sensor::Torque::Torque (
 
 
 
+<hr>
+
 
 
 ### function Torque [2/2]
@@ -214,6 +216,8 @@ inline robot_dart::sensor::Torque::Torque (
 
 
 
+
+<hr>
 
 
 
@@ -231,6 +235,8 @@ inline virtual void robot_dart::sensor::Torque::attach_to_body (
 Implements [*robot\_dart::sensor::Sensor::attach\_to\_body*](classrobot__dart_1_1sensor_1_1Sensor.md#function-attach_to_body-12)
 
 
+<hr>
+
 
 
 ### function calculate 
@@ -246,6 +252,8 @@ virtual void robot_dart::sensor::Torque::calculate (
 Implements [*robot\_dart::sensor::Sensor::calculate*](classrobot__dart_1_1sensor_1_1Sensor.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function init 
@@ -259,6 +267,8 @@ virtual void robot_dart::sensor::Torque::init () override
 Implements [*robot\_dart::sensor::Sensor::init*](classrobot__dart_1_1sensor_1_1Sensor.md#function-init)
 
 
+<hr>
+
 
 
 ### function torques 
@@ -269,6 +279,8 @@ const Eigen::VectorXd & robot_dart::sensor::Torque::torques () const
 
 
 
+
+<hr>
 
 
 
@@ -282,6 +294,8 @@ virtual std::string robot_dart::sensor::Torque::type () override const
 
 Implements [*robot\_dart::sensor::Sensor::type*](classrobot__dart_1_1sensor_1_1Sensor.md#function-type)
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -295,6 +309,8 @@ Eigen::VectorXd robot_dart::sensor::Torque::_torques;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/sensor/torque.hpp`

@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](cube__map__color_8cpp.md)
 
-```C++
 
+```C++
 #include "cube_map_color.hpp"
 #include "create_compatibility_shader.hpp"
 
@@ -129,6 +129,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

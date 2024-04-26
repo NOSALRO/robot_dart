@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](material_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_MATERIAL_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_MATERIAL_HPP
 
@@ -74,6 +74,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

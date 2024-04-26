@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="structrobot__dart_1_1sensor_1_1IMUConfig" kind="struct" language="C++" prot="public">
     <compoundname>robot_dart::sensor::IMUConfig</compoundname>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a336a6c4a6983e94f624ac61f2bb03248" prot="public" static="no" mutable="no">
         <type>Eigen::Vector3d</type>
         <definition>Eigen::Vector3d robot_dart::sensor::IMUConfig::gyro_bias</definition>
         <argsstring></argsstring>
         <name>gyro_bias</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::gyro_bias</qualifiedname>
         <initializer>= Eigen::Vector3d::Zero()</initializer>
         <briefdescription>
         </briefdescription>
@@ -22,6 +23,7 @@
         <definition>Eigen::Vector3d robot_dart::sensor::IMUConfig::accel_bias</definition>
         <argsstring></argsstring>
         <name>accel_bias</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::accel_bias</qualifiedname>
         <initializer>= Eigen::Vector3d::Zero()</initializer>
         <briefdescription>
         </briefdescription>
@@ -36,6 +38,7 @@
         <definition>dart::dynamics::BodyNode* robot_dart::sensor::IMUConfig::body</definition>
         <argsstring></argsstring>
         <name>body</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::body</qualifiedname>
         <initializer>= nullptr</initializer>
         <briefdescription>
         </briefdescription>
@@ -50,6 +53,7 @@
         <definition>size_t robot_dart::sensor::IMUConfig::frequency</definition>
         <argsstring></argsstring>
         <name>frequency</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::frequency</qualifiedname>
         <initializer>= 200</initializer>
         <briefdescription>
         </briefdescription>
@@ -59,13 +63,14 @@
         </inbodydescription>
         <location file="robot_dart/sensor/imu.hpp" line="27" column="20" bodyfile="robot_dart/sensor/imu.hpp" bodystart="27" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structrobot__dart_1_1sensor_1_1IMUConfig_1a4c5b190bc68d7596f8245efea647ad12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
         <argsstring>(dart::dynamics::BodyNode *b, size_t f)</argsstring>
         <name>IMUConfig</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::IMUConfig</qualifiedname>
         <param>
           <type>dart::dynamics::BodyNode *</type>
           <declname>b</declname>
@@ -87,6 +92,7 @@
         <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
         <argsstring>(const Eigen::Vector3d &amp;gyro_bias, const Eigen::Vector3d &amp;accel_bias, dart::dynamics::BodyNode *b, size_t f)</argsstring>
         <name>IMUConfig</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::IMUConfig</qualifiedname>
         <param>
           <type>const Eigen::Vector3d &amp;</type>
           <declname>gyro_bias</declname>
@@ -116,6 +122,7 @@
         <definition>robot_dart::sensor::IMUConfig::IMUConfig</definition>
         <argsstring>()</argsstring>
         <name>IMUConfig</name>
+        <qualifiedname>robot_dart::sensor::IMUConfig::IMUConfig</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,7 +131,7 @@
         </inbodydescription>
         <location file="robot_dart/sensor/imu.hpp" line="12" column="13" bodyfile="robot_dart/sensor/imu.hpp" bodystart="12" bodyend="12"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

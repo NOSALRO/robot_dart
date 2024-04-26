@@ -113,6 +113,8 @@ using robot_dart::collision_filter::BitmaskContactFilter::DartCollisionConstPtr 
 
 
 
+<hr>
+
 
 
 ### typedef DartShapeConstPtr 
@@ -123,6 +125,8 @@ using robot_dart::collision_filter::BitmaskContactFilter::DartShapeConstPtr =  c
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -141,6 +145,8 @@ inline void robot_dart::collision_filter::BitmaskContactFilter::add_to_map (
 
 
 
+<hr>
+
 
 
 ### function add\_to\_map [2/2]
@@ -156,6 +162,8 @@ inline void robot_dart::collision_filter::BitmaskContactFilter::add_to_map (
 
 
 
+<hr>
+
 
 
 ### function clear\_all 
@@ -166,6 +174,8 @@ inline void robot_dart::collision_filter::BitmaskContactFilter::clear_all ()
 
 
 
+
+<hr>
 
 
 
@@ -181,6 +191,8 @@ inline bool robot_dart::collision_filter::BitmaskContactFilter::ignoresCollision
 
 
 
+<hr>
+
 
 
 ### function mask 
@@ -193,6 +205,8 @@ inline Masks robot_dart::collision_filter::BitmaskContactFilter::mask (
 
 
 
+
+<hr>
 
 
 
@@ -207,6 +221,8 @@ inline void robot_dart::collision_filter::BitmaskContactFilter::remove_from_map 
 
 
 
+<hr>
+
 
 
 ### function remove\_from\_map [2/2]
@@ -220,6 +236,8 @@ inline void robot_dart::collision_filter::BitmaskContactFilter::remove_from_map 
 
 
 
+<hr>
+
 
 
 ### function ~BitmaskContactFilter 
@@ -230,6 +248,8 @@ virtual robot_dart::collision_filter::BitmaskContactFilter::~BitmaskContactFilte
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot_dart_simu.cpp`

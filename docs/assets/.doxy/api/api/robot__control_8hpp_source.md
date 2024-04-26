@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](robot__control_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_CONTROL_ROBOT_CONTROL
 #define ROBOT_DART_CONTROL_ROBOT_CONTROL
 
@@ -61,6 +61,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

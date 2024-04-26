@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::ShadowMapColor</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Magnum::GL::AbstractShaderProgram</basecompoundref>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="enum" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046" prot="public" static="no" strong="yes">
         <type>Magnum::UnsignedByte</type>
         <name>Flag</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Flag</qualifiedname>
         <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046ae712876b5313699d4e38e6f70c7c725e" prot="public">
           <name>DiffuseTexture</name>
           <initializer>= 1 &lt;&lt; 0</initializer>
@@ -29,6 +30,7 @@
         <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::Position =  Magnum::Shaders::Generic3D::Position</definition>
         <argsstring></argsstring>
         <name>Position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::TextureCoordinates =  Magnum::Shaders::Generic3D::TextureCoordinates</definition>
         <argsstring></argsstring>
         <name>TextureCoordinates</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::TextureCoordinates</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::Flags =  Magnum::Containers::EnumSet&lt;Flag&gt;</definition>
         <argsstring></argsstring>
         <name>Flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,13 +67,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="28" column="21" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
+    </sectiondef>
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aabd0ae0c9f4e5cbf79d40797c4c4e6b6" prot="private" static="no" mutable="no">
         <type>Flags</type>
         <definition>Flags robot_dart::gui::magnum::gs::ShadowMapColor::_flags</definition>
         <argsstring></argsstring>
         <name>_flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -83,6 +88,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_transformation_matrix_uniform</definition>
         <argsstring></argsstring>
         <name>_transformation_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_transformation_matrix_uniform</qualifiedname>
         <initializer>{0}</initializer>
         <briefdescription>
         </briefdescription>
@@ -90,13 +96,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="33" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="33" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a6e1c6c8017d847858467a050878d188c" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_projection_matrix_uniform</definition>
         <argsstring></argsstring>
         <name>_projection_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_projection_matrix_uniform</qualifiedname>
         <initializer>{1}</initializer>
         <briefdescription>
         </briefdescription>
@@ -104,13 +111,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="64" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="64" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a311dab6d1e99969ea8d87b10f2d69a1a" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_diffuse_color_uniform</definition>
         <argsstring></argsstring>
         <name>_diffuse_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_diffuse_color_uniform</qualifiedname>
         <initializer>{2}</initializer>
         <briefdescription>
         </briefdescription>
@@ -118,15 +126,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="91" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="91" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad8ff22c1f626198590b4592ca760a4eb" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</definition>
         <argsstring>(Flags flags={})</argsstring>
         <name>ShadowMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</qualifiedname>
         <param>
           <type>Flags</type>
           <declname>flags</declname>
@@ -145,6 +154,7 @@
         <definition>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</definition>
         <argsstring>(Magnum::NoCreateT) noexcept</argsstring>
         <name>ShadowMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</qualifiedname>
         <param>
           <type>Magnum::NoCreateT</type>
         </param>
@@ -161,6 +171,7 @@
         <definition>ShadowMapColor::Flags robot_dart::gui::magnum::gs::ShadowMapColor::flags</definition>
         <argsstring>() const</argsstring>
         <name>flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -174,6 +185,7 @@
         <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_transformation_matrix</definition>
         <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
         <name>set_transformation_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_transformation_matrix</qualifiedname>
         <param>
           <type>const Magnum::Matrix4 &amp;</type>
           <declname>matrix</declname>
@@ -191,6 +203,7 @@
         <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_projection_matrix</definition>
         <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
         <name>set_projection_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_projection_matrix</qualifiedname>
         <param>
           <type>const Magnum::Matrix4 &amp;</type>
           <declname>matrix</declname>
@@ -208,6 +221,7 @@
         <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_material</definition>
         <argsstring>(Material &amp;material)</argsstring>
         <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_material</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
           <declname>material</declname>
@@ -220,7 +234,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="37" column="36" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="71" bodyend="81"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

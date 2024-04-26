@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](windowless__gl__application_8cpp.md)
 
-```C++
 
+```C++
 #include "windowless_gl_application.hpp"
 
 // #include <Magnum/DebugTools/Screenshot.h>
@@ -101,6 +101,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::Light</compoundname>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af8138e3fc1e19a3a04186c1d5f550c15" prot="protected" static="no" mutable="no">
         <type>Magnum::Vector4</type>
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_position</definition>
         <argsstring></argsstring>
         <name>_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -21,6 +22,7 @@
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_transformed_position</definition>
         <argsstring></argsstring>
         <name>_transformed_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_transformed_position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -34,6 +36,7 @@
         <definition>Material robot_dart::gui::magnum::gs::Light::_material</definition>
         <argsstring></argsstring>
         <name>_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_material</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +50,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_spot_direction</definition>
         <argsstring></argsstring>
         <name>_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_spot_direction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -60,6 +64,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::_transformed_spot_direction</definition>
         <argsstring></argsstring>
         <name>_transformed_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_transformed_spot_direction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +78,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_exponent</definition>
         <argsstring></argsstring>
         <name>_spot_exponent</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_spot_exponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -86,6 +92,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::_spot_cut_off</definition>
         <argsstring></argsstring>
         <name>_spot_cut_off</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_spot_cut_off</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -99,6 +106,7 @@
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::_attenuation</definition>
         <argsstring></argsstring>
         <name>_attenuation</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_attenuation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -112,6 +120,7 @@
         <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::_shadow_transform</definition>
         <argsstring></argsstring>
         <name>_shadow_transform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_shadow_transform</qualifiedname>
         <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
@@ -119,13 +128,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/light.hpp" line="79" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="79" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="79" column="37" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="79" bodyend="79"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae2b6f8acac43e047f4780c4858e6281a" prot="protected" static="no" mutable="no">
         <type>bool</type>
         <definition>bool robot_dart::gui::magnum::gs::Light::_cast_shadows</definition>
         <argsstring></argsstring>
         <name>_cast_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::_cast_shadows</qualifiedname>
         <initializer>= true</initializer>
         <briefdescription>
         </briefdescription>
@@ -135,13 +145,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/light.hpp" line="82" column="26" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af10d77fa11ea91a05a65a08ea9ab0f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::gs::Light::Light</definition>
         <argsstring>()</argsstring>
         <name>Light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::Light</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -155,6 +166,7 @@
         <definition>robot_dart::gui::magnum::gs::Light::Light</definition>
         <argsstring>(const Magnum::Vector4 &amp;position, const Material &amp;material, const Magnum::Vector3 &amp;spot_direction, Magnum::Float spot_exponent, Magnum::Float spot_cut_off, const Magnum::Vector4 &amp;attenuation, bool cast_shadows=true)</argsstring>
         <name>Light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::Light</qualifiedname>
         <param>
           <type>const Magnum::Vector4 &amp;</type>
           <declname>position</declname>
@@ -197,6 +209,7 @@
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::position</definition>
         <argsstring>() const</argsstring>
         <name>position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -210,6 +223,7 @@
         <definition>Magnum::Vector4 &amp; robot_dart::gui::magnum::gs::Light::transformed_position</definition>
         <argsstring>()</argsstring>
         <name>transformed_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::transformed_position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -223,6 +237,7 @@
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::transformed_position</definition>
         <argsstring>() const</argsstring>
         <name>transformed_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::transformed_position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -236,6 +251,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Light::material</definition>
         <argsstring>()</argsstring>
         <name>material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::material</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -249,6 +265,7 @@
         <definition>Material robot_dart::gui::magnum::gs::Light::material</definition>
         <argsstring>() const</argsstring>
         <name>material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::material</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -262,6 +279,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::spot_direction</definition>
         <argsstring>() const</argsstring>
         <name>spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::spot_direction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -275,6 +293,7 @@
         <definition>Magnum::Vector3 &amp; robot_dart::gui::magnum::gs::Light::transformed_spot_direction</definition>
         <argsstring>()</argsstring>
         <name>transformed_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::transformed_spot_direction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -288,6 +307,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Light::transformed_spot_direction</definition>
         <argsstring>() const</argsstring>
         <name>transformed_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::transformed_spot_direction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -301,6 +321,7 @@
         <definition>Magnum::Float &amp; robot_dart::gui::magnum::gs::Light::spot_exponent</definition>
         <argsstring>()</argsstring>
         <name>spot_exponent</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::spot_exponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -314,6 +335,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::spot_exponent</definition>
         <argsstring>() const</argsstring>
         <name>spot_exponent</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::spot_exponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -327,6 +349,7 @@
         <definition>Magnum::Float &amp; robot_dart::gui::magnum::gs::Light::spot_cut_off</definition>
         <argsstring>()</argsstring>
         <name>spot_cut_off</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::spot_cut_off</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -340,6 +363,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Light::spot_cut_off</definition>
         <argsstring>() const</argsstring>
         <name>spot_cut_off</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::spot_cut_off</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -353,6 +377,7 @@
         <definition>Magnum::Vector4 &amp; robot_dart::gui::magnum::gs::Light::attenuation</definition>
         <argsstring>()</argsstring>
         <name>attenuation</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::attenuation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -366,6 +391,7 @@
         <definition>Magnum::Vector4 robot_dart::gui::magnum::gs::Light::attenuation</definition>
         <argsstring>() const</argsstring>
         <name>attenuation</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::attenuation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -379,6 +405,7 @@
         <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Light::shadow_matrix</definition>
         <argsstring>() const</argsstring>
         <name>shadow_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::shadow_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -392,6 +419,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Light::casts_shadows</definition>
         <argsstring>() const</argsstring>
         <name>casts_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::casts_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -405,6 +433,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_position</definition>
         <argsstring>(const Magnum::Vector4 &amp;position)</argsstring>
         <name>set_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_position</qualifiedname>
         <param>
           <type>const Magnum::Vector4 &amp;</type>
           <declname>position</declname>
@@ -422,6 +451,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_transformed_position</definition>
         <argsstring>(const Magnum::Vector4 &amp;transformed_position)</argsstring>
         <name>set_transformed_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_transformed_position</qualifiedname>
         <param>
           <type>const Magnum::Vector4 &amp;</type>
           <declname>transformed_position</declname>
@@ -439,6 +469,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_material</definition>
         <argsstring>(const Material &amp;material)</argsstring>
         <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_material</qualifiedname>
         <param>
           <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
           <declname>material</declname>
@@ -456,6 +487,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_direction</definition>
         <argsstring>(const Magnum::Vector3 &amp;spot_direction)</argsstring>
         <name>set_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_spot_direction</qualifiedname>
         <param>
           <type>const Magnum::Vector3 &amp;</type>
           <declname>spot_direction</declname>
@@ -473,6 +505,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_transformed_spot_direction</definition>
         <argsstring>(const Magnum::Vector3 &amp;transformed_spot_direction)</argsstring>
         <name>set_transformed_spot_direction</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_transformed_spot_direction</qualifiedname>
         <param>
           <type>const Magnum::Vector3 &amp;</type>
           <declname>transformed_spot_direction</declname>
@@ -490,6 +523,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_exponent</definition>
         <argsstring>(Magnum::Float spot_exponent)</argsstring>
         <name>set_spot_exponent</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_spot_exponent</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>spot_exponent</declname>
@@ -507,6 +541,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_spot_cut_off</definition>
         <argsstring>(Magnum::Float spot_cut_off)</argsstring>
         <name>set_spot_cut_off</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_spot_cut_off</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>spot_cut_off</declname>
@@ -524,6 +559,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_attenuation</definition>
         <argsstring>(const Magnum::Vector4 &amp;attenuation)</argsstring>
         <name>set_attenuation</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_attenuation</qualifiedname>
         <param>
           <type>const Magnum::Vector4 &amp;</type>
           <declname>attenuation</declname>
@@ -541,6 +577,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_shadow_matrix</definition>
         <argsstring>(const Magnum::Matrix4 &amp;shadowTransform)</argsstring>
         <name>set_shadow_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_shadow_matrix</qualifiedname>
         <param>
           <type>const Magnum::Matrix4 &amp;</type>
           <declname>shadowTransform</declname>
@@ -558,6 +595,7 @@
         <definition>Light &amp; robot_dart::gui::magnum::gs::Light::set_casts_shadows</definition>
         <argsstring>(bool cast_shadows)</argsstring>
         <name>set_casts_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Light::set_casts_shadows</qualifiedname>
         <param>
           <type>bool</type>
           <declname>cast_shadows</declname>
@@ -570,7 +608,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/light.hpp" line="58" column="27" bodyfile="robot_dart/gui/magnum/gs/light.cpp" bodystart="112" bodyend="116"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](drawables_8cpp.md)
 
-```C++
 
+```C++
 #include <robot_dart/gui/magnum/drawables.hpp>
 #include <robot_dart/gui_data.hpp>
 #include <robot_dart/robot_dart_simu.hpp>
@@ -371,6 +371,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

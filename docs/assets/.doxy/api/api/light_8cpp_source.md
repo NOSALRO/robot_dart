@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](light_8cpp.md)
 
-```C++
 
+```C++
 #include "light.hpp"
 
 #include <Magnum/GL/Texture.h>
@@ -128,6 +128,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

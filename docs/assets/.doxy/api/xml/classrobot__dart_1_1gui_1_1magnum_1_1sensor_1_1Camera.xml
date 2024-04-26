@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::sensor::Camera</compoundname>
     <basecompoundref refid="classrobot__dart_1_1sensor_1_1Sensor" prot="public" virt="non-virtual">robot_dart::sensor::Sensor</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a5c5396298463ec9387c477d48c4a33f1" prot="protected" static="no" mutable="no">
         <type>Magnum::GL::Framebuffer</type>
         <definition>Magnum::GL::Framebuffer robot_dart::gui::magnum::sensor::Camera::_framebuffer</definition>
         <argsstring></argsstring>
         <name>_framebuffer</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_framebuffer</qualifiedname>
         <initializer>{Magnum::NoCreate}</initializer>
         <briefdescription>
         </briefdescription>
@@ -16,13 +17,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/sensor/camera.hpp" line="83" column="45" bodyfile="robot_dart/gui/magnum/sensor/camera.hpp" bodystart="83" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/sensor/camera.hpp" line="83" column="45" bodyfile="robot_dart/gui/magnum/sensor/camera.hpp" bodystart="83" bodyend="83"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a46476b31e0de6b6f15fdb654b2dbec26" prot="protected" static="no" mutable="no">
         <type>Magnum::PixelFormat</type>
         <definition>Magnum::PixelFormat robot_dart::gui::magnum::sensor::Camera::_format</definition>
         <argsstring></argsstring>
         <name>_format</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_format</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>Magnum::GL::Renderbuffer robot_dart::gui::magnum::sensor::Camera::_color</definition>
         <argsstring></argsstring>
         <name>_color</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,6 +52,7 @@
         <definition>Magnum::GL::Renderbuffer robot_dart::gui::magnum::sensor::Camera::_depth</definition>
         <argsstring></argsstring>
         <name>_depth</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_depth</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -62,6 +66,7 @@
         <definition>BaseApplication* robot_dart::gui::magnum::sensor::Camera::_magnum_app</definition>
         <argsstring></argsstring>
         <name>_magnum_app</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_magnum_app</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,6 +80,7 @@
         <definition>size_t robot_dart::gui::magnum::sensor::Camera::_width</definition>
         <argsstring></argsstring>
         <name>_width</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_width</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,6 +94,7 @@
         <definition>size_t robot_dart::gui::magnum::sensor::Camera::_height</definition>
         <argsstring></argsstring>
         <name>_height</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_height</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -101,6 +108,7 @@
         <definition>std::unique_ptr&lt;gs::Camera&gt; robot_dart::gui::magnum::sensor::Camera::_camera</definition>
         <argsstring></argsstring>
         <name>_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,6 +122,7 @@
         <definition>bool robot_dart::gui::magnum::sensor::Camera::_draw_debug</definition>
         <argsstring></argsstring>
         <name>_draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::_draw_debug</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -122,13 +131,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/sensor/camera.hpp" line="92" column="26" bodyfile="robot_dart/gui/magnum/sensor/camera.hpp" bodystart="92" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a16b0db56f9af5ca4e5f928b1aeabf875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::sensor::Camera::Camera</definition>
         <argsstring>(BaseApplication *app, size_t width, size_t height, size_t freq=30, bool draw_debug=false)</argsstring>
         <name>Camera</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::Camera</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" kindref="compound">BaseApplication</ref> *</type>
           <declname>app</declname>
@@ -164,6 +174,7 @@
         <definition>robot_dart::gui::magnum::sensor::Camera::~Camera</definition>
         <argsstring>()</argsstring>
         <name>~Camera</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::~Camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -177,6 +188,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::init</definition>
         <argsstring>() override</argsstring>
         <name>init</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::init</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517">init</reimplements>
         <briefdescription>
         </briefdescription>
@@ -191,6 +203,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::calculate</definition>
         <argsstring>(double) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0">calculate</reimplements>
         <param>
           <type>double</type>
@@ -208,6 +221,7 @@
         <definition>std::string robot_dart::gui::magnum::sensor::Camera::type</definition>
         <argsstring>() const override</argsstring>
         <name>type</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::type</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0">type</reimplements>
         <briefdescription>
         </briefdescription>
@@ -222,6 +236,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::attach_to_body</definition>
         <argsstring>(dart::dynamics::BodyNode *body, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity()) override</argsstring>
         <name>attach_to_body</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::attach_to_body</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc">attach_to_body</reimplements>
         <param>
           <type>dart::dynamics::BodyNode *</type>
@@ -245,6 +260,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::attach_to_joint</definition>
         <argsstring>(dart::dynamics::Joint *, const Eigen::Isometry3d &amp;) override</argsstring>
         <name>attach_to_joint</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::attach_to_joint</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b">attach_to_joint</reimplements>
         <param>
           <type>dart::dynamics::Joint *</type>
@@ -265,6 +281,7 @@
         <definition>gs::Camera &amp; robot_dart::gui::magnum::sensor::Camera::camera</definition>
         <argsstring>()</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -278,6 +295,7 @@
         <definition>const gs::Camera &amp; robot_dart::gui::magnum::sensor::Camera::camera</definition>
         <argsstring>() const</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -291,6 +309,7 @@
         <definition>Eigen::Matrix3d robot_dart::gui::magnum::sensor::Camera::camera_intrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>camera_intrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::camera_intrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -304,6 +323,7 @@
         <definition>Eigen::Matrix4d robot_dart::gui::magnum::sensor::Camera::camera_extrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>camera_extrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::camera_extrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -317,6 +337,7 @@
         <definition>bool robot_dart::gui::magnum::sensor::Camera::drawing_debug</definition>
         <argsstring>() const</argsstring>
         <name>drawing_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::drawing_debug</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -330,6 +351,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::draw_debug</definition>
         <argsstring>(bool draw=true)</argsstring>
         <name>draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::draw_debug</qualifiedname>
         <param>
           <type>bool</type>
           <declname>draw</declname>
@@ -348,6 +370,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::look_at</definition>
         <argsstring>(const Eigen::Vector3d &amp;camera_pos, const Eigen::Vector3d &amp;look_at=Eigen::Vector3d(0, 0, 0), const Eigen::Vector3d &amp;up=Eigen::Vector3d(0, 0, 1))</argsstring>
         <name>look_at</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::look_at</qualifiedname>
         <param>
           <type>const Eigen::Vector3d &amp;</type>
           <declname>camera_pos</declname>
@@ -375,6 +398,7 @@
         <definition>void robot_dart::gui::magnum::sensor::Camera::record_video</definition>
         <argsstring>(const std::string &amp;video_fname)</argsstring>
         <name>record_video</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::record_video</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>video_fname</declname>
@@ -392,6 +416,7 @@
         <definition>Magnum::Image2D * robot_dart::gui::magnum::sensor::Camera::magnum_image</definition>
         <argsstring>()</argsstring>
         <name>magnum_image</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::magnum_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -405,6 +430,7 @@
         <definition>Image robot_dart::gui::magnum::sensor::Camera::image</definition>
         <argsstring>()</argsstring>
         <name>image</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -418,6 +444,7 @@
         <definition>Magnum::Image2D * robot_dart::gui::magnum::sensor::Camera::magnum_depth_image</definition>
         <argsstring>()</argsstring>
         <name>magnum_depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::magnum_depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -431,6 +458,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::sensor::Camera::depth_image</definition>
         <argsstring>()</argsstring>
         <name>depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -444,6 +472,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::sensor::Camera::raw_depth_image</definition>
         <argsstring>()</argsstring>
         <name>raw_depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::raw_depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -457,6 +486,7 @@
         <definition>DepthImage robot_dart::gui::magnum::sensor::Camera::depth_array</definition>
         <argsstring>()</argsstring>
         <name>depth_array</name>
+        <qualifiedname>robot_dart::gui::magnum::sensor::Camera::depth_array</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -465,7 +495,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/sensor/camera.hpp" line="80" column="32" bodyfile="robot_dart/gui/magnum/sensor/camera.cpp" bodystart="177" bodyend="184"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

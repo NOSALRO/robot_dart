@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](robot_8cpp.md)
 
-```C++
 
+```C++
 #include <unistd.h>
 
 #include <robot_dart/robot.hpp>
@@ -2211,6 +2211,6 @@ namespace robot_dart {
         return robot;
     }
 } // namespace robot_dart
-
 ```
+
 

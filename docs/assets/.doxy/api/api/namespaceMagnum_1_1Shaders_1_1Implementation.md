@@ -98,6 +98,8 @@ inline GL::Shader Magnum::Shaders::Implementation::createCompatibilityShader (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/create_compatibility_shader.hpp`
 

@@ -125,6 +125,8 @@ enum robot_dart::gui::magnum::gs::PhongMultiLight::Flag {
 
 
 
+<hr>
+
 
 
 ### typedef Flags 
@@ -135,6 +137,8 @@ using robot_dart::gui::magnum::gs::PhongMultiLight::Flags =  Magnum::Containers:
 
 
 
+
+<hr>
 
 
 
@@ -147,6 +151,8 @@ using robot_dart::gui::magnum::gs::PhongMultiLight::Normal =  Magnum::Shaders::G
 
 
 
+<hr>
+
 
 
 ### typedef Position 
@@ -158,6 +164,8 @@ using robot_dart::gui::magnum::gs::PhongMultiLight::Position =  Magnum::Shaders:
 
 
 
+<hr>
+
 
 
 ### typedef TextureCoordinates 
@@ -168,6 +176,8 @@ using robot_dart::gui::magnum::gs::PhongMultiLight::TextureCoordinates =  Magnum
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -185,6 +195,8 @@ explicit robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight (
 
 
 
+<hr>
+
 
 
 ### function PhongMultiLight [2/2]
@@ -197,6 +209,8 @@ explicit robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight (
 
 
 
+
+<hr>
 
 
 
@@ -211,6 +225,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_co
 
 
 
+<hr>
+
 
 
 ### function bind\_cube\_map\_texture 
@@ -223,6 +239,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_te
 
 
 
+
+<hr>
 
 
 
@@ -237,6 +255,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_colo
 
 
 
+<hr>
+
 
 
 ### function bind\_shadow\_texture 
@@ -250,6 +270,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_text
 
 
 
+<hr>
+
 
 
 ### function flags 
@@ -261,6 +283,8 @@ Flags robot_dart::gui::magnum::gs::PhongMultiLight::flags () const
 
 
 
+<hr>
+
 
 
 ### function max\_lights 
@@ -271,6 +295,8 @@ Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::max_lights () const
 
 
 
+
+<hr>
 
 
 
@@ -285,6 +311,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_camera_matri
 
 
 
+<hr>
+
 
 
 ### function set\_far\_plane 
@@ -298,6 +326,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_far_plane (
 
 
 
+<hr>
+
 
 
 ### function set\_is\_shadowed 
@@ -310,6 +340,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_is_shadowed 
 
 
 
+
+<hr>
 
 
 
@@ -325,6 +357,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_light (
 
 
 
+<hr>
+
 
 
 ### function set\_material 
@@ -337,6 +371,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_material (
 
 
 
+
+<hr>
 
 
 
@@ -351,6 +387,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_normal_matri
 
 
 
+<hr>
+
 
 
 ### function set\_projection\_matrix 
@@ -363,6 +401,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_projection_m
 
 
 
+
+<hr>
 
 
 
@@ -377,6 +417,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_specular_str
 
 
 
+<hr>
+
 
 
 ### function set\_transformation\_matrix 
@@ -390,6 +432,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_transformati
 
 
 
+<hr>
+
 
 
 ### function set\_transparent\_shadows 
@@ -402,6 +446,8 @@ PhongMultiLight & robot_dart::gui::magnum::gs::PhongMultiLight::set_transparent_
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/phong_multi_light.hpp`

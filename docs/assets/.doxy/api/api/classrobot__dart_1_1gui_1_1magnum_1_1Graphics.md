@@ -275,6 +275,8 @@ inline robot_dart::gui::magnum::Graphics::Graphics (
 
 
 
+<hr>
+
 
 
 ### function set\_simu 
@@ -290,6 +292,8 @@ virtual void robot_dart::gui::magnum::Graphics::set_simu (
 Implements [*robot\_dart::gui::magnum::BaseGraphics::set\_simu*](classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics.md#function-set_simu)
 
 
+<hr>
+
 
 
 ### function ~Graphics 
@@ -300,6 +304,8 @@ inline robot_dart::gui::magnum::Graphics::~Graphics ()
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -313,6 +319,8 @@ static GraphicsConfiguration robot_dart::gui::magnum::Graphics::default_configur
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/graphics.hpp`

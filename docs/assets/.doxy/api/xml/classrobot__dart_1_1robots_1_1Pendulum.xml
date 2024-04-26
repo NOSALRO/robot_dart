@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Pendulum" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Pendulum</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Pendulum_1a501e77e0720bbfa6f8063539af6a7132" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Pendulum::Pendulum</definition>
         <argsstring>(const std::string &amp;urdf=&quot;pendulum.urdf&quot;)</argsstring>
         <name>Pendulum</name>
+        <qualifiedname>robot_dart::robots::Pendulum::Pendulum</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>urdf</declname>
@@ -22,7 +23,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/pendulum.hpp" line="10" column="13" bodyfile="robot_dart/robots/pendulum.hpp" bodystart="10" bodyend="15"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

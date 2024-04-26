@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](base__application_8cpp.md)
 
-```C++
 
+```C++
 #include "base_application.hpp"
 
 #include <robot_dart/gui/magnum/gs/helper.hpp>
@@ -835,6 +835,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

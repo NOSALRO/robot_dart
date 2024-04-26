@@ -98,6 +98,8 @@ CubeMapShadowedObject* robot_dart::gui::magnum::ObjectStruct::cubemapped;
 
 
 
+<hr>
+
 
 
 ### variable cubemapped\_color 
@@ -108,6 +110,8 @@ CubeMapShadowedColorObject* robot_dart::gui::magnum::ObjectStruct::cubemapped_co
 
 
 
+
+<hr>
 
 
 
@@ -120,6 +124,8 @@ DrawableObject* robot_dart::gui::magnum::ObjectStruct::drawable;
 
 
 
+<hr>
+
 
 
 ### variable shadowed 
@@ -131,6 +137,8 @@ ShadowedObject* robot_dart::gui::magnum::ObjectStruct::shadowed;
 
 
 
+<hr>
+
 
 
 ### variable shadowed\_color 
@@ -141,6 +149,8 @@ ShadowedColorObject* robot_dart::gui::magnum::ObjectStruct::shadowed_color;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/drawables.hpp`

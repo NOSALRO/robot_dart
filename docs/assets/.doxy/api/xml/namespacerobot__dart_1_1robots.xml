@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="namespacerobot__dart_1_1robots" kind="namespace" language="C++">
     <compoundname>robot_dart::robots</compoundname>
     <innerclass refid="classrobot__dart_1_1robots_1_1A1" prot="public">robot_dart::robots::A1</innerclass>

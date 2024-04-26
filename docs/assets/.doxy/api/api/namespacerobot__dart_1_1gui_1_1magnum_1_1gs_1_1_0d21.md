@@ -1,10 +1,10 @@
 
 
-# Namespace robot\_dart::gui::magnum::gs::@21
+# Namespace robot\_dart::gui::magnum::gs
 
 
 
-[**Namespace List**](namespaces.md) **>** [**@21**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)
+[**Namespace List**](namespaces.md) **>** [**gs**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)
 
 
 
@@ -31,7 +31,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| enum Magnum::Int | [**@0**](#enum-@0)  <br> |
+| enum Magnum::Int | [**gs**](#enum-gs)  <br> |
 
 
 
@@ -85,14 +85,16 @@
 
 
 
-### enum @0 
+### enum gs 
 
 ```C++
-enum @21::@0;
+enum gs::gs;
 ```
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/create_compatibility_shader.hpp`

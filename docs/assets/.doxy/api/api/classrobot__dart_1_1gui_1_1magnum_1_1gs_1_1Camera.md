@@ -129,6 +129,8 @@ explicit robot_dart::gui::magnum::gs::Camera::Camera (
 
 
 
+<hr>
+
 
 
 ### function camera 
@@ -139,6 +141,8 @@ Camera3D & robot_dart::gui::magnum::gs::Camera::camera () const
 
 
 
+
+<hr>
 
 
 
@@ -151,6 +155,8 @@ Object3D & robot_dart::gui::magnum::gs::Camera::camera_object () const
 
 
 
+<hr>
+
 
 
 ### function depth\_image 
@@ -161,6 +167,8 @@ inline Corrade::Containers::Optional< Magnum::Image2D > & robot_dart::gui::magnu
 
 
 
+
+<hr>
 
 
 
@@ -180,6 +188,8 @@ void robot_dart::gui::magnum::gs::Camera::draw (
 
 
 
+<hr>
+
 
 
 ### function extrinsic\_matrix 
@@ -191,6 +201,8 @@ Magnum::Matrix4 robot_dart::gui::magnum::gs::Camera::extrinsic_matrix () const
 
 
 
+<hr>
+
 
 
 ### function far\_plane 
@@ -201,6 +213,8 @@ inline Magnum::Float robot_dart::gui::magnum::gs::Camera::far_plane () const
 
 
 
+
+<hr>
 
 
 
@@ -215,6 +229,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::forward (
 
 
 
+<hr>
+
 
 
 ### function fov 
@@ -225,6 +241,8 @@ inline Magnum::Float robot_dart::gui::magnum::gs::Camera::fov () const
 
 
 
+
+<hr>
 
 
 
@@ -237,6 +255,8 @@ inline Magnum::Int robot_dart::gui::magnum::gs::Camera::height () const
 
 
 
+<hr>
+
 
 
 ### function image 
@@ -248,6 +268,8 @@ inline Corrade::Containers::Optional< Magnum::Image2D > & robot_dart::gui::magnu
 
 
 
+<hr>
+
 
 
 ### function intrinsic\_matrix 
@@ -258,6 +280,8 @@ Magnum::Matrix3 robot_dart::gui::magnum::gs::Camera::intrinsic_matrix () const
 
 
 
+
+<hr>
 
 
 
@@ -274,6 +298,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::look_at (
 
 
 
+<hr>
+
 
 
 ### function move 
@@ -287,6 +313,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::move (
 
 
 
+<hr>
+
 
 
 ### function near\_plane 
@@ -297,6 +325,8 @@ inline Magnum::Float robot_dart::gui::magnum::gs::Camera::near_plane () const
 
 
 
+
+<hr>
 
 
 
@@ -312,6 +342,8 @@ inline void robot_dart::gui::magnum::gs::Camera::record (
 
 
 
+<hr>
+
 
 
 ### function record\_video 
@@ -326,6 +358,8 @@ void robot_dart::gui::magnum::gs::Camera::record_video (
 
 
 
+<hr>
+
 
 
 ### function recording 
@@ -336,6 +370,8 @@ inline bool robot_dart::gui::magnum::gs::Camera::recording ()
 
 
 
+
+<hr>
 
 
 
@@ -348,6 +384,8 @@ inline bool robot_dart::gui::magnum::gs::Camera::recording_depth ()
 
 
 
+<hr>
+
 
 
 ### function root\_object 
@@ -358,6 +396,8 @@ Object3D & robot_dart::gui::magnum::gs::Camera::root_object ()
 
 
 
+
+<hr>
 
 
 
@@ -376,6 +416,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_camera_params (
 
 
 
+<hr>
+
 
 
 ### function set\_far\_plane 
@@ -388,6 +430,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_far_plane (
 
 
 
+
+<hr>
 
 
 
@@ -402,6 +446,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_fov (
 
 
 
+<hr>
+
 
 
 ### function set\_near\_plane 
@@ -414,6 +460,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_near_plane (
 
 
 
+
+<hr>
 
 
 
@@ -428,6 +476,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_speed (
 
 
 
+<hr>
+
 
 
 ### function set\_viewport 
@@ -441,6 +491,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::set_viewport (
 
 
 
+<hr>
+
 
 
 ### function speed 
@@ -451,6 +503,8 @@ inline Magnum::Vector2 robot_dart::gui::magnum::gs::Camera::speed () const
 
 
 
+
+<hr>
 
 
 
@@ -465,6 +519,8 @@ Camera & robot_dart::gui::magnum::gs::Camera::strafe (
 
 
 
+<hr>
+
 
 
 ### function transform\_lights 
@@ -478,6 +534,8 @@ void robot_dart::gui::magnum::gs::Camera::transform_lights (
 
 
 
+<hr>
+
 
 
 ### function width 
@@ -489,6 +547,8 @@ inline Magnum::Int robot_dart::gui::magnum::gs::Camera::width () const
 
 
 
+<hr>
+
 
 
 ### function ~Camera 
@@ -499,6 +559,8 @@ robot_dart::gui::magnum::gs::Camera::~Camera ()
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/camera.hpp`

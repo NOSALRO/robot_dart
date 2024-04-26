@@ -110,6 +110,8 @@ enum robot_dart::gui::magnum::gs::ShadowMapColor::Flag {
 
 
 
+<hr>
+
 
 
 ### typedef Flags 
@@ -120,6 +122,8 @@ using robot_dart::gui::magnum::gs::ShadowMapColor::Flags =  Magnum::Containers::
 
 
 
+
+<hr>
 
 
 
@@ -132,6 +136,8 @@ using robot_dart::gui::magnum::gs::ShadowMapColor::Position =  Magnum::Shaders::
 
 
 
+<hr>
+
 
 
 ### typedef TextureCoordinates 
@@ -142,6 +148,8 @@ using robot_dart::gui::magnum::gs::ShadowMapColor::TextureCoordinates =  Magnum:
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -158,6 +166,8 @@ explicit robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor (
 
 
 
+<hr>
+
 
 
 ### function ShadowMapColor [2/2]
@@ -171,6 +181,8 @@ explicit robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor (
 
 
 
+<hr>
+
 
 
 ### function flags 
@@ -181,6 +193,8 @@ Flags robot_dart::gui::magnum::gs::ShadowMapColor::flags () const
 
 
 
+
+<hr>
 
 
 
@@ -195,6 +209,8 @@ ShadowMapColor & robot_dart::gui::magnum::gs::ShadowMapColor::set_material (
 
 
 
+<hr>
+
 
 
 ### function set\_projection\_matrix 
@@ -208,6 +224,8 @@ ShadowMapColor & robot_dart::gui::magnum::gs::ShadowMapColor::set_projection_mat
 
 
 
+<hr>
+
 
 
 ### function set\_transformation\_matrix 
@@ -220,6 +238,8 @@ ShadowMapColor & robot_dart::gui::magnum::gs::ShadowMapColor::set_transformation
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/shadow_map_color.hpp`

@@ -96,6 +96,8 @@ std::vector<uint8_t> robot_dart::gui::GrayscaleImage::data;
 
 
 
+<hr>
+
 
 
 ### variable height 
@@ -107,6 +109,8 @@ size_t robot_dart::gui::GrayscaleImage::height;
 
 
 
+<hr>
+
 
 
 ### variable width 
@@ -117,6 +121,8 @@ size_t robot_dart::gui::GrayscaleImage::width;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/helper.hpp`

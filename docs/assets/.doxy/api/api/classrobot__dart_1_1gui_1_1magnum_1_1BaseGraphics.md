@@ -2,7 +2,7 @@
 
 # Class robot\_dart::gui::magnum::BaseGraphics
 
-**template &lt;typename T typename T&gt;**
+**template &lt;typename T&gt;**
 
 
 
@@ -213,6 +213,8 @@ inline robot_dart::gui::magnum::BaseGraphics::BaseGraphics (
 
 
 
+<hr>
+
 
 
 ### function add\_light 
@@ -226,6 +228,8 @@ inline void robot_dart::gui::magnum::BaseGraphics::add_light (
 
 
 
+<hr>
+
 
 
 ### function camera [1/2]
@@ -236,6 +240,8 @@ inline gs::Camera & robot_dart::gui::magnum::BaseGraphics::camera ()
 
 
 
+
+<hr>
 
 
 
@@ -248,6 +254,8 @@ inline const gs::Camera & robot_dart::gui::magnum::BaseGraphics::camera () const
 
 
 
+<hr>
+
 
 
 ### function camera\_extrinsic\_matrix 
@@ -258,6 +266,8 @@ inline Eigen::Matrix4d robot_dart::gui::magnum::BaseGraphics::camera_extrinsic_m
 
 
 
+
+<hr>
 
 
 
@@ -270,6 +280,8 @@ inline Eigen::Matrix3d robot_dart::gui::magnum::BaseGraphics::camera_intrinsic_m
 
 
 
+<hr>
+
 
 
 ### function clear\_lights 
@@ -280,6 +292,8 @@ inline void robot_dart::gui::magnum::BaseGraphics::clear_lights ()
 
 
 
+
+<hr>
 
 
 
@@ -294,6 +308,8 @@ inline virtual DepthImage robot_dart::gui::magnum::BaseGraphics::depth_array () 
 Implements [*robot\_dart::gui::Base::depth\_array*](classrobot__dart_1_1gui_1_1Base.md#function-depth_array)
 
 
+<hr>
+
 
 
 ### function depth\_image 
@@ -307,6 +323,8 @@ inline virtual GrayscaleImage robot_dart::gui::magnum::BaseGraphics::depth_image
 Implements [*robot\_dart::gui::Base::depth\_image*](classrobot__dart_1_1gui_1_1Base.md#function-depth_image)
 
 
+<hr>
+
 
 
 ### function done 
@@ -319,6 +337,8 @@ inline virtual bool robot_dart::gui::magnum::BaseGraphics::done () override cons
 
 Implements [*robot\_dart::gui::Base::done*](classrobot__dart_1_1gui_1_1Base.md#function-done)
 
+
+<hr>
 
 
 
@@ -334,6 +354,8 @@ inline void robot_dart::gui::magnum::BaseGraphics::enable_shadows (
 
 
 
+<hr>
+
 
 
 ### function height 
@@ -346,6 +368,8 @@ inline virtual size_t robot_dart::gui::magnum::BaseGraphics::height () override 
 
 Implements [*robot\_dart::gui::Base::height*](classrobot__dart_1_1gui_1_1Base.md#function-height)
 
+
+<hr>
 
 
 
@@ -360,6 +384,8 @@ inline virtual Image robot_dart::gui::magnum::BaseGraphics::image () override
 Implements [*robot\_dart::gui::Base::image*](classrobot__dart_1_1gui_1_1Base.md#function-image)
 
 
+<hr>
+
 
 
 ### function light 
@@ -373,6 +399,8 @@ inline magnum::gs::Light & robot_dart::gui::magnum::BaseGraphics::light (
 
 
 
+<hr>
+
 
 
 ### function lights 
@@ -383,6 +411,8 @@ inline std::vector< gs::Light > & robot_dart::gui::magnum::BaseGraphics::lights 
 
 
 
+
+<hr>
 
 
 
@@ -399,6 +429,8 @@ inline void robot_dart::gui::magnum::BaseGraphics::look_at (
 
 
 
+<hr>
+
 
 
 ### function magnum\_app [1/2]
@@ -409,6 +441,8 @@ inline BaseApplication * robot_dart::gui::magnum::BaseGraphics::magnum_app ()
 
 
 
+
+<hr>
 
 
 
@@ -421,6 +455,8 @@ inline const BaseApplication * robot_dart::gui::magnum::BaseGraphics::magnum_app
 
 
 
+<hr>
+
 
 
 ### function magnum\_image 
@@ -432,6 +468,8 @@ inline Magnum::Image2D * robot_dart::gui::magnum::BaseGraphics::magnum_image ()
 
 
 
+<hr>
+
 
 
 ### function num\_lights 
@@ -442,6 +480,8 @@ inline size_t robot_dart::gui::magnum::BaseGraphics::num_lights () const
 
 
 
+
+<hr>
 
 
 
@@ -455,6 +495,8 @@ inline virtual GrayscaleImage robot_dart::gui::magnum::BaseGraphics::raw_depth_i
 
 Implements [*robot\_dart::gui::Base::raw\_depth\_image*](classrobot__dart_1_1gui_1_1Base.md#function-raw_depth_image)
 
+
+<hr>
 
 
 
@@ -470,6 +512,8 @@ inline void robot_dart::gui::magnum::BaseGraphics::record_video (
 
 
 
+<hr>
+
 
 
 ### function refresh 
@@ -482,6 +526,8 @@ inline virtual void robot_dart::gui::magnum::BaseGraphics::refresh () override
 
 Implements [*robot\_dart::gui::Base::refresh*](classrobot__dart_1_1gui_1_1Base.md#function-refresh)
 
+
+<hr>
 
 
 
@@ -498,6 +544,8 @@ inline virtual void robot_dart::gui::magnum::BaseGraphics::set_enable (
 Implements [*robot\_dart::gui::Base::set\_enable*](classrobot__dart_1_1gui_1_1Base.md#function-set_enable)
 
 
+<hr>
+
 
 
 ### function set\_fps 
@@ -512,6 +560,8 @@ inline virtual void robot_dart::gui::magnum::BaseGraphics::set_fps (
 
 Implements [*robot\_dart::gui::Base::set\_fps*](classrobot__dart_1_1gui_1_1Base.md#function-set_fps)
 
+
+<hr>
 
 
 
@@ -528,6 +578,8 @@ inline virtual void robot_dart::gui::magnum::BaseGraphics::set_simu (
 Implements [*robot\_dart::gui::Base::set\_simu*](classrobot__dart_1_1gui_1_1Base.md#function-set_simu)
 
 
+<hr>
+
 
 
 ### function shadowed 
@@ -539,6 +591,8 @@ inline bool robot_dart::gui::magnum::BaseGraphics::shadowed () const
 
 
 
+<hr>
+
 
 
 ### function transparent\_shadows 
@@ -549,6 +603,8 @@ inline bool robot_dart::gui::magnum::BaseGraphics::transparent_shadows () const
 
 
 
+
+<hr>
 
 
 
@@ -563,6 +619,8 @@ inline virtual size_t robot_dart::gui::magnum::BaseGraphics::width () override c
 Implements [*robot\_dart::gui::Base::width*](classrobot__dart_1_1gui_1_1Base.md#function-width)
 
 
+<hr>
+
 
 
 ### function ~BaseGraphics 
@@ -573,6 +631,8 @@ inline virtual robot_dart::gui::magnum::BaseGraphics::~BaseGraphics ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -587,6 +647,8 @@ GraphicsConfiguration robot_dart::gui::magnum::BaseGraphics< T >::_configuration
 
 
 
+<hr>
+
 
 
 ### variable \_enabled 
@@ -597,6 +659,8 @@ bool robot_dart::gui::magnum::BaseGraphics< T >::_enabled;
 
 
 
+
+<hr>
 
 
 
@@ -609,6 +673,8 @@ int robot_dart::gui::magnum::BaseGraphics< T >::_fps;
 
 
 
+<hr>
+
 
 
 ### variable \_magnum\_app 
@@ -620,6 +686,8 @@ std::unique_ptr<BaseApplication> robot_dart::gui::magnum::BaseGraphics< T >::_ma
 
 
 
+<hr>
+
 
 
 ### variable \_magnum\_silence\_output 
@@ -630,6 +698,8 @@ Corrade::Utility::Debug robot_dart::gui::magnum::BaseGraphics< T >::_magnum_sile
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_graphics.hpp`

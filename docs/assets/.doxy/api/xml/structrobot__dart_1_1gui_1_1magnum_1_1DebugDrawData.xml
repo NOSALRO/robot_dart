@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData" kind="struct" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::DebugDrawData</compoundname>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a7aa73f16f59b4c8a85e03162091c5a21" prot="public" static="no" mutable="no">
         <type>Magnum::Shaders::VertexColorGL3D *</type>
         <definition>Magnum::Shaders::VertexColorGL3D* robot_dart::gui::magnum::DebugDrawData::axes_shader</definition>
         <argsstring></argsstring>
         <name>axes_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::axes_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -21,6 +22,7 @@
         <definition>Magnum::GL::Mesh* robot_dart::gui::magnum::DebugDrawData::axes_mesh</definition>
         <argsstring></argsstring>
         <name>axes_mesh</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::axes_mesh</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -34,6 +36,7 @@
         <definition>Magnum::Shaders::FlatGL2D* robot_dart::gui::magnum::DebugDrawData::background_shader</definition>
         <argsstring></argsstring>
         <name>background_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::background_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +50,7 @@
         <definition>Magnum::GL::Mesh* robot_dart::gui::magnum::DebugDrawData::background_mesh</definition>
         <argsstring></argsstring>
         <name>background_mesh</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::background_mesh</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -60,6 +64,7 @@
         <definition>Magnum::Shaders::DistanceFieldVectorGL2D* robot_dart::gui::magnum::DebugDrawData::text_shader</definition>
         <argsstring></argsstring>
         <name>text_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::text_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +78,7 @@
         <definition>Magnum::GL::Buffer* robot_dart::gui::magnum::DebugDrawData::text_vertices</definition>
         <argsstring></argsstring>
         <name>text_vertices</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::text_vertices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -86,6 +92,7 @@
         <definition>Magnum::GL::Buffer* robot_dart::gui::magnum::DebugDrawData::text_indices</definition>
         <argsstring></argsstring>
         <name>text_indices</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::text_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -99,6 +106,7 @@
         <definition>Magnum::Text::AbstractFont* robot_dart::gui::magnum::DebugDrawData::font</definition>
         <argsstring></argsstring>
         <name>font</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::font</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -112,6 +120,7 @@
         <definition>Magnum::Text::DistanceFieldGlyphCache* robot_dart::gui::magnum::DebugDrawData::cache</definition>
         <argsstring></argsstring>
         <name>cache</name>
+        <qualifiedname>robot_dart::gui::magnum::DebugDrawData::cache</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -120,7 +129,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="124" column="55" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="124" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

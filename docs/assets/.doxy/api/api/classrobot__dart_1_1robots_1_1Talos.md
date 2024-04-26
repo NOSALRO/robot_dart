@@ -393,11 +393,13 @@ See [robot\_dart::Robot](classrobot__dart_1_1Robot.md)
 ### typedef torque\_map\_t 
 
 ```C++
-using robot_dart::robots::Talos::torque_map_t =  std::unordered_map<std::string, std::shared_ptr<sensor::Torque> >;
+using robot_dart::robots::Talos::torque_map_t =  std::unordered_map<std::string, std::shared_ptr<sensor::Torque>>;
 ```
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -416,6 +418,8 @@ robot_dart::robots::Talos::Talos (
 
 
 
+<hr>
+
 
 
 ### function ft\_foot\_left 
@@ -426,6 +430,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Talos::ft_foot_left () co
 
 
 
+
+<hr>
 
 
 
@@ -438,6 +444,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Talos::ft_foot_right () c
 
 
 
+<hr>
+
 
 
 ### function ft\_wrist\_left 
@@ -448,6 +456,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Talos::ft_wrist_left () c
 
 
 
+
+<hr>
 
 
 
@@ -460,6 +470,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Talos::ft_wrist_right () 
 
 
 
+<hr>
+
 
 
 ### function imu 
@@ -470,6 +482,8 @@ inline const sensor::IMU & robot_dart::robots::Talos::imu () const
 
 
 
+
+<hr>
 
 
 
@@ -484,6 +498,8 @@ virtual void robot_dart::robots::Talos::reset () override
 Implements [*robot\_dart::Robot::reset*](classrobot__dart_1_1Robot.md#function-reset)
 
 
+<hr>
+
 
 
 ### function torques 
@@ -494,6 +510,8 @@ inline const torque_map_t & robot_dart::robots::Talos::torques () const
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -508,6 +526,8 @@ size_t robot_dart::robots::Talos::_frequency;
 
 
 
+<hr>
+
 
 
 ### variable \_ft\_foot\_left 
@@ -518,6 +538,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Talos::_ft_foot_left;
 
 
 
+
+<hr>
 
 
 
@@ -530,6 +552,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Talos::_ft_foot_right;
 
 
 
+<hr>
+
 
 
 ### variable \_ft\_wrist\_left 
@@ -540,6 +564,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Talos::_ft_wrist_left;
 
 
 
+
+<hr>
 
 
 
@@ -552,6 +578,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Talos::_ft_wrist_right;
 
 
 
+<hr>
+
 
 
 ### variable \_imu 
@@ -563,6 +591,8 @@ std::shared_ptr<sensor::IMU> robot_dart::robots::Talos::_imu;
 
 
 
+<hr>
+
 
 
 ### variable \_torques 
@@ -573,6 +603,8 @@ torque_map_t robot_dart::robots::Talos::_torques;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -591,6 +623,8 @@ virtual void robot_dart::robots::Talos::_post_addition (
 Implements [*robot\_dart::Robot::\_post\_addition*](classrobot__dart_1_1Robot.md#function-_post_addition)
 
 
+<hr>
+
 
 
 ### function \_post\_removal 
@@ -605,6 +639,8 @@ virtual void robot_dart::robots::Talos::_post_removal (
 
 Implements [*robot\_dart::Robot::\_post\_removal*](classrobot__dart_1_1Robot.md#function-_post_removal)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/talos.hpp`

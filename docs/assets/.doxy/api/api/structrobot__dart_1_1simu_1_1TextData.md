@@ -100,6 +100,8 @@ std::uint8_t robot_dart::simu::TextData::alignment;
 
 
 
+<hr>
+
 
 
 ### variable background\_color 
@@ -110,6 +112,8 @@ Eigen::Vector4d robot_dart::simu::TextData::background_color;
 
 
 
+
+<hr>
 
 
 
@@ -122,6 +126,8 @@ Eigen::Vector4d robot_dart::simu::TextData::color;
 
 
 
+<hr>
+
 
 
 ### variable draw\_background 
@@ -132,6 +138,8 @@ bool robot_dart::simu::TextData::draw_background;
 
 
 
+
+<hr>
 
 
 
@@ -144,6 +152,8 @@ double robot_dart::simu::TextData::font_size;
 
 
 
+<hr>
+
 
 
 ### variable text 
@@ -155,6 +165,8 @@ std::string robot_dart::simu::TextData::text;
 
 
 
+<hr>
+
 
 
 ### variable transformation 
@@ -165,6 +177,8 @@ Eigen::Affine2d robot_dart::simu::TextData::transformation;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot_dart_simu.hpp`

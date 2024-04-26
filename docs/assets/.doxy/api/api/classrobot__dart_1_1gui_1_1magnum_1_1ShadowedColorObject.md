@@ -108,6 +108,8 @@ explicit robot_dart::gui::magnum::ShadowedColorObject::ShadowedColorObject (
 
 
 
+<hr>
+
 
 
 ### function set\_materials 
@@ -120,6 +122,8 @@ ShadowedColorObject & robot_dart::gui::magnum::ShadowedColorObject::set_material
 
 
 
+
+<hr>
 
 
 
@@ -134,6 +138,8 @@ ShadowedColorObject & robot_dart::gui::magnum::ShadowedColorObject::set_meshes (
 
 
 
+<hr>
+
 
 
 ### function set\_scalings 
@@ -147,6 +153,8 @@ ShadowedColorObject & robot_dart::gui::magnum::ShadowedColorObject::set_scalings
 
 
 
+<hr>
+
 
 
 ### function shape 
@@ -158,6 +166,8 @@ inline dart::dynamics::ShapeNode * robot_dart::gui::magnum::ShadowedColorObject:
 
 
 
+<hr>
+
 
 
 ### function simu 
@@ -168,6 +178,8 @@ inline RobotDARTSimu * robot_dart::gui::magnum::ShadowedColorObject::simu () con
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/drawables.hpp`

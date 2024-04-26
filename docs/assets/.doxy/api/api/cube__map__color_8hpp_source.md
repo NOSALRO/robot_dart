@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](cube__map__color_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_COLOR_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_COLOR_HPP
 
@@ -69,6 +69,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

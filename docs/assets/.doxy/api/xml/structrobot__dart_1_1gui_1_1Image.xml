@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="structrobot__dart_1_1gui_1_1Image" kind="struct" language="C++" prot="public">
     <compoundname>robot_dart::gui::Image</compoundname>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1Image_1aaf8c13cbcd3c947da0b935d5cd41b926" prot="public" static="no" mutable="no">
         <type>size_t</type>
         <definition>size_t robot_dart::gui::Image::width</definition>
         <argsstring></argsstring>
         <name>width</name>
+        <qualifiedname>robot_dart::gui::Image::width</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -22,6 +23,7 @@
         <definition>size_t robot_dart::gui::Image::height</definition>
         <argsstring></argsstring>
         <name>height</name>
+        <qualifiedname>robot_dart::gui::Image::height</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -36,6 +38,7 @@
         <definition>size_t robot_dart::gui::Image::channels</definition>
         <argsstring></argsstring>
         <name>channels</name>
+        <qualifiedname>robot_dart::gui::Image::channels</qualifiedname>
         <initializer>= 3</initializer>
         <briefdescription>
         </briefdescription>
@@ -50,6 +53,7 @@
         <definition>std::vector&lt;uint8_t&gt; robot_dart::gui::Image::data</definition>
         <argsstring></argsstring>
         <name>data</name>
+        <qualifiedname>robot_dart::gui::Image::data</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,7 +62,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/helper.hpp" line="14" column="25" bodyfile="robot_dart/gui/helper.hpp" bodystart="14" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

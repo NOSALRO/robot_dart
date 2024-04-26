@@ -270,6 +270,8 @@ explicit robot_dart::gui::magnum::GlfwApplication::GlfwApplication (
 
 
 
+<hr>
+
 
 
 ### function render 
@@ -283,6 +285,8 @@ virtual void robot_dart::gui::magnum::GlfwApplication::render () override
 Implements [*robot\_dart::gui::magnum::BaseApplication::render*](classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication.md#function-render)
 
 
+<hr>
+
 
 
 ### function ~GlfwApplication 
@@ -293,6 +297,8 @@ robot_dart::gui::magnum::GlfwApplication::~GlfwApplication ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -307,6 +313,8 @@ Magnum::Color4 robot_dart::gui::magnum::GlfwApplication::_bg_color;
 
 
 
+<hr>
+
 
 
 ### variable \_draw\_debug 
@@ -317,6 +325,8 @@ bool robot_dart::gui::magnum::GlfwApplication::_draw_debug;
 
 
 
+
+<hr>
 
 
 
@@ -329,6 +339,8 @@ bool robot_dart::gui::magnum::GlfwApplication::_draw_main_camera;
 
 
 
+<hr>
+
 
 
 ### variable \_simu 
@@ -339,6 +351,8 @@ RobotDARTSimu* robot_dart::gui::magnum::GlfwApplication::_simu;
 
 
 
+
+<hr>
 
 
 
@@ -351,6 +365,8 @@ Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_move;
 
 
 
+<hr>
+
 
 
 ### variable \_speed\_strafe 
@@ -361,6 +377,8 @@ Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_strafe;
 
 
 
+
+<hr>
 ## Protected Static Attributes Documentation
 
 
@@ -374,6 +392,8 @@ constexpr Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -388,6 +408,8 @@ void robot_dart::gui::magnum::GlfwApplication::drawEvent () override
 
 
 
+<hr>
+
 
 
 ### function exitEvent 
@@ -400,6 +422,8 @@ void robot_dart::gui::magnum::GlfwApplication::exitEvent (
 
 
 
+
+<hr>
 
 
 
@@ -414,6 +438,8 @@ virtual void robot_dart::gui::magnum::GlfwApplication::keyPressEvent (
 
 
 
+<hr>
+
 
 
 ### function keyReleaseEvent 
@@ -426,6 +452,8 @@ virtual void robot_dart::gui::magnum::GlfwApplication::keyReleaseEvent (
 
 
 
+
+<hr>
 
 
 
@@ -440,6 +468,8 @@ virtual void robot_dart::gui::magnum::GlfwApplication::mouseMoveEvent (
 
 
 
+<hr>
+
 
 
 ### function mouseScrollEvent 
@@ -453,6 +483,8 @@ virtual void robot_dart::gui::magnum::GlfwApplication::mouseScrollEvent (
 
 
 
+<hr>
+
 
 
 ### function viewportEvent 
@@ -465,6 +497,8 @@ void robot_dart::gui::magnum::GlfwApplication::viewportEvent (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/glfw_application.hpp`

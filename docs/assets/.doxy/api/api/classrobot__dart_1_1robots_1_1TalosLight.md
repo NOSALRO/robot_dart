@@ -462,6 +462,8 @@ inline robot_dart::robots::TalosLight::TalosLight (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/talos.hpp`
 

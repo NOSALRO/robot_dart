@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="namespacerobot__dart_1_1gui_1_1magnum" kind="namespace" language="C++">
     <compoundname>robot_dart::gui::magnum</compoundname>
     <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public">robot_dart::gui::magnum::BaseApplication</innerclass>
@@ -20,12 +20,13 @@
     <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics" prot="public">robot_dart::gui::magnum::WindowlessGraphics</innerclass>
     <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs">robot_dart::gui::magnum::gs</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum_1_1sensor">robot_dart::gui::magnum::sensor</innernamespace>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="types_8hpp_1adcff213be89bfb8efef2ce65132a9d3b" prot="public" static="no">
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="types_8hpp_1ac9e7570908c66551af090f2d4ff5844c" prot="public" static="no">
         <type>Magnum::SceneGraph::Object&lt; Magnum::SceneGraph::MatrixTransformation3D &gt;</type>
-        <definition>using robot_dart::gui::magnum::Object3D = typedef Magnum::SceneGraph::Object&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
+        <definition>using robot_dart::gui::magnum::Object3D =  Magnum::SceneGraph::Object&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
         <argsstring></argsstring>
         <name>Object3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Object3D</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -34,11 +35,12 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/types.hpp" line="11" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="11" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="types_8hpp_1a63efe19ca3e04563b0741f8f81267aa3" prot="public" static="no">
+      <memberdef kind="typedef" id="types_8hpp_1a4306ecb04e3e77851c72d3879e61ac47" prot="public" static="no">
         <type>Magnum::SceneGraph::Scene&lt; Magnum::SceneGraph::MatrixTransformation3D &gt;</type>
-        <definition>using robot_dart::gui::magnum::Scene3D = typedef Magnum::SceneGraph::Scene&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
+        <definition>using robot_dart::gui::magnum::Scene3D =  Magnum::SceneGraph::Scene&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
         <argsstring></argsstring>
         <name>Scene3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Scene3D</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,11 +49,12 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/types.hpp" line="12" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="12" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="types_8hpp_1aa39b1a14a2d51590c7400a111ebfb59c" prot="public" static="no">
+      <memberdef kind="typedef" id="types_8hpp_1a27b69c81590149bf5ba0d2ef66e3670c" prot="public" static="no">
         <type>Magnum::SceneGraph::Camera3D</type>
-        <definition>using robot_dart::gui::magnum::Camera3D = typedef Magnum::SceneGraph::Camera3D</definition>
+        <definition>using robot_dart::gui::magnum::Camera3D =  Magnum::SceneGraph::Camera3D</definition>
         <argsstring></argsstring>
         <name>Camera3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Camera3D</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -60,8 +63,8 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/types.hpp" line="13" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="13" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="func">
+    </sectiondef>
+    <sectiondef kind="func">
       <memberdef kind="function" id="base__application_8hpp_1aba8828e135c7e8836566f872e392d7a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -72,6 +75,7 @@
         <definition>BaseApplication * robot_dart::gui::magnum::make_application</definition>
         <argsstring>(RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
         <name>make_application</name>
+        <qualifiedname>robot_dart::gui::magnum::make_application</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
           <declname>simu</declname>
@@ -89,7 +93,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="250" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="250" bodyend="257"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

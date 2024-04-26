@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Arm" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Arm</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Arm_1a8a7985bdc7219a5f9e13851d2886e083" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Arm::Arm</definition>
         <argsstring>(const std::string &amp;urdf=&quot;arm.urdf&quot;)</argsstring>
         <name>Arm</name>
+        <qualifiedname>robot_dart::robots::Arm::Arm</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>urdf</declname>
@@ -22,7 +23,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/arm.hpp" line="10" column="13" bodyfile="robot_dart/robots/arm.hpp" bodystart="10" bodyend="14"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

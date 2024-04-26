@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](windowless__graphics_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_WINDOWLESS_GRAPHICS_HPP
 #define ROBOT_DART_GUI_MAGNUM_WINDOWLESS_GRAPHICS_HPP
 
@@ -31,6 +31,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

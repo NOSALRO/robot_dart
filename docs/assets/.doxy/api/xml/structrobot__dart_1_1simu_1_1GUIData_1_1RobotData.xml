@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData" kind="struct" language="C++" prot="private">
     <compoundname>robot_dart::simu::GUIData::RobotData</compoundname>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a30f1382b1fc0b5141d6ba38d88238833" prot="public" static="no" mutable="no">
         <type>bool</type>
         <definition>bool robot_dart::simu::GUIData::RobotData::casting_shadows</definition>
         <argsstring></argsstring>
         <name>casting_shadows</name>
+        <qualifiedname>robot_dart::simu::GUIData::RobotData::casting_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -21,6 +22,7 @@
         <definition>bool robot_dart::simu::GUIData::RobotData::is_ghost</definition>
         <argsstring></argsstring>
         <name>is_ghost</name>
+        <qualifiedname>robot_dart::simu::GUIData::RobotData::is_ghost</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,7 +31,7 @@
         </inbodydescription>
         <location file="robot_dart/gui_data.hpp" line="16" column="22" bodyfile="robot_dart/gui_data.hpp" bodystart="16" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](sensor_2camera_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_SENSOR_CAMERA_HPP
 #define ROBOT_DART_GUI_MAGNUM_SENSOR_CAMERA_HPP
 
@@ -111,6 +111,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

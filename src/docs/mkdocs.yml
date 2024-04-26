@@ -1,7 +1,7 @@
 site_name: Documentation of RobotDART
 site_dir: '../../docs'
-repo_url: https://github.com/resibots/robot_dart
-repo_name: resibots/robot_dart
+repo_url: https://github.com/NOSALRO/robot_dart
+repo_name: NOSALRO/robot_dart
 
 site_author: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'
 copyright: 'Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret'

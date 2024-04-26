@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Ur3eHand" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Ur3eHand</compoundname>
     <basecompoundref refid="classrobot__dart_1_1robots_1_1Ur3e" prot="public" virt="non-virtual">robot_dart::robots::Ur3e</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Ur3eHand_1a65147f9b3570db41b9cfcbe7edd53781" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Ur3eHand::Ur3eHand</definition>
         <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;ur3e/ur3e_with_schunk_hand.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;ur3e_description&quot;, &quot;ur3e/ur3e_description&quot;}})</argsstring>
         <name>Ur3eHand</name>
+        <qualifiedname>robot_dart::robots::Ur3eHand::Ur3eHand</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>frequency</declname>
@@ -32,7 +33,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/ur3e.hpp" line="23" column="13" bodyfile="robot_dart/robots/ur3e.hpp" bodystart="23" bodyend="23"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

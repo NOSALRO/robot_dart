@@ -25,6 +25,6 @@ Here is a list of all namespaces with brief descriptions:
     * **namespace** [**robots**](namespacerobot__dart_1_1robots.md)     
     * **namespace** [**sensor**](namespacerobot__dart_1_1sensor.md)     
     * **namespace** [**simu**](namespacerobot__dart_1_1simu.md)     
-* **namespace** [**@21**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
+* **namespace** [**gs**](namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21.md)     
 * **namespace** [**std**](namespacestd.md) 
 

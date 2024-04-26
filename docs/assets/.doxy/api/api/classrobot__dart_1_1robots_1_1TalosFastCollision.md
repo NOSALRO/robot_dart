@@ -471,6 +471,8 @@ inline robot_dart::robots::TalosFastCollision::TalosFastCollision (
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -484,6 +486,8 @@ static std::vector< std::tuple< std::string, uint32_t, uint32_t > > robot_dart::
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -501,6 +505,8 @@ virtual void robot_dart::robots::TalosFastCollision::_post_addition (
 
 Implements [*robot\_dart::robots::Talos::\_post\_addition*](classrobot__dart_1_1robots_1_1Talos.md#function-_post_addition)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/talos.hpp`

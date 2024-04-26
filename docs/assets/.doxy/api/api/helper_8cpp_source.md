@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](helper_8cpp.md)
 
-```C++
 
+```C++
 #include "helper.hpp"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -112,6 +112,6 @@ namespace robot_dart {
         }
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

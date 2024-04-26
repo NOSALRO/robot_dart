@@ -114,6 +114,8 @@ inline robot_dart::gui::Base::Base ()
 
 
 
+<hr>
+
 
 
 ### function depth\_array 
@@ -124,6 +126,8 @@ inline virtual DepthImage robot_dart::gui::Base::depth_array ()
 
 
 
+
+<hr>
 
 
 
@@ -136,6 +140,8 @@ inline virtual GrayscaleImage robot_dart::gui::Base::depth_image ()
 
 
 
+<hr>
+
 
 
 ### function done 
@@ -146,6 +152,8 @@ inline virtual bool robot_dart::gui::Base::done () const
 
 
 
+
+<hr>
 
 
 
@@ -158,6 +166,8 @@ inline virtual size_t robot_dart::gui::Base::height () const
 
 
 
+<hr>
+
 
 
 ### function image 
@@ -168,6 +178,8 @@ inline virtual Image robot_dart::gui::Base::image ()
 
 
 
+
+<hr>
 
 
 
@@ -180,6 +192,8 @@ inline virtual GrayscaleImage robot_dart::gui::Base::raw_depth_image ()
 
 
 
+<hr>
+
 
 
 ### function refresh 
@@ -190,6 +204,8 @@ inline virtual void robot_dart::gui::Base::refresh ()
 
 
 
+
+<hr>
 
 
 
@@ -204,6 +220,8 @@ inline virtual void robot_dart::gui::Base::set_enable (
 
 
 
+<hr>
+
 
 
 ### function set\_fps 
@@ -216,6 +234,8 @@ inline virtual void robot_dart::gui::Base::set_fps (
 
 
 
+
+<hr>
 
 
 
@@ -230,6 +250,8 @@ inline virtual void robot_dart::gui::Base::set_render_period (
 
 
 
+<hr>
+
 
 
 ### function set\_simu 
@@ -243,6 +265,8 @@ inline virtual void robot_dart::gui::Base::set_simu (
 
 
 
+<hr>
+
 
 
 ### function simu 
@@ -253,6 +277,8 @@ inline const RobotDARTSimu * robot_dart::gui::Base::simu () const
 
 
 
+
+<hr>
 
 
 
@@ -265,6 +291,8 @@ inline virtual size_t robot_dart::gui::Base::width () const
 
 
 
+<hr>
+
 
 
 ### function ~Base 
@@ -275,6 +303,8 @@ inline virtual robot_dart::gui::Base::~Base ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -288,6 +318,8 @@ RobotDARTSimu* robot_dart::gui::Base::_simu;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/base.hpp`

@@ -131,6 +131,8 @@ inline robot_dart::Scheduler::Scheduler (
 
 
 
+<hr>
+
 
 
 ### function current\_time 
@@ -141,6 +143,8 @@ inline double robot_dart::Scheduler::current_time () const
 
 
 
+
+<hr>
 
 
 
@@ -153,6 +157,8 @@ inline double robot_dart::Scheduler::dt () const
 
 
 
+<hr>
+
 
 
 ### function it\_duration 
@@ -163,6 +169,8 @@ inline double robot_dart::Scheduler::it_duration () const
 
 
 
+
+<hr>
 
 
 
@@ -175,6 +183,8 @@ inline double robot_dart::Scheduler::last_it_duration () const
 
 
 
+<hr>
+
 
 
 ### function next\_time 
@@ -185,6 +195,8 @@ inline double robot_dart::Scheduler::next_time () const
 
 
 
+
+<hr>
 
 
 
@@ -199,6 +211,8 @@ inline bool robot_dart::Scheduler::operator() (
 
 
 
+<hr>
+
 
 
 ### function real\_time 
@@ -210,6 +224,8 @@ inline double robot_dart::Scheduler::real_time () const
 
 
 
+<hr>
+
 
 
 ### function real\_time\_factor 
@@ -220,6 +236,8 @@ inline double robot_dart::Scheduler::real_time_factor () const
 
 
 
+
+<hr>
 
 
 
@@ -237,6 +255,8 @@ void robot_dart::Scheduler::reset (
 
 
 
+<hr>
+
 
 
 ### function schedule 
@@ -249,6 +269,8 @@ bool robot_dart::Scheduler::schedule (
 
 
 
+
+<hr>
 
 
 
@@ -268,6 +290,8 @@ synchronize the simulation clock with the wall clock (when possible, i.e. when t
 
         
 
+<hr>
+
 
 
 ### function step 
@@ -284,6 +308,8 @@ call this at the end of the loop (see examples) this will synchronize with real 
 
         
 
+<hr>
+
 
 
 ### function sync 
@@ -294,6 +320,8 @@ inline bool robot_dart::Scheduler::sync () const
 
 
 
+
+<hr>
 ## Protected Types Documentation
 
 
@@ -307,6 +335,8 @@ using robot_dart::Scheduler::clock_t =  std::chrono::high_resolution_clock;
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -321,6 +351,8 @@ double robot_dart::Scheduler::_average_it_duration;
 
 
 
+<hr>
+
 
 
 ### variable \_current\_step 
@@ -331,6 +363,8 @@ int robot_dart::Scheduler::_current_step;
 
 
 
+
+<hr>
 
 
 
@@ -343,6 +377,8 @@ double robot_dart::Scheduler::_current_time;
 
 
 
+<hr>
+
 
 
 ### variable \_dt 
@@ -353,6 +389,8 @@ double robot_dart::Scheduler::_dt;
 
 
 
+
+<hr>
 
 
 
@@ -365,6 +403,8 @@ double robot_dart::Scheduler::_it_duration;
 
 
 
+<hr>
+
 
 
 ### variable \_last\_iteration\_time 
@@ -375,6 +415,8 @@ clock_t::time_point robot_dart::Scheduler::_last_iteration_time;
 
 
 
+
+<hr>
 
 
 
@@ -387,6 +429,8 @@ int robot_dart::Scheduler::_max_frequency;
 
 
 
+<hr>
+
 
 
 ### variable \_real\_start\_time 
@@ -397,6 +441,8 @@ double robot_dart::Scheduler::_real_start_time;
 
 
 
+
+<hr>
 
 
 
@@ -409,6 +455,8 @@ double robot_dart::Scheduler::_real_time;
 
 
 
+<hr>
+
 
 
 ### variable \_simu\_start\_time 
@@ -419,6 +467,8 @@ double robot_dart::Scheduler::_simu_start_time;
 
 
 
+
+<hr>
 
 
 
@@ -431,6 +481,8 @@ clock_t::time_point robot_dart::Scheduler::_start_time;
 
 
 
+<hr>
+
 
 
 ### variable \_sync 
@@ -441,6 +493,8 @@ bool robot_dart::Scheduler::_sync;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/scheduler.hpp`

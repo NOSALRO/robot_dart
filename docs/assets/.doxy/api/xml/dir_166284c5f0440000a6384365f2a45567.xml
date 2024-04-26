@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dir_166284c5f0440000a6384365f2a45567" kind="dir">
     <compoundname>robot_dart</compoundname>
     <innerdir refid="dir_1a1ccbdd0954eb7721b1a771872472c9">robot_dart/control</innerdir>

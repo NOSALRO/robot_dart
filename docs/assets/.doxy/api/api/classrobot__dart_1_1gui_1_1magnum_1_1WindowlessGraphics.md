@@ -275,6 +275,8 @@ inline robot_dart::gui::magnum::WindowlessGraphics::WindowlessGraphics (
 
 
 
+<hr>
+
 
 
 ### function set\_simu 
@@ -290,6 +292,8 @@ virtual void robot_dart::gui::magnum::WindowlessGraphics::set_simu (
 Implements [*robot\_dart::gui::magnum::BaseGraphics::set\_simu*](classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics.md#function-set_simu)
 
 
+<hr>
+
 
 
 ### function ~WindowlessGraphics 
@@ -300,6 +304,8 @@ inline robot_dart::gui::magnum::WindowlessGraphics::~WindowlessGraphics ()
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -313,6 +319,8 @@ static GraphicsConfiguration robot_dart::gui::magnum::WindowlessGraphics::defaul
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/windowless_graphics.hpp`

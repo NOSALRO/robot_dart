@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::CubeMapColor</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Magnum::GL::AbstractShaderProgram</basecompoundref>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="enum" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1af74ebbfbdd1ebd0247766b68282154a0" prot="public" static="no" strong="yes">
         <type>Magnum::UnsignedByte</type>
         <name>Flag</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::Flag</qualifiedname>
         <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1af74ebbfbdd1ebd0247766b68282154a0ae712876b5313699d4e38e6f70c7c725e" prot="public">
           <name>DiffuseTexture</name>
           <initializer>= 1 &lt;&lt; 0</initializer>
@@ -29,6 +30,7 @@
         <definition>using robot_dart::gui::magnum::gs::CubeMapColor::Position =  Magnum::Shaders::Generic3D::Position</definition>
         <argsstring></argsstring>
         <name>Position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::Position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>using robot_dart::gui::magnum::gs::CubeMapColor::TextureCoordinates =  Magnum::Shaders::Generic3D::TextureCoordinates</definition>
         <argsstring></argsstring>
         <name>TextureCoordinates</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::TextureCoordinates</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>using robot_dart::gui::magnum::gs::CubeMapColor::Flags =  Magnum::Containers::EnumSet&lt;Flag&gt;</definition>
         <argsstring></argsstring>
         <name>Flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::Flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,13 +67,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="28" column="21" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
+    </sectiondef>
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1abdd7fd6d10641773c724b4cc645f0fd7" prot="private" static="no" mutable="no">
         <type>Flags</type>
         <definition>Flags robot_dart::gui::magnum::gs::CubeMapColor::_flags</definition>
         <argsstring></argsstring>
         <name>_flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -83,6 +88,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_transformation_matrix_uniform</definition>
         <argsstring></argsstring>
         <name>_transformation_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_transformation_matrix_uniform</qualifiedname>
         <initializer>{0}</initializer>
         <briefdescription>
         </briefdescription>
@@ -90,13 +96,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="46" column="33" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="46" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="46" column="33" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="46" bodyend="46"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a33136200777e8a3643cfd1ed0df18ccf" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_shadow_matrices_uniform</definition>
         <argsstring></argsstring>
         <name>_shadow_matrices_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_shadow_matrices_uniform</qualifiedname>
         <initializer>{5}</initializer>
         <briefdescription>
         </briefdescription>
@@ -104,13 +111,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="47" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="47" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="47" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="47" bodyend="47"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a9af7c305fb47ea7a4af545cc2fdc6a6a" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_light_position_uniform</definition>
         <argsstring></argsstring>
         <name>_light_position_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_light_position_uniform</qualifiedname>
         <initializer>{1}</initializer>
         <briefdescription>
         </briefdescription>
@@ -118,13 +126,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="48" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="48" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="48" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="48" bodyend="48"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a70b3d98d977c53992a81617c9c498eb1" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_far_plane_uniform</definition>
         <argsstring></argsstring>
         <name>_far_plane_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_far_plane_uniform</qualifiedname>
         <initializer>{2}</initializer>
         <briefdescription>
         </briefdescription>
@@ -132,13 +141,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="49" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="49" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="49" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="49" bodyend="49"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a33756aa0aff257b33c40c1244382bb63" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_light_index_uniform</definition>
         <argsstring></argsstring>
         <name>_light_index_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_light_index_uniform</qualifiedname>
         <initializer>{3}</initializer>
         <briefdescription>
         </briefdescription>
@@ -146,13 +156,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="50" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="50" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="50" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="50" bodyend="50"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a86598a73ec62f79e4d4688d846dff5c6" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_diffuse_color_uniform</definition>
         <argsstring></argsstring>
         <name>_diffuse_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_diffuse_color_uniform</qualifiedname>
         <initializer>{4}</initializer>
         <briefdescription>
         </briefdescription>
@@ -160,13 +171,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="51" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="51" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="51" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="51" bodyend="51"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a1f2e9ab8b03cd8bb9b941ccd953acfc9" prot="private" static="no" mutable="no">
         <type>Magnum::Int</type>
         <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMapColor::_cube_map_textures_location</definition>
         <argsstring></argsstring>
         <name>_cube_map_textures_location</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::_cube_map_textures_location</qualifiedname>
         <initializer>{2}</initializer>
         <briefdescription>
         </briefdescription>
@@ -174,15 +186,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="52" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="52" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="52" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.hpp" bodystart="52" bodyend="52"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a64ff37b36fc299a11730f25e4ece0b69" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor</definition>
         <argsstring>(Flags flags={})</argsstring>
         <name>CubeMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor</qualifiedname>
         <param>
           <type>Flags</type>
           <declname>flags</declname>
@@ -201,6 +214,7 @@
         <definition>robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor</definition>
         <argsstring>(Magnum::NoCreateT) noexcept</argsstring>
         <name>CubeMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor</qualifiedname>
         <param>
           <type>Magnum::NoCreateT</type>
         </param>
@@ -217,6 +231,7 @@
         <definition>CubeMapColor::Flags robot_dart::gui::magnum::gs::CubeMapColor::flags</definition>
         <argsstring>() const</argsstring>
         <name>flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::flags</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -230,6 +245,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_transformation_matrix</definition>
         <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
         <name>set_transformation_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_transformation_matrix</qualifiedname>
         <param>
           <type>const Magnum::Matrix4 &amp;</type>
           <declname>matrix</declname>
@@ -247,6 +263,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_shadow_matrices</definition>
         <argsstring>(Magnum::Matrix4 matrices[6])</argsstring>
         <name>set_shadow_matrices</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_shadow_matrices</qualifiedname>
         <param>
           <type>Magnum::Matrix4</type>
           <declname>matrices</declname>
@@ -265,6 +282,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_light_position</definition>
         <argsstring>(const Magnum::Vector3 &amp;position)</argsstring>
         <name>set_light_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_light_position</qualifiedname>
         <param>
           <type>const Magnum::Vector3 &amp;</type>
           <declname>position</declname>
@@ -282,6 +300,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_far_plane</definition>
         <argsstring>(Magnum::Float far_plane)</argsstring>
         <name>set_far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_far_plane</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>far_plane</declname>
@@ -299,6 +318,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_light_index</definition>
         <argsstring>(Magnum::Int index)</argsstring>
         <name>set_light_index</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_light_index</qualifiedname>
         <param>
           <type>Magnum::Int</type>
           <declname>index</declname>
@@ -316,6 +336,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::set_material</definition>
         <argsstring>(Material &amp;material)</argsstring>
         <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::set_material</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
           <declname>material</declname>
@@ -333,6 +354,7 @@
         <definition>CubeMapColor &amp; robot_dart::gui::magnum::gs::CubeMapColor::bind_cube_map_texture</definition>
         <argsstring>(Magnum::GL::CubeMapTextureArray &amp;texture)</argsstring>
         <name>bind_cube_map_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMapColor::bind_cube_map_texture</qualifiedname>
         <param>
           <type>Magnum::GL::CubeMapTextureArray &amp;</type>
           <declname>texture</declname>
@@ -345,7 +367,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/cube_map_color.hpp" line="42" column="34" bodyfile="robot_dart/gui/magnum/gs/cube_map_color.cpp" bodystart="113" bodyend="117"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

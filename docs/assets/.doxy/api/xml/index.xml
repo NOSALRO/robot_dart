@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.2" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
   <compound refid="classrobot__dart_1_1robots_1_1A1" kind="class"><name>robot_dart::robots::A1</name>
     <member refid="classrobot__dart_1_1robots_1_1A1_1a55f0a175e54b0a6ea6d04e9f9b652b87" kind="variable"><name>_imu</name></member>
     <member refid="classrobot__dart_1_1robots_1_1A1_1a2ddf0720754b59ecdf6e971f1b77ea19" kind="function"><name>A1</name></member>
@@ -451,7 +451,7 @@
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1aee5f335f95696bcb1d2afc4e5909ab23" kind="variable"><name>robot_data</name></member>
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1aada5f271b02e476f8f9731b7042a38c0" kind="variable"><name>robot_axes</name></member>
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa93c73a152332ceb5d40bec7047335d7" kind="variable"><name>text_drawings</name></member>
-    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a451feb6766b83b854d79b6e35487ac78" kind="function"><name>add_text</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5cc8c625d935018fdb4d0ecc3a2a5195" kind="function"><name>add_text</name></member>
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa3acb6ba9360c56290a5496f4acc658e" kind="function"><name>remove_text</name></member>
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5150da943acdb0d1271ff0f024c52028" kind="function"><name>remove_text</name></member>
     <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa394df8aec94a127046e6b6795d23870" kind="function"><name>update_robot</name></member>
@@ -978,7 +978,7 @@
     <member refid="classrobot__dart_1_1RobotDARTSimu_1a59651c4ee53d133f6f73feb9e3ba2d68" kind="function"><name>set_text_panel</name></member>
     <member refid="classrobot__dart_1_1RobotDARTSimu_1a22a6cc3b1754a83c1b5c4991461bbe6c" kind="function"><name>enable_status_bar</name></member>
     <member refid="classrobot__dart_1_1RobotDARTSimu_1a0b37f04758a650ef1de860852aa709d2" kind="function"><name>status_bar_text</name></member>
-    <member refid="classrobot__dart_1_1RobotDARTSimu_1af279b9958f2c288fc9e992dedc4587d3" kind="function"><name>add_text</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a55f7df0d9c0bd4080e4ed4fed21cf038" kind="function"><name>add_text</name></member>
     <member refid="classrobot__dart_1_1RobotDARTSimu_1a58fc310a49848b46e4f42f19e34b3473" kind="function"><name>add_floor</name></member>
     <member refid="classrobot__dart_1_1RobotDARTSimu_1aefaa6b043ea320c106018290c25acd23" kind="function"><name>add_checkerboard_floor</name></member>
     <member refid="classrobot__dart_1_1RobotDARTSimu_1a46261047190705981a4c53e480578813" kind="function"><name>set_collision_detector</name></member>
@@ -1161,7 +1161,7 @@
     <member refid="classrobot__dart_1_1control_1_1SimpleControl_1ab4d2963f2571555ce181f98ab8e5f662" kind="function"><name>clone</name></member>
   </compound>
   <compound refid="classrobot__dart_1_1robots_1_1Talos" kind="class"><name>robot_dart::robots::Talos</name>
-    <member refid="classrobot__dart_1_1robots_1_1Talos_1a3e6bf406f476e310182a84a28159f525" kind="typedef"><name>torque_map_t</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a1804e807f971fc42d85684827603df2e" kind="typedef"><name>torque_map_t</name></member>
     <member refid="classrobot__dart_1_1robots_1_1Talos_1aa553dac03eb53c34cd2ce2a716d707dd" kind="variable"><name>_imu</name></member>
     <member refid="classrobot__dart_1_1robots_1_1Talos_1a35323ff8bc896c3cd283318369014009" kind="variable"><name>_ft_foot_left</name></member>
     <member refid="classrobot__dart_1_1robots_1_1Talos_1a35a48637a5584c030e840c9758254413" kind="variable"><name>_ft_foot_right</name></member>
@@ -1297,9 +1297,9 @@
     <member refid="helper_8cpp_1a90e1f22900b9927acc7eed71a27fe740" kind="function"><name>point_cloud_from_depth_array</name></member>
   </compound>
   <compound refid="namespacerobot__dart_1_1gui_1_1magnum" kind="namespace"><name>robot_dart::gui::magnum</name>
-    <member refid="types_8hpp_1adcff213be89bfb8efef2ce65132a9d3b" kind="typedef"><name>Object3D</name></member>
-    <member refid="types_8hpp_1a63efe19ca3e04563b0741f8f81267aa3" kind="typedef"><name>Scene3D</name></member>
-    <member refid="types_8hpp_1aa39b1a14a2d51590c7400a111ebfb59c" kind="typedef"><name>Camera3D</name></member>
+    <member refid="types_8hpp_1ac9e7570908c66551af090f2d4ff5844c" kind="typedef"><name>Object3D</name></member>
+    <member refid="types_8hpp_1a4306ecb04e3e77851c72d3879e61ac47" kind="typedef"><name>Scene3D</name></member>
+    <member refid="types_8hpp_1a27b69c81590149bf5ba0d2ef66e3670c" kind="typedef"><name>Camera3D</name></member>
     <member refid="base__application_8hpp_1aba8828e135c7e8836566f872e392d7a6" kind="function"><name>make_application</name></member>
   </compound>
   <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs" kind="namespace"><name>robot_dart::gui::magnum::gs</name>
@@ -1312,7 +1312,7 @@
     <member refid="light_8hpp_1acd37634967c890085dcb10c34942cc99" kind="function"><name>create_directional_light</name></member>
   </compound>
   <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21" kind="namespace"><name>robot_dart::gui::magnum::gs::@21</name>
-    <member refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21_1ac9c780023c500f0667a45d09545c706b" kind="enum"><name>@0</name></member>
+    <member refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21_1ac9c780023c500f0667a45d09545c706b" kind="enum"><name></name></member>
   </compound>
   <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1sensor" kind="namespace"><name>robot_dart::gui::magnum::sensor</name>
   </compound>
@@ -1341,10 +1341,6 @@
   <compound refid="simple__control_8hpp" kind="file"><name>simple_control.hpp</name>
   </compound>
   <compound refid="base_8hpp" kind="file"><name>base.hpp</name>
-  </compound>
-  <compound refid="helper_8hpp" kind="file"><name>helper.hpp</name>
-  </compound>
-  <compound refid="magnum_2gs_2helper_8hpp" kind="file"><name>helper.hpp</name>
   </compound>
   <compound refid="base__application_8cpp" kind="file"><name>base_application.cpp</name>
   </compound>
@@ -1390,6 +1386,10 @@
     <member refid="helper_8cpp_1aefe397a94e8feddc652f92ef40ce9597" kind="define"><name>STB_IMAGE_WRITE_IMPLEMENTATION</name></member>
   </compound>
   <compound refid="magnum_2gs_2helper_8cpp" kind="file"><name>helper.cpp</name>
+  </compound>
+  <compound refid="helper_8hpp" kind="file"><name>helper.hpp</name>
+  </compound>
+  <compound refid="magnum_2gs_2helper_8hpp" kind="file"><name>helper.hpp</name>
   </compound>
   <compound refid="light_8cpp" kind="file"><name>light.cpp</name>
   </compound>

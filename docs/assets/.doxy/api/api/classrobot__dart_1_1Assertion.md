@@ -98,6 +98,8 @@ inline robot_dart::Assertion::Assertion (
 
 
 
+<hr>
+
 
 
 ### function what 
@@ -108,6 +110,8 @@ inline const char * robot_dart::Assertion::what () const
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/utils.hpp`

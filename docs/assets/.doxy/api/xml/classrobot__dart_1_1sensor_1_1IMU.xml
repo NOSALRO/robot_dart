@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1sensor_1_1IMU" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::sensor::IMU</compoundname>
     <basecompoundref refid="classrobot__dart_1_1sensor_1_1Sensor" prot="public" virt="non-virtual">robot_dart::sensor::Sensor</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1IMU_1ab89d0526cc8b3375767ec5a1cc5faf0e" prot="protected" static="no" mutable="no">
         <type><ref refid="structrobot__dart_1_1sensor_1_1IMUConfig" kindref="compound">IMUConfig</ref></type>
         <definition>IMUConfig robot_dart::sensor::IMU::_config</definition>
         <argsstring></argsstring>
         <name>_config</name>
+        <qualifiedname>robot_dart::sensor::IMU::_config</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Eigen::AngleAxisd robot_dart::sensor::IMU::_angular_pos</definition>
         <argsstring></argsstring>
         <name>_angular_pos</name>
+        <qualifiedname>robot_dart::sensor::IMU::_angular_pos</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Eigen::Vector3d robot_dart::sensor::IMU::_angular_vel</definition>
         <argsstring></argsstring>
         <name>_angular_vel</name>
+        <qualifiedname>robot_dart::sensor::IMU::_angular_vel</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>Eigen::Vector3d robot_dart::sensor::IMU::_linear_accel</definition>
         <argsstring></argsstring>
         <name>_linear_accel</name>
+        <qualifiedname>robot_dart::sensor::IMU::_linear_accel</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,13 +60,14 @@
         </inbodydescription>
         <location file="robot_dart/sensor/imu.hpp" line="56" column="29" bodyfile="robot_dart/sensor/imu.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1IMU_1a54a3b57abd9ea3d467ef08f3509dcc7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::sensor::IMU::IMU</definition>
         <argsstring>(const IMUConfig &amp;config)</argsstring>
         <name>IMU</name>
+        <qualifiedname>robot_dart::sensor::IMU::IMU</qualifiedname>
         <param>
           <type>const <ref refid="structrobot__dart_1_1sensor_1_1IMUConfig" kindref="compound">IMUConfig</ref> &amp;</type>
           <declname>config</declname>
@@ -80,6 +85,7 @@
         <definition>void robot_dart::sensor::IMU::init</definition>
         <argsstring>() override</argsstring>
         <name>init</name>
+        <qualifiedname>robot_dart::sensor::IMU::init</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517">init</reimplements>
         <briefdescription>
         </briefdescription>
@@ -94,6 +100,7 @@
         <definition>void robot_dart::sensor::IMU::calculate</definition>
         <argsstring>(double) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::sensor::IMU::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0">calculate</reimplements>
         <param>
           <type>double</type>
@@ -111,6 +118,7 @@
         <definition>std::string robot_dart::sensor::IMU::type</definition>
         <argsstring>() const override</argsstring>
         <name>type</name>
+        <qualifiedname>robot_dart::sensor::IMU::type</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0">type</reimplements>
         <briefdescription>
         </briefdescription>
@@ -125,6 +133,7 @@
         <definition>const Eigen::AngleAxisd &amp; robot_dart::sensor::IMU::angular_position</definition>
         <argsstring>() const</argsstring>
         <name>angular_position</name>
+        <qualifiedname>robot_dart::sensor::IMU::angular_position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -138,6 +147,7 @@
         <definition>Eigen::Vector3d robot_dart::sensor::IMU::angular_position_vec</definition>
         <argsstring>() const</argsstring>
         <name>angular_position_vec</name>
+        <qualifiedname>robot_dart::sensor::IMU::angular_position_vec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -151,6 +161,7 @@
         <definition>const Eigen::Vector3d &amp; robot_dart::sensor::IMU::angular_velocity</definition>
         <argsstring>() const</argsstring>
         <name>angular_velocity</name>
+        <qualifiedname>robot_dart::sensor::IMU::angular_velocity</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -164,6 +175,7 @@
         <definition>const Eigen::Vector3d &amp; robot_dart::sensor::IMU::linear_acceleration</definition>
         <argsstring>() const</argsstring>
         <name>linear_acceleration</name>
+        <qualifiedname>robot_dart::sensor::IMU::linear_acceleration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -177,6 +189,7 @@
         <definition>void robot_dart::sensor::IMU::attach_to_joint</definition>
         <argsstring>(dart::dynamics::Joint *, const Eigen::Isometry3d &amp;) override</argsstring>
         <name>attach_to_joint</name>
+        <qualifiedname>robot_dart::sensor::IMU::attach_to_joint</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b">attach_to_joint</reimplements>
         <param>
           <type>dart::dynamics::Joint *</type>
@@ -192,7 +205,7 @@
         </inbodydescription>
         <location file="robot_dart/sensor/imu.hpp" line="45" column="18" bodyfile="robot_dart/sensor/imu.hpp" bodystart="45" bodyend="48"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

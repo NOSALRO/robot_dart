@@ -204,6 +204,8 @@ robot_dart::sensor::ForceTorque::ForceTorque (
 
 
 
+<hr>
+
 
 
 ### function ForceTorque [2/2]
@@ -219,6 +221,8 @@ inline robot_dart::sensor::ForceTorque::ForceTorque (
 
 
 
+
+<hr>
 
 
 
@@ -236,6 +240,8 @@ inline virtual void robot_dart::sensor::ForceTorque::attach_to_body (
 Implements [*robot\_dart::sensor::Sensor::attach\_to\_body*](classrobot__dart_1_1sensor_1_1Sensor.md#function-attach_to_body-12)
 
 
+<hr>
+
 
 
 ### function calculate 
@@ -251,6 +257,8 @@ virtual void robot_dart::sensor::ForceTorque::calculate (
 Implements [*robot\_dart::sensor::Sensor::calculate*](classrobot__dart_1_1sensor_1_1Sensor.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function force 
@@ -261,6 +269,8 @@ Eigen::Vector3d robot_dart::sensor::ForceTorque::force () const
 
 
 
+
+<hr>
 
 
 
@@ -275,6 +285,8 @@ virtual void robot_dart::sensor::ForceTorque::init () override
 Implements [*robot\_dart::sensor::Sensor::init*](classrobot__dart_1_1sensor_1_1Sensor.md#function-init)
 
 
+<hr>
+
 
 
 ### function torque 
@@ -285,6 +297,8 @@ Eigen::Vector3d robot_dart::sensor::ForceTorque::torque () const
 
 
 
+
+<hr>
 
 
 
@@ -299,6 +313,8 @@ virtual std::string robot_dart::sensor::ForceTorque::type () override const
 Implements [*robot\_dart::sensor::Sensor::type*](classrobot__dart_1_1sensor_1_1Sensor.md#function-type)
 
 
+<hr>
+
 
 
 ### function wrench 
@@ -309,6 +325,8 @@ const Eigen::Vector6d & robot_dart::sensor::ForceTorque::wrench () const
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -323,6 +341,8 @@ std::string robot_dart::sensor::ForceTorque::_direction;
 
 
 
+<hr>
+
 
 
 ### variable \_wrench 
@@ -333,6 +353,8 @@ Eigen::Vector6d robot_dart::sensor::ForceTorque::_wrench;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/sensor/force_torque.hpp`

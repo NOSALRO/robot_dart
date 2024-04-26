@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1control_1_1PDControl" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::control::PDControl</compoundname>
     <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PDControl_1ab9eecb22ac996a94bd027c8a094ccb0a" prot="protected" static="no" mutable="no">
         <type>Eigen::VectorXd</type>
         <definition>Eigen::VectorXd robot_dart::control::PDControl::_Kp</definition>
         <argsstring></argsstring>
         <name>_Kp</name>
+        <qualifiedname>robot_dart::control::PDControl::_Kp</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Eigen::VectorXd robot_dart::control::PDControl::_Kd</definition>
         <argsstring></argsstring>
         <name>_Kd</name>
+        <qualifiedname>robot_dart::control::PDControl::_Kd</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>bool robot_dart::control::PDControl::_use_angular_errors</definition>
         <argsstring></argsstring>
         <name>_use_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::_use_angular_errors</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,13 +46,14 @@
         </inbodydescription>
         <location file="robot_dart/control/pd_control.hpp" line="34" column="18" bodyfile="robot_dart/control/pd_control.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a66de4437cb1dcf4578c241e4677b7f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::control::PDControl::PDControl</definition>
         <argsstring>()</argsstring>
         <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,6 +67,7 @@
         <definition>robot_dart::control::PDControl::PDControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false, bool use_angular_errors=true)</argsstring>
         <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -90,6 +95,7 @@
         <definition>robot_dart::control::PDControl::PDControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs, bool use_angular_errors=true)</argsstring>
         <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -116,6 +122,7 @@
         <definition>void robot_dart::control::PDControl::configure</definition>
         <argsstring>() override</argsstring>
         <name>configure</name>
+        <qualifiedname>robot_dart::control::PDControl::configure</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
         <briefdescription>
         </briefdescription>
@@ -130,6 +137,7 @@
         <definition>Eigen::VectorXd robot_dart::control::PDControl::calculate</definition>
         <argsstring>(double) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::control::PDControl::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
         <param>
           <type>double</type>
@@ -148,6 +156,7 @@
         <definition>void robot_dart::control::PDControl::set_pd</definition>
         <argsstring>(double p, double d)</argsstring>
         <name>set_pd</name>
+        <qualifiedname>robot_dart::control::PDControl::set_pd</qualifiedname>
         <param>
           <type>double</type>
           <declname>p</declname>
@@ -169,6 +178,7 @@
         <definition>void robot_dart::control::PDControl::set_pd</definition>
         <argsstring>(const Eigen::VectorXd &amp;p, const Eigen::VectorXd &amp;d)</argsstring>
         <name>set_pd</name>
+        <qualifiedname>robot_dart::control::PDControl::set_pd</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>p</declname>
@@ -190,6 +200,7 @@
         <definition>std::pair&lt; Eigen::VectorXd, Eigen::VectorXd &gt; robot_dart::control::PDControl::pd</definition>
         <argsstring>() const</argsstring>
         <name>pd</name>
+        <qualifiedname>robot_dart::control::PDControl::pd</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -203,6 +214,7 @@
         <definition>bool robot_dart::control::PDControl::using_angular_errors</definition>
         <argsstring>() const</argsstring>
         <name>using_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::using_angular_errors</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -216,6 +228,7 @@
         <definition>void robot_dart::control::PDControl::set_use_angular_errors</definition>
         <argsstring>(bool enable=true)</argsstring>
         <name>set_use_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::set_use_angular_errors</qualifiedname>
         <param>
           <type>bool</type>
           <declname>enable</declname>
@@ -234,6 +247,7 @@
         <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::PDControl::clone</definition>
         <argsstring>() const override</argsstring>
         <name>clone</name>
+        <qualifiedname>robot_dart::control::PDControl::clone</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
         <briefdescription>
         </briefdescription>
@@ -243,13 +257,14 @@
         </inbodydescription>
         <location file="robot_dart/control/pd_control.hpp" line="29" column="29" bodyfile="robot_dart/control/pd_control.cpp" bodystart="123" bodyend="126"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-static-func">
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
       <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a97d60e7cc9076abb9647ddb39977d781" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double robot_dart::control::PDControl::_angle_dist</definition>
         <argsstring>(double target, double current)</argsstring>
         <name>_angle_dist</name>
+        <qualifiedname>robot_dart::control::PDControl::_angle_dist</qualifiedname>
         <param>
           <type>double</type>
           <declname>target</declname>
@@ -266,7 +281,7 @@
         </inbodydescription>
         <location file="robot_dart/control/pd_control.hpp" line="36" column="27" bodyfile="robot_dart/control/pd_control.cpp" bodystart="128" bodyend="136"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

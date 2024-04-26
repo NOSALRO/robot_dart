@@ -97,6 +97,8 @@ size_t robot_dart::gui::Image::channels;
 
 
 
+<hr>
+
 
 
 ### variable data 
@@ -107,6 +109,8 @@ std::vector<uint8_t> robot_dart::gui::Image::data;
 
 
 
+
+<hr>
 
 
 
@@ -119,6 +123,8 @@ size_t robot_dart::gui::Image::height;
 
 
 
+<hr>
+
 
 
 ### variable width 
@@ -129,6 +135,8 @@ size_t robot_dart::gui::Image::width;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/helper.hpp`

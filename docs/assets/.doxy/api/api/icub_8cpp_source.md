@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](icub_8cpp.md)
 
-```C++
 
+```C++
 #include "robot_dart/robots/icub.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 
@@ -53,6 +53,6 @@ namespace robot_dart {
         }
     } // namespace robots
 } // namespace robot_dart
-
 ```
+
 

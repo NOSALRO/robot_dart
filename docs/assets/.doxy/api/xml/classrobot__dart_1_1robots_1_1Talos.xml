@@ -1,17 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Talos" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Talos</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1robots_1_1TalosFastCollision" prot="public" virt="non-virtual">robot_dart::robots::TalosFastCollision</derivedcompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1robots_1_1TalosLight" prot="public" virt="non-virtual">robot_dart::robots::TalosLight</derivedcompoundref>
     <includes refid="talos_8hpp" local="no">robot_dart/robots/talos.hpp</includes>
-      <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classrobot__dart_1_1robots_1_1Talos_1a3e6bf406f476e310182a84a28159f525" prot="public" static="no">
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classrobot__dart_1_1robots_1_1Talos_1a1804e807f971fc42d85684827603df2e" prot="public" static="no">
         <type>std::unordered_map&lt; std::string, std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1Torque" kindref="compound">sensor::Torque</ref> &gt; &gt;</type>
-        <definition>using robot_dart::robots::Talos::torque_map_t =  std::unordered_map&lt;std::string, std::shared_ptr&lt;sensor::Torque&gt; &gt;</definition>
+        <definition>using robot_dart::robots::Talos::torque_map_t =  std::unordered_map&lt;std::string, std::shared_ptr&lt;sensor::Torque&gt;&gt;</definition>
         <argsstring></argsstring>
         <name>torque_map_t</name>
+        <qualifiedname>robot_dart::robots::Talos::torque_map_t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -20,13 +21,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/talos.hpp" line="24" column="13" bodyfile="robot_dart/robots/talos.hpp" bodystart="24" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-attrib">
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1robots_1_1Talos_1aa553dac03eb53c34cd2ce2a716d707dd" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1IMU" kindref="compound">sensor::IMU</ref> &gt;</type>
         <definition>std::shared_ptr&lt;sensor::IMU&gt; robot_dart::robots::Talos::_imu</definition>
         <argsstring></argsstring>
         <name>_imu</name>
+        <qualifiedname>robot_dart::robots::Talos::_imu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>std::shared_ptr&lt;sensor::ForceTorque&gt; robot_dart::robots::Talos::_ft_foot_left</definition>
         <argsstring></argsstring>
         <name>_ft_foot_left</name>
+        <qualifiedname>robot_dart::robots::Talos::_ft_foot_left</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -53,6 +56,7 @@
         <definition>std::shared_ptr&lt;sensor::ForceTorque&gt; robot_dart::robots::Talos::_ft_foot_right</definition>
         <argsstring></argsstring>
         <name>_ft_foot_right</name>
+        <qualifiedname>robot_dart::robots::Talos::_ft_foot_right</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,6 +70,7 @@
         <definition>std::shared_ptr&lt;sensor::ForceTorque&gt; robot_dart::robots::Talos::_ft_wrist_left</definition>
         <argsstring></argsstring>
         <name>_ft_wrist_left</name>
+        <qualifiedname>robot_dart::robots::Talos::_ft_wrist_left</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,6 +84,7 @@
         <definition>std::shared_ptr&lt;sensor::ForceTorque&gt; robot_dart::robots::Talos::_ft_wrist_right</definition>
         <argsstring></argsstring>
         <name>_ft_wrist_right</name>
+        <qualifiedname>robot_dart::robots::Talos::_ft_wrist_right</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -92,6 +98,7 @@
         <definition>torque_map_t robot_dart::robots::Talos::_torques</definition>
         <argsstring></argsstring>
         <name>_torques</name>
+        <qualifiedname>robot_dart::robots::Talos::_torques</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -105,6 +112,7 @@
         <definition>size_t robot_dart::robots::Talos::_frequency</definition>
         <argsstring></argsstring>
         <name>_frequency</name>
+        <qualifiedname>robot_dart::robots::Talos::_frequency</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -113,13 +121,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/talos.hpp" line="34" column="20" bodyfile="robot_dart/robots/talos.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Talos_1afff746e8a0937765e55e69eb86244300" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Talos::Talos</definition>
         <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;talos/talos.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;talos_description&quot;, &quot;talos/talos_description&quot;}})</argsstring>
         <name>Talos</name>
+        <qualifiedname>robot_dart::robots::Talos::Talos</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>frequency</declname>
@@ -148,6 +157,7 @@
         <definition>void robot_dart::robots::Talos::reset</definition>
         <argsstring>() override</argsstring>
         <name>reset</name>
+        <qualifiedname>robot_dart::robots::Talos::reset</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1a96af674783970d47996056c4ead16f1d">reset</reimplements>
         <briefdescription>
         </briefdescription>
@@ -162,6 +172,7 @@
         <definition>const sensor::IMU &amp; robot_dart::robots::Talos::imu</definition>
         <argsstring>() const</argsstring>
         <name>imu</name>
+        <qualifiedname>robot_dart::robots::Talos::imu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -175,6 +186,7 @@
         <definition>const sensor::ForceTorque &amp; robot_dart::robots::Talos::ft_foot_left</definition>
         <argsstring>() const</argsstring>
         <name>ft_foot_left</name>
+        <qualifiedname>robot_dart::robots::Talos::ft_foot_left</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -188,6 +200,7 @@
         <definition>const sensor::ForceTorque &amp; robot_dart::robots::Talos::ft_foot_right</definition>
         <argsstring>() const</argsstring>
         <name>ft_foot_right</name>
+        <qualifiedname>robot_dart::robots::Talos::ft_foot_right</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -201,6 +214,7 @@
         <definition>const sensor::ForceTorque &amp; robot_dart::robots::Talos::ft_wrist_left</definition>
         <argsstring>() const</argsstring>
         <name>ft_wrist_left</name>
+        <qualifiedname>robot_dart::robots::Talos::ft_wrist_left</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -214,6 +228,7 @@
         <definition>const sensor::ForceTorque &amp; robot_dart::robots::Talos::ft_wrist_right</definition>
         <argsstring>() const</argsstring>
         <name>ft_wrist_right</name>
+        <qualifiedname>robot_dart::robots::Talos::ft_wrist_right</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -227,6 +242,7 @@
         <definition>const torque_map_t &amp; robot_dart::robots::Talos::torques</definition>
         <argsstring>() const</argsstring>
         <name>torques</name>
+        <qualifiedname>robot_dart::robots::Talos::torques</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -235,13 +251,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/talos.hpp" line="25" column="32" bodyfile="robot_dart/robots/talos.hpp" bodystart="25" bodyend="25"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Talos_1a63bfc559d6b8f6f65a02456e1c5621a5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void robot_dart::robots::Talos::_post_addition</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>_post_addition</name>
+        <qualifiedname>robot_dart::robots::Talos::_post_addition</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1ae23e462cc9cfb13c40e3689f95c03e22">_post_addition</reimplements>
         <reimplementedby refid="classrobot__dart_1_1robots_1_1TalosFastCollision_1a58141d77cf10a14657888ef3e74a4931">_post_addition</reimplementedby>
         <param>
@@ -261,6 +278,7 @@
         <definition>void robot_dart::robots::Talos::_post_removal</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>_post_removal</name>
+        <qualifiedname>robot_dart::robots::Talos::_post_removal</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1a0e89ed18a9eb6954b7fa26bf8377c1f5">_post_removal</reimplements>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
@@ -274,7 +292,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/talos.hpp" line="37" column="18" bodyfile="robot_dart/robots/talos.cpp" bodystart="68" bodyend="80"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>datasheet: <ulink url="https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf">https://pal-robotics.com/wp-content/uploads/2019/07/Datasheet_TALOS.pdf</ulink> </para>
     </briefdescription>
@@ -535,7 +553,7 @@
       <member refid="classrobot__dart_1_1Robot_1a68e3847796190e75682d963189f4b82d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>skeleton</name></member>
       <member refid="classrobot__dart_1_1Robot_1aa05256ac963fa4282ed6ba13fc7aa13a" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>spring_stiffnesses</name></member>
       <member refid="classrobot__dart_1_1robots_1_1Talos_1afff746e8a0937765e55e69eb86244300" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>Talos</name></member>
-      <member refid="classrobot__dart_1_1robots_1_1Talos_1a3e6bf406f476e310182a84a28159f525" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>torque_map_t</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Talos_1a1804e807f971fc42d85684827603df2e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>torque_map_t</name></member>
       <member refid="classrobot__dart_1_1robots_1_1Talos_1a4ba13570505ab4351db12020191ca12e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>torques</name></member>
       <member refid="classrobot__dart_1_1Robot_1abf23bd42f3dd209a0950697f54921707" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>update</name></member>
       <member refid="classrobot__dart_1_1Robot_1a2d5700673de40eece09188ab445b8833" prot="public" virt="non-virtual"><scope>robot_dart::robots::Talos</scope><name>update_joint_dof_maps</name></member>

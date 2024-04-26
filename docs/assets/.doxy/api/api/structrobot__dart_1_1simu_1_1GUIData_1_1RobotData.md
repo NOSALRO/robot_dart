@@ -95,6 +95,8 @@ bool robot_dart::simu::GUIData::RobotData::casting_shadows;
 
 
 
+<hr>
+
 
 
 ### variable is\_ghost 
@@ -105,6 +107,8 @@ bool robot_dart::simu::GUIData::RobotData::is_ghost;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui_data.hpp`

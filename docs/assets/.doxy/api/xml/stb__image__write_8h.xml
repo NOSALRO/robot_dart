@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="stb__image__write_8h" kind="file" language="C++">
     <compoundname>stb_image_write.h</compoundname>
     <includes local="no">stdlib.h</includes>
@@ -15,7 +15,7 @@
         <label>stdlib.h</label>
       </node>
     </incdepgraph>
-      <sectiondef kind="define">
+    <sectiondef kind="define">
       <memberdef kind="define" id="stb__image__write_8h_1a1d964457ebf7cc898b8cb14e66cbfaa8" prot="public" static="no">
         <name>STBIWDEF</name>
         <initializer>extern</initializer>
@@ -27,8 +27,8 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="165" column="11" bodyfile="robot_dart/gui/stb_image_write.h" bodystart="165" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="typedef">
+    </sectiondef>
+    <sectiondef kind="typedef">
       <memberdef kind="typedef" id="stb__image__write_8h_1a2326fd2fd79095b9ef34695a0bda114f" prot="public" static="no">
         <type>void</type>
         <definition>typedef void stbi_write_func(void *context, void *data, int size)</definition>
@@ -42,9 +42,9 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="188" column="14" bodyfile="robot_dart/gui/stb_image_write.h" bodystart="188" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="var">
-      <memberdef kind="variable" id="stb__image__write_8h_1a7aa69838d830bd1e917b2a20d2030e0c" prot="public" static="no" mutable="no">
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="stb__image__write_8h_1a7aa69838d830bd1e917b2a20d2030e0c" prot="public" static="no" extern="yes" mutable="no">
         <type>int</type>
         <definition>int stbi_write_tga_with_rle</definition>
         <argsstring></argsstring>
@@ -57,7 +57,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="171" column="12" declfile="robot_dart/gui/stb_image_write.h" declline="171" declcolumn="12"/>
       </memberdef>
-      <memberdef kind="variable" id="stb__image__write_8h_1ac40d349d241f781ed7b621259ce2b3c2" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="stb__image__write_8h_1ac40d349d241f781ed7b621259ce2b3c2" prot="public" static="no" extern="yes" mutable="no">
         <type>int</type>
         <definition>int stbi_write_png_compression_level</definition>
         <argsstring></argsstring>
@@ -70,7 +70,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="172" column="12" declfile="robot_dart/gui/stb_image_write.h" declline="172" declcolumn="12"/>
       </memberdef>
-      <memberdef kind="variable" id="stb__image__write_8h_1acfc7bbb01f0c4f6079727cfa1b086912" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="stb__image__write_8h_1acfc7bbb01f0c4f6079727cfa1b086912" prot="public" static="no" extern="yes" mutable="no">
         <type>int</type>
         <definition>int stbi_write_force_png_filter</definition>
         <argsstring></argsstring>
@@ -83,8 +83,8 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="173" column="12" declfile="robot_dart/gui/stb_image_write.h" declline="173" declcolumn="12"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="func">
+    </sectiondef>
+    <sectiondef kind="func">
       <memberdef kind="function" id="stb__image__write_8h_1a9c03e5171f6aea47fde6dafcf3249ccf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>STBIWDEF int</type>
         <definition>STBIWDEF int stbi_write_png</definition>
@@ -468,7 +468,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/stb_image_write.h" line="196" column="15" declfile="robot_dart/gui/stb_image_write.h" declline="196" declcolumn="15"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -1266,7 +1266,7 @@
 <codeline lineno="791"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*stbiw__sbgrowf(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>increment,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itemsize)</highlight></codeline>
 <codeline lineno="792"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="793"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>*arr<sp/>?<sp/>2*stbiw__sbm(*arr)+increment<sp/>:<sp/>increment+1;</highlight></codeline>
-<codeline lineno="794"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>STBIW_REALLOC_SIZED(*arr<sp/>?<sp/>stbiw__sbraw(*arr)<sp/>:<sp/>0,<sp/>*arr<sp/>?<sp/>(stbiw__sbm(*arr)*itemsize<sp/>+<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)*2)<sp/>:<sp/>0,<sp/>itemsize<sp/>*<sp/>m<sp/>+<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)*2);</highlight></codeline>
+<codeline lineno="794"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>STBIW_REALLOC_SIZED(*arr<sp/>?<sp/>stbiw__sbraw(*arr)<sp/>:<sp/>0,<sp/>*arr<sp/>?<sp/>(stbiw__sbm(*arr)*itemsize<sp/>+<sp/>sizeof(int)*2)<sp/>:<sp/>0,<sp/>itemsize<sp/>*<sp/>m<sp/>+<sp/>sizeof(int)*2);</highlight></codeline>
 <codeline lineno="795"><highlight class="normal"><sp/><sp/><sp/>STBIW_ASSERT(p);</highlight></codeline>
 <codeline lineno="796"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p)<sp/>{</highlight></codeline>
 <codeline lineno="797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!*arr)<sp/>((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*)<sp/>p)[1]<sp/>=<sp/>0;</highlight></codeline>

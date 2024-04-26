@@ -121,33 +121,39 @@
 ### typedef Camera3D 
 
 ```C++
-using robot_dart::gui::magnum::Camera3D = typedef Magnum::SceneGraph::Camera3D;
+using robot_dart::gui::magnum::Camera3D =  Magnum::SceneGraph::Camera3D;
 ```
 
 
 
+
+<hr>
 
 
 
 ### typedef Object3D 
 
 ```C++
-using robot_dart::gui::magnum::Object3D = typedef Magnum::SceneGraph::Object<Magnum::SceneGraph::MatrixTransformation3D>;
+using robot_dart::gui::magnum::Object3D =  Magnum::SceneGraph::Object<Magnum::SceneGraph::MatrixTransformation3D>;
 ```
 
 
 
+
+<hr>
 
 
 
 ### typedef Scene3D 
 
 ```C++
-using robot_dart::gui::magnum::Scene3D = typedef Magnum::SceneGraph::Scene<Magnum::SceneGraph::MatrixTransformation3D>;
+using robot_dart::gui::magnum::Scene3D =  Magnum::SceneGraph::Scene<Magnum::SceneGraph::MatrixTransformation3D>;
 ```
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -156,7 +162,7 @@ using robot_dart::gui::magnum::Scene3D = typedef Magnum::SceneGraph::Scene<Magnu
 ### function make\_application 
 
 ```C++
-template<typename T typename T>
+template<typename T>
 inline BaseApplication * robot_dart::gui::magnum::make_application (
     RobotDARTSimu * simu,
     const GraphicsConfiguration & configuration=GraphicsConfiguration ()
@@ -165,6 +171,8 @@ inline BaseApplication * robot_dart::gui::magnum::make_application (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.cpp`

@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Ur3e" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Ur3e</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1robots_1_1Ur3eHand" prot="public" virt="non-virtual">robot_dart::robots::Ur3eHand</derivedcompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1robots_1_1Ur3e_1a838a2e0c4e1196dbd0f97fb55d7fe170" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1ForceTorque" kindref="compound">sensor::ForceTorque</ref> &gt;</type>
         <definition>std::shared_ptr&lt;sensor::ForceTorque&gt; robot_dart::robots::Ur3e::_ft_wrist</definition>
         <argsstring></argsstring>
         <name>_ft_wrist</name>
+        <qualifiedname>robot_dart::robots::Ur3e::_ft_wrist</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -18,13 +19,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/ur3e.hpp" line="16" column="29" bodyfile="robot_dart/robots/ur3e.hpp" bodystart="16" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Ur3e_1a11c59f7eeb29cffae4179ddf5c514186" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Ur3e::Ur3e</definition>
         <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;ur3e/ur3e.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;ur3e_description&quot;, &quot;ur3e/ur3e_description&quot;}})</argsstring>
         <name>Ur3e</name>
+        <qualifiedname>robot_dart::robots::Ur3e::Ur3e</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>frequency</declname>
@@ -53,6 +55,7 @@
         <definition>const sensor::ForceTorque &amp; robot_dart::robots::Ur3e::ft_wrist</definition>
         <argsstring>() const</argsstring>
         <name>ft_wrist</name>
+        <qualifiedname>robot_dart::robots::Ur3e::ft_wrist</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,13 +64,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/ur3e.hpp" line="13" column="39" bodyfile="robot_dart/robots/ur3e.hpp" bodystart="13" bodyend="13"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Ur3e_1a1abfe1568663c2420f95507cdbc9d159" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void robot_dart::robots::Ur3e::_post_addition</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>_post_addition</name>
+        <qualifiedname>robot_dart::robots::Ur3e::_post_addition</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1ae23e462cc9cfb13c40e3689f95c03e22">_post_addition</reimplements>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
@@ -86,6 +90,7 @@
         <definition>void robot_dart::robots::Ur3e::_post_removal</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>_post_removal</name>
+        <qualifiedname>robot_dart::robots::Ur3e::_post_removal</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1a0e89ed18a9eb6954b7fa26bf8377c1f5">_post_removal</reimplements>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
@@ -99,7 +104,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/ur3e.hpp" line="18" column="18" bodyfile="robot_dart/robots/ur3e.cpp" bodystart="24" bodyend="27"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

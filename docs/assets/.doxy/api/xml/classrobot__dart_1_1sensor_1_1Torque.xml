@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1sensor_1_1Torque" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::sensor::Torque</compoundname>
     <basecompoundref refid="classrobot__dart_1_1sensor_1_1Sensor" prot="public" virt="non-virtual">robot_dart::sensor::Sensor</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Torque_1a3823fd1da053ff9d6be0c78d1ce9ae39" prot="protected" static="no" mutable="no">
         <type>Eigen::VectorXd</type>
         <definition>Eigen::VectorXd robot_dart::sensor::Torque::_torques</definition>
         <argsstring></argsstring>
         <name>_torques</name>
+        <qualifiedname>robot_dart::sensor::Torque::_torques</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -17,13 +18,14 @@
         </inbodydescription>
         <location file="robot_dart/sensor/torque.hpp" line="27" column="29" bodyfile="robot_dart/sensor/torque.hpp" bodystart="27" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1a0ac5826e79be44e0975dd917a91f4a5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::sensor::Torque::Torque</definition>
         <argsstring>(dart::dynamics::Joint *joint, size_t frequency=1000)</argsstring>
         <name>Torque</name>
+        <qualifiedname>robot_dart::sensor::Torque::Torque</qualifiedname>
         <param>
           <type>dart::dynamics::Joint *</type>
           <declname>joint</declname>
@@ -46,6 +48,7 @@
         <definition>robot_dart::sensor::Torque::Torque</definition>
         <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot, const std::string &amp;joint_name, size_t frequency=1000)</argsstring>
         <name>Torque</name>
+        <qualifiedname>robot_dart::sensor::Torque::Torque</qualifiedname>
         <param>
           <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
           <declname>robot</declname>
@@ -72,6 +75,7 @@
         <definition>void robot_dart::sensor::Torque::init</definition>
         <argsstring>() override</argsstring>
         <name>init</name>
+        <qualifiedname>robot_dart::sensor::Torque::init</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517">init</reimplements>
         <briefdescription>
         </briefdescription>
@@ -86,6 +90,7 @@
         <definition>void robot_dart::sensor::Torque::calculate</definition>
         <argsstring>(double) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::sensor::Torque::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0">calculate</reimplements>
         <param>
           <type>double</type>
@@ -103,6 +108,7 @@
         <definition>std::string robot_dart::sensor::Torque::type</definition>
         <argsstring>() const override</argsstring>
         <name>type</name>
+        <qualifiedname>robot_dart::sensor::Torque::type</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0">type</reimplements>
         <briefdescription>
         </briefdescription>
@@ -117,6 +123,7 @@
         <definition>const Eigen::VectorXd &amp; robot_dart::sensor::Torque::torques</definition>
         <argsstring>() const</argsstring>
         <name>torques</name>
+        <qualifiedname>robot_dart::sensor::Torque::torques</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -130,6 +137,7 @@
         <definition>void robot_dart::sensor::Torque::attach_to_body</definition>
         <argsstring>(dart::dynamics::BodyNode *, const Eigen::Isometry3d &amp;) override</argsstring>
         <name>attach_to_body</name>
+        <qualifiedname>robot_dart::sensor::Torque::attach_to_body</qualifiedname>
         <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc">attach_to_body</reimplements>
         <param>
           <type>dart::dynamics::BodyNode *</type>
@@ -145,7 +153,7 @@
         </inbodydescription>
         <location file="robot_dart/sensor/torque.hpp" line="21" column="18" bodyfile="robot_dart/sensor/torque.hpp" bodystart="21" bodyend="24"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -2,7 +2,7 @@
 
 # Class robot\_dart::control::PolicyControl
 
-**template &lt;typename Policy typename Policy&gt;**
+**template &lt;typename Policy&gt;**
 
 
 
@@ -203,6 +203,8 @@ inline robot_dart::control::PolicyControl::PolicyControl ()
 
 
 
+<hr>
+
 
 
 ### function PolicyControl [2/5]
@@ -218,6 +220,8 @@ inline robot_dart::control::PolicyControl::PolicyControl (
 
 
 
+<hr>
+
 
 
 ### function PolicyControl [3/5]
@@ -231,6 +235,8 @@ inline robot_dart::control::PolicyControl::PolicyControl (
 
 
 
+
+<hr>
 
 
 
@@ -247,6 +253,8 @@ inline robot_dart::control::PolicyControl::PolicyControl (
 
 
 
+<hr>
+
 
 
 ### function PolicyControl [5/5]
@@ -260,6 +268,8 @@ inline robot_dart::control::PolicyControl::PolicyControl (
 
 
 
+
+<hr>
 
 
 
@@ -276,6 +286,8 @@ inline virtual Eigen::VectorXd robot_dart::control::PolicyControl::calculate (
 Implements [*robot\_dart::control::RobotControl::calculate*](classrobot__dart_1_1control_1_1RobotControl.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function clone 
@@ -288,6 +300,8 @@ inline virtual std::shared_ptr< RobotControl > robot_dart::control::PolicyContro
 
 Implements [*robot\_dart::control::RobotControl::clone*](classrobot__dart_1_1control_1_1RobotControl.md#function-clone)
 
+
+<hr>
 
 
 
@@ -302,6 +316,8 @@ inline virtual void robot_dart::control::PolicyControl::configure () override
 Implements [*robot\_dart::control::RobotControl::configure*](classrobot__dart_1_1control_1_1RobotControl.md#function-configure)
 
 
+<hr>
+
 
 
 ### function h\_params 
@@ -312,6 +328,8 @@ inline Eigen::VectorXd robot_dart::control::PolicyControl::h_params () const
 
 
 
+
+<hr>
 
 
 
@@ -325,6 +343,8 @@ inline void robot_dart::control::PolicyControl::set_h_params (
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -339,6 +359,8 @@ double robot_dart::control::PolicyControl< Policy >::_dt;
 
 
 
+<hr>
+
 
 
 ### variable \_first 
@@ -349,6 +371,8 @@ bool robot_dart::control::PolicyControl< Policy >::_first;
 
 
 
+
+<hr>
 
 
 
@@ -361,6 +385,8 @@ bool robot_dart::control::PolicyControl< Policy >::_full_dt;
 
 
 
+<hr>
+
 
 
 ### variable \_i 
@@ -371,6 +397,8 @@ int robot_dart::control::PolicyControl< Policy >::_i;
 
 
 
+
+<hr>
 
 
 
@@ -383,6 +411,8 @@ Policy robot_dart::control::PolicyControl< Policy >::_policy;
 
 
 
+<hr>
+
 
 
 ### variable \_prev\_commands 
@@ -393,6 +423,8 @@ Eigen::VectorXd robot_dart::control::PolicyControl< Policy >::_prev_commands;
 
 
 
+
+<hr>
 
 
 
@@ -405,6 +437,8 @@ double robot_dart::control::PolicyControl< Policy >::_prev_time;
 
 
 
+<hr>
+
 
 
 ### variable \_threshold 
@@ -415,6 +449,8 @@ double robot_dart::control::PolicyControl< Policy >::_threshold;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/control/policy_control.hpp`

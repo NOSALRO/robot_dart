@@ -370,6 +370,8 @@ inline robot_dart::robots::Pendulum::Pendulum (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/pendulum.hpp`
 

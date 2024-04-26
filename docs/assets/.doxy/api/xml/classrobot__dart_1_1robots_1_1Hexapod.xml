@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1Hexapod" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::Hexapod</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Hexapod_1ab210d814dc6c48edc179d7ad0bfe6965" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::Hexapod::Hexapod</definition>
         <argsstring>(const std::string &amp;urdf=&quot;pexod.urdf&quot;)</argsstring>
         <name>Hexapod</name>
+        <qualifiedname>robot_dart::robots::Hexapod::Hexapod</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>urdf</declname>
@@ -27,6 +28,7 @@
         <definition>void robot_dart::robots::Hexapod::reset</definition>
         <argsstring>() override</argsstring>
         <name>reset</name>
+        <qualifiedname>robot_dart::robots::Hexapod::reset</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1a96af674783970d47996056c4ead16f1d">reset</reimplements>
         <briefdescription>
         </briefdescription>
@@ -36,7 +38,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/hexapod.hpp" line="17" column="18" bodyfile="robot_dart/robots/hexapod.hpp" bodystart="17" bodyend="21"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

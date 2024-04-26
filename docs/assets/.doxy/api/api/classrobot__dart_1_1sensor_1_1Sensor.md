@@ -131,6 +131,8 @@ robot_dart::sensor::Sensor::Sensor (
 
 
 
+<hr>
+
 
 
 ### function activate 
@@ -144,6 +146,8 @@ void robot_dart::sensor::Sensor::activate (
 
 
 
+<hr>
+
 
 
 ### function active 
@@ -154,6 +158,8 @@ bool robot_dart::sensor::Sensor::active () const
 
 
 
+
+<hr>
 
 
 
@@ -168,6 +174,8 @@ virtual void robot_dart::sensor::Sensor::attach_to_body (
 
 
 
+
+<hr>
 
 
 
@@ -184,6 +192,8 @@ inline void robot_dart::sensor::Sensor::attach_to_body (
 
 
 
+<hr>
+
 
 
 ### function attach\_to\_joint [1/2]
@@ -197,6 +207,8 @@ virtual void robot_dart::sensor::Sensor::attach_to_joint (
 
 
 
+
+<hr>
 
 
 
@@ -213,6 +225,8 @@ inline void robot_dart::sensor::Sensor::attach_to_joint (
 
 
 
+<hr>
+
 
 
 ### function attached\_to 
@@ -223,6 +237,8 @@ const std::string & robot_dart::sensor::Sensor::attached_to () const
 
 
 
+
+<hr>
 
 
 
@@ -237,6 +253,8 @@ virtual void robot_dart::sensor::Sensor::calculate (
 
 
 
+<hr>
+
 
 
 ### function detach 
@@ -247,6 +265,8 @@ void robot_dart::sensor::Sensor::detach ()
 
 
 
+
+<hr>
 
 
 
@@ -259,6 +279,8 @@ size_t robot_dart::sensor::Sensor::frequency () const
 
 
 
+<hr>
+
 
 
 ### function init 
@@ -270,6 +292,8 @@ virtual void robot_dart::sensor::Sensor::init () = 0
 
 
 
+<hr>
+
 
 
 ### function pose 
@@ -280,6 +304,8 @@ const Eigen::Isometry3d & robot_dart::sensor::Sensor::pose () const
 
 
 
+
+<hr>
 
 
 
@@ -294,6 +320,8 @@ void robot_dart::sensor::Sensor::refresh (
 
 
 
+<hr>
+
 
 
 ### function set\_frequency 
@@ -306,6 +334,8 @@ void robot_dart::sensor::Sensor::set_frequency (
 
 
 
+
+<hr>
 
 
 
@@ -320,6 +350,8 @@ void robot_dart::sensor::Sensor::set_pose (
 
 
 
+<hr>
+
 
 
 ### function set\_simu 
@@ -333,6 +365,8 @@ void robot_dart::sensor::Sensor::set_simu (
 
 
 
+<hr>
+
 
 
 ### function simu 
@@ -343,6 +377,8 @@ const RobotDARTSimu * robot_dart::sensor::Sensor::simu () const
 
 
 
+
+<hr>
 
 
 
@@ -355,6 +391,8 @@ virtual std::string robot_dart::sensor::Sensor::type () const = 0
 
 
 
+<hr>
+
 
 
 ### function ~Sensor 
@@ -365,6 +403,8 @@ inline virtual robot_dart::sensor::Sensor::~Sensor ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -379,6 +419,8 @@ bool robot_dart::sensor::Sensor::_active;
 
 
 
+<hr>
+
 
 
 ### variable \_attached\_tf 
@@ -389,6 +431,8 @@ Eigen::Isometry3d robot_dart::sensor::Sensor::_attached_tf;
 
 
 
+
+<hr>
 
 
 
@@ -401,6 +445,8 @@ bool robot_dart::sensor::Sensor::_attached_to_body;
 
 
 
+<hr>
+
 
 
 ### variable \_attached\_to\_joint 
@@ -411,6 +457,8 @@ bool robot_dart::sensor::Sensor::_attached_to_joint;
 
 
 
+
+<hr>
 
 
 
@@ -423,6 +471,8 @@ bool robot_dart::sensor::Sensor::_attaching_to_body;
 
 
 
+<hr>
+
 
 
 ### variable \_attaching\_to\_joint 
@@ -433,6 +483,8 @@ bool robot_dart::sensor::Sensor::_attaching_to_joint;
 
 
 
+
+<hr>
 
 
 
@@ -445,6 +497,8 @@ dart::dynamics::BodyNode* robot_dart::sensor::Sensor::_body_attached;
 
 
 
+<hr>
+
 
 
 ### variable \_frequency 
@@ -455,6 +509,8 @@ size_t robot_dart::sensor::Sensor::_frequency;
 
 
 
+
+<hr>
 
 
 
@@ -467,6 +523,8 @@ dart::dynamics::Joint* robot_dart::sensor::Sensor::_joint_attached;
 
 
 
+<hr>
+
 
 
 ### variable \_simu 
@@ -478,6 +536,8 @@ RobotDARTSimu* robot_dart::sensor::Sensor::_simu;
 
 
 
+<hr>
+
 
 
 ### variable \_world\_pose 
@@ -488,6 +548,8 @@ Eigen::Isometry3d robot_dart::sensor::Sensor::_world_pose;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/sensor/sensor.hpp`

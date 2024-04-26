@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](pd__control_8cpp.md)
 
-```C++
 
+```C++
 #include "pd_control.hpp"
 #include "robot_dart/robot.hpp"
 #include "robot_dart/utils.hpp"
@@ -144,6 +144,6 @@ namespace robot_dart {
         }
     } // namespace control
 } // namespace robot_dart
-
 ```
+
 

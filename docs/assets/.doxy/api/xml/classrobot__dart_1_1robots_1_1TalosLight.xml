@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1TalosLight" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::TalosLight</compoundname>
     <basecompoundref refid="classrobot__dart_1_1robots_1_1Talos" prot="public" virt="non-virtual">robot_dart::robots::Talos</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1TalosLight_1ad94daacdd67321729a0180eeba6b963b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::TalosLight::TalosLight</definition>
         <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;talos/talos_fast.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;talos_description&quot;, &quot;talos/talos_description&quot;}})</argsstring>
         <name>TalosLight</name>
+        <qualifiedname>robot_dart::robots::TalosLight::TalosLight</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>frequency</declname>
@@ -32,7 +33,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/talos.hpp" line="42" column="13" bodyfile="robot_dart/robots/talos.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -293,7 +294,7 @@
       <member refid="classrobot__dart_1_1Robot_1aa05256ac963fa4282ed6ba13fc7aa13a" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>spring_stiffnesses</name></member>
       <member refid="classrobot__dart_1_1robots_1_1Talos_1afff746e8a0937765e55e69eb86244300" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>Talos</name></member>
       <member refid="classrobot__dart_1_1robots_1_1TalosLight_1ad94daacdd67321729a0180eeba6b963b" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>TalosLight</name></member>
-      <member refid="classrobot__dart_1_1robots_1_1Talos_1a3e6bf406f476e310182a84a28159f525" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>torque_map_t</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Talos_1a1804e807f971fc42d85684827603df2e" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>torque_map_t</name></member>
       <member refid="classrobot__dart_1_1robots_1_1Talos_1a4ba13570505ab4351db12020191ca12e" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>torques</name></member>
       <member refid="classrobot__dart_1_1Robot_1abf23bd42f3dd209a0950697f54921707" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>update</name></member>
       <member refid="classrobot__dart_1_1Robot_1a2d5700673de40eece09188ab445b8833" prot="public" virt="non-virtual"><scope>robot_dart::robots::TalosLight</scope><name>update_joint_dof_maps</name></member>

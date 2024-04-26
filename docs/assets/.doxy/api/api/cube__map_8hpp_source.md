@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](cube__map_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_HPP
 #define ROBOT_DART_GUI_MAGNUM_GS_CUBE_MAP_HPP
 
@@ -66,6 +66,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1robots_1_1A1" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::robots::A1</compoundname>
     <basecompoundref refid="classrobot__dart_1_1Robot" prot="public" virt="non-virtual">robot_dart::Robot</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1robots_1_1A1_1a55f0a175e54b0a6ea6d04e9f9b652b87" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1sensor_1_1IMU" kindref="compound">sensor::IMU</ref> &gt;</type>
         <definition>std::shared_ptr&lt;sensor::IMU&gt; robot_dart::robots::A1::_imu</definition>
         <argsstring></argsstring>
         <name>_imu</name>
+        <qualifiedname>robot_dart::robots::A1::_imu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -17,13 +18,14 @@
         </inbodydescription>
         <location file="robot_dart/robots/a1.hpp" line="18" column="29" bodyfile="robot_dart/robots/a1.hpp" bodystart="18" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1robots_1_1A1_1a2ddf0720754b59ecdf6e971f1b77ea19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::robots::A1::A1</definition>
         <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;unitree_a1/a1.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;a1_description&quot;, &quot;unitree_a1/a1_description&quot;}})</argsstring>
         <name>A1</name>
+        <qualifiedname>robot_dart::robots::A1::A1</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>frequency</declname>
@@ -52,6 +54,7 @@
         <definition>void robot_dart::robots::A1::reset</definition>
         <argsstring>() override</argsstring>
         <name>reset</name>
+        <qualifiedname>robot_dart::robots::A1::reset</qualifiedname>
         <reimplements refid="classrobot__dart_1_1Robot_1a96af674783970d47996056c4ead16f1d">reset</reimplements>
         <briefdescription>
         </briefdescription>
@@ -66,6 +69,7 @@
         <definition>const sensor::IMU &amp; robot_dart::robots::A1::imu</definition>
         <argsstring>() const</argsstring>
         <name>imu</name>
+        <qualifiedname>robot_dart::robots::A1::imu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -74,7 +78,7 @@
         </inbodydescription>
         <location file="robot_dart/robots/a1.hpp" line="15" column="31" bodyfile="robot_dart/robots/a1.hpp" bodystart="15" bodyend="15"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

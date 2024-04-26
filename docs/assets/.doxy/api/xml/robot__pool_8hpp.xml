@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="robot__pool_8hpp" kind="file" language="C++">
     <compoundname>robot_pool.hpp</compoundname>
     <includes local="no">functional</includes>
@@ -117,7 +117,7 @@
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robot_dart<sp/>{</highlight></codeline>
 <codeline lineno="12" refid="classrobot__dart_1_1RobotPool" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrobot__dart_1_1RobotPool" kindref="compound">RobotPool</ref><sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>robot_creator_t<sp/>=<sp/>std::function&lt;std::shared_ptr&lt;Robot&gt;()&gt;;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">robot_creator_t<sp/>=<sp/>std::function&lt;std::shared_ptr&lt;Robot&gt;()&gt;;</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1RobotPool" kindref="compound">RobotPool</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>robot_creator_t&amp;<sp/>robot_creator,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>pool_size<sp/>=<sp/>32,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>verbose<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1RobotPool" kindref="compound">~RobotPool</ref>()<sp/>{}</highlight></codeline>

@@ -139,6 +139,8 @@
 
 
 
+<hr>
+
 
 
 ### define get\_gl\_context\_with\_sleep 
@@ -166,6 +168,8 @@
 
 
 
+<hr>
+
 
 
 ### define release\_gl\_context 
@@ -178,6 +182,8 @@
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.hpp`

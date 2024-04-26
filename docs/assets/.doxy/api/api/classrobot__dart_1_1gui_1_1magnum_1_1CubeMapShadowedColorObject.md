@@ -108,6 +108,8 @@ explicit robot_dart::gui::magnum::CubeMapShadowedColorObject::CubeMapShadowedCol
 
 
 
+<hr>
+
 
 
 ### function set\_materials 
@@ -120,6 +122,8 @@ CubeMapShadowedColorObject & robot_dart::gui::magnum::CubeMapShadowedColorObject
 
 
 
+
+<hr>
 
 
 
@@ -134,6 +138,8 @@ CubeMapShadowedColorObject & robot_dart::gui::magnum::CubeMapShadowedColorObject
 
 
 
+<hr>
+
 
 
 ### function set\_scalings 
@@ -147,6 +153,8 @@ CubeMapShadowedColorObject & robot_dart::gui::magnum::CubeMapShadowedColorObject
 
 
 
+<hr>
+
 
 
 ### function shape 
@@ -158,6 +166,8 @@ inline dart::dynamics::ShapeNode * robot_dart::gui::magnum::CubeMapShadowedColor
 
 
 
+<hr>
+
 
 
 ### function simu 
@@ -168,6 +178,8 @@ inline RobotDARTSimu * robot_dart::gui::magnum::CubeMapShadowedColorObject::simu
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/drawables.hpp`

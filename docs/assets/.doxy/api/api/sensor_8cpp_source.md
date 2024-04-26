@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](sensor_8cpp.md)
 
-```C++
 
+```C++
 #include "sensor.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
@@ -139,6 +139,6 @@ namespace robot_dart {
         }
     } // namespace sensor
 } // namespace robot_dart
-
 ```
+
 

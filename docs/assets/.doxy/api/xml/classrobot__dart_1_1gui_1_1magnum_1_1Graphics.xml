@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1Graphics" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::Graphics</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; GlfwApplication &gt;</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a99b5508317072ca9f0b972b6bc6a42fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::Graphics::Graphics</definition>
         <argsstring>(const GraphicsConfiguration &amp;configuration=default_configuration())</argsstring>
         <name>Graphics</name>
+        <qualifiedname>robot_dart::gui::magnum::Graphics::Graphics</qualifiedname>
         <param>
           <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
           <declname>configuration</declname>
@@ -27,6 +28,7 @@
         <definition>robot_dart::gui::magnum::Graphics::~Graphics</definition>
         <argsstring>()</argsstring>
         <name>~Graphics</name>
+        <qualifiedname>robot_dart::gui::magnum::Graphics::~Graphics</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>void robot_dart::gui::magnum::Graphics::set_simu</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>set_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::Graphics::set_simu</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5">set_simu</reimplements>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
@@ -53,13 +56,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/graphics.hpp" line="14" column="22" bodyfile="robot_dart/gui/magnum/graphics.cpp" bodystart="6" bodyend="14"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
+    </sectiondef>
+    <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a394e1374527547d577bf26a30fb3b979" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref></type>
         <definition>GraphicsConfiguration robot_dart::gui::magnum::Graphics::default_configuration</definition>
         <argsstring>()</argsstring>
         <name>default_configuration</name>
+        <qualifiedname>robot_dart::gui::magnum::Graphics::default_configuration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -68,7 +72,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/graphics.hpp" line="16" column="46" bodyfile="robot_dart/gui/magnum/graphics.cpp" bodystart="16" bodyend="19"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -97,6 +101,9 @@
         <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_configuration</edgelabel>
+        </childnode>
       </node>
       <node id="4">
         <label>robot_dart::RobotDARTSimu</label>
@@ -121,6 +128,10 @@
         <link refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="6">
+        <label>robot_dart::gui::magnum::GraphicsConfiguration</label>
+        <link refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration"/>
       </node>
     </collaborationgraph>
     <location file="robot_dart/gui/magnum/graphics.hpp" line="9" column="13" bodyfile="robot_dart/gui/magnum/graphics.hpp" bodystart="9" bodyend="17"/>

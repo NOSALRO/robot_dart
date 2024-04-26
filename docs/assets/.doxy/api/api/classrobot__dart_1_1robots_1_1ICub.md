@@ -389,6 +389,8 @@ robot_dart::robots::ICub::ICub (
 
 
 
+<hr>
+
 
 
 ### function ft\_foot\_left 
@@ -399,6 +401,8 @@ inline const sensor::ForceTorque & robot_dart::robots::ICub::ft_foot_left () con
 
 
 
+
+<hr>
 
 
 
@@ -411,6 +415,8 @@ inline const sensor::ForceTorque & robot_dart::robots::ICub::ft_foot_right () co
 
 
 
+<hr>
+
 
 
 ### function imu 
@@ -421,6 +427,8 @@ inline const sensor::IMU & robot_dart::robots::ICub::imu () const
 
 
 
+
+<hr>
 
 
 
@@ -434,6 +442,8 @@ virtual void robot_dart::robots::ICub::reset () override
 
 Implements [*robot\_dart::Robot::reset*](classrobot__dart_1_1Robot.md#function-reset)
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -448,6 +458,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::ICub::_ft_foot_left;
 
 
 
+<hr>
+
 
 
 ### variable \_ft\_foot\_right 
@@ -459,6 +471,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::ICub::_ft_foot_right;
 
 
 
+<hr>
+
 
 
 ### variable \_imu 
@@ -469,6 +483,8 @@ std::shared_ptr<sensor::IMU> robot_dart::robots::ICub::_imu;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -487,6 +503,8 @@ virtual void robot_dart::robots::ICub::_post_addition (
 Implements [*robot\_dart::Robot::\_post\_addition*](classrobot__dart_1_1Robot.md#function-_post_addition)
 
 
+<hr>
+
 
 
 ### function \_post\_removal 
@@ -501,6 +519,8 @@ virtual void robot_dart::robots::ICub::_post_removal (
 
 Implements [*robot\_dart::Robot::\_post\_removal*](classrobot__dart_1_1Robot.md#function-_post_removal)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/icub.hpp`

@@ -112,6 +112,8 @@ static inline void robot_dart_initialize_magnum_resources ()
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_graphics.hpp`
 

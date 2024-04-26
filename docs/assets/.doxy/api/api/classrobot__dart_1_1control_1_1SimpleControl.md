@@ -185,6 +185,8 @@ robot_dart::control::SimpleControl::SimpleControl ()
 
 
 
+<hr>
+
 
 
 ### function SimpleControl [2/3]
@@ -199,6 +201,8 @@ robot_dart::control::SimpleControl::SimpleControl (
 
 
 
+<hr>
+
 
 
 ### function SimpleControl [3/3]
@@ -212,6 +216,8 @@ robot_dart::control::SimpleControl::SimpleControl (
 
 
 
+
+<hr>
 
 
 
@@ -228,6 +234,8 @@ virtual Eigen::VectorXd robot_dart::control::SimpleControl::calculate (
 Implements [*robot\_dart::control::RobotControl::calculate*](classrobot__dart_1_1control_1_1RobotControl.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function clone 
@@ -241,6 +249,8 @@ virtual std::shared_ptr< RobotControl > robot_dart::control::SimpleControl::clon
 Implements [*robot\_dart::control::RobotControl::clone*](classrobot__dart_1_1control_1_1RobotControl.md#function-clone)
 
 
+<hr>
+
 
 
 ### function configure 
@@ -253,6 +263,8 @@ virtual void robot_dart::control::SimpleControl::configure () override
 
 Implements [*robot\_dart::control::RobotControl::configure*](classrobot__dart_1_1control_1_1RobotControl.md#function-configure)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/control/simple_control.hpp`

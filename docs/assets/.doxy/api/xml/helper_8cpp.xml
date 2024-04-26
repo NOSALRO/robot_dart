@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="helper_8cpp" kind="file" language="C++">
     <compoundname>helper.cpp</compoundname>
     <includes refid="helper_8hpp" local="yes">helper.hpp</includes>
@@ -91,7 +91,7 @@
     </incdepgraph>
     <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
-      <sectiondef kind="define">
+    <sectiondef kind="define">
       <memberdef kind="define" id="helper_8cpp_1aefe397a94e8feddc652f92ef40ce9597" prot="public" static="no">
         <name>STB_IMAGE_WRITE_IMPLEMENTATION</name>
         <briefdescription>
@@ -102,7 +102,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/helper.cpp" line="3" column="9" bodyfile="robot_dart/gui/helper.cpp" bodystart="3" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

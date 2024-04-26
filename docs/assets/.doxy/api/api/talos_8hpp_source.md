@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](talos_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_ROBOTS_TALOS_HPP
 #define ROBOT_DART_ROBOTS_TALOS_HPP
 
@@ -63,6 +63,6 @@ namespace robot_dart {
     } // namespace robots
 } // namespace robot_dart
 #endif
-
 ```
+
 

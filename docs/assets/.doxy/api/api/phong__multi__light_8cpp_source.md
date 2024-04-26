@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](phong__multi__light_8cpp.md)
 
-```C++
 
+```C++
 #include "phong_multi_light.hpp"
 #include "create_compatibility_shader.hpp"
 
@@ -261,6 +261,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

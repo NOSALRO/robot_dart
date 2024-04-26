@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](glfw__application_8cpp.md)
 
-```C++
 
+```C++
 #include "glfw_application.hpp"
 #include "robot_dart/utils.hpp"
 
@@ -168,6 +168,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

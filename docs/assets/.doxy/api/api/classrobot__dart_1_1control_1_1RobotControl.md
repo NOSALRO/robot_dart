@@ -123,6 +123,8 @@ robot_dart::control::RobotControl::RobotControl ()
 
 
 
+<hr>
+
 
 
 ### function RobotControl [2/3]
@@ -136,6 +138,8 @@ robot_dart::control::RobotControl::RobotControl (
 
 
 
+
+<hr>
 
 
 
@@ -151,6 +155,8 @@ robot_dart::control::RobotControl::RobotControl (
 
 
 
+<hr>
+
 
 
 ### function activate 
@@ -164,6 +170,8 @@ void robot_dart::control::RobotControl::activate (
 
 
 
+<hr>
+
 
 
 ### function active 
@@ -174,6 +182,8 @@ bool robot_dart::control::RobotControl::active () const
 
 
 
+
+<hr>
 
 
 
@@ -188,6 +198,8 @@ virtual Eigen::VectorXd robot_dart::control::RobotControl::calculate (
 
 
 
+<hr>
+
 
 
 ### function clone 
@@ -198,6 +210,8 @@ virtual std::shared_ptr< RobotControl > robot_dart::control::RobotControl::clone
 
 
 
+
+<hr>
 
 
 
@@ -210,6 +224,8 @@ virtual void robot_dart::control::RobotControl::configure () = 0
 
 
 
+<hr>
+
 
 
 ### function controllable\_dofs 
@@ -220,6 +236,8 @@ const std::vector< std::string > & robot_dart::control::RobotControl::controllab
 
 
 
+
+<hr>
 
 
 
@@ -232,6 +250,8 @@ void robot_dart::control::RobotControl::init ()
 
 
 
+<hr>
+
 
 
 ### function parameters 
@@ -243,6 +263,8 @@ const Eigen::VectorXd & robot_dart::control::RobotControl::parameters () const
 
 
 
+<hr>
+
 
 
 ### function robot 
@@ -253,6 +275,8 @@ std::shared_ptr< Robot > robot_dart::control::RobotControl::robot () const
 
 
 
+
+<hr>
 
 
 
@@ -267,6 +291,8 @@ void robot_dart::control::RobotControl::set_parameters (
 
 
 
+<hr>
+
 
 
 ### function set\_robot 
@@ -279,6 +305,8 @@ void robot_dart::control::RobotControl::set_robot (
 
 
 
+
+<hr>
 
 
 
@@ -293,6 +321,8 @@ void robot_dart::control::RobotControl::set_weight (
 
 
 
+<hr>
+
 
 
 ### function weight 
@@ -304,6 +334,8 @@ double robot_dart::control::RobotControl::weight () const
 
 
 
+<hr>
+
 
 
 ### function ~RobotControl 
@@ -314,6 +346,8 @@ inline virtual robot_dart::control::RobotControl::~RobotControl ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -328,6 +362,8 @@ bool robot_dart::control::RobotControl::_active;
 
 
 
+<hr>
+
 
 
 ### variable \_check\_free 
@@ -338,6 +374,8 @@ bool robot_dart::control::RobotControl::_check_free;
 
 
 
+
+<hr>
 
 
 
@@ -350,6 +388,8 @@ int robot_dart::control::RobotControl::_control_dof;
 
 
 
+<hr>
+
 
 
 ### variable \_controllable\_dofs 
@@ -360,6 +400,8 @@ std::vector<std::string> robot_dart::control::RobotControl::_controllable_dofs;
 
 
 
+
+<hr>
 
 
 
@@ -372,6 +414,8 @@ Eigen::VectorXd robot_dart::control::RobotControl::_ctrl;
 
 
 
+<hr>
+
 
 
 ### variable \_dof 
@@ -382,6 +426,8 @@ int robot_dart::control::RobotControl::_dof;
 
 
 
+
+<hr>
 
 
 
@@ -394,6 +440,8 @@ std::weak_ptr<Robot> robot_dart::control::RobotControl::_robot;
 
 
 
+<hr>
+
 
 
 ### variable \_weight 
@@ -404,6 +452,8 @@ double robot_dart::control::RobotControl::_weight;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/control/robot_control.hpp`

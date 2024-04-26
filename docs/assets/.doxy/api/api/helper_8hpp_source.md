@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](helper_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_GUI_HELPER_HPP
 #define ROBOT_DART_GUI_HELPER_HPP
 
@@ -44,6 +44,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

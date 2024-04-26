@@ -370,6 +370,8 @@ inline robot_dart::robots::Arm::Arm (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/arm.hpp`
 

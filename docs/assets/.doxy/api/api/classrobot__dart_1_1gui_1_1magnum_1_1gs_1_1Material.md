@@ -128,6 +128,8 @@ robot_dart::gui::magnum::gs::Material::Material ()
 
 
 
+<hr>
+
 
 
 ### function Material [2/3]
@@ -143,6 +145,8 @@ robot_dart::gui::magnum::gs::Material::Material (
 
 
 
+
+<hr>
 
 
 
@@ -160,6 +164,8 @@ robot_dart::gui::magnum::gs::Material::Material (
 
 
 
+<hr>
+
 
 
 ### function ambient\_color [1/2]
@@ -170,6 +176,8 @@ Magnum::Color4 & robot_dart::gui::magnum::gs::Material::ambient_color ()
 
 
 
+
+<hr>
 
 
 
@@ -182,6 +190,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::ambient_color () const
 
 
 
+<hr>
+
 
 
 ### function ambient\_texture 
@@ -192,6 +202,8 @@ Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::ambient_texture (
 
 
 
+
+<hr>
 
 
 
@@ -204,6 +216,8 @@ Magnum::Color4 & robot_dart::gui::magnum::gs::Material::diffuse_color ()
 
 
 
+<hr>
+
 
 
 ### function diffuse\_color [2/2]
@@ -214,6 +228,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::diffuse_color () const
 
 
 
+
+<hr>
 
 
 
@@ -226,6 +242,8 @@ Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::diffuse_texture (
 
 
 
+<hr>
+
 
 
 ### function has\_ambient\_texture 
@@ -236,6 +254,8 @@ bool robot_dart::gui::magnum::gs::Material::has_ambient_texture () const
 
 
 
+
+<hr>
 
 
 
@@ -248,6 +268,8 @@ bool robot_dart::gui::magnum::gs::Material::has_diffuse_texture () const
 
 
 
+<hr>
+
 
 
 ### function has\_specular\_texture 
@@ -258,6 +280,8 @@ bool robot_dart::gui::magnum::gs::Material::has_specular_texture () const
 
 
 
+
+<hr>
 
 
 
@@ -272,6 +296,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_ambient_color (
 
 
 
+<hr>
+
 
 
 ### function set\_ambient\_texture 
@@ -284,6 +310,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_ambient_texture (
 
 
 
+
+<hr>
 
 
 
@@ -298,6 +326,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_diffuse_color (
 
 
 
+<hr>
+
 
 
 ### function set\_diffuse\_texture 
@@ -310,6 +340,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_diffuse_texture (
 
 
 
+
+<hr>
 
 
 
@@ -324,6 +356,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_shininess (
 
 
 
+<hr>
+
 
 
 ### function set\_specular\_color 
@@ -336,6 +370,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_specular_color (
 
 
 
+
+<hr>
 
 
 
@@ -350,6 +386,8 @@ Material & robot_dart::gui::magnum::gs::Material::set_specular_texture (
 
 
 
+<hr>
+
 
 
 ### function shininess [1/2]
@@ -360,6 +398,8 @@ Magnum::Float & robot_dart::gui::magnum::gs::Material::shininess ()
 
 
 
+
+<hr>
 
 
 
@@ -372,6 +412,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Material::shininess () const
 
 
 
+<hr>
+
 
 
 ### function specular\_color [1/2]
@@ -382,6 +424,8 @@ Magnum::Color4 & robot_dart::gui::magnum::gs::Material::specular_color ()
 
 
 
+
+<hr>
 
 
 
@@ -394,6 +438,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::specular_color () const
 
 
 
+<hr>
+
 
 
 ### function specular\_texture 
@@ -404,6 +450,8 @@ Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::specular_texture 
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -418,6 +466,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::_ambient;
 
 
 
+<hr>
+
 
 
 ### variable \_ambient\_texture 
@@ -428,6 +478,8 @@ Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_ambient_texture;
 
 
 
+
+<hr>
 
 
 
@@ -440,6 +492,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::_diffuse;
 
 
 
+<hr>
+
 
 
 ### variable \_diffuse\_texture 
@@ -450,6 +504,8 @@ Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_diffuse_texture;
 
 
 
+
+<hr>
 
 
 
@@ -462,6 +518,8 @@ Magnum::Float robot_dart::gui::magnum::gs::Material::_shininess;
 
 
 
+<hr>
+
 
 
 ### variable \_specular 
@@ -473,6 +531,8 @@ Magnum::Color4 robot_dart::gui::magnum::gs::Material::_specular;
 
 
 
+<hr>
+
 
 
 ### variable \_specular\_texture 
@@ -483,6 +543,8 @@ Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_specular_texture;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/material.hpp`

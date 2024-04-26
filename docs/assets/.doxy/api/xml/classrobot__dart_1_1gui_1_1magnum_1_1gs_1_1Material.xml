@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::Material</compoundname>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a6bc1f121b05a5caacc94fba74b7047f7" prot="protected" static="no" mutable="no">
         <type>Magnum::Color4</type>
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::_ambient</definition>
         <argsstring></argsstring>
         <name>_ambient</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_ambient</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -21,6 +22,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::_diffuse</definition>
         <argsstring></argsstring>
         <name>_diffuse</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_diffuse</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -34,6 +36,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::_specular</definition>
         <argsstring></argsstring>
         <name>_specular</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_specular</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +50,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Material::_shininess</definition>
         <argsstring></argsstring>
         <name>_shininess</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_shininess</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -60,6 +64,7 @@
         <definition>Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_ambient_texture</definition>
         <argsstring></argsstring>
         <name>_ambient_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_ambient_texture</qualifiedname>
         <initializer>= NULL</initializer>
         <briefdescription>
         </briefdescription>
@@ -74,6 +79,7 @@
         <definition>Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_diffuse_texture</definition>
         <argsstring></argsstring>
         <name>_diffuse_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_diffuse_texture</qualifiedname>
         <initializer>= NULL</initializer>
         <briefdescription>
         </briefdescription>
@@ -88,6 +94,7 @@
         <definition>Magnum::GL::Texture2D* robot_dart::gui::magnum::gs::Material::_specular_texture</definition>
         <argsstring></argsstring>
         <name>_specular_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::_specular_texture</qualifiedname>
         <initializer>= NULL</initializer>
         <briefdescription>
         </briefdescription>
@@ -97,13 +104,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/material.hpp" line="59" column="43" bodyfile="robot_dart/gui/magnum/gs/material.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1abc1f4b2c789099e75fe2f3666808ed2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::gs::Material::Material</definition>
         <argsstring>()</argsstring>
         <name>Material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::Material</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -117,6 +125,7 @@
         <definition>robot_dart::gui::magnum::gs::Material::Material</definition>
         <argsstring>(const Magnum::Color4 &amp;ambient, const Magnum::Color4 &amp;diffuse, const Magnum::Color4 &amp;specular, Magnum::Float shininess)</argsstring>
         <name>Material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::Material</qualifiedname>
         <param>
           <type>const Magnum::Color4 &amp;</type>
           <declname>ambient</declname>
@@ -146,6 +155,7 @@
         <definition>robot_dart::gui::magnum::gs::Material::Material</definition>
         <argsstring>(Magnum::GL::Texture2D *ambient_texture, Magnum::GL::Texture2D *diffuse_texture, Magnum::GL::Texture2D *specular_texture, Magnum::Float shininess)</argsstring>
         <name>Material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::Material</qualifiedname>
         <param>
           <type>Magnum::GL::Texture2D *</type>
           <declname>ambient_texture</declname>
@@ -175,6 +185,7 @@
         <definition>Magnum::Color4 &amp; robot_dart::gui::magnum::gs::Material::ambient_color</definition>
         <argsstring>()</argsstring>
         <name>ambient_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::ambient_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -188,6 +199,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::ambient_color</definition>
         <argsstring>() const</argsstring>
         <name>ambient_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::ambient_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -201,6 +213,7 @@
         <definition>Magnum::Color4 &amp; robot_dart::gui::magnum::gs::Material::diffuse_color</definition>
         <argsstring>()</argsstring>
         <name>diffuse_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::diffuse_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -214,6 +227,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::diffuse_color</definition>
         <argsstring>() const</argsstring>
         <name>diffuse_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::diffuse_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -227,6 +241,7 @@
         <definition>Magnum::Color4 &amp; robot_dart::gui::magnum::gs::Material::specular_color</definition>
         <argsstring>()</argsstring>
         <name>specular_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::specular_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -240,6 +255,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::gs::Material::specular_color</definition>
         <argsstring>() const</argsstring>
         <name>specular_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::specular_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -253,6 +269,7 @@
         <definition>Magnum::Float &amp; robot_dart::gui::magnum::gs::Material::shininess</definition>
         <argsstring>()</argsstring>
         <name>shininess</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::shininess</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -266,6 +283,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Material::shininess</definition>
         <argsstring>() const</argsstring>
         <name>shininess</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::shininess</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -279,6 +297,7 @@
         <definition>Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::ambient_texture</definition>
         <argsstring>()</argsstring>
         <name>ambient_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::ambient_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -292,6 +311,7 @@
         <definition>Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::diffuse_texture</definition>
         <argsstring>()</argsstring>
         <name>diffuse_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::diffuse_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -305,6 +325,7 @@
         <definition>Magnum::GL::Texture2D * robot_dart::gui::magnum::gs::Material::specular_texture</definition>
         <argsstring>()</argsstring>
         <name>specular_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::specular_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -318,6 +339,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Material::has_ambient_texture</definition>
         <argsstring>() const</argsstring>
         <name>has_ambient_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::has_ambient_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -331,6 +353,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Material::has_diffuse_texture</definition>
         <argsstring>() const</argsstring>
         <name>has_diffuse_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::has_diffuse_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -344,6 +367,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Material::has_specular_texture</definition>
         <argsstring>() const</argsstring>
         <name>has_specular_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::has_specular_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -357,6 +381,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_ambient_color</definition>
         <argsstring>(const Magnum::Color4 &amp;ambient)</argsstring>
         <name>set_ambient_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_ambient_color</qualifiedname>
         <param>
           <type>const Magnum::Color4 &amp;</type>
           <declname>ambient</declname>
@@ -374,6 +399,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_diffuse_color</definition>
         <argsstring>(const Magnum::Color4 &amp;diffuse)</argsstring>
         <name>set_diffuse_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_diffuse_color</qualifiedname>
         <param>
           <type>const Magnum::Color4 &amp;</type>
           <declname>diffuse</declname>
@@ -391,6 +417,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_specular_color</definition>
         <argsstring>(const Magnum::Color4 &amp;specular)</argsstring>
         <name>set_specular_color</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_specular_color</qualifiedname>
         <param>
           <type>const Magnum::Color4 &amp;</type>
           <declname>specular</declname>
@@ -408,6 +435,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_shininess</definition>
         <argsstring>(Magnum::Float shininess)</argsstring>
         <name>set_shininess</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_shininess</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>shininess</declname>
@@ -425,6 +453,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_ambient_texture</definition>
         <argsstring>(Magnum::GL::Texture2D *ambient_texture)</argsstring>
         <name>set_ambient_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_ambient_texture</qualifiedname>
         <param>
           <type>Magnum::GL::Texture2D *</type>
           <declname>ambient_texture</declname>
@@ -442,6 +471,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_diffuse_texture</definition>
         <argsstring>(Magnum::GL::Texture2D *diffuse_texture)</argsstring>
         <name>set_diffuse_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_diffuse_texture</qualifiedname>
         <param>
           <type>Magnum::GL::Texture2D *</type>
           <declname>diffuse_texture</declname>
@@ -459,6 +489,7 @@
         <definition>Material &amp; robot_dart::gui::magnum::gs::Material::set_specular_texture</definition>
         <argsstring>(Magnum::GL::Texture2D *specular_texture)</argsstring>
         <name>set_specular_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Material::set_specular_texture</qualifiedname>
         <param>
           <type>Magnum::GL::Texture2D *</type>
           <declname>specular_texture</declname>
@@ -471,7 +502,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/material.hpp" line="52" column="30" bodyfile="robot_dart/gui/magnum/gs/material.cpp" bodystart="86" bodyend="90"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

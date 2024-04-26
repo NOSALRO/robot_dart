@@ -110,6 +110,8 @@ enum robot_dart::gui::magnum::gs::ShadowMap::Flag {
 
 
 
+<hr>
+
 
 
 ### typedef Flags 
@@ -120,6 +122,8 @@ using robot_dart::gui::magnum::gs::ShadowMap::Flags =  Magnum::Containers::EnumS
 
 
 
+
+<hr>
 
 
 
@@ -132,6 +136,8 @@ using robot_dart::gui::magnum::gs::ShadowMap::Position =  Magnum::Shaders::Gener
 
 
 
+<hr>
+
 
 
 ### typedef TextureCoordinates 
@@ -142,6 +148,8 @@ using robot_dart::gui::magnum::gs::ShadowMap::TextureCoordinates =  Magnum::Shad
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -158,6 +166,8 @@ explicit robot_dart::gui::magnum::gs::ShadowMap::ShadowMap (
 
 
 
+<hr>
+
 
 
 ### function ShadowMap [2/2]
@@ -171,6 +181,8 @@ explicit robot_dart::gui::magnum::gs::ShadowMap::ShadowMap (
 
 
 
+<hr>
+
 
 
 ### function flags 
@@ -181,6 +193,8 @@ Flags robot_dart::gui::magnum::gs::ShadowMap::flags () const
 
 
 
+
+<hr>
 
 
 
@@ -195,6 +209,8 @@ ShadowMap & robot_dart::gui::magnum::gs::ShadowMap::set_material (
 
 
 
+<hr>
+
 
 
 ### function set\_projection\_matrix 
@@ -208,6 +224,8 @@ ShadowMap & robot_dart::gui::magnum::gs::ShadowMap::set_projection_matrix (
 
 
 
+<hr>
+
 
 
 ### function set\_transformation\_matrix 
@@ -220,6 +238,8 @@ ShadowMap & robot_dart::gui::magnum::gs::ShadowMap::set_transformation_matrix (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/shadow_map.hpp`

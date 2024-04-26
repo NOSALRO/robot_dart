@@ -105,6 +105,8 @@ Eigen::Vector4d robot_dart::gui::magnum::GraphicsConfiguration::bg_color;
 
 
 
+<hr>
+
 
 
 ### variable draw\_debug 
@@ -115,6 +117,8 @@ bool robot_dart::gui::magnum::GraphicsConfiguration::draw_debug;
 
 
 
+
+<hr>
 
 
 
@@ -127,6 +131,8 @@ bool robot_dart::gui::magnum::GraphicsConfiguration::draw_main_camera;
 
 
 
+<hr>
+
 
 
 ### variable draw\_text 
@@ -137,6 +143,8 @@ bool robot_dart::gui::magnum::GraphicsConfiguration::draw_text;
 
 
 
+
+<hr>
 
 
 
@@ -149,6 +157,8 @@ size_t robot_dart::gui::magnum::GraphicsConfiguration::height;
 
 
 
+<hr>
+
 
 
 ### variable max\_lights 
@@ -159,6 +169,8 @@ size_t robot_dart::gui::magnum::GraphicsConfiguration::max_lights;
 
 
 
+
+<hr>
 
 
 
@@ -171,6 +183,8 @@ size_t robot_dart::gui::magnum::GraphicsConfiguration::shadow_map_size;
 
 
 
+<hr>
+
 
 
 ### variable shadowed 
@@ -181,6 +195,8 @@ bool robot_dart::gui::magnum::GraphicsConfiguration::shadowed;
 
 
 
+
+<hr>
 
 
 
@@ -193,6 +209,8 @@ double robot_dart::gui::magnum::GraphicsConfiguration::specular_strength;
 
 
 
+<hr>
+
 
 
 ### variable title 
@@ -203,6 +221,8 @@ std::string robot_dart::gui::magnum::GraphicsConfiguration::title;
 
 
 
+
+<hr>
 
 
 
@@ -215,6 +235,8 @@ bool robot_dart::gui::magnum::GraphicsConfiguration::transparent_shadows;
 
 
 
+<hr>
+
 
 
 ### variable width 
@@ -225,6 +247,8 @@ size_t robot_dart::gui::magnum::GraphicsConfiguration::width;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.hpp`

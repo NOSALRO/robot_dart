@@ -204,6 +204,8 @@ robot_dart::sensor::IMU::IMU (
 
 
 
+<hr>
+
 
 
 ### function angular\_position 
@@ -214,6 +216,8 @@ const Eigen::AngleAxisd & robot_dart::sensor::IMU::angular_position () const
 
 
 
+
+<hr>
 
 
 
@@ -226,6 +230,8 @@ Eigen::Vector3d robot_dart::sensor::IMU::angular_position_vec () const
 
 
 
+<hr>
+
 
 
 ### function angular\_velocity 
@@ -236,6 +242,8 @@ const Eigen::Vector3d & robot_dart::sensor::IMU::angular_velocity () const
 
 
 
+
+<hr>
 
 
 
@@ -253,6 +261,8 @@ inline virtual void robot_dart::sensor::IMU::attach_to_joint (
 Implements [*robot\_dart::sensor::Sensor::attach\_to\_joint*](classrobot__dart_1_1sensor_1_1Sensor.md#function-attach_to_joint-12)
 
 
+<hr>
+
 
 
 ### function calculate 
@@ -268,6 +278,8 @@ virtual void robot_dart::sensor::IMU::calculate (
 Implements [*robot\_dart::sensor::Sensor::calculate*](classrobot__dart_1_1sensor_1_1Sensor.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function init 
@@ -281,6 +293,8 @@ virtual void robot_dart::sensor::IMU::init () override
 Implements [*robot\_dart::sensor::Sensor::init*](classrobot__dart_1_1sensor_1_1Sensor.md#function-init)
 
 
+<hr>
+
 
 
 ### function linear\_acceleration 
@@ -291,6 +305,8 @@ const Eigen::Vector3d & robot_dart::sensor::IMU::linear_acceleration () const
 
 
 
+
+<hr>
 
 
 
@@ -304,6 +320,8 @@ virtual std::string robot_dart::sensor::IMU::type () override const
 
 Implements [*robot\_dart::sensor::Sensor::type*](classrobot__dart_1_1sensor_1_1Sensor.md#function-type)
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -318,6 +336,8 @@ Eigen::AngleAxisd robot_dart::sensor::IMU::_angular_pos;
 
 
 
+<hr>
+
 
 
 ### variable \_angular\_vel 
@@ -328,6 +348,8 @@ Eigen::Vector3d robot_dart::sensor::IMU::_angular_vel;
 
 
 
+
+<hr>
 
 
 
@@ -340,6 +362,8 @@ IMUConfig robot_dart::sensor::IMU::_config;
 
 
 
+<hr>
+
 
 
 ### variable \_linear\_accel 
@@ -350,6 +374,8 @@ Eigen::Vector3d robot_dart::sensor::IMU::_linear_accel;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/sensor/imu.hpp`

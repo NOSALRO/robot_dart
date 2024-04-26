@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](magnum_2gs_2helper_8cpp.md)
 
-```C++
 
+```C++
 #include "helper.hpp"
 
 #include <Corrade/Containers/ArrayViewStl.h>
@@ -88,6 +88,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

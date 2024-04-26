@@ -443,6 +443,8 @@ inline robot_dart::robots::Ur3eHand::Ur3eHand (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/ur3e.hpp`
 

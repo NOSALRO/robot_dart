@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](iiwa_8cpp.md)
 
-```C++
 
+```C++
 #include "robot_dart/robots/iiwa.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 
@@ -35,6 +35,6 @@ namespace robot_dart {
         }
     } // namespace robots
 } // namespace robot_dart
-
 ```
+
 

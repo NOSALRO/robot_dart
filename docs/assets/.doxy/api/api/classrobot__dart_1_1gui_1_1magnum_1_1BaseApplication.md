@@ -180,6 +180,8 @@ robot_dart::gui::magnum::BaseApplication::BaseApplication (
 
 
 
+<hr>
+
 
 
 ### function add\_light 
@@ -192,6 +194,8 @@ void robot_dart::gui::magnum::BaseApplication::add_light (
 
 
 
+
+<hr>
 
 
 
@@ -207,6 +211,8 @@ bool robot_dart::gui::magnum::BaseApplication::attach_camera (
 
 
 
+<hr>
+
 
 
 ### function camera [1/2]
@@ -217,6 +223,8 @@ inline gs::Camera & robot_dart::gui::magnum::BaseApplication::camera ()
 
 
 
+
+<hr>
 
 
 
@@ -229,6 +237,8 @@ inline const gs::Camera & robot_dart::gui::magnum::BaseApplication::camera () co
 
 
 
+<hr>
+
 
 
 ### function clear\_lights 
@@ -239,6 +249,8 @@ void robot_dart::gui::magnum::BaseApplication::clear_lights ()
 
 
 
+
+<hr>
 
 
 
@@ -251,6 +263,8 @@ inline DebugDrawData robot_dart::gui::magnum::BaseApplication::debug_draw_data (
 
 
 
+<hr>
+
 
 
 ### function depth\_array 
@@ -261,6 +275,8 @@ DepthImage robot_dart::gui::magnum::BaseApplication::depth_array ()
 
 
 
+
+<hr>
 
 
 
@@ -273,6 +289,8 @@ GrayscaleImage robot_dart::gui::magnum::BaseApplication::depth_image ()
 
 
 
+<hr>
+
 
 
 ### function done 
@@ -284,6 +302,8 @@ bool robot_dart::gui::magnum::BaseApplication::done () const
 
 
 
+<hr>
+
 
 
 ### function drawables 
@@ -294,6 +314,8 @@ inline Magnum::SceneGraph::DrawableGroup3D & robot_dart::gui::magnum::BaseApplic
 
 
 
+
+<hr>
 
 
 
@@ -309,6 +331,8 @@ void robot_dart::gui::magnum::BaseApplication::enable_shadows (
 
 
 
+<hr>
+
 
 
 ### function image 
@@ -319,6 +343,8 @@ inline Corrade::Containers::Optional< Magnum::Image2D > & robot_dart::gui::magnu
 
 
 
+
+<hr>
 
 
 
@@ -334,6 +360,8 @@ void robot_dart::gui::magnum::BaseApplication::init (
 
 
 
+<hr>
+
 
 
 ### function light 
@@ -347,6 +375,8 @@ gs::Light & robot_dart::gui::magnum::BaseApplication::light (
 
 
 
+<hr>
+
 
 
 ### function lights 
@@ -357,6 +387,8 @@ std::vector< gs::Light > & robot_dart::gui::magnum::BaseApplication::lights ()
 
 
 
+
+<hr>
 
 
 
@@ -373,6 +405,8 @@ void robot_dart::gui::magnum::BaseApplication::look_at (
 
 
 
+<hr>
+
 
 
 ### function num\_lights 
@@ -384,6 +418,8 @@ size_t robot_dart::gui::magnum::BaseApplication::num_lights () const
 
 
 
+<hr>
+
 
 
 ### function raw\_depth\_image 
@@ -394,6 +430,8 @@ GrayscaleImage robot_dart::gui::magnum::BaseApplication::raw_depth_image ()
 
 
 
+
+<hr>
 
 
 
@@ -409,6 +447,8 @@ inline void robot_dart::gui::magnum::BaseApplication::record_video (
 
 
 
+<hr>
+
 
 
 ### function render 
@@ -419,6 +459,8 @@ inline virtual void robot_dart::gui::magnum::BaseApplication::render ()
 
 
 
+
+<hr>
 
 
 
@@ -431,6 +473,8 @@ void robot_dart::gui::magnum::BaseApplication::render_shadows ()
 
 
 
+<hr>
+
 
 
 ### function scene 
@@ -441,6 +485,8 @@ inline Scene3D & robot_dart::gui::magnum::BaseApplication::scene ()
 
 
 
+
+<hr>
 
 
 
@@ -453,6 +499,8 @@ inline bool robot_dart::gui::magnum::BaseApplication::shadowed () const
 
 
 
+<hr>
+
 
 
 ### function transparent\_shadows 
@@ -464,6 +512,8 @@ inline bool robot_dart::gui::magnum::BaseApplication::transparent_shadows () con
 
 
 
+<hr>
+
 
 
 ### function update\_graphics 
@@ -474,6 +524,8 @@ void robot_dart::gui::magnum::BaseApplication::update_graphics ()
 
 
 
+
+<hr>
 
 
 
@@ -488,6 +540,8 @@ void robot_dart::gui::magnum::BaseApplication::update_lights (
 
 
 
+<hr>
+
 
 
 ### function ~BaseApplication 
@@ -498,6 +552,8 @@ inline virtual robot_dart::gui::magnum::BaseApplication::~BaseApplication ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -512,6 +568,8 @@ std::unique_ptr<Magnum::GL::Mesh> robot_dart::gui::magnum::BaseApplication::_3D_
 
 
 
+<hr>
+
 
 
 ### variable \_3D\_axis\_shader 
@@ -522,6 +580,8 @@ std::unique_ptr<Magnum::Shaders::VertexColorGL3D> robot_dart::gui::magnum::BaseA
 
 
 
+
+<hr>
 
 
 
@@ -534,6 +594,8 @@ std::unique_ptr<Magnum::GL::Mesh> robot_dart::gui::magnum::BaseApplication::_bac
 
 
 
+<hr>
+
 
 
 ### variable \_background\_shader 
@@ -544,6 +606,8 @@ std::unique_ptr<Magnum::Shaders::FlatGL2D> robot_dart::gui::magnum::BaseApplicat
 
 
 
+
+<hr>
 
 
 
@@ -556,6 +620,8 @@ std::unique_ptr<gs::Camera> robot_dart::gui::magnum::BaseApplication::_camera;
 
 
 
+<hr>
+
 
 
 ### variable \_color\_shader 
@@ -566,6 +632,8 @@ std::unique_ptr<gs::PhongMultiLight> robot_dart::gui::magnum::BaseApplication::_
 
 
 
+
+<hr>
 
 
 
@@ -578,6 +646,8 @@ GraphicsConfiguration robot_dart::gui::magnum::BaseApplication::_configuration;
 
 
 
+<hr>
+
 
 
 ### variable \_cubemap\_color\_drawables 
@@ -588,6 +658,8 @@ Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_c
 
 
 
+
+<hr>
 
 
 
@@ -600,6 +672,8 @@ std::unique_ptr<gs::CubeMapColor> robot_dart::gui::magnum::BaseApplication::_cub
 
 
 
+<hr>
+
 
 
 ### variable \_cubemap\_drawables 
@@ -610,6 +684,8 @@ Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_c
 
 
 
+
+<hr>
 
 
 
@@ -622,6 +698,8 @@ std::unique_ptr<gs::CubeMap> robot_dart::gui::magnum::BaseApplication::_cubemap_
 
 
 
+<hr>
+
 
 
 ### variable \_cubemap\_texture\_color\_shader 
@@ -632,6 +710,8 @@ std::unique_ptr<gs::CubeMapColor> robot_dart::gui::magnum::BaseApplication::_cub
 
 
 
+
+<hr>
 
 
 
@@ -644,6 +724,8 @@ std::unique_ptr<gs::CubeMap> robot_dart::gui::magnum::BaseApplication::_cubemap_
 
 
 
+<hr>
+
 
 
 ### variable \_dart\_world 
@@ -654,6 +736,8 @@ std::unique_ptr<Magnum::DartIntegration::World> robot_dart::gui::magnum::BaseApp
 
 
 
+
+<hr>
 
 
 
@@ -666,6 +750,8 @@ bool robot_dart::gui::magnum::BaseApplication::_done;
 
 
 
+<hr>
+
 
 
 ### variable \_drawable\_objects 
@@ -676,6 +762,8 @@ std::unordered_map<Magnum::DartIntegration::Object*, ObjectStruct*> robot_dart::
 
 
 
+
+<hr>
 
 
 
@@ -688,6 +776,8 @@ Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_d
 
 
 
+<hr>
+
 
 
 ### variable \_font 
@@ -698,6 +788,8 @@ Corrade::Containers::Pointer<Magnum::Text::AbstractFont> robot_dart::gui::magnum
 
 
 
+
+<hr>
 
 
 
@@ -710,6 +802,8 @@ Corrade::PluginManager::Manager<Magnum::Text::AbstractFont> robot_dart::gui::mag
 
 
 
+<hr>
+
 
 
 ### variable \_glyph\_cache 
@@ -720,6 +814,8 @@ Corrade::Containers::Pointer<Magnum::Text::DistanceFieldGlyphCache> robot_dart::
 
 
 
+
+<hr>
 
 
 
@@ -732,6 +828,8 @@ Corrade::PluginManager::Manager<Magnum::Trade::AbstractImporter> robot_dart::gui
 
 
 
+<hr>
+
 
 
 ### variable \_lights 
@@ -742,6 +840,8 @@ std::vector<gs::Light> robot_dart::gui::magnum::BaseApplication::_lights;
 
 
 
+
+<hr>
 
 
 
@@ -754,6 +854,8 @@ int robot_dart::gui::magnum::BaseApplication::_max_lights;
 
 
 
+<hr>
+
 
 
 ### variable \_scene 
@@ -764,6 +866,8 @@ Scene3D robot_dart::gui::magnum::BaseApplication::_scene;
 
 
 
+
+<hr>
 
 
 
@@ -776,6 +880,8 @@ std::unique_ptr<Camera3D> robot_dart::gui::magnum::BaseApplication::_shadow_came
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_camera\_object 
@@ -786,6 +892,8 @@ Object3D* robot_dart::gui::magnum::BaseApplication::_shadow_camera_object;
 
 
 
+
+<hr>
 
 
 
@@ -798,6 +906,8 @@ std::unique_ptr<Magnum::GL::CubeMapTextureArray> robot_dart::gui::magnum::BaseAp
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_color\_shader 
@@ -808,6 +918,8 @@ std::unique_ptr<gs::ShadowMapColor> robot_dart::gui::magnum::BaseApplication::_s
 
 
 
+
+<hr>
 
 
 
@@ -820,6 +932,8 @@ std::unique_ptr<Magnum::GL::Texture2DArray> robot_dart::gui::magnum::BaseApplica
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_cube\_map 
@@ -830,6 +944,8 @@ std::unique_ptr<Magnum::GL::CubeMapTextureArray> robot_dart::gui::magnum::BaseAp
 
 
 
+
+<hr>
 
 
 
@@ -842,6 +958,8 @@ std::vector<ShadowData> robot_dart::gui::magnum::BaseApplication::_shadow_data;
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_map\_size 
@@ -852,6 +970,8 @@ int robot_dart::gui::magnum::BaseApplication::_shadow_map_size;
 
 
 
+
+<hr>
 
 
 
@@ -864,6 +984,8 @@ std::unique_ptr<gs::ShadowMap> robot_dart::gui::magnum::BaseApplication::_shadow
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_texture 
@@ -874,6 +996,8 @@ std::unique_ptr<Magnum::GL::Texture2DArray> robot_dart::gui::magnum::BaseApplica
 
 
 
+
+<hr>
 
 
 
@@ -886,6 +1010,8 @@ std::unique_ptr<gs::ShadowMapColor> robot_dart::gui::magnum::BaseApplication::_s
 
 
 
+<hr>
+
 
 
 ### variable \_shadow\_texture\_shader 
@@ -896,6 +1022,8 @@ std::unique_ptr<gs::ShadowMap> robot_dart::gui::magnum::BaseApplication::_shadow
 
 
 
+
+<hr>
 
 
 
@@ -908,6 +1036,8 @@ bool robot_dart::gui::magnum::BaseApplication::_shadowed;
 
 
 
+<hr>
+
 
 
 ### variable \_shadowed\_color\_drawables 
@@ -918,6 +1048,8 @@ Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_s
 
 
 
+
+<hr>
 
 
 
@@ -930,6 +1062,8 @@ Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_s
 
 
 
+<hr>
+
 
 
 ### variable \_simu 
@@ -940,6 +1074,8 @@ RobotDARTSimu* robot_dart::gui::magnum::BaseApplication::_simu;
 
 
 
+
+<hr>
 
 
 
@@ -952,6 +1088,8 @@ Corrade::Containers::Pointer<Magnum::GL::Buffer> robot_dart::gui::magnum::BaseAp
 
 
 
+<hr>
+
 
 
 ### variable \_text\_shader 
@@ -962,6 +1100,8 @@ std::unique_ptr<Magnum::Shaders::DistanceFieldVectorGL2D> robot_dart::gui::magnu
 
 
 
+
+<hr>
 
 
 
@@ -974,6 +1114,8 @@ Corrade::Containers::Pointer<Magnum::GL::Buffer> robot_dart::gui::magnum::BaseAp
 
 
 
+<hr>
+
 
 
 ### variable \_texture\_shader 
@@ -984,6 +1126,8 @@ std::unique_ptr<gs::PhongMultiLight> robot_dart::gui::magnum::BaseApplication::_
 
 
 
+
+<hr>
 
 
 
@@ -996,6 +1140,8 @@ int robot_dart::gui::magnum::BaseApplication::_transparentSize;
 
 
 
+<hr>
+
 
 
 ### variable \_transparent\_shadows 
@@ -1006,6 +1152,8 @@ bool robot_dart::gui::magnum::BaseApplication::_transparent_shadows;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -1020,6 +1168,8 @@ void robot_dart::gui::magnum::BaseApplication::_gl_clean_up ()
 
 
 
+<hr>
+
 
 
 ### function \_prepare\_shadows 
@@ -1030,6 +1180,8 @@ void robot_dart::gui::magnum::BaseApplication::_prepare_shadows ()
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.hpp`

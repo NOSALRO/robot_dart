@@ -379,6 +379,8 @@ robot_dart::robots::A1::A1 (
 
 
 
+<hr>
+
 
 
 ### function imu 
@@ -389,6 +391,8 @@ inline const sensor::IMU & robot_dart::robots::A1::imu () const
 
 
 
+
+<hr>
 
 
 
@@ -402,6 +406,8 @@ virtual void robot_dart::robots::A1::reset () override
 
 Implements [*robot\_dart::Robot::reset*](classrobot__dart_1_1Robot.md#function-reset)
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -415,6 +421,8 @@ std::shared_ptr<sensor::IMU> robot_dart::robots::A1::_imu;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/a1.hpp`

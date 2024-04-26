@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](a1_8cpp.md)
 
-```C++
 
+```C++
 #include "robot_dart/robots/a1.hpp"
 #include "robot_dart/robot_dart_simu.hpp"
 
@@ -44,6 +44,6 @@ namespace robot_dart {
         }
     } // namespace robots
 } // namespace robot_dart
-
 ```
+
 

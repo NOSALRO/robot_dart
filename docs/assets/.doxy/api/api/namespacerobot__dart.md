@@ -166,6 +166,8 @@ auto robot_dart::body_node_get_friction_coeff;
 
 
 
+<hr>
+
 
 
 ### variable body\_node\_get\_restitution\_coeff 
@@ -176,6 +178,8 @@ auto robot_dart::body_node_get_restitution_coeff;
 
 
 
+
+<hr>
 
 
 
@@ -188,6 +192,8 @@ auto robot_dart::body_node_set_friction_coeff;
 
 
 
+<hr>
+
 
 
 ### variable body\_node\_set\_restitution\_coeff 
@@ -198,6 +204,8 @@ auto robot_dart::body_node_set_restitution_coeff;
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -215,6 +223,8 @@ inline Eigen::Isometry3d robot_dart::make_tf (
 
 
 
+<hr>
+
 
 
 ### function make\_tf 
@@ -227,6 +237,8 @@ inline Eigen::Isometry3d robot_dart::make_tf (
 
 
 
+
+<hr>
 
 
 
@@ -241,6 +253,8 @@ inline Eigen::Isometry3d robot_dart::make_tf (
 
 
 
+<hr>
+
 
 
 ### function make\_tf 
@@ -254,6 +268,8 @@ inline Eigen::Isometry3d robot_dart::make_tf (
 
 
 
+<hr>
+
 
 
 ### function make\_vector 
@@ -266,6 +282,8 @@ inline Eigen::VectorXd robot_dart::make_vector (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/control/pd_control.cpp`

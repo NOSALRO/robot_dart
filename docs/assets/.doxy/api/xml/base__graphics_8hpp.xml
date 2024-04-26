@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="base__graphics_8hpp" kind="file" language="C++">
     <compoundname>base_graphics.hpp</compoundname>
     <includes refid="base_8hpp" local="no">robot_dart/gui/base.hpp</includes>
@@ -540,7 +540,7 @@
     <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum">robot_dart::gui::magnum</innernamespace>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="base__graphics_8hpp_1ae81e2fd8004710962ba9d9ec40fd0d69" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>static void robot_dart_initialize_magnum_resources</definition>
@@ -554,7 +554,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_graphics.hpp" line="13" column="20" bodyfile="robot_dart/gui/magnum/base_graphics.hpp" bodystart="13" bodyend="16"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

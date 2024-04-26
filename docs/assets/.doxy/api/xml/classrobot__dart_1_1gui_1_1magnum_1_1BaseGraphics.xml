@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::BaseGraphics</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1Base" prot="public" virt="non-virtual">robot_dart::gui::Base</basecompoundref>
@@ -9,12 +9,13 @@
         <defval><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" kindref="compound">GlfwApplication</ref></defval>
       </param>
     </templateparamlist>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad27c88af2164ba0906c9017574a3213e" prot="protected" static="no" mutable="no">
         <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref></type>
         <definition>GraphicsConfiguration robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::_configuration</definition>
         <argsstring></argsstring>
         <name>_configuration</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::_configuration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>bool robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::_enabled</definition>
         <argsstring></argsstring>
         <name>_enabled</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::_enabled</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>int robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::_fps</definition>
         <argsstring></argsstring>
         <name>_fps</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::_fps</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -54,6 +57,7 @@
         <definition>std::unique_ptr&lt;BaseApplication&gt; robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::_magnum_app</definition>
         <argsstring></argsstring>
         <name>_magnum_app</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::_magnum_app</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -67,6 +71,7 @@
         <definition>Corrade::Utility::Debug robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::_magnum_silence_output</definition>
         <argsstring></argsstring>
         <name>_magnum_silence_output</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::_magnum_silence_output</qualifiedname>
         <initializer>{nullptr}</initializer>
         <briefdescription>
         </briefdescription>
@@ -74,15 +79,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_graphics.hpp" line="214" column="41" bodyfile="robot_dart/gui/magnum/base_graphics.hpp" bodystart="214" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_graphics.hpp" line="214" column="41" bodyfile="robot_dart/gui/magnum/base_graphics.hpp" bodystart="214" bodyend="214"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0d7a97cf1e026c792a306e5e3f009b7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::BaseGraphics</definition>
         <argsstring>(const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
         <name>BaseGraphics</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::BaseGraphics</qualifiedname>
         <param>
           <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
           <declname>configuration</declname>
@@ -101,6 +107,7 @@
         <definition>virtual robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::~BaseGraphics</definition>
         <argsstring>()</argsstring>
         <name>~BaseGraphics</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::~BaseGraphics</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,6 +121,7 @@
         <definition>virtual void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::set_simu</definition>
         <argsstring>(RobotDARTSimu *simu) override</argsstring>
         <name>set_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::set_simu</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a3bf9eed88512a608b3385316822dae63">set_simu</reimplements>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a73ab41af3fd0827357e332cac19a5b65">set_simu</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a52f24e007f78b158c28deecd8809ed14">set_simu</reimplementedby>
@@ -134,6 +142,7 @@
         <definition>size_t robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::width</definition>
         <argsstring>() const override</argsstring>
         <name>width</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::width</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a8c0c9eed76949a13226fa1fc3b08bfcf">width</reimplements>
         <briefdescription>
         </briefdescription>
@@ -148,6 +157,7 @@
         <definition>size_t robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::height</definition>
         <argsstring>() const override</argsstring>
         <name>height</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::height</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1af6230277fa67097209b106898124fecd">height</reimplements>
         <briefdescription>
         </briefdescription>
@@ -162,6 +172,7 @@
         <definition>bool robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::done</definition>
         <argsstring>() const override</argsstring>
         <name>done</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::done</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1abc9ecab4c97b7d99ed5ff585228c77a3">done</reimplements>
         <briefdescription>
         </briefdescription>
@@ -176,6 +187,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::refresh</definition>
         <argsstring>() override</argsstring>
         <name>refresh</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::refresh</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a68d534e87d9a12b0a523c85908203d75">refresh</reimplements>
         <briefdescription>
         </briefdescription>
@@ -190,6 +202,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::set_enable</definition>
         <argsstring>(bool enable) override</argsstring>
         <name>set_enable</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::set_enable</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1ad865b4e4f042f3ee5e1c52ee66d04f01">set_enable</reimplements>
         <param>
           <type>bool</type>
@@ -208,6 +221,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::set_fps</definition>
         <argsstring>(int fps) override</argsstring>
         <name>set_fps</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::set_fps</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1aa036931527f90affdbf4a390ebb0d029">set_fps</reimplements>
         <param>
           <type>int</type>
@@ -226,6 +240,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::look_at</definition>
         <argsstring>(const Eigen::Vector3d &amp;camera_pos, const Eigen::Vector3d &amp;look_at=Eigen::Vector3d(0, 0, 0), const Eigen::Vector3d &amp;up=Eigen::Vector3d(0, 0, 1))</argsstring>
         <name>look_at</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::look_at</qualifiedname>
         <param>
           <type>const Eigen::Vector3d &amp;</type>
           <declname>camera_pos</declname>
@@ -253,6 +268,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::clear_lights</definition>
         <argsstring>()</argsstring>
         <name>clear_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::clear_lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -266,6 +282,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::add_light</definition>
         <argsstring>(const magnum::gs::Light &amp;light)</argsstring>
         <name>add_light</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::add_light</qualifiedname>
         <param>
           <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">magnum::gs::Light</ref> &amp;</type>
           <declname>light</declname>
@@ -283,6 +300,7 @@
         <definition>std::vector&lt; gs::Light &gt; &amp; robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::lights</definition>
         <argsstring>()</argsstring>
         <name>lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -296,6 +314,7 @@
         <definition>size_t robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::num_lights</definition>
         <argsstring>() const</argsstring>
         <name>num_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::num_lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -309,6 +328,7 @@
         <definition>magnum::gs::Light &amp; robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::light</definition>
         <argsstring>(size_t i)</argsstring>
         <name>light</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::light</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>i</declname>
@@ -326,6 +346,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::record_video</definition>
         <argsstring>(const std::string &amp;video_fname, int fps=-1)</argsstring>
         <name>record_video</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::record_video</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>video_fname</declname>
@@ -348,6 +369,7 @@
         <definition>bool robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::shadowed</definition>
         <argsstring>() const</argsstring>
         <name>shadowed</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::shadowed</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -361,6 +383,7 @@
         <definition>bool robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::transparent_shadows</definition>
         <argsstring>() const</argsstring>
         <name>transparent_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::transparent_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -374,6 +397,7 @@
         <definition>void robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::enable_shadows</definition>
         <argsstring>(bool enable=true, bool transparent=true)</argsstring>
         <name>enable_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::enable_shadows</qualifiedname>
         <param>
           <type>bool</type>
           <declname>enable</declname>
@@ -397,6 +421,7 @@
         <definition>Magnum::Image2D * robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::magnum_image</definition>
         <argsstring>()</argsstring>
         <name>magnum_image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::magnum_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -410,6 +435,7 @@
         <definition>Image robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::image</definition>
         <argsstring>() override</argsstring>
         <name>image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::image</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a729c0631792e06e500b950ea34680339">image</reimplements>
         <briefdescription>
         </briefdescription>
@@ -424,6 +450,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::depth_image</definition>
         <argsstring>() override</argsstring>
         <name>depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::depth_image</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a426e59cdeedef855ea4c81f93ee35a1c">depth_image</reimplements>
         <briefdescription>
         </briefdescription>
@@ -438,6 +465,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::raw_depth_image</definition>
         <argsstring>() override</argsstring>
         <name>raw_depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::raw_depth_image</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1a37cea8ca87146b07f9fc13616d7e75e6">raw_depth_image</reimplements>
         <briefdescription>
         </briefdescription>
@@ -452,6 +480,7 @@
         <definition>DepthImage robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::depth_array</definition>
         <argsstring>() override</argsstring>
         <name>depth_array</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::depth_array</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1Base_1acc95241222f0ea29ebbee11631575763">depth_array</reimplements>
         <briefdescription>
         </briefdescription>
@@ -466,6 +495,7 @@
         <definition>gs::Camera &amp; robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::camera</definition>
         <argsstring>()</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -479,6 +509,7 @@
         <definition>const gs::Camera &amp; robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::camera</definition>
         <argsstring>() const</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -492,6 +523,7 @@
         <definition>Eigen::Matrix3d robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::camera_intrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>camera_intrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::camera_intrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -505,6 +537,7 @@
         <definition>Eigen::Matrix4d robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::camera_extrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>camera_extrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::camera_extrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -518,6 +551,7 @@
         <definition>BaseApplication * robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::magnum_app</definition>
         <argsstring>()</argsstring>
         <name>magnum_app</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::magnum_app</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -531,6 +565,7 @@
         <definition>const BaseApplication * robot_dart::gui::magnum::BaseGraphics&lt; T &gt;::magnum_app</definition>
         <argsstring>() const</argsstring>
         <name>magnum_app</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseGraphics::magnum_app</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -539,7 +574,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_graphics.hpp" line="202" column="39" bodyfile="robot_dart/gui/magnum/base_graphics.hpp" bodystart="202" bodyend="206"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

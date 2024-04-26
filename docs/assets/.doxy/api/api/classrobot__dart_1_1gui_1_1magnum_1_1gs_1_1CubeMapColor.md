@@ -114,6 +114,8 @@ enum robot_dart::gui::magnum::gs::CubeMapColor::Flag {
 
 
 
+<hr>
+
 
 
 ### typedef Flags 
@@ -124,6 +126,8 @@ using robot_dart::gui::magnum::gs::CubeMapColor::Flags =  Magnum::Containers::En
 
 
 
+
+<hr>
 
 
 
@@ -136,6 +140,8 @@ using robot_dart::gui::magnum::gs::CubeMapColor::Position =  Magnum::Shaders::Ge
 
 
 
+<hr>
+
 
 
 ### typedef TextureCoordinates 
@@ -146,6 +152,8 @@ using robot_dart::gui::magnum::gs::CubeMapColor::TextureCoordinates =  Magnum::S
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -162,6 +170,8 @@ explicit robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor (
 
 
 
+<hr>
+
 
 
 ### function CubeMapColor [2/2]
@@ -174,6 +184,8 @@ explicit robot_dart::gui::magnum::gs::CubeMapColor::CubeMapColor (
 
 
 
+
+<hr>
 
 
 
@@ -188,6 +200,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::bind_cube_map_texture 
 
 
 
+<hr>
+
 
 
 ### function flags 
@@ -198,6 +212,8 @@ Flags robot_dart::gui::magnum::gs::CubeMapColor::flags () const
 
 
 
+
+<hr>
 
 
 
@@ -212,6 +228,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_far_plane (
 
 
 
+<hr>
+
 
 
 ### function set\_light\_index 
@@ -224,6 +242,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_light_index (
 
 
 
+
+<hr>
 
 
 
@@ -238,6 +258,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_light_position (
 
 
 
+<hr>
+
 
 
 ### function set\_material 
@@ -250,6 +272,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_material (
 
 
 
+
+<hr>
 
 
 
@@ -264,6 +288,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_shadow_matrices (
 
 
 
+<hr>
+
 
 
 ### function set\_transformation\_matrix 
@@ -276,6 +302,8 @@ CubeMapColor & robot_dart::gui::magnum::gs::CubeMapColor::set_transformation_mat
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/cube_map_color.hpp`

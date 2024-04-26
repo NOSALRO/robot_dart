@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="base__application_8hpp" kind="file" language="C++">
     <compoundname>base_application.hpp</compoundname>
     <includes local="no">mutex</includes>
@@ -537,7 +537,7 @@
     <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
     <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum">robot_dart::gui::magnum</innernamespace>
-      <sectiondef kind="define">
+    <sectiondef kind="define">
       <memberdef kind="define" id="base__application_8hpp_1a4a258b2f39c61ee0866550460bfb3071" prot="public" static="no">
         <name>get_gl_context_with_sleep</name>
         <param><defname>name</defname></param>
@@ -562,7 +562,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="38" column="9" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="38" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="38" column="9" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="38" bodyend="52"/>
       </memberdef>
       <memberdef kind="define" id="base__application_8hpp_1a7bea61cf19880f9096efd6d3cc83ff97" prot="public" static="no">
         <name>get_gl_context</name>
@@ -588,7 +588,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="56" column="9" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

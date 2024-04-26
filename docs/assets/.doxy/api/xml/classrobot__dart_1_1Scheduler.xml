@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1Scheduler" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::Scheduler</compoundname>
-      <sectiondef kind="protected-type">
+    <sectiondef kind="protected-type">
       <memberdef kind="typedef" id="classrobot__dart_1_1Scheduler_1a1a72fec01717f11c72566cd44e6d0638" prot="protected" static="no">
         <type>std::chrono::high_resolution_clock</type>
         <definition>using robot_dart::Scheduler::clock_t =  std::chrono::high_resolution_clock</definition>
         <argsstring></argsstring>
         <name>clock_t</name>
+        <qualifiedname>robot_dart::Scheduler::clock_t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -16,13 +17,14 @@
         </inbodydescription>
         <location file="robot_dart/scheduler.hpp" line="12" column="9" bodyfile="robot_dart/scheduler.hpp" bodystart="12" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-attrib">
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a217ffdfe2bd3694cafde3e8e5a9d7f12" prot="protected" static="no" mutable="no">
         <type>double</type>
         <definition>double robot_dart::Scheduler::_current_time</definition>
         <argsstring></argsstring>
         <name>_current_time</name>
+        <qualifiedname>robot_dart::Scheduler::_current_time</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -37,6 +39,7 @@
         <definition>double robot_dart::Scheduler::_simu_start_time</definition>
         <argsstring></argsstring>
         <name>_simu_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_simu_start_time</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -51,6 +54,7 @@
         <definition>double robot_dart::Scheduler::_real_time</definition>
         <argsstring></argsstring>
         <name>_real_time</name>
+        <qualifiedname>robot_dart::Scheduler::_real_time</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -65,6 +69,7 @@
         <definition>double robot_dart::Scheduler::_real_start_time</definition>
         <argsstring></argsstring>
         <name>_real_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_real_start_time</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -79,6 +84,7 @@
         <definition>double robot_dart::Scheduler::_it_duration</definition>
         <argsstring></argsstring>
         <name>_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::_it_duration</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -93,6 +99,7 @@
         <definition>double robot_dart::Scheduler::_average_it_duration</definition>
         <argsstring></argsstring>
         <name>_average_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::_average_it_duration</qualifiedname>
         <initializer>= 0.</initializer>
         <briefdescription>
         </briefdescription>
@@ -107,6 +114,7 @@
         <definition>double robot_dart::Scheduler::_dt</definition>
         <argsstring></argsstring>
         <name>_dt</name>
+        <qualifiedname>robot_dart::Scheduler::_dt</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -120,6 +128,7 @@
         <definition>int robot_dart::Scheduler::_current_step</definition>
         <argsstring></argsstring>
         <name>_current_step</name>
+        <qualifiedname>robot_dart::Scheduler::_current_step</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -134,6 +143,7 @@
         <definition>bool robot_dart::Scheduler::_sync</definition>
         <argsstring></argsstring>
         <name>_sync</name>
+        <qualifiedname>robot_dart::Scheduler::_sync</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -147,6 +157,7 @@
         <definition>int robot_dart::Scheduler::_max_frequency</definition>
         <argsstring></argsstring>
         <name>_max_frequency</name>
+        <qualifiedname>robot_dart::Scheduler::_max_frequency</qualifiedname>
         <initializer>= -1</initializer>
         <briefdescription>
         </briefdescription>
@@ -161,6 +172,7 @@
         <definition>clock_t::time_point robot_dart::Scheduler::_start_time</definition>
         <argsstring></argsstring>
         <name>_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_start_time</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -174,6 +186,7 @@
         <definition>clock_t::time_point robot_dart::Scheduler::_last_iteration_time</definition>
         <argsstring></argsstring>
         <name>_last_iteration_time</name>
+        <qualifiedname>robot_dart::Scheduler::_last_iteration_time</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -182,13 +195,14 @@
         </inbodydescription>
         <location file="robot_dart/scheduler.hpp" line="59" column="29" bodyfile="robot_dart/scheduler.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a6413828a90bc494af303e7a3c63a7deb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::Scheduler::Scheduler</definition>
         <argsstring>(double dt, bool sync=false)</argsstring>
         <name>Scheduler</name>
+        <qualifiedname>robot_dart::Scheduler::Scheduler</qualifiedname>
         <param>
           <type>double</type>
           <declname>dt</declname>
@@ -211,6 +225,7 @@
         <definition>bool robot_dart::Scheduler::operator()</definition>
         <argsstring>(int frequency)</argsstring>
         <name>operator()</name>
+        <qualifiedname>robot_dart::Scheduler::operator()</qualifiedname>
         <param>
           <type>int</type>
           <declname>frequency</declname>
@@ -228,6 +243,7 @@
         <definition>bool robot_dart::Scheduler::schedule</definition>
         <argsstring>(int frequency)</argsstring>
         <name>schedule</name>
+        <qualifiedname>robot_dart::Scheduler::schedule</qualifiedname>
         <param>
           <type>int</type>
           <declname>frequency</declname>
@@ -245,6 +261,7 @@
         <definition>double robot_dart::Scheduler::step</definition>
         <argsstring>()</argsstring>
         <name>step</name>
+        <qualifiedname>robot_dart::Scheduler::step</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -259,6 +276,7 @@
         <definition>void robot_dart::Scheduler::reset</definition>
         <argsstring>(double dt, bool sync=false, double current_time=0., double real_time=0.)</argsstring>
         <name>reset</name>
+        <qualifiedname>robot_dart::Scheduler::reset</qualifiedname>
         <param>
           <type>double</type>
           <declname>dt</declname>
@@ -291,6 +309,7 @@
         <definition>void robot_dart::Scheduler::set_sync</definition>
         <argsstring>(bool enable)</argsstring>
         <name>set_sync</name>
+        <qualifiedname>robot_dart::Scheduler::set_sync</qualifiedname>
         <param>
           <type>bool</type>
           <declname>enable</declname>
@@ -309,6 +328,7 @@
         <definition>bool robot_dart::Scheduler::sync</definition>
         <argsstring>() const</argsstring>
         <name>sync</name>
+        <qualifiedname>robot_dart::Scheduler::sync</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -322,6 +342,7 @@
         <definition>double robot_dart::Scheduler::current_time</definition>
         <argsstring>() const</argsstring>
         <name>current_time</name>
+        <qualifiedname>robot_dart::Scheduler::current_time</qualifiedname>
         <briefdescription>
 <para>current time according to the simulation (simulation clock) </para>
         </briefdescription>
@@ -336,6 +357,7 @@
         <definition>double robot_dart::Scheduler::next_time</definition>
         <argsstring>() const</argsstring>
         <name>next_time</name>
+        <qualifiedname>robot_dart::Scheduler::next_time</qualifiedname>
         <briefdescription>
 <para>next time according to the simulation (simulation clock) </para>
         </briefdescription>
@@ -350,6 +372,7 @@
         <definition>double robot_dart::Scheduler::real_time</definition>
         <argsstring>() const</argsstring>
         <name>real_time</name>
+        <qualifiedname>robot_dart::Scheduler::real_time</qualifiedname>
         <briefdescription>
 <para>time according to the clock&apos;s computer (wall clock) </para>
         </briefdescription>
@@ -364,6 +387,7 @@
         <definition>double robot_dart::Scheduler::dt</definition>
         <argsstring>() const</argsstring>
         <name>dt</name>
+        <qualifiedname>robot_dart::Scheduler::dt</qualifiedname>
         <briefdescription>
 <para>dt used by the simulation (simulation clock) </para>
         </briefdescription>
@@ -378,6 +402,7 @@
         <definition>double robot_dart::Scheduler::real_time_factor</definition>
         <argsstring>() const</argsstring>
         <name>real_time_factor</name>
+        <qualifiedname>robot_dart::Scheduler::real_time_factor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -391,6 +416,7 @@
         <definition>double robot_dart::Scheduler::it_duration</definition>
         <argsstring>() const</argsstring>
         <name>it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::it_duration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -404,6 +430,7 @@
         <definition>double robot_dart::Scheduler::last_it_duration</definition>
         <argsstring>() const</argsstring>
         <name>last_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::last_it_duration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -412,7 +439,7 @@
         </inbodydescription>
         <location file="robot_dart/scheduler.hpp" line="49" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="49" bodyend="49"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

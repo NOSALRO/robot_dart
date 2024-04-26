@@ -115,6 +115,8 @@ explicit robot_dart::gui::magnum::DrawableObject::DrawableObject (
 
 
 
+<hr>
+
 
 
 ### function materials 
@@ -125,6 +127,8 @@ inline const std::vector< gs::Material > & robot_dart::gui::magnum::DrawableObje
 
 
 
+
+<hr>
 
 
 
@@ -139,6 +143,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_color_shader (
 
 
 
+<hr>
+
 
 
 ### function set\_materials 
@@ -151,6 +157,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_materials (
 
 
 
+
+<hr>
 
 
 
@@ -165,6 +173,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_meshes (
 
 
 
+<hr>
+
 
 
 ### function set\_scalings 
@@ -177,6 +187,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_scalings (
 
 
 
+
+<hr>
 
 
 
@@ -191,6 +203,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_soft_bodies (
 
 
 
+<hr>
+
 
 
 ### function set\_texture\_shader 
@@ -203,6 +217,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_texture_shader (
 
 
 
+
+<hr>
 
 
 
@@ -217,6 +233,8 @@ DrawableObject & robot_dart::gui::magnum::DrawableObject::set_transparent (
 
 
 
+<hr>
+
 
 
 ### function shape 
@@ -227,6 +245,8 @@ inline dart::dynamics::ShapeNode * robot_dart::gui::magnum::DrawableObject::shap
 
 
 
+
+<hr>
 
 
 
@@ -239,6 +259,8 @@ inline RobotDARTSimu * robot_dart::gui::magnum::DrawableObject::simu () const
 
 
 
+<hr>
+
 
 
 ### function transparent 
@@ -249,6 +271,8 @@ inline bool robot_dart::gui::magnum::DrawableObject::transparent () const
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/drawables.hpp`

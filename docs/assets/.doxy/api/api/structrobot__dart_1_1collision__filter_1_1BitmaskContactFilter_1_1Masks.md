@@ -95,6 +95,8 @@ uint32_t robot_dart::collision_filter::BitmaskContactFilter::Masks::category_mas
 
 
 
+<hr>
+
 
 
 ### variable collision\_mask 
@@ -105,6 +107,8 @@ uint32_t robot_dart::collision_filter::BitmaskContactFilter::Masks::collision_ma
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot_dart_simu.cpp`

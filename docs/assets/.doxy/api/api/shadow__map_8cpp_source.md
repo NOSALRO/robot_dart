@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](shadow__map_8cpp.md)
 
-```C++
 
+```C++
 #include "shadow_map.hpp"
 #include "create_compatibility_shader.hpp"
 
@@ -93,6 +93,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

@@ -371,6 +371,8 @@ inline robot_dart::robots::Hexapod::Hexapod (
 
 
 
+<hr>
+
 
 
 ### function reset 
@@ -383,6 +385,8 @@ inline virtual void robot_dart::robots::Hexapod::reset () override
 
 Implements [*robot\_dart::Robot::reset*](classrobot__dart_1_1Robot.md#function-reset)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/hexapod.hpp`

@@ -371,6 +371,8 @@ inline robot_dart::robots::Vx300::Vx300 (
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/vx300.hpp`
 

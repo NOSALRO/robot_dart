@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](utils__headers__external__gui_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_UTILS_HEADERS_EXTERNAL_GUI_HPP
 #define ROBOT_DART_UTILS_HEADERS_EXTERNAL_GUI_HPP
 
@@ -18,6 +18,6 @@
 #include <Magnum/DartIntegration/World.h>
 
 #endif
-
 ```
+
 

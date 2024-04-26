@@ -62,7 +62,7 @@
 |  void | [**add\_robot**](#function-add_robot) (const robot\_t & robot) <br> |
 |  std::shared\_ptr&lt; T &gt; | [**add\_sensor**](#function-add_sensor-12) (Args &&... args) <br> |
 |  void | [**add\_sensor**](#function-add_sensor-22) (const std::shared\_ptr&lt; [**sensor::Sensor**](classrobot__dart_1_1sensor_1_1Sensor.md) &gt; & sensor) <br> |
-|  std::shared\_ptr&lt; [**simu::TextData**](structrobot__dart_1_1simu_1_1TextData.md) &gt; | [**add\_text**](#function-add_text) (const std::string & text, const Eigen::Affine2d & tf=Eigen::Affine2d::Identity(), Eigen::Vector4d color=Eigen::Vector4d(1, 1, 1, 1), std::uint8\_t alignment=(1\|3&lt;&lt; 3), bool draw\_bg=false, Eigen::Vector4d bg\_color=Eigen::Vector4d(0, 0, 0, 0.75), double font\_size=28) <br> |
+|  std::shared\_ptr&lt; [**simu::TextData**](structrobot__dart_1_1simu_1_1TextData.md) &gt; | [**add\_text**](#function-add_text) (const std::string & text, const Eigen::Affine2d & tf=Eigen::Affine2d::Identity(), Eigen::Vector4d color=Eigen::Vector4d(1, 1, 1, 1), std::uint8\_t alignment=2&lt;&lt; 2, bool draw\_bg=false, Eigen::Vector4d bg\_color=Eigen::Vector4d(0, 0, 0, 0.75), double font\_size=28) <br> |
 |  void | [**add\_visual\_robot**](#function-add_visual_robot) (const robot\_t & robot) <br> |
 |  void | [**clear\_robots**](#function-clear_robots) () <br> |
 |  void | [**clear\_sensors**](#function-clear_sensors) () <br> |
@@ -182,6 +182,8 @@ using robot_dart::RobotDARTSimu::robot_t =  std::shared_ptr<Robot>;
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -197,6 +199,8 @@ robot_dart::RobotDARTSimu::RobotDARTSimu (
 
 
 
+
+<hr>
 
 
 
@@ -217,6 +221,8 @@ std::shared_ptr< Robot > robot_dart::RobotDARTSimu::add_checkerboard_floor (
 
 
 
+<hr>
+
 
 
 ### function add\_floor 
@@ -233,6 +239,8 @@ std::shared_ptr< Robot > robot_dart::RobotDARTSimu::add_floor (
 
 
 
+<hr>
+
 
 
 ### function add\_robot 
@@ -246,12 +254,14 @@ void robot_dart::RobotDARTSimu::add_robot (
 
 
 
+<hr>
+
 
 
 ### function add\_sensor [1/2]
 
 ```C++
-template<typename T typename T, typename... Args>
+template<typename T, typename... Args>
 inline std::shared_ptr< T > robot_dart::RobotDARTSimu::add_sensor (
     Args &&... args
 ) 
@@ -259,6 +269,8 @@ inline std::shared_ptr< T > robot_dart::RobotDARTSimu::add_sensor (
 
 
 
+
+<hr>
 
 
 
@@ -273,6 +285,8 @@ void robot_dart::RobotDARTSimu::add_sensor (
 
 
 
+<hr>
+
 
 
 ### function add\_text 
@@ -282,7 +296,7 @@ std::shared_ptr< simu::TextData > robot_dart::RobotDARTSimu::add_text (
     const std::string & text,
     const Eigen::Affine2d & tf=Eigen::Affine2d::Identity(),
     Eigen::Vector4d color=Eigen::Vector4d(1, 1, 1, 1),
-    std::uint8_t alignment=(1|3<< 3),
+    std::uint8_t alignment=2<< 2,
     bool draw_bg=false,
     Eigen::Vector4d bg_color=Eigen::Vector4d(0, 0, 0, 0.75),
     double font_size=28
@@ -291,6 +305,8 @@ std::shared_ptr< simu::TextData > robot_dart::RobotDARTSimu::add_text (
 
 
 
+
+<hr>
 
 
 
@@ -305,6 +321,8 @@ void robot_dart::RobotDARTSimu::add_visual_robot (
 
 
 
+<hr>
+
 
 
 ### function clear\_robots 
@@ -316,6 +334,8 @@ void robot_dart::RobotDARTSimu::clear_robots ()
 
 
 
+<hr>
+
 
 
 ### function clear\_sensors 
@@ -326,6 +346,8 @@ void robot_dart::RobotDARTSimu::clear_sensors ()
 
 
 
+
+<hr>
 
 
 
@@ -341,6 +363,8 @@ uint32_t robot_dart::RobotDARTSimu::collision_category (
 
 
 
+<hr>
+
 
 
 ### function collision\_category [2/2]
@@ -355,6 +379,8 @@ uint32_t robot_dart::RobotDARTSimu::collision_category (
 
 
 
+<hr>
+
 
 
 ### function collision\_detector 
@@ -365,6 +391,8 @@ const std::string & robot_dart::RobotDARTSimu::collision_detector () const
 
 
 
+
+<hr>
 
 
 
@@ -380,6 +408,8 @@ uint32_t robot_dart::RobotDARTSimu::collision_mask (
 
 
 
+<hr>
+
 
 
 ### function collision\_mask [2/2]
@@ -393,6 +423,8 @@ uint32_t robot_dart::RobotDARTSimu::collision_mask (
 
 
 
+
+<hr>
 
 
 
@@ -408,6 +440,8 @@ std::pair< uint32_t, uint32_t > robot_dart::RobotDARTSimu::collision_masks (
 
 
 
+<hr>
+
 
 
 ### function collision\_masks [2/2]
@@ -422,6 +456,8 @@ std::pair< uint32_t, uint32_t > robot_dart::RobotDARTSimu::collision_masks (
 
 
 
+<hr>
+
 
 
 ### function control\_freq 
@@ -432,6 +468,8 @@ inline int robot_dart::RobotDARTSimu::control_freq () const
 
 
 
+
+<hr>
 
 
 
@@ -447,6 +485,8 @@ void robot_dart::RobotDARTSimu::enable_status_bar (
 
 
 
+<hr>
+
 
 
 ### function enable\_text\_panel 
@@ -461,6 +501,8 @@ void robot_dart::RobotDARTSimu::enable_text_panel (
 
 
 
+<hr>
+
 
 
 ### function graphics 
@@ -471,6 +513,8 @@ std::shared_ptr< gui::Base > robot_dart::RobotDARTSimu::graphics () const
 
 
 
+
+<hr>
 
 
 
@@ -483,6 +527,8 @@ inline int robot_dart::RobotDARTSimu::graphics_freq () const
 
 
 
+<hr>
+
 
 
 ### function gravity 
@@ -493,6 +539,8 @@ Eigen::Vector3d robot_dart::RobotDARTSimu::gravity () const
 
 
 
+
+<hr>
 
 
 
@@ -505,6 +553,8 @@ simu::GUIData * robot_dart::RobotDARTSimu::gui_data ()
 
 
 
+<hr>
+
 
 
 ### function halted\_sim 
@@ -515,6 +565,8 @@ bool robot_dart::RobotDARTSimu::halted_sim () const
 
 
 
+
+<hr>
 
 
 
@@ -527,6 +579,8 @@ size_t robot_dart::RobotDARTSimu::num_robots () const
 
 
 
+<hr>
+
 
 
 ### function physics\_freq 
@@ -538,6 +592,8 @@ inline int robot_dart::RobotDARTSimu::physics_freq () const
 
 
 
+<hr>
+
 
 
 ### function remove\_all\_collision\_masks 
@@ -548,6 +604,8 @@ void robot_dart::RobotDARTSimu::remove_all_collision_masks ()
 
 
 
+
+<hr>
 
 
 
@@ -561,6 +619,8 @@ void robot_dart::RobotDARTSimu::remove_collision_masks (
 
 
 
+
+<hr>
 
 
 
@@ -576,6 +636,8 @@ void robot_dart::RobotDARTSimu::remove_collision_masks (
 
 
 
+<hr>
+
 
 
 ### function remove\_collision\_masks [3/3]
@@ -590,6 +652,8 @@ void robot_dart::RobotDARTSimu::remove_collision_masks (
 
 
 
+<hr>
+
 
 
 ### function remove\_robot [1/2]
@@ -602,6 +666,8 @@ void robot_dart::RobotDARTSimu::remove_robot (
 
 
 
+
+<hr>
 
 
 
@@ -616,6 +682,8 @@ void robot_dart::RobotDARTSimu::remove_robot (
 
 
 
+<hr>
+
 
 
 ### function remove\_sensor [1/2]
@@ -628,6 +696,8 @@ void robot_dart::RobotDARTSimu::remove_sensor (
 
 
 
+
+<hr>
 
 
 
@@ -642,6 +712,8 @@ void robot_dart::RobotDARTSimu::remove_sensor (
 
 
 
+<hr>
+
 
 
 ### function remove\_sensors 
@@ -654,6 +726,8 @@ void robot_dart::RobotDARTSimu::remove_sensors (
 
 
 
+
+<hr>
 
 
 
@@ -668,6 +742,8 @@ robot_t robot_dart::RobotDARTSimu::robot (
 
 
 
+<hr>
+
 
 
 ### function robot\_index 
@@ -681,6 +757,8 @@ int robot_dart::RobotDARTSimu::robot_index (
 
 
 
+<hr>
+
 
 
 ### function robots 
@@ -691,6 +769,8 @@ const std::vector< robot_t > & robot_dart::RobotDARTSimu::robots () const
 
 
 
+
+<hr>
 
 
 
@@ -707,6 +787,8 @@ void robot_dart::RobotDARTSimu::run (
 
 
 
+<hr>
+
 
 
 ### function schedule 
@@ -720,6 +802,8 @@ inline bool robot_dart::RobotDARTSimu::schedule (
 
 
 
+<hr>
+
 
 
 ### function scheduler [1/2]
@@ -731,6 +815,8 @@ inline Scheduler & robot_dart::RobotDARTSimu::scheduler ()
 
 
 
+<hr>
+
 
 
 ### function scheduler [2/2]
@@ -741,6 +827,8 @@ inline const Scheduler & robot_dart::RobotDARTSimu::scheduler () const
 
 
 
+
+<hr>
 
 
 
@@ -755,6 +843,8 @@ std::shared_ptr< sensor::Sensor > robot_dart::RobotDARTSimu::sensor (
 
 
 
+<hr>
+
 
 
 ### function sensors 
@@ -765,6 +855,8 @@ std::vector< std::shared_ptr< sensor::Sensor > > robot_dart::RobotDARTSimu::sens
 
 
 
+
+<hr>
 
 
 
@@ -778,6 +870,8 @@ void robot_dart::RobotDARTSimu::set_collision_detector (
 
 
 
+
+<hr>
 
 
 
@@ -793,6 +887,8 @@ void robot_dart::RobotDARTSimu::set_collision_masks (
 
 
 
+
+<hr>
 
 
 
@@ -810,6 +906,8 @@ void robot_dart::RobotDARTSimu::set_collision_masks (
 
 
 
+<hr>
+
 
 
 ### function set\_collision\_masks [3/3]
@@ -826,6 +924,8 @@ void robot_dart::RobotDARTSimu::set_collision_masks (
 
 
 
+<hr>
+
 
 
 ### function set\_control\_freq 
@@ -838,6 +938,8 @@ inline void robot_dart::RobotDARTSimu::set_control_freq (
 
 
 
+
+<hr>
 
 
 
@@ -852,6 +954,8 @@ void robot_dart::RobotDARTSimu::set_graphics (
 
 
 
+<hr>
+
 
 
 ### function set\_graphics\_freq 
@@ -864,6 +968,8 @@ inline void robot_dart::RobotDARTSimu::set_graphics_freq (
 
 
 
+
+<hr>
 
 
 
@@ -878,6 +984,8 @@ void robot_dart::RobotDARTSimu::set_gravity (
 
 
 
+<hr>
+
 
 
 ### function set\_text\_panel 
@@ -890,6 +998,8 @@ void robot_dart::RobotDARTSimu::set_text_panel (
 
 
 
+
+<hr>
 
 
 
@@ -905,6 +1015,8 @@ void robot_dart::RobotDARTSimu::set_timestep (
 
 
 
+<hr>
+
 
 
 ### function status\_bar\_text 
@@ -915,6 +1027,8 @@ std::string robot_dart::RobotDARTSimu::status_bar_text () const
 
 
 
+
+<hr>
 
 
 
@@ -930,6 +1044,8 @@ bool robot_dart::RobotDARTSimu::step (
 
 
 
+<hr>
+
 
 
 ### function step\_world 
@@ -944,6 +1060,8 @@ bool robot_dart::RobotDARTSimu::step_world (
 
 
 
+<hr>
+
 
 
 ### function stop\_sim 
@@ -957,6 +1075,8 @@ void robot_dart::RobotDARTSimu::stop_sim (
 
 
 
+<hr>
+
 
 
 ### function text\_panel\_text 
@@ -967,6 +1087,8 @@ std::string robot_dart::RobotDARTSimu::text_panel_text () const
 
 
 
+
+<hr>
 
 
 
@@ -979,6 +1101,8 @@ double robot_dart::RobotDARTSimu::timestep () const
 
 
 
+<hr>
+
 
 
 ### function world 
@@ -990,6 +1114,8 @@ dart::simulation::WorldPtr robot_dart::RobotDARTSimu::world ()
 
 
 
+<hr>
+
 
 
 ### function ~RobotDARTSimu 
@@ -1000,6 +1126,8 @@ robot_dart::RobotDARTSimu::~RobotDARTSimu ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -1014,6 +1142,8 @@ bool robot_dart::RobotDARTSimu::_break;
 
 
 
+<hr>
+
 
 
 ### variable \_control\_freq 
@@ -1024,6 +1154,8 @@ int robot_dart::RobotDARTSimu::_control_freq;
 
 
 
+
+<hr>
 
 
 
@@ -1036,6 +1168,8 @@ std::shared_ptr<gui::Base> robot_dart::RobotDARTSimu::_graphics;
 
 
 
+<hr>
+
 
 
 ### variable \_graphics\_freq 
@@ -1046,6 +1180,8 @@ int robot_dart::RobotDARTSimu::_graphics_freq;
 
 
 
+
+<hr>
 
 
 
@@ -1058,6 +1194,8 @@ std::unique_ptr<simu::GUIData> robot_dart::RobotDARTSimu::_gui_data;
 
 
 
+<hr>
+
 
 
 ### variable \_old\_index 
@@ -1068,6 +1206,8 @@ size_t robot_dart::RobotDARTSimu::_old_index;
 
 
 
+
+<hr>
 
 
 
@@ -1080,6 +1220,8 @@ int robot_dart::RobotDARTSimu::_physics_freq;
 
 
 
+<hr>
+
 
 
 ### variable \_robots 
@@ -1090,6 +1232,8 @@ std::vector<robot_t> robot_dart::RobotDARTSimu::_robots;
 
 
 
+
+<hr>
 
 
 
@@ -1102,6 +1246,8 @@ Scheduler robot_dart::RobotDARTSimu::_scheduler;
 
 
 
+<hr>
+
 
 
 ### variable \_sensors 
@@ -1112,6 +1258,8 @@ std::vector<std::shared_ptr<sensor::Sensor> > robot_dart::RobotDARTSimu::_sensor
 
 
 
+
+<hr>
 
 
 
@@ -1124,6 +1272,8 @@ std::shared_ptr<simu::TextData> robot_dart::RobotDARTSimu::_status_bar;
 
 
 
+<hr>
+
 
 
 ### variable \_text\_panel 
@@ -1135,6 +1285,8 @@ std::shared_ptr<simu::TextData> robot_dart::RobotDARTSimu::_text_panel;
 
 
 
+<hr>
+
 
 
 ### variable \_world 
@@ -1145,6 +1297,8 @@ dart::simulation::WorldPtr robot_dart::RobotDARTSimu::_world;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -1162,6 +1316,8 @@ void robot_dart::RobotDARTSimu::_enable (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot_dart_simu.hpp`

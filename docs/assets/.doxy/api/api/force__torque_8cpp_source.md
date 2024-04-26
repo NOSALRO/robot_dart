@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](force__torque_8cpp.md)
 
-```C++
 
+```C++
 #include "force_torque.hpp"
 
 #include <robot_dart/utils_headers_dart_dynamics.hpp>
@@ -66,6 +66,6 @@ namespace robot_dart {
         }
     } // namespace sensor
 } // namespace robot_dart
-
 ```
+
 

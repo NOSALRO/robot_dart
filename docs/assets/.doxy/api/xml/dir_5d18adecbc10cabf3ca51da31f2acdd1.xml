@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dir_5d18adecbc10cabf3ca51da31f2acdd1" kind="dir">
     <compoundname>robot_dart/gui/magnum</compoundname>
     <innerdir refid="dir_2f8612d80f6bb57c97efd4c82e0df286">robot_dart/gui/magnum/gs</innerdir>

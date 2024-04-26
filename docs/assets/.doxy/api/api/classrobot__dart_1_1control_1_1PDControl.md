@@ -202,6 +202,8 @@ robot_dart::control::PDControl::PDControl ()
 
 
 
+<hr>
+
 
 
 ### function PDControl [2/3]
@@ -216,6 +218,8 @@ robot_dart::control::PDControl::PDControl (
 
 
 
+
+<hr>
 
 
 
@@ -232,6 +236,8 @@ robot_dart::control::PDControl::PDControl (
 
 
 
+<hr>
+
 
 
 ### function calculate 
@@ -247,6 +253,8 @@ virtual Eigen::VectorXd robot_dart::control::PDControl::calculate (
 Implements [*robot\_dart::control::RobotControl::calculate*](classrobot__dart_1_1control_1_1RobotControl.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function clone 
@@ -259,6 +267,8 @@ virtual std::shared_ptr< RobotControl > robot_dart::control::PDControl::clone ()
 
 Implements [*robot\_dart::control::RobotControl::clone*](classrobot__dart_1_1control_1_1RobotControl.md#function-clone)
 
+
+<hr>
 
 
 
@@ -273,6 +283,8 @@ virtual void robot_dart::control::PDControl::configure () override
 Implements [*robot\_dart::control::RobotControl::configure*](classrobot__dart_1_1control_1_1RobotControl.md#function-configure)
 
 
+<hr>
+
 
 
 ### function pd 
@@ -283,6 +295,8 @@ std::pair< Eigen::VectorXd, Eigen::VectorXd > robot_dart::control::PDControl::pd
 
 
 
+
+<hr>
 
 
 
@@ -298,6 +312,8 @@ void robot_dart::control::PDControl::set_pd (
 
 
 
+<hr>
+
 
 
 ### function set\_pd [2/2]
@@ -312,6 +328,8 @@ void robot_dart::control::PDControl::set_pd (
 
 
 
+<hr>
+
 
 
 ### function set\_use\_angular\_errors 
@@ -325,6 +343,8 @@ void robot_dart::control::PDControl::set_use_angular_errors (
 
 
 
+<hr>
+
 
 
 ### function using\_angular\_errors 
@@ -335,6 +355,8 @@ bool robot_dart::control::PDControl::using_angular_errors () const
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -349,6 +371,8 @@ Eigen::VectorXd robot_dart::control::PDControl::_Kd;
 
 
 
+<hr>
+
 
 
 ### variable \_Kp 
@@ -360,6 +384,8 @@ Eigen::VectorXd robot_dart::control::PDControl::_Kp;
 
 
 
+<hr>
+
 
 
 ### variable \_use\_angular\_errors 
@@ -370,6 +396,8 @@ bool robot_dart::control::PDControl::_use_angular_errors;
 
 
 
+
+<hr>
 ## Protected Static Functions Documentation
 
 
@@ -386,6 +414,8 @@ static double robot_dart::control::PDControl::_angle_dist (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/control/pd_control.hpp`

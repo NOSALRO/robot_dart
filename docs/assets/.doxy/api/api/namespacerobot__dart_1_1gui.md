@@ -112,6 +112,8 @@ GrayscaleImage robot_dart::gui::convert_rgb_to_grayscale (
 
 
 
+<hr>
+
 
 
 ### function point\_cloud\_from\_depth\_array 
@@ -128,6 +130,8 @@ std::vector< Eigen::Vector3d > robot_dart::gui::point_cloud_from_depth_array (
 
 
 
+<hr>
+
 
 
 ### function save\_png\_image 
@@ -142,6 +146,8 @@ void robot_dart::gui::save_png_image (
 
 
 
+<hr>
+
 
 
 ### function save\_png\_image 
@@ -155,6 +161,8 @@ void robot_dart::gui::save_png_image (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/base.hpp`

@@ -314,6 +314,8 @@ robot_dart::Robot::Robot (
 
 
 
+<hr>
+
 
 
 ### function Robot [2/3]
@@ -330,6 +332,8 @@ robot_dart::Robot::Robot (
 
 
 
+<hr>
+
 
 
 ### function Robot [3/3]
@@ -345,6 +349,8 @@ robot_dart::Robot::Robot (
 
 
 
+<hr>
+
 
 
 ### function acceleration\_lower\_limits 
@@ -357,6 +363,8 @@ Eigen::VectorXd robot_dart::Robot::acceleration_lower_limits (
 
 
 
+
+<hr>
 
 
 
@@ -371,6 +379,8 @@ Eigen::VectorXd robot_dart::Robot::acceleration_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function accelerations 
@@ -384,6 +394,8 @@ Eigen::VectorXd robot_dart::Robot::accelerations (
 
 
 
+<hr>
+
 
 
 ### function active\_controllers 
@@ -394,6 +406,8 @@ std::vector< std::shared_ptr< control::RobotControl > > robot_dart::Robot::activ
 
 
 
+
+<hr>
 
 
 
@@ -408,6 +422,8 @@ std::string robot_dart::Robot::actuator_type (
 
 
 
+<hr>
+
 
 
 ### function actuator\_types 
@@ -420,6 +436,8 @@ std::vector< std::string > robot_dart::Robot::actuator_types (
 
 
 
+
+<hr>
 
 
 
@@ -435,6 +453,8 @@ void robot_dart::Robot::add_body_mass (
 
 
 
+<hr>
+
 
 
 ### function add\_body\_mass [2/2]
@@ -449,6 +469,8 @@ void robot_dart::Robot::add_body_mass (
 
 
 
+<hr>
+
 
 
 ### function add\_controller 
@@ -462,6 +484,8 @@ void robot_dart::Robot::add_controller (
 
 
 
+
+<hr>
 
 
 
@@ -480,6 +504,8 @@ void robot_dart::Robot::add_external_force (
 
 
 
+<hr>
+
 
 
 ### function add\_external\_force [2/2]
@@ -497,6 +523,8 @@ void robot_dart::Robot::add_external_force (
 
 
 
+<hr>
+
 
 
 ### function add\_external\_torque [1/2]
@@ -511,6 +539,8 @@ void robot_dart::Robot::add_external_torque (
 
 
 
+
+<hr>
 
 
 
@@ -527,6 +557,8 @@ void robot_dart::Robot::add_external_torque (
 
 
 
+<hr>
+
 
 
 ### function adjacent\_colliding 
@@ -537,6 +569,8 @@ bool robot_dart::Robot::adjacent_colliding () const
 
 
 
+
+<hr>
 
 
 
@@ -551,6 +585,8 @@ Eigen::MatrixXd robot_dart::Robot::aug_mass_matrix (
 
 
 
+<hr>
+
 
 
 ### function base\_pose 
@@ -562,6 +598,8 @@ Eigen::Isometry3d robot_dart::Robot::base_pose () const
 
 
 
+<hr>
+
 
 
 ### function base\_pose\_vec 
@@ -572,6 +610,8 @@ Eigen::Vector6d robot_dart::Robot::base_pose_vec () const
 
 
 
+
+<hr>
 
 
 
@@ -586,6 +626,8 @@ Eigen::Vector6d robot_dart::Robot::body_acceleration (
 
 
 
+<hr>
+
 
 
 ### function body\_acceleration [2/2]
@@ -598,6 +640,8 @@ Eigen::Vector6d robot_dart::Robot::body_acceleration (
 
 
 
+
+<hr>
 
 
 
@@ -612,6 +656,8 @@ size_t robot_dart::Robot::body_index (
 
 
 
+<hr>
+
 
 
 ### function body\_mass [1/2]
@@ -624,6 +670,8 @@ double robot_dart::Robot::body_mass (
 
 
 
+
+<hr>
 
 
 
@@ -638,6 +686,8 @@ double robot_dart::Robot::body_mass (
 
 
 
+<hr>
+
 
 
 ### function body\_name 
@@ -651,6 +701,8 @@ std::string robot_dart::Robot::body_name (
 
 
 
+<hr>
+
 
 
 ### function body\_names 
@@ -661,6 +713,8 @@ std::vector< std::string > robot_dart::Robot::body_names () const
 
 
 
+
+<hr>
 
 
 
@@ -675,6 +729,8 @@ dart::dynamics::BodyNode * robot_dart::Robot::body_node (
 
 
 
+<hr>
+
 
 
 ### function body\_node [2/2]
@@ -687,6 +743,8 @@ dart::dynamics::BodyNode * robot_dart::Robot::body_node (
 
 
 
+
+<hr>
 
 
 
@@ -701,6 +759,8 @@ Eigen::Isometry3d robot_dart::Robot::body_pose (
 
 
 
+<hr>
+
 
 
 ### function body\_pose [2/2]
@@ -713,6 +773,8 @@ Eigen::Isometry3d robot_dart::Robot::body_pose (
 
 
 
+
+<hr>
 
 
 
@@ -727,6 +789,8 @@ Eigen::Vector6d robot_dart::Robot::body_pose_vec (
 
 
 
+<hr>
+
 
 
 ### function body\_pose\_vec [2/2]
@@ -739,6 +803,8 @@ Eigen::Vector6d robot_dart::Robot::body_pose_vec (
 
 
 
+
+<hr>
 
 
 
@@ -753,6 +819,8 @@ Eigen::Vector6d robot_dart::Robot::body_velocity (
 
 
 
+<hr>
+
 
 
 ### function body\_velocity [2/2]
@@ -766,6 +834,8 @@ Eigen::Vector6d robot_dart::Robot::body_velocity (
 
 
 
+<hr>
+
 
 
 ### function cast\_shadows 
@@ -776,6 +846,8 @@ bool robot_dart::Robot::cast_shadows () const
 
 
 
+
+<hr>
 
 
 
@@ -788,6 +860,8 @@ void robot_dart::Robot::clear_controllers ()
 
 
 
+<hr>
+
 
 
 ### function clear\_external\_forces 
@@ -798,6 +872,8 @@ void robot_dart::Robot::clear_external_forces ()
 
 
 
+
+<hr>
 
 
 
@@ -810,6 +886,8 @@ void robot_dart::Robot::clear_internal_forces ()
 
 
 
+<hr>
+
 
 
 ### function clone 
@@ -820,6 +898,8 @@ std::shared_ptr< Robot > robot_dart::Robot::clone () const
 
 
 
+
+<hr>
 
 
 
@@ -835,6 +915,8 @@ std::shared_ptr< Robot > robot_dart::Robot::clone_ghost (
 
 
 
+<hr>
+
 
 
 ### function com 
@@ -846,6 +928,8 @@ Eigen::Vector3d robot_dart::Robot::com () const
 
 
 
+<hr>
+
 
 
 ### function com\_acceleration 
@@ -856,6 +940,8 @@ Eigen::Vector6d robot_dart::Robot::com_acceleration () const
 
 
 
+
+<hr>
 
 
 
@@ -870,6 +956,8 @@ Eigen::MatrixXd robot_dart::Robot::com_jacobian (
 
 
 
+<hr>
+
 
 
 ### function com\_jacobian\_deriv 
@@ -883,6 +971,8 @@ Eigen::MatrixXd robot_dart::Robot::com_jacobian_deriv (
 
 
 
+<hr>
+
 
 
 ### function com\_velocity 
@@ -893,6 +983,8 @@ Eigen::Vector6d robot_dart::Robot::com_velocity () const
 
 
 
+
+<hr>
 
 
 
@@ -907,6 +999,8 @@ Eigen::VectorXd robot_dart::Robot::commands (
 
 
 
+<hr>
+
 
 
 ### function constraint\_forces 
@@ -919,6 +1013,8 @@ Eigen::VectorXd robot_dart::Robot::constraint_forces (
 
 
 
+
+<hr>
 
 
 
@@ -933,6 +1029,8 @@ std::shared_ptr< control::RobotControl > robot_dart::Robot::controller (
 
 
 
+<hr>
+
 
 
 ### function controllers 
@@ -943,6 +1041,8 @@ std::vector< std::shared_ptr< control::RobotControl > > robot_dart::Robot::contr
 
 
 
+
+<hr>
 
 
 
@@ -957,6 +1057,8 @@ Eigen::VectorXd robot_dart::Robot::coriolis_forces (
 
 
 
+<hr>
+
 
 
 ### function coriolis\_gravity\_forces 
@@ -969,6 +1071,8 @@ Eigen::VectorXd robot_dart::Robot::coriolis_gravity_forces (
 
 
 
+
+<hr>
 
 
 
@@ -983,6 +1087,8 @@ std::vector< double > robot_dart::Robot::coulomb_coeffs (
 
 
 
+<hr>
+
 
 
 ### function damping\_coeffs 
@@ -995,6 +1101,8 @@ std::vector< double > robot_dart::Robot::damping_coeffs (
 
 
 
+
+<hr>
 
 
 
@@ -1009,6 +1117,8 @@ dart::dynamics::DegreeOfFreedom * robot_dart::Robot::dof (
 
 
 
+<hr>
+
 
 
 ### function dof [2/2]
@@ -1021,6 +1131,8 @@ dart::dynamics::DegreeOfFreedom * robot_dart::Robot::dof (
 
 
 
+
+<hr>
 
 
 
@@ -1035,6 +1147,8 @@ size_t robot_dart::Robot::dof_index (
 
 
 
+<hr>
+
 
 
 ### function dof\_map 
@@ -1045,6 +1159,8 @@ const std::unordered_map< std::string, size_t > & robot_dart::Robot::dof_map () 
 
 
 
+
+<hr>
 
 
 
@@ -1058,6 +1174,8 @@ std::string robot_dart::Robot::dof_name (
 
 
 
+
+<hr>
 
 
 
@@ -1074,6 +1192,8 @@ std::vector< std::string > robot_dart::Robot::dof_names (
 
 
 
+<hr>
+
 
 
 ### function drawing\_axes 
@@ -1084,6 +1204,8 @@ const std::vector< std::pair< dart::dynamics::BodyNode *, double > > & robot_dar
 
 
 
+
+<hr>
 
 
 
@@ -1098,6 +1220,8 @@ Eigen::Vector6d robot_dart::Robot::external_forces (
 
 
 
+<hr>
+
 
 
 ### function external\_forces [2/2]
@@ -1111,6 +1235,8 @@ Eigen::Vector6d robot_dart::Robot::external_forces (
 
 
 
+<hr>
+
 
 
 ### function fix\_to\_world 
@@ -1122,6 +1248,8 @@ void robot_dart::Robot::fix_to_world ()
 
 
 
+<hr>
+
 
 
 ### function fixed 
@@ -1132,6 +1260,8 @@ bool robot_dart::Robot::fixed () const
 
 
 
+
+<hr>
 
 
 
@@ -1146,6 +1276,8 @@ Eigen::VectorXd robot_dart::Robot::force_lower_limits (
 
 
 
+<hr>
+
 
 
 ### function force\_position\_bounds 
@@ -1156,6 +1288,8 @@ void robot_dart::Robot::force_position_bounds ()
 
 
 
+
+<hr>
 
 
 
@@ -1170,6 +1304,8 @@ std::pair< Eigen::Vector6d, Eigen::Vector6d > robot_dart::Robot::force_torque (
 
 
 
+<hr>
+
 
 
 ### function force\_upper\_limits 
@@ -1182,6 +1318,8 @@ Eigen::VectorXd robot_dart::Robot::force_upper_limits (
 
 
 
+
+<hr>
 
 
 
@@ -1196,6 +1334,8 @@ Eigen::VectorXd robot_dart::Robot::forces (
 
 
 
+<hr>
+
 
 
 ### function free 
@@ -1206,6 +1346,8 @@ bool robot_dart::Robot::free () const
 
 
 
+
+<hr>
 
 
 
@@ -1220,6 +1362,8 @@ void robot_dart::Robot::free_from_world (
 
 
 
+<hr>
+
 
 
 ### function friction\_coeff [1/2]
@@ -1232,6 +1376,8 @@ double robot_dart::Robot::friction_coeff (
 
 
 
+
+<hr>
 
 
 
@@ -1246,6 +1392,8 @@ double robot_dart::Robot::friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function friction\_dir [1/2]
@@ -1258,6 +1406,8 @@ Eigen::Vector3d robot_dart::Robot::friction_dir (
 
 
 
+
+<hr>
 
 
 
@@ -1272,6 +1422,8 @@ Eigen::Vector3d robot_dart::Robot::friction_dir (
 
 
 
+<hr>
+
 
 
 ### function ghost 
@@ -1282,6 +1434,8 @@ bool robot_dart::Robot::ghost () const
 
 
 
+
+<hr>
 
 
 
@@ -1296,6 +1450,8 @@ Eigen::VectorXd robot_dart::Robot::gravity_forces (
 
 
 
+<hr>
+
 
 
 ### function inv\_aug\_mass\_matrix 
@@ -1309,6 +1465,8 @@ Eigen::MatrixXd robot_dart::Robot::inv_aug_mass_matrix (
 
 
 
+<hr>
+
 
 
 ### function inv\_mass\_matrix 
@@ -1321,6 +1479,8 @@ Eigen::MatrixXd robot_dart::Robot::inv_mass_matrix (
 
 
 
+
+<hr>
 
 
 
@@ -1336,6 +1496,8 @@ Eigen::MatrixXd robot_dart::Robot::jacobian (
 
 
 
+<hr>
+
 
 
 ### function jacobian\_deriv 
@@ -1350,6 +1512,8 @@ Eigen::MatrixXd robot_dart::Robot::jacobian_deriv (
 
 
 
+<hr>
+
 
 
 ### function joint [1/2]
@@ -1362,6 +1526,8 @@ dart::dynamics::Joint * robot_dart::Robot::joint (
 
 
 
+
+<hr>
 
 
 
@@ -1376,6 +1542,8 @@ dart::dynamics::Joint * robot_dart::Robot::joint (
 
 
 
+<hr>
+
 
 
 ### function joint\_index 
@@ -1389,6 +1557,8 @@ size_t robot_dart::Robot::joint_index (
 
 
 
+<hr>
+
 
 
 ### function joint\_map 
@@ -1399,6 +1569,8 @@ const std::unordered_map< std::string, size_t > & robot_dart::Robot::joint_map (
 
 
 
+
+<hr>
 
 
 
@@ -1413,6 +1585,8 @@ std::string robot_dart::Robot::joint_name (
 
 
 
+<hr>
+
 
 
 ### function joint\_names 
@@ -1424,6 +1598,8 @@ std::vector< std::string > robot_dart::Robot::joint_names () const
 
 
 
+<hr>
+
 
 
 ### function locked\_dof\_names 
@@ -1434,6 +1610,8 @@ std::vector< std::string > robot_dart::Robot::locked_dof_names () const
 
 
 
+
+<hr>
 
 
 
@@ -1448,6 +1626,8 @@ Eigen::MatrixXd robot_dart::Robot::mass_matrix (
 
 
 
+<hr>
+
 
 
 ### function mimic\_dof\_names 
@@ -1458,6 +1638,8 @@ std::vector< std::string > robot_dart::Robot::mimic_dof_names () const
 
 
 
+
+<hr>
 
 
 
@@ -1470,6 +1652,8 @@ inline const std::string & robot_dart::Robot::model_filename () const
 
 
 
+<hr>
+
 
 
 ### function model\_packages 
@@ -1480,6 +1664,8 @@ inline const std::vector< std::pair< std::string, std::string > > & robot_dart::
 
 
 
+
+<hr>
 
 
 
@@ -1492,6 +1678,8 @@ const std::string & robot_dart::Robot::name () const
 
 
 
+<hr>
+
 
 
 ### function num\_bodies 
@@ -1502,6 +1690,8 @@ size_t robot_dart::Robot::num_bodies () const
 
 
 
+
+<hr>
 
 
 
@@ -1514,6 +1704,8 @@ size_t robot_dart::Robot::num_controllers () const
 
 
 
+<hr>
+
 
 
 ### function num\_dofs 
@@ -1524,6 +1716,8 @@ size_t robot_dart::Robot::num_dofs () const
 
 
 
+
+<hr>
 
 
 
@@ -1536,6 +1730,8 @@ size_t robot_dart::Robot::num_joints () const
 
 
 
+<hr>
+
 
 
 ### function passive\_dof\_names 
@@ -1546,6 +1742,8 @@ std::vector< std::string > robot_dart::Robot::passive_dof_names () const
 
 
 
+
+<hr>
 
 
 
@@ -1560,6 +1758,8 @@ std::vector< bool > robot_dart::Robot::position_enforced (
 
 
 
+<hr>
+
 
 
 ### function position\_lower\_limits 
@@ -1572,6 +1772,8 @@ Eigen::VectorXd robot_dart::Robot::position_lower_limits (
 
 
 
+
+<hr>
 
 
 
@@ -1586,6 +1788,8 @@ Eigen::VectorXd robot_dart::Robot::position_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function positions 
@@ -1599,6 +1803,8 @@ Eigen::VectorXd robot_dart::Robot::positions (
 
 
 
+<hr>
+
 
 
 ### function reinit\_controllers 
@@ -1610,6 +1816,8 @@ void robot_dart::Robot::reinit_controllers ()
 
 
 
+<hr>
+
 
 
 ### function remove\_all\_drawing\_axis 
@@ -1620,6 +1828,8 @@ void robot_dart::Robot::remove_all_drawing_axis ()
 
 
 
+
+<hr>
 
 
 
@@ -1634,6 +1844,8 @@ void robot_dart::Robot::remove_controller (
 
 
 
+<hr>
+
 
 
 ### function remove\_controller [2/2]
@@ -1647,6 +1859,8 @@ void robot_dart::Robot::remove_controller (
 
 
 
+<hr>
+
 
 
 ### function reset 
@@ -1658,6 +1872,8 @@ virtual void robot_dart::Robot::reset ()
 
 
 
+<hr>
+
 
 
 ### function reset\_commands 
@@ -1668,6 +1884,8 @@ void robot_dart::Robot::reset_commands ()
 
 
 
+
+<hr>
 
 
 
@@ -1682,6 +1900,8 @@ double robot_dart::Robot::restitution_coeff (
 
 
 
+<hr>
+
 
 
 ### function restitution\_coeff [2/2]
@@ -1694,6 +1914,8 @@ double robot_dart::Robot::restitution_coeff (
 
 
 
+
+<hr>
 
 
 
@@ -1708,6 +1930,8 @@ double robot_dart::Robot::secondary_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function secondary\_friction\_coeff [2/2]
@@ -1721,6 +1945,8 @@ double robot_dart::Robot::secondary_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function self\_colliding 
@@ -1731,6 +1957,8 @@ bool robot_dart::Robot::self_colliding () const
 
 
 
+
+<hr>
 
 
 
@@ -1746,6 +1974,8 @@ void robot_dart::Robot::set_acceleration_lower_limits (
 
 
 
+<hr>
+
 
 
 ### function set\_acceleration\_upper\_limits 
@@ -1760,6 +1990,8 @@ void robot_dart::Robot::set_acceleration_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function set\_accelerations 
@@ -1773,6 +2005,8 @@ void robot_dart::Robot::set_accelerations (
 
 
 
+
+<hr>
 
 
 
@@ -1790,6 +2024,8 @@ void robot_dart::Robot::set_actuator_type (
 
 
 
+<hr>
+
 
 
 ### function set\_actuator\_types 
@@ -1806,6 +2042,8 @@ void robot_dart::Robot::set_actuator_types (
 
 
 
+<hr>
+
 
 
 ### function set\_base\_pose [1/2]
@@ -1819,6 +2057,8 @@ void robot_dart::Robot::set_base_pose (
 
 
 
+<hr>
+
 
 
 ### function set\_base\_pose [2/2]
@@ -1831,6 +2071,8 @@ void robot_dart::Robot::set_base_pose (
 
 
 
+
+<hr>
 
 
 
@@ -1846,6 +2088,8 @@ void robot_dart::Robot::set_body_mass (
 
 
 
+<hr>
+
 
 
 ### function set\_body\_mass [2/2]
@@ -1859,6 +2103,8 @@ void robot_dart::Robot::set_body_mass (
 
 
 
+
+<hr>
 
 
 
@@ -1874,6 +2120,8 @@ void robot_dart::Robot::set_body_name (
 
 
 
+<hr>
+
 
 
 ### function set\_cast\_shadows 
@@ -1887,6 +2135,8 @@ void robot_dart::Robot::set_cast_shadows (
 
 
 
+<hr>
+
 
 
 ### function set\_color\_mode [1/2]
@@ -1899,6 +2149,8 @@ void robot_dart::Robot::set_color_mode (
 
 
 
+
+<hr>
 
 
 
@@ -1914,6 +2166,8 @@ void robot_dart::Robot::set_color_mode (
 
 
 
+<hr>
+
 
 
 ### function set\_commands 
@@ -1927,6 +2181,8 @@ void robot_dart::Robot::set_commands (
 
 
 
+
+<hr>
 
 
 
@@ -1942,6 +2198,8 @@ void robot_dart::Robot::set_coulomb_coeffs (
 
 
 
+<hr>
+
 
 
 ### function set\_coulomb\_coeffs [2/2]
@@ -1955,6 +2213,8 @@ void robot_dart::Robot::set_coulomb_coeffs (
 
 
 
+
+<hr>
 
 
 
@@ -1970,6 +2230,8 @@ void robot_dart::Robot::set_damping_coeffs (
 
 
 
+<hr>
+
 
 
 ### function set\_damping\_coeffs [2/2]
@@ -1984,6 +2246,8 @@ void robot_dart::Robot::set_damping_coeffs (
 
 
 
+<hr>
+
 
 
 ### function set\_draw\_axis 
@@ -1997,6 +2261,8 @@ void robot_dart::Robot::set_draw_axis (
 
 
 
+
+<hr>
 
 
 
@@ -2015,6 +2281,8 @@ void robot_dart::Robot::set_external_force (
 
 
 
+<hr>
+
 
 
 ### function set\_external\_force [2/2]
@@ -2032,6 +2300,8 @@ void robot_dart::Robot::set_external_force (
 
 
 
+<hr>
+
 
 
 ### function set\_external\_torque [1/2]
@@ -2046,6 +2316,8 @@ void robot_dart::Robot::set_external_torque (
 
 
 
+
+<hr>
 
 
 
@@ -2062,6 +2334,8 @@ void robot_dart::Robot::set_external_torque (
 
 
 
+<hr>
+
 
 
 ### function set\_force\_lower\_limits 
@@ -2075,6 +2349,8 @@ void robot_dart::Robot::set_force_lower_limits (
 
 
 
+
+<hr>
 
 
 
@@ -2090,6 +2366,8 @@ void robot_dart::Robot::set_force_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function set\_forces 
@@ -2103,6 +2381,8 @@ void robot_dart::Robot::set_forces (
 
 
 
+
+<hr>
 
 
 
@@ -2118,6 +2398,8 @@ void robot_dart::Robot::set_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_friction\_coeff [2/2]
@@ -2132,6 +2414,8 @@ void robot_dart::Robot::set_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_friction\_coeffs 
@@ -2144,6 +2428,8 @@ void robot_dart::Robot::set_friction_coeffs (
 
 
 
+
+<hr>
 
 
 
@@ -2159,6 +2445,8 @@ void robot_dart::Robot::set_friction_dir (
 
 
 
+<hr>
+
 
 
 ### function set\_friction\_dir [2/2]
@@ -2173,6 +2461,8 @@ void robot_dart::Robot::set_friction_dir (
 
 
 
+<hr>
+
 
 
 ### function set\_ghost 
@@ -2185,6 +2475,8 @@ void robot_dart::Robot::set_ghost (
 
 
 
+
+<hr>
 
 
 
@@ -2199,6 +2491,8 @@ void robot_dart::Robot::set_joint_name (
 
 
 
+
+<hr>
 
 
 
@@ -2216,6 +2510,8 @@ void robot_dart::Robot::set_mimic (
 
 
 
+<hr>
+
 
 
 ### function set\_position\_enforced [1/2]
@@ -2229,6 +2525,8 @@ void robot_dart::Robot::set_position_enforced (
 
 
 
+
+<hr>
 
 
 
@@ -2244,6 +2542,8 @@ void robot_dart::Robot::set_position_enforced (
 
 
 
+<hr>
+
 
 
 ### function set\_position\_lower\_limits 
@@ -2257,6 +2557,8 @@ void robot_dart::Robot::set_position_lower_limits (
 
 
 
+
+<hr>
 
 
 
@@ -2272,6 +2574,8 @@ void robot_dart::Robot::set_position_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function set\_positions 
@@ -2285,6 +2589,8 @@ void robot_dart::Robot::set_positions (
 
 
 
+
+<hr>
 
 
 
@@ -2300,6 +2606,8 @@ void robot_dart::Robot::set_restitution_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_restitution\_coeff [2/2]
@@ -2314,6 +2622,8 @@ void robot_dart::Robot::set_restitution_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_restitution\_coeffs 
@@ -2326,6 +2636,8 @@ void robot_dart::Robot::set_restitution_coeffs (
 
 
 
+
+<hr>
 
 
 
@@ -2341,6 +2653,8 @@ void robot_dart::Robot::set_secondary_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_secondary\_friction\_coeff [2/2]
@@ -2355,6 +2669,8 @@ void robot_dart::Robot::set_secondary_friction_coeff (
 
 
 
+<hr>
+
 
 
 ### function set\_secondary\_friction\_coeffs 
@@ -2367,6 +2683,8 @@ void robot_dart::Robot::set_secondary_friction_coeffs (
 
 
 
+
+<hr>
 
 
 
@@ -2382,6 +2700,8 @@ void robot_dart::Robot::set_self_collision (
 
 
 
+<hr>
+
 
 
 ### function set\_spring\_stiffnesses [1/2]
@@ -2395,6 +2715,8 @@ void robot_dart::Robot::set_spring_stiffnesses (
 
 
 
+
+<hr>
 
 
 
@@ -2410,6 +2732,8 @@ void robot_dart::Robot::set_spring_stiffnesses (
 
 
 
+<hr>
+
 
 
 ### function set\_velocities 
@@ -2423,6 +2747,8 @@ void robot_dart::Robot::set_velocities (
 
 
 
+
+<hr>
 
 
 
@@ -2438,6 +2764,8 @@ void robot_dart::Robot::set_velocity_lower_limits (
 
 
 
+<hr>
+
 
 
 ### function set\_velocity\_upper\_limits 
@@ -2452,6 +2780,8 @@ void robot_dart::Robot::set_velocity_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function skeleton 
@@ -2462,6 +2792,8 @@ dart::dynamics::SkeletonPtr robot_dart::Robot::skeleton ()
 
 
 
+
+<hr>
 
 
 
@@ -2476,6 +2808,8 @@ std::vector< double > robot_dart::Robot::spring_stiffnesses (
 
 
 
+<hr>
+
 
 
 ### function update 
@@ -2489,6 +2823,8 @@ void robot_dart::Robot::update (
 
 
 
+<hr>
+
 
 
 ### function update\_joint\_dof\_maps 
@@ -2499,6 +2835,8 @@ void robot_dart::Robot::update_joint_dof_maps ()
 
 
 
+
+<hr>
 
 
 
@@ -2514,6 +2852,8 @@ Eigen::VectorXd robot_dart::Robot::vec_dof (
 
 
 
+<hr>
+
 
 
 ### function velocities 
@@ -2526,6 +2866,8 @@ Eigen::VectorXd robot_dart::Robot::velocities (
 
 
 
+
+<hr>
 
 
 
@@ -2540,6 +2882,8 @@ Eigen::VectorXd robot_dart::Robot::velocity_lower_limits (
 
 
 
+<hr>
+
 
 
 ### function velocity\_upper\_limits 
@@ -2553,6 +2897,8 @@ Eigen::VectorXd robot_dart::Robot::velocity_upper_limits (
 
 
 
+<hr>
+
 
 
 ### function ~Robot 
@@ -2563,6 +2909,8 @@ inline virtual robot_dart::Robot::~Robot ()
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -2584,6 +2932,8 @@ static std::shared_ptr< Robot > robot_dart::Robot::create_box (
 
 
 
+<hr>
+
 
 
 ### function create\_box [2/2]
@@ -2601,6 +2951,8 @@ static std::shared_ptr< Robot > robot_dart::Robot::create_box (
 
 
 
+
+<hr>
 
 
 
@@ -2620,6 +2972,8 @@ static std::shared_ptr< Robot > robot_dart::Robot::create_ellipsoid (
 
 
 
+<hr>
+
 
 
 ### function create\_ellipsoid [2/2]
@@ -2637,6 +2991,8 @@ static std::shared_ptr< Robot > robot_dart::Robot::create_ellipsoid (
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -2651,6 +3007,8 @@ std::vector<std::pair<dart::dynamics::BodyNode*, double> > robot_dart::Robot::_a
 
 
 
+<hr>
+
 
 
 ### variable \_cast\_shadows 
@@ -2661,6 +3019,8 @@ bool robot_dart::Robot::_cast_shadows;
 
 
 
+
+<hr>
 
 
 
@@ -2673,6 +3033,8 @@ std::vector<std::shared_ptr<control::RobotControl> > robot_dart::Robot::_control
 
 
 
+<hr>
+
 
 
 ### variable \_dof\_map 
@@ -2683,6 +3045,8 @@ std::unordered_map<std::string, size_t> robot_dart::Robot::_dof_map;
 
 
 
+
+<hr>
 
 
 
@@ -2695,6 +3059,8 @@ bool robot_dart::Robot::_is_ghost;
 
 
 
+<hr>
+
 
 
 ### variable \_joint\_map 
@@ -2705,6 +3071,8 @@ std::unordered_map<std::string, size_t> robot_dart::Robot::_joint_map;
 
 
 
+
+<hr>
 
 
 
@@ -2717,6 +3085,8 @@ std::string robot_dart::Robot::_model_filename;
 
 
 
+<hr>
+
 
 
 ### variable \_packages 
@@ -2727,6 +3097,8 @@ std::vector<std::pair<std::string, std::string> > robot_dart::Robot::_packages;
 
 
 
+
+<hr>
 
 
 
@@ -2739,6 +3111,8 @@ std::string robot_dart::Robot::_robot_name;
 
 
 
+<hr>
+
 
 
 ### variable \_skeleton 
@@ -2749,6 +3123,8 @@ dart::dynamics::SkeletonPtr robot_dart::Robot::_skeleton;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -2765,6 +3141,8 @@ dart::dynamics::Joint::ActuatorType robot_dart::Robot::_actuator_type (
 
 
 
+<hr>
+
 
 
 ### function \_actuator\_types 
@@ -2775,6 +3153,8 @@ std::vector< dart::dynamics::Joint::ActuatorType > robot_dart::Robot::_actuator_
 
 
 
+
+<hr>
 
 
 
@@ -2789,6 +3169,8 @@ std::string robot_dart::Robot::_get_path (
 
 
 
+<hr>
+
 
 
 ### function \_jacobian 
@@ -2802,6 +3184,8 @@ Eigen::MatrixXd robot_dart::Robot::_jacobian (
 
 
 
+
+<hr>
 
 
 
@@ -2818,6 +3202,8 @@ dart::dynamics::SkeletonPtr robot_dart::Robot::_load_model (
 
 
 
+<hr>
+
 
 
 ### function \_mass\_matrix 
@@ -2832,6 +3218,8 @@ Eigen::MatrixXd robot_dart::Robot::_mass_matrix (
 
 
 
+<hr>
+
 
 
 ### function \_post\_addition 
@@ -2845,6 +3233,8 @@ inline virtual void robot_dart::Robot::_post_addition (
 
 
 
+<hr>
+
 
 
 ### function \_post\_removal 
@@ -2857,6 +3247,8 @@ inline virtual void robot_dart::Robot::_post_removal (
 
 
 
+
+<hr>
 
 
 
@@ -2874,6 +3266,8 @@ void robot_dart::Robot::_set_actuator_type (
 
 
 
+<hr>
+
 
 
 ### function \_set\_actuator\_types [1/2]
@@ -2888,6 +3282,8 @@ void robot_dart::Robot::_set_actuator_types (
 
 
 
+
+<hr>
 
 
 
@@ -2904,6 +3300,8 @@ void robot_dart::Robot::_set_actuator_types (
 
 
 
+<hr>
+
 
 
 ### function \_set\_color\_mode [1/2]
@@ -2918,6 +3316,8 @@ void robot_dart::Robot::_set_color_mode (
 
 
 
+<hr>
+
 
 
 ### function \_set\_color\_mode [2/2]
@@ -2931,6 +3331,8 @@ void robot_dart::Robot::_set_color_mode (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot.hpp`

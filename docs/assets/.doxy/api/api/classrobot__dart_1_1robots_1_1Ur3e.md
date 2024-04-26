@@ -385,6 +385,8 @@ robot_dart::robots::Ur3e::Ur3e (
 
 
 
+<hr>
+
 
 
 ### function ft\_wrist 
@@ -395,6 +397,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Ur3e::ft_wrist () const
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -408,6 +412,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Ur3e::_ft_wrist;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -426,6 +432,8 @@ virtual void robot_dart::robots::Ur3e::_post_addition (
 Implements [*robot\_dart::Robot::\_post\_addition*](classrobot__dart_1_1Robot.md#function-_post_addition)
 
 
+<hr>
+
 
 
 ### function \_post\_removal 
@@ -440,6 +448,8 @@ virtual void robot_dart::robots::Ur3e::_post_removal (
 
 Implements [*robot\_dart::Robot::\_post\_removal*](classrobot__dart_1_1Robot.md#function-_post_removal)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/ur3e.hpp`

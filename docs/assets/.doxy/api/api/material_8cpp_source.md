@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](material_8cpp.md)
 
-```C++
 
+```C++
 #include "material.hpp"
 
 #include <Magnum/GL/Texture.h>
@@ -102,6 +102,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

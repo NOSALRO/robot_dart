@@ -103,6 +103,8 @@
 
 
 
+<hr>
+
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/helper.cpp`
 

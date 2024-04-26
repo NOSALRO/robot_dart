@@ -113,6 +113,8 @@ enum robot_dart::gui::magnum::gs::CubeMap::Flag {
 
 
 
+<hr>
+
 
 
 ### typedef Flags 
@@ -123,6 +125,8 @@ using robot_dart::gui::magnum::gs::CubeMap::Flags =  Magnum::Containers::EnumSet
 
 
 
+
+<hr>
 
 
 
@@ -135,6 +139,8 @@ using robot_dart::gui::magnum::gs::CubeMap::Position =  Magnum::Shaders::Generic
 
 
 
+<hr>
+
 
 
 ### typedef TextureCoordinates 
@@ -145,6 +151,8 @@ using robot_dart::gui::magnum::gs::CubeMap::TextureCoordinates =  Magnum::Shader
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -161,6 +169,8 @@ explicit robot_dart::gui::magnum::gs::CubeMap::CubeMap (
 
 
 
+<hr>
+
 
 
 ### function CubeMap [2/2]
@@ -174,6 +184,8 @@ explicit robot_dart::gui::magnum::gs::CubeMap::CubeMap (
 
 
 
+<hr>
+
 
 
 ### function flags 
@@ -184,6 +196,8 @@ Flags robot_dart::gui::magnum::gs::CubeMap::flags () const
 
 
 
+
+<hr>
 
 
 
@@ -198,6 +212,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_far_plane (
 
 
 
+<hr>
+
 
 
 ### function set\_light\_index 
@@ -210,6 +226,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_light_index (
 
 
 
+
+<hr>
 
 
 
@@ -224,6 +242,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_light_position (
 
 
 
+<hr>
+
 
 
 ### function set\_material 
@@ -236,6 +256,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_material (
 
 
 
+
+<hr>
 
 
 
@@ -250,6 +272,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_shadow_matrices (
 
 
 
+<hr>
+
 
 
 ### function set\_transformation\_matrix 
@@ -262,6 +286,8 @@ CubeMap & robot_dart::gui::magnum::gs::CubeMap::set_transformation_matrix (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/gs/cube_map.hpp`

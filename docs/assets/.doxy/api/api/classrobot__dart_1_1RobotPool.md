@@ -120,6 +120,8 @@ using robot_dart::RobotPool::robot_creator_t =  std::function<std::shared_ptr<Ro
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -138,6 +140,8 @@ robot_dart::RobotPool::RobotPool (
 
 
 
+<hr>
+
 
 
 ### function RobotPool [2/2]
@@ -150,6 +154,8 @@ robot_dart::RobotPool::RobotPool (
 
 
 
+
+<hr>
 
 
 
@@ -164,6 +170,8 @@ virtual void robot_dart::RobotPool::free_robot (
 
 
 
+<hr>
+
 
 
 ### function get\_robot 
@@ -177,6 +185,8 @@ virtual std::shared_ptr< Robot > robot_dart::RobotPool::get_robot (
 
 
 
+<hr>
+
 
 
 ### function model\_filename 
@@ -187,6 +197,8 @@ inline const std::string & robot_dart::RobotPool::model_filename () const
 
 
 
+
+<hr>
 
 
 
@@ -201,6 +213,8 @@ void robot_dart::RobotPool::operator= (
 
 
 
+<hr>
+
 
 
 ### function ~RobotPool 
@@ -211,6 +225,8 @@ inline virtual robot_dart::RobotPool::~RobotPool ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -225,6 +241,8 @@ std::vector<bool> robot_dart::RobotPool::_free;
 
 
 
+<hr>
+
 
 
 ### variable \_model\_filename 
@@ -235,6 +253,8 @@ std::string robot_dart::RobotPool::_model_filename;
 
 
 
+
+<hr>
 
 
 
@@ -247,6 +267,8 @@ size_t robot_dart::RobotPool::_pool_size;
 
 
 
+<hr>
+
 
 
 ### variable \_robot\_creator 
@@ -257,6 +279,8 @@ robot_creator_t robot_dart::RobotPool::_robot_creator;
 
 
 
+
+<hr>
 
 
 
@@ -269,6 +293,8 @@ std::mutex robot_dart::RobotPool::_skeleton_mutex;
 
 
 
+<hr>
+
 
 
 ### variable \_skeletons 
@@ -280,6 +306,8 @@ std::vector<dart::dynamics::SkeletonPtr> robot_dart::RobotPool::_skeletons;
 
 
 
+<hr>
+
 
 
 ### variable \_verbose 
@@ -290,6 +318,8 @@ bool robot_dart::RobotPool::_verbose;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -305,6 +335,8 @@ virtual void robot_dart::RobotPool::_reset_robot (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot_pool.hpp`

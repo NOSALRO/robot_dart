@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](sensor_2camera_8cpp.md)
 
-```C++
 
+```C++
 #include "camera.hpp"
 
 #include <Corrade/Containers/ArrayViewStl.h>
@@ -196,6 +196,6 @@ namespace robot_dart {
         } // namespace magnum
     } // namespace gui
 } // namespace robot_dart
-
 ```
+
 

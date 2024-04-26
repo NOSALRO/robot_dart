@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](imu_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_SENSOR_IMU_HPP
 #define ROBOT_DART_SENSOR_IMU_HPP
 
@@ -69,6 +69,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

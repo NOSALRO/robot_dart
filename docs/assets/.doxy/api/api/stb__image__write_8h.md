@@ -121,6 +121,8 @@ typedef void stbi_write_func(void *context, void *data, int size);
 
 
 
+
+<hr>
 ## Public Attributes Documentation
 
 
@@ -135,6 +137,8 @@ int stbi_write_force_png_filter;
 
 
 
+<hr>
+
 
 
 ### variable stbi\_write\_png\_compression\_level 
@@ -146,6 +150,8 @@ int stbi_write_png_compression_level;
 
 
 
+<hr>
+
 
 
 ### variable stbi\_write\_tga\_with\_rle 
@@ -156,6 +162,8 @@ int stbi_write_tga_with_rle;
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -171,6 +179,8 @@ STBIWDEF void stbi_flip_vertically_on_write (
 
 
 
+
+<hr>
 
 
 
@@ -188,6 +198,8 @@ STBIWDEF int stbi_write_bmp (
 
 
 
+
+<hr>
 
 
 
@@ -207,6 +219,8 @@ STBIWDEF int stbi_write_bmp_to_func (
 
 
 
+<hr>
+
 
 
 ### function stbi\_write\_hdr 
@@ -223,6 +237,8 @@ STBIWDEF int stbi_write_hdr (
 
 
 
+
+<hr>
 
 
 
@@ -242,6 +258,8 @@ STBIWDEF int stbi_write_hdr_to_func (
 
 
 
+<hr>
+
 
 
 ### function stbi\_write\_jpg 
@@ -259,6 +277,8 @@ STBIWDEF int stbi_write_jpg (
 
 
 
+
+<hr>
 
 
 
@@ -279,6 +299,8 @@ STBIWDEF int stbi_write_jpg_to_func (
 
 
 
+<hr>
+
 
 
 ### function stbi\_write\_png 
@@ -296,6 +318,8 @@ STBIWDEF int stbi_write_png (
 
 
 
+
+<hr>
 
 
 
@@ -316,6 +340,8 @@ STBIWDEF int stbi_write_png_to_func (
 
 
 
+<hr>
+
 
 
 ### function stbi\_write\_tga 
@@ -332,6 +358,8 @@ STBIWDEF int stbi_write_tga (
 
 
 
+
+<hr>
 
 
 
@@ -350,6 +378,8 @@ STBIWDEF int stbi_write_tga_to_func (
 
 
 
+
+<hr>
 ## Macro Definition Documentation
 
 
@@ -364,6 +394,8 @@ STBIWDEF int stbi_write_tga_to_func (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/stb_image_write.h`

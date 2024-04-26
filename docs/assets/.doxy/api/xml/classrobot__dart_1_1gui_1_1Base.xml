@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1Base" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::Base</compoundname>
     <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; GlfwApplication &gt;</derivedcompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</derivedcompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; T &gt;</derivedcompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1Base_1af92e4d7bca3de2f9fd0d8571fbbf3db0" prot="protected" static="no" mutable="no">
         <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
         <definition>RobotDARTSimu* robot_dart::gui::Base::_simu</definition>
         <argsstring></argsstring>
         <name>_simu</name>
+        <qualifiedname>robot_dart::gui::Base::_simu</qualifiedname>
         <initializer>= nullptr</initializer>
         <briefdescription>
         </briefdescription>
@@ -20,13 +21,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/base.hpp" line="37" column="27" bodyfile="robot_dart/gui/base.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1Base_1aeb004d9cd85642f35078589723d82902" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::Base::Base</definition>
         <argsstring>()</argsstring>
         <name>Base</name>
+        <qualifiedname>robot_dart::gui::Base::Base</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>virtual robot_dart::gui::Base::~Base</definition>
         <argsstring>()</argsstring>
         <name>~Base</name>
+        <qualifiedname>robot_dart::gui::Base::~Base</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -53,6 +56,7 @@
         <definition>virtual void robot_dart::gui::Base::set_simu</definition>
         <argsstring>(RobotDARTSimu *simu)</argsstring>
         <name>set_simu</name>
+        <qualifiedname>robot_dart::gui::Base::set_simu</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5">set_simu</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5">set_simu</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5">set_simu</reimplementedby>
@@ -75,6 +79,7 @@
         <definition>const RobotDARTSimu * robot_dart::gui::Base::simu</definition>
         <argsstring>() const</argsstring>
         <name>simu</name>
+        <qualifiedname>robot_dart::gui::Base::simu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,6 +93,7 @@
         <definition>virtual bool robot_dart::gui::Base::done</definition>
         <argsstring>() const</argsstring>
         <name>done</name>
+        <qualifiedname>robot_dart::gui::Base::done</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9e8d3b3dd531414fd3cdda9465c08813">done</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9e8d3b3dd531414fd3cdda9465c08813">done</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9e8d3b3dd531414fd3cdda9465c08813">done</reimplementedby>
@@ -104,6 +110,7 @@
         <definition>virtual void robot_dart::gui::Base::refresh</definition>
         <argsstring>()</argsstring>
         <name>refresh</name>
+        <qualifiedname>robot_dart::gui::Base::refresh</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1af8e4b002d42747fef19832d43a94b8c6">refresh</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1af8e4b002d42747fef19832d43a94b8c6">refresh</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1af8e4b002d42747fef19832d43a94b8c6">refresh</reimplementedby>
@@ -120,6 +127,7 @@
         <definition>virtual void robot_dart::gui::Base::set_render_period</definition>
         <argsstring>(double)</argsstring>
         <name>set_render_period</name>
+        <qualifiedname>robot_dart::gui::Base::set_render_period</qualifiedname>
         <param>
           <type>double</type>
         </param>
@@ -136,6 +144,7 @@
         <definition>virtual void robot_dart::gui::Base::set_enable</definition>
         <argsstring>(bool)</argsstring>
         <name>set_enable</name>
+        <qualifiedname>robot_dart::gui::Base::set_enable</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0186dc83856cbe287d1f0efe02889f25">set_enable</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0186dc83856cbe287d1f0efe02889f25">set_enable</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0186dc83856cbe287d1f0efe02889f25">set_enable</reimplementedby>
@@ -155,6 +164,7 @@
         <definition>virtual void robot_dart::gui::Base::set_fps</definition>
         <argsstring>(int)</argsstring>
         <name>set_fps</name>
+        <qualifiedname>robot_dart::gui::Base::set_fps</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a5175098c8e74befdd36a6b70af4a7a5e">set_fps</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a5175098c8e74befdd36a6b70af4a7a5e">set_fps</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a5175098c8e74befdd36a6b70af4a7a5e">set_fps</reimplementedby>
@@ -174,6 +184,7 @@
         <definition>virtual Image robot_dart::gui::Base::image</definition>
         <argsstring>()</argsstring>
         <name>image</name>
+        <qualifiedname>robot_dart::gui::Base::image</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a419d98e1f7d5a769702717e98fdc1410">image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a419d98e1f7d5a769702717e98fdc1410">image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a419d98e1f7d5a769702717e98fdc1410">image</reimplementedby>
@@ -190,6 +201,7 @@
         <definition>virtual GrayscaleImage robot_dart::gui::Base::depth_image</definition>
         <argsstring>()</argsstring>
         <name>depth_image</name>
+        <qualifiedname>robot_dart::gui::Base::depth_image</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ac694dcf459c5c211e877093d26e249ba">depth_image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ac694dcf459c5c211e877093d26e249ba">depth_image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ac694dcf459c5c211e877093d26e249ba">depth_image</reimplementedby>
@@ -206,6 +218,7 @@
         <definition>virtual GrayscaleImage robot_dart::gui::Base::raw_depth_image</definition>
         <argsstring>()</argsstring>
         <name>raw_depth_image</name>
+        <qualifiedname>robot_dart::gui::Base::raw_depth_image</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad00bce74f533975eb392ce0ada74960d">raw_depth_image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad00bce74f533975eb392ce0ada74960d">raw_depth_image</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad00bce74f533975eb392ce0ada74960d">raw_depth_image</reimplementedby>
@@ -222,6 +235,7 @@
         <definition>virtual DepthImage robot_dart::gui::Base::depth_array</definition>
         <argsstring>()</argsstring>
         <name>depth_array</name>
+        <qualifiedname>robot_dart::gui::Base::depth_array</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a1ab8652c4f3cc48fc83196d5ea4e6218">depth_array</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a1ab8652c4f3cc48fc83196d5ea4e6218">depth_array</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a1ab8652c4f3cc48fc83196d5ea4e6218">depth_array</reimplementedby>
@@ -238,6 +252,7 @@
         <definition>virtual size_t robot_dart::gui::Base::width</definition>
         <argsstring>() const</argsstring>
         <name>width</name>
+        <qualifiedname>robot_dart::gui::Base::width</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70397ca9b425a87f78b5ca2321594f8">width</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70397ca9b425a87f78b5ca2321594f8">width</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70397ca9b425a87f78b5ca2321594f8">width</reimplementedby>
@@ -254,6 +269,7 @@
         <definition>virtual size_t robot_dart::gui::Base::height</definition>
         <argsstring>() const</argsstring>
         <name>height</name>
+        <qualifiedname>robot_dart::gui::Base::height</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0358b0597f49560ac5bb82499f1cfd31">height</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0358b0597f49560ac5bb82499f1cfd31">height</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0358b0597f49560ac5bb82499f1cfd31">height</reimplementedby>
@@ -265,7 +281,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/base.hpp" line="34" column="28" bodyfile="robot_dart/gui/base.hpp" bodystart="34" bodyend="34"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](a1_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_ROBOTS_A1_HPP
 #define ROBOT_DART_ROBOTS_A1_HPP
 
@@ -30,6 +30,6 @@ namespace robot_dart {
     } // namespace robots
 } // namespace robot_dart
 #endif
-
 ```
+
 

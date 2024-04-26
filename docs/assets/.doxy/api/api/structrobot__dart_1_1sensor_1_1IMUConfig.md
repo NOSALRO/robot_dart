@@ -104,6 +104,8 @@ Eigen::Vector3d robot_dart::sensor::IMUConfig::accel_bias;
 
 
 
+<hr>
+
 
 
 ### variable body 
@@ -114,6 +116,8 @@ dart::dynamics::BodyNode* robot_dart::sensor::IMUConfig::body;
 
 
 
+
+<hr>
 
 
 
@@ -126,6 +130,8 @@ size_t robot_dart::sensor::IMUConfig::frequency;
 
 
 
+<hr>
+
 
 
 ### variable gyro\_bias 
@@ -136,6 +142,8 @@ Eigen::Vector3d robot_dart::sensor::IMUConfig::gyro_bias;
 
 
 
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -153,6 +161,8 @@ inline robot_dart::sensor::IMUConfig::IMUConfig (
 
 
 
+<hr>
+
 
 
 ### function IMUConfig [2/3]
@@ -169,6 +179,8 @@ inline robot_dart::sensor::IMUConfig::IMUConfig (
 
 
 
+<hr>
+
 
 
 ### function IMUConfig [3/3]
@@ -179,6 +191,8 @@ inline robot_dart::sensor::IMUConfig::IMUConfig ()
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/sensor/imu.hpp`

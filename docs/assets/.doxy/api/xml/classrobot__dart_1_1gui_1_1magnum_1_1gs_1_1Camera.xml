@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::Camera</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
-      <sectiondef kind="private-attrib">
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc2cec50368bd212fa651fc8ff1854e2" prot="private" static="no" mutable="no">
         <type>Object3D *</type>
         <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_yaw_object</definition>
         <argsstring></argsstring>
         <name>_yaw_object</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_yaw_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_pitch_object</definition>
         <argsstring></argsstring>
         <name>_pitch_object</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_pitch_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Object3D* robot_dart::gui::magnum::gs::Camera::_camera_object</definition>
         <argsstring></argsstring>
         <name>_camera_object</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_camera_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>Camera3D* robot_dart::gui::magnum::gs::Camera::_camera</definition>
         <argsstring></argsstring>
         <name>_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,6 +65,7 @@
         <definition>Magnum::Vector2 robot_dart::gui::magnum::gs::Camera::_speed</definition>
         <argsstring></argsstring>
         <name>_speed</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_speed</qualifiedname>
         <initializer>{-0.01f, 0.01f}</initializer>
         <briefdescription>
         </briefdescription>
@@ -68,13 +73,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="82" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="82" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="82" column="37" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="82" bodyend="82"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a291058c5ff18dedee82b7487bfcd40e2" prot="private" static="no" mutable="no">
         <type>Magnum::Vector3</type>
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_up</definition>
         <argsstring></argsstring>
         <name>_up</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_up</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,6 +94,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_front</definition>
         <argsstring></argsstring>
         <name>_front</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_front</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -101,6 +108,7 @@
         <definition>Magnum::Vector3 robot_dart::gui::magnum::gs::Camera::_right</definition>
         <argsstring></argsstring>
         <name>_right</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_right</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,6 +122,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_aspect_ratio</definition>
         <argsstring></argsstring>
         <name>_aspect_ratio</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_aspect_ratio</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -127,6 +136,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_near_plane</definition>
         <argsstring></argsstring>
         <name>_near_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_near_plane</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -140,6 +150,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::_far_plane</definition>
         <argsstring></argsstring>
         <name>_far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_far_plane</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -153,6 +164,7 @@
         <definition>Magnum::Rad robot_dart::gui::magnum::gs::Camera::_fov</definition>
         <argsstring></argsstring>
         <name>_fov</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_fov</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -166,6 +178,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::_width</definition>
         <argsstring></argsstring>
         <name>_width</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_width</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -179,6 +192,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::_height</definition>
         <argsstring></argsstring>
         <name>_height</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_height</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -192,6 +206,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Camera::_recording</definition>
         <argsstring></argsstring>
         <name>_recording</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_recording</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
@@ -206,6 +221,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Camera::_recording_depth</definition>
         <argsstring></argsstring>
         <name>_recording_depth</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_recording_depth</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
@@ -220,6 +236,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Camera::_recording_video</definition>
         <argsstring></argsstring>
         <name>_recording_video</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_recording_video</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
@@ -234,6 +251,7 @@
         <definition>Corrade::Containers::Optional&lt;Magnum::Image2D&gt; robot_dart::gui::magnum::gs::Camera::_image</definition>
         <argsstring></argsstring>
         <name>_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -247,6 +265,7 @@
         <definition>Corrade::Containers::Optional&lt;Magnum::Image2D&gt; robot_dart::gui::magnum::gs::Camera::_depth_image</definition>
         <argsstring></argsstring>
         <name>_depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -260,6 +279,7 @@
         <definition>TinyProcessLib::Process* robot_dart::gui::magnum::gs::Camera::_ffmpeg_process</definition>
         <argsstring></argsstring>
         <name>_ffmpeg_process</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_ffmpeg_process</qualifiedname>
         <initializer>= nullptr</initializer>
         <briefdescription>
         </briefdescription>
@@ -269,13 +289,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/gs/camera.hpp" line="93" column="45" bodyfile="robot_dart/gui/magnum/gs/camera.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::gs::Camera::Camera</definition>
         <argsstring>(Object3D &amp;object, Magnum::Int width, Magnum::Int height)</argsstring>
         <name>Camera</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::Camera</qualifiedname>
         <param>
           <type>Object3D &amp;</type>
           <declname>object</declname>
@@ -301,6 +322,7 @@
         <definition>robot_dart::gui::magnum::gs::Camera::~Camera</definition>
         <argsstring>()</argsstring>
         <name>~Camera</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::~Camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -314,6 +336,7 @@
         <definition>Camera3D &amp; robot_dart::gui::magnum::gs::Camera::camera</definition>
         <argsstring>() const</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -327,6 +350,7 @@
         <definition>Object3D &amp; robot_dart::gui::magnum::gs::Camera::root_object</definition>
         <argsstring>()</argsstring>
         <name>root_object</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::root_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -340,6 +364,7 @@
         <definition>Object3D &amp; robot_dart::gui::magnum::gs::Camera::camera_object</definition>
         <argsstring>() const</argsstring>
         <name>camera_object</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::camera_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -353,6 +378,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_viewport</definition>
         <argsstring>(const Magnum::Vector2i &amp;size)</argsstring>
         <name>set_viewport</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_viewport</qualifiedname>
         <param>
           <type>const Magnum::Vector2i &amp;</type>
           <declname>size</declname>
@@ -370,6 +396,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::move</definition>
         <argsstring>(const Magnum::Vector2i &amp;shift)</argsstring>
         <name>move</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::move</qualifiedname>
         <param>
           <type>const Magnum::Vector2i &amp;</type>
           <declname>shift</declname>
@@ -387,6 +414,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::forward</definition>
         <argsstring>(Magnum::Float speed)</argsstring>
         <name>forward</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::forward</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>speed</declname>
@@ -404,6 +432,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::strafe</definition>
         <argsstring>(Magnum::Float speed)</argsstring>
         <name>strafe</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::strafe</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>speed</declname>
@@ -421,6 +450,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_speed</definition>
         <argsstring>(const Magnum::Vector2 &amp;speed)</argsstring>
         <name>set_speed</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_speed</qualifiedname>
         <param>
           <type>const Magnum::Vector2 &amp;</type>
           <declname>speed</declname>
@@ -438,6 +468,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_near_plane</definition>
         <argsstring>(Magnum::Float near_plane)</argsstring>
         <name>set_near_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_near_plane</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>near_plane</declname>
@@ -455,6 +486,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_far_plane</definition>
         <argsstring>(Magnum::Float far_plane)</argsstring>
         <name>set_far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_far_plane</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>far_plane</declname>
@@ -472,6 +504,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_fov</definition>
         <argsstring>(Magnum::Float fov)</argsstring>
         <name>set_fov</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_fov</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>fov</declname>
@@ -489,6 +522,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::set_camera_params</definition>
         <argsstring>(Magnum::Float near_plane, Magnum::Float far_plane, Magnum::Float fov, Magnum::Int width, Magnum::Int height)</argsstring>
         <name>set_camera_params</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::set_camera_params</qualifiedname>
         <param>
           <type>Magnum::Float</type>
           <declname>near_plane</declname>
@@ -522,6 +556,7 @@
         <definition>Magnum::Vector2 robot_dart::gui::magnum::gs::Camera::speed</definition>
         <argsstring>() const</argsstring>
         <name>speed</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::speed</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -535,6 +570,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::near_plane</definition>
         <argsstring>() const</argsstring>
         <name>near_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::near_plane</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -548,6 +584,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::far_plane</definition>
         <argsstring>() const</argsstring>
         <name>far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::far_plane</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -561,6 +598,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::gs::Camera::fov</definition>
         <argsstring>() const</argsstring>
         <name>fov</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::fov</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -574,6 +612,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::width</definition>
         <argsstring>() const</argsstring>
         <name>width</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::width</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -587,6 +626,7 @@
         <definition>Magnum::Int robot_dart::gui::magnum::gs::Camera::height</definition>
         <argsstring>() const</argsstring>
         <name>height</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::height</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -600,6 +640,7 @@
         <definition>Magnum::Matrix3 robot_dart::gui::magnum::gs::Camera::intrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>intrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::intrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -613,6 +654,7 @@
         <definition>Magnum::Matrix4 robot_dart::gui::magnum::gs::Camera::extrinsic_matrix</definition>
         <argsstring>() const</argsstring>
         <name>extrinsic_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::extrinsic_matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -626,6 +668,7 @@
         <definition>Camera &amp; robot_dart::gui::magnum::gs::Camera::look_at</definition>
         <argsstring>(const Magnum::Vector3 &amp;camera, const Magnum::Vector3 &amp;center, const Magnum::Vector3 &amp;up=Magnum::Vector3::zAxis())</argsstring>
         <name>look_at</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::look_at</qualifiedname>
         <param>
           <type>const Magnum::Vector3 &amp;</type>
           <declname>camera</declname>
@@ -652,6 +695,7 @@
         <definition>void robot_dart::gui::magnum::gs::Camera::transform_lights</definition>
         <argsstring>(std::vector&lt; gs::Light &gt; &amp;lights) const</argsstring>
         <name>transform_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::transform_lights</qualifiedname>
         <param>
           <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &gt; &amp;</type>
           <declname>lights</declname>
@@ -669,6 +713,7 @@
         <definition>void robot_dart::gui::magnum::gs::Camera::record</definition>
         <argsstring>(bool recording, bool recording_depth=false)</argsstring>
         <name>record</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::record</qualifiedname>
         <param>
           <type>bool</type>
           <declname>recording</declname>
@@ -691,6 +736,7 @@
         <definition>void robot_dart::gui::magnum::gs::Camera::record_video</definition>
         <argsstring>(const std::string &amp;video_fname, int fps)</argsstring>
         <name>record_video</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::record_video</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>video_fname</declname>
@@ -712,6 +758,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Camera::recording</definition>
         <argsstring>()</argsstring>
         <name>recording</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::recording</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -725,6 +772,7 @@
         <definition>bool robot_dart::gui::magnum::gs::Camera::recording_depth</definition>
         <argsstring>()</argsstring>
         <name>recording_depth</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::recording_depth</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -738,6 +786,7 @@
         <definition>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp; robot_dart::gui::magnum::gs::Camera::image</definition>
         <argsstring>()</argsstring>
         <name>image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -751,6 +800,7 @@
         <definition>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp; robot_dart::gui::magnum::gs::Camera::depth_image</definition>
         <argsstring>()</argsstring>
         <name>depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -764,6 +814,7 @@
         <definition>void robot_dart::gui::magnum::gs::Camera::draw</definition>
         <argsstring>(Magnum::SceneGraph::DrawableGroup3D &amp;drawables, Magnum::GL::AbstractFramebuffer &amp;framebuffer, Magnum::PixelFormat format, RobotDARTSimu *simu, const DebugDrawData &amp;debug_data, bool draw_debug=true)</argsstring>
         <name>draw</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::draw</qualifiedname>
         <param>
           <type>Magnum::SceneGraph::DrawableGroup3D &amp;</type>
           <declname>drawables</declname>
@@ -795,24 +846,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="74" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="269" bodyend="379"/>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="74" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="269" bodyend="382"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
+    </sectiondef>
+    <sectiondef kind="private-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac1a31db480956997bfacff227d822ab2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void robot_dart::gui::magnum::gs::Camera::_clean_up_subprocess</definition>
         <argsstring>()</argsstring>
         <name>_clean_up_subprocess</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::Camera::_clean_up_subprocess</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="95" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="381" bodyend="389"/>
+        <location file="robot_dart/gui/magnum/gs/camera.hpp" line="95" column="26" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="384" bodyend="392"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

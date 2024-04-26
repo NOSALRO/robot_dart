@@ -105,6 +105,8 @@ robot_dart::gui::magnum::GlobalData::GlobalData (
 
 
 
+<hr>
+
 
 
 ### function free\_gl\_context 
@@ -118,6 +120,8 @@ void robot_dart::gui::magnum::GlobalData::free_gl_context (
 
 
 
+<hr>
+
 
 
 ### function gl\_context 
@@ -128,6 +132,8 @@ Magnum::Platform::WindowlessGLContext * robot_dart::gui::magnum::GlobalData::gl_
 
 
 
+
+<hr>
 
 
 
@@ -142,6 +148,8 @@ void robot_dart::gui::magnum::GlobalData::operator= (
 
 
 
+<hr>
+
 
 
 ### function set\_max\_contexts 
@@ -154,6 +162,8 @@ void robot_dart::gui::magnum::GlobalData::set_max_contexts (
 
 
 
+
+<hr>
 ## Public Static Functions Documentation
 
 
@@ -167,6 +177,8 @@ static inline GlobalData * robot_dart::gui::magnum::GlobalData::instance ()
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/base_application.hpp`

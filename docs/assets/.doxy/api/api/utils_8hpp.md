@@ -115,6 +115,8 @@
 
 
 
+<hr>
+
 
 
 ### define ROBOT\_DART\_ASSERT 
@@ -135,6 +137,8 @@
 
 
 
+<hr>
+
 
 
 ### define ROBOT\_DART\_EXCEPTION\_ASSERT 
@@ -153,6 +157,8 @@
 
 
 
+<hr>
+
 
 
 ### define ROBOT\_DART\_EXCEPTION\_INTERNAL\_ASSERT 
@@ -169,6 +175,8 @@
 
 
 
+
+<hr>
 
 
 
@@ -188,6 +196,8 @@
 
 
 
+<hr>
+
 
 
 ### define ROBOT\_DART\_SHOW\_WARNINGS 
@@ -198,6 +208,8 @@
 
 
 
+
+<hr>
 
 
 
@@ -211,6 +223,8 @@
 
 
 
+
+<hr>
 
 
 
@@ -227,6 +241,8 @@
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/utils.hpp`

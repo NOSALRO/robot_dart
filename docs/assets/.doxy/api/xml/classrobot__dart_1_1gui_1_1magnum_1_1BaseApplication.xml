@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::BaseApplication</compoundname>
     <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::GlfwApplication</derivedcompoundref>
     <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::WindowlessGLApplication</derivedcompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7088263b5d0fdd3744197a71265b050a" prot="protected" static="no" mutable="no">
         <type>Scene3D</type>
         <definition>Scene3D robot_dart::gui::magnum::BaseApplication::_scene</definition>
         <argsstring></argsstring>
         <name>_scene</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_scene</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_drawables</definition>
         <argsstring></argsstring>
         <name>_drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_shadowed_drawables</definition>
         <argsstring></argsstring>
         <name>_shadowed_drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadowed_drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,6 +52,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_shadowed_color_drawables</definition>
         <argsstring></argsstring>
         <name>_shadowed_color_drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadowed_color_drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -62,6 +66,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_cubemap_drawables</definition>
         <argsstring></argsstring>
         <name>_cubemap_drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,6 +80,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D robot_dart::gui::magnum::BaseApplication::_cubemap_color_drawables</definition>
         <argsstring></argsstring>
         <name>_cubemap_color_drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_color_drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,6 +94,7 @@
         <definition>std::unique_ptr&lt;gs::PhongMultiLight&gt; robot_dart::gui::magnum::BaseApplication::_color_shader</definition>
         <argsstring></argsstring>
         <name>_color_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_color_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -101,6 +108,7 @@
         <definition>std::unique_ptr&lt;gs::PhongMultiLight&gt; robot_dart::gui::magnum::BaseApplication::_texture_shader</definition>
         <argsstring></argsstring>
         <name>_texture_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_texture_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,6 +122,7 @@
         <definition>std::unique_ptr&lt;gs::Camera&gt; robot_dart::gui::magnum::BaseApplication::_camera</definition>
         <argsstring></argsstring>
         <name>_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -127,6 +136,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::_done</definition>
         <argsstring></argsstring>
         <name>_done</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_done</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
@@ -141,6 +151,7 @@
         <definition>GraphicsConfiguration robot_dart::gui::magnum::BaseApplication::_configuration</definition>
         <argsstring></argsstring>
         <name>_configuration</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_configuration</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -154,6 +165,7 @@
         <definition>RobotDARTSimu* robot_dart::gui::magnum::BaseApplication::_simu</definition>
         <argsstring></argsstring>
         <name>_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_simu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -167,6 +179,7 @@
         <definition>std::unique_ptr&lt;Magnum::DartIntegration::World&gt; robot_dart::gui::magnum::BaseApplication::_dart_world</definition>
         <argsstring></argsstring>
         <name>_dart_world</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_dart_world</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -180,6 +193,7 @@
         <definition>std::unordered_map&lt;Magnum::DartIntegration::Object*, ObjectStruct*&gt; robot_dart::gui::magnum::BaseApplication::_drawable_objects</definition>
         <argsstring></argsstring>
         <name>_drawable_objects</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_drawable_objects</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -193,6 +207,7 @@
         <definition>std::vector&lt;gs::Light&gt; robot_dart::gui::magnum::BaseApplication::_lights</definition>
         <argsstring></argsstring>
         <name>_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -206,6 +221,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::_shadowed</definition>
         <argsstring></argsstring>
         <name>_shadowed</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadowed</qualifiedname>
         <initializer>= true</initializer>
         <briefdescription>
         </briefdescription>
@@ -220,6 +236,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::_transparent_shadows</definition>
         <argsstring></argsstring>
         <name>_transparent_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_transparent_shadows</qualifiedname>
         <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
@@ -234,6 +251,7 @@
         <definition>int robot_dart::gui::magnum::BaseApplication::_transparentSize</definition>
         <argsstring></argsstring>
         <name>_transparentSize</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_transparentSize</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -248,6 +266,7 @@
         <definition>std::unique_ptr&lt;gs::ShadowMap&gt; robot_dart::gui::magnum::BaseApplication::_shadow_shader</definition>
         <argsstring></argsstring>
         <name>_shadow_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -261,6 +280,7 @@
         <definition>std::unique_ptr&lt;gs::ShadowMap&gt; robot_dart::gui::magnum::BaseApplication::_shadow_texture_shader</definition>
         <argsstring></argsstring>
         <name>_shadow_texture_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_texture_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -274,6 +294,7 @@
         <definition>std::unique_ptr&lt;gs::ShadowMapColor&gt; robot_dart::gui::magnum::BaseApplication::_shadow_color_shader</definition>
         <argsstring></argsstring>
         <name>_shadow_color_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_color_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -287,6 +308,7 @@
         <definition>std::unique_ptr&lt;gs::ShadowMapColor&gt; robot_dart::gui::magnum::BaseApplication::_shadow_texture_color_shader</definition>
         <argsstring></argsstring>
         <name>_shadow_texture_color_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_texture_color_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -300,6 +322,7 @@
         <definition>std::unique_ptr&lt;gs::CubeMap&gt; robot_dart::gui::magnum::BaseApplication::_cubemap_shader</definition>
         <argsstring></argsstring>
         <name>_cubemap_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -313,6 +336,7 @@
         <definition>std::unique_ptr&lt;gs::CubeMap&gt; robot_dart::gui::magnum::BaseApplication::_cubemap_texture_shader</definition>
         <argsstring></argsstring>
         <name>_cubemap_texture_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_texture_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -326,6 +350,7 @@
         <definition>std::unique_ptr&lt;gs::CubeMapColor&gt; robot_dart::gui::magnum::BaseApplication::_cubemap_color_shader</definition>
         <argsstring></argsstring>
         <name>_cubemap_color_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_color_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -339,6 +364,7 @@
         <definition>std::unique_ptr&lt;gs::CubeMapColor&gt; robot_dart::gui::magnum::BaseApplication::_cubemap_texture_color_shader</definition>
         <argsstring></argsstring>
         <name>_cubemap_texture_color_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_cubemap_texture_color_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -352,6 +378,7 @@
         <definition>std::vector&lt;ShadowData&gt; robot_dart::gui::magnum::BaseApplication::_shadow_data</definition>
         <argsstring></argsstring>
         <name>_shadow_data</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_data</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -365,6 +392,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::Texture2DArray&gt; robot_dart::gui::magnum::BaseApplication::_shadow_texture</definition>
         <argsstring></argsstring>
         <name>_shadow_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -378,6 +406,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::Texture2DArray&gt; robot_dart::gui::magnum::BaseApplication::_shadow_color_texture</definition>
         <argsstring></argsstring>
         <name>_shadow_color_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_color_texture</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -391,6 +420,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::CubeMapTextureArray&gt; robot_dart::gui::magnum::BaseApplication::_shadow_cube_map</definition>
         <argsstring></argsstring>
         <name>_shadow_cube_map</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_cube_map</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -404,6 +434,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::CubeMapTextureArray&gt; robot_dart::gui::magnum::BaseApplication::_shadow_color_cube_map</definition>
         <argsstring></argsstring>
         <name>_shadow_color_cube_map</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_color_cube_map</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -417,6 +448,7 @@
         <definition>int robot_dart::gui::magnum::BaseApplication::_max_lights</definition>
         <argsstring></argsstring>
         <name>_max_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_max_lights</qualifiedname>
         <initializer>= 5</initializer>
         <briefdescription>
         </briefdescription>
@@ -431,6 +463,7 @@
         <definition>int robot_dart::gui::magnum::BaseApplication::_shadow_map_size</definition>
         <argsstring></argsstring>
         <name>_shadow_map_size</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_map_size</qualifiedname>
         <initializer>= 512</initializer>
         <briefdescription>
         </briefdescription>
@@ -445,6 +478,7 @@
         <definition>std::unique_ptr&lt;Camera3D&gt; robot_dart::gui::magnum::BaseApplication::_shadow_camera</definition>
         <argsstring></argsstring>
         <name>_shadow_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -458,6 +492,7 @@
         <definition>Object3D* robot_dart::gui::magnum::BaseApplication::_shadow_camera_object</definition>
         <argsstring></argsstring>
         <name>_shadow_camera_object</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_shadow_camera_object</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -471,6 +506,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::Mesh&gt; robot_dart::gui::magnum::BaseApplication::_3D_axis_mesh</definition>
         <argsstring></argsstring>
         <name>_3D_axis_mesh</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_3D_axis_mesh</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -484,6 +520,7 @@
         <definition>std::unique_ptr&lt;Magnum::Shaders::VertexColorGL3D&gt; robot_dart::gui::magnum::BaseApplication::_3D_axis_shader</definition>
         <argsstring></argsstring>
         <name>_3D_axis_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_3D_axis_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -497,6 +534,7 @@
         <definition>std::unique_ptr&lt;Magnum::GL::Mesh&gt; robot_dart::gui::magnum::BaseApplication::_background_mesh</definition>
         <argsstring></argsstring>
         <name>_background_mesh</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_background_mesh</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -510,6 +548,7 @@
         <definition>std::unique_ptr&lt;Magnum::Shaders::FlatGL2D&gt; robot_dart::gui::magnum::BaseApplication::_background_shader</definition>
         <argsstring></argsstring>
         <name>_background_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_background_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -523,6 +562,7 @@
         <definition>std::unique_ptr&lt;Magnum::Shaders::DistanceFieldVectorGL2D&gt; robot_dart::gui::magnum::BaseApplication::_text_shader</definition>
         <argsstring></argsstring>
         <name>_text_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_text_shader</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -536,6 +576,7 @@
         <definition>Corrade::PluginManager::Manager&lt;Magnum::Text::AbstractFont&gt; robot_dart::gui::magnum::BaseApplication::_font_manager</definition>
         <argsstring></argsstring>
         <name>_font_manager</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_font_manager</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -549,6 +590,7 @@
         <definition>Corrade::Containers::Pointer&lt;Magnum::Text::DistanceFieldGlyphCache&gt; robot_dart::gui::magnum::BaseApplication::_glyph_cache</definition>
         <argsstring></argsstring>
         <name>_glyph_cache</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_glyph_cache</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -562,6 +604,7 @@
         <definition>Corrade::Containers::Pointer&lt;Magnum::Text::AbstractFont&gt; robot_dart::gui::magnum::BaseApplication::_font</definition>
         <argsstring></argsstring>
         <name>_font</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_font</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -575,6 +618,7 @@
         <definition>Corrade::Containers::Pointer&lt;Magnum::GL::Buffer&gt; robot_dart::gui::magnum::BaseApplication::_text_vertices</definition>
         <argsstring></argsstring>
         <name>_text_vertices</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_text_vertices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -588,6 +632,7 @@
         <definition>Corrade::Containers::Pointer&lt;Magnum::GL::Buffer&gt; robot_dart::gui::magnum::BaseApplication::_text_indices</definition>
         <argsstring></argsstring>
         <name>_text_indices</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_text_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -601,6 +646,7 @@
         <definition>Corrade::PluginManager::Manager&lt;Magnum::Trade::AbstractImporter&gt; robot_dart::gui::magnum::BaseApplication::_importer_manager</definition>
         <argsstring></argsstring>
         <name>_importer_manager</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_importer_manager</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -609,13 +655,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="243" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="243" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5170be3d0d70694627d96e4897629792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::BaseApplication::BaseApplication</definition>
         <argsstring>(const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
         <name>BaseApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::BaseApplication</qualifiedname>
         <param>
           <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
           <declname>configuration</declname>
@@ -634,6 +681,7 @@
         <definition>virtual robot_dart::gui::magnum::BaseApplication::~BaseApplication</definition>
         <argsstring>()</argsstring>
         <name>~BaseApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::~BaseApplication</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -647,6 +695,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::init</definition>
         <argsstring>(RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration)</argsstring>
         <name>init</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::init</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
           <declname>simu</declname>
@@ -668,6 +717,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::clear_lights</definition>
         <argsstring>()</argsstring>
         <name>clear_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::clear_lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -681,6 +731,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::add_light</definition>
         <argsstring>(const gs::Light &amp;light)</argsstring>
         <name>add_light</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::add_light</qualifiedname>
         <param>
           <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &amp;</type>
           <declname>light</declname>
@@ -698,6 +749,7 @@
         <definition>gs::Light &amp; robot_dart::gui::magnum::BaseApplication::light</definition>
         <argsstring>(size_t i)</argsstring>
         <name>light</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::light</qualifiedname>
         <param>
           <type>size_t</type>
           <declname>i</declname>
@@ -715,6 +767,7 @@
         <definition>std::vector&lt; gs::Light &gt; &amp; robot_dart::gui::magnum::BaseApplication::lights</definition>
         <argsstring>()</argsstring>
         <name>lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -728,6 +781,7 @@
         <definition>size_t robot_dart::gui::magnum::BaseApplication::num_lights</definition>
         <argsstring>() const</argsstring>
         <name>num_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::num_lights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -741,6 +795,7 @@
         <definition>Magnum::SceneGraph::DrawableGroup3D &amp; robot_dart::gui::magnum::BaseApplication::drawables</definition>
         <argsstring>()</argsstring>
         <name>drawables</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::drawables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -754,6 +809,7 @@
         <definition>Scene3D &amp; robot_dart::gui::magnum::BaseApplication::scene</definition>
         <argsstring>()</argsstring>
         <name>scene</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::scene</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -767,6 +823,7 @@
         <definition>gs::Camera &amp; robot_dart::gui::magnum::BaseApplication::camera</definition>
         <argsstring>()</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -780,6 +837,7 @@
         <definition>const gs::Camera &amp; robot_dart::gui::magnum::BaseApplication::camera</definition>
         <argsstring>() const</argsstring>
         <name>camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -793,6 +851,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::done</definition>
         <argsstring>() const</argsstring>
         <name>done</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::done</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -806,6 +865,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::look_at</definition>
         <argsstring>(const Eigen::Vector3d &amp;camera_pos, const Eigen::Vector3d &amp;look_at, const Eigen::Vector3d &amp;up)</argsstring>
         <name>look_at</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::look_at</qualifiedname>
         <param>
           <type>const Eigen::Vector3d &amp;</type>
           <declname>camera_pos</declname>
@@ -831,6 +891,7 @@
         <definition>virtual void robot_dart::gui::magnum::BaseApplication::render</definition>
         <argsstring>()</argsstring>
         <name>render</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::render</qualifiedname>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1aeaf25dcd25336527e4ede5892fb6da8d">render</reimplementedby>
         <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a599eb6c91e60abb1872065005a4cea24">render</reimplementedby>
         <briefdescription>
@@ -846,6 +907,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::update_lights</definition>
         <argsstring>(const gs::Camera &amp;camera)</argsstring>
         <name>update_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::update_lights</qualifiedname>
         <param>
           <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">gs::Camera</ref> &amp;</type>
           <declname>camera</declname>
@@ -863,6 +925,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::update_graphics</definition>
         <argsstring>()</argsstring>
         <name>update_graphics</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::update_graphics</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -876,6 +939,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::render_shadows</definition>
         <argsstring>()</argsstring>
         <name>render_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::render_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -889,6 +953,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::attach_camera</definition>
         <argsstring>(gs::Camera &amp;camera, dart::dynamics::BodyNode *body)</argsstring>
         <name>attach_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::attach_camera</qualifiedname>
         <param>
           <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">gs::Camera</ref> &amp;</type>
           <declname>camera</declname>
@@ -910,6 +975,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::record_video</definition>
         <argsstring>(const std::string &amp;video_fname, int fps)</argsstring>
         <name>record_video</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::record_video</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>video_fname</declname>
@@ -931,6 +997,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::shadowed</definition>
         <argsstring>() const</argsstring>
         <name>shadowed</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::shadowed</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -944,6 +1011,7 @@
         <definition>bool robot_dart::gui::magnum::BaseApplication::transparent_shadows</definition>
         <argsstring>() const</argsstring>
         <name>transparent_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::transparent_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -957,6 +1025,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::enable_shadows</definition>
         <argsstring>(bool enable=true, bool drawTransparentShadows=false)</argsstring>
         <name>enable_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::enable_shadows</qualifiedname>
         <param>
           <type>bool</type>
           <declname>enable</declname>
@@ -980,6 +1049,7 @@
         <definition>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp; robot_dart::gui::magnum::BaseApplication::image</definition>
         <argsstring>()</argsstring>
         <name>image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -993,6 +1063,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::BaseApplication::depth_image</definition>
         <argsstring>()</argsstring>
         <name>depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1006,6 +1077,7 @@
         <definition>GrayscaleImage robot_dart::gui::magnum::BaseApplication::raw_depth_image</definition>
         <argsstring>()</argsstring>
         <name>raw_depth_image</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::raw_depth_image</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1019,6 +1091,7 @@
         <definition>DepthImage robot_dart::gui::magnum::BaseApplication::depth_array</definition>
         <argsstring>()</argsstring>
         <name>depth_array</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::depth_array</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1032,6 +1105,7 @@
         <definition>DebugDrawData robot_dart::gui::magnum::BaseApplication::debug_draw_data</definition>
         <argsstring>()</argsstring>
         <name>debug_draw_data</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::debug_draw_data</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1040,13 +1114,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="178" column="31" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="178" bodyend="192"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6ae637e77f0f516d4d0669cba1176e53" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void robot_dart::gui::magnum::BaseApplication::_gl_clean_up</definition>
         <argsstring>()</argsstring>
         <name>_gl_clean_up</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_gl_clean_up</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1060,6 +1135,7 @@
         <definition>void robot_dart::gui::magnum::BaseApplication::_prepare_shadows</definition>
         <argsstring>()</argsstring>
         <name>_prepare_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::BaseApplication::_prepare_shadows</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -1068,7 +1144,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/base_application.hpp" line="246" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="734" bodyend="824"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

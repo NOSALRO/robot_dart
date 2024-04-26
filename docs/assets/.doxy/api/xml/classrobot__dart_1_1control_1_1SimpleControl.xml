@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1control_1_1SimpleControl" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::control::SimpleControl</compoundname>
     <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1a62ee3206576eb967c118cefd6132c53b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
         <argsstring>()</argsstring>
         <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
         <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -44,6 +46,7 @@
         <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
         <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
         <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
         <param>
           <type>const Eigen::VectorXd &amp;</type>
           <declname>ctrl</declname>
@@ -65,6 +68,7 @@
         <definition>void robot_dart::control::SimpleControl::configure</definition>
         <argsstring>() override</argsstring>
         <name>configure</name>
+        <qualifiedname>robot_dart::control::SimpleControl::configure</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
         <briefdescription>
         </briefdescription>
@@ -79,6 +83,7 @@
         <definition>Eigen::VectorXd robot_dart::control::SimpleControl::calculate</definition>
         <argsstring>(double) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>robot_dart::control::SimpleControl::calculate</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
         <param>
           <type>double</type>
@@ -96,6 +101,7 @@
         <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::SimpleControl::clone</definition>
         <argsstring>() const override</argsstring>
         <name>clone</name>
+        <qualifiedname>robot_dart::control::SimpleControl::clone</qualifiedname>
         <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
         <briefdescription>
         </briefdescription>
@@ -105,7 +111,7 @@
         </inbodydescription>
         <location file="robot_dart/control/simple_control.hpp" line="17" column="29" bodyfile="robot_dart/control/simple_control.cpp" bodystart="23" bodyend="26"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

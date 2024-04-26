@@ -102,6 +102,8 @@ void robot_dart::detail::add_dof_data (
 
 
 
+<hr>
+
 
 
 ### function dof\_data 
@@ -117,6 +119,8 @@ Eigen::VectorXd robot_dart::detail::dof_data (
 
 
 
+
+<hr>
 
 
 
@@ -134,6 +138,8 @@ void robot_dart::detail::set_dof_data (
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robot.cpp`

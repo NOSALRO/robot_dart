@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::GlfwApplication</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseApplication</basecompoundref>
     <basecompoundref prot="public" virt="non-virtual">Magnum::Platform::Application</basecompoundref>
-      <sectiondef kind="protected-attrib">
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6770be3e69e1fc9f546d226e97ceb34a" prot="protected" static="no" mutable="no">
         <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
         <definition>RobotDARTSimu* robot_dart::gui::magnum::GlfwApplication::_simu</definition>
         <argsstring></argsstring>
         <name>_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_simu</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_move</definition>
         <argsstring></argsstring>
         <name>_speed_move</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed_move</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_strafe</definition>
         <argsstring></argsstring>
         <name>_speed_strafe</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed_strafe</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,6 +52,7 @@
         <definition>bool robot_dart::gui::magnum::GlfwApplication::_draw_main_camera</definition>
         <argsstring></argsstring>
         <name>_draw_main_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_draw_main_camera</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -62,6 +66,7 @@
         <definition>bool robot_dart::gui::magnum::GlfwApplication::_draw_debug</definition>
         <argsstring></argsstring>
         <name>_draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_draw_debug</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,6 +80,7 @@
         <definition>Magnum::Color4 robot_dart::gui::magnum::GlfwApplication::_bg_color</definition>
         <argsstring></argsstring>
         <name>_bg_color</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_bg_color</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -83,13 +89,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/glfw_application.hpp" line="29" column="32" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-static-attrib">
+    </sectiondef>
+    <sectiondef kind="protected-static-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1afa36bf510f8d06496071337bf3877f7b" prot="protected" static="yes" constexpr="yes" mutable="no">
         <type>constexpr Magnum::Float</type>
         <definition>constexpr Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed</definition>
         <argsstring></argsstring>
         <name>_speed</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed</qualifiedname>
         <initializer>= 0.05f</initializer>
         <briefdescription>
         </briefdescription>
@@ -99,13 +106,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/glfw_application.hpp" line="31" column="48" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af2bbf678a299f7c71950905b8edf1a4a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
         <definition>robot_dart::gui::magnum::GlfwApplication::GlfwApplication</definition>
         <argsstring>(int argc, char **argv, RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
         <name>GlfwApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::GlfwApplication</qualifiedname>
         <param>
           <type>int</type>
           <declname>argc</declname>
@@ -136,6 +144,7 @@
         <definition>robot_dart::gui::magnum::GlfwApplication::~GlfwApplication</definition>
         <argsstring>()</argsstring>
         <name>~GlfwApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::~GlfwApplication</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -149,6 +158,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::render</definition>
         <argsstring>() override</argsstring>
         <name>render</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::render</qualifiedname>
         <reimplements refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a16d1087b2a12045167c0c6924fff6062">render</reimplements>
         <briefdescription>
         </briefdescription>
@@ -158,13 +168,14 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/glfw_application.hpp" line="23" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="54" bodyend="57"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6f08ae7ae23c9b46d0ae03542d16210d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void robot_dart::gui::magnum::GlfwApplication::viewportEvent</definition>
         <argsstring>(ViewportEvent &amp;event) override</argsstring>
         <name>viewportEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::viewportEvent</qualifiedname>
         <param>
           <type>ViewportEvent &amp;</type>
           <declname>event</declname>
@@ -182,6 +193,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::drawEvent</definition>
         <argsstring>() override</argsstring>
         <name>drawEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::drawEvent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -195,6 +207,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::keyReleaseEvent</definition>
         <argsstring>(KeyEvent &amp;event) override</argsstring>
         <name>keyReleaseEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::keyReleaseEvent</qualifiedname>
         <param>
           <type>KeyEvent &amp;</type>
           <declname>event</declname>
@@ -212,6 +225,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::keyPressEvent</definition>
         <argsstring>(KeyEvent &amp;event) override</argsstring>
         <name>keyPressEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::keyPressEvent</qualifiedname>
         <param>
           <type>KeyEvent &amp;</type>
           <declname>event</declname>
@@ -229,6 +243,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::mouseScrollEvent</definition>
         <argsstring>(MouseScrollEvent &amp;event) override</argsstring>
         <name>mouseScrollEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::mouseScrollEvent</qualifiedname>
         <param>
           <type>MouseScrollEvent &amp;</type>
           <declname>event</declname>
@@ -246,6 +261,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::mouseMoveEvent</definition>
         <argsstring>(MouseMoveEvent &amp;event) override</argsstring>
         <name>mouseMoveEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::mouseMoveEvent</qualifiedname>
         <param>
           <type>MouseMoveEvent &amp;</type>
           <declname>event</declname>
@@ -263,6 +279,7 @@
         <definition>void robot_dart::gui::magnum::GlfwApplication::exitEvent</definition>
         <argsstring>(ExitEvent &amp;event) override</argsstring>
         <name>exitEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::exitEvent</qualifiedname>
         <param>
           <type>ExitEvent &amp;</type>
           <declname>event</declname>
@@ -275,7 +292,7 @@
         </inbodydescription>
         <location file="robot_dart/gui/magnum/glfw_application.hpp" line="43" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="153" bodyend="157"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

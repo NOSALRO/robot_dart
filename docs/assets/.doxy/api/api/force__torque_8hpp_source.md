@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](force__torque_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_SENSOR_FORCE_TORQUE_HPP
 #define ROBOT_DART_SENSOR_FORCE_TORQUE_HPP
 
@@ -44,6 +44,6 @@ namespace robot_dart {
 } // namespace robot_dart
 
 #endif
-
 ```
+
 

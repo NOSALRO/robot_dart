@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](utils__headers__dart__dynamics_8hpp.md)
 
-```C++
 
+```C++
 #ifndef ROBOT_DART_UTILS_HEADERS_DART_DYNAMICS_HPP
 #define ROBOT_DART_UTILS_HEADERS_DART_DYNAMICS_HPP
 
@@ -28,6 +28,6 @@
 #include <dart/dynamics/WeldJoint.hpp>
 
 #endif
-
 ```
+
 

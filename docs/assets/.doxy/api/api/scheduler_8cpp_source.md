@@ -6,8 +6,8 @@
 
 [Go to the documentation of this file](scheduler_8cpp.md)
 
-```C++
 
+```C++
 #include <robot_dart/scheduler.hpp>
 
 namespace robot_dart {
@@ -68,6 +68,6 @@ namespace robot_dart {
     }
 
 } // namespace robot_dart
-
 ```
+
 

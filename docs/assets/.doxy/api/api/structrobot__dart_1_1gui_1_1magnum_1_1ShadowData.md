@@ -95,6 +95,8 @@ Magnum::GL::Framebuffer robot_dart::gui::magnum::ShadowData::shadow_color_frameb
 
 
 
+<hr>
+
 
 
 ### variable shadow\_framebuffer 
@@ -105,6 +107,8 @@ Magnum::GL::Framebuffer robot_dart::gui::magnum::ShadowData::shadow_framebuffer;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/drawables.hpp`

@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.2" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1Assertion" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::Assertion</compoundname>
     <basecompoundref prot="public" virt="non-virtual">std::exception</basecompoundref>
-      <sectiondef kind="private-attrib">
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1Assertion_1ac449607419264e65a603137ac481451d" prot="private" static="no" mutable="no">
         <type>std::string</type>
         <definition>std::string robot_dart::Assertion::_msg</definition>
         <argsstring></argsstring>
         <name>_msg</name>
+        <qualifiedname>robot_dart::Assertion::_msg</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -17,13 +18,14 @@
         </inbodydescription>
         <location file="robot_dart/utils.hpp" line="67" column="21" bodyfile="robot_dart/utils.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classrobot__dart_1_1Assertion_1aee3657e2198822bc2c9ce644c3478cc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>robot_dart::Assertion::Assertion</definition>
         <argsstring>(const std::string &amp;msg=&quot;&quot;)</argsstring>
         <name>Assertion</name>
+        <qualifiedname>robot_dart::Assertion::Assertion</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>msg</declname>
@@ -42,6 +44,7 @@
         <definition>const char * robot_dart::Assertion::what</definition>
         <argsstring>() const</argsstring>
         <name>what</name>
+        <qualifiedname>robot_dart::Assertion::what</qualifiedname>
         <exceptions> throw ()</exceptions>
         <briefdescription>
         </briefdescription>
@@ -51,13 +54,14 @@
         </inbodydescription>
         <location file="robot_dart/utils.hpp" line="61" column="20" bodyfile="robot_dart/utils.hpp" bodystart="61" bodyend="64"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
+    </sectiondef>
+    <sectiondef kind="private-func">
       <memberdef kind="function" id="classrobot__dart_1_1Assertion_1afc988df256f168ac7d93e4a44efce62c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
         <definition>std::string robot_dart::Assertion::_make_message</definition>
         <argsstring>(const std::string &amp;msg) const</argsstring>
         <name>_make_message</name>
+        <qualifiedname>robot_dart::Assertion::_make_message</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>msg</declname>
@@ -70,7 +74,7 @@
         </inbodydescription>
         <location file="robot_dart/utils.hpp" line="69" column="21" bodyfile="robot_dart/utils.hpp" bodystart="69" bodyend="75"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

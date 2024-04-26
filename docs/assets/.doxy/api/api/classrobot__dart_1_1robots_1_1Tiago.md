@@ -389,6 +389,8 @@ robot_dart::robots::Tiago::Tiago (
 
 
 
+<hr>
+
 
 
 ### function caster\_joints 
@@ -400,6 +402,8 @@ inline std::vector< std::string > robot_dart::robots::Tiago::caster_joints () co
 
 
 
+<hr>
+
 
 
 ### function ft\_wrist 
@@ -410,6 +414,8 @@ inline const sensor::ForceTorque & robot_dart::robots::Tiago::ft_wrist () const
 
 
 
+
+<hr>
 
 
 
@@ -423,6 +429,8 @@ virtual void robot_dart::robots::Tiago::reset () override
 
 Implements [*robot\_dart::Robot::reset*](classrobot__dart_1_1Robot.md#function-reset)
 
+
+<hr>
 
 
 
@@ -441,6 +449,8 @@ void robot_dart::robots::Tiago::set_actuator_type (
 
 
 
+<hr>
+
 
 
 ### function set\_actuator\_types 
@@ -457,6 +467,8 @@ void robot_dart::robots::Tiago::set_actuator_types (
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -470,6 +482,8 @@ std::shared_ptr<sensor::ForceTorque> robot_dart::robots::Tiago::_ft_wrist;
 
 
 
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -488,6 +502,8 @@ virtual void robot_dart::robots::Tiago::_post_addition (
 Implements [*robot\_dart::Robot::\_post\_addition*](classrobot__dart_1_1Robot.md#function-_post_addition)
 
 
+<hr>
+
 
 
 ### function \_post\_removal 
@@ -502,6 +518,8 @@ virtual void robot_dart::robots::Tiago::_post_removal (
 
 Implements [*robot\_dart::Robot::\_post\_removal*](classrobot__dart_1_1Robot.md#function-_post_removal)
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/robots/tiago.hpp`

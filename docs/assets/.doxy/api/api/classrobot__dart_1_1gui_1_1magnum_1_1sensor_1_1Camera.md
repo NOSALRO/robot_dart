@@ -225,6 +225,8 @@ robot_dart::gui::magnum::sensor::Camera::Camera (
 
 
 
+<hr>
+
 
 
 ### function attach\_to\_body 
@@ -240,6 +242,8 @@ virtual void robot_dart::gui::magnum::sensor::Camera::attach_to_body (
 
 Implements [*robot\_dart::sensor::Sensor::attach\_to\_body*](classrobot__dart_1_1sensor_1_1Sensor.md#function-attach_to_body-12)
 
+
+<hr>
 
 
 
@@ -257,6 +261,8 @@ inline virtual void robot_dart::gui::magnum::sensor::Camera::attach_to_joint (
 Implements [*robot\_dart::sensor::Sensor::attach\_to\_joint*](classrobot__dart_1_1sensor_1_1Sensor.md#function-attach_to_joint-12)
 
 
+<hr>
+
 
 
 ### function calculate 
@@ -272,6 +278,8 @@ virtual void robot_dart::gui::magnum::sensor::Camera::calculate (
 Implements [*robot\_dart::sensor::Sensor::calculate*](classrobot__dart_1_1sensor_1_1Sensor.md#function-calculate)
 
 
+<hr>
+
 
 
 ### function camera [1/2]
@@ -282,6 +290,8 @@ inline gs::Camera & robot_dart::gui::magnum::sensor::Camera::camera ()
 
 
 
+
+<hr>
 
 
 
@@ -294,6 +304,8 @@ inline const gs::Camera & robot_dart::gui::magnum::sensor::Camera::camera () con
 
 
 
+<hr>
+
 
 
 ### function camera\_extrinsic\_matrix 
@@ -304,6 +316,8 @@ Eigen::Matrix4d robot_dart::gui::magnum::sensor::Camera::camera_extrinsic_matrix
 
 
 
+
+<hr>
 
 
 
@@ -316,6 +330,8 @@ Eigen::Matrix3d robot_dart::gui::magnum::sensor::Camera::camera_intrinsic_matrix
 
 
 
+<hr>
+
 
 
 ### function depth\_array 
@@ -327,6 +343,8 @@ DepthImage robot_dart::gui::magnum::sensor::Camera::depth_array ()
 
 
 
+<hr>
+
 
 
 ### function depth\_image 
@@ -337,6 +355,8 @@ GrayscaleImage robot_dart::gui::magnum::sensor::Camera::depth_image ()
 
 
 
+
+<hr>
 
 
 
@@ -351,6 +371,8 @@ inline void robot_dart::gui::magnum::sensor::Camera::draw_debug (
 
 
 
+<hr>
+
 
 
 ### function drawing\_debug 
@@ -362,6 +384,8 @@ inline bool robot_dart::gui::magnum::sensor::Camera::drawing_debug () const
 
 
 
+<hr>
+
 
 
 ### function image 
@@ -372,6 +396,8 @@ inline Image robot_dart::gui::magnum::sensor::Camera::image ()
 
 
 
+
+<hr>
 
 
 
@@ -385,6 +411,8 @@ virtual void robot_dart::gui::magnum::sensor::Camera::init () override
 
 Implements [*robot\_dart::sensor::Sensor::init*](classrobot__dart_1_1sensor_1_1Sensor.md#function-init)
 
+
+<hr>
 
 
 
@@ -401,6 +429,8 @@ void robot_dart::gui::magnum::sensor::Camera::look_at (
 
 
 
+<hr>
+
 
 
 ### function magnum\_depth\_image 
@@ -411,6 +441,8 @@ inline Magnum::Image2D * robot_dart::gui::magnum::sensor::Camera::magnum_depth_i
 
 
 
+
+<hr>
 
 
 
@@ -423,6 +455,8 @@ inline Magnum::Image2D * robot_dart::gui::magnum::sensor::Camera::magnum_image (
 
 
 
+<hr>
+
 
 
 ### function raw\_depth\_image 
@@ -433,6 +467,8 @@ GrayscaleImage robot_dart::gui::magnum::sensor::Camera::raw_depth_image ()
 
 
 
+
+<hr>
 
 
 
@@ -447,6 +483,8 @@ inline void robot_dart::gui::magnum::sensor::Camera::record_video (
 
 
 
+<hr>
+
 
 
 ### function type 
@@ -460,6 +498,8 @@ virtual std::string robot_dart::gui::magnum::sensor::Camera::type () override co
 Implements [*robot\_dart::sensor::Sensor::type*](classrobot__dart_1_1sensor_1_1Sensor.md#function-type)
 
 
+<hr>
+
 
 
 ### function ~Camera 
@@ -470,6 +510,8 @@ inline robot_dart::gui::magnum::sensor::Camera::~Camera ()
 
 
 
+
+<hr>
 ## Protected Attributes Documentation
 
 
@@ -484,6 +526,8 @@ std::unique_ptr<gs::Camera> robot_dart::gui::magnum::sensor::Camera::_camera;
 
 
 
+<hr>
+
 
 
 ### variable \_color 
@@ -494,6 +538,8 @@ Magnum::GL::Renderbuffer robot_dart::gui::magnum::sensor::Camera::_color;
 
 
 
+
+<hr>
 
 
 
@@ -506,6 +552,8 @@ Magnum::GL::Renderbuffer robot_dart::gui::magnum::sensor::Camera::_depth;
 
 
 
+<hr>
+
 
 
 ### variable \_draw\_debug 
@@ -516,6 +564,8 @@ bool robot_dart::gui::magnum::sensor::Camera::_draw_debug;
 
 
 
+
+<hr>
 
 
 
@@ -528,6 +578,8 @@ Magnum::PixelFormat robot_dart::gui::magnum::sensor::Camera::_format;
 
 
 
+<hr>
+
 
 
 ### variable \_framebuffer 
@@ -538,6 +590,8 @@ Magnum::GL::Framebuffer robot_dart::gui::magnum::sensor::Camera::_framebuffer;
 
 
 
+
+<hr>
 
 
 
@@ -550,6 +604,8 @@ size_t robot_dart::gui::magnum::sensor::Camera::_height;
 
 
 
+<hr>
+
 
 
 ### variable \_magnum\_app 
@@ -561,6 +617,8 @@ BaseApplication* robot_dart::gui::magnum::sensor::Camera::_magnum_app;
 
 
 
+<hr>
+
 
 
 ### variable \_width 
@@ -571,6 +629,8 @@ size_t robot_dart::gui::magnum::sensor::Camera::_width;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/magnum/sensor/camera.hpp`

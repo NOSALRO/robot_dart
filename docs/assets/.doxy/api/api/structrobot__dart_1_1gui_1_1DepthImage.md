@@ -96,6 +96,8 @@ std::vector<double> robot_dart::gui::DepthImage::data;
 
 
 
+<hr>
+
 
 
 ### variable height 
@@ -107,6 +109,8 @@ size_t robot_dart::gui::DepthImage::height;
 
 
 
+<hr>
+
 
 
 ### variable width 
@@ -117,6 +121,8 @@ size_t robot_dart::gui::DepthImage::width;
 
 
 
+
+<hr>
 
 ------------------------------
 The documentation for this class was generated from the following file `robot_dart/gui/helper.hpp`
