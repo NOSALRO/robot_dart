@@ -13,6 +13,19 @@ Documentation is available at: [https://nosalro.github.io/robot_dart/](https://n
 - Active contributors: Dionis Totsila (Inria and University of Patras), Jean-Baptiste Mouret (Inria)
 - Other contributors: Antoine Cully, Vassilis Vassiliades, Vaios Papaspyros
 
+## Citing RobotDART
+
+If you use this code in a scientific publication, please use the following citation ([url](https://ieeexplore.ieee.org/abstract/document/10345879)):
+
+```bibtex
+@article{chatzilygeroudis2024robot,
+        title={{RobotDART: A Fast and Modular Robot Simulator for Robotics and Machine Learning Researchers}},
+        author={Chatzilygeroudis, Konstantinos and Dionis, Totsila and Mouret, Jean-Baptiste},
+        year={2024},
+        booktitle={{Preprint (Submitted to JOSS)}}
+      }
+```
+
 ## Acknowledgments
 
 This work was supported by the [Hellenic Foundation for Research and Innovation](https://www.elidek.gr/en/homepage/) (H.F.R.I.) under the "3rd Call for H.F.R.I. Research Projects to support Post-Doctoral Researchers" (Project Acronym: NOSALRO, Project Number: 7541).
