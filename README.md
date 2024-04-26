@@ -5,7 +5,7 @@ RobotDART is a C++ robot simulator (with optional Python bindings) built on top 
 
 ## Documentation
 
-Documentation is available at: [https://resibots.eu/robot_dart/](https://resibots.eu/robot_dart/)
+Documentation is available at: [https://nosalro.github.io/robot_dart/](https://nosalro.github.io/robot_dart/)
 
 ## Authors
 
