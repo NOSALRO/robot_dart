@@ -15,7 +15,7 @@ Documentation is available at: [https://nosalro.github.io/robot_dart/](https://n
 
 ## Citing RobotDART
 
-If you use this code in a scientific publication, please use the following citation ([url](https://ieeexplore.ieee.org/abstract/document/10345879)):
+If you use this code in a scientific publication, please use the following citation:
 
 ```bibtex
 @article{chatzilygeroudis2024robot,
