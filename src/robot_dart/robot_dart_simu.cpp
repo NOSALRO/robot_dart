@@ -141,12 +141,14 @@ namespace robot_dart {
             if (_text_panel) { // Need to re-transform as the size of the window might have changed
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
                 tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., _graphics->height() / 2.));
+                // tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., 0.));
                 _text_panel->transformation = tf;
             }
             if (_status_bar) {
                 _status_bar->text = status_bar_text(); // this is dynamic text (timings)
                 Eigen::Affine2d tf = Eigen::Affine2d::Identity();
                 tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., -static_cast<double>(_graphics->height() / 2.)));
+                // tf.translate(Eigen::Vector2d(-static_cast<double>(_graphics->width()) / 2., 0.));
                 _status_bar->transformation = tf;
             }
 
@@ -385,13 +387,21 @@ namespace robot_dart {
 
     simu::GUIData* RobotDARTSimu::gui_data() { return &(*_gui_data); }
 
-    void RobotDARTSimu::enable_text_panel(bool enable, double font_size) { _enable(_text_panel, enable, font_size); }
+    void RobotDARTSimu::enable_text_panel(bool enable, double font_size)
+    {
+        _enable(_text_panel, enable, font_size);
+        if (enable) {
+            _text_panel->alignment = 3 << 2; // alignment of status bar should be LineTop; TO-DO: Check how to get types automatically from Magnum?
+            // _text_panel->draw_background = true; // we want to draw a background
+            // _text_panel->background_color = Eigen::Vector4d(0, 0, 0, 0.75); // black-transparent bar
+        }
+    }
 
     void RobotDARTSimu::enable_status_bar(bool enable, double font_size)
     {
         _enable(_status_bar, enable, font_size);
         if (enable) {
-            _status_bar->alignment = (1 | 1 << 3); // alignment of status bar should be LineLeft
+            _status_bar->alignment = 1 << 2; // alignment of status bar should be LineBottom; TO-DO: Check how to get types automatically from Magnum?
             _status_bar->draw_background = true; // we want to draw a background
             _status_bar->background_color = Eigen::Vector4d(0, 0, 0, 0.75); // black-transparent bar
         }
@@ -400,7 +410,7 @@ namespace robot_dart {
     void RobotDARTSimu::_enable(std::shared_ptr<simu::TextData>& text, bool enable, double font_size)
     {
         if (!text && enable) {
-            text = _gui_data->add_text("");
+            text = add_text("");
         }
         else if (!enable) {
             if (text)
