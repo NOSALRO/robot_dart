@@ -45,7 +45,8 @@ To quickly install RobotDART on `Mac OSX`, we just need to run `./scripts/instal
 This will install everything needed! Once the script is successfully executed, one should add the following to their `~/.bashrc` or `~/.zshrc` file (you may need to swap the python version to yours[^1]):
 
 ```bash
-export LD_LIBRARY_PATH=/opt/robot_dart/lib:$LD_LIBRARY_PATH
+export PATH=/opt/magnum/bin:$PATH
+export LD_LIBRARY_PATH=/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=/opt/robot_dart/lib/python3.10/site-packages:$PYTHONPATH
 ```
 
