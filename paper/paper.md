@@ -86,7 +86,7 @@ RobotDART has been actively used in many scientific research projects and public
 
 ## Scientific Publications (indicative list, ordered by date)
 
-1. Anne, T. and Mouret, J.B., 2024. Parametric-Task MAP-Elites. arXiv preprint arXiv:2402.01275. [(pdf)](https://arxiv.org/pdf/2402.01275)
+1. Anne, T. and Mouret, J.B., 2024. Parametric-Task MAP-Elites. Proceedings of the Genetic and Evolutionary Computation Conference (GECCO). [(pdf)](https://arxiv.org/pdf/2402.01275)
 
 1. Ivaldi, S. and Ghini, E., 2023, June. Teleoperating a robot for removing asbestos tiles on roofs: insights from a pilot study. In 2023 IEEE International Conference on Advanced Robotics and Its Social Impacts (ARSO) (pp. 128-133). IEEE. [(pdf)](https://ieeexplore.ieee.org/iel7/10187190/10187410/10187476.pdf)
 
