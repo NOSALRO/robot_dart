@@ -19,7 +19,7 @@ If you use this code in a scientific publication, please use the following citat
 
 ```bibtex
 @article{chatzilygeroudis2024robot,
-        title={{RobotDART: A Fast and Modular Robot Simulator for Robotics and Machine Learning Researchers}},
+        title={{RobotDART: a versatile robot simulator for robotics and machine learning researchers}},
         author={Chatzilygeroudis, Konstantinos and Dionis, Totsila and Mouret, Jean-Baptiste},
         year={2024},
         booktitle={{Preprint (Submitted to JOSS)}}

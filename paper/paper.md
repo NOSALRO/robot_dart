@@ -1,5 +1,5 @@
 ---
-title: 'RobotDART: A Fast and Modular Robot Simulator for Robotics and Machine Learning Researchers'
+title: 'RobotDART: a versatile robot simulator for robotics and machine learning researchers'
 tags:
   - Robot simulator
   - Robotics
@@ -28,7 +28,7 @@ affiliations:
    index: 3
  - name: Computer Engineering and Informatics Department (CEID), University of Patras, Greece
    index: 4
-date: 2 February 2024
+date: 29 April 2024
 bibliography: paper.bib
 software_repository_url: https://github.com/NOSALRO/robot_dart
 
@@ -36,7 +36,7 @@ software_repository_url: https://github.com/NOSALRO/robot_dart
 
 # Summary
 
-Robot simulation plays a pivotal role in robotics and machine learning research, offering a cost-effective and safe means to develop, validate, and benchmark algorithms in various scenarios. With the growing complexity of robotic systems and the increasing demand for data-driven approaches in machine learning, there is a pressing need for versatile and efficient robot simulators that cater to the diverse requirements of researchers. In response to this demand, we introduce RobotDART, a high-performance and modular robot simulator designed to empower researchers in robotics and machine learning with a powerful and flexible simulation environment.
+Robot simulation plays a pivotal role in robotics and machine learning research, offering a cost-effective and safe means to develop, validate, and benchmark algorithms in various scenarios. With the growing complexity of robotic systems and the increasing demand for data-driven approaches in machine learning, there is a pressing need for versatile and efficient robot simulators that cater to the diverse requirements of researchers. In response to this demand, we introduce RobotDART, a high-performance and versatile robot simulator designed to empower researchers in robotics and machine learning with a powerful and flexible simulation environment.
 
 ![Talos Humanoid robot (@stasse2017talos) in RobotDART.\label{fig:talos}](talos.png){ width=90% }
 
@@ -50,7 +50,7 @@ With the emergence of reinforcement learning for robot control and more generall
 - synchronous operation: ensuring reproducible learning runs and effectively managing faster-than-reality simulations necessitates synchronization of simulation and controller time-steps;
 - thread safety: modern computers with their many of cores can be leveraged to execute many simulations in parallel but the simulator needs to be designed in accordance;
 - camera and depth sensor simulation: deep reinforcement learning has demonstrated promising results in learning vision-based policies through end-to-end learning; however, this demands the simulation of both depth and color cameras;
-- ease of use, flexibility and modularity: the field of machine learning is characterized by rapid development, making it challenging to anticipate the diverse needs of researchers; for instance, techniques like privileged reinforcement learning (@lee2020learning) and domain randomization (@tobin2017domain) necessitate direct access to various low-level components of the simulator to enable experimentation and innovation.
+- ease of use, flexibility and versatility: the field of machine learning is characterized by rapid development, making it challenging to anticipate the diverse needs of researchers; for instance, techniques like privileged reinforcement learning (@lee2020learning) and domain randomization (@tobin2017domain) necessitate direct access to various low-level components of the simulator to enable experimentation and innovation.
 
 Most of these features are not implemented in the mainstreams robot simulators like Gazebo. Even if some of these features are implemented, they require too much work from the researcher. For example, to effectively use Gazebo for multi-core parallel simulations, we need to create multiple Gazebo servers with different ip addresses which need to be unique in the LAN and propagated to the correct thread; as a result, the researcher spends a lot of time in boilerplate code to handle this instead of focusing in their main research avenue. RobotDART aims at filling this gap by providing a flexible simulator for data-driven robotics while being open-source and as simple as possible.
 
@@ -58,7 +58,7 @@ Most of these features are not implemented in the mainstreams robot simulators l
 
 RobotDART is built upon the Dynamic Animation and Robotics Toolkit (DART) (@lee2018dart), a robust open-source physics engine known for its accuracy and efficiency in simulating rigid body dynamics and articulated systems. By leveraging DART's capabilities, RobotDART provides a solid foundation for simulating a wide range of robotic systems with realistic dynamics and interactions with the environment.
 
-One of the key strengths of RobotDART lies in its modular architecture, which allows researchers to easily customize and extend the simulator according to their specific research needs. RobotDART provides a collection of pre-built robot models, sensors, and environments, covering a diverse range of scenarios commonly encountered in robotics research. Researchers can seamlessly integrate their own robot models, sensors, and environments into RobotDART, thanks to its flexible library design and intuitive Python API.
+One of the key strengths of RobotDART lies in its versatile architecture, which allows researchers to easily customize and extend the simulator according to their specific research needs. RobotDART provides a collection of pre-built robot models, sensors, and environments, covering a diverse range of scenarios commonly encountered in robotics research. Researchers can seamlessly integrate their own robot models, sensors, and environments into RobotDART, thanks to its flexible library design and intuitive Python API.
 
 Unlike other simulation frameworks, like Gazebo, RobotDART runs headless by default, and there is the possibility of rendering the scene (e.g., through a camera sensor) without opening a graphics window. All RobotDART's code is thread-safe (including graphics and camera sensors), and thus enables its users to use their code in parallel jobs in multicore computers. RobotDART is intended to be used by Robotics and Machine Learning researchers who want to write controllers or test learning algorithms without the delays and overhead that usually comes with other simulators (e.g., Gazebo, Coppelia-sim).
 

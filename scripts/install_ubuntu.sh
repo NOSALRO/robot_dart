@@ -1,6 +1,6 @@
 CLEAN=0
 
-CLEAN=${4:-$CLEAN}
+CLEAN=${1:-$CLEAN}
 
 sudo apt-add-repository -y ppa:dartsim/ppa
 sudo apt update
