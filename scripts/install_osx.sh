@@ -11,10 +11,7 @@ pip3 install numpy
 brew install dartsim --only-dependencies
 pip3 install dartpy
 
-brew install --HEAD mosra/magnum/corrade --only-dependencies
-brew install --HEAD mosra/magnum/magnum --only-dependencies
-brew install --HEAD mosra/magnum/magnum-plugins --only-dependencies
-brew install --HEAD mosra/magnum/magnum-integration --only-dependencies
+brew install cmake sdl2 glfw spirv-tools glslang python eigen glm bullet assimp devil faad2 freetype glslang harfbuzz libpng libspng jpeg openexr spirv zstd webp
 
 if [ $CLEAN -ne 0 ]; then
     echo "-- Cleaning.."
