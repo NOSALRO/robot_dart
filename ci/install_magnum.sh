@@ -19,6 +19,8 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
+echo "$machine"
+
 WINDOWLESS=DMAGNUM_WITH_WINDOWLESSEGLAPPLICATION
 
 if [ "$machine" == "Mac" ]; then
