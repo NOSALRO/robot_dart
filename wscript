@@ -45,6 +45,7 @@ def options(opt):
     opt.add_option('--python', action='store_true', help='compile python bindings', dest='pybind')
     opt.add_option('--no-robot_dart', action='store_true', help='only install the URDF library (utheque) / deactivate RobotDART', dest='utheque_only')
     opt.add_option('--no-pic', action='store_true', help='do not compile with position independent code', dest='no_pic')
+    opt.add_option('--magnum', type='string', help='path to all magnum related deps installation path', dest='magnum')
 
 
 def configure(conf):

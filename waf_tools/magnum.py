@@ -134,6 +134,10 @@ def check_magnum(conf, *k, **kw):
         includes_check = [conf.options.magnum_install_dir + '/include'] + includes_check
         libs_check = [conf.options.magnum_install_dir + '/lib'] + libs_check
         bins_check = [conf.options.magnum_install_dir + '/bin'] + bins_check
+    elif conf.options.magnum:
+        includes_check = [conf.options.magnum + '/include'] + includes_check
+        libs_check = [conf.options.magnum + '/lib'] + libs_check
+        bins_check = [conf.options.magnum + '/bin'] + bins_check
 
     requested_components = kw.get('components', None)
     if requested_components == None:
