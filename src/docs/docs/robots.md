@@ -42,7 +42,7 @@ We have two URDF files:
     * mimic joints for the gripper
     * Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf)]
-    * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)]
+    * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)] [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos.py)]
 
 !!! note "Load Talos"
     === "C++"
