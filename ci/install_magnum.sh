@@ -14,6 +14,8 @@ PREFIX=${1:-$PREFIX}
 DEPS_FOLDER=${2:-$DEPS_FOLDER}
 SUDOCMD=${3:-$SUDOCMD}
 
+eval SUDOCMD="${SUDOCMD}"
+
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;

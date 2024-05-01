@@ -51,7 +51,7 @@ cd $CI_HOME
 # Hack for dartpy installation
 python_file=/usr/lib/python3/dist-packages/dartpy.cpython-310-x86_64-linux-gnu.so
 if [ -f "$python_file" ]; then
-cp $python_file ${PREFIX}/$python_dist_dir
+sudo cp $python_file ${PREFIX}/$python_dist_dir
 fi
 
 else
