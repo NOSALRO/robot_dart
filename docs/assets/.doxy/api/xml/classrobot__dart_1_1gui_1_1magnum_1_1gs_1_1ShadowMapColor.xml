@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::gs::ShadowMapColor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::GL::AbstractShaderProgram</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046" prot="public" static="no" strong="yes">
+        <type>Magnum::UnsignedByte</type>
+        <name>Flag</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Flag</qualifiedname>
+        <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046ae712876b5313699d4e38e6f70c7c725e" prot="public">
+          <name>DiffuseTexture</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The shader uses diffuse texture instead of color </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="24" column="21" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a8ac16d7e4c1076a8887e72040b452b67" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::Position</type>
+        <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::Position =  Magnum::Shaders::Generic3D::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="21" column="21" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a4da9aa32add2649aedd8294c4b8c8dc1" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::TextureCoordinates</type>
+        <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::TextureCoordinates =  Magnum::Shaders::Generic3D::TextureCoordinates</definition>
+        <argsstring></argsstring>
+        <name>TextureCoordinates</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::TextureCoordinates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="22" column="21" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aa4cf648a24bf68941207180d98e0e8f8" prot="public" static="no">
+        <type>Magnum::Containers::EnumSet&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046" kindref="member">Flag</ref> &gt;</type>
+        <definition>using robot_dart::gui::magnum::gs::ShadowMapColor::Flags =  Magnum::Containers::EnumSet&lt;Flag&gt;</definition>
+        <argsstring></argsstring>
+        <name>Flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::Flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="28" column="21" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aabd0ae0c9f4e5cbf79d40797c4c4e6b6" prot="private" static="no" mutable="no">
+        <type>Flags</type>
+        <definition>Flags robot_dart::gui::magnum::gs::ShadowMapColor::_flags</definition>
+        <argsstring></argsstring>
+        <name>_flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="40" column="27" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a498293993bcf58ee7be2c4b9cfda7954" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_transformation_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_transformation_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_transformation_matrix_uniform</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="33" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a6e1c6c8017d847858467a050878d188c" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_projection_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_projection_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_projection_matrix_uniform</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="64" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a311dab6d1e99969ea8d87b10f2d69a1a" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::ShadowMapColor::_diffuse_color_uniform</definition>
+        <argsstring></argsstring>
+        <name>_diffuse_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::_diffuse_color_uniform</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="41" column="91" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad8ff22c1f626198590b4592ca760a4eb" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</definition>
+        <argsstring>(Flags flags={})</argsstring>
+        <name>ShadowMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</qualifiedname>
+        <param>
+          <type>Flags</type>
+          <declname>flags</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="30" column="30" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="10" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a34147a5e79bac37324d144e26a42075f" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</definition>
+        <argsstring>(Magnum::NoCreateT) noexcept</argsstring>
+        <name>ShadowMapColor</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::ShadowMapColor</qualifiedname>
+        <param>
+          <type>Magnum::NoCreateT</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="31" column="30" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1abfdd727b6645d8517da16bbcf862aabb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Flags</type>
+        <definition>ShadowMapColor::Flags robot_dart::gui::magnum::gs::ShadowMapColor::flags</definition>
+        <argsstring>() const</argsstring>
+        <name>flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="33" column="27" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a0a78c0c491d06fef854703ebb9078053" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kindref="compound">ShadowMapColor</ref> &amp;</type>
+        <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_transformation_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_transformation_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_transformation_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="35" column="36" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="59" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad3b30074fd94c170aea2bcd90029a168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kindref="compound">ShadowMapColor</ref> &amp;</type>
+        <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_projection_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_projection_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_projection_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="36" column="36" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="65" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a5d01ed5a6a038c76b9077984eda7c202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kindref="compound">ShadowMapColor</ref> &amp;</type>
+        <definition>ShadowMapColor &amp; robot_dart::gui::magnum::gs::ShadowMapColor::set_material</definition>
+        <argsstring>(Material &amp;material)</argsstring>
+        <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::ShadowMapColor::set_material</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="37" column="36" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.cpp" bodystart="71" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::ShadowMapColor</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::ShadowMapColor</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/gs/shadow_map_color.hpp" line="19" column="17" bodyfile="robot_dart/gui/magnum/gs/shadow_map_color.hpp" bodystart="19" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a311dab6d1e99969ea8d87b10f2d69a1a" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>_diffuse_color_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aabd0ae0c9f4e5cbf79d40797c4c4e6b6" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>_flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a6e1c6c8017d847858467a050878d188c" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>_projection_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a498293993bcf58ee7be2c4b9cfda7954" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>_transformation_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>Flag</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aa4cf648a24bf68941207180d98e0e8f8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>Flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1abfdd727b6645d8517da16bbcf862aabb" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a8ac16d7e4c1076a8887e72040b452b67" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>Position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a5d01ed5a6a038c76b9077984eda7c202" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>set_material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad3b30074fd94c170aea2bcd90029a168" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>set_projection_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a0a78c0c491d06fef854703ebb9078053" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>set_transformation_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad8ff22c1f626198590b4592ca760a4eb" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>ShadowMapColor</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a34147a5e79bac37324d144e26a42075f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>ShadowMapColor</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a4da9aa32add2649aedd8294c4b8c8dc1" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::ShadowMapColor</scope><name>TextureCoordinates</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

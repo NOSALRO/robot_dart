@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1gui_1_1magnum" kind="namespace" language="C++">
+    <compoundname>robot_dart::gui::magnum</compoundname>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public">robot_dart::gui::magnum::BaseApplication</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public">robot_dart::gui::magnum::BaseGraphics</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" prot="public">robot_dart::gui::magnum::CubeMapShadowedColorObject</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject" prot="public">robot_dart::gui::magnum::CubeMapShadowedObject</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData" prot="public">robot_dart::gui::magnum::DebugDrawData</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" prot="public">robot_dart::gui::magnum::DrawableObject</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" prot="public">robot_dart::gui::magnum::GlfwApplication</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" prot="public">robot_dart::gui::magnum::GlobalData</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics" prot="public">robot_dart::gui::magnum::Graphics</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" prot="public">robot_dart::gui::magnum::GraphicsConfiguration</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct" prot="public">robot_dart::gui::magnum::ObjectStruct</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData" prot="public">robot_dart::gui::magnum::ShadowData</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject" prot="public">robot_dart::gui::magnum::ShadowedColorObject</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" prot="public">robot_dart::gui::magnum::ShadowedObject</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" prot="public">robot_dart::gui::magnum::WindowlessGLApplication</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics" prot="public">robot_dart::gui::magnum::WindowlessGraphics</innerclass>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs">robot_dart::gui::magnum::gs</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum_1_1sensor">robot_dart::gui::magnum::sensor</innernamespace>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="types_8hpp_1ac9e7570908c66551af090f2d4ff5844c" prot="public" static="no">
+        <type>Magnum::SceneGraph::Object&lt; Magnum::SceneGraph::MatrixTransformation3D &gt;</type>
+        <definition>using robot_dart::gui::magnum::Object3D =  Magnum::SceneGraph::Object&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
+        <argsstring></argsstring>
+        <name>Object3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Object3D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/types.hpp" line="11" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="types_8hpp_1a4306ecb04e3e77851c72d3879e61ac47" prot="public" static="no">
+        <type>Magnum::SceneGraph::Scene&lt; Magnum::SceneGraph::MatrixTransformation3D &gt;</type>
+        <definition>using robot_dart::gui::magnum::Scene3D =  Magnum::SceneGraph::Scene&lt;Magnum::SceneGraph::MatrixTransformation3D&gt;</definition>
+        <argsstring></argsstring>
+        <name>Scene3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Scene3D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/types.hpp" line="12" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="types_8hpp_1a27b69c81590149bf5ba0d2ef66e3670c" prot="public" static="no">
+        <type>Magnum::SceneGraph::Camera3D</type>
+        <definition>using robot_dart::gui::magnum::Camera3D =  Magnum::SceneGraph::Camera3D</definition>
+        <argsstring></argsstring>
+        <name>Camera3D</name>
+        <qualifiedname>robot_dart::gui::magnum::Camera3D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/types.hpp" line="13" column="13" bodyfile="robot_dart/gui/magnum/types.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="base__application_8hpp_1aba8828e135c7e8836566f872e392d7a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" kindref="compound">BaseApplication</ref> *</type>
+        <definition>BaseApplication * robot_dart::gui::magnum::make_application</definition>
+        <argsstring>(RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
+        <name>make_application</name>
+        <qualifiedname>robot_dart::gui::magnum::make_application</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
+          <declname>configuration</declname>
+          <defval><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="250" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="250" bodyend="257"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/base_application.cpp" line="27" column="9"/>
+  </compounddef>
+</doxygen>

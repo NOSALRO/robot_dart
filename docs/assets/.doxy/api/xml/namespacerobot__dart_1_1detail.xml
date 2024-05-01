@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1detail" kind="namespace" language="C++">
+    <compoundname>robot_dart::detail</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="robot_8cpp_1a3c3da80e9c9741036259a04608df7be9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>content</declname>
+            <defname>content</defname>
+          </param>
+        </templateparamlist>
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::detail::dof_data</definition>
+        <argsstring>(dart::dynamics::SkeletonPtr skeleton, const std::vector&lt; std::string &gt; &amp;dof_names, const std::unordered_map&lt; std::string, size_t &gt; &amp;dof_map)</argsstring>
+        <name>dof_data</name>
+        <qualifiedname>robot_dart::detail::dof_data</qualifiedname>
+        <param>
+          <type>dart::dynamics::SkeletonPtr</type>
+          <declname>skeleton</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>dof_names</declname>
+        </param>
+        <param>
+          <type>const std::unordered_map&lt; std::string, size_t &gt; &amp;</type>
+          <declname>dof_map</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="15" column="25" bodyfile="robot_dart/robot.cpp" bodystart="15" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="robot_8cpp_1a4bbb5ee599f247ee4dfbb614d3e2cd0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>content</declname>
+            <defname>content</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void robot_dart::detail::set_dof_data</definition>
+        <argsstring>(const Eigen::VectorXd &amp;data, dart::dynamics::SkeletonPtr skeleton, const std::vector&lt; std::string &gt; &amp;dof_names, const std::unordered_map&lt; std::string, size_t &gt; &amp;dof_map)</argsstring>
+        <name>set_dof_data</name>
+        <qualifiedname>robot_dart::detail::set_dof_data</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::SkeletonPtr</type>
+          <declname>skeleton</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>dof_names</declname>
+        </param>
+        <param>
+          <type>const std::unordered_map&lt; std::string, size_t &gt; &amp;</type>
+          <declname>dof_map</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="107" column="14" bodyfile="robot_dart/robot.cpp" bodystart="107" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="robot_8cpp_1ace1e3ab7a493ff3b6df3eda614f0be15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>content</declname>
+            <defname>content</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void robot_dart::detail::add_dof_data</definition>
+        <argsstring>(const Eigen::VectorXd &amp;data, dart::dynamics::SkeletonPtr skeleton, const std::vector&lt; std::string &gt; &amp;dof_names, const std::unordered_map&lt; std::string, size_t &gt; &amp;dof_map)</argsstring>
+        <name>add_dof_data</name>
+        <qualifiedname>robot_dart::detail::add_dof_data</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::SkeletonPtr</type>
+          <declname>skeleton</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>dof_names</declname>
+        </param>
+        <param>
+          <type>const std::unordered_map&lt; std::string, size_t &gt; &amp;</type>
+          <declname>dof_map</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="178" column="14" bodyfile="robot_dart/robot.cpp" bodystart="178" bodyend="246"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robot.cpp" line="13" column="5"/>
+  </compounddef>
+</doxygen>

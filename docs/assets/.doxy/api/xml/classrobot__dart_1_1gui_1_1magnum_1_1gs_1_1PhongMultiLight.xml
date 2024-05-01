@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::gs::PhongMultiLight</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::GL::AbstractShaderProgram</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" prot="public" static="no" strong="yes">
+        <type>Magnum::UnsignedByte</type>
+        <name>Flag</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::Flag</qualifiedname>
+        <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da3ae56a8ec764ef7cd26cdde384d85e19" prot="public">
+          <name>AmbientTexture</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The shader uses ambient texture instead of color </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480dae712876b5313699d4e38e6f70c7c725e" prot="public">
+          <name>DiffuseTexture</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The shader uses diffuse texture instead of color </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da8f19fa0f2cc4078c09a89d31205980e7" prot="public">
+          <name>SpecularTexture</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The shader uses specular texture instead of color </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="25" column="21" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abddb1fe14f7388e992af1b0b24e61c37" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::Position</type>
+        <definition>using robot_dart::gui::magnum::gs::PhongMultiLight::Position =  Magnum::Shaders::Generic3D::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::Position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="21" column="21" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1ed731ef466b04918a777aab3924d529" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::Normal</type>
+        <definition>using robot_dart::gui::magnum::gs::PhongMultiLight::Normal =  Magnum::Shaders::Generic3D::Normal</definition>
+        <argsstring></argsstring>
+        <name>Normal</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::Normal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="22" column="21" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afc56b7b9d362cf2f0bc4c11ba857fe76" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::TextureCoordinates</type>
+        <definition>using robot_dart::gui::magnum::gs::PhongMultiLight::TextureCoordinates =  Magnum::Shaders::Generic3D::TextureCoordinates</definition>
+        <argsstring></argsstring>
+        <name>TextureCoordinates</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::TextureCoordinates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="23" column="21" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae4898682d73aaac5ba8d0ec79fce988e" prot="public" static="no">
+        <type>Magnum::Containers::EnumSet&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" kindref="member">Flag</ref> &gt;</type>
+        <definition>using robot_dart::gui::magnum::gs::PhongMultiLight::Flags =  Magnum::Containers::EnumSet&lt;Flag&gt;</definition>
+        <argsstring></argsstring>
+        <name>Flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::Flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="31" column="21" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abc6581b5cd97ccf0308c26af8723d28a" prot="private" static="no" mutable="no">
+        <type>Flags</type>
+        <definition>Flags robot_dart::gui::magnum::gs::PhongMultiLight::_flags</definition>
+        <argsstring></argsstring>
+        <name>_flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="59" column="27" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1100a000437195e3cd7ed342a06b6492" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_max_lights</definition>
+        <argsstring></argsstring>
+        <name>_max_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_max_lights</qualifiedname>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="60" column="33" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1d5be823592141b5a1d96b434948006d" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_transformation_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_transformation_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_transformation_matrix_uniform</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="61" column="33" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aeb6651191324565038590ec6f0659363" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_camera_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_camera_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_camera_matrix_uniform</qualifiedname>
+        <initializer>{7}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="61" column="64" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1af634365bbe4e8a98aea3f85aaf07a89c" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_projection_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_projection_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_projection_matrix_uniform</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="61" column="87" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a9f6c1e0374bfe38e24725aac333419f0" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_normal_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_normal_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_normal_matrix_uniform</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="61" column="114" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5e569b921ab042e4e3e7f583cd43b160" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_shininess_uniform</definition>
+        <argsstring></argsstring>
+        <name>_shininess_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_shininess_uniform</qualifiedname>
+        <initializer>{3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="62" column="25" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5fee2a358baf8d1698e91d076236d16a" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_ambient_color_uniform</definition>
+        <argsstring></argsstring>
+        <name>_ambient_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_ambient_color_uniform</qualifiedname>
+        <initializer>{4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="62" column="44" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1acab0747bd0f5126d21cbc8ed3033e1b0" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_diffuse_color_uniform</definition>
+        <argsstring></argsstring>
+        <name>_diffuse_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_diffuse_color_uniform</qualifiedname>
+        <initializer>{5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="62" column="67" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afe750917970934602aba8c8f3977987b" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_specular_color_uniform</definition>
+        <argsstring></argsstring>
+        <name>_specular_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_specular_color_uniform</qualifiedname>
+        <initializer>{6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="62" column="90" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad08cea899ed1316fcc8688277f971d78" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_specular_strength_uniform</definition>
+        <argsstring></argsstring>
+        <name>_specular_strength_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_specular_strength_uniform</qualifiedname>
+        <initializer>{11}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="62" column="114" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a73236ff24a9e8882dd5fbde12830de2b" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_lights_uniform</definition>
+        <argsstring></argsstring>
+        <name>_lights_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_lights_uniform</qualifiedname>
+        <initializer>{12}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="63" column="25" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a4a1ebd8109e3fbb501346b30a0318417" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_lights_matrices_uniform</definition>
+        <argsstring></argsstring>
+        <name>_lights_matrices_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_lights_matrices_uniform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="63" column="41" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adc61d72884a115419ad3d7b5f105a461" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_far_plane_uniform</definition>
+        <argsstring></argsstring>
+        <name>_far_plane_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_far_plane_uniform</qualifiedname>
+        <initializer>{8}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="63" column="66" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad7f19d9934a3b452091418b568c04af9" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_is_shadowed_uniform</definition>
+        <argsstring></argsstring>
+        <name>_is_shadowed_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_is_shadowed_uniform</qualifiedname>
+        <initializer>{9}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="63" column="85" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a42f42374f43ece03fa112baca838a55d" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_transparent_shadows_uniform</definition>
+        <argsstring></argsstring>
+        <name>_transparent_shadows_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_transparent_shadows_uniform</qualifiedname>
+        <initializer>{10}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="63" column="106" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aaef20d3c703c37924cf5731304549bbc" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_shadow_textures_location</definition>
+        <argsstring></argsstring>
+        <name>_shadow_textures_location</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_shadow_textures_location</qualifiedname>
+        <initializer>{3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="64" column="25" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a289afb243d42f06e375143e8239cf041" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_cube_map_textures_location</definition>
+        <argsstring></argsstring>
+        <name>_cube_map_textures_location</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_cube_map_textures_location</qualifiedname>
+        <initializer>{4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="64" column="51" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd830d8788c4ce108d1ba858d5c88b7a" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_shadow_color_textures_location</definition>
+        <argsstring></argsstring>
+        <name>_shadow_color_textures_location</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_shadow_color_textures_location</qualifiedname>
+        <initializer>{5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="64" column="79" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a69106502ff772d6d695ae16c3bb2e1c8" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_cube_map_color_textures_location</definition>
+        <argsstring></argsstring>
+        <name>_cube_map_color_textures_location</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_cube_map_color_textures_location</qualifiedname>
+        <initializer>{6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="64" column="111" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a34709231808e5af6cad98853f96aedd4" prot="private" static="no" mutable="no">
+        <type>const Magnum::Int</type>
+        <definition>const Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::_light_loc_size</definition>
+        <argsstring></argsstring>
+        <name>_light_loc_size</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::_light_loc_size</qualifiedname>
+        <initializer>= 13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="65" column="39" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad19585eacba82e57f9d037088010ca62" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight</definition>
+        <argsstring>(Flags flags={}, Magnum::Int max_lights=10)</argsstring>
+        <name>PhongMultiLight</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight</qualifiedname>
+        <param>
+          <type>Flags</type>
+          <declname>flags</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>max_lights</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="33" column="30" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="12" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aec1b458cb9551afb2fef8848a47f4f50" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight</definition>
+        <argsstring>(Magnum::NoCreateT) noexcept</argsstring>
+        <name>PhongMultiLight</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::PhongMultiLight</qualifiedname>
+        <param>
+          <type>Magnum::NoCreateT</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="34" column="30" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aefd2ca33c4b061188a908aa4103e9f2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Flags</type>
+        <definition>PhongMultiLight::Flags robot_dart::gui::magnum::gs::PhongMultiLight::flags</definition>
+        <argsstring>() const</argsstring>
+        <name>flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="36" column="27" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="112" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a70f6772170cc8f596564c1c6cbe5e924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_material</definition>
+        <argsstring>(Material &amp;material)</argsstring>
+        <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_material</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="38" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="114" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a2e8b5526f32dbaa87533d295fefc627b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_light</definition>
+        <argsstring>(Magnum::Int i, const Light &amp;light)</argsstring>
+        <name>set_light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_light</qualifiedname>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref> &amp;</type>
+          <declname>light</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="39" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="144" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aedd6cb9233576dc4207eda1b99568d35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_transformation_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_transformation_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_transformation_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="41" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="177" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd7f340434eb6187a1409600556f92fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_camera_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_camera_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_camera_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="42" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="183" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1277b1e13375eb52b4ef4ce4198f1424" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_normal_matrix</definition>
+        <argsstring>(const Magnum::Matrix3x3 &amp;matrix)</argsstring>
+        <name>set_normal_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_normal_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix3x3 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="43" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="189" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afb244e6b8b85a25bffc878b0eb2e11f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_projection_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_projection_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_projection_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="44" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="195" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae054eaa39ff5fc02b443361d2e947c08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_far_plane</definition>
+        <argsstring>(Magnum::Float far_plane)</argsstring>
+        <name>set_far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_far_plane</qualifiedname>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="46" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="201" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ab2211b6aaece6dff40ca5b3a5248d18e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_is_shadowed</definition>
+        <argsstring>(bool shadows)</argsstring>
+        <name>set_is_shadowed</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_is_shadowed</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>shadows</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="47" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aba8c93fe1a7beb32e489b3b14e48c1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_transparent_shadows</definition>
+        <argsstring>(bool shadows)</argsstring>
+        <name>set_transparent_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_transparent_shadows</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>shadows</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="48" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="213" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a495afdc37006c279e164cf8ae5934f7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::set_specular_strength</definition>
+        <argsstring>(Magnum::Float specular_strength)</argsstring>
+        <name>set_specular_strength</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::set_specular_strength</qualifiedname>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>specular_strength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="49" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="219" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a13580b6020d2c8a8cb53f422a47e1a22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_texture</definition>
+        <argsstring>(Magnum::GL::Texture2DArray &amp;texture)</argsstring>
+        <name>bind_shadow_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_texture</qualifiedname>
+        <param>
+          <type>Magnum::GL::Texture2DArray &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="51" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="225" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a8a066d43a8006d525f91e94706993a12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_color_texture</definition>
+        <argsstring>(Magnum::GL::Texture2DArray &amp;texture)</argsstring>
+        <name>bind_shadow_color_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::bind_shadow_color_texture</qualifiedname>
+        <param>
+          <type>Magnum::GL::Texture2DArray &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="52" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="231" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad3944c7e1b0795f30c7704caf532fa76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_texture</definition>
+        <argsstring>(Magnum::GL::CubeMapTextureArray &amp;texture)</argsstring>
+        <name>bind_cube_map_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_texture</qualifiedname>
+        <param>
+          <type>Magnum::GL::CubeMapTextureArray &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="53" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="237" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a3c19a38dae55e64ef8aba09d92d318c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref> &amp;</type>
+        <definition>PhongMultiLight &amp; robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_color_texture</definition>
+        <argsstring>(Magnum::GL::CubeMapTextureArray &amp;texture)</argsstring>
+        <name>bind_cube_map_color_texture</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::bind_cube_map_color_texture</qualifiedname>
+        <param>
+          <type>Magnum::GL::CubeMapTextureArray &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="54" column="37" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="243" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aed27b16bc91415e8b2448d4a05d3ad38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::PhongMultiLight::max_lights</definition>
+        <argsstring>() const</argsstring>
+        <name>max_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::PhongMultiLight::max_lights</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="56" column="33" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.cpp" bodystart="249" bodyend="249"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::PhongMultiLight</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::PhongMultiLight</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp" line="19" column="17" bodyfile="robot_dart/gui/magnum/gs/phong_multi_light.hpp" bodystart="19" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5fee2a358baf8d1698e91d076236d16a" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_ambient_color_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aeb6651191324565038590ec6f0659363" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_camera_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a69106502ff772d6d695ae16c3bb2e1c8" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_cube_map_color_textures_location</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a289afb243d42f06e375143e8239cf041" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_cube_map_textures_location</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1acab0747bd0f5126d21cbc8ed3033e1b0" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_diffuse_color_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adc61d72884a115419ad3d7b5f105a461" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_far_plane_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abc6581b5cd97ccf0308c26af8723d28a" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad7f19d9934a3b452091418b568c04af9" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_is_shadowed_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a34709231808e5af6cad98853f96aedd4" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_light_loc_size</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a4a1ebd8109e3fbb501346b30a0318417" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_lights_matrices_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a73236ff24a9e8882dd5fbde12830de2b" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_lights_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1100a000437195e3cd7ed342a06b6492" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_max_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a9f6c1e0374bfe38e24725aac333419f0" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_normal_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1af634365bbe4e8a98aea3f85aaf07a89c" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_projection_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd830d8788c4ce108d1ba858d5c88b7a" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_shadow_color_textures_location</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aaef20d3c703c37924cf5731304549bbc" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_shadow_textures_location</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5e569b921ab042e4e3e7f583cd43b160" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_shininess_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afe750917970934602aba8c8f3977987b" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_specular_color_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad08cea899ed1316fcc8688277f971d78" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_specular_strength_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1d5be823592141b5a1d96b434948006d" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_transformation_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a42f42374f43ece03fa112baca838a55d" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>_transparent_shadows_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a3c19a38dae55e64ef8aba09d92d318c1" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>bind_cube_map_color_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad3944c7e1b0795f30c7704caf532fa76" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>bind_cube_map_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a8a066d43a8006d525f91e94706993a12" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>bind_shadow_color_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a13580b6020d2c8a8cb53f422a47e1a22" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>bind_shadow_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>Flag</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae4898682d73aaac5ba8d0ec79fce988e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>Flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aefd2ca33c4b061188a908aa4103e9f2b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aed27b16bc91415e8b2448d4a05d3ad38" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>max_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1ed731ef466b04918a777aab3924d529" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>Normal</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad19585eacba82e57f9d037088010ca62" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>PhongMultiLight</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aec1b458cb9551afb2fef8848a47f4f50" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>PhongMultiLight</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abddb1fe14f7388e992af1b0b24e61c37" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>Position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd7f340434eb6187a1409600556f92fc" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_camera_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae054eaa39ff5fc02b443361d2e947c08" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_far_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ab2211b6aaece6dff40ca5b3a5248d18e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_is_shadowed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a2e8b5526f32dbaa87533d295fefc627b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a70f6772170cc8f596564c1c6cbe5e924" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1277b1e13375eb52b4ef4ce4198f1424" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_normal_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afb244e6b8b85a25bffc878b0eb2e11f8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_projection_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a495afdc37006c279e164cf8ae5934f7a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_specular_strength</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aedd6cb9233576dc4207eda1b99568d35" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_transformation_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aba8c93fe1a7beb32e489b3b14e48c1b0" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>set_transparent_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afc56b7b9d362cf2f0bc4c11ba857fe76" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::PhongMultiLight</scope><name>TextureCoordinates</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

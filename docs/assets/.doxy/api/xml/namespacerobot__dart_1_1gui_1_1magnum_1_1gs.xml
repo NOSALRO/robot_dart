@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1gui_1_1magnum_1_1gs" kind="namespace" language="C++">
+    <compoundname>robot_dart::gui::magnum::gs</compoundname>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" prot="public">robot_dart::gui::magnum::gs::Camera</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" prot="public">robot_dart::gui::magnum::gs::CubeMap</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" prot="public">robot_dart::gui::magnum::gs::CubeMapColor</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" prot="public">robot_dart::gui::magnum::gs::Light</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" prot="public">robot_dart::gui::magnum::gs::Material</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" prot="public">robot_dart::gui::magnum::gs::PhongMultiLight</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" prot="public">robot_dart::gui::magnum::gs::ShadowMap</innerclass>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" prot="public">robot_dart::gui::magnum::gs::ShadowMapColor</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="gs_2camera_8cpp_1aee6e6452d22d3caf37a717167c6e5b50" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>fs::path</type>
+        <definition>static fs::path robot_dart::gui::magnum::gs::search_path</definition>
+        <argsstring>(const fs::path &amp;filename)</argsstring>
+        <name>search_path</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::search_path</qualifiedname>
+        <param>
+          <type>const fs::path &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/camera.cpp" line="30" column="33" bodyfile="robot_dart/gui/magnum/gs/camera.cpp" bodystart="30" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="magnum_2gs_2helper_8cpp_1aea5f7772b4142bcad6de312d2d30e42d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1Image" kindref="compound">Image</ref></type>
+        <definition>Image robot_dart::gui::magnum::gs::rgb_from_image</definition>
+        <argsstring>(Magnum::Image2D *image)</argsstring>
+        <name>rgb_from_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::rgb_from_image</qualifiedname>
+        <param>
+          <type>Magnum::Image2D *</type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/helper.cpp" line="14" column="23" bodyfile="robot_dart/gui/magnum/gs/helper.cpp" bodystart="14" bodyend="27" declfile="robot_dart/gui/magnum/gs/helper.hpp" declline="14" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="magnum_2gs_2helper_8cpp_1a46fec27529d2b4019cd87c561bebe33d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kindref="compound">GrayscaleImage</ref></type>
+        <definition>GrayscaleImage robot_dart::gui::magnum::gs::depth_from_image</definition>
+        <argsstring>(Magnum::Image2D *image, bool linearize, Magnum::Float near_plane, Magnum::Float far_plane)</argsstring>
+        <name>depth_from_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::depth_from_image</qualifiedname>
+        <param>
+          <type>Magnum::Image2D *</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>linearize</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>near_plane</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/helper.cpp" line="29" column="32" bodyfile="robot_dart/gui/magnum/gs/helper.cpp" bodystart="29" bodyend="52" declfile="robot_dart/gui/magnum/gs/helper.hpp" declline="15" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="magnum_2gs_2helper_8cpp_1a65063de6aff1c1f27dfe44e3a62343d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1DepthImage" kindref="compound">DepthImage</ref></type>
+        <definition>DepthImage robot_dart::gui::magnum::gs::depth_array_from_image</definition>
+        <argsstring>(Magnum::Image2D *image, Magnum::Float near_plane, Magnum::Float far_plane)</argsstring>
+        <name>depth_array_from_image</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::depth_array_from_image</qualifiedname>
+        <param>
+          <type>Magnum::Image2D *</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>near_plane</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/helper.cpp" line="54" column="28" bodyfile="robot_dart/gui/magnum/gs/helper.cpp" bodystart="54" bodyend="76" declfile="robot_dart/gui/magnum/gs/helper.hpp" declline="16" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="light_8hpp_1a1c2fddbd0f0334a5aa3bbe36f96d2b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref></type>
+        <definition>Light robot_dart::gui::magnum::gs::create_point_light</definition>
+        <argsstring>(const Magnum::Vector3 &amp;position, const Material &amp;material, Magnum::Float intensity, const Magnum::Vector3 &amp;attenuationTerms)</argsstring>
+        <name>create_point_light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::create_point_light</qualifiedname>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>intensity</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>attenuationTerms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="86" column="30" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="86" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="light_8hpp_1a32118ed60899a356357839d9398c0c8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref></type>
+        <definition>Light robot_dart::gui::magnum::gs::create_spot_light</definition>
+        <argsstring>(const Magnum::Vector3 &amp;position, const Material &amp;material, const Magnum::Vector3 &amp;spot_direction, Magnum::Float spot_exponent, Magnum::Float spot_cut_off, Magnum::Float intensity, const Magnum::Vector3 &amp;attenuationTerms)</argsstring>
+        <name>create_spot_light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::create_spot_light</qualifiedname>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>spot_direction</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_exponent</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>spot_cut_off</declname>
+        </param>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>intensity</declname>
+        </param>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>attenuationTerms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="97" column="30" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="97" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="light_8hpp_1acd37634967c890085dcb10c34942cc99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">Light</ref></type>
+        <definition>Light robot_dart::gui::magnum::gs::create_directional_light</definition>
+        <argsstring>(const Magnum::Vector3 &amp;direction, const Material &amp;material)</argsstring>
+        <name>create_directional_light</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::create_directional_light</qualifiedname>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/light.hpp" line="105" column="30" bodyfile="robot_dart/gui/magnum/gs/light.hpp" bodystart="105" bodyend="113"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/gs/camera.cpp" line="28" column="13"/>
+  </compounddef>
+</doxygen>

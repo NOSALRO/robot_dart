@@ -21,7 +21,7 @@ namespace robot_dart {
             std::vector<std::shared_ptr<simu::TextData>> text_drawings;
 
         public:
-            std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = (1 | 3 << 3), bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75), double font_size = 28)
+            std::shared_ptr<simu::TextData> add_text(const std::string& text, const Eigen::Affine2d& tf = Eigen::Affine2d::Identity(), Eigen::Vector4d color = Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment = 2 << 2, bool draw_bg = false, Eigen::Vector4d bg_color = Eigen::Vector4d(0, 0, 0, 0.75), double font_size = 28)
             {
                 text_drawings.emplace_back(new TextData{text, tf, color, alignment, draw_bg, bg_color, font_size});
 
@@ -54,10 +54,16 @@ namespace robot_dart {
 
                 for (size_t i = 0; i < skel->getNumBodyNodes(); ++i) {
                     auto bd = skel->getBodyNode(i);
+#if DART_VERSION_AT_LEAST(6, 13, 0)
+                    bd->eachShapeNodeWith<dart::dynamics::VisualAspect>([this, cast, ghost](dart::dynamics::ShapeNode* shapeNode) {
+                        robot_data[shapeNode] = {cast, ghost};
+                    });
+#else
                     auto& shapes = bd->getShapeNodesWith<dart::dynamics::VisualAspect>();
                     for (size_t j = 0; j < shapes.size(); j++) {
                         robot_data[shapes[j]] = {cast, ghost};
                     }
+#endif
                 }
 
                 auto& axes = robot->drawing_axes();

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_5d18adecbc10cabf3ca51da31f2acdd1" kind="dir">
+    <compoundname>robot_dart/gui/magnum</compoundname>
+    <innerdir refid="dir_2f8612d80f6bb57c97efd4c82e0df286">robot_dart/gui/magnum/gs</innerdir>
+    <innerdir refid="dir_2c74a777547786aaf50e99ba400e19fa">robot_dart/gui/magnum/sensor</innerdir>
+    <innerfile refid="base__application_8cpp">base_application.cpp</innerfile>
+    <innerfile refid="base__application_8hpp">base_application.hpp</innerfile>
+    <innerfile refid="base__graphics_8hpp">base_graphics.hpp</innerfile>
+    <innerfile refid="drawables_8cpp">drawables.cpp</innerfile>
+    <innerfile refid="drawables_8hpp">drawables.hpp</innerfile>
+    <innerfile refid="glfw__application_8cpp">glfw_application.cpp</innerfile>
+    <innerfile refid="glfw__application_8hpp">glfw_application.hpp</innerfile>
+    <innerfile refid="graphics_8cpp">graphics.cpp</innerfile>
+    <innerfile refid="graphics_8hpp">graphics.hpp</innerfile>
+    <innerfile refid="types_8hpp">types.hpp</innerfile>
+    <innerfile refid="utils__headers__eigen_8hpp">utils_headers_eigen.hpp</innerfile>
+    <innerfile refid="windowless__gl__application_8cpp">windowless_gl_application.cpp</innerfile>
+    <innerfile refid="windowless__gl__application_8hpp">windowless_gl_application.hpp</innerfile>
+    <innerfile refid="windowless__graphics_8cpp">windowless_graphics.cpp</innerfile>
+    <innerfile refid="windowless__graphics_8hpp">windowless_graphics.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/"/>
+  </compounddef>
+</doxygen>

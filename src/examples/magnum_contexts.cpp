@@ -8,6 +8,7 @@
 
 int main()
 {
+    // @CAMERAS_PARALLEL@
     // Load robot from URDF
     auto global_robot = std::make_shared<robot_dart::robots::Iiwa>();
 
@@ -45,6 +46,7 @@ int main()
 
             // Magnum graphics
             robot_dart::gui::magnum::GraphicsConfiguration configuration = robot_dart::gui::magnum::WindowlessGraphics::default_configuration();
+
             configuration.width = 1024;
             configuration.height = 768;
             auto graphics = std::make_shared<robot_dart::gui::magnum::WindowlessGraphics>(configuration);
@@ -58,7 +60,8 @@ int main()
             simu.run(6);
 
             // Save the image for verification
-            robot_dart::gui::save_png_image("camera_" + std::to_string(index) + ".png", graphics->image());
+            robot_dart::gui::save_png_image("camera_" + std::to_string(index) + ".png",
+                graphics->image());
 
             // Release the GL context for another thread to use
             release_gl_context(gl_context);
@@ -69,7 +72,7 @@ int main()
     for (size_t i = 0; i < workers.size(); i++) {
         workers[i].join();
     }
-
+    // @CAMERAS_PARALLEL_END@
     global_robot.reset();
     return 0;
 }

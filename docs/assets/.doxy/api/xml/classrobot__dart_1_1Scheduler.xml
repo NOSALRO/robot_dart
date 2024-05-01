@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1Scheduler" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::Scheduler</compoundname>
+    <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classrobot__dart_1_1Scheduler_1a1a72fec01717f11c72566cd44e6d0638" prot="protected" static="no">
+        <type>std::chrono::high_resolution_clock</type>
+        <definition>using robot_dart::Scheduler::clock_t =  std::chrono::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>clock_t</name>
+        <qualifiedname>robot_dart::Scheduler::clock_t</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="12" column="9" bodyfile="robot_dart/scheduler.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a217ffdfe2bd3694cafde3e8e5a9d7f12" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_current_time</definition>
+        <argsstring></argsstring>
+        <name>_current_time</name>
+        <qualifiedname>robot_dart::Scheduler::_current_time</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="52" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a9ef1553fa32ae3164ef2dc019d2f525c" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_simu_start_time</definition>
+        <argsstring></argsstring>
+        <name>_simu_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_simu_start_time</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="52" column="31" bodyfile="robot_dart/scheduler.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a388e6311c45f943d29c953b3fa126890" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_real_time</definition>
+        <argsstring></argsstring>
+        <name>_real_time</name>
+        <qualifiedname>robot_dart::Scheduler::_real_time</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="52" column="49" bodyfile="robot_dart/scheduler.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a8288ed5bf5b127b08afe22d24cd65b1c" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_real_start_time</definition>
+        <argsstring></argsstring>
+        <name>_real_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_real_start_time</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="52" column="61" bodyfile="robot_dart/scheduler.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1afa15ebb7b33cd19f6f7415b93183dd52" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_it_duration</definition>
+        <argsstring></argsstring>
+        <name>_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::_it_duration</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="52" column="79" bodyfile="robot_dart/scheduler.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a8f3c1e216907427b276235490865dddb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_average_it_duration</definition>
+        <argsstring></argsstring>
+        <name>_average_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::_average_it_duration</qualifiedname>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="53" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1acd41b9f50925d8b2546f7aba173b7b8b" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::_dt</definition>
+        <argsstring></argsstring>
+        <name>_dt</name>
+        <qualifiedname>robot_dart::Scheduler::_dt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="54" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a1bd208870c4a6557da315f631aafa190" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::Scheduler::_current_step</definition>
+        <argsstring></argsstring>
+        <name>_current_step</name>
+        <qualifiedname>robot_dart::Scheduler::_current_step</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="55" column="13" bodyfile="robot_dart/scheduler.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a3af8f9a2b533a54de4d7ce71ea5cdefd" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::Scheduler::_sync</definition>
+        <argsstring></argsstring>
+        <name>_sync</name>
+        <qualifiedname>robot_dart::Scheduler::_sync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="56" column="14" bodyfile="robot_dart/scheduler.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1ac7087f1ef853df37715d585eb40e8444" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::Scheduler::_max_frequency</definition>
+        <argsstring></argsstring>
+        <name>_max_frequency</name>
+        <qualifiedname>robot_dart::Scheduler::_max_frequency</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="57" column="13" bodyfile="robot_dart/scheduler.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a98543c4703b2c6810d31dbc252e6bdcc" prot="protected" static="no" mutable="no">
+        <type>clock_t::time_point</type>
+        <definition>clock_t::time_point robot_dart::Scheduler::_start_time</definition>
+        <argsstring></argsstring>
+        <name>_start_time</name>
+        <qualifiedname>robot_dart::Scheduler::_start_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="58" column="29" bodyfile="robot_dart/scheduler.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1Scheduler_1a24bbbbfdb118e3f3b94f40def39ef572" prot="protected" static="no" mutable="no">
+        <type>clock_t::time_point</type>
+        <definition>clock_t::time_point robot_dart::Scheduler::_last_iteration_time</definition>
+        <argsstring></argsstring>
+        <name>_last_iteration_time</name>
+        <qualifiedname>robot_dart::Scheduler::_last_iteration_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="59" column="29" bodyfile="robot_dart/scheduler.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a6413828a90bc494af303e7a3c63a7deb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::Scheduler::Scheduler</definition>
+        <argsstring>(double dt, bool sync=false)</argsstring>
+        <name>Scheduler</name>
+        <qualifiedname>robot_dart::Scheduler::Scheduler</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>sync</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="15" column="9" bodyfile="robot_dart/scheduler.hpp" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a5c03db276739fc57053ec41f1d387b88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::Scheduler::operator()</definition>
+        <argsstring>(int frequency)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>robot_dart::Scheduler::operator()</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="20" column="14" bodyfile="robot_dart/scheduler.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a9927fd620b61ff69031ab7487b93f978" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::Scheduler::schedule</definition>
+        <argsstring>(int frequency)</argsstring>
+        <name>schedule</name>
+        <qualifiedname>robot_dart::Scheduler::schedule</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="21" column="14" bodyfile="robot_dart/scheduler.cpp" bodystart="4" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a80808baabf0a340f5f557a87fdf0dc48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::step</definition>
+        <argsstring>()</argsstring>
+        <name>step</name>
+        <qualifiedname>robot_dart::Scheduler::step</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>call this at the end of the loop (see examples) this will synchronize with real time if requested and increase the counter; returns the real-time (in seconds) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="27" column="16" bodyfile="robot_dart/scheduler.cpp" bodystart="39" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a8442b15d00513feb5b7b988d3a36e388" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::Scheduler::reset</definition>
+        <argsstring>(double dt, bool sync=false, double current_time=0., double real_time=0.)</argsstring>
+        <name>reset</name>
+        <qualifiedname>robot_dart::Scheduler::reset</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>sync</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>current_time</declname>
+          <defval>0.</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>real_time</declname>
+          <defval>0.</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="29" column="14" bodyfile="robot_dart/scheduler.cpp" bodystart="23" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a8ae820bc12f30e457b18bece5eade1a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::Scheduler::set_sync</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>set_sync</name>
+        <qualifiedname>robot_dart::Scheduler::set_sync</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>synchronize the simulation clock with the wall clock (when possible, i.e. when the simulation is faster than real time) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="33" column="14" bodyfile="robot_dart/scheduler.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1adaaaf6eff19c7f7d513979628655ba7f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::Scheduler::sync</definition>
+        <argsstring>() const</argsstring>
+        <name>sync</name>
+        <qualifiedname>robot_dart::Scheduler::sync</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="34" column="14" bodyfile="robot_dart/scheduler.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a9e3aed1e170561c8a2927593abf8f647" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::current_time</definition>
+        <argsstring>() const</argsstring>
+        <name>current_time</name>
+        <qualifiedname>robot_dart::Scheduler::current_time</qualifiedname>
+        <briefdescription>
+<para>current time according to the simulation (simulation clock) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="37" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a62dfb8b661da17ff29843252935050b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::next_time</definition>
+        <argsstring>() const</argsstring>
+        <name>next_time</name>
+        <qualifiedname>robot_dart::Scheduler::next_time</qualifiedname>
+        <briefdescription>
+<para>next time according to the simulation (simulation clock) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="39" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1ac804a6df87196029111d543bc4ecf19b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::real_time</definition>
+        <argsstring>() const</argsstring>
+        <name>real_time</name>
+        <qualifiedname>robot_dart::Scheduler::real_time</qualifiedname>
+        <briefdescription>
+<para>time according to the clock&apos;s computer (wall clock) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="41" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1aacdfce86670e38044b9c2d696226bb59" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::dt</definition>
+        <argsstring>() const</argsstring>
+        <name>dt</name>
+        <qualifiedname>robot_dart::Scheduler::dt</qualifiedname>
+        <briefdescription>
+<para>dt used by the simulation (simulation clock) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="43" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a3fad2b237b0ad40e6cf1383d4938dc26" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::real_time_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>real_time_factor</name>
+        <qualifiedname>robot_dart::Scheduler::real_time_factor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="45" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1a8dfca6510739f3b690a617ff64ff638a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::it_duration</definition>
+        <argsstring>() const</argsstring>
+        <name>it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::it_duration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="47" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1Scheduler_1abfb93c90722cc94d4cee5a834fc187c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::Scheduler::last_it_duration</definition>
+        <argsstring>() const</argsstring>
+        <name>last_it_duration</name>
+        <qualifiedname>robot_dart::Scheduler::last_it_duration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/scheduler.hpp" line="49" column="16" bodyfile="robot_dart/scheduler.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/scheduler.hpp" line="10" column="5" bodyfile="robot_dart/scheduler.hpp" bodystart="10" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1Scheduler_1a8f3c1e216907427b276235490865dddb" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_average_it_duration</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a1bd208870c4a6557da315f631aafa190" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_current_step</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a217ffdfe2bd3694cafde3e8e5a9d7f12" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_current_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1acd41b9f50925d8b2546f7aba173b7b8b" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_dt</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1afa15ebb7b33cd19f6f7415b93183dd52" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_it_duration</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a24bbbbfdb118e3f3b94f40def39ef572" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_last_iteration_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1ac7087f1ef853df37715d585eb40e8444" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_max_frequency</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a8288ed5bf5b127b08afe22d24cd65b1c" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_real_start_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a388e6311c45f943d29c953b3fa126890" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_real_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a9ef1553fa32ae3164ef2dc019d2f525c" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_simu_start_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a98543c4703b2c6810d31dbc252e6bdcc" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_start_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a3af8f9a2b533a54de4d7ce71ea5cdefd" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>_sync</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a1a72fec01717f11c72566cd44e6d0638" prot="protected" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>clock_t</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a9e3aed1e170561c8a2927593abf8f647" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>current_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1aacdfce86670e38044b9c2d696226bb59" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>dt</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a8dfca6510739f3b690a617ff64ff638a" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>it_duration</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1abfb93c90722cc94d4cee5a834fc187c4" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>last_it_duration</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a62dfb8b661da17ff29843252935050b8" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>next_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a5c03db276739fc57053ec41f1d387b88" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>operator()</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1ac804a6df87196029111d543bc4ecf19b" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>real_time</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a3fad2b237b0ad40e6cf1383d4938dc26" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>real_time_factor</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a8442b15d00513feb5b7b988d3a36e388" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>reset</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a9927fd620b61ff69031ab7487b93f978" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>schedule</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a6413828a90bc494af303e7a3c63a7deb" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>Scheduler</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a8ae820bc12f30e457b18bece5eade1a6" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>set_sync</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1a80808baabf0a340f5f557a87fdf0dc48" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>step</name></member>
+      <member refid="classrobot__dart_1_1Scheduler_1adaaaf6eff19c7f7d513979628655ba7f" prot="public" virt="non-virtual"><scope>robot_dart::Scheduler</scope><name>sync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

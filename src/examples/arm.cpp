@@ -8,7 +8,9 @@
 
 int main()
 {
+    // @SIMPLE_ARM@
     auto robot = std::make_shared<robot_dart::robots::Arm>();
+    // @SIMPLE_ARM_END@
     robot->set_actuator_types("velocity");
 
     Eigen::VectorXd ctrl = robot_dart::make_vector({0.0, 1.0, -1.5, 1.0});

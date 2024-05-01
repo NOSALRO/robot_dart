@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart" kind="namespace" language="C++">
+    <compoundname>robot_dart</compoundname>
+    <innerclass refid="classrobot__dart_1_1Assertion" prot="public">robot_dart::Assertion</innerclass>
+    <innerclass refid="classrobot__dart_1_1Robot" prot="public">robot_dart::Robot</innerclass>
+    <innerclass refid="classrobot__dart_1_1RobotDARTSimu" prot="public">robot_dart::RobotDARTSimu</innerclass>
+    <innerclass refid="classrobot__dart_1_1RobotPool" prot="public">robot_dart::RobotPool</innerclass>
+    <innerclass refid="classrobot__dart_1_1Scheduler" prot="public">robot_dart::Scheduler</innerclass>
+    <innernamespace refid="namespacerobot__dart_1_1collision__filter">robot_dart::collision_filter</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1control">robot_dart::control</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1detail">robot_dart::detail</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1robots">robot_dart::robots</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1sensor">robot_dart::sensor</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1simu">robot_dart::simu</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="robot_8cpp_1a84666b5c54d5851f38984ca20741ef28" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto robot_dart::body_node_set_friction_coeff</definition>
+        <argsstring></argsstring>
+        <name>body_node_set_friction_coeff</name>
+        <qualifiedname>robot_dart::body_node_set_friction_coeff</qualifiedname>
+        <initializer>= [](dart::dynamics::BodyNode* body, double value) {
+
+
+
+
+
+
+        body-&gt;setFrictionCoeff(value);
+
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="969" column="10" bodyfile="robot_dart/robot.cpp" bodystart="969" bodyend="978"/>
+      </memberdef>
+      <memberdef kind="variable" id="robot_8cpp_1aa3867ddb6a565b0505ca39a71ea03683" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto robot_dart::body_node_get_friction_coeff</definition>
+        <argsstring></argsstring>
+        <name>body_node_get_friction_coeff</name>
+        <qualifiedname>robot_dart::body_node_get_friction_coeff</qualifiedname>
+        <initializer>= [](dart::dynamics::BodyNode* body) {
+
+
+
+
+
+
+
+
+        return body-&gt;getFrictionCoeff();
+
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="1001" column="10" bodyfile="robot_dart/robot.cpp" bodystart="1001" bodyend="1012"/>
+      </memberdef>
+      <memberdef kind="variable" id="robot_8cpp_1a4f8e9a1d3aaacdf48cfbead8d14decad" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto robot_dart::body_node_set_restitution_coeff</definition>
+        <argsstring></argsstring>
+        <name>body_node_set_restitution_coeff</name>
+        <qualifiedname>robot_dart::body_node_set_restitution_coeff</qualifiedname>
+        <initializer>= [](dart::dynamics::BodyNode* body, double value) {
+
+
+
+
+
+
+        body-&gt;setRestitutionCoeff(value);
+
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="1105" column="10" bodyfile="robot_dart/robot.cpp" bodystart="1105" bodyend="1114"/>
+      </memberdef>
+      <memberdef kind="variable" id="robot_8cpp_1a753455b06fd71b6d9d2a9624c44f352b" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto robot_dart::body_node_get_restitution_coeff</definition>
+        <argsstring></argsstring>
+        <name>body_node_get_restitution_coeff</name>
+        <qualifiedname>robot_dart::body_node_get_restitution_coeff</qualifiedname>
+        <initializer>= [](dart::dynamics::BodyNode* body) {
+
+
+
+
+
+
+
+
+        return body-&gt;getRestitutionCoeff();
+
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot.cpp" line="1137" column="10" bodyfile="robot_dart/robot.cpp" bodystart="1137" bodyend="1148"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="utils_8hpp_1a946f11e7c81869f2f3b5f40a2fc84524" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::make_vector</definition>
+        <argsstring>(std::initializer_list&lt; double &gt; args)</argsstring>
+        <name>make_vector</name>
+        <qualifiedname>robot_dart::make_vector</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; double &gt;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/utils.hpp" line="19" column="28" bodyfile="robot_dart/utils.hpp" bodystart="19" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8hpp_1ab2da5b57fc36ec1b536af6c494f2c24a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::make_tf</definition>
+        <argsstring>(const Eigen::Matrix3d &amp;R, const Eigen::Vector3d &amp;t)</argsstring>
+        <name>make_tf</name>
+        <qualifiedname>robot_dart::make_tf</qualifiedname>
+        <param>
+          <type>const Eigen::Matrix3d &amp;</type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/utils.hpp" line="24" column="30" bodyfile="robot_dart/utils.hpp" bodystart="24" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8hpp_1a309eb12deaf1c2dc7f5f9bd9668601e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::make_tf</definition>
+        <argsstring>(const Eigen::Matrix3d &amp;R)</argsstring>
+        <name>make_tf</name>
+        <qualifiedname>robot_dart::make_tf</qualifiedname>
+        <param>
+          <type>const Eigen::Matrix3d &amp;</type>
+          <declname>R</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/utils.hpp" line="33" column="30" bodyfile="robot_dart/utils.hpp" bodystart="33" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8hpp_1ac0f5d6fa03411e8aaea8ae9e03c227b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::make_tf</definition>
+        <argsstring>(const Eigen::Vector3d &amp;t)</argsstring>
+        <name>make_tf</name>
+        <qualifiedname>robot_dart::make_tf</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/utils.hpp" line="41" column="30" bodyfile="robot_dart/utils.hpp" bodystart="41" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8hpp_1a58e4d2236b201e773c8a8bf8dcf7f137" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::make_tf</definition>
+        <argsstring>(std::initializer_list&lt; double &gt; args)</argsstring>
+        <name>make_tf</name>
+        <qualifiedname>robot_dart::make_tf</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; double &gt;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/utils.hpp" line="49" column="30" bodyfile="robot_dart/utils.hpp" bodystart="49" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/control/pd_control.cpp" line="6" column="1"/>
+  </compounddef>
+</doxygen>

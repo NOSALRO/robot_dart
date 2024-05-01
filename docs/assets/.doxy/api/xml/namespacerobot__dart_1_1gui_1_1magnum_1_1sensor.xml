@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1gui_1_1magnum_1_1sensor" kind="namespace" language="C++">
+    <compoundname>robot_dart::gui::magnum::sensor</compoundname>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera" prot="public">robot_dart::gui::magnum::sensor::Camera</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/sensor/camera.cpp" line="19" column="13"/>
+  </compounddef>
+</doxygen>

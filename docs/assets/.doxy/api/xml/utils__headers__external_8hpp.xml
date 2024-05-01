@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="utils__headers__external_8hpp" kind="file" language="C++">
+    <compoundname>utils_headers_external.hpp</compoundname>
+    <includes local="no">Eigen/Core</includes>
+    <includes local="no">Eigen/Geometry</includes>
+    <includes local="no">dart/config.hpp</includes>
+    <includes local="no">dart/dynamics/MeshShape.hpp</includes>
+    <includes local="no">dart/dynamics/Skeleton.hpp</includes>
+    <includes local="no">dart/simulation/World.hpp</includes>
+    <includedby refid="utils_8hpp" local="no">robot_dart/utils.hpp</includedby>
+    <includedby refid="utils__headers__external__gui_8hpp" local="no">robot_dart/utils_headers_external_gui.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>robot_dart/utils_headers_external.hpp</label>
+        <link refid="utils__headers__external_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="3">
+        <label>Eigen/Geometry</label>
+      </node>
+      <node id="4">
+        <label>dart/config.hpp</label>
+      </node>
+      <node id="5">
+        <label>dart/dynamics/MeshShape.hpp</label>
+      </node>
+      <node id="6">
+        <label>dart/dynamics/Skeleton.hpp</label>
+      </node>
+      <node id="7">
+        <label>dart/simulation/World.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>robot_dart/control/pd_control.hpp</label>
+        <link refid="pd__control_8hpp_source"/>
+      </node>
+      <node id="5">
+        <label>robot_dart/control/policy_control.hpp</label>
+        <link refid="policy__control_8hpp_source"/>
+      </node>
+      <node id="3">
+        <label>robot_dart/control/robot_control.hpp</label>
+        <link refid="robot__control_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>robot_dart/control/simple_control.hpp</label>
+        <link refid="simple__control_8hpp_source"/>
+      </node>
+      <node id="8">
+        <label>robot_dart/gui/base.hpp</label>
+        <link refid="base_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>robot_dart/gui/helper.hpp</label>
+        <link refid="helper_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>robot_dart/gui/magnum/base_application.hpp</label>
+        <link refid="base__application_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>robot_dart/gui/magnum/base_graphics.hpp</label>
+        <link refid="base__graphics_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>robot_dart/gui/magnum/drawables.hpp</label>
+        <link refid="drawables_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>robot_dart/gui/magnum/glfw_application.hpp</label>
+        <link refid="glfw__application_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>robot_dart/gui/magnum/graphics.hpp</label>
+        <link refid="graphics_8hpp_source"/>
+      </node>
+      <node id="13">
+        <label>robot_dart/gui/magnum/gs/camera.hpp</label>
+        <link refid="gs_2camera_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>robot_dart/gui/magnum/gs/helper.hpp</label>
+        <link refid="magnum_2gs_2helper_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>robot_dart/gui/magnum/sensor/camera.hpp</label>
+        <link refid="sensor_2camera_8hpp_source"/>
+      </node>
+      <node id="17">
+        <label>robot_dart/gui/magnum/windowless_gl_application.hpp</label>
+        <link refid="windowless__gl__application_8hpp_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>robot_dart/gui/magnum/windowless_graphics.hpp</label>
+        <link refid="windowless__graphics_8hpp_source"/>
+      </node>
+      <node id="18">
+        <label>robot_dart/gui_data.hpp</label>
+        <link refid="gui__data_8hpp_source"/>
+      </node>
+      <node id="21">
+        <label>robot_dart/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>robot_dart/robot_dart_simu.hpp</label>
+        <link refid="robot__dart__simu_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>robot_dart/robot_pool.hpp</label>
+        <link refid="robot__pool_8hpp_source"/>
+      </node>
+      <node id="23">
+        <label>robot_dart/robots/a1.hpp</label>
+        <link refid="a1_8hpp_source"/>
+      </node>
+      <node id="24">
+        <label>robot_dart/robots/arm.hpp</label>
+        <link refid="arm_8hpp_source"/>
+      </node>
+      <node id="25">
+        <label>robot_dart/robots/franka.hpp</label>
+        <link refid="franka_8hpp_source"/>
+      </node>
+      <node id="26">
+        <label>robot_dart/robots/hexapod.hpp</label>
+        <link refid="hexapod_8hpp_source"/>
+      </node>
+      <node id="27">
+        <label>robot_dart/robots/icub.hpp</label>
+        <link refid="icub_8hpp_source"/>
+      </node>
+      <node id="28">
+        <label>robot_dart/robots/iiwa.hpp</label>
+        <link refid="iiwa_8hpp_source"/>
+      </node>
+      <node id="29">
+        <label>robot_dart/robots/pendulum.hpp</label>
+        <link refid="pendulum_8hpp_source"/>
+      </node>
+      <node id="30">
+        <label>robot_dart/robots/talos.hpp</label>
+        <link refid="talos_8hpp_source"/>
+      </node>
+      <node id="31">
+        <label>robot_dart/robots/tiago.hpp</label>
+        <link refid="tiago_8hpp_source"/>
+      </node>
+      <node id="32">
+        <label>robot_dart/robots/ur3e.hpp</label>
+        <link refid="ur3e_8hpp_source"/>
+      </node>
+      <node id="33">
+        <label>robot_dart/robots/vx300.hpp</label>
+        <link refid="vx300_8hpp_source"/>
+      </node>
+      <node id="38">
+        <label>robot_dart/scheduler.hpp</label>
+        <link refid="scheduler_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>robot_dart/sensor/force_torque.hpp</label>
+        <link refid="force__torque_8hpp_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>robot_dart/sensor/imu.hpp</label>
+        <link refid="imu_8hpp_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>robot_dart/sensor/sensor.hpp</label>
+        <link refid="sensor_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>robot_dart/sensor/torque.hpp</label>
+        <link refid="torque_8hpp_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart/utils_headers_external.hpp</label>
+        <link refid="utils__headers__external_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>robot_dart/utils_headers_external_gui.hpp</label>
+        <link refid="utils__headers__external__gui_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_UTILS_HEADERS_EXTERNAL_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_UTILS_HEADERS_EXTERNAL_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>GCC<sp/>system_header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Core&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Geometry&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/config.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/MeshShape.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/Skeleton.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/simulation/World.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/utils_headers_external.hpp"/>
+  </compounddef>
+</doxygen>

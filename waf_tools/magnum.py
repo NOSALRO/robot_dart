@@ -134,6 +134,10 @@ def check_magnum(conf, *k, **kw):
         includes_check = [conf.options.magnum_install_dir + '/include'] + includes_check
         libs_check = [conf.options.magnum_install_dir + '/lib'] + libs_check
         bins_check = [conf.options.magnum_install_dir + '/bin'] + bins_check
+    elif conf.options.magnum:
+        includes_check = [conf.options.magnum + '/include'] + includes_check
+        libs_check = [conf.options.magnum + '/lib'] + libs_check
+        bins_check = [conf.options.magnum + '/bin'] + bins_check
 
     requested_components = kw.get('components', None)
     if requested_components == None:
@@ -238,47 +242,48 @@ def check_magnum(conf, *k, **kw):
 
         egl_found = False
         glx_found = False
-        if 'TARGET_HEADLESS' in magnum_config or 'TARGET_EGL' in magnum_config:
-            # TARGET_HEADLESS requires EGL
-            egl_inc = get_directory('EGL/egl.h', includes_check)
+        if conf.env['DEST_OS'] != 'darwin': # EGL/GLX is available only in Linux
+            if 'TARGET_HEADLESS' in magnum_config or 'TARGET_EGL' in magnum_config:
+                # TARGET_HEADLESS requires EGL
+                egl_inc = get_directory('EGL/egl.h', includes_check)
 
-            magnum_includes = magnum_includes + [egl_inc]
+                magnum_includes = magnum_includes + [egl_inc]
 
-            libs_egl = ['EGL']
-            for lib_egl in libs_egl:
-                try:
-                    lib_dir = get_directory('lib'+lib_egl+'.so', libs_check)
-                    egl_found = True
+                libs_egl = ['EGL']
+                for lib_egl in libs_egl:
+                    try:
+                        lib_dir = get_directory('lib'+lib_egl+'.so', libs_check)
+                        egl_found = True
 
-                    magnum_libpaths = magnum_libpaths + [lib_dir]
-                    magnum_libs.append(lib_egl)
-                    break
-                except:
-                    egl_found = False
+                        magnum_libpaths = magnum_libpaths + [lib_dir]
+                        magnum_libs.append(lib_egl)
+                        break
+                    except:
+                        egl_found = False
 
-            if not egl_found:
-                fatal(required, 'Not found')
-                return
-        else: # we need GLX
-            glx_inc = get_directory('GL/glx.h', includes_check)
+                if not egl_found:
+                    fatal(required, 'Not found')
+                    return
+            else: # we need GLX
+                glx_inc = get_directory('GL/glx.h', includes_check)
 
-            magnum_includes = magnum_includes + [glx_inc]
+                magnum_includes = magnum_includes + [glx_inc]
 
-            libs_glx = ['GLX', 'X11']
-            for lib_glx in libs_glx:
-                try:
-                    lib_dir = get_directory('lib'+lib_glx+'.so', libs_check)
-                    glx_found = True
+                libs_glx = ['GLX', 'X11']
+                for lib_glx in libs_glx:
+                    try:
+                        lib_dir = get_directory('lib'+lib_glx+'.so', libs_check)
+                        glx_found = True
 
-                    magnum_libpaths = magnum_libpaths + [lib_dir]
-                    magnum_libs.append(lib_glx)
-                    # break
-                except:
-                    glx_found = False
+                        magnum_libpaths = magnum_libpaths + [lib_dir]
+                        magnum_libs.append(lib_glx)
+                        # break
+                    except:
+                        glx_found = False
 
-            if not glx_found:
-                fatal(required, 'Not found')
-                return
+                if not glx_found:
+                    fatal(required, 'Not found')
+                    return
 
         conf.start_msg('Checking for Magnum components')
         # only check for components that can exist

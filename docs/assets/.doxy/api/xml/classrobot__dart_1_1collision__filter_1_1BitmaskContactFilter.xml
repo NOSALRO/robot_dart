@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::collision_filter::BitmaskContactFilter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">dart::collision::BodyNodeCollisionFilter</basecompoundref>
+    <innerclass refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks" prot="public">robot_dart::collision_filter::BitmaskContactFilter::Masks</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1af78f4fa11165458b467c16f40345ac8d" prot="public" static="no">
+        <type>const dart::collision::CollisionObject *</type>
+        <definition>using robot_dart::collision_filter::BitmaskContactFilter::DartCollisionConstPtr =  const dart::collision::CollisionObject*</definition>
+        <argsstring></argsstring>
+        <name>DartCollisionConstPtr</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::DartCollisionConstPtr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="15" column="13" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1ab521aa55005e7c921c28ec64057b787a" prot="public" static="no">
+        <type>const dart::dynamics::ShapeNode *</type>
+        <definition>using robot_dart::collision_filter::BitmaskContactFilter::DartShapeConstPtr =  const dart::dynamics::ShapeNode*</definition>
+        <argsstring></argsstring>
+        <name>DartShapeConstPtr</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::DartShapeConstPtr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="16" column="13" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a45c46fc8322a7f45e4682c189ef2cc8d" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; DartShapeConstPtr, <ref refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks" kindref="compound">Masks</ref> &gt;</type>
+        <definition>std::unordered_map&lt;DartShapeConstPtr, Masks&gt; robot_dart::collision_filter::BitmaskContactFilter::_bitmask_map</definition>
+        <argsstring></argsstring>
+        <name>_bitmask_map</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::_bitmask_map</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="91" column="32" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a9fd6af9e31ce61dc16199a9dd73003b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual robot_dart::collision_filter::BitmaskContactFilter::~BitmaskContactFilter</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BitmaskContactFilter</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::~BitmaskContactFilter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="23" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a4205a07ee6bcdb4fbc08d84185da3b96" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::collision_filter::BitmaskContactFilter::ignoresCollision</definition>
+        <argsstring>(DartCollisionConstPtr object1, DartCollisionConstPtr object2) const override</argsstring>
+        <name>ignoresCollision</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::ignoresCollision</qualifiedname>
+        <param>
+          <type>DartCollisionConstPtr</type>
+          <declname>object1</declname>
+        </param>
+        <param>
+          <type>DartCollisionConstPtr</type>
+          <declname>object2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="26" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="26" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1aeb861e0c6421dfe2f9814a3ec0d44766" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::collision_filter::BitmaskContactFilter::add_to_map</definition>
+        <argsstring>(DartShapeConstPtr shape, uint32_t col_mask, uint32_t cat_mask)</argsstring>
+        <name>add_to_map</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::add_to_map</qualifiedname>
+        <param>
+          <type>DartShapeConstPtr</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>col_mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>cat_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="50" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a33e358aba672ae88bd078b5e79ee7e52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::collision_filter::BitmaskContactFilter::add_to_map</definition>
+        <argsstring>(dart::dynamics::SkeletonPtr skel, uint32_t col_mask, uint32_t cat_mask)</argsstring>
+        <name>add_to_map</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::add_to_map</qualifiedname>
+        <param>
+          <type>dart::dynamics::SkeletonPtr</type>
+          <declname>skel</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>col_mask</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>cat_mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="55" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a8f2429c2edc57177c7978967f7360832" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::collision_filter::BitmaskContactFilter::remove_from_map</definition>
+        <argsstring>(DartShapeConstPtr shape)</argsstring>
+        <name>remove_from_map</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::remove_from_map</qualifiedname>
+        <param>
+          <type>DartShapeConstPtr</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="63" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a0b337baf22d45acbc5e38f9161ca8664" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::collision_filter::BitmaskContactFilter::remove_from_map</definition>
+        <argsstring>(dart::dynamics::SkeletonPtr skel)</argsstring>
+        <name>remove_from_map</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::remove_from_map</qualifiedname>
+        <param>
+          <type>dart::dynamics::SkeletonPtr</type>
+          <declname>skel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="70" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="70" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a5dd95c1dafe94e1896988a04da8dad39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::collision_filter::BitmaskContactFilter::clear_all</definition>
+        <argsstring>()</argsstring>
+        <name>clear_all</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::clear_all</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="78" column="18" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a056c773e3614c7ea8811464fbea1b30a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks" kindref="compound">Masks</ref></type>
+        <definition>Masks robot_dart::collision_filter::BitmaskContactFilter::mask</definition>
+        <argsstring>(DartShapeConstPtr shape) const</argsstring>
+        <name>mask</name>
+        <qualifiedname>robot_dart::collision_filter::BitmaskContactFilter::mask</qualifiedname>
+        <param>
+          <type>DartShapeConstPtr</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.cpp" line="80" column="19" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="80" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>dart::collision::BodyNodeCollisionFilter</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::collision_filter::BitmaskContactFilter</label>
+        <link refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>dart::collision::BodyNodeCollisionFilter</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::collision_filter::BitmaskContactFilter</label>
+        <link refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/robot_dart_simu.cpp" line="13" column="9" bodyfile="robot_dart/robot_dart_simu.cpp" bodystart="13" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a45c46fc8322a7f45e4682c189ef2cc8d" prot="private" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>_bitmask_map</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1aeb861e0c6421dfe2f9814a3ec0d44766" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>add_to_map</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a33e358aba672ae88bd078b5e79ee7e52" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>add_to_map</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a5dd95c1dafe94e1896988a04da8dad39" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>clear_all</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1af78f4fa11165458b467c16f40345ac8d" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>DartCollisionConstPtr</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1ab521aa55005e7c921c28ec64057b787a" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>DartShapeConstPtr</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a4205a07ee6bcdb4fbc08d84185da3b96" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>ignoresCollision</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a056c773e3614c7ea8811464fbea1b30a" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>mask</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a8f2429c2edc57177c7978967f7360832" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>remove_from_map</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a0b337baf22d45acbc5e38f9161ca8664" prot="public" virt="non-virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>remove_from_map</name></member>
+      <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a9fd6af9e31ce61dc16199a9dd73003b8" prot="public" virt="virtual"><scope>robot_dart::collision_filter::BitmaskContactFilter</scope><name>~BitmaskContactFilter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

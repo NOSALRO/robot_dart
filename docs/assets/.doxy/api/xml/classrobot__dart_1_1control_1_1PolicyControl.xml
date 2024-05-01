@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1control_1_1PolicyControl" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::control::PolicyControl</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename Policy</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1af6226c74372b09b84a3cc610a27faa11" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int robot_dart::control::PolicyControl&lt; Policy &gt;::_i</definition>
+        <argsstring></argsstring>
+        <name>_i</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_i</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="64" column="17" bodyfile="robot_dart/control/policy_control.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1ab1ffc55c23f0799a550fc65f14e867d7" prot="protected" static="no" mutable="no">
+        <type>Policy</type>
+        <definition>Policy robot_dart::control::PolicyControl&lt; Policy &gt;::_policy</definition>
+        <argsstring></argsstring>
+        <name>_policy</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_policy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="65" column="20" bodyfile="robot_dart/control/policy_control.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1a51ef30f77ebd7b0a0229a31c30aa8fbb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_dt</definition>
+        <argsstring></argsstring>
+        <name>_dt</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_dt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="66" column="20" bodyfile="robot_dart/control/policy_control.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1a5eb2603779c676cfde2ea61c94623efb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_prev_time</definition>
+        <argsstring></argsstring>
+        <name>_prev_time</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_prev_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="66" column="24" bodyfile="robot_dart/control/policy_control.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1adc6d3572bfbe9e05813e0c083159a226" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::control::PolicyControl&lt; Policy &gt;::_threshold</definition>
+        <argsstring></argsstring>
+        <name>_threshold</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_threshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="66" column="35" bodyfile="robot_dart/control/policy_control.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1a3916b1535809459a9702ee8643efe333" prot="protected" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::_prev_commands</definition>
+        <argsstring></argsstring>
+        <name>_prev_commands</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_prev_commands</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="67" column="29" bodyfile="robot_dart/control/policy_control.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1ad73892e6838ed7823790314c066c3f1c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::control::PolicyControl&lt; Policy &gt;::_first</definition>
+        <argsstring></argsstring>
+        <name>_first</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_first</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="68" column="18" bodyfile="robot_dart/control/policy_control.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PolicyControl_1aea8f393807ac6770eb11c69b0bf469db" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::control::PolicyControl&lt; Policy &gt;::_full_dt</definition>
+        <argsstring></argsstring>
+        <name>_full_dt</name>
+        <qualifiedname>robot_dart::control::PolicyControl::_full_dt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="68" column="25" bodyfile="robot_dart/control/policy_control.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1aa81c00c0525fcbaa252027adc6d7d024" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
+        <argsstring>()</argsstring>
+        <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="13" column="13" bodyfile="robot_dart/control/policy_control.hpp" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1aa694b79e68e2e774fdf4dab9a72fcb1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
+        <argsstring>(double dt, const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
+        <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>full_control</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="14" column="13" bodyfile="robot_dart/control/policy_control.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1a9054ef416c2e903cd14df13512eda204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
+        <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>full_control</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="15" column="13" bodyfile="robot_dart/control/policy_control.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1add681a75b3b054e4b9680efc6662fcb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
+        <argsstring>(double dt, const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
+        <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>controllable_dofs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="16" column="13" bodyfile="robot_dart/control/policy_control.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1a6950711c24ae86f3dbf8b52b55b69fb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PolicyControl&lt; Policy &gt;::PolicyControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
+        <name>PolicyControl</name>
+        <qualifiedname>robot_dart::control::PolicyControl::PolicyControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>controllable_dofs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="17" column="13" bodyfile="robot_dart/control/policy_control.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1af0e6db4984cc880884cfd7216d7f1443" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PolicyControl&lt; Policy &gt;::configure</definition>
+        <argsstring>() override</argsstring>
+        <name>configure</name>
+        <qualifiedname>robot_dart::control::PolicyControl::configure</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="19" column="18" bodyfile="robot_dart/control/policy_control.hpp" bodystart="19" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1a3abc261f6e86f1bcf5f4cd5828fe3850" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PolicyControl&lt; Policy &gt;::set_h_params</definition>
+        <argsstring>(const Eigen::VectorXd &amp;h_params)</argsstring>
+        <name>set_h_params</name>
+        <qualifiedname>robot_dart::control::PolicyControl::set_h_params</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>h_params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="34" column="18" bodyfile="robot_dart/control/policy_control.hpp" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1ae8209884c73efb644059da8425b7be1e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::h_params</definition>
+        <argsstring>() const</argsstring>
+        <name>h_params</name>
+        <qualifiedname>robot_dart::control::PolicyControl::h_params</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="39" column="29" bodyfile="robot_dart/control/policy_control.hpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1a0718446c3c5205975199cd712ca78aed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PolicyControl&lt; Policy &gt;::calculate</definition>
+        <argsstring>(double t) override</argsstring>
+        <name>calculate</name>
+        <qualifiedname>robot_dart::control::PolicyControl::calculate</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="44" column="29" bodyfile="robot_dart/control/policy_control.hpp" bodystart="44" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PolicyControl_1aad53a9ad303894e512a369bbdebe3969" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1control_1_1RobotControl" kindref="compound">RobotControl</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::PolicyControl&lt; Policy &gt;::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>robot_dart::control::PolicyControl::clone</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/policy_control.hpp" line="58" column="29" bodyfile="robot_dart/control/policy_control.hpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>robot_dart::control::PolicyControl&lt; Policy &gt;</label>
+        <link refid="classrobot__dart_1_1control_1_1PolicyControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>robot_dart::control::PolicyControl&lt; Policy &gt;</label>
+        <link refid="classrobot__dart_1_1control_1_1PolicyControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/control/policy_control.hpp" line="11" column="9" bodyfile="robot_dart/control/policy_control.hpp" bodystart="11" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6070efc4d9c34a8092e74578d5aa792" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ade2feaf50fc0a25ae994dbfbf017a859" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_check_free</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a47eb2922359ead55d9ed9201340ad850" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_control_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1a3f35ab7b5212c419f2f236b3bb682c" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1aeb32018a448081f4762ab8bfb9562f31" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_ctrl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1af87bd256fa9a62d1dfa5809e4dea22d9" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a51ef30f77ebd7b0a0229a31c30aa8fbb" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_dt</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ad73892e6838ed7823790314c066c3f1c" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_first</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aea8f393807ac6770eb11c69b0bf469db" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_full_dt</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1af6226c74372b09b84a3cc610a27faa11" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_i</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ab1ffc55c23f0799a550fc65f14e867d7" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_policy</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a3916b1535809459a9702ee8643efe333" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_prev_commands</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a5eb2603779c676cfde2ea61c94623efb" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_prev_time</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ae7ba328d762a5f6663665f98ee36fb25" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1adc6d3572bfbe9e05813e0c083159a226" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_threshold</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a4dca58ef8efc00f487ddcbea20e6f1c2" prot="protected" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1acd4bd86eaae9d61d205631e68336eb53" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>activate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ab86c121d2f0a9df165924758018331a9" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a0718446c3c5205975199cd712ca78aed" prot="public" virt="virtual"><scope>robot_dart::control::PolicyControl</scope><name>calculate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aad53a9ad303894e512a369bbdebe3969" prot="public" virt="virtual"><scope>robot_dart::control::PolicyControl</scope><name>clone</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1af0e6db4984cc880884cfd7216d7f1443" prot="public" virt="virtual"><scope>robot_dart::control::PolicyControl</scope><name>configure</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7da96bcb69a0a2ddb5db0b54e1edd03a" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ae8209884c73efb644059da8425b7be1e" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>h_params</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1eb6d2c5186c7a056a9d92d8050af364" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6de25f4c2db2b500d5e69a548aeab99" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aa81c00c0525fcbaa252027adc6d7d024" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>PolicyControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aa694b79e68e2e774fdf4dab9a72fcb1e" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>PolicyControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a9054ef416c2e903cd14df13512eda204" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>PolicyControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1add681a75b3b054e4b9680efc6662fcb3" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>PolicyControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a6950711c24ae86f3dbf8b52b55b69fb3" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>PolicyControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6617700b65b105316b3ffe1c3817247" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a36fdb9b1fe31febc00e76a60a1a34d69" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac79d7c8cb68fac11051e22d13b0ec22d" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7b13d33749f0bc7689aa11963287617d" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a3abc261f6e86f1bcf5f4cd5828fe3850" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>set_h_params</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1ed07aa76c578bc2bb92529e3c43bf67" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>set_parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1abdc2bfef410805ea3c30029e3fee9360" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>set_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a6516b84c92d4da46d7e382fcd7ffeb58" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>set_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a9ee8a3c4259d80be9f403073edc28433" prot="public" virt="non-virtual"><scope>robot_dart::control::PolicyControl</scope><name>weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac3f60bced3a247862d00067a8c46c555" prot="public" virt="virtual"><scope>robot_dart::control::PolicyControl</scope><name>~RobotControl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

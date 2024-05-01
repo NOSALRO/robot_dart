@@ -1,0 +1,1550 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+  <compound refid="classrobot__dart_1_1robots_1_1A1" kind="class"><name>robot_dart::robots::A1</name>
+    <member refid="classrobot__dart_1_1robots_1_1A1_1a55f0a175e54b0a6ea6d04e9f9b652b87" kind="variable"><name>_imu</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1A1_1a2ddf0720754b59ecdf6e971f1b77ea19" kind="function"><name>A1</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1A1_1aecfabed2320d688d19182895a4e5b54a" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1A1_1a3df5c3d72274f1ff07936cacc8ef5a1f" kind="function"><name>imu</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Arm" kind="class"><name>robot_dart::robots::Arm</name>
+    <member refid="classrobot__dart_1_1robots_1_1Arm_1a8a7985bdc7219a5f9e13851d2886e083" kind="function"><name>Arm</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1Assertion" kind="class"><name>robot_dart::Assertion</name>
+    <member refid="classrobot__dart_1_1Assertion_1ac449607419264e65a603137ac481451d" kind="variable"><name>_msg</name></member>
+    <member refid="classrobot__dart_1_1Assertion_1aee3657e2198822bc2c9ce644c3478cc1" kind="function"><name>Assertion</name></member>
+    <member refid="classrobot__dart_1_1Assertion_1a19bf1d2ab533823d0073945b1cddb5d2" kind="function"><name>what</name></member>
+    <member refid="classrobot__dart_1_1Assertion_1afc988df256f168ac7d93e4a44efce62c" kind="function"><name>_make_message</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1Base" kind="class"><name>robot_dart::gui::Base</name>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1af92e4d7bca3de2f9fd0d8571fbbf3db0" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1aeb004d9cd85642f35078589723d82902" kind="function"><name>Base</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a90567d26b2446b3accc761c194e12d21" kind="function"><name>~Base</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a3bf9eed88512a608b3385316822dae63" kind="function"><name>set_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a680aba7fb9f9013fae2ecb0f474f86bd" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1abc9ecab4c97b7d99ed5ff585228c77a3" kind="function"><name>done</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a68d534e87d9a12b0a523c85908203d75" kind="function"><name>refresh</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1aa21630a78ce1033c3640a5ca5bbaacc6" kind="function"><name>set_render_period</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1ad865b4e4f042f3ee5e1c52ee66d04f01" kind="function"><name>set_enable</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1aa036931527f90affdbf4a390ebb0d029" kind="function"><name>set_fps</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a729c0631792e06e500b950ea34680339" kind="function"><name>image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a426e59cdeedef855ea4c81f93ee35a1c" kind="function"><name>depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a37cea8ca87146b07f9fc13616d7e75e6" kind="function"><name>raw_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1acc95241222f0ea29ebbee11631575763" kind="function"><name>depth_array</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1a8c0c9eed76949a13226fa1fc3b08bfcf" kind="function"><name>width</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1Base_1af6230277fa67097209b106898124fecd" kind="function"><name>height</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" kind="class"><name>robot_dart::gui::magnum::BaseApplication</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7088263b5d0fdd3744197a71265b050a" kind="variable"><name>_scene</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a11756e39cf8b6ec87cc49b43103c6e8a" kind="variable"><name>_drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a76a15432ceae7b67ce667eebb44eb803" kind="variable"><name>_shadowed_drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1b771e4fe0f3a0676301957cc3a7dce2" kind="variable"><name>_shadowed_color_drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7d592b80afc7b7427640360c2d16491f" kind="variable"><name>_cubemap_drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5acb41d58a818c533baa1553c1b1d25d" kind="variable"><name>_cubemap_color_drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae6ff6b9d40c389fe3f1374e934454a74" kind="variable"><name>_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5fef5f583b4db97767bd70c488ba8b99" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab04e9e8bbc4ae59fb3992adf35edf9df" kind="variable"><name>_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a361c8ce66cda2051d6adbd780d7baeab" kind="variable"><name>_done</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a903e8d20011dea55a80935cef5d430cb" kind="variable"><name>_configuration</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a29b6326c98b8ac4131b1021a86a442e8" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6c45b5cb9c5ecdb90f1de36726e6ccce" kind="variable"><name>_dart_world</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7525328182618e105f398552b37b83d3" kind="variable"><name>_drawable_objects</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1d346341e3f7cb3270f3a788147c8116" kind="variable"><name>_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5f47cc95e61d8700fccad7680fdd92b4" kind="variable"><name>_shadowed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae4247f27c3dbb8f81242e9b176603df5" kind="variable"><name>_transparent_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6bcf72ac66cba6589b42013161012ea1" kind="variable"><name>_transparentSize</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae56f39ba4c67386624f38031241257c7" kind="variable"><name>_shadow_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a78b770fb13170921b0af2eae900ffda3" kind="variable"><name>_shadow_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8b3475862d97e7124367324e7420f3df" kind="variable"><name>_shadow_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85aaac9eb950b9a6209c51fcb39aa887" kind="variable"><name>_shadow_texture_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c4dd07484ca16f4812fdd8e9f5a12d4" kind="variable"><name>_cubemap_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8968c21c371d8f5a28d02ff58f95029f" kind="variable"><name>_cubemap_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aac325dfdc1c44080ba73ea4d9f4a2465" kind="variable"><name>_cubemap_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abefe177e707e94c1d108d201fce25b27" kind="variable"><name>_cubemap_texture_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a069bdac87c0e42768d40a89fcc7653ac" kind="variable"><name>_shadow_data</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0c225c6c4fec07792bd8dc845590a8ac" kind="variable"><name>_shadow_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac77fb93e46af72a525a6294e7acf6ac9" kind="variable"><name>_shadow_color_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aabf0dfecaf4116f0c8d15e60ecd61187" kind="variable"><name>_shadow_cube_map</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab105589dc33c5c43ac19d65f3331b19f" kind="variable"><name>_shadow_color_cube_map</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aacdd79c27de133cfc16db1c46b443ea3" kind="variable"><name>_max_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0bd33eae75939327000ec2138a01af45" kind="variable"><name>_shadow_map_size</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1acbb890caa478924240a2aea1c2452dc3" kind="variable"><name>_shadow_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a933b0ef94177b3c80029603f91f349b6" kind="variable"><name>_shadow_camera_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa397ec85bd3311cd42dd8faf360769a" kind="variable"><name>_3D_axis_mesh</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac4ec4f32dfdf1636216795c70546c431" kind="variable"><name>_3D_axis_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0dbb4fbec93d804c184d5cb03541b722" kind="variable"><name>_background_mesh</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1140f9e2fb6cda51aa983b1706335861" kind="variable"><name>_background_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5d004fc8e4b3e432ded97de839df5986" kind="variable"><name>_text_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae9a8bd072e148017a87a022c014869f1" kind="variable"><name>_font_manager</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a88e68689bbcf5ac140b5408d6be9c2d9" kind="variable"><name>_glyph_cache</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aba8967b23153ba612080a872936c3eb5" kind="variable"><name>_font</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a318231298741ae5c6fc8fe1632f4caac" kind="variable"><name>_text_vertices</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7e15f87aed52a88d5959a2b999f3794f" kind="variable"><name>_text_indices</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a92f3873426e8dc565011094615f0d195" kind="variable"><name>_importer_manager</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5170be3d0d70694627d96e4897629792" kind="function"><name>BaseApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a786434c06b433215b121765138eda0be" kind="function"><name>~BaseApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6b31b07ed123d931ada4356f83d23d6e" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abd37042f8ea2671c68826d44daa81d55" kind="function"><name>clear_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa77529e009500d717de3bdd85deb34d" kind="function"><name>add_light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a25358d28f9c457b9d6a41b4ac9eba23b" kind="function"><name>light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c9c81152dc4169f0c77ecaa3ec5a7f7" kind="function"><name>lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af0eab50adb453ef3693ce9f7dd15d7c0" kind="function"><name>num_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afb707a29453914b2bfc86b642cf73df3" kind="function"><name>drawables</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afdd639fcca1789878a1df15cfbd2858b" kind="function"><name>scene</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae07a488f63a853e11d740bf6d8d81706" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af596e1b2e993d1839a4e5f7827098381" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a54c48ca9e097dc16662f15d09ee77efe" kind="function"><name>done</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a9e79a5662c6136ee579962f8b78a9ee8" kind="function"><name>look_at</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a16d1087b2a12045167c0c6924fff6062" kind="function"><name>render</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8091cddb215f723564871cfa166678f0" kind="function"><name>update_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3c6fcc428ab7c556d220e9e58f722a0a" kind="function"><name>update_graphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af7ef8e29e4fd619a1e9d29aa62ccfbe1" kind="function"><name>render_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a4279559dbff4c2d09855544bef168c76" kind="function"><name>attach_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a156e6c734b8e404b8061089982605a39" kind="function"><name>record_video</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ad0973706a1a9679339b953ded651b987" kind="function"><name>shadowed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a71d53f10e240e04d6869047183fbae61" kind="function"><name>transparent_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae960cb1a4f93cb3d0802c82556b0ac7e" kind="function"><name>enable_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3a2b065fe27a636b9e758edff1bcf16a" kind="function"><name>image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a174cf83abb87ab7a7223f88c3edfdd50" kind="function"><name>depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a808c853dfd5447e3abc6cf6bfa608ddb" kind="function"><name>raw_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a06c242d721736670813474715502b179" kind="function"><name>depth_array</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85ae540943df00c65f2b6a3908002851" kind="function"><name>debug_draw_data</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6ae637e77f0f516d4d0669cba1176e53" kind="function"><name>_gl_clean_up</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae13845b8aeb52e574e240b6e889f6332" kind="function"><name>_prepare_shadows</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" kind="class"><name>robot_dart::gui::magnum::BaseGraphics</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad27c88af2164ba0906c9017574a3213e" kind="variable"><name>_configuration</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a314dc7cf8d1b39c46ca1e34f5dd2b73a" kind="variable"><name>_enabled</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a47c8330a5c81c6d3905816fac82a6ecc" kind="variable"><name>_fps</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ab4412c47213f7b0c5464eb958f7acfa5" kind="variable"><name>_magnum_app</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae00263d66c43d83e40795164a5d07387" kind="variable"><name>_magnum_silence_output</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0d7a97cf1e026c792a306e5e3f009b7b" kind="function"><name>BaseGraphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a388379d4754009655d689759fa05d529" kind="function"><name>~BaseGraphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6722d44dd98d775820c710bb216d01c5" kind="function"><name>set_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70397ca9b425a87f78b5ca2321594f8" kind="function"><name>width</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0358b0597f49560ac5bb82499f1cfd31" kind="function"><name>height</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9e8d3b3dd531414fd3cdda9465c08813" kind="function"><name>done</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1af8e4b002d42747fef19832d43a94b8c6" kind="function"><name>refresh</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a0186dc83856cbe287d1f0efe02889f25" kind="function"><name>set_enable</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a5175098c8e74befdd36a6b70af4a7a5e" kind="function"><name>set_fps</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae70877ee98052fec3fa61dc7b92aa771" kind="function"><name>look_at</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1abc15de9714f8dc47fa44e5dc17f6a546" kind="function"><name>clear_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa6266bd35ad4e8d8c8957dd200c50438" kind="function"><name>add_light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1acb452c190f12f234971cd29a6e70927c" kind="function"><name>lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1add818d88a291e554cacea1eebb858d5d" kind="function"><name>num_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa64e4878491d8496d7b3791c3a78fd53" kind="function"><name>light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a573a238481b2be0a1b0fafc4ef2761f7" kind="function"><name>record_video</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ae855427738d82a088f9b768f02921a60" kind="function"><name>shadowed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aec5a8ed003a7a0ef1a7f977d8d10946a" kind="function"><name>transparent_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a11f4168170747c3edf12e52b2e655b79" kind="function"><name>enable_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1aa3e8ddfdb02318e50fefdbcccddab0a6" kind="function"><name>magnum_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a419d98e1f7d5a769702717e98fdc1410" kind="function"><name>image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ac694dcf459c5c211e877093d26e249ba" kind="function"><name>depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1ad00bce74f533975eb392ce0ada74960d" kind="function"><name>raw_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a1ab8652c4f3cc48fc83196d5ea4e6218" kind="function"><name>depth_array</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a9fb0573fad29b272a7b878904ad011fe" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a550e8c8dba5b38057e9638dd14fda939" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a724818bf39f2bd3f98b7d10ac460311c" kind="function"><name>camera_intrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1afb3a535894bf24d1e7a03fae0e065879" kind="function"><name>camera_extrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a871440799d1c4b7f8d53a0516af8cd74" kind="function"><name>magnum_app</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics_1a6766433c1e087de3dfcaebb4bb63df1e" kind="function"><name>magnum_app</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter" kind="class"><name>robot_dart::collision_filter::BitmaskContactFilter</name>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1af78f4fa11165458b467c16f40345ac8d" kind="typedef"><name>DartCollisionConstPtr</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1ab521aa55005e7c921c28ec64057b787a" kind="typedef"><name>DartShapeConstPtr</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a45c46fc8322a7f45e4682c189ef2cc8d" kind="variable"><name>_bitmask_map</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a9fd6af9e31ce61dc16199a9dd73003b8" kind="function"><name>~BitmaskContactFilter</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a4205a07ee6bcdb4fbc08d84185da3b96" kind="function"><name>ignoresCollision</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1aeb861e0c6421dfe2f9814a3ec0d44766" kind="function"><name>add_to_map</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a33e358aba672ae88bd078b5e79ee7e52" kind="function"><name>add_to_map</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a8f2429c2edc57177c7978967f7360832" kind="function"><name>remove_from_map</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a0b337baf22d45acbc5e38f9161ca8664" kind="function"><name>remove_from_map</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a5dd95c1dafe94e1896988a04da8dad39" kind="function"><name>clear_all</name></member>
+    <member refid="classrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1a056c773e3614c7ea8811464fbea1b30a" kind="function"><name>mask</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kind="class"><name>robot_dart::gui::magnum::gs::Camera</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc2cec50368bd212fa651fc8ff1854e2" kind="variable"><name>_yaw_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ae2f0280fa70bedaa7b9137c0eede4219" kind="variable"><name>_pitch_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5824f1ef18d89241708240068a672f6e" kind="variable"><name>_camera_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a244361d4e4045a4ab4ee043c6a46e0e0" kind="variable"><name>_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad236ea719c548a5a022a3a97f2250bb0" kind="variable"><name>_speed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a291058c5ff18dedee82b7487bfcd40e2" kind="variable"><name>_up</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6868f6e1e60f16ddc6f6d6b722c73606" kind="variable"><name>_front</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aff529c1452d6cfe34ddb5eb44e091de6" kind="variable"><name>_right</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc9dac6725f14028c58302f26fa460f7" kind="variable"><name>_aspect_ratio</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a36cf62b3de356645fed07283ca9dc12f" kind="variable"><name>_near_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a5a48779e4ccc7c2011b1f76812143fb9" kind="variable"><name>_far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab91c773f4e73a2a9fe1c582401f1bed6" kind="variable"><name>_fov</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a345f0161816f1eabe9f218e94e8b78d5" kind="variable"><name>_width</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a25c06bb35a8b7670901a08d8475197bd" kind="variable"><name>_height</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72d2d2d2a9d9e5cd75bde9622dfffdf6" kind="variable"><name>_recording</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6f0d23a686c0b2778e1d1629fc6382c8" kind="variable"><name>_recording_depth</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a407be2c7f7bc428bb4c94fd096540907" kind="variable"><name>_recording_video</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34b4782fea742d6d73f3626cb66f5ad7" kind="variable"><name>_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a88ace9be2280be5597dcc6d478b32a1f" kind="variable"><name>_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab5be26300c7d62e538ca28497e4b2d63" kind="variable"><name>_ffmpeg_process</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" kind="function"><name>Camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72a15b93144c904d52f4983a0894a789" kind="function"><name>~Camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acfd1256bfb4100dece47955078c0a5ae" kind="function"><name>root_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a7d9c11e138585c15c30dd727c880e5ee" kind="function"><name>camera_object</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a34f8ee4c56f877f7bdfaf8d5077f29a8" kind="function"><name>set_viewport</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a17299b233ae87271034e97f0f5ac462f" kind="function"><name>move</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1afdecc8ca467d58db7019679b73cba771" kind="function"><name>forward</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a10be35dba8f5527eb295c17755242d51" kind="function"><name>strafe</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1be75804ae632895c7cb2b5ab0ee39f4" kind="function"><name>set_speed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6bc826da9ea43303dd2673ed8fd401d0" kind="function"><name>set_near_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28955f8b1bbfa607292750890d31820e" kind="function"><name>set_far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a1ad2449acd1f7236c744cd0c5937f374" kind="function"><name>set_fov</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1aad998f2c9267881e91f55b23395a9199" kind="function"><name>set_camera_params</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a2909a81378985d762354c4bb4a261348" kind="function"><name>speed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a30c5e0243c819f1525b1dcf1e4921832" kind="function"><name>near_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ab20d50119735506030b3e2d4e2348f76" kind="function"><name>far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac55df97bd8c576b35b80b2ee5d20e585" kind="function"><name>fov</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6c804bfdf9944cceaf536b6423492923" kind="function"><name>width</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a9e7d383d72facffd5ed634f49ca5a146" kind="function"><name>height</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adb1ab8a8abface444086f01d3c181e0a" kind="function"><name>intrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a12c0f959128ce86df8104a90f15c5ee6" kind="function"><name>extrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a72dd39a0300708f8d06d02ee0c2f07ce" kind="function"><name>look_at</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a923df4878c15486ae9919185bbc168fe" kind="function"><name>transform_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac86b5d656c6830830427327c279aec96" kind="function"><name>record</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a6a90a471293740353af96cfe6cf1242e" kind="function"><name>record_video</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70a5f58cd4e0ab433635c1fb213f7152" kind="function"><name>recording</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a01ce9cdcc0b14bce7576aa59f9566c93" kind="function"><name>recording_depth</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a64935309f6bf4a731ddcef0b5a624e5f" kind="function"><name>image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad96ed2fb36dc008232f01cb8a111b271" kind="function"><name>depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adea6a630731ae14515f89d4a0a19ac3b" kind="function"><name>draw</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ac1a31db480956997bfacff227d822ab2" kind="function"><name>_clean_up_subprocess</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera" kind="class"><name>robot_dart::gui::magnum::sensor::Camera</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a5c5396298463ec9387c477d48c4a33f1" kind="variable"><name>_framebuffer</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a46476b31e0de6b6f15fdb654b2dbec26" kind="variable"><name>_format</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1ad7b07522377daf5c8e602d1accb96618" kind="variable"><name>_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a2b85635617db330038f256da7f01047c" kind="variable"><name>_depth</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1af3b75de61b432303316384f88246117e" kind="variable"><name>_magnum_app</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a6856a904ac3ad60ac9f9b23707e17528" kind="variable"><name>_width</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1aff74dc87278a44954c1d4f92d1e89b4d" kind="variable"><name>_height</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a27d15a36ba6194fc0cf0cb45feb29ed1" kind="variable"><name>_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a63bb3da7e249fd7802ad314a206b2ef5" kind="variable"><name>_draw_debug</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a16b0db56f9af5ca4e5f928b1aeabf875" kind="function"><name>Camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1acaf3ad398841c25fc5551df12715c561" kind="function"><name>~Camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1af970b5846890a6372fabc7edb627fe88" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a7287b4be4b9358150644b04f54b52bba" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a3cb552c93c79a5eb5d0e04458463fe42" kind="function"><name>type</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a62b0b2178dc25fda657fadb7864fccc2" kind="function"><name>attach_to_body</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a269c8a783c4eba62207e9d42bf46fa6f" kind="function"><name>attach_to_joint</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a43f893f3af03352d9b73ce1909d75d6d" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1aa04b790e301e8f4a25528bea65a4208e" kind="function"><name>camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a6b17633e7f606db2079d8753455ece57" kind="function"><name>camera_intrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a3b7926b7e8e70089cb8a1162de4e74fc" kind="function"><name>camera_extrinsic_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1afc36b18efeb4dbd830a98bde50180804" kind="function"><name>drawing_debug</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a64fd75bf01850e37fdf31e8ab8de870a" kind="function"><name>draw_debug</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a8a4a9a2fb480d867df19437a5fcd0756" kind="function"><name>look_at</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a303d566d460b5222db4a4a4ff0c64b18" kind="function"><name>record_video</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1abb4736c346c1b9b2802ac3febbf8c4db" kind="function"><name>magnum_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a6730059fa94bef26679e96ce41b2efb7" kind="function"><name>image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a50d521515d0a7f8cb3badcb14038a044" kind="function"><name>magnum_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a2073d2cbffd45ae836137269e4912d13" kind="function"><name>depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1ae4f88d7c3942f791207caa165b81a682" kind="function"><name>raw_depth_image</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1afe9c7cb1c73741e360b0726c57843f85" kind="function"><name>depth_array</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kind="class"><name>robot_dart::gui::magnum::gs::CubeMap</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1" kind="enum"><name>Flag</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1ae712876b5313699d4e38e6f70c7c725e" kind="enumvalue"><name>DiffuseTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a5f9cfff11efc78b2ed0661397acbe88b" kind="typedef"><name>Position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a4e621f5964483532e54eee377a8b09e5" kind="typedef"><name>TextureCoordinates</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac9025c8598b911ae68a5570ec855981" kind="typedef"><name>Flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1ad8e4cf606878fff27ec7d6748a292c45" kind="variable"><name>_flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a22c957fbf4a419c4d387c41b40c22236" kind="variable"><name>_transformation_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36858dcfd71228082ae0020099f3003f" kind="variable"><name>_shadow_matrices_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aa5b32f6092d57ec61b6e2dda129f6ead" kind="variable"><name>_light_position_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a94601379540971bfa21e938a7f7ccc06" kind="variable"><name>_far_plane_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a458e91614141953c14c919c03a460ffc" kind="variable"><name>_light_index_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1abbaadee4c7bf106e89daa4a574cd1663" kind="variable"><name>_diffuse_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a7467a81a8fb07dc1ec3d2b3196356150" kind="function"><name>CubeMap</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a1be36a738144b2eff09d8dc9f15ccf7f" kind="function"><name>CubeMap</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a81976ef2f200c97bb7fc54ee23b80524" kind="function"><name>flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a3d115076bc27cecec262c0927cb29df4" kind="function"><name>set_transformation_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a620cdff04b2e3b4adbc35e5e39b01a96" kind="function"><name>set_shadow_matrices</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac4bbdbf31b742c3a774fc6fbae808a2" kind="function"><name>set_light_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a07d5016dd6e74a3a6de1830062ef18ea" kind="function"><name>set_far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a409fe780605ba3f3eb939d7b0617f272" kind="function"><name>set_light_index</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a27ccc9fcc8174ff62597a718f82416a8" kind="function"><name>set_material</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kind="class"><name>robot_dart::gui::magnum::gs::CubeMapColor</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1af74ebbfbdd1ebd0247766b68282154a0" kind="enum"><name>Flag</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1af74ebbfbdd1ebd0247766b68282154a0ae712876b5313699d4e38e6f70c7c725e" kind="enumvalue"><name>DiffuseTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a93e64598e13ed85a1a45cb749fc517c4" kind="typedef"><name>Position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a945057ce1e1ac8651b51a8eb21fd53c8" kind="typedef"><name>TextureCoordinates</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a09abcc96bd6ae8355684c3f0730a5f37" kind="typedef"><name>Flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1abdd7fd6d10641773c724b4cc645f0fd7" kind="variable"><name>_flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1aa52d8e98548fb54e868df25b6c67bf19" kind="variable"><name>_transformation_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a33136200777e8a3643cfd1ed0df18ccf" kind="variable"><name>_shadow_matrices_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a9af7c305fb47ea7a4af545cc2fdc6a6a" kind="variable"><name>_light_position_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a70b3d98d977c53992a81617c9c498eb1" kind="variable"><name>_far_plane_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a33756aa0aff257b33c40c1244382bb63" kind="variable"><name>_light_index_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a86598a73ec62f79e4d4688d846dff5c6" kind="variable"><name>_diffuse_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a1f2e9ab8b03cd8bb9b941ccd953acfc9" kind="variable"><name>_cube_map_textures_location</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a64ff37b36fc299a11730f25e4ece0b69" kind="function"><name>CubeMapColor</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a32df48eb01606e15ca2c864838508f59" kind="function"><name>CubeMapColor</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1ac3f47a418a3ae052fe59f2f26874c92f" kind="function"><name>flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1aa0b4c92917a0cafa1bb4079429f698a4" kind="function"><name>set_transformation_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a0c4675114cbdebb309ce2d354bb2e260" kind="function"><name>set_shadow_matrices</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a3e507d039584ec709e38839c70a3d251" kind="function"><name>set_light_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a97d05f999e0e6fbcbafdc45a72fb210b" kind="function"><name>set_far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a0883fc69859bb2ec5eb57c7aa9f30ea4" kind="function"><name>set_light_index</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a0eeedc3536f8a0ec620b5d5d486743a6" kind="function"><name>set_material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor_1a2ba8ff7e0fa3f9a9bfabdc2bb944682a" kind="function"><name>bind_cube_map_texture</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kind="class"><name>robot_dart::gui::magnum::CubeMapShadowedColorObject</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ab863c5b2be3cfc2d3365c2893023c2ea" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aaa8158f26ec8343a3c820c8bd6955c50" kind="variable"><name>_shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a3733654a31c7a6fe416530583ed45dda" kind="variable"><name>_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ad6f79c07c1d97829cd535e8128ee6488" kind="variable"><name>_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abdeca27e1183ff2b3751c1dda6412b54" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a78b7b8bae67e3fbdbf3732cdb530684a" kind="variable"><name>_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abd11e80f29aa107388508a86b7120997" kind="variable"><name>_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a85b0633ab4eb17bee98bf895b1dd168d" kind="function"><name>CubeMapShadowedColorObject</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a464bb32c62f91e0d3bf0b41a777cea0c" kind="function"><name>set_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a2909d1ab679ab89aa9e060c49d439ac9" kind="function"><name>set_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1af8fa02b8e073d0fe9e0f24921255eaaf" kind="function"><name>set_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86b85e92e52f0c427055775412b735c0" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86fbe8cc9694b8de19d297a1b8db3682" kind="function"><name>shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aded84d7cc81707b65b7a39e06c91beba" kind="function"><name>draw</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject" kind="class"><name>robot_dart::gui::magnum::CubeMapShadowedObject</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a4a75c804848cd4d371c321063bc6aee6" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a950b50c56eb7d2a1e1c3727b1fcc30f6" kind="variable"><name>_shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1aa829d9fdbb5b220e0641bc0764d31b76" kind="variable"><name>_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a3d9e2c470edcab964c40c11d2fb7d4f7" kind="variable"><name>_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a7fac4a1678703c21284bdb27ae6afecf" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a082123a8a3fb8c31c782f28656217594" kind="variable"><name>_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a5717a4b5669d6b5b6d24c4c88c9391aa" kind="variable"><name>_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a1957c856ee93ab110053c189f60c8a32" kind="function"><name>CubeMapShadowedObject</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a504452424dffcd7c3cadebfaed9f4360" kind="function"><name>set_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1ac40c0cee2d014c797cdac6ab66ae1074" kind="function"><name>set_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a72caaff876482d46f915641db4cfd969" kind="function"><name>set_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a643ecbbbee846ea293fbe413474c9334" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1ae45f8f12d757a5382c9142907e109750" kind="function"><name>shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedObject_1a18d86796b462b926d69cef62e8b4ed22" kind="function"><name>draw</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData" kind="struct"><name>robot_dart::gui::magnum::DebugDrawData</name>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a7aa73f16f59b4c8a85e03162091c5a21" kind="variable"><name>axes_shader</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a69a77f95942f2ab847b23e355c3d3385" kind="variable"><name>axes_mesh</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1aed6e895cb5d3ae1b16fc668ba3c9fa61" kind="variable"><name>background_shader</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1acc901d9a194fd0c24b2e8a39912e6591" kind="variable"><name>background_mesh</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a03086dbb943dc10934a7b1cc95bad592" kind="variable"><name>text_shader</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1af7c4ca68e6f83fd76871e8d7aa83be37" kind="variable"><name>text_vertices</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1af5974851cdaedce26ab67d83015ce1fd" kind="variable"><name>text_indices</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a2d71c5974f5376adc5591c59192fa2fa" kind="variable"><name>font</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData_1a5f0e2a6a6eb1abd4c3d0392f813f4ad9" kind="variable"><name>cache</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1DepthImage" kind="struct"><name>robot_dart::gui::DepthImage</name>
+    <member refid="structrobot__dart_1_1gui_1_1DepthImage_1ac6e5e3a37d123c57d596c12897ad0a0d" kind="variable"><name>width</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1DepthImage_1abcc64dd34a01ed41def4d4f7615eccb2" kind="variable"><name>height</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1DepthImage_1a70b8f71223fcc12acc06e8356755aa12" kind="variable"><name>data</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject" kind="class"><name>robot_dart::gui::magnum::DrawableObject</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a302035d0fb69a8c82f0b26b6cdab975c" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a071ebb3b4a8b4e477c120605bd772006" kind="variable"><name>_shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aa2b2c0872ae09a4fe519eeb02bc633e2" kind="variable"><name>_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a214ef5896aeae522a8cccd9da31c76d3" kind="variable"><name>_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8cd7649abc60e24a6a96e16837dc59b4" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a170ff68f15dbf1b6abfe316cb47fc21b" kind="variable"><name>_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a08f975142035112af8eba9f342dd0a76" kind="variable"><name>_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a66748bddc16593cb840e80f4f40da477" kind="variable"><name>_has_negative_scaling</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af45cc8339fb7606c9f186592046b03cc" kind="variable"><name>_is_soft_body</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a0145e58758b522bc1577d5633005a750" kind="variable"><name>_isTransparent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a59663b5497e984e222a2f127f1e5d060" kind="function"><name>DrawableObject</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a61d163ae317d57907e087a6cf4b8050f" kind="function"><name>set_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1af107583e6560c90f7ecd953f26d645b5" kind="function"><name>set_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a79d3a02be4f31b57748fd878ed7781ab" kind="function"><name>set_soft_bodies</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ad722312ab470dcbdb8c020f4bd81bf02" kind="function"><name>set_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a197ba8847f0bfc2d6b3a1463f29b5b0c" kind="function"><name>set_transparent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1acc155fc3972f43cf1ce6f9fc1bb8b97f" kind="function"><name>set_color_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a07a024e39be5719508a4828116f87008" kind="function"><name>set_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1ae77eedf83cf91725c216f4e7a7b42b11" kind="function"><name>materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a8759137a0a5708e14b8135e2b580ccd8" kind="function"><name>transparent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a574ddb63759750869cb61d0b60714e6d" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1a860e1a254b3a49739c34509ff8d9cbe1" kind="function"><name>shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1DrawableObject_1aab0261f0bd22d3cbbca3544ed5508d62" kind="function"><name>draw</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1sensor_1_1ForceTorque" kind="class"><name>robot_dart::sensor::ForceTorque</name>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1adb691f8ea25fffb973bfaa67c3e76932" kind="variable"><name>_direction</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a551718ee6de5d689d1678923dd65634a" kind="variable"><name>_wrench</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a58b9bd8e2e4ea45286055c57663e44fe" kind="function"><name>ForceTorque</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a11a320b22419fcd5f995ed5491de5eb1" kind="function"><name>ForceTorque</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a4da7b7284a18433931d43ff3e511fe54" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a717bd8631c2763bd5c2b0d943734a1bb" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1aa22a9881b75c73e758f8096cca1c6949" kind="function"><name>type</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1ac7aa6afb2bf9351acd6c2c72a95814e8" kind="function"><name>force</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1ad76b24dd5eebc836fc659c653373ad28" kind="function"><name>torque</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a9739e39cfae8737227dd9b294380ad90" kind="function"><name>wrench</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a6cbf05ed85d355f48449efee109dd5d5" kind="function"><name>attach_to_body</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Franka" kind="class"><name>robot_dart::robots::Franka</name>
+    <member refid="classrobot__dart_1_1robots_1_1Franka_1afa56f50465defc492683600ccbcdcb64" kind="variable"><name>_ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Franka_1af9cfeb607e304bed6bce9f9167ddc992" kind="function"><name>Franka</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Franka_1ad9bbaab5bf6d58895c726bb13ca6660b" kind="function"><name>ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Franka_1adc31d964be12289fb561ccd761ef4ce7" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Franka_1a4587eeb8ed9bf7aec602b25e99f0681b" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" kind="class"><name>robot_dart::gui::magnum::GlfwApplication</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6770be3e69e1fc9f546d226e97ceb34a" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a860748728fe7fcda3a66df75bdd54277" kind="variable"><name>_speed_move</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4f3477ec910b52aa66107137fc645819" kind="variable"><name>_speed_strafe</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af8cde986e7b42265a7c5161b8c724b36" kind="variable"><name>_draw_main_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4a169d681a95a7313fb7f62a74702fc2" kind="variable"><name>_draw_debug</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a7d79e031ec0685ad3cdffe86af647465" kind="variable"><name>_bg_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1afa36bf510f8d06496071337bf3877f7b" kind="variable"><name>_speed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af2bbf678a299f7c71950905b8edf1a4a" kind="function"><name>GlfwApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c8e98c8a3f8fbe18dfe7df88d2cda9" kind="function"><name>~GlfwApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1aeaf25dcd25336527e4ede5892fb6da8d" kind="function"><name>render</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6f08ae7ae23c9b46d0ae03542d16210d" kind="function"><name>viewportEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a842a52b822a44809cff86295ba5b6670" kind="function"><name>drawEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c39571cc0ffe635c2ad3a4cd504376" kind="function"><name>keyReleaseEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a495a700ff1f7377476352b25bafa6fd6" kind="function"><name>keyPressEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1abd796ed7b267a891c04b1ca3dcf0c1e8" kind="function"><name>mouseScrollEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a3e080f1adf5acfd90db3dcc26df25acb" kind="function"><name>mouseMoveEvent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a8d62acc674f93c109160eacec1005e50" kind="function"><name>exitEvent</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData" kind="struct"><name>robot_dart::gui::magnum::GlobalData</name>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a74f4ff05c4080c59f3c5b3db48dc186f" kind="variable"><name>_gl_contexts</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac17552862eaea4f0bc3e9d9aaea16e46" kind="variable"><name>_used</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a4238bdcc1849d1cbc231d91fc4cd8293" kind="variable"><name>_context_mutex</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a6b31f6269ac1c8baa124ddf29c6e2f5f" kind="variable"><name>_max_contexts</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a00af2d89c2e045217178b9ca906bfe2d" kind="function"><name>instance</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ac991e057d8c8001eacf627dc44897c55" kind="function"><name>GlobalData</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1ad0b4a97db96f903c2151477c4baf2030" kind="function"><name>operator=</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a475eb08df5b3a17397617cc2b670debd" kind="function"><name>gl_context</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a1628b1eda6a5837357fad93048497746" kind="function"><name>free_gl_context</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a3d418cb7bab2a1d27895b43a8e2baa13" kind="function"><name>set_max_contexts</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a61266aad181312f9d25fb2bc0a227cd5" kind="function"><name>GlobalData</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1afb564373f32dac71b5d9184ec3fc8179" kind="function"><name>~GlobalData</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GlobalData_1a18353fa5fa23e09a3778443382856862" kind="function"><name>_create_contexts</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics" kind="class"><name>robot_dart::gui::magnum::Graphics</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a99b5508317072ca9f0b972b6bc6a42fb" kind="function"><name>Graphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1abec22d83a033d3e01c8f428f5acfda75" kind="function"><name>~Graphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a73ab41af3fd0827357e332cac19a5b65" kind="function"><name>set_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1Graphics_1a394e1374527547d577bf26a30fb3b979" kind="function"><name>default_configuration</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kind="struct"><name>robot_dart::gui::magnum::GraphicsConfiguration</name>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4354b30f3425cefd58f2aaf85318f1c2" kind="variable"><name>width</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4c85c9bc6330a32d3a6a1cc8e988cbd6" kind="variable"><name>height</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a168414f3dba10fb44d428e540633671b" kind="variable"><name>title</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a0b3f5807fd76acd936221e3d58f04082" kind="variable"><name>shadowed</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a13a227b7940bc3f03f01f7d2ae36447d" kind="variable"><name>transparent_shadows</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1afa408268ce62994259aac46a388bf063" kind="variable"><name>shadow_map_size</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a6cd3b4fedac3f4cfe960357f39ab962b" kind="variable"><name>max_lights</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1ae7604b5f510aafa6539dd4a44080c807" kind="variable"><name>specular_strength</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1af623ed855c505d4d431e94c19bcef216" kind="variable"><name>draw_main_camera</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a325242568db01b5f6b6bc7c36492fe08" kind="variable"><name>draw_debug</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a3338d98f2f32266b2391967077550d36" kind="variable"><name>draw_text</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a794c094c16eda6fbde2553fcea4ea0e2" kind="variable"><name>bg_color</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kind="struct"><name>robot_dart::gui::GrayscaleImage</name>
+    <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1a21a5f8087a2636651d406c9c066c099c" kind="variable"><name>width</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1affe344caa912c21909b047b94ab85765" kind="variable"><name>height</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1GrayscaleImage_1a26bf3da92e65ee06cb202b584c9681ae" kind="variable"><name>data</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1simu_1_1GUIData" kind="struct"><name>robot_dart::simu::GUIData</name>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aee5f335f95696bcb1d2afc4e5909ab23" kind="variable"><name>robot_data</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aada5f271b02e476f8f9731b7042a38c0" kind="variable"><name>robot_axes</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa93c73a152332ceb5d40bec7047335d7" kind="variable"><name>text_drawings</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5cc8c625d935018fdb4d0ecc3a2a5195" kind="function"><name>add_text</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa3acb6ba9360c56290a5496f4acc658e" kind="function"><name>remove_text</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5150da943acdb0d1271ff0f024c52028" kind="function"><name>remove_text</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa394df8aec94a127046e6b6795d23870" kind="function"><name>update_robot</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a80d2087c9886a862a5318aacbbad9d0e" kind="function"><name>remove_robot</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1aad28759247c071ac66bbd022fdeee9ed" kind="function"><name>cast_shadows</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a12a4688ab10613d8f064ba0cc303ebe3" kind="function"><name>ghost</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a53b7737aff7fd5af0fcf6c3ce2f6a2fb" kind="function"><name>drawing_axes</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1a2009bb26b10dc6f7e6daadaeb194d0d3" kind="function"><name>drawing_texts</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Hexapod" kind="class"><name>robot_dart::robots::Hexapod</name>
+    <member refid="classrobot__dart_1_1robots_1_1Hexapod_1ab210d814dc6c48edc179d7ad0bfe6965" kind="function"><name>Hexapod</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Hexapod_1ae604d5cae7464e56f830fb2728d97410" kind="function"><name>reset</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1ICub" kind="class"><name>robot_dart::robots::ICub</name>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a7ed9789ed8c4cb51a11d9eb8827090cc" kind="variable"><name>_imu</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a09de79ad8817e91db67a96a6498b8c9e" kind="variable"><name>_ft_foot_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a156be2a6739ef3d7600ed2c3a17dbaf5" kind="variable"><name>_ft_foot_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a9078fcb8a7716a99fe38584cacc2c802" kind="function"><name>ICub</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1ad2b16c0be9841b5793532140fc4164fb" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1ab0ec60724d6a22cc147c79abaaf0af55" kind="function"><name>imu</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1abb1c8cbb1794cb83cfd3d48daf830722" kind="function"><name>ft_foot_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a7c63a5b698ce4d1a1aeb29796a7e23f8" kind="function"><name>ft_foot_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1aa4d3ae3fd06c845c455be2060c46aade" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1ICub_1a5be9c724a958f94496496c7f15a2a0d5" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Iiwa" kind="class"><name>robot_dart::robots::Iiwa</name>
+    <member refid="classrobot__dart_1_1robots_1_1Iiwa_1a01ae75b331a16cdf5ba3522d9eadab60" kind="variable"><name>_ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Iiwa_1ad82c263f922a1bd184d9763237846138" kind="function"><name>Iiwa</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Iiwa_1a9dbe7e53521a843456f3e5aeaf7a8f0f" kind="function"><name>ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Iiwa_1adf5b529d7a372433ea646ad936429b66" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Iiwa_1a3448e301b0832454ffcaac83b6219fe5" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1Image" kind="struct"><name>robot_dart::gui::Image</name>
+    <member refid="structrobot__dart_1_1gui_1_1Image_1aaf8c13cbcd3c947da0b935d5cd41b926" kind="variable"><name>width</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1Image_1adf62630fc27d2cdbae62e2d369abff58" kind="variable"><name>height</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1Image_1a04f8be5fd3308da87ba24f2289916282" kind="variable"><name>channels</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1Image_1ae30480fde7a4713fe030d9480c67e6c1" kind="variable"><name>data</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1sensor_1_1IMU" kind="class"><name>robot_dart::sensor::IMU</name>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1ab89d0526cc8b3375767ec5a1cc5faf0e" kind="variable"><name>_config</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a83f140380d6f993138884fd77d034b86" kind="variable"><name>_angular_pos</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a3df8846ca17cbb67943c4438cb5457cb" kind="variable"><name>_angular_vel</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1afba4b092f81b76f32c295628c846ab79" kind="variable"><name>_linear_accel</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a54a3b57abd9ea3d467ef08f3509dcc7e" kind="function"><name>IMU</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a74f3ab4fc9f5cb4853cd48c505085ade" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a487a1db67255781effd376f279ba3772" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a0e59465e82037c3eb1f22672a99f86ae" kind="function"><name>type</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a50b6e29b7eb663bdc7eada3944e7f2d5" kind="function"><name>angular_position</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a117a8d9ccaebabfc50acafa1e53da0f0" kind="function"><name>angular_position_vec</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a9d3b93fae7fe25a729c3c381816d89b4" kind="function"><name>angular_velocity</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a356a99e9896297642be165d036c1a2ce" kind="function"><name>linear_acceleration</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1IMU_1a456714a083f005eef2387977a6d6c1ed" kind="function"><name>attach_to_joint</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1sensor_1_1IMUConfig" kind="struct"><name>robot_dart::sensor::IMUConfig</name>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a336a6c4a6983e94f624ac61f2bb03248" kind="variable"><name>gyro_bias</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a34eea3eefe88463eea3dc460ca2d3b51" kind="variable"><name>accel_bias</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a40e40e277f8a30c843d44ca5ab4dbd7e" kind="variable"><name>body</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1ad117b8ec6cd0d6efc2e879e14a35cd5a" kind="variable"><name>frequency</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a4c5b190bc68d7596f8245efea647ad12" kind="function"><name>IMUConfig</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1aa83183ea185ccc9ca995d744b85aab38" kind="function"><name>IMUConfig</name></member>
+    <member refid="structrobot__dart_1_1sensor_1_1IMUConfig_1a21db967ed62772d477313e53e665b927" kind="function"><name>IMUConfig</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kind="class"><name>robot_dart::gui::magnum::gs::Light</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af8138e3fc1e19a3a04186c1d5f550c15" kind="variable"><name>_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa626307a465c8f16a78d4c37d11c6542" kind="variable"><name>_transformed_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae49be510e4e36a45717d191ea9b87319" kind="variable"><name>_material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0933d02a5b25bf67a872be3f74157fee" kind="variable"><name>_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a99e1e51e2f9f09a48e1f54431d905be7" kind="variable"><name>_transformed_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ace45ee76a91974dac21117d058dfbaf8" kind="variable"><name>_spot_exponent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a84d01a943d36d4f3b5c54924087a77e6" kind="variable"><name>_spot_cut_off</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a1c281f188197583337dd0a90cd423fdb" kind="variable"><name>_attenuation</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aa3cf118668c48dae6d05e24a4ea708f2" kind="variable"><name>_shadow_transform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae2b6f8acac43e047f4780c4858e6281a" kind="variable"><name>_cast_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1af10d77fa11ea91a05a65a08ea9ab0f64" kind="function"><name>Light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae845a4115b1e87dcfb4c7ab1d831061c" kind="function"><name>Light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a32ad704b2bb58a96b705754c57e10790" kind="function"><name>position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2fe0d0be826ee784693f2ab01b0b319e" kind="function"><name>transformed_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ae8e13f27fd7b72e0979d9844c295a526" kind="function"><name>transformed_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6d1d714656abf3432c0c28a2abbc8977" kind="function"><name>material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a6e53a436cc4db93d4c2152ee86048dbc" kind="function"><name>material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8721f917fd675eeaf0fd9a3ce68868f9" kind="function"><name>spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac56a2774efb10e7ed4cb33c824439fc9" kind="function"><name>transformed_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a40cf6cee59632957ddcd4276462328c5" kind="function"><name>transformed_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a47a5d82aba81aba6911652ae8d9d385a" kind="function"><name>spot_exponent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aba35bd334d43590f04446e5aaec45e29" kind="function"><name>spot_exponent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3f435d83f403b510ef8182698a8f5ca3" kind="function"><name>spot_cut_off</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a481d3148c2a6c2c0f02bd43b635d5d33" kind="function"><name>spot_cut_off</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0903251d3f15c34de94c9099c7922136" kind="function"><name>attenuation</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ab1986bd4108bfed3489b1eab9fc984cc" kind="function"><name>attenuation</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a3dc247ebe69c23cd75dd29667ced011e" kind="function"><name>shadow_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a781c6f280b6da38418e544567b9d4319" kind="function"><name>casts_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8fc92806f8e4bacb8c1e766ad53646cf" kind="function"><name>set_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a5568943dd7dce465ad66ceb69f1777d6" kind="function"><name>set_transformed_position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a2f21e75b35a94af46fecf04d11b6f3e4" kind="function"><name>set_material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1ac7326f10cb400b7b0ac98a51440be2e2" kind="function"><name>set_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1aaca8cd7dd907935b771d2100ba5b3af3" kind="function"><name>set_transformed_spot_direction</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a0d41bddc6b983ce8cc9ca162aee6bbfe" kind="function"><name>set_spot_exponent</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a8d6d6648d48d423a5f946e0658d18b70" kind="function"><name>set_spot_cut_off</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a4c4d888981d304e683b3c0245ff17f37" kind="function"><name>set_attenuation</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a56c2e217f0b84cb687afe0e8118c07ae" kind="function"><name>set_shadow_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light_1a07f4c8cdc28cd3ac920729046578060c" kind="function"><name>set_casts_shadows</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks" kind="struct"><name>robot_dart::collision_filter::BitmaskContactFilter::Masks</name>
+    <member refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a45af2034bb51a8990f53da0180e3e3e5" kind="variable"><name>collision_mask</name></member>
+    <member refid="structrobot__dart_1_1collision__filter_1_1BitmaskContactFilter_1_1Masks_1a66eff343184952f484382204e215ddfb" kind="variable"><name>category_mask</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kind="class"><name>robot_dart::gui::magnum::gs::Material</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a6bc1f121b05a5caacc94fba74b7047f7" kind="variable"><name>_ambient</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a030eee1c3af717cf29060ac34656a96a" kind="variable"><name>_diffuse</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1ad4090ac916b7ccf830ec8ebbe9794917" kind="variable"><name>_specular</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1adc532928f88b144ce31d4955ce817da0" kind="variable"><name>_shininess</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a81291a48e984529048328ec75f25acf7" kind="variable"><name>_ambient_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a32c3376b2a88d3617310429ded4fab77" kind="variable"><name>_diffuse_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1ab40b753b475bf9fbebc7432e2a4baad1" kind="variable"><name>_specular_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1abc1f4b2c789099e75fe2f3666808ed2b" kind="function"><name>Material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a16235ebf18f7f82eff87cee9e977aa71" kind="function"><name>Material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1afc0e9038a45d27a0442efd2149d75094" kind="function"><name>Material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1ae6202015a57d3b3019ce7fccb7ee30c0" kind="function"><name>ambient_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1afc20a6b9b9bff01c4236f14044ab3e31" kind="function"><name>ambient_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a73a59524f6f016da7cec3b31689dbd66" kind="function"><name>diffuse_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1afda744669f5f82e4f7de9aacff78edfb" kind="function"><name>diffuse_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1ad2d32d398371cd403a0fb5a136ecd07c" kind="function"><name>specular_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a000f7bdd4a1e9313109faa463e2f16ae" kind="function"><name>specular_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a9296328527b32d59f3bcec1cf8a6dfe7" kind="function"><name>shininess</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a6b4e02f3dad7d73e33b2d538443fd752" kind="function"><name>shininess</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a0c7a9107b06b86fb6472ee465afb472e" kind="function"><name>ambient_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a5a45db28baac5db6688bd35b6ea38491" kind="function"><name>diffuse_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a2bf1aa7264f6e0a537177931acbb9b37" kind="function"><name>specular_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1aa95c67c4abae8a5be4c17c117466a41f" kind="function"><name>has_ambient_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1ab767c1784685473c618c86cfe8316de8" kind="function"><name>has_diffuse_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a744bcabfff572403116fce9baf80c150" kind="function"><name>has_specular_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1aa4d6c92613f1101eac8d3fa1f6c13da1" kind="function"><name>set_ambient_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a447620065d469e5897e2d3a6ff23061f" kind="function"><name>set_diffuse_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a1b720da295bc6bb0ac6272ef8801528e" kind="function"><name>set_specular_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a83ff0b0890006d832688552fe6317a2c" kind="function"><name>set_shininess</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a8db16e8b9648b36a09585fffda4640c5" kind="function"><name>set_ambient_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a8ce99d443dacbfd1f13b0869f633012c" kind="function"><name>set_diffuse_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material_1a8a9b6a5a7576c99437fdcd12979e06be" kind="function"><name>set_specular_texture</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct" kind="struct"><name>robot_dart::gui::magnum::ObjectStruct</name>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1afe8d2e7485f03de57f9f7672e88c9243" kind="variable"><name>drawable</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aae8a97af8dbfa64eabc794e73c047bf9" kind="variable"><name>shadowed</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1ad8bfad47f8e3a8bb119ea3e8fce2901d" kind="variable"><name>shadowed_color</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1aa2afd50e6a740b666158ea1c84d7d899" kind="variable"><name>cubemapped</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct_1a38b4b4a59591579d9ed4e76473f02098" kind="variable"><name>cubemapped_color</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1control_1_1PDControl" kind="class"><name>robot_dart::control::PDControl</name>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1ab9eecb22ac996a94bd027c8a094ccb0a" kind="variable"><name>_Kp</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a6caf14d61de764c9b7d364730519be95" kind="variable"><name>_Kd</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a6d620de41ece67a581e28a8273133335" kind="variable"><name>_use_angular_errors</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a66de4437cb1dcf4578c241e4677b7f41" kind="function"><name>PDControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1af244bed8723f2320f99e2e8d9b972add" kind="function"><name>PDControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1ad27d486b2447f8523ccebc958f2ff250" kind="function"><name>PDControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1aa3a161df0ea599bebe78fd851c2a4c2b" kind="function"><name>configure</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a7b5f299bf5ec3df54227797ef010a0d7" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a86a980d68313d2e3f2587ef1d0261d10" kind="function"><name>set_pd</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a866767ac727bc80ff01aa25cbf806afc" kind="function"><name>set_pd</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a1e691dda675d38940a2571fda16c3180" kind="function"><name>pd</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a93cd21c07be22d15e3113ca4513ccfda" kind="function"><name>using_angular_errors</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a432562883cd94085f97b2ef4756a49cc" kind="function"><name>set_use_angular_errors</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a707e19bad80ec1e2cd4c25774d54db28" kind="function"><name>clone</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PDControl_1a97d60e7cc9076abb9647ddb39977d781" kind="function"><name>_angle_dist</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Pendulum" kind="class"><name>robot_dart::robots::Pendulum</name>
+    <member refid="classrobot__dart_1_1robots_1_1Pendulum_1a501e77e0720bbfa6f8063539af6a7132" kind="function"><name>Pendulum</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kind="class"><name>robot_dart::gui::magnum::gs::PhongMultiLight</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" kind="enum"><name>Flag</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da3ae56a8ec764ef7cd26cdde384d85e19" kind="enumvalue"><name>AmbientTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480dae712876b5313699d4e38e6f70c7c725e" kind="enumvalue"><name>DiffuseTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da8f19fa0f2cc4078c09a89d31205980e7" kind="enumvalue"><name>SpecularTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abddb1fe14f7388e992af1b0b24e61c37" kind="typedef"><name>Position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1ed731ef466b04918a777aab3924d529" kind="typedef"><name>Normal</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afc56b7b9d362cf2f0bc4c11ba857fe76" kind="typedef"><name>TextureCoordinates</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae4898682d73aaac5ba8d0ec79fce988e" kind="typedef"><name>Flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abc6581b5cd97ccf0308c26af8723d28a" kind="variable"><name>_flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1100a000437195e3cd7ed342a06b6492" kind="variable"><name>_max_lights</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1d5be823592141b5a1d96b434948006d" kind="variable"><name>_transformation_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aeb6651191324565038590ec6f0659363" kind="variable"><name>_camera_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1af634365bbe4e8a98aea3f85aaf07a89c" kind="variable"><name>_projection_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a9f6c1e0374bfe38e24725aac333419f0" kind="variable"><name>_normal_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5e569b921ab042e4e3e7f583cd43b160" kind="variable"><name>_shininess_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a5fee2a358baf8d1698e91d076236d16a" kind="variable"><name>_ambient_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1acab0747bd0f5126d21cbc8ed3033e1b0" kind="variable"><name>_diffuse_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afe750917970934602aba8c8f3977987b" kind="variable"><name>_specular_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad08cea899ed1316fcc8688277f971d78" kind="variable"><name>_specular_strength_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a73236ff24a9e8882dd5fbde12830de2b" kind="variable"><name>_lights_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a4a1ebd8109e3fbb501346b30a0318417" kind="variable"><name>_lights_matrices_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adc61d72884a115419ad3d7b5f105a461" kind="variable"><name>_far_plane_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad7f19d9934a3b452091418b568c04af9" kind="variable"><name>_is_shadowed_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a42f42374f43ece03fa112baca838a55d" kind="variable"><name>_transparent_shadows_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aaef20d3c703c37924cf5731304549bbc" kind="variable"><name>_shadow_textures_location</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a289afb243d42f06e375143e8239cf041" kind="variable"><name>_cube_map_textures_location</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd830d8788c4ce108d1ba858d5c88b7a" kind="variable"><name>_shadow_color_textures_location</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a69106502ff772d6d695ae16c3bb2e1c8" kind="variable"><name>_cube_map_color_textures_location</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a34709231808e5af6cad98853f96aedd4" kind="variable"><name>_light_loc_size</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad19585eacba82e57f9d037088010ca62" kind="function"><name>PhongMultiLight</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aec1b458cb9551afb2fef8848a47f4f50" kind="function"><name>PhongMultiLight</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aefd2ca33c4b061188a908aa4103e9f2b" kind="function"><name>flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a70f6772170cc8f596564c1c6cbe5e924" kind="function"><name>set_material</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a2e8b5526f32dbaa87533d295fefc627b" kind="function"><name>set_light</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aedd6cb9233576dc4207eda1b99568d35" kind="function"><name>set_transformation_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1abd7f340434eb6187a1409600556f92fc" kind="function"><name>set_camera_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a1277b1e13375eb52b4ef4ce4198f1424" kind="function"><name>set_normal_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1afb244e6b8b85a25bffc878b0eb2e11f8" kind="function"><name>set_projection_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ae054eaa39ff5fc02b443361d2e947c08" kind="function"><name>set_far_plane</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ab2211b6aaece6dff40ca5b3a5248d18e" kind="function"><name>set_is_shadowed</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aba8c93fe1a7beb32e489b3b14e48c1b0" kind="function"><name>set_transparent_shadows</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a495afdc37006c279e164cf8ae5934f7a" kind="function"><name>set_specular_strength</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a13580b6020d2c8a8cb53f422a47e1a22" kind="function"><name>bind_shadow_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a8a066d43a8006d525f91e94706993a12" kind="function"><name>bind_shadow_color_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1ad3944c7e1b0795f30c7704caf532fa76" kind="function"><name>bind_cube_map_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1a3c19a38dae55e64ef8aba09d92d318c1" kind="function"><name>bind_cube_map_color_texture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1aed27b16bc91415e8b2448d4a05d3ad38" kind="function"><name>max_lights</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1control_1_1PolicyControl" kind="class"><name>robot_dart::control::PolicyControl</name>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1af6226c74372b09b84a3cc610a27faa11" kind="variable"><name>_i</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ab1ffc55c23f0799a550fc65f14e867d7" kind="variable"><name>_policy</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a51ef30f77ebd7b0a0229a31c30aa8fbb" kind="variable"><name>_dt</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a5eb2603779c676cfde2ea61c94623efb" kind="variable"><name>_prev_time</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1adc6d3572bfbe9e05813e0c083159a226" kind="variable"><name>_threshold</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a3916b1535809459a9702ee8643efe333" kind="variable"><name>_prev_commands</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ad73892e6838ed7823790314c066c3f1c" kind="variable"><name>_first</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aea8f393807ac6770eb11c69b0bf469db" kind="variable"><name>_full_dt</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aa81c00c0525fcbaa252027adc6d7d024" kind="function"><name>PolicyControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aa694b79e68e2e774fdf4dab9a72fcb1e" kind="function"><name>PolicyControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a9054ef416c2e903cd14df13512eda204" kind="function"><name>PolicyControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1add681a75b3b054e4b9680efc6662fcb3" kind="function"><name>PolicyControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a6950711c24ae86f3dbf8b52b55b69fb3" kind="function"><name>PolicyControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1af0e6db4984cc880884cfd7216d7f1443" kind="function"><name>configure</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a3abc261f6e86f1bcf5f4cd5828fe3850" kind="function"><name>set_h_params</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1ae8209884c73efb644059da8425b7be1e" kind="function"><name>h_params</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1a0718446c3c5205975199cd712ca78aed" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1control_1_1PolicyControl_1aad53a9ad303894e512a369bbdebe3969" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1Robot" kind="class"><name>robot_dart::Robot</name>
+    <member refid="classrobot__dart_1_1Robot_1a655d18b872175815db814ef7f25117d5" kind="friend"><name>RobotDARTSimu</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7eaf2574b39b95c1cb61ebacded66e14" kind="variable"><name>_robot_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad1522c12cd8aae9cf14225b8a0d8ecd2" kind="variable"><name>_model_filename</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a4be59bca1835cc6075da611897994c8e" kind="variable"><name>_packages</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aaf60e452285bb687d9abe7a7f525dd67" kind="variable"><name>_skeleton</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5773d4df8c435f9cd4e315ff6a2bbb9e" kind="variable"><name>_controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0b62de23bd5329aecc0cf2c3f0f92248" kind="variable"><name>_dof_map</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a31e3a6d529f86402181ca8faa4f9e10a" kind="variable"><name>_joint_map</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0f0f858c6b833cb0892cc42131af7df4" kind="variable"><name>_cast_shadows</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa0fd0718226ceb510980270755da8c37" kind="variable"><name>_is_ghost</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad719a9328fc951b31352d3bda956f060" kind="variable"><name>_axis_shapes</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a09f2520d1ec08fe65d517dcf94535747" kind="function"><name>Robot</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a19c4446d0f25c95738c021a4e59427f9" kind="function"><name>Robot</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac3040b65c60460920428f63e9acd6643" kind="function"><name>Robot</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab1b72ace13d18ba2f3cb7a8b9d9f1b53" kind="function"><name>~Robot</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6233cc8ce4b553221b98bdb0e8e8cf82" kind="function"><name>clone</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2712217f6eafe6727662d39aeb566049" kind="function"><name>clone_ghost</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a68e3847796190e75682d963189f4b82d" kind="function"><name>skeleton</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a07a2eb5890d034d179aa3baf0128eb52" kind="function"><name>body_node</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a052221621acd6c3d2aa795d72e98a862" kind="function"><name>body_node</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5444621b7a0e594edd74d952605329ca" kind="function"><name>joint</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5780b86b53a8af4d34c687057304569c" kind="function"><name>joint</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a78c2714622baac3af5c0ccb469f6acd3" kind="function"><name>dof</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a9b5a9c29b5070452f29938b429b425c7" kind="function"><name>dof</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad6eb5953c1040ae68768cbee13a6d225" kind="function"><name>name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a15d6d6496b8dc22936dfed2af0cc05de" kind="function"><name>model_filename</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a54c3fa173f04715ddf8c29da55759e59" kind="function"><name>model_packages</name></member>
+    <member refid="classrobot__dart_1_1Robot_1abf23bd42f3dd209a0950697f54921707" kind="function"><name>update</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae876113c3a85a5f4c97a4d144559ef4d" kind="function"><name>reinit_controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa35dc7d0113cad92abb3ca27bd0766f7" kind="function"><name>num_controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae717ad10036b644ce7337c085c35e1f9" kind="function"><name>controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab986c5e4a69fb1b425c89f90bd7f3675" kind="function"><name>active_controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a8bd4dcb83e5325aa59b407961fe6b662" kind="function"><name>controller</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5d92a6976f10cab8ebb130a8733b72b8" kind="function"><name>add_controller</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aade72f2b4bf8b9e4c12e7ca7c7156ec6" kind="function"><name>remove_controller</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7840ab10ee5b477ac4ec0d4d7c7f3170" kind="function"><name>remove_controller</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a076443b2c0653f4a3dd58df13891bf13" kind="function"><name>clear_controllers</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa906fec013a9ef887518f73c859635a5" kind="function"><name>fix_to_world</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab0364e9bc9c43602a3bad67ca9b5eb97" kind="function"><name>free_from_world</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6282ab081fb2a1c495d991b73d1763a9" kind="function"><name>fixed</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0cf16fdae26cdb7c023e6a9f5f5e996b" kind="function"><name>free</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a96af674783970d47996056c4ead16f1d" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae32b5003e7d3b504461a4fe4baa7cb6e" kind="function"><name>clear_external_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2a32d54d025c294b028fe158879def77" kind="function"><name>clear_internal_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a72146fe8cfb5566d4f48c083bdf5b210" kind="function"><name>reset_commands</name></member>
+    <member refid="classrobot__dart_1_1Robot_1abadb19f0b48f7de9617aaf2f59ec2675" kind="function"><name>set_actuator_types</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aae1ec1a7844e28b7a6ddc64682917d04" kind="function"><name>set_actuator_type</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7c61be2f9030a7eb030899d01f6f0c1d" kind="function"><name>set_mimic</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a00c540535540f7da302e4ddb08d1a0bb" kind="function"><name>actuator_type</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a48a5549c1a51bb1c0783e7ca89382c61" kind="function"><name>actuator_types</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aabe0ce110443bbf7edc9e3cbb4b206f0" kind="function"><name>set_position_enforced</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a03107a2acedf29d9125265e5515aec67" kind="function"><name>set_position_enforced</name></member>
+    <member refid="classrobot__dart_1_1Robot_1addc09ef4a38f71cbbbd3167326b00536" kind="function"><name>position_enforced</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aba430bb07146219e06cbdaa7518b84c2" kind="function"><name>force_position_bounds</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa7c6b33471f4fb725b5dca3e73fbdaaa" kind="function"><name>set_damping_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0c245a940ddb2ac242c350a080d86422" kind="function"><name>set_damping_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a64ffd08d23500da292755881993a78a8" kind="function"><name>damping_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2bb5d3ba1108fd9ae1ceca498dfd1a20" kind="function"><name>set_coulomb_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3992616f6eb4866cdf7a75b7bf84ee00" kind="function"><name>set_coulomb_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa7cbf18b419b41e45923397e1808589d" kind="function"><name>coulomb_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6e252fde5240760f124cfd4deffb70e0" kind="function"><name>set_spring_stiffnesses</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae6933d0a210ce69675a6cf730850306c" kind="function"><name>set_spring_stiffnesses</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa05256ac963fa4282ed6ba13fc7aa13a" kind="function"><name>spring_stiffnesses</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a04b9d1b06be744be5df80b1e5cd4cdbb" kind="function"><name>set_friction_dir</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac5d8e880cb1a4ffab5da4f95ee9f481f" kind="function"><name>set_friction_dir</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac32ae8aa93fdb58b8e7b6dad1979a0b7" kind="function"><name>friction_dir</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af7f3a1560a9113d44dc8a5e732c275c2" kind="function"><name>friction_dir</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac14e86971cfd0c3a9994c80012ec3287" kind="function"><name>set_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a634a4509c2e336b394e6c0ae67f781ff" kind="function"><name>set_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad178f94548cb3c9b1628cc0e5d3ae737" kind="function"><name>set_friction_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a83aac03d715c587d6e3e28ec9031a460" kind="function"><name>friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae0b475c44170e78665cec05ba8a3acbc" kind="function"><name>friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2a9d2e74efb4833f7d5a0e2df9725511" kind="function"><name>set_secondary_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab8a0b5b47a86fce8b73a0458112c2e7e" kind="function"><name>set_secondary_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab42cc7938f120692e9194e0f3a01631c" kind="function"><name>set_secondary_friction_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a385f5ae6bdded9f1a2700db664f8f74f" kind="function"><name>secondary_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a67025eded02f4b33c480e4316c4a5fcf" kind="function"><name>secondary_friction_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad649f474ec7ea7390c1f2ae143988b4c" kind="function"><name>set_restitution_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aeac33d4b4f153d10ae32763ccafa5e96" kind="function"><name>set_restitution_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3ce18d0787ba9e40e45eaed02fdeb31a" kind="function"><name>set_restitution_coeffs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a67852b8ab835534332cae31a5d7ef8b3" kind="function"><name>restitution_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a38c8fc8b21ada64c3d6fb53a07469cf9" kind="function"><name>restitution_coeff</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad400b5495438ff50f675252425d221bc" kind="function"><name>base_pose</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac2cee8997e16fca8ecf238164ae369de" kind="function"><name>base_pose_vec</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a86f3346f48c41394a8af7457f3d63ff0" kind="function"><name>set_base_pose</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a4941fd995efaabe54488281c9f8dd1a2" kind="function"><name>set_base_pose</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0e78d17261ed90dd9e74d11f92f163be" kind="function"><name>num_dofs</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad178003f8bb4df47a69d28a19b737a4c" kind="function"><name>num_joints</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a61449b01547ebee00294adb7e8467239" kind="function"><name>num_bodies</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a9f7e3fc2c1cce48a29aec0f52271f1f5" kind="function"><name>com</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a474232a2fa6ebd96acc3efacb665be0d" kind="function"><name>com_velocity</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7f287dd32b8b66d9f9fcdebc9eb690bb" kind="function"><name>com_acceleration</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a35c4091c282e0ea99658c8ae23882e64" kind="function"><name>positions</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a45bff48126acf1c3b1440053408eda7d" kind="function"><name>set_positions</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a421bf15e4d78135c6e099ec947b4b667" kind="function"><name>position_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af89cffc9ac317ac2d0d4490c66817921" kind="function"><name>set_position_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2a1af9d70b7bf58d7670f37e40967978" kind="function"><name>position_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a1c01a0683952e842cc55b6b96d1e4697" kind="function"><name>set_position_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a814e4c94ef50f8295d95ada6c4322366" kind="function"><name>velocities</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7e1a2418605dba9850c77b440fe7de9f" kind="function"><name>set_velocities</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2643cd261364ca54d1438bef11a9aabd" kind="function"><name>velocity_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3b7f4c92aef9ed078f4d76c92238ff35" kind="function"><name>set_velocity_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5d31f1b79e3ca556421546d14f49dc35" kind="function"><name>velocity_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0e79dee604da70322160164799ddd086" kind="function"><name>set_velocity_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5e6df4bae52c3397794965e6872b4ce4" kind="function"><name>accelerations</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7b1e6a847335419f9b4e146b7963dc42" kind="function"><name>set_accelerations</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a61a85723b90798b9a5666314f0841a62" kind="function"><name>acceleration_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac64b16f56fecb1dec98b6ce09aa7461b" kind="function"><name>set_acceleration_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a8d070ad570352588bfa864a884453af1" kind="function"><name>acceleration_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6e3256e13d7b59aa20dd2e8c0518191c" kind="function"><name>set_acceleration_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a748cd1deb8ee9531a677a0ac18328bfe" kind="function"><name>forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac1cb736079db2c3c7cf959a5d1054f3a" kind="function"><name>set_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aa42f2e37b4d432cf5372f831a2168ea8" kind="function"><name>force_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3210cc606857712b370dbad83b4d0c7e" kind="function"><name>set_force_lower_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a1352e33e735bf3351fc7d05b0f688c68" kind="function"><name>force_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0d954f7893114d8cba8c4b28a1329bc3" kind="function"><name>set_force_upper_limits</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0469631b5e07888273d593c05091567a" kind="function"><name>commands</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ab1f41044b73068c6cb685f03b268a4ec" kind="function"><name>set_commands</name></member>
+    <member refid="classrobot__dart_1_1Robot_1afd8ff947b27f25ce8dbe7580b54ba042" kind="function"><name>force_torque</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a5b2d8f51cb243d4d063aba6a8ae16d8b" kind="function"><name>set_external_force</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a4ccb2241fa1be81f24ce30242a33d2f2" kind="function"><name>set_external_force</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a9f27eb220ea85b8253e518ac017694ce" kind="function"><name>add_external_force</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aaae31353f07d535864a1b9a7ca516226" kind="function"><name>add_external_force</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af39c094130f6ff89b5c60175b48d2e88" kind="function"><name>set_external_torque</name></member>
+    <member refid="classrobot__dart_1_1Robot_1afb038299911a52d927d80f59aec8f9b3" kind="function"><name>set_external_torque</name></member>
+    <member refid="classrobot__dart_1_1Robot_1afa6f12be3ab4a7b843d947d04cfc9c10" kind="function"><name>add_external_torque</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0588daac30492a9f397a3ff706b9f745" kind="function"><name>add_external_torque</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a69283ec10e0e6d9abf34e87812e1325d" kind="function"><name>external_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3e7aa6442de010a6d5e89a8311fb68ae" kind="function"><name>external_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad19ed209802858e53cf40aa505f0d08c" kind="function"><name>body_pose</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a26d77ee6fa5d2b5be180442dca6a6fd0" kind="function"><name>body_pose</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a17e1917c748f574a80694ae13a40251e" kind="function"><name>body_pose_vec</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a8bcda13807b7dee0c68d7e800e7ccfe2" kind="function"><name>body_pose_vec</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a120256b9d6f0708e6f9a841dc7316fb6" kind="function"><name>body_velocity</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a76b6b797ddf0f823190bc1e0c14cca58" kind="function"><name>body_velocity</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a61d0a6329505a84fde05e310321fb1d1" kind="function"><name>body_acceleration</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2852e7f5d184abec877b2a18baf436b0" kind="function"><name>body_acceleration</name></member>
+    <member refid="classrobot__dart_1_1Robot_1afccd8d152f03b185940d39d04085e977" kind="function"><name>body_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6fe9140834cbd491f619e4190636ed34" kind="function"><name>body_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a099c64842ed4b1935817cbbb7adc812d" kind="function"><name>set_body_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a731a45d565e8d765f9018a347fe97578" kind="function"><name>body_index</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3251994a3886a3c0ab401223bb0d8385" kind="function"><name>body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a01586a11da7e3f62c806bf396f5e37b0" kind="function"><name>body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ada98abb4811cc772040e39bd08245b5b" kind="function"><name>set_body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a023916d85fc4a50a8348c92a48a8defa" kind="function"><name>set_body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1adf0a2e4b493280f10bb680e00a3c3a12" kind="function"><name>add_body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a4e13af77c017baadc4cc12b5bb316d8d" kind="function"><name>add_body_mass</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3e1fae4602fb3552dd3ee6c7a2cd7b48" kind="function"><name>jacobian</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a204071a54f94f7e1ae17f37be4b40b32" kind="function"><name>jacobian_deriv</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a142c88b7f5401a14158e913f2aa7896c" kind="function"><name>com_jacobian</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad8a6eba524d58fd836d6b34a6351d01e" kind="function"><name>com_jacobian_deriv</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a42462001f1993ce3aa1689d12d2befc9" kind="function"><name>mass_matrix</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a63b2fb673184bbe16b9e64cff713faac" kind="function"><name>aug_mass_matrix</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a1048177099c21743442cbac9e89c789e" kind="function"><name>inv_mass_matrix</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae8adefdbda03f635f3ce3a021603b6dd" kind="function"><name>inv_aug_mass_matrix</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0233af2b74143973bc06e97ecbedec32" kind="function"><name>coriolis_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a4abe011424c3e775b59cd1befb959a70" kind="function"><name>gravity_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1abcd36ccf5b5756011bd1d8a674f48942" kind="function"><name>coriolis_gravity_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a952d95bc1e9bfdab9a0d415f6b3571cc" kind="function"><name>constraint_forces</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a9b7cf7ba649853067163c21dc92c6df1" kind="function"><name>vec_dof</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a2d5700673de40eece09188ab445b8833" kind="function"><name>update_joint_dof_maps</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aed58ff57570013b420e932e1fa254368" kind="function"><name>dof_map</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a523009d233b897ace54580afef980e01" kind="function"><name>joint_map</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a648a80792f2f14b3f190e9b07f1ce97c" kind="function"><name>dof_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae496e4d877d72e8c966e484366a6c97d" kind="function"><name>mimic_dof_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af86427627de34a6dfc730921b6848278" kind="function"><name>locked_dof_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1abe1416ee8b678c451273d33f1f880f08" kind="function"><name>passive_dof_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a71bab230245f9efa71304ac0096501a8" kind="function"><name>dof_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac30b30303e58dd80830c5aeca19e2281" kind="function"><name>dof_index</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae708af458f44793ebe1e3fecfe4afd75" kind="function"><name>joint_names</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a77d49e80c5661b7ef3c9f0b541c37ba4" kind="function"><name>joint_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0ba8cc647e4377d448f6d04b8274cd5f" kind="function"><name>set_joint_name</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a1a51e6b2623d3211079cf21002cdbf7f" kind="function"><name>joint_index</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad420e1ccd43204b6b78295106b82567d" kind="function"><name>set_color_mode</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a051774706cf9f0e5e31fe45f3b0b8c9b" kind="function"><name>set_color_mode</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad17041d41891b54b96f99ab4ccf380d9" kind="function"><name>set_self_collision</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a94dd74cb25a1d81d0d7d5c7728bd7257" kind="function"><name>self_colliding</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3bf4e2a6fdba147a8543701f9c375ea9" kind="function"><name>adjacent_colliding</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a426801c2a0aa249267c5fc910c4f80b2" kind="function"><name>set_cast_shadows</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a32c273ddeb92b1d6ebf46c761cc3db2c" kind="function"><name>cast_shadows</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a576cc19dbf9fcc1d6ecd36db4eefa28f" kind="function"><name>set_ghost</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0da31d58dd36cd926319fadc42babe1f" kind="function"><name>ghost</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ac589e017628a784b242b99ce4288895d" kind="function"><name>set_draw_axis</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a3da190dc204c38eec3400acdb9157d64" kind="function"><name>remove_all_drawing_axis</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a8eb4b8694702d51ce5423262e6ca3253" kind="function"><name>drawing_axes</name></member>
+    <member refid="classrobot__dart_1_1Robot_1aec58a30bc8068a6ad4d0ff36a4ea132b" kind="function"><name>create_box</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad717a04fd3fdae7a163e16f8afe26b11" kind="function"><name>create_box</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a7cea465688cfdd2640a82addd1ec04d4" kind="function"><name>create_ellipsoid</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a6cdefd9c1e438ae346b3da4cd5be6a74" kind="function"><name>create_ellipsoid</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a665f1be94adbf0755fbac327e5e641ee" kind="function"><name>_get_path</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af94a2eb95800f854ffa4ed0ad39ac385" kind="function"><name>_load_model</name></member>
+    <member refid="classrobot__dart_1_1Robot_1afaf8e8e64604fb5eec4a936338a0f0d2" kind="function"><name>_set_color_mode</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a26125235315f5eba994332897dd2cb7d" kind="function"><name>_set_color_mode</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ad3dfa19a68202f41ae17c42ac7c7a2bf" kind="function"><name>_set_actuator_type</name></member>
+    <member refid="classrobot__dart_1_1Robot_1af18973483a2f76b93a2414497da202e5" kind="function"><name>_set_actuator_types</name></member>
+    <member refid="classrobot__dart_1_1Robot_1adc288e62307280c8f562b2f599e23d93" kind="function"><name>_set_actuator_types</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a99ef9ccebab539f1e6c39e05a45c714f" kind="function"><name>_actuator_type</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a8312ecb116a656f5fc947a202ec8fa8a" kind="function"><name>_actuator_types</name></member>
+    <member refid="classrobot__dart_1_1Robot_1acfd95d89df97a6619a1e1f467e8d49e3" kind="function"><name>_jacobian</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a636125413e0eced0076de0754ceed8c2" kind="function"><name>_mass_matrix</name></member>
+    <member refid="classrobot__dart_1_1Robot_1ae23e462cc9cfb13c40e3689f95c03e22" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1Robot_1a0e89ed18a9eb6954b7fa26bf8377c1f5" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1control_1_1RobotControl" kind="class"><name>robot_dart::control::RobotControl</name>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ae7ba328d762a5f6663665f98ee36fb25" kind="variable"><name>_robot</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1aeb32018a448081f4762ab8bfb9562f31" kind="variable"><name>_ctrl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a4dca58ef8efc00f487ddcbea20e6f1c2" kind="variable"><name>_weight</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6070efc4d9c34a8092e74578d5aa792" kind="variable"><name>_active</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ade2feaf50fc0a25ae994dbfbf017a859" kind="variable"><name>_check_free</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1af87bd256fa9a62d1dfa5809e4dea22d9" kind="variable"><name>_dof</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a47eb2922359ead55d9ed9201340ad850" kind="variable"><name>_control_dof</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1a3f35ab7b5212c419f2f236b3bb682c" kind="variable"><name>_controllable_dofs</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a36fdb9b1fe31febc00e76a60a1a34d69" kind="function"><name>RobotControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac79d7c8cb68fac11051e22d13b0ec22d" kind="function"><name>RobotControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7b13d33749f0bc7689aa11963287617d" kind="function"><name>RobotControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac3f60bced3a247862d00067a8c46c555" kind="function"><name>~RobotControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1ed07aa76c578bc2bb92529e3c43bf67" kind="function"><name>set_parameters</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6de25f4c2db2b500d5e69a548aeab99" kind="function"><name>parameters</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1eb6d2c5186c7a056a9d92d8050af364" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1abdc2bfef410805ea3c30029e3fee9360" kind="function"><name>set_robot</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6617700b65b105316b3ffe1c3817247" kind="function"><name>robot</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1acd4bd86eaae9d61d205631e68336eb53" kind="function"><name>activate</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1ab86c121d2f0a9df165924758018331a9" kind="function"><name>active</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7da96bcb69a0a2ddb5db0b54e1edd03a" kind="function"><name>controllable_dofs</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a9ee8a3c4259d80be9f403073edc28433" kind="function"><name>weight</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a6516b84c92d4da46d7e382fcd7ffeb58" kind="function"><name>set_weight</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f" kind="function"><name>configure</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1RobotDARTSimu" kind="class"><name>robot_dart::RobotDARTSimu</name>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a68d6b750f99e87ebbf7f7155283d46ca" kind="typedef"><name>robot_t</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a973512975558ad45f6e986e8a2af233a" kind="variable"><name>_world</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad480ceb9e8cd413fb348927498f7915d" kind="variable"><name>_old_index</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aebae59874da8c245568424d25116c818" kind="variable"><name>_break</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a18f32f8326b64c0d1aa83364e8460955" kind="variable"><name>_sensors</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a315d13f4fb65669c0a86aa0b0dfc39f2" kind="variable"><name>_robots</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1af2134e8d4f682eeba71f612267ff4b66" kind="variable"><name>_graphics</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a6d49515f27c3404b623675a60370979f" kind="variable"><name>_gui_data</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a5dd8e27210866af3a91085349c115512" kind="variable"><name>_text_panel</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1adc5d74cb7bf1f92351305379002c7e98" kind="variable"><name>_status_bar</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a1232abeb7ad7ff35bb00365b3868696f" kind="variable"><name>_scheduler</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a83a95d2d29f99d935817d049ab6e491c" kind="variable"><name>_physics_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a3e7dd7922948dcbf5fbe0f7aa6bce189" kind="variable"><name>_control_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ac9f1c41144e25bfae5b5cd9fd4539023" kind="variable"><name>_graphics_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a5f191971ffa66ff57801134e40543add" kind="function"><name>RobotDARTSimu</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a71187067529f0d79995ffed115cdb0f4" kind="function"><name>~RobotDARTSimu</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ae6d809ea397ab0a69261fed9f4247413" kind="function"><name>run</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a9871d0bc50ef9be93965975503774f31" kind="function"><name>step_world</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a35646d3cfcdb92f4d26ea23cb971bd24" kind="function"><name>step</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a72de7c529ed28722897451b9bd4e0d56" kind="function"><name>scheduler</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a757bcbbea8743e398a5f67be2fab6628" kind="function"><name>scheduler</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ace6737eb424fa14edfd0b009608f1dc7" kind="function"><name>schedule</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a681f350f16cc7052004dd7616762ccaf" kind="function"><name>physics_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a686c70463088e695f6c6c71b2829280d" kind="function"><name>control_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aa3859dabca7a54d23f6b8faa5d081c64" kind="function"><name>set_control_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a129f2df44896b524cfdf1eff5411e770" kind="function"><name>graphics_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a5a0744adacb3aa426e30756a48b7260b" kind="function"><name>set_graphics_freq</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1adbfb1fea0b8024c655e9bc584273e745" kind="function"><name>graphics</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a1ab1ca261842e9bcd1a50a9b45538ead" kind="function"><name>set_graphics</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad4e3801053dca7984a8b6049b28ad736" kind="function"><name>world</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ac1370b088e32e0e20de3556cebdcd375" kind="function"><name>add_sensor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad2b36de3b7bf436295f2941b36d29705" kind="function"><name>add_sensor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a6deb0d99f4c3700d6947975b323b274d" kind="function"><name>sensors</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1afca355d1091492b16f4f1931c5e3a35d" kind="function"><name>sensor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a9bd6297dcb3c6a374713adbe6d592932" kind="function"><name>remove_sensor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1add28af1d0ca1ca67b46894a80b736175" kind="function"><name>remove_sensor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1af6e2bac26fc8de57adffd8f6c3be91ca" kind="function"><name>remove_sensors</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ab18f6d86672c4e023977e6f68031b772" kind="function"><name>clear_sensors</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1abb6f36d132633cf6df3005aa30bc650b" kind="function"><name>timestep</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ae787abd47d81abd48786ccdcadaabd94" kind="function"><name>set_timestep</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a4fbf96634b4879e9e03b394d2f84e629" kind="function"><name>gravity</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1abcca16d47af960ea03400922d7b97884" kind="function"><name>set_gravity</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ac5cea86b6d75a64fb967d305198d2384" kind="function"><name>stop_sim</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a4c3fc5c26b6bbba42af7c8518515f96e" kind="function"><name>halted_sim</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1af0c265ee929aae362ed7a2c15c95b89d" kind="function"><name>num_robots</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad7be58d8bd4f2eb411118b2b1a8dc521" kind="function"><name>robots</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a7b52d90a5a97476ac3fb27b3be8406e7" kind="function"><name>robot</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ac6017f92f974b5b7d26910255f13d232" kind="function"><name>robot_index</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a7a85bdf315dc93e1209eb6a34b53c8c2" kind="function"><name>add_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a0a8a96bb27d82b6bd41cef9e26690c3a" kind="function"><name>add_visual_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a12e7ff5442bfd8d837da9e86aab9d9a2" kind="function"><name>remove_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aa9f1b266a0522f4695bab44ddb8e6dde" kind="function"><name>remove_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a8bc7795fffb295cd575f3bb21eef8180" kind="function"><name>clear_robots</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a97c4d2b1b74e342743eb47bcb140bb85" kind="function"><name>gui_data</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1adb1ae43293a7499191084467c0f48957" kind="function"><name>enable_text_panel</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a2d2e3c616b718943f7a72a6bfae43056" kind="function"><name>text_panel_text</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a59651c4ee53d133f6f73feb9e3ba2d68" kind="function"><name>set_text_panel</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a22a6cc3b1754a83c1b5c4991461bbe6c" kind="function"><name>enable_status_bar</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a0b37f04758a650ef1de860852aa709d2" kind="function"><name>status_bar_text</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a55f7df0d9c0bd4080e4ed4fed21cf038" kind="function"><name>add_text</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a58fc310a49848b46e4f42f19e34b3473" kind="function"><name>add_floor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aefaa6b043ea320c106018290c25acd23" kind="function"><name>add_checkerboard_floor</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a46261047190705981a4c53e480578813" kind="function"><name>set_collision_detector</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad9a10d337ccc35802333d568c7f193de" kind="function"><name>collision_detector</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a723727aed13e5808de8036ef144af285" kind="function"><name>set_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a3883dd1e5494ae9782b7878351636681" kind="function"><name>set_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a9d3584157326c4c58aa759d7b117af45" kind="function"><name>set_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a4af40804ca69b02c8b71ebab61bda6ed" kind="function"><name>collision_mask</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1abe3e3115adceb5f2f534fbd7287f67a1" kind="function"><name>collision_mask</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a91fbe7905a68f5b20cb1d1381259aa15" kind="function"><name>collision_category</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a8dcff8e7ed4812560e62602cbe366f04" kind="function"><name>collision_category</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a8f67284bb646b78405cf72d69155b105" kind="function"><name>collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a6b07f72de4ca6475af538e20aa19c6d6" kind="function"><name>collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1a3ec315c724f13fa37179953c5a0abbcd" kind="function"><name>remove_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aece49f06af1e6618c9577b4b2a1f6f5e" kind="function"><name>remove_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1af75ce479841f1d6469eecf3181272f40" kind="function"><name>remove_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1ad26a49b55b766702ce0516a0a3096686" kind="function"><name>remove_all_collision_masks</name></member>
+    <member refid="classrobot__dart_1_1RobotDARTSimu_1aa1ad9759d68e9e735be07d0919ffd832" kind="function"><name>_enable</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData" kind="struct"><name>robot_dart::simu::GUIData::RobotData</name>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a30f1382b1fc0b5141d6ba38d88238833" kind="variable"><name>casting_shadows</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData_1a4698e698f2839ebc3361e887b571ee37" kind="variable"><name>is_ghost</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1RobotPool" kind="class"><name>robot_dart::RobotPool</name>
+    <member refid="classrobot__dart_1_1RobotPool_1a149cc2e0c69e85bd65bbf7f9da0b75ea" kind="typedef"><name>robot_creator_t</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a1fe3b037370ee0c95bcb021d86e2bdd5" kind="variable"><name>_robot_creator</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1af5d9cab5dd7794aed3a49c7dbc3f4105" kind="variable"><name>_pool_size</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a3b0e2563b4881d9af007663288f6d59f" kind="variable"><name>_verbose</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1af8d74817d2f05c917ab2028a916a21fa" kind="variable"><name>_skeletons</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a234ca1b2213e98326e276964dec0f3ef" kind="variable"><name>_free</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a6ced53e7badc83124ace8e1b7c09c27f" kind="variable"><name>_skeleton_mutex</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a367956051efefcd9e43d62587a2a3df4" kind="variable"><name>_model_filename</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a33309fdb1ef1b72cc8fbc749adca0422" kind="function"><name>RobotPool</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1af7c70c83aada4f9d76d9de04258c287f" kind="function"><name>~RobotPool</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a5715a6cf1c7e7380f71a5eb16411e684" kind="function"><name>RobotPool</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a7e3cd7e4d4bc2a71fcc5fb0cbb5e644d" kind="function"><name>operator=</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a20666ce10d287c645213fb18e789e799" kind="function"><name>get_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a328a0d9437b5900881b70f2120c58cf7" kind="function"><name>free_robot</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1a625132d9f60b18018c9ce4593f84b27a" kind="function"><name>model_filename</name></member>
+    <member refid="classrobot__dart_1_1RobotPool_1aa34aad7aef30e11237f98bd1cca95d15" kind="function"><name>_reset_robot</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1Scheduler" kind="class"><name>robot_dart::Scheduler</name>
+    <member refid="classrobot__dart_1_1Scheduler_1a1a72fec01717f11c72566cd44e6d0638" kind="typedef"><name>clock_t</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a217ffdfe2bd3694cafde3e8e5a9d7f12" kind="variable"><name>_current_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a9ef1553fa32ae3164ef2dc019d2f525c" kind="variable"><name>_simu_start_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a388e6311c45f943d29c953b3fa126890" kind="variable"><name>_real_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a8288ed5bf5b127b08afe22d24cd65b1c" kind="variable"><name>_real_start_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1afa15ebb7b33cd19f6f7415b93183dd52" kind="variable"><name>_it_duration</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a8f3c1e216907427b276235490865dddb" kind="variable"><name>_average_it_duration</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1acd41b9f50925d8b2546f7aba173b7b8b" kind="variable"><name>_dt</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a1bd208870c4a6557da315f631aafa190" kind="variable"><name>_current_step</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a3af8f9a2b533a54de4d7ce71ea5cdefd" kind="variable"><name>_sync</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1ac7087f1ef853df37715d585eb40e8444" kind="variable"><name>_max_frequency</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a98543c4703b2c6810d31dbc252e6bdcc" kind="variable"><name>_start_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a24bbbbfdb118e3f3b94f40def39ef572" kind="variable"><name>_last_iteration_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a6413828a90bc494af303e7a3c63a7deb" kind="function"><name>Scheduler</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a5c03db276739fc57053ec41f1d387b88" kind="function"><name>operator()</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a9927fd620b61ff69031ab7487b93f978" kind="function"><name>schedule</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a80808baabf0a340f5f557a87fdf0dc48" kind="function"><name>step</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a8442b15d00513feb5b7b988d3a36e388" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a8ae820bc12f30e457b18bece5eade1a6" kind="function"><name>set_sync</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1adaaaf6eff19c7f7d513979628655ba7f" kind="function"><name>sync</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a9e3aed1e170561c8a2927593abf8f647" kind="function"><name>current_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a62dfb8b661da17ff29843252935050b8" kind="function"><name>next_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1ac804a6df87196029111d543bc4ecf19b" kind="function"><name>real_time</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1aacdfce86670e38044b9c2d696226bb59" kind="function"><name>dt</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a3fad2b237b0ad40e6cf1383d4938dc26" kind="function"><name>real_time_factor</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1a8dfca6510739f3b690a617ff64ff638a" kind="function"><name>it_duration</name></member>
+    <member refid="classrobot__dart_1_1Scheduler_1abfb93c90722cc94d4cee5a834fc187c4" kind="function"><name>last_it_duration</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1sensor_1_1Sensor" kind="class"><name>robot_dart::sensor::Sensor</name>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ad21f16b70a75a08291e4af17624f278a" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aa38108b58336a8a5910ba8ade2b87787" kind="variable"><name>_active</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aceee4ef806a6532fff21e9a92c88d5ed" kind="variable"><name>_frequency</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a2a740dd4f7969102d57cee13cef8a0f5" kind="variable"><name>_world_pose</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a7f42d09116155bfc7a9e0d87b132a820" kind="variable"><name>_attaching_to_body</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a97dad76329f9e77516e75ad1f364f8bc" kind="variable"><name>_attached_to_body</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a8ca0a617568113c9800a7a5b457d251e" kind="variable"><name>_attaching_to_joint</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a625e92a1e91d2887d527122e0f67d364" kind="variable"><name>_attached_to_joint</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aab446ec1457b610cae2bac9ff699fa50" kind="variable"><name>_attached_tf</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aedbc3a78b8efaa1aa40494c182d8da02" kind="variable"><name>_body_attached</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ab411ff9bf9d60a75b169ed0ab13a689c" kind="variable"><name>_joint_attached</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a028a86f9968fb9bb164f6f1c73a322b1" kind="function"><name>Sensor</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aafbdf247836013dee14437f0e9fb8610" kind="function"><name>~Sensor</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1afd2687c694f5b89335ba8af5bf51eb95" kind="function"><name>activate</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a1e727aded13a104871fd259f34df7f2a" kind="function"><name>active</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65c9541d510af1ed8fca6dd726e45972" kind="function"><name>set_simu</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a215d8822d1346f316cf3092c87c78d7e" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a758e280e81e3e6d7fabc6450bda18f57" kind="function"><name>frequency</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a20c0ad8a25971e59525756f1b1305b1e" kind="function"><name>set_frequency</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a9f866c0839cad9626df1fa849cc2ec2f" kind="function"><name>set_pose</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ac44dc2534da5827ed3ea0fe4fce347b5" kind="function"><name>pose</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aacf085afe662dc688d7d5ea07f88ba6f" kind="function"><name>refresh</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0" kind="function"><name>type</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc" kind="function"><name>attach_to_body</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ada892ccecd413bf0f15e73b759c93324" kind="function"><name>attach_to_body</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b" kind="function"><name>attach_to_joint</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a4cdeb18f15974121e8fe6f85f8e5a054" kind="function"><name>attach_to_joint</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a650f403364ec9144b82a58b9ab0593e2" kind="function"><name>detach</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65009c6a0456b5a3d16a3aee2a9c846d" kind="function"><name>attached_to</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData" kind="struct"><name>robot_dart::gui::magnum::ShadowData</name>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1ac1efb6f68801f749202c33da6e68372d" kind="variable"><name>shadow_framebuffer</name></member>
+    <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1a5a54b4e1983d99b81325440109ceec04" kind="variable"><name>shadow_color_framebuffer</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject" kind="class"><name>robot_dart::gui::magnum::ShadowedColorObject</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1aaa5e286300f65112069a82ca16206717" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a2568b7f6a3e1dfd3492411aae812f6b2" kind="variable"><name>_shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1abb42285be140291aec2832db792efdef" kind="variable"><name>_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a754f296f1b8b15f38c9bb2d36f9a71b3" kind="variable"><name>_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a3bb9adf72c8788d015bc460242634d60" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a5f851b6d63815a25538dbcc1dd04bc24" kind="variable"><name>_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a941b8546e3ac0a1b132939bcccf468e3" kind="variable"><name>_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a99be8e7113aa6318763c3b0e356b459c" kind="function"><name>ShadowedColorObject</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1ab035b7c98b207561d95268c8b073d975" kind="function"><name>set_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a0fdf108e94b1d6473e68b172aca318e3" kind="function"><name>set_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1aac90ea6855fe0ca1dc066fb084eb1f4c" kind="function"><name>set_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1ad28669eb892aebd50ee12edcb1f52f0e" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1aeb0cd409d4373e0b1cc5772d8d5ea3b3" kind="function"><name>shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedColorObject_1a47b2f554bd778e68074e1e6f621f4d81" kind="function"><name>draw</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject" kind="class"><name>robot_dart::gui::magnum::ShadowedObject</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1ab2226955f29aad3b9eb808d6b9895c6b" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a10335d6c98b338c6fbbc1b128f4324b6" kind="variable"><name>_shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0a7af5fa9691f00b8cd149e509445479" kind="variable"><name>_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afe0dd6095a5376efb397ff36e1b08dc0" kind="variable"><name>_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1afb2ae143417d7554d47598a3dd2c5490" kind="variable"><name>_texture_shader</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1af8d220ec9d374deee6410cb0bd04473b" kind="variable"><name>_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a184ca6f2f11c6266e9ae7650da697725" kind="variable"><name>_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a1b8a85b9c3bdf7fec7a31a927738a60f" kind="function"><name>ShadowedObject</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a5424d9755b4bf3644f558ff19a484a20" kind="function"><name>set_meshes</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1acc286d1ba28143da484aa58f642d0ad2" kind="function"><name>set_materials</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a3c555943a0ba5858df58f53531935bc4" kind="function"><name>set_scalings</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a7e2b7ff0759a73b127c535e76426292c" kind="function"><name>simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a35ac8cff0c7ca9407f5268fcfe77444f" kind="function"><name>shape</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1ShadowedObject_1a0fbd2120b75241d5721265f93de5dbe5" kind="function"><name>draw</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kind="class"><name>robot_dart::gui::magnum::gs::ShadowMap</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a5cb853642486b80db5d3a9efc5d00d69" kind="enum"><name>Flag</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a5cb853642486b80db5d3a9efc5d00d69ae712876b5313699d4e38e6f70c7c725e" kind="enumvalue"><name>DiffuseTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a27acf22658e6027added094477f0fcea" kind="typedef"><name>Position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a545bf42b6d602c4d96533e21bae2a582" kind="typedef"><name>TextureCoordinates</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a8488389f444040d91c873903382d16c2" kind="typedef"><name>Flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1ade82acafc5b58fd8e46c8f461c489237" kind="variable"><name>_flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a3eb8997cc2e2514bb7fbb6912243d3a8" kind="variable"><name>_transformation_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a860dc53ab06137a76645efe363d3e538" kind="variable"><name>_projection_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1ae4dd487bf9d67f14e400376d03344065" kind="variable"><name>_diffuse_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a33292770c630aa8ffc2ce09dae254471" kind="function"><name>ShadowMap</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1adad5d8ff4232d06ec71c32b767f4a02b" kind="function"><name>ShadowMap</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a0c8223fffc5349476d8aeefafe122e7a" kind="function"><name>flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1aff083d55f94f9e6355941a1c9f002bab" kind="function"><name>set_transformation_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a15db7862ec2272628a044a8664f7cfa8" kind="function"><name>set_projection_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap_1a8cec8faf2c4bb8252cebe391d2518595" kind="function"><name>set_material</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kind="class"><name>robot_dart::gui::magnum::gs::ShadowMapColor</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046" kind="enum"><name>Flag</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ab59e24422416695eddbc28c51a316046ae712876b5313699d4e38e6f70c7c725e" kind="enumvalue"><name>DiffuseTexture</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a8ac16d7e4c1076a8887e72040b452b67" kind="typedef"><name>Position</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a4da9aa32add2649aedd8294c4b8c8dc1" kind="typedef"><name>TextureCoordinates</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aa4cf648a24bf68941207180d98e0e8f8" kind="typedef"><name>Flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1aabd0ae0c9f4e5cbf79d40797c4c4e6b6" kind="variable"><name>_flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a498293993bcf58ee7be2c4b9cfda7954" kind="variable"><name>_transformation_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a6e1c6c8017d847858467a050878d188c" kind="variable"><name>_projection_matrix_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a311dab6d1e99969ea8d87b10f2d69a1a" kind="variable"><name>_diffuse_color_uniform</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad8ff22c1f626198590b4592ca760a4eb" kind="function"><name>ShadowMapColor</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a34147a5e79bac37324d144e26a42075f" kind="function"><name>ShadowMapColor</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1abfdd727b6645d8517da16bbcf862aabb" kind="function"><name>flags</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a0a78c0c491d06fef854703ebb9078053" kind="function"><name>set_transformation_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1ad3b30074fd94c170aea2bcd90029a168" kind="function"><name>set_projection_matrix</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor_1a5d01ed5a6a038c76b9077984eda7c202" kind="function"><name>set_material</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1control_1_1SimpleControl" kind="class"><name>robot_dart::control::SimpleControl</name>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a62ee3206576eb967c118cefd6132c53b" kind="function"><name>SimpleControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a5a23be5aafda2eceda267053bc490613" kind="function"><name>SimpleControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1aea0dcf06e4241c3e3f71a8831f7ca246" kind="function"><name>SimpleControl</name></member>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a7ecd238ebe97791fc80916dd42facbf2" kind="function"><name>configure</name></member>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a3a0ef29a4639dd40c51454d075640bf2" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1control_1_1SimpleControl_1ab4d2963f2571555ce181f98ab8e5f662" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Talos" kind="class"><name>robot_dart::robots::Talos</name>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a1804e807f971fc42d85684827603df2e" kind="typedef"><name>torque_map_t</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1aa553dac03eb53c34cd2ce2a716d707dd" kind="variable"><name>_imu</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a35323ff8bc896c3cd283318369014009" kind="variable"><name>_ft_foot_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a35a48637a5584c030e840c9758254413" kind="variable"><name>_ft_foot_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a7cb91430bd8a498a5f3b02d6f8433fa7" kind="variable"><name>_ft_wrist_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1acd8512f55ce85d2f41a40d2e2981223c" kind="variable"><name>_ft_wrist_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a13ee6ca635fd3a42b504824bc92c2512" kind="variable"><name>_torques</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a05d7d36437b1552b0f9b03eaf691494f" kind="variable"><name>_frequency</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1afff746e8a0937765e55e69eb86244300" kind="function"><name>Talos</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a3da73cc5b4071ece90d96b46800e77a7" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1aa2d22c2b2d64fc5f056e32b636eb04a4" kind="function"><name>imu</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a4cca4f402b526832607e548ffc92eae4" kind="function"><name>ft_foot_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a64f9046a4d73ee5a9cfb8a86b729ac51" kind="function"><name>ft_foot_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1aaa39dc203df4220679ac6fdf9896c48f" kind="function"><name>ft_wrist_left</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a42252aac55759abe56d19cdef3e4b035" kind="function"><name>ft_wrist_right</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a4ba13570505ab4351db12020191ca12e" kind="function"><name>torques</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a63bfc559d6b8f6f65a02456e1c5621a5" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Talos_1a8313bda4e86f12695703e20b47a76eb4" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1TalosFastCollision" kind="class"><name>robot_dart::robots::TalosFastCollision</name>
+    <member refid="classrobot__dart_1_1robots_1_1TalosFastCollision_1aa2d6ef5df0dc2b4f6152c7a75ae3eb04" kind="function"><name>TalosFastCollision</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1TalosFastCollision_1abc72ca5e251839ac3ae9faa42369762c" kind="function"><name>collision_vec</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1TalosFastCollision_1a58141d77cf10a14657888ef3e74a4931" kind="function"><name>_post_addition</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1TalosLight" kind="class"><name>robot_dart::robots::TalosLight</name>
+    <member refid="classrobot__dart_1_1robots_1_1TalosLight_1ad94daacdd67321729a0180eeba6b963b" kind="function"><name>TalosLight</name></member>
+  </compound>
+  <compound refid="structrobot__dart_1_1simu_1_1TextData" kind="struct"><name>robot_dart::simu::TextData</name>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a4c33d4c8ecff7d63a72d8271d1e18683" kind="variable"><name>text</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a35967d4e09ff67954c6df221ab2f45c2" kind="variable"><name>transformation</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a6e2499cca0b665b9df3955f04b6ade50" kind="variable"><name>color</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1af539c6f9f7aaaefd50014a1b368bc37c" kind="variable"><name>alignment</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a719762e8324580b61b0b9f6f1a1aa773" kind="variable"><name>draw_background</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a9c26821d5966bc2fa27eed5c7267bda4" kind="variable"><name>background_color</name></member>
+    <member refid="structrobot__dart_1_1simu_1_1TextData_1a381e236c1bcfdf749ef9c0ead41239f1" kind="variable"><name>font_size</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Tiago" kind="class"><name>robot_dart::robots::Tiago</name>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1a871ebcff27703abfb7b442a08fac893a" kind="variable"><name>_ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1a1d4e37b7bba0ae4f91821cc893268ddc" kind="function"><name>Tiago</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1aa26777e422f6abe4e9dd8c94d233ddd6" kind="function"><name>reset</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1a08d83ed3107cc48357bce4567da91f29" kind="function"><name>ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1ad9a1d6357c25f3a7c5d3dc0e2cd72532" kind="function"><name>caster_joints</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1af71c2872da7eff464e43fdabbff72395" kind="function"><name>set_actuator_types</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1ad1564e6ba7295e781717a80134578ef3" kind="function"><name>set_actuator_type</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1a6cb0fba4904c54d1f60927f489f61725" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Tiago_1ad0993192fcf2ab8d3eee9d77d7133b56" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1sensor_1_1Torque" kind="class"><name>robot_dart::sensor::Torque</name>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1a3823fd1da053ff9d6be0c78d1ce9ae39" kind="variable"><name>_torques</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1a0ac5826e79be44e0975dd917a91f4a5c" kind="function"><name>Torque</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1a7efd42a382843836ad5e01a11645e1c6" kind="function"><name>Torque</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1ad25fd57774d83439ebb2ee31c5130e86" kind="function"><name>init</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1ab1f5cc77513f34fe7cc30e7b17cbceca" kind="function"><name>calculate</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1aefa728de2eaee42d2e017db711dfd6e1" kind="function"><name>type</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1a99378336df5d0e47d5c36f7d46d17027" kind="function"><name>torques</name></member>
+    <member refid="classrobot__dart_1_1sensor_1_1Torque_1a7a3c3e5faf10772db616d8bf92025106" kind="function"><name>attach_to_body</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Ur3e" kind="class"><name>robot_dart::robots::Ur3e</name>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a838a2e0c4e1196dbd0f97fb55d7fe170" kind="variable"><name>_ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a11c59f7eeb29cffae4179ddf5c514186" kind="function"><name>Ur3e</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3e_1ac65b05bb5ad6483468b66fa3b06ddde9" kind="function"><name>ft_wrist</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a1abfe1568663c2420f95507cdbc9d159" kind="function"><name>_post_addition</name></member>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a550c362e86d18918f486f46137b6d9d4" kind="function"><name>_post_removal</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Ur3eHand" kind="class"><name>robot_dart::robots::Ur3eHand</name>
+    <member refid="classrobot__dart_1_1robots_1_1Ur3eHand_1a65147f9b3570db41b9cfcbe7edd53781" kind="function"><name>Ur3eHand</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1robots_1_1Vx300" kind="class"><name>robot_dart::robots::Vx300</name>
+    <member refid="classrobot__dart_1_1robots_1_1Vx300_1a0c9620de7cb946cf7a9f050b9d789732" kind="function"><name>Vx300</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" kind="class"><name>robot_dart::gui::magnum::WindowlessGLApplication</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a3d478de33bd7bed177585734a42ca704" kind="variable"><name>_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a3bcd2d4ac5a3dcd07c426aa634ed1ee6" kind="variable"><name>_draw_main_camera</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1aaafcad37dc96c6e9bdb81b8749c4753d" kind="variable"><name>_draw_debug</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a6e63cd5a967f844004ba3cc95b8cc730" kind="variable"><name>_bg_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a064a9e598bcb60a2d6c72b0a1642790e" kind="variable"><name>_framebuffer</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1af463c12e66d476469053b5ae43823be0" kind="variable"><name>_format</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1ade50afe2da868bd481c731bf0258eb77" kind="variable"><name>_color</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a9d722d9d88dafa351bc8e569c1e36582" kind="variable"><name>_depth</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a6bd6c145ebbbe3cd9fd786b4dd628fa2" kind="function"><name>WindowlessGLApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1ad7a7bdf25164861711eec84f3934c403" kind="function"><name>~WindowlessGLApplication</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a599eb6c91e60abb1872065005a4cea24" kind="function"><name>render</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication_1a57784150c337b1ac9c8d4ee7c4240557" kind="function"><name>exec</name></member>
+  </compound>
+  <compound refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics" kind="class"><name>robot_dart::gui::magnum::WindowlessGraphics</name>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1ac050b3b02229942bcb3aa1d45a0d39bf" kind="function"><name>WindowlessGraphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a738206461e284185e94be86faee2bff5" kind="function"><name>~WindowlessGraphics</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a52f24e007f78b158c28deecd8809ed14" kind="function"><name>set_simu</name></member>
+    <member refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics_1a1e896933f724b64efa09c5b373313199" kind="function"><name>default_configuration</name></member>
+  </compound>
+  <compound refid="namespacedart" kind="namespace"><name>dart</name>
+  </compound>
+  <compound refid="namespacedart_1_1collision" kind="namespace"><name>dart::collision</name>
+  </compound>
+  <compound refid="namespacedart_1_1dynamics" kind="namespace"><name>dart::dynamics</name>
+  </compound>
+  <compound refid="namespaceMagnum" kind="namespace"><name>Magnum</name>
+  </compound>
+  <compound refid="namespaceMagnum_1_1GL" kind="namespace"><name>Magnum::GL</name>
+  </compound>
+  <compound refid="namespaceMagnum_1_1Platform" kind="namespace"><name>Magnum::Platform</name>
+  </compound>
+  <compound refid="namespaceMagnum_1_1SceneGraph" kind="namespace"><name>Magnum::SceneGraph</name>
+  </compound>
+  <compound refid="namespaceMagnum_1_1Shaders" kind="namespace"><name>Magnum::Shaders</name>
+  </compound>
+  <compound refid="namespaceMagnum_1_1Shaders_1_1Implementation" kind="namespace"><name>Magnum::Shaders::Implementation</name>
+    <member refid="create__compatibility__shader_8hpp_1ae0b7fd2746c074d483f040807f9a6dc9" kind="function"><name>createCompatibilityShader</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart" kind="namespace"><name>robot_dart</name>
+    <member refid="robot_8cpp_1a84666b5c54d5851f38984ca20741ef28" kind="variable"><name>body_node_set_friction_coeff</name></member>
+    <member refid="robot_8cpp_1aa3867ddb6a565b0505ca39a71ea03683" kind="variable"><name>body_node_get_friction_coeff</name></member>
+    <member refid="robot_8cpp_1a4f8e9a1d3aaacdf48cfbead8d14decad" kind="variable"><name>body_node_set_restitution_coeff</name></member>
+    <member refid="robot_8cpp_1a753455b06fd71b6d9d2a9624c44f352b" kind="variable"><name>body_node_get_restitution_coeff</name></member>
+    <member refid="utils_8hpp_1a946f11e7c81869f2f3b5f40a2fc84524" kind="function"><name>make_vector</name></member>
+    <member refid="utils_8hpp_1ab2da5b57fc36ec1b536af6c494f2c24a" kind="function"><name>make_tf</name></member>
+    <member refid="utils_8hpp_1a309eb12deaf1c2dc7f5f9bd9668601e3" kind="function"><name>make_tf</name></member>
+    <member refid="utils_8hpp_1ac0f5d6fa03411e8aaea8ae9e03c227b1" kind="function"><name>make_tf</name></member>
+    <member refid="utils_8hpp_1a58e4d2236b201e773c8a8bf8dcf7f137" kind="function"><name>make_tf</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1collision__filter" kind="namespace"><name>robot_dart::collision_filter</name>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1control" kind="namespace"><name>robot_dart::control</name>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1detail" kind="namespace"><name>robot_dart::detail</name>
+    <member refid="robot_8cpp_1a3c3da80e9c9741036259a04608df7be9" kind="function"><name>dof_data</name></member>
+    <member refid="robot_8cpp_1a4bbb5ee599f247ee4dfbb614d3e2cd0c" kind="function"><name>set_dof_data</name></member>
+    <member refid="robot_8cpp_1ace1e3ab7a493ff3b6df3eda614f0be15" kind="function"><name>add_dof_data</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1gui" kind="namespace"><name>robot_dart::gui</name>
+    <member refid="helper_8cpp_1af94bed6e707830d19a83e9eeed981a5b" kind="function"><name>save_png_image</name></member>
+    <member refid="helper_8cpp_1a13ebafdc4c95a91115a957ec398a358c" kind="function"><name>save_png_image</name></member>
+    <member refid="helper_8cpp_1ad6d17805aa36fc5d0f659f2434724140" kind="function"><name>convert_rgb_to_grayscale</name></member>
+    <member refid="helper_8cpp_1a90e1f22900b9927acc7eed71a27fe740" kind="function"><name>point_cloud_from_depth_array</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1gui_1_1magnum" kind="namespace"><name>robot_dart::gui::magnum</name>
+    <member refid="types_8hpp_1ac9e7570908c66551af090f2d4ff5844c" kind="typedef"><name>Object3D</name></member>
+    <member refid="types_8hpp_1a4306ecb04e3e77851c72d3879e61ac47" kind="typedef"><name>Scene3D</name></member>
+    <member refid="types_8hpp_1a27b69c81590149bf5ba0d2ef66e3670c" kind="typedef"><name>Camera3D</name></member>
+    <member refid="base__application_8hpp_1aba8828e135c7e8836566f872e392d7a6" kind="function"><name>make_application</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs" kind="namespace"><name>robot_dart::gui::magnum::gs</name>
+    <member refid="gs_2camera_8cpp_1aee6e6452d22d3caf37a717167c6e5b50" kind="function"><name>search_path</name></member>
+    <member refid="magnum_2gs_2helper_8cpp_1aea5f7772b4142bcad6de312d2d30e42d" kind="function"><name>rgb_from_image</name></member>
+    <member refid="magnum_2gs_2helper_8cpp_1a46fec27529d2b4019cd87c561bebe33d" kind="function"><name>depth_from_image</name></member>
+    <member refid="magnum_2gs_2helper_8cpp_1a65063de6aff1c1f27dfe44e3a62343d1" kind="function"><name>depth_array_from_image</name></member>
+    <member refid="light_8hpp_1a1c2fddbd0f0334a5aa3bbe36f96d2b9b" kind="function"><name>create_point_light</name></member>
+    <member refid="light_8hpp_1a32118ed60899a356357839d9398c0c8d" kind="function"><name>create_spot_light</name></member>
+    <member refid="light_8hpp_1acd37634967c890085dcb10c34942cc99" kind="function"><name>create_directional_light</name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21" kind="namespace"><name>robot_dart::gui::magnum::gs::@21</name>
+    <member refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21_1ac9c780023c500f0667a45d09545c706b" kind="enum"><name></name></member>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1gui_1_1magnum_1_1sensor" kind="namespace"><name>robot_dart::gui::magnum::sensor</name>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1robots" kind="namespace"><name>robot_dart::robots</name>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1sensor" kind="namespace"><name>robot_dart::sensor</name>
+  </compound>
+  <compound refid="namespacerobot__dart_1_1simu" kind="namespace"><name>robot_dart::simu</name>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespaceTinyProcessLib" kind="namespace"><name>TinyProcessLib</name>
+  </compound>
+  <compound refid="pd__control_8cpp" kind="file"><name>pd_control.cpp</name>
+  </compound>
+  <compound refid="pd__control_8hpp" kind="file"><name>pd_control.hpp</name>
+  </compound>
+  <compound refid="policy__control_8hpp" kind="file"><name>policy_control.hpp</name>
+  </compound>
+  <compound refid="robot__control_8cpp" kind="file"><name>robot_control.cpp</name>
+  </compound>
+  <compound refid="robot__control_8hpp" kind="file"><name>robot_control.hpp</name>
+  </compound>
+  <compound refid="simple__control_8cpp" kind="file"><name>simple_control.cpp</name>
+  </compound>
+  <compound refid="simple__control_8hpp" kind="file"><name>simple_control.hpp</name>
+  </compound>
+  <compound refid="base_8hpp" kind="file"><name>base.hpp</name>
+  </compound>
+  <compound refid="base__application_8cpp" kind="file"><name>base_application.cpp</name>
+  </compound>
+  <compound refid="base__application_8hpp" kind="file"><name>base_application.hpp</name>
+    <member refid="base__application_8hpp_1a4a258b2f39c61ee0866550460bfb3071" kind="define"><name>get_gl_context_with_sleep</name></member>
+    <member refid="base__application_8hpp_1a7bea61cf19880f9096efd6d3cc83ff97" kind="define"><name>get_gl_context</name></member>
+    <member refid="base__application_8hpp_1a718c2e78dccd7d0db8abc7fdae341768" kind="define"><name>release_gl_context</name></member>
+  </compound>
+  <compound refid="base__graphics_8hpp" kind="file"><name>base_graphics.hpp</name>
+    <member refid="base__graphics_8hpp_1ae81e2fd8004710962ba9d9ec40fd0d69" kind="function"><name>robot_dart_initialize_magnum_resources</name></member>
+  </compound>
+  <compound refid="drawables_8cpp" kind="file"><name>drawables.cpp</name>
+  </compound>
+  <compound refid="drawables_8hpp" kind="file"><name>drawables.hpp</name>
+  </compound>
+  <compound refid="glfw__application_8cpp" kind="file"><name>glfw_application.cpp</name>
+  </compound>
+  <compound refid="glfw__application_8hpp" kind="file"><name>glfw_application.hpp</name>
+  </compound>
+  <compound refid="graphics_8cpp" kind="file"><name>graphics.cpp</name>
+  </compound>
+  <compound refid="graphics_8hpp" kind="file"><name>graphics.hpp</name>
+  </compound>
+  <compound refid="gs_2camera_8cpp" kind="file"><name>camera.cpp</name>
+  </compound>
+  <compound refid="sensor_2camera_8cpp" kind="file"><name>camera.cpp</name>
+  </compound>
+  <compound refid="gs_2camera_8hpp" kind="file"><name>camera.hpp</name>
+  </compound>
+  <compound refid="sensor_2camera_8hpp" kind="file"><name>camera.hpp</name>
+  </compound>
+  <compound refid="create__compatibility__shader_8hpp" kind="file"><name>create_compatibility_shader.hpp</name>
+  </compound>
+  <compound refid="cube__map_8cpp" kind="file"><name>cube_map.cpp</name>
+  </compound>
+  <compound refid="cube__map_8hpp" kind="file"><name>cube_map.hpp</name>
+  </compound>
+  <compound refid="cube__map__color_8cpp" kind="file"><name>cube_map_color.cpp</name>
+  </compound>
+  <compound refid="cube__map__color_8hpp" kind="file"><name>cube_map_color.hpp</name>
+  </compound>
+  <compound refid="helper_8cpp" kind="file"><name>helper.cpp</name>
+    <member refid="helper_8cpp_1aefe397a94e8feddc652f92ef40ce9597" kind="define"><name>STB_IMAGE_WRITE_IMPLEMENTATION</name></member>
+  </compound>
+  <compound refid="magnum_2gs_2helper_8cpp" kind="file"><name>helper.cpp</name>
+  </compound>
+  <compound refid="helper_8hpp" kind="file"><name>helper.hpp</name>
+  </compound>
+  <compound refid="magnum_2gs_2helper_8hpp" kind="file"><name>helper.hpp</name>
+  </compound>
+  <compound refid="light_8cpp" kind="file"><name>light.cpp</name>
+  </compound>
+  <compound refid="light_8hpp" kind="file"><name>light.hpp</name>
+  </compound>
+  <compound refid="material_8cpp" kind="file"><name>material.cpp</name>
+  </compound>
+  <compound refid="material_8hpp" kind="file"><name>material.hpp</name>
+  </compound>
+  <compound refid="phong__multi__light_8cpp" kind="file"><name>phong_multi_light.cpp</name>
+  </compound>
+  <compound refid="phong__multi__light_8hpp" kind="file"><name>phong_multi_light.hpp</name>
+  </compound>
+  <compound refid="shadow__map_8cpp" kind="file"><name>shadow_map.cpp</name>
+  </compound>
+  <compound refid="shadow__map_8hpp" kind="file"><name>shadow_map.hpp</name>
+  </compound>
+  <compound refid="shadow__map__color_8cpp" kind="file"><name>shadow_map_color.cpp</name>
+  </compound>
+  <compound refid="shadow__map__color_8hpp" kind="file"><name>shadow_map_color.hpp</name>
+  </compound>
+  <compound refid="types_8hpp" kind="file"><name>types.hpp</name>
+  </compound>
+  <compound refid="utils__headers__eigen_8hpp" kind="file"><name>utils_headers_eigen.hpp</name>
+  </compound>
+  <compound refid="windowless__gl__application_8cpp" kind="file"><name>windowless_gl_application.cpp</name>
+  </compound>
+  <compound refid="windowless__gl__application_8hpp" kind="file"><name>windowless_gl_application.hpp</name>
+  </compound>
+  <compound refid="windowless__graphics_8cpp" kind="file"><name>windowless_graphics.cpp</name>
+  </compound>
+  <compound refid="windowless__graphics_8hpp" kind="file"><name>windowless_graphics.hpp</name>
+  </compound>
+  <compound refid="stb__image__write_8h" kind="file"><name>stb_image_write.h</name>
+    <member refid="stb__image__write_8h_1a1d964457ebf7cc898b8cb14e66cbfaa8" kind="define"><name>STBIWDEF</name></member>
+    <member refid="stb__image__write_8h_1a2326fd2fd79095b9ef34695a0bda114f" kind="typedef"><name>stbi_write_func</name></member>
+    <member refid="stb__image__write_8h_1a7aa69838d830bd1e917b2a20d2030e0c" kind="variable"><name>stbi_write_tga_with_rle</name></member>
+    <member refid="stb__image__write_8h_1ac40d349d241f781ed7b621259ce2b3c2" kind="variable"><name>stbi_write_png_compression_level</name></member>
+    <member refid="stb__image__write_8h_1acfc7bbb01f0c4f6079727cfa1b086912" kind="variable"><name>stbi_write_force_png_filter</name></member>
+    <member refid="stb__image__write_8h_1a9c03e5171f6aea47fde6dafcf3249ccf" kind="function"><name>stbi_write_png</name></member>
+    <member refid="stb__image__write_8h_1a4f63ec842984e5db3edf2da89f16038e" kind="function"><name>stbi_write_bmp</name></member>
+    <member refid="stb__image__write_8h_1ab7a84427c6d7e894090fbeae3bc8f6da" kind="function"><name>stbi_write_tga</name></member>
+    <member refid="stb__image__write_8h_1a21f22be0194761e08b682ed543ef6161" kind="function"><name>stbi_write_hdr</name></member>
+    <member refid="stb__image__write_8h_1a41048e8f918179d2788284ef9cc2590c" kind="function"><name>stbi_write_jpg</name></member>
+    <member refid="stb__image__write_8h_1a72dcd18698d64c92082449912c39a4e5" kind="function"><name>stbi_write_png_to_func</name></member>
+    <member refid="stb__image__write_8h_1aca9573665994b2244a6a045b2a1df1ea" kind="function"><name>stbi_write_bmp_to_func</name></member>
+    <member refid="stb__image__write_8h_1a5e5c6483c1d45a65fe208f52937cd315" kind="function"><name>stbi_write_tga_to_func</name></member>
+    <member refid="stb__image__write_8h_1ac9214f775162b61a3503c76875966c11" kind="function"><name>stbi_write_hdr_to_func</name></member>
+    <member refid="stb__image__write_8h_1afbe60a9afbcbd6d54f98f72afd46a676" kind="function"><name>stbi_write_jpg_to_func</name></member>
+    <member refid="stb__image__write_8h_1a5c41a5d16dc665edd2489b982ba29b85" kind="function"><name>stbi_flip_vertically_on_write</name></member>
+  </compound>
+  <compound refid="gui__data_8hpp" kind="file"><name>gui_data.hpp</name>
+  </compound>
+  <compound refid="robot_8cpp" kind="file"><name>robot.cpp</name>
+  </compound>
+  <compound refid="robot_8hpp" kind="file"><name>robot.hpp</name>
+  </compound>
+  <compound refid="robot__dart__simu_8cpp" kind="file"><name>robot_dart_simu.cpp</name>
+  </compound>
+  <compound refid="robot__dart__simu_8hpp" kind="file"><name>robot_dart_simu.hpp</name>
+  </compound>
+  <compound refid="robot__pool_8cpp" kind="file"><name>robot_pool.cpp</name>
+  </compound>
+  <compound refid="robot__pool_8hpp" kind="file"><name>robot_pool.hpp</name>
+  </compound>
+  <compound refid="a1_8cpp" kind="file"><name>a1.cpp</name>
+  </compound>
+  <compound refid="a1_8hpp" kind="file"><name>a1.hpp</name>
+  </compound>
+  <compound refid="arm_8hpp" kind="file"><name>arm.hpp</name>
+  </compound>
+  <compound refid="franka_8cpp" kind="file"><name>franka.cpp</name>
+  </compound>
+  <compound refid="franka_8hpp" kind="file"><name>franka.hpp</name>
+  </compound>
+  <compound refid="hexapod_8hpp" kind="file"><name>hexapod.hpp</name>
+  </compound>
+  <compound refid="icub_8cpp" kind="file"><name>icub.cpp</name>
+  </compound>
+  <compound refid="icub_8hpp" kind="file"><name>icub.hpp</name>
+  </compound>
+  <compound refid="iiwa_8cpp" kind="file"><name>iiwa.cpp</name>
+  </compound>
+  <compound refid="iiwa_8hpp" kind="file"><name>iiwa.hpp</name>
+  </compound>
+  <compound refid="pendulum_8hpp" kind="file"><name>pendulum.hpp</name>
+  </compound>
+  <compound refid="talos_8cpp" kind="file"><name>talos.cpp</name>
+  </compound>
+  <compound refid="talos_8hpp" kind="file"><name>talos.hpp</name>
+  </compound>
+  <compound refid="tiago_8cpp" kind="file"><name>tiago.cpp</name>
+  </compound>
+  <compound refid="tiago_8hpp" kind="file"><name>tiago.hpp</name>
+  </compound>
+  <compound refid="ur3e_8cpp" kind="file"><name>ur3e.cpp</name>
+  </compound>
+  <compound refid="ur3e_8hpp" kind="file"><name>ur3e.hpp</name>
+  </compound>
+  <compound refid="vx300_8hpp" kind="file"><name>vx300.hpp</name>
+  </compound>
+  <compound refid="scheduler_8cpp" kind="file"><name>scheduler.cpp</name>
+  </compound>
+  <compound refid="scheduler_8hpp" kind="file"><name>scheduler.hpp</name>
+  </compound>
+  <compound refid="force__torque_8cpp" kind="file"><name>force_torque.cpp</name>
+  </compound>
+  <compound refid="force__torque_8hpp" kind="file"><name>force_torque.hpp</name>
+  </compound>
+  <compound refid="imu_8cpp" kind="file"><name>imu.cpp</name>
+  </compound>
+  <compound refid="imu_8hpp" kind="file"><name>imu.hpp</name>
+  </compound>
+  <compound refid="sensor_8cpp" kind="file"><name>sensor.cpp</name>
+  </compound>
+  <compound refid="sensor_8hpp" kind="file"><name>sensor.hpp</name>
+  </compound>
+  <compound refid="torque_8cpp" kind="file"><name>torque.cpp</name>
+  </compound>
+  <compound refid="torque_8hpp" kind="file"><name>torque.hpp</name>
+  </compound>
+  <compound refid="utils_8hpp" kind="file"><name>utils.hpp</name>
+    <member refid="utils_8hpp_1a1aca16d991368ff55ff48fa407e34385" kind="define"><name>ROBOT_DART_SHOW_WARNINGS</name></member>
+    <member refid="utils_8hpp_1acbb42dc053fedc161079f0a4d20a64e8" kind="define"><name>M_PIf</name></member>
+    <member refid="utils_8hpp_1aa16917d056e9b2c4e976432d200743d2" kind="define"><name>ROBOT_DART_UNUSED_VARIABLE</name></member>
+    <member refid="utils_8hpp_1a12e2defd6027972ef1ec19f1004d1692" kind="define"><name>ROBOT_DART_WARNING</name></member>
+    <member refid="utils_8hpp_1ae236e5064379b1157eed8157f1b0f3e6" kind="define"><name>ROBOT_DART_ASSERT</name></member>
+    <member refid="utils_8hpp_1ae8b76b579140134a839a0b35d8dfdb1c" kind="define"><name>ROBOT_DART_EXCEPTION_ASSERT</name></member>
+    <member refid="utils_8hpp_1ae7603f84e7f45b04b3c4739444c708e8" kind="define"><name>ROBOT_DART_INTERNAL_ASSERT</name></member>
+    <member refid="utils_8hpp_1ac6e8d420a3d75aec39bacdde4320dd1c" kind="define"><name>ROBOT_DART_EXCEPTION_INTERNAL_ASSERT</name></member>
+  </compound>
+  <compound refid="utils__headers__dart__collision_8hpp" kind="file"><name>utils_headers_dart_collision.hpp</name>
+  </compound>
+  <compound refid="utils__headers__dart__dynamics_8hpp" kind="file"><name>utils_headers_dart_dynamics.hpp</name>
+  </compound>
+  <compound refid="utils__headers__dart__io_8hpp" kind="file"><name>utils_headers_dart_io.hpp</name>
+  </compound>
+  <compound refid="utils__headers__external_8hpp" kind="file"><name>utils_headers_external.hpp</name>
+  </compound>
+  <compound refid="utils__headers__external__gui_8hpp" kind="file"><name>utils_headers_external_gui.hpp</name>
+  </compound>
+  <compound refid="dir_1a1ccbdd0954eb7721b1a771872472c9" kind="dir"><name>robot_dart/control</name>
+  </compound>
+  <compound refid="dir_2f8612d80f6bb57c97efd4c82e0df286" kind="dir"><name>robot_dart/gui/magnum/gs</name>
+  </compound>
+  <compound refid="dir_6a9d4b7ec29c938d1d9a486c655cfc8a" kind="dir"><name>robot_dart/gui</name>
+  </compound>
+  <compound refid="dir_5d18adecbc10cabf3ca51da31f2acdd1" kind="dir"><name>robot_dart/gui/magnum</name>
+  </compound>
+  <compound refid="dir_166284c5f0440000a6384365f2a45567" kind="dir"><name>robot_dart</name>
+  </compound>
+  <compound refid="dir_087fbdcd93b501a5d3f98df93e9f8cc4" kind="dir"><name>robot_dart/robots</name>
+  </compound>
+  <compound refid="dir_2c74a777547786aaf50e99ba400e19fa" kind="dir"><name>robot_dart/gui/magnum/sensor</name>
+  </compound>
+  <compound refid="dir_d1adb19f0b40b70b30ee0daf1901679b" kind="dir"><name>robot_dart/sensor</name>
+  </compound>
+</doxygenindex>

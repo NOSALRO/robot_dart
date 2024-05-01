@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="utils__headers__dart__dynamics_8hpp" kind="file" language="C++">
+    <compoundname>utils_headers_dart_dynamics.hpp</compoundname>
+    <includes local="no">dart/dynamics/BallJoint.hpp</includes>
+    <includes local="no">dart/dynamics/BodyNode.hpp</includes>
+    <includes local="no">dart/dynamics/BoxShape.hpp</includes>
+    <includes local="no">dart/dynamics/DegreeOfFreedom.hpp</includes>
+    <includes local="no">dart/dynamics/EllipsoidShape.hpp</includes>
+    <includes local="no">dart/dynamics/EulerJoint.hpp</includes>
+    <includes local="no">dart/dynamics/FreeJoint.hpp</includes>
+    <includes local="no">dart/dynamics/MeshShape.hpp</includes>
+    <includes local="no">dart/dynamics/RevoluteJoint.hpp</includes>
+    <includes local="no">dart/dynamics/ShapeNode.hpp</includes>
+    <includes local="no">dart/dynamics/SoftBodyNode.hpp</includes>
+    <includes local="no">dart/dynamics/SoftMeshShape.hpp</includes>
+    <includes local="no">dart/dynamics/WeldJoint.hpp</includes>
+    <includedby refid="pd__control_8cpp" local="yes">robot_dart/control/pd_control.cpp</includedby>
+    <includedby refid="robot__control_8cpp" local="yes">robot_dart/control/robot_control.cpp</includedby>
+    <includedby refid="base__application_8cpp" local="no">robot_dart/gui/magnum/base_application.cpp</includedby>
+    <includedby refid="gui__data_8hpp" local="yes">robot_dart/gui_data.hpp</includedby>
+    <includedby refid="robot_8cpp" local="no">robot_dart/robot.cpp</includedby>
+    <includedby refid="robot__dart__simu_8cpp" local="yes">robot_dart/robot_dart_simu.cpp</includedby>
+    <includedby refid="force__torque_8cpp" local="no">robot_dart/sensor/force_torque.cpp</includedby>
+    <includedby refid="imu_8cpp" local="no">robot_dart/sensor/imu.cpp</includedby>
+    <includedby refid="sensor_8cpp" local="yes">robot_dart/sensor/sensor.cpp</includedby>
+    <includedby refid="torque_8cpp" local="no">robot_dart/sensor/torque.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>robot_dart/utils_headers_dart_dynamics.hpp</label>
+        <link refid="utils__headers__dart__dynamics_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dart/dynamics/BallJoint.hpp</label>
+      </node>
+      <node id="3">
+        <label>dart/dynamics/BodyNode.hpp</label>
+      </node>
+      <node id="4">
+        <label>dart/dynamics/BoxShape.hpp</label>
+      </node>
+      <node id="5">
+        <label>dart/dynamics/DegreeOfFreedom.hpp</label>
+      </node>
+      <node id="6">
+        <label>dart/dynamics/EllipsoidShape.hpp</label>
+      </node>
+      <node id="7">
+        <label>dart/dynamics/EulerJoint.hpp</label>
+      </node>
+      <node id="8">
+        <label>dart/dynamics/FreeJoint.hpp</label>
+      </node>
+      <node id="9">
+        <label>dart/dynamics/MeshShape.hpp</label>
+      </node>
+      <node id="10">
+        <label>dart/dynamics/RevoluteJoint.hpp</label>
+      </node>
+      <node id="11">
+        <label>dart/dynamics/ShapeNode.hpp</label>
+      </node>
+      <node id="12">
+        <label>dart/dynamics/SoftBodyNode.hpp</label>
+      </node>
+      <node id="13">
+        <label>dart/dynamics/SoftMeshShape.hpp</label>
+      </node>
+      <node id="14">
+        <label>dart/dynamics/WeldJoint.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>robot_dart/gui_data.hpp</label>
+        <link refid="gui__data_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>robot_dart/utils_headers_dart_dynamics.hpp</label>
+        <link refid="utils__headers__dart__dynamics_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_UTILS_HEADERS_DART_DYNAMICS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_UTILS_HEADERS_DART_DYNAMICS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>GCC<sp/>system_header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/BallJoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/BodyNode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/BoxShape.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/DegreeOfFreedom.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/EllipsoidShape.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/EulerJoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/FreeJoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/MeshShape.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/RevoluteJoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/ShapeNode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/SoftBodyNode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/SoftMeshShape.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dart/dynamics/WeldJoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/utils_headers_dart_dynamics.hpp"/>
+  </compounddef>
+</doxygen>

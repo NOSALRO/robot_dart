@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::ShadowData</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1ac1efb6f68801f749202c33da6e68372d" prot="public" static="no" mutable="no">
+        <type>Magnum::GL::Framebuffer</type>
+        <definition>Magnum::GL::Framebuffer robot_dart::gui::magnum::ShadowData::shadow_framebuffer</definition>
+        <argsstring></argsstring>
+        <name>shadow_framebuffer</name>
+        <qualifiedname>robot_dart::gui::magnum::ShadowData::shadow_framebuffer</qualifiedname>
+        <initializer>{Magnum::NoCreate}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="186" column="41" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="186" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1a5a54b4e1983d99b81325440109ceec04" prot="public" static="no" mutable="no">
+        <type>Magnum::GL::Framebuffer</type>
+        <definition>Magnum::GL::Framebuffer robot_dart::gui::magnum::ShadowData::shadow_color_framebuffer</definition>
+        <argsstring></argsstring>
+        <name>shadow_color_framebuffer</name>
+        <qualifiedname>robot_dart::gui::magnum::ShadowData::shadow_color_framebuffer</qualifiedname>
+        <initializer>{Magnum::NoCreate}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="187" column="41" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="187" bodyend="187"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="185" column="13" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="185" bodyend="188"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1a5a54b4e1983d99b81325440109ceec04" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowData</scope><name>shadow_color_framebuffer</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData_1ac1efb6f68801f749202c33da6e68372d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::ShadowData</scope><name>shadow_framebuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

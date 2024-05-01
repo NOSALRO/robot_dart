@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_d1adb19f0b40b70b30ee0daf1901679b" kind="dir">
+    <compoundname>robot_dart/sensor</compoundname>
+    <innerfile refid="force__torque_8cpp">force_torque.cpp</innerfile>
+    <innerfile refid="force__torque_8hpp">force_torque.hpp</innerfile>
+    <innerfile refid="imu_8cpp">imu.cpp</innerfile>
+    <innerfile refid="imu_8hpp">imu.hpp</innerfile>
+    <innerfile refid="sensor_8cpp">sensor.cpp</innerfile>
+    <innerfile refid="sensor_8hpp">sensor.hpp</innerfile>
+    <innerfile refid="torque_8cpp">torque.cpp</innerfile>
+    <innerfile refid="torque_8hpp">torque.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/sensor/"/>
+  </compounddef>
+</doxygen>

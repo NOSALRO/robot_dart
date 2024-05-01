@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_087fbdcd93b501a5d3f98df93e9f8cc4" kind="dir">
+    <compoundname>robot_dart/robots</compoundname>
+    <innerfile refid="a1_8cpp">a1.cpp</innerfile>
+    <innerfile refid="a1_8hpp">a1.hpp</innerfile>
+    <innerfile refid="arm_8hpp">arm.hpp</innerfile>
+    <innerfile refid="franka_8cpp">franka.cpp</innerfile>
+    <innerfile refid="franka_8hpp">franka.hpp</innerfile>
+    <innerfile refid="hexapod_8hpp">hexapod.hpp</innerfile>
+    <innerfile refid="icub_8cpp">icub.cpp</innerfile>
+    <innerfile refid="icub_8hpp">icub.hpp</innerfile>
+    <innerfile refid="iiwa_8cpp">iiwa.cpp</innerfile>
+    <innerfile refid="iiwa_8hpp">iiwa.hpp</innerfile>
+    <innerfile refid="pendulum_8hpp">pendulum.hpp</innerfile>
+    <innerfile refid="talos_8cpp">talos.cpp</innerfile>
+    <innerfile refid="talos_8hpp">talos.hpp</innerfile>
+    <innerfile refid="tiago_8cpp">tiago.cpp</innerfile>
+    <innerfile refid="tiago_8hpp">tiago.hpp</innerfile>
+    <innerfile refid="ur3e_8cpp">ur3e.cpp</innerfile>
+    <innerfile refid="ur3e_8hpp">ur3e.hpp</innerfile>
+    <innerfile refid="vx300_8hpp">vx300.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robots/"/>
+  </compounddef>
+</doxygen>

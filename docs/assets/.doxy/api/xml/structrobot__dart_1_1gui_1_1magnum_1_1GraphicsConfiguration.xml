@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::GraphicsConfiguration</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4354b30f3425cefd58f2aaf85318f1c2" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::magnum::GraphicsConfiguration::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::width</qualifiedname>
+        <initializer>= 640</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="92" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4c85c9bc6330a32d3a6a1cc8e988cbd6" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::magnum::GraphicsConfiguration::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::height</qualifiedname>
+        <initializer>= 480</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="93" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a168414f3dba10fb44d428e540633671b" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string robot_dart::gui::magnum::GraphicsConfiguration::title</definition>
+        <argsstring></argsstring>
+        <name>title</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::title</qualifiedname>
+        <initializer>= &quot;DART&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="94" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a0b3f5807fd76acd936221e3d58f04082" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GraphicsConfiguration::shadowed</definition>
+        <argsstring></argsstring>
+        <name>shadowed</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::shadowed</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="97" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a13a227b7940bc3f03f01f7d2ae36447d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GraphicsConfiguration::transparent_shadows</definition>
+        <argsstring></argsstring>
+        <name>transparent_shadows</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::transparent_shadows</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="98" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1afa408268ce62994259aac46a388bf063" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::magnum::GraphicsConfiguration::shadow_map_size</definition>
+        <argsstring></argsstring>
+        <name>shadow_map_size</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::shadow_map_size</qualifiedname>
+        <initializer>= 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="99" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a6cd3b4fedac3f4cfe960357f39ab962b" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::magnum::GraphicsConfiguration::max_lights</definition>
+        <argsstring></argsstring>
+        <name>max_lights</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::max_lights</qualifiedname>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="102" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1ae7604b5f510aafa6539dd4a44080c807" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::gui::magnum::GraphicsConfiguration::specular_strength</definition>
+        <argsstring></argsstring>
+        <name>specular_strength</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::specular_strength</qualifiedname>
+        <initializer>= 0.25</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="103" column="24" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1af623ed855c505d4d431e94c19bcef216" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GraphicsConfiguration::draw_main_camera</definition>
+        <argsstring></argsstring>
+        <name>draw_main_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::draw_main_camera</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="106" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a325242568db01b5f6b6bc7c36492fe08" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GraphicsConfiguration::draw_debug</definition>
+        <argsstring></argsstring>
+        <name>draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::draw_debug</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="107" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a3338d98f2f32266b2391967077550d36" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GraphicsConfiguration::draw_text</definition>
+        <argsstring></argsstring>
+        <name>draw_text</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::draw_text</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="108" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a794c094c16eda6fbde2553fcea4ea0e2" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector4d</type>
+        <definition>Eigen::Vector4d robot_dart::gui::magnum::GraphicsConfiguration::bg_color</definition>
+        <argsstring></argsstring>
+        <name>bg_color</name>
+        <qualifiedname>robot_dart::gui::magnum::GraphicsConfiguration::bg_color</qualifiedname>
+        <initializer>{0.0, 0.0, 0.0, 1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="111" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/base_application.hpp" line="90" column="13" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="90" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a794c094c16eda6fbde2553fcea4ea0e2" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>bg_color</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a325242568db01b5f6b6bc7c36492fe08" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>draw_debug</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1af623ed855c505d4d431e94c19bcef216" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>draw_main_camera</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a3338d98f2f32266b2391967077550d36" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>draw_text</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4c85c9bc6330a32d3a6a1cc8e988cbd6" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>height</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a6cd3b4fedac3f4cfe960357f39ab962b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>max_lights</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1afa408268ce62994259aac46a388bf063" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>shadow_map_size</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a0b3f5807fd76acd936221e3d58f04082" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>shadowed</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1ae7604b5f510aafa6539dd4a44080c807" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>specular_strength</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a168414f3dba10fb44d428e540633671b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>title</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a13a227b7940bc3f03f01f7d2ae36447d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>transparent_shadows</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration_1a4354b30f3425cefd58f2aaf85318f1c2" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GraphicsConfiguration</scope><name>width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

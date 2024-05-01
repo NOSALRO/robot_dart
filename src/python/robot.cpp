@@ -511,9 +511,12 @@ namespace robot_dart {
             // Robot classes
             using namespace robot_dart::robots;
             py::class_<A1, Robot, std::shared_ptr<A1>>(m, "A1")
-                .def(py::init<const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
                     py::arg("urdf") = "unitree_a1/a1.urdf",
-                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}));
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"a1_description", "unitree_a1/a1_description"}}))
+
+                .def("imu", &A1::imu, py::return_value_policy::reference);
 
             py::class_<Arm, Robot, std::shared_ptr<Arm>>(m, "Arm")
                 .def(py::init<const std::string&>(),
@@ -580,7 +583,19 @@ namespace robot_dart {
                 .def("ft_wrist_right", &Talos::ft_foot_right, py::return_value_policy::reference)
 
                 .def("torques", &Talos::torques);
+            py::class_<TalosFastCollision, Talos, std::shared_ptr<TalosFastCollision>>(m, "TalosFastCollision")
+                .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
+                    py::arg("frequency") = 1000,
+                    py::arg("urdf") = "talos/talos_fast_collision.urdf",
+                    py::arg("packages") = std::vector<std::pair<std::string, std::string>>({{"talos_description", "talos/talos_description"}}))
 
+                .def("imu", &TalosFastCollision::imu, py::return_value_policy::reference)
+                .def("ft_foot_left", &TalosFastCollision::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_foot_right", &TalosFastCollision::ft_foot_right, py::return_value_policy::reference)
+                .def("ft_wrist_left", &TalosFastCollision::ft_foot_left, py::return_value_policy::reference)
+                .def("ft_wrist_right", &TalosFastCollision::ft_foot_right, py::return_value_policy::reference)
+
+                .def("torques", &TalosFastCollision::torques);
             py::class_<TalosLight, Talos, std::shared_ptr<TalosLight>>(m, "TalosLight")
                 .def(py::init<size_t, const std::string&, const std::vector<std::pair<std::string, std::string>>&>(),
                     py::arg("frequency") = 1000,

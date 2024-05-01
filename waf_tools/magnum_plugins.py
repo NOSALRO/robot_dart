@@ -113,6 +113,10 @@ def check_magnum_plugins(conf, *k, **kw):
         includes_check = [conf.options.magnum_plugins_install_dir + '/include'] + includes_check
         libs_check = [conf.options.magnum_plugins_install_dir + '/lib'] + libs_check
         bins_check = [conf.options.magnum_plugins_install_dir + '/bin'] + bins_check
+    elif conf.options.magnum:
+        includes_check = [conf.options.magnum + '/include'] + includes_check
+        libs_check = [conf.options.magnum + '/lib'] + libs_check
+        bins_check = [conf.options.magnum + '/bin'] + bins_check
 
     # OSX/Mac uses .dylib and GNU/Linux .so
     suffix = 'dylib' if conf.env['DEST_OS'] == 'darwin' else 'so'

@@ -48,6 +48,10 @@ def check_corrade(conf, *k, **kw):
         includes_check = [conf.options.corrade_install_dir + '/include']
         libs_check = [conf.options.corrade_install_dir + '/lib']
         bins_check = [conf.options.corrade_install_dir + '/bin']
+    elif conf.options.magnum:
+        includes_check = [conf.options.magnum + '/include']
+        libs_check = [conf.options.magnum + '/lib']
+        bins_check = [conf.options.magnum + '/bin']
 
     requested_components = kw.get('components', None)
     if requested_components == None:

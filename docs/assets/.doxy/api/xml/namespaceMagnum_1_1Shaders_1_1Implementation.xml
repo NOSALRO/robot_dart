@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespaceMagnum_1_1Shaders_1_1Implementation" kind="namespace" language="C++">
+    <compoundname>Magnum::Shaders::Implementation</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="create__compatibility__shader_8hpp_1ae0b7fd2746c074d483f040807f9a6dc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GL::Shader</type>
+        <definition>GL::Shader Magnum::Shaders::Implementation::createCompatibilityShader</definition>
+        <argsstring>(const Utility::Resource &amp;rs, GL::Version version, GL::Shader::Type type)</argsstring>
+        <name>createCompatibilityShader</name>
+        <qualifiedname>Magnum::Shaders::Implementation::createCompatibilityShader</qualifiedname>
+        <param>
+          <type>const Utility::Resource &amp;</type>
+          <declname>rs</declname>
+        </param>
+        <param>
+          <type>GL::Version</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>GL::Shader::Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><xrefsect id="todo_1_todo000001"><xreftitle>Todo</xreftitle><xrefdescription><para>remove this when Android emulator is sane </para>
+</xrefdescription></xrefsect></para>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" line="50" column="31" bodyfile="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" bodystart="50" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" line="48" column="9"/>
+  </compounddef>
+</doxygen>

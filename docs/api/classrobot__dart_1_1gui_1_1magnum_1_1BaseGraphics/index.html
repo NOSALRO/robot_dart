@@ -1,0 +1,1964 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Class robot\_dart::gui::magnum::BaseGraphics - Documentation of RobotDART</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-robot_dartguimagnumbasegraphics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentation of RobotDART" class="md-header__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation of RobotDART
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class robot\_dart::gui::magnum::BaseGraphics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-puprle" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NOSALRO/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NOSALRO/robot_dart
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../quick_install/" class="md-tabs__link">
+        
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../install/" class="md-tabs__link">
+        
+  
+    
+  
+  Manual Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../robots/" class="md-tabs__link">
+        
+  
+    
+  
+  Supported robots
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../links/" class="md-tabs__link">
+          
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentation of RobotDART" class="md-nav__button md-logo" aria-label="Documentation of RobotDART" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5Z"/></svg>
+
+    </a>
+    Documentation of RobotDART
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NOSALRO/robot_dart" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NOSALRO/robot_dart
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Supported robots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Classes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Classes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Hierarchy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_members/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Members
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Member Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_variables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Member Variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_typedefs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Member Typedefs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_member_enums/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class Member Enumerations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Namespaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            Namespaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_members/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace Members
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace Member Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_variables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace Member Variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_typedefs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace Member Typedefs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespace_member_enums/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Namespace Member Enumerations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Macros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-inherited-from-robot_dartguibase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Functions inherited from robot_dart::gui::Base
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protected Attributes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-attributes-inherited-from-robot_dartguibase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protected Attributes inherited from robot_dart::gui::Base
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Functions Documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-basegraphics" class="md-nav__link">
+    <span class="md-ellipsis">
+      function BaseGraphics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-add_light" class="md-nav__link">
+    <span class="md-ellipsis">
+      function add_light
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-camera-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      function camera [&frac12;]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-camera-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      function camera [2/2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-camera_extrinsic_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      function camera_extrinsic_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-camera_intrinsic_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      function camera_intrinsic_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-clear_lights" class="md-nav__link">
+    <span class="md-ellipsis">
+      function clear_lights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-depth_array" class="md-nav__link">
+    <span class="md-ellipsis">
+      function depth_array
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-depth_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      function depth_image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      function done
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-enable_shadows" class="md-nav__link">
+    <span class="md-ellipsis">
+      function enable_shadows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      function height
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      function image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      function light
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-lights" class="md-nav__link">
+    <span class="md-ellipsis">
+      function lights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-look_at" class="md-nav__link">
+    <span class="md-ellipsis">
+      function look_at
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-magnum_app-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      function magnum_app [&frac12;]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-magnum_app-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      function magnum_app [2/2]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-magnum_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      function magnum_image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-num_lights" class="md-nav__link">
+    <span class="md-ellipsis">
+      function num_lights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-raw_depth_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      function raw_depth_image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-record_video" class="md-nav__link">
+    <span class="md-ellipsis">
+      function record_video
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      function refresh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-set_enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      function set_enable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-set_fps" class="md-nav__link">
+    <span class="md-ellipsis">
+      function set_fps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-set_simu" class="md-nav__link">
+    <span class="md-ellipsis">
+      function set_simu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-shadowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      function shadowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-transparent_shadows" class="md-nav__link">
+    <span class="md-ellipsis">
+      function transparent_shadows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      function width
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-basegraphics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      function ~BaseGraphics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-attributes-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protected Attributes Documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protected Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      variable _configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-_enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      variable _enabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-_fps" class="md-nav__link">
+    <span class="md-ellipsis">
+      variable _fps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-_magnum_app" class="md-nav__link">
+    <span class="md-ellipsis">
+      variable _magnum_app
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-_magnum_silence_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      variable _magnum_silence_output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="class-robot_dartguimagnumbasegraphics">Class robot_dart::gui::magnum::BaseGraphics<a class="headerlink" href="#class-robot_dartguimagnumbasegraphics" title="Permanent link">&para;</a></h1>
+<p><strong>template &lt;typename T&gt;</strong></p>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespacerobot__dart/"><strong>robot_dart</strong></a> <strong>&gt;</strong> <a href="../namespacerobot__dart_1_1gui/"><strong>gui</strong></a> <strong>&gt;</strong> <a href="../namespacerobot__dart_1_1gui_1_1magnum/"><strong>magnum</strong></a> <strong>&gt;</strong> <a href="./"><strong>BaseGraphics</strong></a></p>
+<p>Inherits the following classes: <a href="../classrobot__dart_1_1gui_1_1Base/">robot_dart::gui::Base</a></p>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-basegraphics"><strong>BaseGraphics</strong></a> (const <a href="../structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration/"><strong>GraphicsConfiguration</strong></a> &amp; configuration=<a href="../structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration/"><strong>GraphicsConfiguration</strong></a>()) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_light"><strong>add_light</strong></a> (const <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>magnum:<img alt="🇬🇸" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a> &amp; light) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>gs::Camera</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-camera-12"><strong>camera</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera/"><strong>gs::Camera</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-camera-22"><strong>camera</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Eigen::Matrix4d</td>
+<td style="text-align: left;"><a href="#function-camera_extrinsic_matrix"><strong>camera_extrinsic_matrix</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Eigen::Matrix3d</td>
+<td style="text-align: left;"><a href="#function-camera_intrinsic_matrix"><strong>camera_intrinsic_matrix</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-clear_lights"><strong>clear_lights</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1DepthImage/"><strong>DepthImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-depth_array"><strong>depth_array</strong></a> () override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1GrayscaleImage/"><strong>GrayscaleImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-depth_image"><strong>depth_image</strong></a> () override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-done"><strong>done</strong></a> () override const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-enable_shadows"><strong>enable_shadows</strong></a> (bool enable=true, bool transparent=true) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-height"><strong>height</strong></a> () override const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1Image/"><strong>Image</strong></a></td>
+<td style="text-align: left;"><a href="#function-image"><strong>image</strong></a> () override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>magnum:<img alt="🇬🇸" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f1ec-1f1f8.svg" title=":gs:" />:Light</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-light"><strong>light</strong></a> (size_t i) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; <a href="../classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light/"><strong>gs::Light</strong></a> &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-lights"><strong>lights</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-look_at"><strong>look_at</strong></a> (const Eigen::Vector3d &amp; camera_pos, const Eigen::Vector3d &amp; look_at=Eigen::Vector3d(0, 0, 0), const Eigen::Vector3d &amp; up=Eigen::Vector3d(0, 0, 1)) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>BaseApplication</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-magnum_app-12"><strong>magnum_app</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>BaseApplication</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-magnum_app-22"><strong>magnum_app</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Magnum::Image2D *</td>
+<td style="text-align: left;"><a href="#function-magnum_image"><strong>magnum_image</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">size_t</td>
+<td style="text-align: left;"><a href="#function-num_lights"><strong>num_lights</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1GrayscaleImage/"><strong>GrayscaleImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-raw_depth_image"><strong>raw_depth_image</strong></a> () override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-record_video"><strong>record_video</strong></a> (const std::string &amp; video_fname, int fps=-1) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-refresh"><strong>refresh</strong></a> () override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_enable"><strong>set_enable</strong></a> (bool enable) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_fps"><strong>set_fps</strong></a> (int fps) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_simu"><strong>set_simu</strong></a> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>RobotDARTSimu</strong></a> * simu) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-shadowed"><strong>shadowed</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-transparent_shadows"><strong>transparent_shadows</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-width"><strong>width</strong></a> () override const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="#function-basegraphics"><strong>~BaseGraphics</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-robot_dartguibase">Public Functions inherited from robot_dart::gui::Base<a class="headerlink" href="#public-functions-inherited-from-robot_dartguibase" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classrobot__dart_1_1gui_1_1Base/">robot_dart::gui::Base</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-base"><strong>Base</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1DepthImage/"><strong>DepthImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-depth_array"><strong>depth_array</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1GrayscaleImage/"><strong>GrayscaleImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-depth_image"><strong>depth_image</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="#function-done"><strong>done</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-height"><strong>height</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1Image/"><strong>Image</strong></a></td>
+<td style="text-align: left;"><a href="#function-image"><strong>image</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structrobot__dart_1_1gui_1_1GrayscaleImage/"><strong>GrayscaleImage</strong></a></td>
+<td style="text-align: left;"><a href="#function-raw_depth_image"><strong>raw_depth_image</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-refresh"><strong>refresh</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_enable"><strong>set_enable</strong></a> (bool) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_fps"><strong>set_fps</strong></a> (int) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_render_period"><strong>set_render_period</strong></a> (double) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-set_simu"><strong>set_simu</strong></a> (<a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>RobotDARTSimu</strong></a> * simu) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">const <a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>RobotDARTSimu</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-simu"><strong>simu</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual size_t</td>
+<td style="text-align: left;"><a href="#function-width"><strong>width</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual</td>
+<td style="text-align: left;"><a href="#function-base"><strong>~Base</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes">Protected Attributes<a class="headerlink" href="#protected-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration/"><strong>GraphicsConfiguration</strong></a></td>
+<td style="text-align: left;"><a href="#variable-_configuration"><strong>_configuration</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-_enabled"><strong>_enabled</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-_fps"><strong>_fps</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::unique_ptr&lt; <a href="../classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication/"><strong>BaseApplication</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-_magnum_app"><strong>_magnum_app</strong></a>  <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">Corrade::Utility::Debug</td>
+<td style="text-align: left;"><a href="#variable-_magnum_silence_output"><strong>_magnum_silence_output</strong></a>   = {nullptr}<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-robot_dartguibase">Protected Attributes inherited from robot_dart::gui::Base<a class="headerlink" href="#protected-attributes-inherited-from-robot_dartguibase" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classrobot__dart_1_1gui_1_1Base/">robot_dart::gui::Base</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="../classrobot__dart_1_1RobotDARTSimu/"><strong>RobotDARTSimu</strong></a> *</td>
+<td style="text-align: left;"><a href="#variable-_simu"><strong>_simu</strong></a>   = = nullptr<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-basegraphics">function BaseGraphics<a class="headerlink" href="#function-basegraphics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GraphicsConfiguration</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">configuration</span><span class="o">=</span><span class="n">GraphicsConfiguration</span><span class="w"> </span><span class="p">()</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-add_light">function add_light<a class="headerlink" href="#function-add_light" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">add_light</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">magnum</span><span class="o">::</span><span class="n">gs</span><span class="o">::</span><span class="n">Light</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">light</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-camera-12">function camera [&frac12;]<a class="headerlink" href="#function-camera-12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">gs</span><span class="o">::</span><span class="n">Camera</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">camera</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-camera-22">function camera [2/2]<a class="headerlink" href="#function-camera-22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">gs</span><span class="o">::</span><span class="n">Camera</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">camera</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-camera_extrinsic_matrix">function camera_extrinsic_matrix<a class="headerlink" href="#function-camera_extrinsic_matrix" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix4d</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">camera_extrinsic_matrix</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-camera_intrinsic_matrix">function camera_intrinsic_matrix<a class="headerlink" href="#function-camera_intrinsic_matrix" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3d</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">camera_intrinsic_matrix</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-clear_lights">function clear_lights<a class="headerlink" href="#function-clear_lights" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">clear_lights</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-depth_array">function depth_array<a class="headerlink" href="#function-depth_array" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">DepthImage</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">depth_array</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-depth_array"><em>robot_dart::gui::Base::depth_array</em></a></p>
+<hr>
+
+<h3 id="function-depth_image">function depth_image<a class="headerlink" href="#function-depth_image" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">GrayscaleImage</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">depth_image</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-depth_image"><em>robot_dart::gui::Base::depth_image</em></a></p>
+<hr>
+
+<h3 id="function-done">function done<a class="headerlink" href="#function-done" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">done</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-done"><em>robot_dart::gui::Base::done</em></a></p>
+<hr>
+
+<h3 id="function-enable_shadows">function enable_shadows<a class="headerlink" href="#function-enable_shadows" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">enable_shadows</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enable</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">transparent</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-height">function height<a class="headerlink" href="#function-height" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">height</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-height"><em>robot_dart::gui::Base::height</em></a></p>
+<hr>
+
+<h3 id="function-image">function image<a class="headerlink" href="#function-image" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">image</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-image"><em>robot_dart::gui::Base::image</em></a></p>
+<hr>
+
+<h3 id="function-light">function light<a class="headerlink" href="#function-light" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">magnum</span><span class="o">::</span><span class="n">gs</span><span class="o">::</span><span class="n">Light</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">light</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-lights">function lights<a class="headerlink" href="#function-lights" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">gs</span><span class="o">::</span><span class="n">Light</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">lights</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-look_at">function look_at<a class="headerlink" href="#function-look_at" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">look_at</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">camera_pos</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">look_at</span><span class="o">=</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">up</span><span class="o">=</span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-magnum_app-12">function magnum_app [&frac12;]<a class="headerlink" href="#function-magnum_app-12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">BaseApplication</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">magnum_app</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-magnum_app-22">function magnum_app [2/2]<a class="headerlink" href="#function-magnum_app-22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">BaseApplication</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">magnum_app</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-magnum_image">function magnum_image<a class="headerlink" href="#function-magnum_image" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Magnum</span><span class="o">::</span><span class="n">Image2D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">magnum_image</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-num_lights">function num_lights<a class="headerlink" href="#function-num_lights" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">num_lights</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-raw_depth_image">function raw_depth_image<a class="headerlink" href="#function-raw_depth_image" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">GrayscaleImage</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">raw_depth_image</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-raw_depth_image"><em>robot_dart::gui::Base::raw_depth_image</em></a></p>
+<hr>
+
+<h3 id="function-record_video">function record_video<a class="headerlink" href="#function-record_video" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">record_video</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">video_fname</span><span class="p">,</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fps</span><span class="o">=</span><span class="mi">-1</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-refresh">function refresh<a class="headerlink" href="#function-refresh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">refresh</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-refresh"><em>robot_dart::gui::Base::refresh</em></a></p>
+<hr>
+
+<h3 id="function-set_enable">function set_enable<a class="headerlink" href="#function-set_enable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">set_enable</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enable</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-set_enable"><em>robot_dart::gui::Base::set_enable</em></a></p>
+<hr>
+
+<h3 id="function-set_fps">function set_fps<a class="headerlink" href="#function-set_fps" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">set_fps</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fps</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-set_fps"><em>robot_dart::gui::Base::set_fps</em></a></p>
+<hr>
+
+<h3 id="function-set_simu">function set_simu<a class="headerlink" href="#function-set_simu" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">set_simu</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">RobotDARTSimu</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">simu</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-set_simu"><em>robot_dart::gui::Base::set_simu</em></a></p>
+<hr>
+
+<h3 id="function-shadowed">function shadowed<a class="headerlink" href="#function-shadowed" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">shadowed</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-transparent_shadows">function transparent_shadows<a class="headerlink" href="#function-transparent_shadows" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">transparent_shadows</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-width">function width<a class="headerlink" href="#function-width" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::</span><span class="n">width</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div>
+<p>Implements <a href="../classrobot__dart_1_1gui_1_1Base/#function-width"><em>robot_dart::gui::Base::width</em></a></p>
+<hr>
+
+<h3 id="function-basegraphics_1">function ~BaseGraphics<a class="headerlink" href="#function-basegraphics_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">::~</span><span class="n">BaseGraphics</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div>
+<hr>
+<h2 id="protected-attributes-documentation">Protected Attributes Documentation<a class="headerlink" href="#protected-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-_configuration">variable _configuration<a class="headerlink" href="#variable-_configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">GraphicsConfiguration</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_configuration</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-_enabled">variable _enabled<a class="headerlink" href="#variable-_enabled" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_enabled</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-_fps">variable _fps<a class="headerlink" href="#variable-_fps" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_fps</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-_magnum_app">variable _magnum_app<a class="headerlink" href="#variable-_magnum_app" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">BaseApplication</span><span class="o">&gt;</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_magnum_app</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-_magnum_silence_output">variable _magnum_silence_output<a class="headerlink" href="#variable-_magnum_silence_output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">Corrade</span><span class="o">::</span><span class="n">Utility</span><span class="o">::</span><span class="n">Debug</span><span class="w"> </span><span class="n">robot_dart</span><span class="o">::</span><span class="n">gui</span><span class="o">::</span><span class="n">magnum</span><span class="o">::</span><span class="n">BaseGraphics</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_magnum_silence_output</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>robot_dart/gui/magnum/base_graphics.hpp</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Konstantinos Chatzilygeroudis, Dionis Totsila, Jean-Baptiste Mouret
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "content.tabs.link", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

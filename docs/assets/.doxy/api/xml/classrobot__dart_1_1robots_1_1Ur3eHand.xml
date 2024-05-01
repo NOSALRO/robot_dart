@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1robots_1_1Ur3eHand" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::robots::Ur3eHand</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1robots_1_1Ur3e" prot="public" virt="non-virtual">robot_dart::robots::Ur3e</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1robots_1_1Ur3eHand_1a65147f9b3570db41b9cfcbe7edd53781" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::robots::Ur3eHand::Ur3eHand</definition>
+        <argsstring>(size_t frequency=1000, const std::string &amp;urdf=&quot;ur3e/ur3e_with_schunk_hand.urdf&quot;, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;packages={{&quot;ur3e_description&quot;, &quot;ur3e/ur3e_description&quot;}})</argsstring>
+        <name>Ur3eHand</name>
+        <qualifiedname>robot_dart::robots::Ur3eHand::Ur3eHand</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>frequency</declname>
+          <defval>1000</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>urdf</declname>
+          <defval>&quot;ur3e/ur3e_with_schunk_hand.urdf&quot;</defval>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;</type>
+          <declname>packages</declname>
+          <defval>{{&quot;ur3e_description&quot;, &quot;ur3e/ur3e_description&quot;}}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robots/ur3e.hpp" line="23" column="13" bodyfile="robot_dart/robots/ur3e.hpp" bodystart="23" bodyend="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>robot_dart::Robot</label>
+        <link refid="classrobot__dart_1_1Robot"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::robots::Ur3e</label>
+        <link refid="classrobot__dart_1_1robots_1_1Ur3e"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::robots::Ur3eHand</label>
+        <link refid="classrobot__dart_1_1robots_1_1Ur3eHand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::enable_shared_from_this&lt; Robot &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>robot_dart::Robot</label>
+        <link refid="classrobot__dart_1_1Robot"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::robots::Ur3e</label>
+        <link refid="classrobot__dart_1_1robots_1_1Ur3e"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::robots::Ur3eHand</label>
+        <link refid="classrobot__dart_1_1robots_1_1Ur3eHand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::enable_shared_from_this&lt; Robot &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/robots/ur3e.hpp" line="21" column="9" bodyfile="robot_dart/robots/ur3e.hpp" bodystart="21" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1Robot_1a99ef9ccebab539f1e6c39e05a45c714f" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_actuator_type</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a8312ecb116a656f5fc947a202ec8fa8a" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_actuator_types</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad719a9328fc951b31352d3bda956f060" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_axis_shapes</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0f0f858c6b833cb0892cc42131af7df4" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_cast_shadows</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5773d4df8c435f9cd4e315ff6a2bbb9e" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0b62de23bd5329aecc0cf2c3f0f92248" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_dof_map</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a838a2e0c4e1196dbd0f97fb55d7fe170" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_ft_wrist</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a665f1be94adbf0755fbac327e5e641ee" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_get_path</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa0fd0718226ceb510980270755da8c37" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_is_ghost</name></member>
+      <member refid="classrobot__dart_1_1Robot_1acfd95d89df97a6619a1e1f467e8d49e3" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_jacobian</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a31e3a6d529f86402181ca8faa4f9e10a" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_joint_map</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af94a2eb95800f854ffa4ed0ad39ac385" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_load_model</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a636125413e0eced0076de0754ceed8c2" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_mass_matrix</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad1522c12cd8aae9cf14225b8a0d8ecd2" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_model_filename</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a4be59bca1835cc6075da611897994c8e" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_packages</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a1abfe1568663c2420f95507cdbc9d159" prot="protected" virt="virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_post_addition</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a550c362e86d18918f486f46137b6d9d4" prot="protected" virt="virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_post_removal</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7eaf2574b39b95c1cb61ebacded66e14" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_robot_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad3dfa19a68202f41ae17c42ac7c7a2bf" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_set_actuator_type</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af18973483a2f76b93a2414497da202e5" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_set_actuator_types</name></member>
+      <member refid="classrobot__dart_1_1Robot_1adc288e62307280c8f562b2f599e23d93" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_set_actuator_types</name></member>
+      <member refid="classrobot__dart_1_1Robot_1afaf8e8e64604fb5eec4a936338a0f0d2" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_set_color_mode</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a26125235315f5eba994332897dd2cb7d" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_set_color_mode</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aaf60e452285bb687d9abe7a7f525dd67" prot="protected" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>_skeleton</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a61a85723b90798b9a5666314f0841a62" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>acceleration_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a8d070ad570352588bfa864a884453af1" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>acceleration_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5e6df4bae52c3397794965e6872b4ce4" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>accelerations</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab986c5e4a69fb1b425c89f90bd7f3675" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>active_controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a00c540535540f7da302e4ddb08d1a0bb" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>actuator_type</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a48a5549c1a51bb1c0783e7ca89382c61" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>actuator_types</name></member>
+      <member refid="classrobot__dart_1_1Robot_1adf0a2e4b493280f10bb680e00a3c3a12" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a4e13af77c017baadc4cc12b5bb316d8d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5d92a6976f10cab8ebb130a8733b72b8" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_controller</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a9f27eb220ea85b8253e518ac017694ce" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_external_force</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aaae31353f07d535864a1b9a7ca516226" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_external_force</name></member>
+      <member refid="classrobot__dart_1_1Robot_1afa6f12be3ab4a7b843d947d04cfc9c10" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_external_torque</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0588daac30492a9f397a3ff706b9f745" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>add_external_torque</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3bf4e2a6fdba147a8543701f9c375ea9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>adjacent_colliding</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a63b2fb673184bbe16b9e64cff713faac" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>aug_mass_matrix</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad400b5495438ff50f675252425d221bc" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>base_pose</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac2cee8997e16fca8ecf238164ae369de" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>base_pose_vec</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a61d0a6329505a84fde05e310321fb1d1" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_acceleration</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2852e7f5d184abec877b2a18baf436b0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_acceleration</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a731a45d565e8d765f9018a347fe97578" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_index</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3251994a3886a3c0ab401223bb0d8385" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a01586a11da7e3f62c806bf396f5e37b0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6fe9140834cbd491f619e4190636ed34" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1afccd8d152f03b185940d39d04085e977" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a07a2eb5890d034d179aa3baf0128eb52" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_node</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a052221621acd6c3d2aa795d72e98a862" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_node</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad19ed209802858e53cf40aa505f0d08c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_pose</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a26d77ee6fa5d2b5be180442dca6a6fd0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_pose</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a17e1917c748f574a80694ae13a40251e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_pose_vec</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a8bcda13807b7dee0c68d7e800e7ccfe2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_pose_vec</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a120256b9d6f0708e6f9a841dc7316fb6" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_velocity</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a76b6b797ddf0f823190bc1e0c14cca58" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>body_velocity</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a32c273ddeb92b1d6ebf46c761cc3db2c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>cast_shadows</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a076443b2c0653f4a3dd58df13891bf13" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>clear_controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae32b5003e7d3b504461a4fe4baa7cb6e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>clear_external_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2a32d54d025c294b028fe158879def77" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>clear_internal_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6233cc8ce4b553221b98bdb0e8e8cf82" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>clone</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2712217f6eafe6727662d39aeb566049" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>clone_ghost</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a9f7e3fc2c1cce48a29aec0f52271f1f5" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>com</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7f287dd32b8b66d9f9fcdebc9eb690bb" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>com_acceleration</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a142c88b7f5401a14158e913f2aa7896c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>com_jacobian</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad8a6eba524d58fd836d6b34a6351d01e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>com_jacobian_deriv</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a474232a2fa6ebd96acc3efacb665be0d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>com_velocity</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0469631b5e07888273d593c05091567a" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>commands</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a952d95bc1e9bfdab9a0d415f6b3571cc" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>constraint_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a8bd4dcb83e5325aa59b407961fe6b662" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>controller</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae717ad10036b644ce7337c085c35e1f9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0233af2b74143973bc06e97ecbedec32" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>coriolis_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1abcd36ccf5b5756011bd1d8a674f48942" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>coriolis_gravity_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa7cbf18b419b41e45923397e1808589d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>coulomb_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aec58a30bc8068a6ad4d0ff36a4ea132b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>create_box</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad717a04fd3fdae7a163e16f8afe26b11" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>create_box</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7cea465688cfdd2640a82addd1ec04d4" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>create_ellipsoid</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6cdefd9c1e438ae346b3da4cd5be6a74" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>create_ellipsoid</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a64ffd08d23500da292755881993a78a8" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>damping_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a78c2714622baac3af5c0ccb469f6acd3" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a9b5a9c29b5070452f29938b429b425c7" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac30b30303e58dd80830c5aeca19e2281" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof_index</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aed58ff57570013b420e932e1fa254368" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof_map</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a71bab230245f9efa71304ac0096501a8" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a648a80792f2f14b3f190e9b07f1ce97c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>dof_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a8eb4b8694702d51ce5423262e6ca3253" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>drawing_axes</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a69283ec10e0e6d9abf34e87812e1325d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>external_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3e7aa6442de010a6d5e89a8311fb68ae" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>external_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa906fec013a9ef887518f73c859635a5" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>fix_to_world</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6282ab081fb2a1c495d991b73d1763a9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>fixed</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa42f2e37b4d432cf5372f831a2168ea8" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>force_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aba430bb07146219e06cbdaa7518b84c2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>force_position_bounds</name></member>
+      <member refid="classrobot__dart_1_1Robot_1afd8ff947b27f25ce8dbe7580b54ba042" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>force_torque</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a1352e33e735bf3351fc7d05b0f688c68" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>force_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a748cd1deb8ee9531a677a0ac18328bfe" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0cf16fdae26cdb7c023e6a9f5f5e996b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>free</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab0364e9bc9c43602a3bad67ca9b5eb97" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>free_from_world</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a83aac03d715c587d6e3e28ec9031a460" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae0b475c44170e78665cec05ba8a3acbc" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac32ae8aa93fdb58b8e7b6dad1979a0b7" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>friction_dir</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af7f3a1560a9113d44dc8a5e732c275c2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>friction_dir</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3e_1ac65b05bb5ad6483468b66fa3b06ddde9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>ft_wrist</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0da31d58dd36cd926319fadc42babe1f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>ghost</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a4abe011424c3e775b59cd1befb959a70" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>gravity_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae8adefdbda03f635f3ce3a021603b6dd" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>inv_aug_mass_matrix</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a1048177099c21743442cbac9e89c789e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>inv_mass_matrix</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3e1fae4602fb3552dd3ee6c7a2cd7b48" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>jacobian</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a204071a54f94f7e1ae17f37be4b40b32" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>jacobian_deriv</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5444621b7a0e594edd74d952605329ca" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5780b86b53a8af4d34c687057304569c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a1a51e6b2623d3211079cf21002cdbf7f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint_index</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a523009d233b897ace54580afef980e01" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint_map</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a77d49e80c5661b7ef3c9f0b541c37ba4" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae708af458f44793ebe1e3fecfe4afd75" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>joint_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af86427627de34a6dfc730921b6848278" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>locked_dof_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a42462001f1993ce3aa1689d12d2befc9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>mass_matrix</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae496e4d877d72e8c966e484366a6c97d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>mimic_dof_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a15d6d6496b8dc22936dfed2af0cc05de" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>model_filename</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a54c3fa173f04715ddf8c29da55759e59" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>model_packages</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad6eb5953c1040ae68768cbee13a6d225" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a61449b01547ebee00294adb7e8467239" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>num_bodies</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa35dc7d0113cad92abb3ca27bd0766f7" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>num_controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0e78d17261ed90dd9e74d11f92f163be" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>num_dofs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad178003f8bb4df47a69d28a19b737a4c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>num_joints</name></member>
+      <member refid="classrobot__dart_1_1Robot_1abe1416ee8b678c451273d33f1f880f08" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>passive_dof_names</name></member>
+      <member refid="classrobot__dart_1_1Robot_1addc09ef4a38f71cbbbd3167326b00536" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>position_enforced</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a421bf15e4d78135c6e099ec947b4b667" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>position_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2a1af9d70b7bf58d7670f37e40967978" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>position_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a35c4091c282e0ea99658c8ae23882e64" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>positions</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae876113c3a85a5f4c97a4d144559ef4d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>reinit_controllers</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3da190dc204c38eec3400acdb9157d64" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>remove_all_drawing_axis</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aade72f2b4bf8b9e4c12e7ca7c7156ec6" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>remove_controller</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7840ab10ee5b477ac4ec0d4d7c7f3170" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>remove_controller</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a96af674783970d47996056c4ead16f1d" prot="public" virt="virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>reset</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a72146fe8cfb5566d4f48c083bdf5b210" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>reset_commands</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a67852b8ab835534332cae31a5d7ef8b3" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>restitution_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a38c8fc8b21ada64c3d6fb53a07469cf9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>restitution_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a09f2520d1ec08fe65d517dcf94535747" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>Robot</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a19c4446d0f25c95738c021a4e59427f9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>Robot</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac3040b65c60460920428f63e9acd6643" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>Robot</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a385f5ae6bdded9f1a2700db664f8f74f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>secondary_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a67025eded02f4b33c480e4316c4a5fcf" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>secondary_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a94dd74cb25a1d81d0d7d5c7728bd7257" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>self_colliding</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac64b16f56fecb1dec98b6ce09aa7461b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_acceleration_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6e3256e13d7b59aa20dd2e8c0518191c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_acceleration_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7b1e6a847335419f9b4e146b7963dc42" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_accelerations</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aae1ec1a7844e28b7a6ddc64682917d04" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_actuator_type</name></member>
+      <member refid="classrobot__dart_1_1Robot_1abadb19f0b48f7de9617aaf2f59ec2675" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_actuator_types</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a86f3346f48c41394a8af7457f3d63ff0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_base_pose</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a4941fd995efaabe54488281c9f8dd1a2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_base_pose</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ada98abb4811cc772040e39bd08245b5b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a023916d85fc4a50a8348c92a48a8defa" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_body_mass</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a099c64842ed4b1935817cbbb7adc812d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_body_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a426801c2a0aa249267c5fc910c4f80b2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_cast_shadows</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad420e1ccd43204b6b78295106b82567d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_color_mode</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a051774706cf9f0e5e31fe45f3b0b8c9b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_color_mode</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab1f41044b73068c6cb685f03b268a4ec" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_commands</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2bb5d3ba1108fd9ae1ceca498dfd1a20" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_coulomb_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3992616f6eb4866cdf7a75b7bf84ee00" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_coulomb_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa7c6b33471f4fb725b5dca3e73fbdaaa" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_damping_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0c245a940ddb2ac242c350a080d86422" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_damping_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac589e017628a784b242b99ce4288895d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_draw_axis</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5b2d8f51cb243d4d063aba6a8ae16d8b" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_external_force</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a4ccb2241fa1be81f24ce30242a33d2f2" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_external_force</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af39c094130f6ff89b5c60175b48d2e88" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_external_torque</name></member>
+      <member refid="classrobot__dart_1_1Robot_1afb038299911a52d927d80f59aec8f9b3" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_external_torque</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3210cc606857712b370dbad83b4d0c7e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_force_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0d954f7893114d8cba8c4b28a1329bc3" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_force_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac1cb736079db2c3c7cf959a5d1054f3a" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_forces</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac14e86971cfd0c3a9994c80012ec3287" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a634a4509c2e336b394e6c0ae67f781ff" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad178f94548cb3c9b1628cc0e5d3ae737" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_friction_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a04b9d1b06be744be5df80b1e5cd4cdbb" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_friction_dir</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ac5d8e880cb1a4ffab5da4f95ee9f481f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_friction_dir</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a576cc19dbf9fcc1d6ecd36db4eefa28f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_ghost</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0ba8cc647e4377d448f6d04b8274cd5f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_joint_name</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7c61be2f9030a7eb030899d01f6f0c1d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_mimic</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aabe0ce110443bbf7edc9e3cbb4b206f0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_position_enforced</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a03107a2acedf29d9125265e5515aec67" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_position_enforced</name></member>
+      <member refid="classrobot__dart_1_1Robot_1af89cffc9ac317ac2d0d4490c66817921" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_position_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a1c01a0683952e842cc55b6b96d1e4697" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_position_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a45bff48126acf1c3b1440053408eda7d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_positions</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad649f474ec7ea7390c1f2ae143988b4c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_restitution_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aeac33d4b4f153d10ae32763ccafa5e96" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_restitution_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3ce18d0787ba9e40e45eaed02fdeb31a" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_restitution_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2a9d2e74efb4833f7d5a0e2df9725511" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_secondary_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab8a0b5b47a86fce8b73a0458112c2e7e" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_secondary_friction_coeff</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab42cc7938f120692e9194e0f3a01631c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_secondary_friction_coeffs</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ad17041d41891b54b96f99ab4ccf380d9" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_self_collision</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a6e252fde5240760f124cfd4deffb70e0" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_spring_stiffnesses</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ae6933d0a210ce69675a6cf730850306c" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_spring_stiffnesses</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a7e1a2418605dba9850c77b440fe7de9f" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_velocities</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a3b7f4c92aef9ed078f4d76c92238ff35" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_velocity_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a0e79dee604da70322160164799ddd086" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>set_velocity_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a68e3847796190e75682d963189f4b82d" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>skeleton</name></member>
+      <member refid="classrobot__dart_1_1Robot_1aa05256ac963fa4282ed6ba13fc7aa13a" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>spring_stiffnesses</name></member>
+      <member refid="classrobot__dart_1_1Robot_1abf23bd42f3dd209a0950697f54921707" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>update</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2d5700673de40eece09188ab445b8833" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>update_joint_dof_maps</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3e_1a11c59f7eeb29cffae4179ddf5c514186" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>Ur3e</name></member>
+      <member refid="classrobot__dart_1_1robots_1_1Ur3eHand_1a65147f9b3570db41b9cfcbe7edd53781" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>Ur3eHand</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a9b7cf7ba649853067163c21dc92c6df1" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>vec_dof</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a814e4c94ef50f8295d95ada6c4322366" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>velocities</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a2643cd261364ca54d1438bef11a9aabd" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>velocity_lower_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1a5d31f1b79e3ca556421546d14f49dc35" prot="public" virt="non-virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>velocity_upper_limits</name></member>
+      <member refid="classrobot__dart_1_1Robot_1ab1b72ace13d18ba2f3cb7a8b9d9f1b53" prot="public" virt="virtual"><scope>robot_dart::robots::Ur3eHand</scope><name>~Robot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

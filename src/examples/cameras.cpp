@@ -1,9 +1,8 @@
 #include <robot_dart/control/pd_control.hpp>
-#include <robot_dart/robot_dart_simu.hpp>
-#include <robot_dart/robots/iiwa.hpp>
-
 #include <robot_dart/gui/magnum/graphics.hpp>
 #include <robot_dart/gui/magnum/sensor/camera.hpp>
+#include <robot_dart/robot_dart_simu.hpp>
+#include <robot_dart/robots/iiwa.hpp>
 
 class MyApp : public robot_dart::gui::magnum::GlfwApplication {
 public:
@@ -46,26 +45,53 @@ int main()
     configuration.height = 768;
     auto graphics = std::make_shared<robot_dart::gui::magnum::BaseGraphics<MyApp>>(configuration);
     simu.set_graphics(graphics);
-    graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
 
+    // set the position of the main camera, and the position where the main camera is looking at
+    graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
     // record images from main camera/graphics
     graphics->camera().record(true);
     // we can also record a video directly to a file --- requires the executable of ffmpeg
     graphics->record_video("video-main.mp4", simu.graphics_freq());
-
+    // @ADD_NEW_CAMERA@
     // Add camera
     auto camera = std::make_shared<robot_dart::sensor::Camera>(graphics->magnum_app(), 256, 256);
+    // @ADD_NEW_CAMERA_END@
+
+    // @MANIPULATE_CAM_SEP@
     camera->camera().set_far_plane(5.f);
+    camera->camera().set_near_plane(0.01f);
+    camera->camera().set_fov(60.0f);
+    // @MANIPULATE_CAM_SEP_END@
+
+    // @MANIPULATE_CAM@
+    camera->camera().set_camera_params(5., // far plane
+        0.01f, // near plane
+        60.0f, // field of view
+        600, // width
+        400 // height
+    );
+    // @MANIPULATE_CAM_END@
+
     camera->camera().record(true, true); // cameras are recording color images by default, enable depth images as well for this example
+    // @RECORD_VIDEO_CAMERA@
     // cameras can also record video
     camera->record_video("video-camera.mp4");
-    // camera->look_at({-0.5, -3., 0.75}, {0.5, 0., 0.2});
+    // @RECORD_VIDEO_CAMERA_END@
+
+    // @CAM_POSITION@
+    // set the position of the camera, and the position where the main camera is looking at
+    Eigen::Vector3d cam_pos = {-0.5, -3., 0.75};
+    Eigen::Vector3d cam_looks_at = {0.5, 0., 0.2};
+    camera->look_at(cam_pos, cam_looks_at);
+    // @CAM_POSITION_END@
+
+    // @CAM_ATTACH@
     Eigen::Isometry3d tf;
-    // tf.setIdentity();
     tf = Eigen::AngleAxisd(3.14, Eigen::Vector3d{1., 0., 0.});
     tf *= Eigen::AngleAxisd(1.57, Eigen::Vector3d{0., 0., 1.});
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
     camera->attach_to_body(robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
+    // @CAM_ATTACH_END@
 
     simu.add_checkerboard_floor(10.);
     simu.add_robot(robot);
