@@ -1269,12 +1269,12 @@
 </ul>
 <p>We have two URDF files:</p>
 <ul>
-<li><code>robots/talos/talos.urdf</code> :<ul>
+<li><code>utheque/talos/talos.urdf</code> :<ul>
 <li>accurate (simplified but made of polygons) collision meshes</li>
 <li>mimic joints for the gripper</li>
 <li>Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf">talos.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp">talos.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos.py">talos.py</a>]</li>
 </ul>
 </li>
 </ul>
@@ -1296,7 +1296,7 @@
 </code></pre></div>
 </div>
 <ul>
-<li><code>robot/talos/talos_fast.urdf</code>:<ul>
+<li><code>utheque/talos/talos_fast.urdf</code>:<ul>
 <li>no collision except for the feet, which are approximated by boxes</li>
 <li>grippers are fixed (no movement is allowed)</li>
 <li>compatible with the DART collision detector</li>
@@ -1306,6 +1306,17 @@
 </li>
 </ul>
 <p><code>talos_fast.urdf</code> is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.</p>
+<ul>
+<li><code>utheque/talos/talos_fast_collision.urdf</code>:<ul>
+<li>all bodies are approximated by boxes</li>
+<li>grippers are fixed (no movement is allowed)</li>
+<li>compatible with the DART collision detector</li>
+<li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos_fast.urdf">talos_fast_collision.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast_collision.cpp">talos_fast_collision.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos_fast_collision.py">talos_fast_collision.py</a>]</li>
+</ul>
+</li>
+</ul>
+<p><code>talos_fast_collision.urdf</code> is faster than <code>talos.urdf</code> but slower than <code>talos_fast.urdf</code>. You should use it when you need more detail collisions but faster simulation times.</p>
 <div class="admonition note">
 <p class="admonition-title">Load Talos Fast</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">C++</label></div>
@@ -1335,7 +1346,7 @@
 <li>18 kg</li>
 <li>workspace: 855 mm (horizontal), 1190 mm (vertical)</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/franka/franka.urdf">franka.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp">franka.cpp</a>]
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp">franka.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/franka.py">franka.py</a>]
 The URDF includes the gripper.</li>
 </ul>
 <div class="admonition note">
@@ -1364,7 +1375,7 @@ The URDF includes the gripper.</li>
 <li>29.5 kg</li>
 <li>7 degrees of freedom</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/iiwa.urdf">iiwa.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp">iiwa.cpp</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp">iiwa.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/iiwa.py">iiwa.py</a>]</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Load Iiwa</p>
@@ -1394,7 +1405,7 @@ The URDF includes the gripper.</li>
 <li>We do not simulate the hands</li>
 <li>Our model is close to the <a href="https://members.loria.fr/JBMouret/robots.html">Inria's iCub</a>, but it has not been checked in detail.</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/icub.urdf">icub.urdf</a>]</li>
-<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp">icub.cpp</a>]</li>
+<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp">icub.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/icub.py">icub.py</a>]</li>
 </ul>
 <p><em>Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.</em></p>
 <div class="admonition note">
@@ -1476,7 +1487,7 @@ The URDF includes the gripper.</li>
 <li>We do not simulate the foot pressure sensors (yet)</li>
 <li>One can easily add a depth camera on the head</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf">a1.urdf</a>]</li>
-<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp">a1.cpp</a>]</li>
+<li>Example [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp">a1.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/a1.py">a1.py</a>]</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Load A1</p>
@@ -1530,7 +1541,7 @@ The URDF includes the gripper.</li>
 <li>6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)</li>
 <li>simple URDF (no meshes)</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf">pexod.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp">hexapod.cpp</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp">hexapod.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/hexapod.py">hexapod.py</a>]</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Load Hexapod</p>
@@ -1573,7 +1584,7 @@ The URDF includes the gripper.</li>
 <li>5 degrees of freedom</li>
 <li>simple URDF (no meshes)</li>
 <li>URDF: [<a href="https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf">arm.urdf</a>]</li>
-<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp">arm.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/arm.py">arm.py</a>]</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Load Simple Arm</p>

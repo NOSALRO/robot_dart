@@ -37,12 +37,12 @@ Talos is a humanoid robot made by [PAL Robotics](https://pal-robotics.com/robots
 
 We have two URDF files:
 
-- `robots/talos/talos.urdf` :
+- `utheque/talos/talos.urdf` :
     * accurate (simplified but made of polygons) collision meshes
     * mimic joints for the gripper
     * Not compatible the DART collision detector (you need to use FCL collision detector - shipped with DART)
     * URDF: [[talos.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos.urdf)]
-    * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)] [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos.py)]
+    * Example: [[talos.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos.cpp)] [[talos.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos.py)]
 
 !!! note "Load Talos"
     === "C++"
@@ -50,7 +50,7 @@ We have two URDF files:
     === "Python"
 {{TALOS_PYTHON}}
     
-- `robot/talos/talos_fast.urdf`:
+- `utheque/talos/talos_fast.urdf`:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
     * compatible with the DART collision detector
@@ -58,6 +58,16 @@ We have two URDF files:
     * Example: [[talos_fast.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast.cpp)]
 
 `talos_fast.urdf` is faster because it makes it possible to use the DART collision detector (and has much collision shapes). You should prefer it except if you want to use the grippers (e.g., for manipulation) or are working on self-collisions.
+
+- `utheque/talos/talos_fast_collision.urdf`:
+    * all bodies are approximated by boxes
+    * grippers are fixed (no movement is allowed)
+    * compatible with the DART collision detector
+    * URDF: [[talos_fast_collision.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/talos/talos_fast.urdf)]
+    * Example: [[talos_fast_collision.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/talos_fast_collision.cpp)] [[talos_fast_collision.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/talos_fast_collision.py)]
+
+`talos_fast_collision.urdf` is faster than `talos.urdf` but slower than `talos_fast.urdf`. You should use it when you need more detail collisions but faster simulation times.
+
 !!! note "Load Talos Fast"
     === "C++"
 {{TALOS_FAST}}
@@ -77,7 +87,7 @@ The Franka is a modern manipulator made by [Franka Emika Panda](https://www.fran
 - 18 kg
 - workspace: 855 mm (horizontal), 1190 mm (vertical)
 - URDF: [[franka.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/franka/franka.urdf)]
-- Example: [[franka.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp)]
+- Example: [[franka.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/franka.cpp)] [[franka.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/franka.py)]
 The URDF includes the gripper.
 !!! note "Load Franka"
     === "C++"
@@ -95,7 +105,7 @@ The LBR iiwa is manufactured by [KUKA](https://www.kuka.com/en-de/products/robot
 - 29.5 kg
 - 7 degrees of freedom
 - URDF: [[iiwa.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/iiwa.urdf)]
-- Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)]
+- Example: [[iiwa.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/iiwa.cpp)] [[iiwa.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/iiwa.py)]
 
 !!! note "Load Iiwa"
     === "C++"
@@ -115,7 +125,7 @@ The iCub is a open source humanoid robot made by the [Instituto Italiano di Tecn
 - We do not simulate the hands
 - Our model is close to the [Inria's iCub](https://members.loria.fr/JBMouret/robots.html), but it has not been checked in detail.
 - URDF: [[icub.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/iiwa/icub.urdf)]
-- Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)]
+- Example [[icub.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/icub.cpp)] [[icub.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/icub.py)]
 
 *Please note that the mesh files (.glb) require assimp 5.x (and not assimp4.x usually shipped with ROS). If you cannot load the URDF, please check your assimp version.*
 !!! note "Load iCub"
@@ -145,7 +155,7 @@ A1 is a quadruped robot made by the [Unitree Robotics](https://www.unitree.com/p
 - We do not simulate the foot pressure sensors (yet)
 - One can easily add a depth camera on the head
 - URDF: [[a1.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/unitree_a1/a1.urdf)]
-- Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)]
+- Example [[a1.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/a1.cpp)] [[a1.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/a1.py)]
 !!! note "Load A1"
     === "C++"
 {{A1}}
@@ -172,7 +182,7 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - 6 legs, 3 degrees of freedom for each leg (18 degrees of freedom)
 - simple URDF (no meshes)
 - URDF: [[pexod.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/pexod.urdf)]
-- Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)]
+- Example: [[hexapod.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/hexapod.cpp)] [[hexapod.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/hexapod.py)]
 
 !!! note "Load Hexapod"
     === "C++"
@@ -194,7 +204,7 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
 - 5 degrees of freedom
 - simple URDF (no meshes)
 - URDF: [[arm.urdf](https://github.com/resibots/robot_dart/blob/master/utheque/arm.urdf)]
-- Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)]
+- Example: [[arm.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/arm.cpp)] [[arm.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/arm.py)]
 
 !!! note "Load Simple Arm"
     === "C++"
