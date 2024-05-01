@@ -34,11 +34,12 @@ This work was supported by the [Hellenic Foundation for Research and Innovation]
 <img src="https://www.elidek.gr/wp-content/themes/elidek/images/elidek_logo_en.png" alt="logo_elidek"/>
 <p/>
 
-This work was conducted within the [Computational Intelligence Lab](http://cilab.math.upatras.gr/) (CILab), Department of Mathematics, University of Patras, Greece.
+This work was conducted within the [Laboratory of Automation and Robotics](https://lar.ece.upatras.gr/) (LAR), Department of Electrical and Computer Engineering, and the [Computational Intelligence Lab](http://cilab.math.upatras.gr/) (CILab), Department of Mathematics at the University of Patras, Greece.
 
 <p align="center">
+<img src="http://lar.ece.upatras.gr/wp-content/uploads/sites/147/2022/10/lar_profile_alpha.png" alt="logo_lar" width="20%"/>
 <img src="https://nosalro.github.io/images/logo_cilab.jpg" alt="logo_cilab" width="50%"/>
-<img src="https://www.upatras.gr/wp-content/uploads/up_2017_logo_en.png" alt="logo_cilab" width="50%"/>
+<img src="https://www.upatras.gr/wp-content/uploads/up_2017_logo_en.png" alt="logo_upatras" width="50%"/>
 </p>
 
 <!-- This work was partly supported by the ResiBots ERC Project (http://www.resibots.eu).
