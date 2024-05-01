@@ -16,6 +16,8 @@ DEPS_FOLDER=${2:-$DEPS_FOLDER}
 DART_TAG=${3:-$DART_TAG}
 SUDOCMD=${4:-$SUDOCMD}
 
+eval SUDOCMD="${SUDOCMD}"
+
 python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
 ${SUDOCMD} mkdir -p ${PREFIX}/$python_dist_dir
 
