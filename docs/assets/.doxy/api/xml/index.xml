@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.11.0" xml:lang="en-US">
   <compound refid="classrobot__dart_1_1robots_1_1A1" kind="class"><name>robot_dart::robots::A1</name>
     <member refid="classrobot__dart_1_1robots_1_1A1_1a55f0a175e54b0a6ea6d04e9f9b652b87" kind="variable"><name>_imu</name></member>
     <member refid="classrobot__dart_1_1robots_1_1A1_1a2ddf0720754b59ecdf6e971f1b77ea19" kind="function"><name>A1</name></member>

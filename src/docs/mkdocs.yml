@@ -52,6 +52,7 @@ nav:
   - Manual Installation: install.md
   - Supported robots: robots.md
   - FAQ: faq.md
+  - Publications using RobotDART: pubs.md
   - API:
       - 'Links': 'api/links.md'
       - 'Classes':

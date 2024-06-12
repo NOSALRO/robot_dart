@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::gs::Camera</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
@@ -914,8 +914,8 @@
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a291058c5ff18dedee82b7487bfcd40e2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_up</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a345f0161816f1eabe9f218e94e8b78d5" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_width</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1acc2cec50368bd212fa651fc8ff1854e2" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>_yaw_object</name></member>
-      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>camera</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a28535b38ec77b4f112a23cd8a9a6bb5a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>Camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a70bc14875a7f4d584bca55f96fbc2644" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>camera</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1a7d9c11e138585c15c30dd727c880e5ee" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>camera_object</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1ad96ed2fb36dc008232f01cb8a111b271" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>depth_image</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera_1adea6a630731ae14515f89d4a0a19ac3b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::Camera</scope><name>draw</name></member>

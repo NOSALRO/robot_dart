@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21" kind="namespace" language="C++">
     <compoundname>robot_dart::gui::magnum::gs</compoundname>
     <sectiondef kind="enum">

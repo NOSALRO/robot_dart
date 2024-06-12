@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="stb__image__write_8h" kind="file" language="C++">
     <compoundname>stb_image_write.h</compoundname>
     <includes local="no">stdlib.h</includes>
@@ -2093,7 +2093,7 @@
 <codeline lineno="1618"><highlight class="comment">ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,<sp/>OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/></highlight></codeline>
 <codeline lineno="1619"><highlight class="comment">WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE<sp/>SOFTWARE.</highlight></codeline>
 <codeline lineno="1620"><highlight class="comment">------------------------------------------------------------------------------</highlight></codeline>
-<codeline lineno="1621"><highlight class="comment">*/</highlight></codeline>
+<codeline lineno="1621"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="robot_dart/gui/stb_image_write.h"/>
   </compounddef>

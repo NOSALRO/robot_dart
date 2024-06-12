@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGraphics" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::WindowlessGraphics</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</basecompoundref>
@@ -78,15 +78,15 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>robot_dart::gui::Base</label>
+        <link refid="classrobot__dart_1_1gui_1_1Base"/>
+      </node>
       <node id="2">
         <label>robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</label>
         <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="3">
-        <label>robot_dart::gui::Base</label>
-        <link refid="classrobot__dart_1_1gui_1_1Base"/>
       </node>
       <node id="1">
         <label>robot_dart::gui::magnum::WindowlessGraphics</label>
@@ -96,15 +96,6 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</label>
-        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-        <childnode refid="6" relation="usage">
-          <edgelabel>_configuration</edgelabel>
-        </childnode>
-      </node>
       <node id="4">
         <label>robot_dart::RobotDARTSimu</label>
         <link refid="classrobot__dart_1_1RobotDARTSimu"/>
@@ -121,6 +112,15 @@
         <link refid="classrobot__dart_1_1gui_1_1Base"/>
         <childnode refid="4" relation="usage">
           <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::gui::magnum::BaseGraphics&lt; WindowlessGLApplication &gt;</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseGraphics"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_configuration</edgelabel>
         </childnode>
       </node>
       <node id="6">

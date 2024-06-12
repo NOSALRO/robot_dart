@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
   <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" kind="class" language="C++" prot="public">
     <compoundname>robot_dart::gui::magnum::GlfwApplication</compoundname>
     <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseApplication</basecompoundref>
@@ -92,8 +92,8 @@
     </sectiondef>
     <sectiondef kind="protected-static-attrib">
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1afa36bf510f8d06496071337bf3877f7b" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr Magnum::Float</type>
-        <definition>constexpr Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed</definition>
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed</definition>
         <argsstring></argsstring>
         <name>_speed</name>
         <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed</qualifiedname>

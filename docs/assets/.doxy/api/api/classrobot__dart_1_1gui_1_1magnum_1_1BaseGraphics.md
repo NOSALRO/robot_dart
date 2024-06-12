@@ -112,21 +112,21 @@ See [robot\_dart::gui::Base](classrobot__dart_1_1gui_1_1Base.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Base**](#function-base) () <br> |
-| virtual [**DepthImage**](structrobot__dart_1_1gui_1_1DepthImage.md) | [**depth\_array**](#function-depth_array) () <br> |
-| virtual [**GrayscaleImage**](structrobot__dart_1_1gui_1_1GrayscaleImage.md) | [**depth\_image**](#function-depth_image) () <br> |
-| virtual bool | [**done**](#function-done) () const<br> |
-| virtual size\_t | [**height**](#function-height) () const<br> |
-| virtual [**Image**](structrobot__dart_1_1gui_1_1Image.md) | [**image**](#function-image) () <br> |
-| virtual [**GrayscaleImage**](structrobot__dart_1_1gui_1_1GrayscaleImage.md) | [**raw\_depth\_image**](#function-raw_depth_image) () <br> |
-| virtual void | [**refresh**](#function-refresh) () <br> |
-| virtual void | [**set\_enable**](#function-set_enable) (bool) <br> |
-| virtual void | [**set\_fps**](#function-set_fps) (int) <br> |
-| virtual void | [**set\_render\_period**](#function-set_render_period) (double) <br> |
-| virtual void | [**set\_simu**](#function-set_simu) ([**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* simu) <br> |
-|  const [**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* | [**simu**](#function-simu) () const<br> |
-| virtual size\_t | [**width**](#function-width) () const<br> |
-| virtual  | [**~Base**](#function-base) () <br> |
+|   | [**Base**](classrobot__dart_1_1gui_1_1Base.md#function-base) () <br> |
+| virtual [**DepthImage**](structrobot__dart_1_1gui_1_1DepthImage.md) | [**depth\_array**](classrobot__dart_1_1gui_1_1Base.md#function-depth_array) () <br> |
+| virtual [**GrayscaleImage**](structrobot__dart_1_1gui_1_1GrayscaleImage.md) | [**depth\_image**](classrobot__dart_1_1gui_1_1Base.md#function-depth_image) () <br> |
+| virtual bool | [**done**](classrobot__dart_1_1gui_1_1Base.md#function-done) () const<br> |
+| virtual size\_t | [**height**](classrobot__dart_1_1gui_1_1Base.md#function-height) () const<br> |
+| virtual [**Image**](structrobot__dart_1_1gui_1_1Image.md) | [**image**](classrobot__dart_1_1gui_1_1Base.md#function-image) () <br> |
+| virtual [**GrayscaleImage**](structrobot__dart_1_1gui_1_1GrayscaleImage.md) | [**raw\_depth\_image**](classrobot__dart_1_1gui_1_1Base.md#function-raw_depth_image) () <br> |
+| virtual void | [**refresh**](classrobot__dart_1_1gui_1_1Base.md#function-refresh) () <br> |
+| virtual void | [**set\_enable**](classrobot__dart_1_1gui_1_1Base.md#function-set_enable) (bool) <br> |
+| virtual void | [**set\_fps**](classrobot__dart_1_1gui_1_1Base.md#function-set_fps) (int) <br> |
+| virtual void | [**set\_render\_period**](classrobot__dart_1_1gui_1_1Base.md#function-set_render_period) (double) <br> |
+| virtual void | [**set\_simu**](classrobot__dart_1_1gui_1_1Base.md#function-set_simu) ([**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* simu) <br> |
+|  const [**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* | [**simu**](classrobot__dart_1_1gui_1_1Base.md#function-simu) () const<br> |
+| virtual size\_t | [**width**](classrobot__dart_1_1gui_1_1Base.md#function-width) () const<br> |
+| virtual  | [**~Base**](classrobot__dart_1_1gui_1_1Base.md#function-base) () <br> |
 
 
 
@@ -158,7 +158,7 @@ See [robot\_dart::gui::Base](classrobot__dart_1_1gui_1_1Base.md)
 
 | Type | Name |
 | ---: | :--- |
-|  [**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* | [**\_simu**](#variable-_simu)   = = nullptr<br> |
+|  [**RobotDARTSimu**](classrobot__dart_1_1RobotDARTSimu.md) \* | [**\_simu**](classrobot__dart_1_1gui_1_1Base.md#variable-_simu)   = = nullptr<br> |
 
 
 
