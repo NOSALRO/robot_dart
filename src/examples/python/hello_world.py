@@ -6,7 +6,8 @@ import RobotDART as rd
 robot = rd.Robot("pexod.urdf");
 # @HELLO_WORLD_ROBOT_CREATION_PYTHON_END@
 
-# @HELLO_WORLD_ROBOT_PLACING_PYTHON@
+# @HELLO_WORLD_ROBOT_PLACING_PYTHON@\
+# pose is a 6D vector (first 3D orientation in angle-axis and last 3D translation)
 robot.set_base_pose([0., 0., 0., 0., 0., 0.2])
 # @HELLO_WORLD_ROBOT_PLACING_PYTHON_END@
 
