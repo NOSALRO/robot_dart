@@ -14,18 +14,21 @@ int main()
     ctrl << 0.0;
     // @SIMPLE_CONTROL@
     auto controller1 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
+    // add the controller to the robot, with a default weight of 1.0
     robot->add_controller(controller1);
     // @SIMPLE_CONTROL_END@
     ctrl << -1.0;
     auto controller2 = std::make_shared<robot_dart::control::SimpleControl>(ctrl);
+    // add the controller to the robot, with a weight of 5.0
     robot->add_controller(controller2, 5.);
 
+    // initialize the simulation with a default timestep of 0.015s
     robot_dart::RobotDARTSimu simu;
 #ifdef GRAPHIC
     simu.set_graphics(std::make_shared<robot_dart::gui::magnum::Graphics>());
 #endif
     simu.add_robot(robot);
-
+    // the the dimensions of the pendulum to calculate the end effector position
     Eigen::Vector3d size(0.0402, 0.05, 1);
     std::cout << (robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
     simu.run(2.5);
@@ -34,7 +37,7 @@ int main()
     controller1->set_parameters(ctrl);
     simu.run(2.5);
     std::cout << (robot->body_pose("pendulum_link_1") * size).transpose() << std::endl;
-
+    // reset the positions, velocities, and accelerations of the robot, clear internal and external forces, and also commands
     robot.reset();
     return 0;
 }
