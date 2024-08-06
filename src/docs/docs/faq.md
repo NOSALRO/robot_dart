@@ -429,6 +429,6 @@ endif()
 
 ## **Where can I find complete working examples for either c++ or python?**
 
-!!! note "[C++ examples](https://github.com/resibots/robot_dart/tree/new_docs/src/examples)"
+!!! note "[C++ examples](https://github.com/NOSALRO/robot_dart/tree/master/src/examples)"
 
-!!! note "[Python examples](https://github.com/resibots/robot_dart/tree/new_docs/src/examples/python)"
+!!! note "[Python examples](https://github.com/NOSALRO/robot_dart/tree/master/src/examples/python)"
