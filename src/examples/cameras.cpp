@@ -92,8 +92,15 @@ int main()
     tf.translation() = Eigen::Vector3d(0., 0., 0.1);
     camera->attach_to_body(robot->body_node("iiwa_link_ee"), tf); // cameras are looking towards -z by default
     // @CAM_ATTACH_END@
-
-    simu.add_checkerboard_floor(10.);
+    // the default checkerboard floor values are the following:
+    // double floor_width = 10.0
+    // double floor_height = 0.1
+    // double size = 1.
+    // const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()
+    // const std::string& floor_name = "checkerboard_floor"
+    // const Eigen::Vector4d& first_color = dart::Color::White(1.)
+    // const Eigen::Vector4d& second_color = dart::Color::Gray(1.))
+    simu.add_checkerboard_floor();
     simu.add_robot(robot);
     Eigen::Vector6d pose;
     pose << 0., 0., 0., 1.5, 0., 0.25;
