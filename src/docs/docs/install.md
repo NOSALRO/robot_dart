@@ -93,6 +93,16 @@ mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DWITH_DART=ON -DWITH_EIGEN=ON ..
 make -j
 sudo make install
+
+# Installation of Magnum Python Bindings (some examples use them but this is optional)
+cd /path/to/tmp/folder
+git clone https://github.com/mosra/magnum-bindings.git
+cd magnum-bindings
+mkdir build && cd build
+cmake .. -DMAGNUM_WITH_PYTHON=ON
+make -j
+cd src/python
+sudo python3 setup.py install
 ```
 
 **For OSX you can also install Magnum via brew:** `brew install --HEAD mosra/magnum/corrade && brew install --HEAD mosra/magnum/magnum && brew install --HEAD mosra/magnum/magnum-plugins && brew install --HEAD mosra/magnum/magnum-integration --with-dartsim`
