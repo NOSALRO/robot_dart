@@ -23,6 +23,7 @@ For the quick installation manual, see the [quick installation page](quick_insta
 #### Optional
 - Boost (for unit tests)
 - Magnum (for graphics), https://github.com/mosra/magnum
+- [ffmpeg](https://www.ffmpeg.org/) (for video recording) - please install using your favorite package manager
 
 ### Installation of the dependencies
 
