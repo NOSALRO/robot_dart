@@ -3,7 +3,7 @@ import numpy as np
 import dartpy
 robot = rd.Iiwa()
 
-ctrl = [-0.3, np.pi/3, 0.2, -np.pi/4,  0., 0., -0.6]
+ctrl = [-0.3, np.pi / 3., 0.2, -np.pi / 4.,  0., 0., -0.6]
 controller = rd.PDControl(ctrl)
 robot.add_controller(controller)
 controller.set_pd(500., 50.)
