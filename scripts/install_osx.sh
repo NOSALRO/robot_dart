@@ -76,6 +76,17 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WIT
 make -j
 sudo make install
 
+cd ../..
+if [ ! -d "magnum-bindings" ]
+then
+git clone https://github.com/mosra/magnum-bindings.git
+cd magnum-bindings
+mkdir build && cd build
+cmake .. -DMAGNUM_WITH_PYTHON=ON
+make -j
+cd src/python
+sudo python3 setup.py install
+
 export PATH=/opt/magnum/bin:$PATH
 export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
 
