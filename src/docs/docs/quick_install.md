@@ -24,6 +24,7 @@ This will install everything needed! Once the script is successfully executed, o
 
 ```bash
 export PATH=/opt/magnum/bin:$PATH
+export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/magnum
 export LD_LIBRARY_PATH=/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=/opt/robot_dart/lib/python3.10/site-packages:$PYTHONPATH
 ```
