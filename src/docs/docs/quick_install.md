@@ -10,7 +10,12 @@
 </style>
 
 ## Scripts for Quick Installation of RobotDART
+
 In this page we provide standalone scripts for installing RobotDART for `Ubuntu` (>=20.04) and `OSX`. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the `/opt` folder. This way, one can be rest assured that their system will be clean.
+
+#### Video recording to file
+
+[ffmpeg](https://www.ffmpeg.org/) is needed for enabling the video recording capabilities. You can install this at any time using your favorite package manager (e.g. `apt` for Ubuntu or `brew` for Mac OSX).
 
 ### Ubuntu >=20.04
 

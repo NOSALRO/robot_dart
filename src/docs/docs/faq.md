@@ -87,13 +87,17 @@ Having multiple camera sensors is indeed possible. We can add as many cameras as
 {{ADD_NEW_CAMERA_PYTHON}}
 ## **How do I record a video?**
 
-In order to record a video of what the main or any other camera "sees", you need to call the function `record_video(path)` of the graphics class:
+In order to record a video (1) of what the main or any other camera "sees", you need to call the function `record_video(path)` of the graphics class:
+{.annotate}
+
+1.  :man_raising_hand: Make sure that you have `ffmpeg` installed on your system.
 === "C++"
 {{RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS}}
 === "Python"
     ```python
     graphics.record_video("talos_dancing.mp4")
     ```
+
 <!-- example not yet implemented^^  -->
 
 Or the camera class:
