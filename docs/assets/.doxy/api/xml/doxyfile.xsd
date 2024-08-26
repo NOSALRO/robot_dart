@@ -120,6 +120,7 @@
       <xsd:enumeration value="FILE_VERSION_FILTER"/>
       <xsd:enumeration value="LAYOUT_FILE"/>
       <xsd:enumeration value="CITE_BIB_FILES"/>
+      <xsd:enumeration value="EXTERNAL_TOOL_PATH"/>
       <xsd:enumeration value="QUIET"/>
       <xsd:enumeration value="WARNINGS"/>
       <xsd:enumeration value="WARN_IF_UNDOCUMENTED"/>
@@ -211,6 +212,7 @@
       <xsd:enumeration value="GENERATE_TREEVIEW"/>
       <xsd:enumeration value="FULL_SIDEBAR"/>
       <xsd:enumeration value="ENUM_VALUES_PER_LINE"/>
+      <xsd:enumeration value="SHOW_ENUM_VALUES"/>
       <xsd:enumeration value="TREEVIEW_WIDTH"/>
       <xsd:enumeration value="EXT_LINKS_IN_WINDOW"/>
       <xsd:enumeration value="OBFUSCATE_EMAILS"/>

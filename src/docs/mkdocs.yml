@@ -14,6 +14,7 @@ theme:
       note: fontawesome/solid/code
     logo: material/robot
     repo: fontawesome/brands/github
+    annotation: material/plus-circle-outline
   palette:
       # Palette toggle for light mode
     - scheme: default

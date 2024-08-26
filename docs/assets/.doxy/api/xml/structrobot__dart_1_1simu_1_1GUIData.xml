@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
   <compounddef id="structrobot__dart_1_1simu_1_1GUIData" kind="struct" language="C++" prot="public">
     <compoundname>robot_dart::simu::GUIData</compoundname>
     <innerclass refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData" prot="private">robot_dart::simu::GUIData::RobotData</innerclass>
