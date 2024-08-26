@@ -80,6 +80,7 @@ cd ../..
 if [ ! -d "magnum-bindings" ]
 then
 git clone https://github.com/mosra/magnum-bindings.git
+fi
 cd magnum-bindings
 mkdir build && cd build
 cmake .. -DMAGNUM_WITH_PYTHON=ON
