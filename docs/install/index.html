@@ -1464,7 +1464,7 @@
 <a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mosra/magnum-bindings.git
 <a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="nb">cd</span><span class="w"> </span>magnum-bindings
 <a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
-<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>cmake<span class="w"> </span>..<span class="w"> </span>-DMAGNUM_WITH_PYTHON<span class="o">=</span>ON
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DMAGNUM_WITH_PYTHON<span class="o">=</span>ON<span class="w"> </span>..
 <a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>make<span class="w"> </span>-j
 <a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="nb">cd</span><span class="w"> </span>src/python
 <a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>sudo<span class="w"> </span>python3<span class="w"> </span>setup.py<span class="w"> </span>install

@@ -85,7 +85,7 @@ git clone https://github.com/mosra/magnum-bindings.git
 fi
 cd magnum-bindings
 mkdir build && cd build
-cmake .. -DMAGNUM_WITH_PYTHON=ON
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_PYTHON=ON ..
 make -j
 cd src/python
 sudo python3 setup.py install
