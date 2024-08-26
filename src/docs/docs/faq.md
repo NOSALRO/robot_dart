@@ -407,8 +407,9 @@ In C++ you are also able to pre-allocate a custom number of OpenGL contexts so t
 You need to use `waf` to build RobotDART, but when installing the library a CMake module is installed. Thus it is possible use RobotDART in your code using CMake. You can find a complete example at [cmake/example](https://github.com/resibots/robot_dart/blob/master/cmake/example). In short the CMake would look like this:
 
 ### Prerequisites:
-- Ensure `robot_dart` is installed.
-- If `robot_dart` and `magnum` are not installed in standard locations, you can either:
+
+- Ensure `RobotDart` and `Magnum` are installed.
+- If `RobotDart` and `Magnum` are not installed in standard locations, you can either:
   - Set the `CMAKE_PREFIX_PATH` environment variable:
     ```sh
     export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/magnum
@@ -417,6 +418,7 @@ You need to use `waf` to build RobotDART, but when installing the library a CMak
     ```sh
     cmake -DRobotDART_DIR=/opt/robot_dart -DMagnum_DIR=/opt/magnum ..
     ```
+
 ``` cmake
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 project(robot_dart_example)

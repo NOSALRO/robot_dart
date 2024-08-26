@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
   <compounddef id="stb__image__write_8h" kind="file" language="C++">
     <compoundname>stb_image_write.h</compoundname>
     <includes local="no">stdlib.h</includes>
@@ -1266,7 +1266,7 @@
 <codeline lineno="791"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*stbiw__sbgrowf(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**arr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>increment,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itemsize)</highlight></codeline>
 <codeline lineno="792"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="793"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>*arr<sp/>?<sp/>2*stbiw__sbm(*arr)+increment<sp/>:<sp/>increment+1;</highlight></codeline>
-<codeline lineno="794"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>STBIW_REALLOC_SIZED(*arr<sp/>?<sp/>stbiw__sbraw(*arr)<sp/>:<sp/>0,<sp/>*arr<sp/>?<sp/>(stbiw__sbm(*arr)*itemsize<sp/>+<sp/>sizeof(int)*2)<sp/>:<sp/>0,<sp/>itemsize<sp/>*<sp/>m<sp/>+<sp/>sizeof(int)*2);</highlight></codeline>
+<codeline lineno="794"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>STBIW_REALLOC_SIZED(*arr<sp/>?<sp/>stbiw__sbraw(*arr)<sp/>:<sp/>0,<sp/>*arr<sp/>?<sp/>(stbiw__sbm(*arr)*itemsize<sp/>+<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)*2)<sp/>:<sp/>0,<sp/>itemsize<sp/>*<sp/>m<sp/>+<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)*2);</highlight></codeline>
 <codeline lineno="795"><highlight class="normal"><sp/><sp/><sp/>STBIW_ASSERT(p);</highlight></codeline>
 <codeline lineno="796"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p)<sp/>{</highlight></codeline>
 <codeline lineno="797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!*arr)<sp/>((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*)<sp/>p)[1]<sp/>=<sp/>0;</highlight></codeline>
