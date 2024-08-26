@@ -1,3 +1,5 @@
+set -e
+
 sudo apt-get -qq update
 sudo apt-get -y install software-properties-common mlocate
 sudo apt-add-repository -y ppa:dartsim/ppa

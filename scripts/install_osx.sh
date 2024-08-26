@@ -1,4 +1,4 @@
-set -x
+set -e
 
 CLEAN=0
 
