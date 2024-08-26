@@ -3,7 +3,7 @@ import numpy as np
 import dartpy
 robot = rd.Iiwa()
 
-ctrl = [-0.3, np.pi/3, 0.2, -np.pi, 4., 0., 0., -0.6]
+ctrl = [-0.3, np.pi / 3., 0.2, -np.pi / 4.,  0., 0., -0.6]
 controller = rd.PDControl(ctrl)
 robot.add_controller(controller)
 controller.set_pd(500., 50.)
@@ -37,14 +37,14 @@ camera.camera().set_fov(60.0)
 #  @MANIPULATE_CAM_PYTHON_SEP_END@
 
 #  @MANIPULATE_CAM_PYTHON@
-camera.camera().set_camera_params(5., #far plane
-                                  0.01, #near plane
-                                  60.0, # field of view
-                                  600, # width
-                                  400) #height
+camera.camera().set_camera_params(5.,  # far plane
+                                  0.01,  # near plane
+                                  60.0,  # field of view
+                                  600,  # width
+                                  400)  # height
 #  @MANIPULATE_CAM_PYTHON_END@
 
-camera.camera().record(True, True) # cameras are recording color images by default, enable depth images as well for this example
+camera.camera().record(True, True)  # cameras are recording color images by default, enable depth images as well for this example
 
 # @RECORD_VIDEO_CAMERA_PYTHON@
 
@@ -61,19 +61,27 @@ camera.look_at(cam_pos, cam_looks_at)
 
 # @CAM_ATTACH_PYTHON@
 tf = dartpy.math.Isometry3()
-rot =  dartpy.math.AngleAxis(3.14, [1., 0., 0.])
-rot = rot.multiply( dartpy.math.AngleAxis(1.57, [0., 0., 1.])).to_rotation_matrix()
+rot = dartpy.math.AngleAxis(3.14, [1., 0., 0.])
+rot = rot.multiply(dartpy.math.AngleAxis(1.57, [0., 0., 1.])).to_rotation_matrix()
 tf.set_translation([0., 0., 0.1])
-camera.attach_to_body(robot.body_node("iiwa_link_ee"), tf) # cameras are looking towards -z by default
+tf.set_rotation(rot)
+camera.attach_to_body(robot.body_node("iiwa_link_ee"), tf)  # cameras are looking towards -z by default
 # @CAM_ATTACH_PYTHON_END@
-
-simu.add_checkerboard_floor(10.)
+# the default checkerboard floor values are the following:
+# floor_width = 10.0
+# floor_height = 0.1,
+# size = 1.,
+# tf = dartpy.math.Isometry3.Identity() (transformation matrix of the floor)
+# floor_name = "checkerboard_floor",
+# first_color = magnum.Color3(0, 0, 0),
+# second_color = magnum.Color3(128, 128, 128)
+simu.add_checkerboard_floor()
 simu.add_robot(robot)
 
 
-pose = [ 0., 0., 0., 1.5, 0., 0.25]
+pose = [0., 0., 0., 1.5, 0., 0.25]
 simu.add_robot(rd.Robot.create_box([0.1, 0.1, 0.5], pose, "free", 1., [1, 0, 0, 1], "box"))
-pose = [ 0., 0., 0., 1.5, -0.5, 0.25]
+pose = [0., 0., 0., 1.5, -0.5, 0.25]
 simu.add_robot(rd.Robot.create_ellipsoid([0.2, 0.2, 0.2], pose, "free", 1., [1, 0, 0, 1], "sphere"))
 simu.add_sensor(camera)
 
@@ -99,12 +107,13 @@ rd.gui.save_png_image("camera-depth-raw.png", camera.raw_depth_image())
 
 depth_image = camera.depth_array()
 
-small_box = rd.Robot.create_box([0.01, 0.01, 0.01], np.zeros(6), "fixed", 1., [0,0,1,1], "box_pc")
-point_cloud = rd.gui.point_cloud_from_depth_array(depth_image, camera.camera_intrinsic_matrix(), camera.camera_extrinsic_matrix(), camera.camera().far_plane())
+small_box = rd.Robot.create_box([0.01, 0.01, 0.01], np.zeros(6), "fixed", 1., [0, 0, 1, 1], "box_pc")
+point_cloud = rd.gui.point_cloud_from_depth_array(
+    depth_image, camera.camera_intrinsic_matrix(), camera.camera_extrinsic_matrix(), camera.camera().far_plane())
 for i in range(len(point_cloud)):
-    if (i % 30 == 0): # do not display all the points in the cloud
-        pose =  0., 0., 0., point_cloud[i]
-        bbox = small_box.clone_ghost("box_" + str(i), [0, 0, 1,1])
+    if (i % 30 == 0):  # do not display all the points in the cloud
+        pose = 0., 0., 0., point_cloud[i]
+        bbox = small_box.clone_ghost("box_" + str(i), [0, 0, 1, 1])
         bbox.set_base_pose(pose)
         bbox.set_cast_shadows(False)
         simu.add_robot(bbox)
@@ -118,8 +127,9 @@ while (True):
         break
     if (simu.schedule(simu.graphics_freq())):
         depth_image = camera.depth_array()
-        point_cloud = rd.gui.point_cloud_from_depth_array(depth_image, camera.camera_intrinsic_matrix(), camera.camera_extrinsic_matrix(), camera.camera().far_plane())
-        print( simu.scheduler().current_time(), ": ", len(point_cloud))
+        point_cloud = rd.gui.point_cloud_from_depth_array(
+            depth_image, camera.camera_intrinsic_matrix(), camera.camera_extrinsic_matrix(), camera.camera().far_plane())
+        print(simu.scheduler().current_time(), ": ", len(point_cloud))
 
 
 robot.reset()
