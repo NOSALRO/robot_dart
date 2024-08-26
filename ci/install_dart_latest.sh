@@ -1,3 +1,5 @@
+set -e
+
 # Select Compiler
 if [ "$COMPILER" = "gcc" ]; then
 export CC=/usr/bin/gcc && export CXX=/usr/bin/g++

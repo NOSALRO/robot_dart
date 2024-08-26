@@ -1,3 +1,5 @@
+set -e
+
 CLEAN=0
 
 CLEAN=${1:-$CLEAN}
