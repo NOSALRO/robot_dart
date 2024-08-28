@@ -5,8 +5,7 @@ CLEAN=0
 CLEAN=${1:-$CLEAN}
 
 brew install binutils pybind11
-python -m pip install --upgrade pip
-pip3 install numpy setuptools
+brew install numpy python-setuptools
 
 brew install dartsim --only-dependencies
 
