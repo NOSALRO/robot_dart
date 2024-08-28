@@ -31,7 +31,7 @@ This will install everything needed! Once the script is successfully executed, o
 export PATH=/opt/magnum/bin:$PATH
 export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/magnum
 export LD_LIBRARY_PATH=/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=/opt/robot_dart/lib/python3.10/site-packages:$PYTHONPATH
+export PYTHONPATH=/opt/robot_dart/lib/python3.10/site-packages:/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 ```
 
 <!-- ```bash
@@ -52,10 +52,10 @@ This will install everything needed! Once the script is successfully executed, o
 
 ```bash
 export PATH=/opt/magnum/bin:$PATH
-export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/magnum
-export LD_LIBRARY_PATH=/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=/opt/robot_dart/lib/python3.10/site-packages:$PYTHONPATH
+export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/dart:/opt/magnum
+export LD_LIBRARY_PATH=/opt/magnum/lib:/opt/dart/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/opt/magnum/lib:/opt/dart/lib:/opt/robot_dart/lib:$DYLD_LIBRARY_PATH
+export PYTHONPATH=/opt/dart:/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.12/site-packages:/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 ```
-
 
 [^1]: You can run `python --version` to see your version. We only keep the major.minor (ignoring the patch version)

@@ -1239,7 +1239,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/magnum/bin:<span class="nv">$PATH</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span>/opt/robot_dart:/opt/magnum
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/magnum/lib:/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/robot_dart/lib/python3.10/site-packages:<span class="nv">$PYTHONPATH</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/robot_dart/lib/python3.10/site-packages:/opt/magnum/lib/python3/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
 <!-- ```bash
 export PATH=/opt/magnum/bin:$PATH
@@ -1256,9 +1256,10 @@ export PYTHONPATH=/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python
 </ul>
 <p>This will install everything needed! Once the script is successfully executed, one should add the following to their <code>~/.bashrc</code> or <code>~/.zshrc</code> file (you may need to swap the python version to yours<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/magnum/bin:<span class="nv">$PATH</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span>/opt/robot_dart:/opt/magnum
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/magnum/lib:/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/robot_dart/lib/python3.10/site-packages:<span class="nv">$PYTHONPATH</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span>/opt/robot_dart:/opt/dart:/opt/magnum
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/opt/magnum/lib:/opt/dart/lib:/opt/robot_dart/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/opt/magnum/lib:/opt/dart/lib:/opt/robot_dart/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/opt/dart:/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.12/site-packages:/opt/magnum/lib/python3/site-packages:<span class="nv">$PYTHONPATH</span>
 </code></pre></div>
 <div class="footnote">
 <hr />

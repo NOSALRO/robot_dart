@@ -45,7 +45,7 @@ sudo make install dartpy
 
 export LD_LIBRARY_PATH=/opt/dart/lib:$LD_LIBRARY_PATH
 export DYLD_LIBRARY_PATH=/opt/dart/lib:$DYLD_LIBRARY_PATH
-export PYTHONPATH=/opt/dart:$PYTHONPATH
+export PYTHONPATH=/opt/dart:/opt/dart/lib/python3/dist-packages:$PYTHONPATH
 
 if [ $CLEAN -ne 0 ]; then
     rm -rf corrade
@@ -113,15 +113,17 @@ mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_PYTHON=ON ..
 make -j
 cd src/python
-sudo python3 setup.py install
+sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
 
 cd ../../../../..
 if [ $CLEAN -ne 0 ]; then
     rm -rf temp_robot_dart
 fi
 
+export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
+
 # RobotDART
-python3 waf configure --prefix /opt/robot_dart --python --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
+python3 waf configure --prefix /opt/robot_dart --python --dart /opt/dart --magnum /opt/magnum
 python3 waf -j8
 python3 waf examples -j8
 sudo python3 waf install

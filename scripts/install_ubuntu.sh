@@ -4,6 +4,8 @@ CLEAN=0
 
 CLEAN=${1:-$CLEAN}
 
+sudo apt install -y lsb-release
+
 ub_version=$(cut -f2 <<< "$(lsb_release -r)")
 ub_v_list=$(echo $ub_version | tr ";" "\n")
 uv_v_major=$(echo $ub_v_list | awk '{print $1}')
@@ -11,7 +13,7 @@ uv_v_minor=$(echo $ub_v_list | awk '{print $2}')
 
 sudo apt install -y software-properties-common
 sudo apt install -y build-essential cmake pkg-config git
-sudo apt install -y python3-numpy python-is-python3
+sudo apt install -y python3-numpy python-is-python3 python3-setuptools
 
 if [ $uv_v_major -lt 22 ]; then
     sudo apt-add-repository -y ppa:dartsim/ppa
@@ -105,15 +107,17 @@ mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_PYTHON=ON ..
 make -j
 cd src/python
-sudo python3 setup.py install
+sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
 
 cd ../../../../..
 if [ $CLEAN -ne 0 ]; then
     rm -rf temp_robot_dart
 fi
 
+export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
+
 # RobotDART
-./waf configure --prefix /opt/robot_dart --python --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
+./waf configure --prefix /opt/robot_dart --python --magnum /opt/magnum
 ./waf -j8
 ./waf examples -j8
 sudo ./waf install
