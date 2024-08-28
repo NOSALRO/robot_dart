@@ -4,16 +4,24 @@ CLEAN=0
 
 CLEAN=${1:-$CLEAN}
 
-sudo apt-add-repository -y ppa:dartsim/ppa
+ub_version=$(cut -f2 <<< "$(lsb_release -r)")
+ub_v_list=$(echo $ub_version | tr ";" "\n")
+uv_v_major=$(echo $ub_v_list | awk '{print $1}')
+uv_v_minor=$(echo $ub_v_list | awk '{print $2}')
+
+sudo apt install -y software-properties-common
+if [ $uv_v_major -lt 22 ]; then
+    sudo apt-add-repository -y ppa:dartsim/ppa
+fi
 sudo apt update
 sudo apt install -y build-essential cmake pkg-config git
+sudo apt install -y python3-numpy python-is-python3 python3-dartpy
 sudo apt install -y libboost-regex-dev libboost-system-dev libboost-test-dev
 sudo apt install -y libdart-all-dev
 sudo apt install -y libxi-dev libxmu-dev freeglut3-dev libopenscenegraph-dev
 sudo apt install -y libassimp-dev pybind11-dev
 sudo apt install -y libopenal-dev libglfw3-dev libsdl2-dev libopenexr-dev
 sudo apt install -y libdevil-dev libpng-dev libfaad-dev libfreetype6-dev libglm-dev
-sudo apt install -y python3-pip python3-numpy python-is-python3
 
 if [ $CLEAN -ne 0 ]; then
     echo "-- Cleaning.."
