@@ -10,12 +10,18 @@ uv_v_major=$(echo $ub_v_list | awk '{print $1}')
 uv_v_minor=$(echo $ub_v_list | awk '{print $2}')
 
 sudo apt install -y software-properties-common
+sudo apt install -y build-essential cmake pkg-config git
+sudo apt install -y python3-numpy python-is-python3
+
 if [ $uv_v_major -lt 22 ]; then
     sudo apt-add-repository -y ppa:dartsim/ppa
+    sudo apt update
+    sudo apt install -y python3-pip
+    pip3 install dartpy
+else
+    sudo apt install -y python3-dartpy
 fi
-sudo apt update
-sudo apt install -y build-essential cmake pkg-config git
-sudo apt install -y python3-numpy python-is-python3 python3-dartpy
+
 sudo apt install -y libboost-regex-dev libboost-system-dev libboost-test-dev
 sudo apt install -y libdart-all-dev
 sudo apt install -y libxi-dev libxmu-dev freeglut3-dev libopenscenegraph-dev
