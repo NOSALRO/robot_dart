@@ -6,10 +6,9 @@ CLEAN=${1:-$CLEAN}
 
 brew install binutils pybind11
 python -m pip install --upgrade pip
-pip3 install numpy
+pip3 install numpy setuptools
 
 brew install dartsim --only-dependencies
-pip3 install dartpy
 
 brew install sdl2 glfw eigen glm bullet assimp devil faad2 freetype glslang harfbuzz libpng libspng jpeg openexr spirv-tools zstd webp
 
@@ -26,10 +25,34 @@ mkdir -p temp_robot_dart
 cd temp_robot_dart
 
 if [ $CLEAN -ne 0 ]; then
+    rm -rf dart
+fi
+
+# DART related
+if [ ! -d "dart" ]
+then
+git clone https://github.com/dartsim/dart.git
+fi
+cd dart
+git checkout tags/v6.13.2
+if [ -d "build" ] # In case of a previous attempt that has not been clean
+then
+  rm -rf build
+fi
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/dart -DDART_BUILD_DARTPY=ON ..
+make -j8 dartpy
+sudo make install dartpy
+
+export LD_LIBRARY_PATH=/opt/dart/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=/opt/dart:$PYTHONPATH
+
+if [ $CLEAN -ne 0 ]; then
     rm -rf corrade
     rm -rf magnum
     rm -rf magnum-plugins
     rm -rf magnum-integration
+    rm -rf magnum-bindings
 fi
 
 # Magnum related
@@ -76,6 +99,9 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WIT
 make -j
 sudo make install
 
+export PATH=/opt/magnum/bin:$PATH
+export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
+
 cd ../..
 if [ ! -d "magnum-bindings" ]
 then
@@ -88,16 +114,13 @@ make -j
 cd src/python
 sudo python3 setup.py install
 
-export PATH=/opt/magnum/bin:$PATH
-export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
-
-cd ../../..
+cd ../../../../..
 if [ $CLEAN -ne 0 ]; then
     rm -rf temp_robot_dart
 fi
 
 # RobotDART
-./waf configure --prefix /opt/robot_dart --python
+./waf configure --prefix /opt/robot_dart --python --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
 ./waf -j8
 ./waf examples -j8
 sudo ./waf install
