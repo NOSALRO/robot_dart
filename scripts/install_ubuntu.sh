@@ -78,6 +78,9 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WIT
 make -j
 sudo make install
 
+export PATH=/opt/magnum/bin:$PATH
+export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
+
 cd ../..
 if [ ! -d "magnum-bindings" ]
 then
@@ -89,9 +92,6 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WIT
 make -j
 cd src/python
 sudo python3 setup.py install
-
-export PATH=/opt/magnum/bin:$PATH
-export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
 
 cd ../../../../..
 if [ $CLEAN -ne 0 ]; then
