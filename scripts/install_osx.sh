@@ -44,6 +44,7 @@ make -j8 dartpy
 sudo make install dartpy
 
 export LD_LIBRARY_PATH=/opt/dart/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/opt/dart/lib:$DYLD_LIBRARY_PATH
 export PYTHONPATH=/opt/dart:$PYTHONPATH
 
 if [ $CLEAN -ne 0 ]; then
@@ -100,6 +101,7 @@ sudo make install
 
 export PATH=/opt/magnum/bin:$PATH
 export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/opt/magnum/lib:$DYLD_LIBRARY_PATH
 
 cd ../..
 if [ ! -d "magnum-bindings" ]
@@ -119,7 +121,7 @@ if [ $CLEAN -ne 0 ]; then
 fi
 
 # RobotDART
-./waf configure --prefix /opt/robot_dart --python --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
-./waf -j8
-./waf examples -j8
-sudo ./waf install
+python3 waf configure --prefix /opt/robot_dart --python --corrade_install_dir /opt/magnum --magnum_install_dir /opt/magnum --magnum_plugins_install_dir /opt/magnum --magnum_integration_install_dir /opt/magnum
+python3 waf -j8
+python3 waf examples -j8
+sudo python3 waf install
