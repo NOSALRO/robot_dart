@@ -16,7 +16,7 @@ if [ $CLEAN -ne 0 ]; then
     echo "-- Cleaning.."
     # Remove previous attempts
     sudo rm -rf /opt/magnum
-    # rm -rf /opt/dart
+    sudo rm -rf /opt/dart
     sudo rm -rf /opt/robot_dart
 fi
 
