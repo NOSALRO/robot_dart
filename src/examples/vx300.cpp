@@ -8,7 +8,9 @@
 
 int main()
 {
+    // @VX300@
     auto robot = std::make_shared<robot_dart::robots::Vx300>();
+    // @VX300_END@
     robot->set_actuator_types("servo");
 
     Eigen::VectorXd ctrl = robot_dart::make_vector({0.0, 1.0, -1.5, 1.0, 0.5, 0.});
