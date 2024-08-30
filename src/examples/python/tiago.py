@@ -9,7 +9,7 @@ simu.set_collision_detector("bullet")
 
 freq = int(1//dt)
 # @TIAGO_PYTHON@
-robot = rd.Tiago()
+robot = rd.Tiago(freq)
 # @TIAGO_PYTHON_END@
 print("the model used is [", robot.model_filename(), "]")
 
