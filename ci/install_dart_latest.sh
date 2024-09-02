@@ -31,8 +31,7 @@ then
 git clone https://github.com/dartsim/dart.git
 fi
 cd dart
-git checkout $DART_TAG
-git pull
+git switch -c testbranch $DART_TAG
 mkdir -p build
 cd build
 
