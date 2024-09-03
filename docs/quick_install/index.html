@@ -492,6 +492,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#beta-windows-support-via-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta Windows support via WSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#osx" class="md-nav__link">
     <span class="md-ellipsis">
       OSX
@@ -1184,6 +1193,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#beta-windows-support-via-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beta Windows support via WSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#osx" class="md-nav__link">
     <span class="md-ellipsis">
       OSX
@@ -1225,7 +1243,7 @@
 </style>
 
 <h2 id="scripts-for-quick-installation-of-robotdart">Scripts for Quick Installation of RobotDART<a class="headerlink" href="#scripts-for-quick-installation-of-robotdart" title="Permanent link">&para;</a></h2>
-<p>In this page we provide standalone scripts for installing RobotDART for <code>Ubuntu</code> (&gt;=20.04) and <code>OSX</code>. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the <code>/opt</code> folder. This way, one can be rest assured that their system will be clean.</p>
+<p>In this page we provide standalone scripts for installing RobotDART for <code>Ubuntu</code> (&gt;=20.04), <code>OSX</code> and beta support for Windows (via WSL). The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the <code>/opt</code> folder. This way, one can be rest assured that their system will be clean.</p>
 <h4 id="video-recording-to-file">Video recording to file<a class="headerlink" href="#video-recording-to-file" title="Permanent link">&para;</a></h4>
 <p><a href="https://www.ffmpeg.org/">ffmpeg</a> is needed for enabling the video recording capabilities. You can install this at any time using your favorite package manager (e.g. <code>apt</code> for Ubuntu or <code>brew</code> for Mac OSX).</p>
 <h3 id="ubuntu-2004">Ubuntu &gt;=20.04<a class="headerlink" href="#ubuntu-2004" title="Permanent link">&para;</a></h3>
@@ -1247,6 +1265,8 @@ export LD_LIBRARY_PATH=/opt/dart/lib:/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIB
 export PYTHONPATH=/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.8/site-packages:$PYTHONPATH
 ``` -->
 
+<h3 id="beta-windows-support-via-wsl">Beta Windows support via WSL<a class="headerlink" href="#beta-windows-support-via-wsl" title="Permanent link">&para;</a></h3>
+<p>The installation script for Ubuntu works also in WSL (with the Ubuntu base image). There might be some issues with the graphical interface (see <a href="https://github.com/NOSALRO/robot_dart/issues/214">here</a>).</p>
 <h3 id="osx">OSX<a class="headerlink" href="#osx" title="Permanent link">&para;</a></h3>
 <p>To quickly install RobotDART on <code>Mac OSX</code>, we just need to run <code>./scripts/install_osx.sh</code> from the root of the repo. In more detail:</p>
 <ul>

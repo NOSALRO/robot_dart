@@ -11,7 +11,7 @@
 
 ## Scripts for Quick Installation of RobotDART
 
-In this page we provide standalone scripts for installing RobotDART for `Ubuntu` (>=20.04) and `OSX`. The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the `/opt` folder. This way, one can be rest assured that their system will be clean.
+In this page we provide standalone scripts for installing RobotDART for `Ubuntu` (>=20.04), `OSX` and beta support for Windows (via WSL). The scripts will install all the required dependencies and RobotDART. Notably, all dependencies that need to be compiled by source and RobotDART will be installed inside the `/opt` folder. This way, one can be rest assured that their system will be clean.
 
 #### Video recording to file
 
@@ -39,6 +39,10 @@ export PATH=/opt/magnum/bin:$PATH
 export LD_LIBRARY_PATH=/opt/dart/lib:/opt/magnum/lib:/opt/robot_dart/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=/opt/dart/lib/python3/dist-packages:/opt/robot_dart/lib/python3.8/site-packages:$PYTHONPATH
 ``` -->
+
+### Beta Windows support via WSL
+
+The installation script for Ubuntu works also in WSL (with the Ubuntu base image). There might be some issues with the graphical interface (see [here](https://github.com/NOSALRO/robot_dart/issues/214)).
 
 ### OSX
 
