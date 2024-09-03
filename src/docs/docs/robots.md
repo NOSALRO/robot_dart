@@ -273,3 +273,16 @@ RobotDART gives you the ability to load custom robots  that are defined in [URDF
         your_robot = robot_dart.Robot("path/to/model.urdf", your_model_packages)
     ```
 
+## Known issues
+
+For DART versions 6.14.4 and below, one might see the following error **when loading meshes with negative scaling**:
+
+```
+./dart/dynamics/MeshShape.cpp:240: void dart::dynamics::MeshShape::setScale(const Eigen::Vector3d&): Assertion `(scale.array() > 0.0).all()' failed.
+Aborted (core dumped)
+```
+
+There are two solutions to this:
+
+1. Download and build the latest DART master or a version greater than 6.14.4
+2. Edit your meshes to not have negative scale

@@ -597,6 +597,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1299,6 +1308,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known issues
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1774,6 +1792,16 @@ The URDF includes the gripper.</li>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">your_robot</span> <span class="o">=</span> <span class="n">robot_dart</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;path/to/model.urdf&quot;</span><span class="p">,</span> <span class="n">your_model_packages</span><span class="p">)</span>
 </code></pre></div>
 </div>
+<h2 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
+<p>For DART versions 6.14.4 and below, one might see the following error <strong>when loading meshes with negative scaling</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>./dart/dynamics/MeshShape.cpp:240: void dart::dynamics::MeshShape::setScale(const Eigen::Vector3d&amp;): Assertion `(scale.array() &gt; 0.0).all()&#39; failed.
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Aborted (core dumped)
+</code></pre></div>
+<p>There are two solutions to this:</p>
+<ol>
+<li>Download and build the latest DART master or a version greater than 6.14.4</li>
+<li>Edit your meshes to not have negative scale</li>
+</ol>
 
 
 
