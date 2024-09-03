@@ -49,7 +49,7 @@ We have two URDF files:
 {{TALOS}}
     === "Python"
 {{TALOS_PYTHON}}
-    
+
 - `utheque/talos/talos_fast.urdf`:
     * no collision except for the feet, which are approximated by boxes
     * grippers are fixed (no movement is allowed)
@@ -197,6 +197,43 @@ This hexapod is a simple 6-legged robot based on dynamixel actuators. It is simi
     === "Python"
 {{HELLO_WORLD_ROBOT_CREATION_PYTHON}}
 
+## Vx-300
+![Vx-300 robotic arm](images/vx300.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+
+The ViperX-300 is a versatile robotic arm developed by [Interbotix](https://docs.trossenrobotics.com/interbotix_xsarms_docs/specifications/vx300.html). It is designed for a range of applications including education, research, and light industrial tasks.
+
+- 5 degrees of freedom plus a gripper
+- URDF: [[vx300.urdf](https://github.com/NOSALRO/robot_dart/blob/master/utheque/vx300/vx300.urdf)]
+- Example: [[vx300.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/vx300.cpp)] [[vx300.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/vx300.py)]
+
+!!! note "Load Vx-300"
+    === "C++"
+{{VX300}}
+    === "Python"
+{{VX300_PYTHON}}
+
+
+
+## Tiago (PAL Robotics)
+![Tiago single-arm robot](images/tiago.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
+
+Tiago is a mobile manipulator robot developed by [PAL Robotics](https://pal-robotics.com/robots/tiago/), designed for tasks such as navigation, object manipulation, and human-robot interaction.
+
+- Datasheet: [pdf](https://pal-robotics.com/wp-content/uploads/2024/04/Datasheet-TIAGo.pdfs)
+- Height: 110 - 145 cm
+- Weight: 70 kg
+- Degrees of Freedom (DoF): 7 (Arm), 2 (Head), 2 (Mobile Base)
+- Force/Torque sensor in the gripper
+- URDF: [[tiago.urdf](https://github.com/NOSALRO/robot_dart/blob/master/utheque/tiago/tiago_steel.urdf)]
+- Example: [[tiago.cpp](https://github.com/resibots/robot_dart/blob/master/src/examples/tiago.cpp)] [[tiago.py](https://github.com/resibots/robot_dart/blob/master/src/examples/python/tiago.py)]
+
+!!! note "Load Tiago"
+    === "C++"
+{{TIAGO}}
+    === "Python"
+{{TIAGO_PYTHON}}
+
+
 ## Simple arm
 ![simple arm robot](images/arm.png){: style="display: block;margin-left: auto;margin-right: auto;width:70%"}
 
@@ -236,4 +273,3 @@ RobotDART gives you the ability to load custom robots  that are defined in [URDF
         your_robot = robot_dart.Robot("path/to/model.urdf", your_model_packages)
     ```
 
-    

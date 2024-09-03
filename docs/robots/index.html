@@ -562,6 +562,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vx-300" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vx-300
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tiago-pal-robotics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tiago (PAL Robotics)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#simple-arm" class="md-nav__link">
     <span class="md-ellipsis">
       Simple arm
@@ -1246,6 +1264,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vx-300" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vx-300
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tiago-pal-robotics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tiago (PAL Robotics)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#simple-arm" class="md-nav__link">
     <span class="md-ellipsis">
       Simple arm
@@ -1620,6 +1656,60 @@ The URDF includes the gripper.</li>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;pexod.urdf&quot;</span><span class="p">);</span>
 </code></pre></div>
 </div>
+<h2 id="vx-300">Vx-300<a class="headerlink" href="#vx-300" title="Permanent link">&para;</a></h2>
+<p><img alt="Vx-300 robotic arm" src="../images/vx300.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>The ViperX-300 is a versatile robotic arm developed by <a href="https://docs.trossenrobotics.com/interbotix_xsarms_docs/specifications/vx300.html">Interbotix</a>. It is designed for a range of applications including education, research, and light industrial tasks.</p>
+<ul>
+<li>5 degrees of freedom plus a gripper</li>
+<li>URDF: [<a href="https://github.com/NOSALRO/robot_dart/blob/master/utheque/vx300/vx300.urdf">vx300.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/vx300.cpp">vx300.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/vx300.py">vx300.py</a>]</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Load Vx-300</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Vx300</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:1"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Vx300</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<h2 id="tiago-pal-robotics">Tiago (PAL Robotics)<a class="headerlink" href="#tiago-pal-robotics" title="Permanent link">&para;</a></h2>
+<p><img alt="Tiago single-arm robot" src="../images/tiago.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
+<p>Tiago is a mobile manipulator robot developed by <a href="https://pal-robotics.com/robots/tiago/">PAL Robotics</a>, designed for tasks such as navigation, object manipulation, and human-robot interaction.</p>
+<ul>
+<li>Datasheet: <a href="https://pal-robotics.com/wp-content/uploads/2024/04/Datasheet-TIAGo.pdfs">pdf</a></li>
+<li>Height: 110 - 145 cm</li>
+<li>Weight: 70 kg</li>
+<li>Degrees of Freedom (DoF): 7 (Arm), 2 (Head), 2 (Mobile Base)</li>
+<li>Force/Torque sensor in the gripper</li>
+<li>URDF: [<a href="https://github.com/NOSALRO/robot_dart/blob/master/utheque/tiago/tiago_steel.urdf">tiago.urdf</a>]</li>
+<li>Example: [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/tiago.cpp">tiago.cpp</a>] [<a href="https://github.com/resibots/robot_dart/blob/master/src/examples/python/tiago.py">tiago.py</a>]</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Load Tiago</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="25:1"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Tiago</span><span class="o">&gt;</span><span class="p">(</span><span class="n">freq</span><span class="p">);</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="26:1"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Tiago</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+</code></pre></div>
+</div>
 <h2 id="simple-arm">Simple arm<a class="headerlink" href="#simple-arm" title="Permanent link">&para;</a></h2>
 <p><img alt="simple arm robot" src="../images/arm.png" style="display: block;margin-left: auto;margin-right: auto;width:70%" /></p>
 <ul>
@@ -1631,57 +1721,57 @@ The URDF includes the gripper.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Load Simple Arm</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="23:1"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">C++</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Arm</span><span class="o">&gt;</span><span class="p">();</span>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="24:1"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">Python</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Arm</span><span class="p">()</span>
-</code></pre></div>
-</div>
-<h2 id="loading-custom-robots">Loading Custom Robots<a class="headerlink" href="#loading-custom-robots" title="Permanent link">&para;</a></h2>
-<p>RobotDART gives you the ability to load custom robots  that are defined in <a href="http://wiki.ros.org/urdf/Tutorials">URDF</a>, <a href="https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels">SDF</a>, <a href="https://dartsim.github.io/skel_file_format.html">SKEL</a> or <a href="https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms">MJCF</a> files. For example, you can load a urdf model using:</p>
-<div class="admonition note">
-<p class="admonition-title">Load custom Robot</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="25:1"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">C++</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">);</span>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="26:1"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">Python</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>    <span class="n">your_robot</span> <span class="o">=</span> <span class="n">robot_dart</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;path/to/model.urdf&quot;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Load custom Robot with packages (e.g STL, DAE meshes)</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="27:1"><input checked="checked" id="__tabbed_27_1" name="__tabbed_27" type="radio" /><div class="tabbed-labels"><label for="__tabbed_27_1">C++</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">your_model_packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">model</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">dir</span><span class="err">&#39;</span><span class="p">);</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">your_model_packages</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;packages&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">robots</span><span class="o">::</span><span class="n">Arm</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="28:1"><input checked="checked" id="__tabbed_28_1" name="__tabbed_28" type="radio" /><div class="tabbed-labels"><label for="__tabbed_28_1">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>    <span class="n">your_model_packages</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/model/dir&quot;</span><span class="p">)]</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>    <span class="n">your_robot</span> <span class="o">=</span> <span class="n">robot_dart</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;path/to/model.urdf&quot;</span><span class="p">,</span> <span class="n">your_model_packages</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">Arm</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<h2 id="loading-custom-robots">Loading Custom Robots<a class="headerlink" href="#loading-custom-robots" title="Permanent link">&para;</a></h2>
+<p>RobotDART gives you the ability to load custom robots  that are defined in <a href="http://wiki.ros.org/urdf/Tutorials">URDF</a>, <a href="https://classic.gazebosim.org/tutorials?tut=build_model#ComponentsofSDFModels">SDF</a>, <a href="https://dartsim.github.io/skel_file_format.html">SKEL</a> or <a href="https://mujoco.readthedocs.io/en/latest/modeling.html#mjcf-mechanisms">MJCF</a> files. For example, you can load a urdf model using:</p>
+<div class="admonition note">
+<p class="admonition-title">Load custom Robot</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="29:1"><input checked="checked" id="__tabbed_29_1" name="__tabbed_29" type="radio" /><div class="tabbed-labels"><label for="__tabbed_29_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">);</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="30:1"><input checked="checked" id="__tabbed_30_1" name="__tabbed_30" type="radio" /><div class="tabbed-labels"><label for="__tabbed_30_1">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>    <span class="n">your_robot</span> <span class="o">=</span> <span class="n">robot_dart</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;path/to/model.urdf&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Load custom Robot with packages (e.g STL, DAE meshes)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="31:1"><input checked="checked" id="__tabbed_31_1" name="__tabbed_31" type="radio" /><div class="tabbed-labels"><label for="__tabbed_31_1">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">your_model_packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="err">&#39;</span><span class="n">model</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">dir</span><span class="err">&#39;</span><span class="p">);</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">your_robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">robot_dart</span><span class="o">::</span><span class="n">Robot</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;path/to/model.urdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">your_model_packages</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;packages&quot;</span><span class="p">);</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="32:1"><input checked="checked" id="__tabbed_32_1" name="__tabbed_32" type="radio" /><div class="tabbed-labels"><label for="__tabbed_32_1">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>    <span class="n">your_model_packages</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/model/dir&quot;</span><span class="p">)]</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">your_robot</span> <span class="o">=</span> <span class="n">robot_dart</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s2">&quot;path/to/model.urdf&quot;</span><span class="p">,</span> <span class="n">your_model_packages</span><span class="p">)</span>
 </code></pre></div>
 </div>
 
