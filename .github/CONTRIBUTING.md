@@ -69,7 +69,7 @@ When reporting an issue, please include:
 - Your system configuration (OS, compiler, etc.).
 
 ## Coding Standards
-- Follow the existing coding style in the repository.
+- Follow the existing [coding style](https://github.com/NOSALRO/robot_dart/blob/master/.clang-format) in the repository.
 - Document your code with comments.
 - Test your code thoroughly.
 
