@@ -48,6 +48,9 @@ This work was conducted within the [Laboratory of Automation and Robotics](https
 <img src="http://resibots.eu/_static/resibots_logo_black_200px.png" alt="logo_resibots"/>
 </p> -->
 
+## Contributing
+
+Check out our [contribution guidelines](https://github.com/NOSALRO/robot_dart/tree/master/.github/CONTRIBUTING.md) to get started.
 
 ## License
 
