@@ -58,7 +58,7 @@ Go to the original repository on GitHub and open a Pull Request from your branch
 - Describe the purpose of the PR and what it aims to solve.
 - Include any relevant issue numbers in the PR description.
 - Follow the project’s coding standards.
-- Make sure your PR is up-to-date with the latest `main` branch.
+- Make sure your PR is up-to-date with the latest `master` branch.
 
 ## Issue Reporting
 When reporting an issue, please include:
