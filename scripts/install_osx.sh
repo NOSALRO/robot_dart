@@ -24,7 +24,7 @@ mkdir -p temp_robot_dart
 cd temp_robot_dart
 
 if [ $CLEAN -ne 0 ]; then
-    rm -rf dart
+    sudo rm -rf dart
 fi
 
 # DART related
@@ -34,9 +34,9 @@ git clone https://github.com/dartsim/dart.git
 fi
 cd dart
 git checkout tags/v6.13.2
-if [ -d "build" ] # In case of a previous attempt that has not been clean
+if [ -d "build" ] # In case of a previous attempt that has not been cleaned
 then
-  rm -rf build
+  sudo rm -rf build
 fi
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/dart -DDART_BUILD_DARTPY=ON ..
@@ -48,11 +48,11 @@ export DYLD_LIBRARY_PATH=/opt/dart/lib:$DYLD_LIBRARY_PATH
 export PYTHONPATH=/opt/dart:/opt/dart/lib/python3/dist-packages:$PYTHONPATH
 
 if [ $CLEAN -ne 0 ]; then
-    rm -rf corrade
-    rm -rf magnum
-    rm -rf magnum-plugins
-    rm -rf magnum-integration
-    rm -rf magnum-bindings
+    sudo rm -rf corrade
+    sudo rm -rf magnum
+    sudo rm -rf magnum-plugins
+    sudo rm -rf magnum-integration
+    sudo rm -rf magnum-bindings
 fi
 
 # Magnum related
@@ -115,10 +115,7 @@ make -j
 cd src/python
 sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
 
-cd ../../../../..
-if [ $CLEAN -ne 0 ]; then
-    rm -rf temp_robot_dart
-fi
+cd ../../../../../..
 
 export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 

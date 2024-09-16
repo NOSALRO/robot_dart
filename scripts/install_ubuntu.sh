@@ -110,9 +110,6 @@ cd src/python
 sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
 
 cd ../../../../..
-if [ $CLEAN -ne 0 ]; then
-    rm -rf temp_robot_dart
-fi
 
 export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 
