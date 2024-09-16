@@ -70,7 +70,7 @@ jobs:
             brew install dartsim ;
           fi
       - name: Build Magnum
-        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install sdl2 glfw eigen glm bullet assimp devil faad2 freetype glslang harfbuzz libpng libspng jpeg openexr spirv-tools zstd webp && ${{github.workspace}}/ci/install_magnum.sh /usr/local ; fi
+        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install sdl2 glfw eigen glm bullet assimp devil faad2 freetype glslang harfbuzz libpng libspng jpeg openexr spirv-tools zstd webp python-setuptools && ${{github.workspace}}/ci/install_magnum.sh /usr/local ; fi
       - name: Build robot_dart
         run: |
           if [ "$COMPILER" = "gcc" ]; then
