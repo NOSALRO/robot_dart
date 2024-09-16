@@ -10,7 +10,7 @@ fi
 
 PREFIX=/usr
 DEPS_FOLDER=~/.deps
-DART_TAG=v6.13.2
+DART_TAG=v6.14.5
 SUDOCMD=sudo
 
 PREFIX=${1:-$PREFIX}

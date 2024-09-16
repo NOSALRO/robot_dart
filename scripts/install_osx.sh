@@ -33,7 +33,7 @@ then
 git clone https://github.com/dartsim/dart.git
 fi
 cd dart
-git checkout tags/v6.13.2
+git checkout tags/v6.14.5
 if [ -d "build" ] # In case of a previous attempt that has not been cleaned
 then
   sudo rm -rf build
