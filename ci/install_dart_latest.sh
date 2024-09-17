@@ -41,10 +41,13 @@ cmake -DDART_TREAT_WARNINGS_AS_ERRORS=OFF -DDART_BUILD_DARTPY=ON -DBUILD_SHARED_
 else
 cmake -DDART_TREAT_WARNINGS_AS_ERRORS=OFF -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=${PREFIX} ..
 fi
+# First C++ lib
 make -j4
+${SUDOCMD} make install
+
+# Then dartpy
 make -j4 dartpy
 ${SUDOCMD} make install
-${SUDOCMD} make install dartpy
 
 # We are inside the CI
 if [ "$PREFIX" = "/home/runner/.dart_install" ]; then
