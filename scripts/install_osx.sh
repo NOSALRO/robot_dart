@@ -33,7 +33,7 @@ then
 git clone https://github.com/dartsim/dart.git
 fi
 cd dart
-git checkout tags/v6.14.5
+git checkout tags/v6.13.2
 if [ -d "build" ] # In case of a previous attempt that has not been cleaned
 then
   sudo rm -rf build
@@ -115,7 +115,7 @@ make -j
 cd src/python
 sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
 
-cd ../../../../../..
+cd ../../../../../../..
 
 export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 
