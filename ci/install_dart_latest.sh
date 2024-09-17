@@ -48,14 +48,16 @@ ${SUDOCMD} make install dartpy
 
 # We are inside the CI
 if [ "$PREFIX" = "/home/runner/.dart_install" ]; then
-sudo ldconfig
+${SUDOCMD} ldconfig
 cd $CI_HOME
 
 # Hack for dartpy installation
 python_file=/usr/lib/python3/dist-packages/dartpy.cpython-310-x86_64-linux-gnu.so
 if [ -f "$python_file" ]; then
-sudo cp $python_file ${PREFIX}/$python_dist_dir
+${SUDOCMD} cp $python_file ${PREFIX}/$python_dist_dir
 fi
+
+${SUDOCMD} updatedb
 echo "Searching for dartpy.cpython-310-x86_64-linux-gnu.so ..."
 locate dartpy.cpython-310-x86_64-linux-gnu.so
 
