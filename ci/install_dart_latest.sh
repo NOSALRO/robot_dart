@@ -56,6 +56,8 @@ python_file=/usr/lib/python3/dist-packages/dartpy.cpython-310-x86_64-linux-gnu.s
 if [ -f "$python_file" ]; then
 sudo cp $python_file ${PREFIX}/$python_dist_dir
 fi
+echo "Searching for dartpy.cpython-310-x86_64-linux-gnu.so ..."
+locate dartpy.cpython-310-x86_64-linux-gnu.so
 
 else
 # Hack for dartpy installation
