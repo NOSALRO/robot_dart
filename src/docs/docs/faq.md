@@ -449,3 +449,19 @@ endif()
 !!! note "[C++ examples](https://github.com/NOSALRO/robot_dart/tree/master/src/examples)"
 
 !!! note "[Python examples](https://github.com/NOSALRO/robot_dart/tree/master/src/examples/python)"
+
+## **Known Issues**
+
+### Graphics issues on Mac
+
+Recent versions of macOS do not fully support OpenGL (see [here](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html)). RobotDART is using OpenGL for its graphical interface. For this reason, you might experience one of the following issues:
+
+- Segfaults when shadows are enabled (see [here](https://github.com/NOSALRO/robot_dart/issues/204)). For this reason, **on Mac PCs we are disabling by default the shadows**.
+- Status bar not showing correctly or not at all (see [here](https://github.com/NOSALRO/robot_dart/issues/205))
+- When using RobotDART with a graphics window (*remember that you can use RobotDART with graphics without any window!*), saving images or videos might not work properly (see [here](https://github.com/NOSALRO/robot_dart/issues/209))
+
+Finally, although not an issue, but this is related to Mac not fully supporting OpenGL, `Windowsless GLContext` is unsupported in Mac. Thus, a few examples (like `example_parallel.py`, see [here](https://github.com/NOSALRO/robot_dart/issues/208)) are not working on Mac PCs.
+
+### Graphics issues on WSL (Windows)
+
+You might experience some issues with the graphical interface (see [here](https://github.com/NOSALRO/robot_dart/issues/214)).
