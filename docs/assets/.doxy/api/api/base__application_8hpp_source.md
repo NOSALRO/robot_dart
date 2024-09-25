@@ -104,8 +104,14 @@ namespace robot_dart {
                 std::string title = "DART";
 
                 // Shadows
+#ifndef MAGNUM_MAC_OSX
                 bool shadowed = true;
                 bool transparent_shadows = true;
+#else
+                // Disabling shadows by default on OSX
+                bool shadowed = false;
+                bool transparent_shadows = false;
+#endif
                 size_t shadow_map_size = 1024;
 
                 // Lights

@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="250" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="250" bodyend="257"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="256" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="256" bodyend="263"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

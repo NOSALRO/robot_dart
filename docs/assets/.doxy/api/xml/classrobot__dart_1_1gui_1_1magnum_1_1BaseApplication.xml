@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="196" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="196" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="202" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a11756e39cf8b6ec87cc49b43103c6e8a" prot="protected" static="no" mutable="no">
         <type>Magnum::SceneGraph::DrawableGroup3D</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="197" column="53" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="197" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="203" column="53" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a76a15432ceae7b67ce667eebb44eb803" prot="protected" static="no" mutable="no">
         <type>Magnum::SceneGraph::DrawableGroup3D</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="197" column="64" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="197" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="203" column="64" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1b771e4fe0f3a0676301957cc3a7dce2" prot="protected" static="no" mutable="no">
         <type>Magnum::SceneGraph::DrawableGroup3D</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="197" column="84" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="197" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="203" column="84" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7d592b80afc7b7427640360c2d16491f" prot="protected" static="no" mutable="no">
         <type>Magnum::SceneGraph::DrawableGroup3D</type>
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="197" column="110" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="197" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="203" column="110" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5acb41d58a818c533baa1553c1b1d25d" prot="protected" static="no" mutable="no">
         <type>Magnum::SceneGraph::DrawableGroup3D</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="197" column="129" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="197" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="203" column="129" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae6ff6b9d40c389fe3f1374e934454a74" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="198" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="198" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="204" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5fef5f583b4db97767bd70c488ba8b99" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">gs::PhongMultiLight</ref> &gt;</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="198" column="47" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="198" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="204" column="47" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab04e9e8bbc4ae59fb3992adf35edf9df" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">gs::Camera</ref> &gt;</type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="200" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="200" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="206" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="206" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a361c8ce66cda2051d6adbd780d7baeab" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -144,7 +144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="202" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="202" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="208" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a903e8d20011dea55a80935cef5d430cb" prot="protected" static="no" mutable="no">
         <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref></type>
@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="205" column="39" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="205" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="211" column="39" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a29b6326c98b8ac4131b1021a86a442e8" prot="protected" static="no" mutable="no">
         <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
@@ -172,7 +172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="208" column="31" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="208" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="214" column="31" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6c45b5cb9c5ecdb90f1de36726e6ccce" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::DartIntegration::World &gt;</type>
@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="209" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="209" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="215" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7525328182618e105f398552b37b83d3" prot="protected" static="no" mutable="no">
         <type>std::unordered_map&lt; Magnum::DartIntegration::Object *, <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1ObjectStruct" kindref="compound">ObjectStruct</ref> * &gt;</type>
@@ -200,7 +200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="210" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="210" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="216" column="36" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1d346341e3f7cb3270f3a788147c8116" prot="protected" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &gt;</type>
@@ -214,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="211" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="211" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="217" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5f47cc95e61d8700fccad7680fdd92b4" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -229,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="214" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="214" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="220" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="220" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae4247f27c3dbb8f81242e9b176603df5" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -244,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="214" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="214" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="220" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="220" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6bcf72ac66cba6589b42013161012ea1" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -259,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="215" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="215" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="221" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="221" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae56f39ba4c67386624f38031241257c7" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &gt;</type>
@@ -273,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="216" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="216" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="222" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="222" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a78b770fb13170921b0af2eae900ffda3" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMap" kindref="compound">gs::ShadowMap</ref> &gt;</type>
@@ -287,7 +287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="216" column="48" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="216" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="222" column="48" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="222" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8b3475862d97e7124367324e7420f3df" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kindref="compound">gs::ShadowMapColor</ref> &gt;</type>
@@ -301,7 +301,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="217" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="217" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="223" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85aaac9eb950b9a6209c51fcb39aa887" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1ShadowMapColor" kindref="compound">gs::ShadowMapColor</ref> &gt;</type>
@@ -315,7 +315,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="217" column="54" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="217" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="223" column="54" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c4dd07484ca16f4812fdd8e9f5a12d4" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">gs::CubeMap</ref> &gt;</type>
@@ -329,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="218" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="218" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="224" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8968c21c371d8f5a28d02ff58f95029f" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">gs::CubeMap</ref> &gt;</type>
@@ -343,7 +343,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="218" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="218" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="224" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aac325dfdc1c44080ba73ea4d9f4a2465" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &gt;</type>
@@ -357,7 +357,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="219" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="219" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="225" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abefe177e707e94c1d108d201fce25b27" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &gt;</type>
@@ -371,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="219" column="55" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="219" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="225" column="55" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a069bdac87c0e42768d40a89fcc7653ac" prot="protected" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1ShadowData" kindref="compound">ShadowData</ref> &gt;</type>
@@ -385,7 +385,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="220" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="220" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="226" column="29" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0c225c6c4fec07792bd8dc845590a8ac" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::Texture2DArray &gt;</type>
@@ -399,7 +399,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="221" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="221" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="227" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="227" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac77fb93e46af72a525a6294e7acf6ac9" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::Texture2DArray &gt;</type>
@@ -413,7 +413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="221" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="221" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="227" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="227" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aabf0dfecaf4116f0c8d15e60ecd61187" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::CubeMapTextureArray &gt;</type>
@@ -427,7 +427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="222" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="222" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="228" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab105589dc33c5c43ac19d65f3331b19f" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::CubeMapTextureArray &gt;</type>
@@ -441,7 +441,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="222" column="50" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="222" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="228" column="50" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aacdd79c27de133cfc16db1c46b443ea3" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -456,7 +456,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="223" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="223" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="229" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="229" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0bd33eae75939327000ec2138a01af45" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -471,7 +471,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="224" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="224" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="230" column="21" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1acbb890caa478924240a2aea1c2452dc3" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Camera3D &gt;</type>
@@ -485,7 +485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="225" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="225" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="231" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a933b0ef94177b3c80029603f91f349b6" prot="protected" static="no" mutable="no">
         <type>Object3D *</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="226" column="26" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="226" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="232" column="26" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa397ec85bd3311cd42dd8faf360769a" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::Mesh &gt;</type>
@@ -513,7 +513,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="229" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="229" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="235" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="235" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac4ec4f32dfdf1636216795c70546c431" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::Shaders::VertexColorGL3D &gt;</type>
@@ -527,7 +527,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="230" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="230" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="236" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="236" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0dbb4fbec93d804c184d5cb03541b722" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::GL::Mesh &gt;</type>
@@ -541,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="231" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="231" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="237" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="237" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1140f9e2fb6cda51aa983b1706335861" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::Shaders::FlatGL2D &gt;</type>
@@ -555,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="232" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="232" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="238" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="238" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5d004fc8e4b3e432ded97de839df5986" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; Magnum::Shaders::DistanceFieldVectorGL2D &gt;</type>
@@ -569,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="235" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="235" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="241" column="33" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="241" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae9a8bd072e148017a87a022c014869f1" prot="protected" static="no" mutable="no">
         <type>Corrade::PluginManager::Manager&lt; Magnum::Text::AbstractFont &gt;</type>
@@ -583,7 +583,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="236" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="236" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="242" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="242" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a88e68689bbcf5ac140b5408d6be9c2d9" prot="protected" static="no" mutable="no">
         <type>Corrade::Containers::Pointer&lt; Magnum::Text::DistanceFieldGlyphCache &gt;</type>
@@ -597,7 +597,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="237" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="237" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="243" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="243" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aba8967b23153ba612080a872936c3eb5" prot="protected" static="no" mutable="no">
         <type>Corrade::Containers::Pointer&lt; Magnum::Text::AbstractFont &gt;</type>
@@ -611,7 +611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="238" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="238" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="244" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="244" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a318231298741ae5c6fc8fe1632f4caac" prot="protected" static="no" mutable="no">
         <type>Corrade::Containers::Pointer&lt; Magnum::GL::Buffer &gt;</type>
@@ -625,7 +625,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="239" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="239" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="245" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7e15f87aed52a88d5959a2b999f3794f" prot="protected" static="no" mutable="no">
         <type>Corrade::Containers::Pointer&lt; Magnum::GL::Buffer &gt;</type>
@@ -639,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="240" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="240" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="246" column="46" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="246" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a92f3873426e8dc565011094615f0d195" prot="protected" static="no" mutable="no">
         <type>Corrade::PluginManager::Manager&lt; Magnum::Trade::AbstractImporter &gt;</type>
@@ -653,7 +653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="243" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="243" bodyend="-1"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="249" column="49" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="249" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -674,7 +674,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="129" column="17" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="85" bodyend="88"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="135" column="17" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="85" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a786434c06b433215b121765138eda0be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type></type>
@@ -688,7 +688,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="130" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="130" bodyend="130"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="136" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="136" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6b31b07ed123d931ada4356f83d23d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -710,7 +710,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="132" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="90" bodyend="204"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="138" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="90" bodyend="204"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abd37042f8ea2671c68826d44daa81d55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -724,7 +724,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="134" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="206" bodyend="215"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="140" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="206" bodyend="215"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa77529e009500d717de3bdd85deb34d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -742,7 +742,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="135" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="217" bodyend="221"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="141" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="217" bodyend="221"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a25358d28f9c457b9d6a41b4ac9eba23b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &amp;</type>
@@ -760,7 +760,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="136" column="27" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="223" bodyend="227"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="142" column="27" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="223" bodyend="227"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c9c81152dc4169f0c77ecaa3ec5a7f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Light" kindref="compound">gs::Light</ref> &gt; &amp;</type>
@@ -774,7 +774,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="137" column="29" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="229" bodyend="232"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="143" column="29" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="229" bodyend="232"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af0eab50adb453ef3693ce9f7dd15d7c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -788,7 +788,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="138" column="24" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="234" bodyend="237"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="144" column="24" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="234" bodyend="237"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afb707a29453914b2bfc86b642cf73df3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Magnum::SceneGraph::DrawableGroup3D &amp;</type>
@@ -802,7 +802,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="140" column="53" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="140" bodyend="140"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="146" column="53" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="146" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afdd639fcca1789878a1df15cfbd2858b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Scene3D &amp;</type>
@@ -816,7 +816,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="141" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="141" bodyend="141"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="147" column="25" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="147" bodyend="147"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae07a488f63a853e11d740bf6d8d81706" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">gs::Camera</ref> &amp;</type>
@@ -830,7 +830,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="142" column="28" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="142" bodyend="142"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="148" column="28" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="148" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af596e1b2e993d1839a4e5f7827098381" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Camera" kindref="compound">gs::Camera</ref> &amp;</type>
@@ -844,7 +844,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="143" column="34" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="143" bodyend="143"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="149" column="34" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="149" bodyend="149"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a54c48ca9e097dc16662f15d09ee77efe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -858,7 +858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="145" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="239" bodyend="242"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="151" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="239" bodyend="242"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a9e79a5662c6136ee579962f8b78a9ee8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -884,7 +884,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="147" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="244" bodyend="263"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="153" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="244" bodyend="263"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a16d1087b2a12045167c0c6924fff6062" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -900,7 +900,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="151" column="30" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="151" bodyend="151"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="157" column="30" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="157" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8091cddb215f723564871cfa166678f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -918,7 +918,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="153" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="265" bodyend="309"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="159" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="265" bodyend="309"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3c6fcc428ab7c556d220e9e58f722a0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -932,7 +932,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="154" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="311" bodyend="463"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="160" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="311" bodyend="463"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af7ef8e29e4fd619a1e9d29aa62ccfbe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -946,7 +946,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="155" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="465" bodyend="642"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="161" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="465" bodyend="642"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a4279559dbff4c2d09855544bef168c76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -968,7 +968,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="157" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="644" bodyend="658"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="163" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="644" bodyend="658"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a156e6c734b8e404b8061089982605a39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -990,7 +990,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="160" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="160" bodyend="160"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="166" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="166" bodyend="166"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ad0973706a1a9679339b953ded651b987" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1004,7 +1004,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="162" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="162" bodyend="162"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="168" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="168" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a71d53f10e240e04d6869047183fbae61" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -1018,7 +1018,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="163" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="163" bodyend="163"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="169" column="22" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="169" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae960cb1a4f93cb3d0802c82556b0ac7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1042,7 +1042,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="164" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="660" bodyend="667"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="170" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="660" bodyend="667"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3a2b065fe27a636b9e758edff1bcf16a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Corrade::Containers::Optional&lt; Magnum::Image2D &gt; &amp;</type>
@@ -1056,7 +1056,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="166" column="47" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="166" bodyend="166"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="172" column="47" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="172" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a174cf83abb87ab7a7223f88c3edfdd50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kindref="compound">GrayscaleImage</ref></type>
@@ -1070,7 +1070,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="169" column="32" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="669" bodyend="676"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="175" column="32" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="669" bodyend="676"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a808c853dfd5447e3abc6cf6bfa608ddb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kindref="compound">GrayscaleImage</ref></type>
@@ -1084,7 +1084,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="172" column="32" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="678" bodyend="685"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="178" column="32" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="678" bodyend="685"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a06c242d721736670813474715502b179" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structrobot__dart_1_1gui_1_1DepthImage" kindref="compound">DepthImage</ref></type>
@@ -1098,7 +1098,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="175" column="28" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="687" bodyend="694"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="181" column="28" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="687" bodyend="694"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85ae540943df00c65f2b6a3908002851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1DebugDrawData" kindref="compound">DebugDrawData</ref></type>
@@ -1112,7 +1112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="178" column="31" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="178" bodyend="192"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="184" column="31" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="184" bodyend="198"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1128,7 +1128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="245" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="696" bodyend="732"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="251" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="696" bodyend="732"/>
       </memberdef>
       <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae13845b8aeb52e574e240b6e889f6332" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1142,7 +1142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="robot_dart/gui/magnum/base_application.hpp" line="246" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="734" bodyend="824"/>
+        <location file="robot_dart/gui/magnum/base_application.hpp" line="252" column="22" bodyfile="robot_dart/gui/magnum/base_application.cpp" bodystart="734" bodyend="824"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1194,7 +1194,7 @@
         <link refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration"/>
       </node>
     </collaborationgraph>
-    <location file="robot_dart/gui/magnum/base_application.hpp" line="127" column="13" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="127" bodyend="247"/>
+    <location file="robot_dart/gui/magnum/base_application.hpp" line="133" column="13" bodyfile="robot_dart/gui/magnum/base_application.hpp" bodystart="133" bodyend="253"/>
     <listofallmembers>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa397ec85bd3311cd42dd8faf360769a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::BaseApplication</scope><name>_3D_axis_mesh</name></member>
       <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac4ec4f32dfdf1636216795c70546c431" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::BaseApplication</scope><name>_3D_axis_shader</name></member>
