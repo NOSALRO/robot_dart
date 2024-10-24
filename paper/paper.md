@@ -43,7 +43,7 @@ Robot simulation plays a pivotal role in robotics and machine learning research,
 # Statement of need
 Simulators play a crucial role in robotics by providing a safe environment for testing without the risk of damaging real robots. Within the robotics community, existing simulators primarily prioritize seamless deployment on physical robots, which is evident in their design philosophy. One of the best examples is [Gazebo](https://gazebosim.org) [@koenig2004design], which is typically accessed through ROS, as an abstraction level, so that users can seamlessly transition between simulated and real robots. Because of this design choice, Gazebo: (1) is mostly asynchronous, which means that the simulator operates on its own clock and time-step analogous to real-world robots, (2) introduces a significant overhead, including network communication and serialization to topics/services/messages, and (3) is not designed for running multiple simulations concurrently or even sequentially. At a lower abstraction level, the robotics community has developed various physics libraries such as Mujoco [@todorov2012mujoco], Bullet [@bullet], and ODE [@smith2005open]. However, these libraries typically lack sensor abstractions, particularly for cameras, and do not come with pre-validated robot models, necessitating users to program their own simulators.
 
-With the emergence of reinforcement learning for robot control and more generally robot learning [@ravichandar2020recent] [@chatzilygeroudis2019survey] [@kroemer2021review], there arises a need for simulators that can address novel requirements not adequately addressed by current simulators or "low-level" physics libraries. Specifically, simulators designed for robot learning must encompass the following features:
+With the emergence of reinforcement learning for robot control and more generally robot learning [@ravichandar2020recent;@chatzilygeroudis2019survey;@kroemer2021review], there arises a need for simulators that can address novel requirements not adequately addressed by current simulators or "low-level" physics libraries. Specifically, simulators designed for robot learning must encompass the following features:
 
 - beyond real-time simulation speed: Given the necessity to execute thousands or even millions of simulations, both controllers and simulators stand to benefit from operating at speeds faster than real-time;
 - overhead-free and fast reset: with the imperative to conduct numerous simulations efficiently, minimizing time introduced by the communication overheads and the initialization processes becomes paramount;
@@ -52,7 +52,7 @@ With the emergence of reinforcement learning for robot control and more generall
 - camera and depth sensor simulation: deep reinforcement learning has demonstrated promising results in learning vision-based policies through end-to-end learning; however, this demands the simulation of both depth and color cameras;
 - ease of use, flexibility and versatility: the field of machine learning is characterized by rapid development, making it challenging to anticipate the diverse needs of researchers; for instance, techniques like privileged reinforcement learning [@lee2020learning] and domain randomization [@tobin2017domain] necessitate direct access to various low-level components of the simulator to enable experimentation and innovation.
 
-Most of these features are not implemented in the mainstreams robot simulators like Gazebo. Even if some of these features are implemented, they require too much work from the researcher. For example, to effectively use Gazebo for multi-core parallel simulations, we need to create multiple Gazebo servers with different ip addresses which need to be unique in the LAN and propagated to the correct thread; as a result, the researcher spends a lot of time in boilerplate code to handle this instead of focusing in their main research avenue. RobotDART aims at filling this gap by providing a flexible simulator for data-driven robotics while being open-source and as simple as possible.
+Most of these features are not implemented in the mainstreams robot simulators like Gazebo. Even if some of these features are implemented, they require too much work from the researcher. For example, to effectively use Gazebo for multi-core parallel simulations, we need to create multiple Gazebo servers with different IP addresses which need to be unique in the LAN and propagated to the correct thread; as a result, the researcher spends a lot of time in boilerplate code to handle this instead of focusing in their main research avenue. RobotDART aims at filling this gap by providing a flexible simulator for data-driven robotics while being open-source and as simple as possible.
 
 # Design and Implementation
 
@@ -66,7 +66,7 @@ Unlike other simulation frameworks, like Gazebo, RobotDART runs headless by defa
 
 - High-performance simulation engine based on the DART physics engine.
 - Support for various robot platforms, including manipulators, mobile robots, and humanoid robots.
-- Library of sensors (cameras, lidars, IMUs).
+- Library of sensors (cameras, LiDAR, IMUs).
 - Modular environment system for creating custom simulation scenarios.
 - Intuitive Python API for easy integration with machine learning frameworks.
 - Modular graphics API for easily creating custom render pipelines.
