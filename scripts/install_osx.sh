@@ -33,7 +33,7 @@ then
 git clone https://github.com/dartsim/dart.git
 fi
 cd dart
-git checkout tags/v6.13.2
+git checkout tags/v6.15.0
 if [ -d "build" ] # In case of a previous attempt that has not been cleaned
 then
   sudo rm -rf build
@@ -42,6 +42,7 @@ mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/dart -DDART_BUILD_DARTPY=ON ..
 make -j8 dartpy
 sudo make install dartpy
+python -m pip install ..
 
 export LD_LIBRARY_PATH=/opt/dart/lib:$LD_LIBRARY_PATH
 export DYLD_LIBRARY_PATH=/opt/dart/lib:$DYLD_LIBRARY_PATH
@@ -73,7 +74,7 @@ git clone https://github.com/mosra/magnum.git
 fi
 cd magnum
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_AUDIO=ON -DMAGNUM_WITH_DEBUGTOOLS=ON -DMAGNUM_WITH_GL=ON -DMAGNUM_WITH_MESHTOOLS=ON -DMAGNUM_WITH_PRIMITIVES=ON -DMAGNUM_WITH_SCENEGRAPH=ON -DMAGNUM_WITH_SHADERS=ON -DMAGNUM_WITH_TEXT=ON -DMAGNUM_WITH_TEXTURETOOLS=ON -DMAGNUM_WITH_TRADE=ON -DMAGNUM_WITH_GLFWAPPLICATION=ON -DMAGNUM_WITH_WINDOWLESSGLXAPPLICATION=ON  -DMAGNUM_WITH_WINDOWLESSCGLAPPLICATION=ON -DMAGNUM_WITH_OPENGLTESTER=ON -DMAGNUM_WITH_ANYAUDIOIMPORTER=ON -DMAGNUM_WITH_ANYIMAGECONVERTER=ON -DMAGNUM_WITH_ANYIMAGEIMPORTER=ON -DMAGNUM_WITH_ANYSCENEIMPORTER=ON -DMAGNUM_WITH_MAGNUMFONT=ON -DMAGNUM_WITH_OBJIMPORTER=ON -DMAGNUM_WITH_TGAIMPORTER=ON -DMAGNUM_WITH_WAVAUDIOIMPORTER=ON -DMAGNUM_WITH_GL_INFO=ON -DMAGNUM_WITH_AL_INFO=ON -DMAGNUM_TARGET_EGL=OFF ..
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_AUDIO=ON -DWITH_DEBUGTOOLS=ON -DWITH_GL=ON -DWITH_MESHTOOLS=ON -DWITH_PRIMITIVES=ON -DWITH_SCENEGRAPH=ON -DWITH_SHADERS=ON -DWITH_TEXT=ON -DWITH_TEXTURETOOLS=ON -DWITH_TRADE=ON -DWITH_GLFWAPPLICATION=ON -DWITH_WINDOWLESSCGLAPPLICATION=ON -DWITH_OPENGLTESTER=ON -DWITH_ANYAUDIOIMPORTER=ON -DWITH_ANYIMAGECONVERTER=ON -DWITH_ANYIMAGEIMPORTER=ON -DWITH_ANYSCENEIMPORTER=ON -DWITH_MAGNUMFONT=ON -DWITH_OBJIMPORTER=ON -DWITH_TGAIMPORTER=ON -DWITH_WAVAUDIOIMPORTER=ON ..
 make -j8
 sudo make install
 
@@ -84,7 +85,7 @@ git clone https://github.com/mosra/magnum-plugins.git
 fi
 cd magnum-plugins
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_ASSIMPIMPORTER=ON -DMAGNUM_WITH_DDSIMPORTER=ON -DMAGNUM_WITH_JPEGIMPORTER=ON -DMAGNUM_WITH_OPENGEXIMPORTER=ON -DMAGNUM_WITH_PNGIMPORTER=ON -DMAGNUM_WITH_TINYGLTFIMPORTER=ON -DMAGNUM_WITH_STBTRUETYPEFONT=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DWITH_ASSIMPIMPORTER=ON -DWITH_DDSIMPORTER=ON -DWITH_JPEGIMPORTER=ON -DWITH_OPENGEXIMPORTER=ON -DWITH_PNGIMPORTER=ON -DWITH_TINYGLTFIMPORTER=ON -DWITH_STBTRUETYPEFONT=ON ..
 make -j
 sudo make install
 
@@ -95,7 +96,7 @@ git clone https://github.com/mosra/magnum-integration.git
 fi
 cd magnum-integration
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_DART=ON -DMAGNUM_WITH_EIGEN=ON -DMAGNUM_WITH_BULLET=ON -DMAGNUM_WITH_GLM=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DWITH_DART=ON -DWITH_EIGEN=ON -DWITH_BULLET=ON -DWITH_GLM=ON ..
 make -j
 sudo make install
 
@@ -110,7 +111,7 @@ git clone https://github.com/mosra/magnum-bindings.git
 fi
 cd magnum-bindings
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DMAGNUM_WITH_PYTHON=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/magnum -DWITH_PYTHON=ON ..
 make -j
 cd src/python
 sudo python3 setup.py install --root=/opt/magnum/lib --install-purelib=python3/site-packages --install-platlib=python3/site-packages --install-scripts=python3/scripts --install-headers=python3/include --install-data=python3/data
@@ -120,7 +121,7 @@ cd ../../../../../../..
 export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH
 
 # RobotDART
-python3 waf configure --prefix /opt/robot_dart --python --dart /opt/dart --magnum /opt/magnum
-python3 waf -j8
-python3 waf examples -j8
+python3 waf configure --prefix /opt/robot_dart --dart /opt/dart --magnum /opt/magnum --python
+sudo python3 waf -j8
+sudo python3 waf examples -j8
 sudo python3 waf install
