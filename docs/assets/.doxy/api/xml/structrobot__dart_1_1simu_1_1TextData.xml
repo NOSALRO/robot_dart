@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1simu_1_1TextData" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::simu::TextData</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a4c33d4c8ecff7d63a72d8271d1e18683" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string robot_dart::simu::TextData::text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <qualifiedname>robot_dart::simu::TextData::text</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="16" column="25" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a35967d4e09ff67954c6df221ab2f45c2" prot="public" static="no" mutable="no">
+        <type>Eigen::Affine2d</type>
+        <definition>Eigen::Affine2d robot_dart::simu::TextData::transformation</definition>
+        <argsstring></argsstring>
+        <name>transformation</name>
+        <qualifiedname>robot_dart::simu::TextData::transformation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="17" column="29" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a6e2499cca0b665b9df3955f04b6ade50" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector4d</type>
+        <definition>Eigen::Vector4d robot_dart::simu::TextData::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>robot_dart::simu::TextData::color</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="18" column="29" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1af539c6f9f7aaaefd50014a1b368bc37c" prot="public" static="no" mutable="no">
+        <type>std::uint8_t</type>
+        <definition>std::uint8_t robot_dart::simu::TextData::alignment</definition>
+        <argsstring></argsstring>
+        <name>alignment</name>
+        <qualifiedname>robot_dart::simu::TextData::alignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="19" column="26" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a719762e8324580b61b0b9f6f1a1aa773" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::simu::TextData::draw_background</definition>
+        <argsstring></argsstring>
+        <name>draw_background</name>
+        <qualifiedname>robot_dart::simu::TextData::draw_background</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="20" column="18" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a9c26821d5966bc2fa27eed5c7267bda4" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector4d</type>
+        <definition>Eigen::Vector4d robot_dart::simu::TextData::background_color</definition>
+        <argsstring></argsstring>
+        <name>background_color</name>
+        <qualifiedname>robot_dart::simu::TextData::background_color</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="21" column="29" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1TextData_1a381e236c1bcfdf749ef9c0ead41239f1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double robot_dart::simu::TextData::font_size</definition>
+        <argsstring></argsstring>
+        <name>font_size</name>
+        <qualifiedname>robot_dart::simu::TextData::font_size</qualifiedname>
+        <initializer>= 28.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_dart_simu.hpp" line="22" column="20" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robot_dart_simu.hpp" line="15" column="9" bodyfile="robot_dart/robot_dart_simu.hpp" bodystart="15" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1af539c6f9f7aaaefd50014a1b368bc37c" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>alignment</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a9c26821d5966bc2fa27eed5c7267bda4" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>background_color</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a6e2499cca0b665b9df3955f04b6ade50" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>color</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a719762e8324580b61b0b9f6f1a1aa773" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>draw_background</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a381e236c1bcfdf749ef9c0ead41239f1" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>font_size</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a4c33d4c8ecff7d63a72d8271d1e18683" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>text</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1TextData_1a35967d4e09ff67954c6df221ab2f45c2" prot="public" virt="non-virtual"><scope>robot_dart::simu::TextData</scope><name>transformation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

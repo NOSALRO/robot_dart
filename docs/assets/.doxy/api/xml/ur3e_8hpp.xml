@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="ur3e_8hpp" kind="file" language="C++">
+    <compoundname>ur3e.hpp</compoundname>
+    <includes refid="robot_8hpp" local="yes">robot_dart/robot.hpp</includes>
+    <includes refid="force__torque_8hpp" local="yes">robot_dart/sensor/force_torque.hpp</includes>
+    <includedby refid="ur3e_8cpp" local="yes">robot_dart/robots/ur3e.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>robot_dart/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart/robots/ur3e.hpp</label>
+        <link refid="ur3e_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>robot_dart/sensor/force_torque.hpp</label>
+        <link refid="force__torque_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>robot_dart/sensor/sensor.hpp</label>
+        <link refid="sensor_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>robot_dart/utils_headers_external.hpp</label>
+        <link refid="utils__headers__external_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="9">
+        <label>Eigen/Geometry</label>
+      </node>
+      <node id="10">
+        <label>dart/config.hpp</label>
+      </node>
+      <node id="11">
+        <label>dart/dynamics/MeshShape.hpp</label>
+      </node>
+      <node id="12">
+        <label>dart/dynamics/Skeleton.hpp</label>
+      </node>
+      <node id="13">
+        <label>dart/simulation/World.hpp</label>
+      </node>
+      <node id="5">
+        <label>exception</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="16">
+        <label>memory</label>
+      </node>
+      <node id="3">
+        <label>unordered_map</label>
+      </node>
+      <node id="17">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Ur3e" prot="public">robot_dart::robots::Ur3e</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Ur3eHand" prot="public">robot_dart::robots::Ur3eHand</innerclass>
+    <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1robots">robot_dart::robots</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_ROBOTS_UR3E_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_ROBOTS_UR3E_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;robot_dart/robot.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;robot_dart/sensor/force_torque.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robot_dart<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robots<sp/>{</highlight></codeline>
+<codeline lineno="9" refid="classrobot__dart_1_1robots_1_1Ur3e" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrobot__dart_1_1robots_1_1Ur3e" kindref="compound">Ur3e</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3e" kindref="compound">Ur3e</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frequency<sp/>=<sp/>1000,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>urdf<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ur3e/ur3e.urdf&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;&amp;<sp/>packages<sp/>=<sp/>{{</highlight><highlight class="stringliteral">&quot;ur3e_description&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ur3e/ur3e_description&quot;</highlight><highlight class="normal">}});</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1sensor_1_1ForceTorque" kindref="compound">sensor::ForceTorque</ref>&amp;<sp/>ft_wrist()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*_ft_wrist;<sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::shared_ptr&lt;sensor::ForceTorque&gt;<sp/>_ft_wrist;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3e_1a1abfe1568663c2420f95507cdbc9d159" kindref="member">_post_addition</ref>(<ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref>*<sp/>simu)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3e_1a550c362e86d18918f486f46137b6d9d4" kindref="member">_post_removal</ref>(<ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref>*<sp/>simu)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classrobot__dart_1_1robots_1_1Ur3eHand" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrobot__dart_1_1robots_1_1Ur3eHand" kindref="compound">Ur3eHand</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3e" kindref="compound">Ur3e</ref><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3eHand" kindref="compound">Ur3eHand</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frequency<sp/>=<sp/>1000,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>urdf<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ur3e/ur3e_with_schunk_hand.urdf&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;&amp;<sp/>packages<sp/>=<sp/>{{</highlight><highlight class="stringliteral">&quot;ur3e_description&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ur3e/ur3e_description&quot;</highlight><highlight class="normal">}})<sp/>:<sp/><ref refid="classrobot__dart_1_1robots_1_1Ur3e" kindref="compound">Ur3e</ref>(frequency,<sp/>urdf,<sp/>packages)<sp/>{}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robots</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robot_dart</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/robots/ur3e.hpp"/>
+  </compounddef>
+</doxygen>

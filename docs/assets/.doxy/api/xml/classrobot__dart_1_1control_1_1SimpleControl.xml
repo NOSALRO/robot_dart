@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1control_1_1SimpleControl" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::control::SimpleControl</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1a62ee3206576eb967c118cefd6132c53b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
+        <argsstring>()</argsstring>
+        <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="11" column="13" bodyfile="robot_dart/control/simple_control.cpp" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1a5a23be5aafda2eceda267053bc490613" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false)</argsstring>
+        <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>full_control</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="12" column="13" bodyfile="robot_dart/control/simple_control.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1aea0dcf06e4241c3e3f71a8831f7ca246" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::SimpleControl::SimpleControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs)</argsstring>
+        <name>SimpleControl</name>
+        <qualifiedname>robot_dart::control::SimpleControl::SimpleControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>controllable_dofs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="13" column="13" bodyfile="robot_dart/control/simple_control.cpp" bodystart="9" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1a7ecd238ebe97791fc80916dd42facbf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::SimpleControl::configure</definition>
+        <argsstring>() override</argsstring>
+        <name>configure</name>
+        <qualifiedname>robot_dart::control::SimpleControl::configure</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="15" column="18" bodyfile="robot_dart/control/simple_control.cpp" bodystart="11" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1a3a0ef29a4639dd40c51454d075640bf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::SimpleControl::calculate</definition>
+        <argsstring>(double) override</argsstring>
+        <name>calculate</name>
+        <qualifiedname>robot_dart::control::SimpleControl::calculate</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="16" column="29" bodyfile="robot_dart/control/simple_control.cpp" bodystart="17" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1SimpleControl_1ab4d2963f2571555ce181f98ab8e5f662" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1control_1_1RobotControl" kindref="compound">RobotControl</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::SimpleControl::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>robot_dart::control::SimpleControl::clone</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/simple_control.hpp" line="17" column="29" bodyfile="robot_dart/control/simple_control.cpp" bodystart="23" bodyend="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::control::SimpleControl</label>
+        <link refid="classrobot__dart_1_1control_1_1SimpleControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::control::SimpleControl</label>
+        <link refid="classrobot__dart_1_1control_1_1SimpleControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/control/simple_control.hpp" line="9" column="9" bodyfile="robot_dart/control/simple_control.hpp" bodystart="9" bodyend="18"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6070efc4d9c34a8092e74578d5aa792" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ade2feaf50fc0a25ae994dbfbf017a859" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_check_free</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a47eb2922359ead55d9ed9201340ad850" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_control_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1a3f35ab7b5212c419f2f236b3bb682c" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1aeb32018a448081f4762ab8bfb9562f31" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_ctrl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1af87bd256fa9a62d1dfa5809e4dea22d9" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ae7ba328d762a5f6663665f98ee36fb25" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a4dca58ef8efc00f487ddcbea20e6f1c2" prot="protected" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1acd4bd86eaae9d61d205631e68336eb53" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>activate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ab86c121d2f0a9df165924758018331a9" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a3a0ef29a4639dd40c51454d075640bf2" prot="public" virt="virtual"><scope>robot_dart::control::SimpleControl</scope><name>calculate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1ab4d2963f2571555ce181f98ab8e5f662" prot="public" virt="virtual"><scope>robot_dart::control::SimpleControl</scope><name>clone</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a7ecd238ebe97791fc80916dd42facbf2" prot="public" virt="virtual"><scope>robot_dart::control::SimpleControl</scope><name>configure</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7da96bcb69a0a2ddb5db0b54e1edd03a" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1eb6d2c5186c7a056a9d92d8050af364" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6de25f4c2db2b500d5e69a548aeab99" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6617700b65b105316b3ffe1c3817247" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a36fdb9b1fe31febc00e76a60a1a34d69" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac79d7c8cb68fac11051e22d13b0ec22d" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7b13d33749f0bc7689aa11963287617d" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1ed07aa76c578bc2bb92529e3c43bf67" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>set_parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1abdc2bfef410805ea3c30029e3fee9360" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>set_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a6516b84c92d4da46d7e382fcd7ffeb58" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>set_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a62ee3206576eb967c118cefd6132c53b" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>SimpleControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1a5a23be5aafda2eceda267053bc490613" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>SimpleControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1SimpleControl_1aea0dcf06e4241c3e3f71a8831f7ca246" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>SimpleControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a9ee8a3c4259d80be9f403073edc28433" prot="public" virt="non-virtual"><scope>robot_dart::control::SimpleControl</scope><name>weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac3f60bced3a247862d00067a8c46c555" prot="public" virt="virtual"><scope>robot_dart::control::SimpleControl</scope><name>~RobotControl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -13,7 +13,9 @@ int main()
     simu.set_collision_detector("bullet");
 
     size_t freq = 1. / dt;
+    // @TIAGO@
     auto robot = std::make_shared<robot_dart::robots::Tiago>(freq);
+    // @TIAGO_END@
     std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
 
 #ifdef GRAPHIC

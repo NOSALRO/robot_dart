@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1Image" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::Image</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1Image_1aaf8c13cbcd3c947da0b935d5cd41b926" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::Image::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>robot_dart::gui::Image::width</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="12" column="20" bodyfile="robot_dart/gui/helper.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1Image_1adf62630fc27d2cdbae62e2d369abff58" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::Image::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <qualifiedname>robot_dart::gui::Image::height</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="12" column="27" bodyfile="robot_dart/gui/helper.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1Image_1a04f8be5fd3308da87ba24f2289916282" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::Image::channels</definition>
+        <argsstring></argsstring>
+        <name>channels</name>
+        <qualifiedname>robot_dart::gui::Image::channels</qualifiedname>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="13" column="20" bodyfile="robot_dart/gui/helper.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1Image_1ae30480fde7a4713fe030d9480c67e6c1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; uint8_t &gt;</type>
+        <definition>std::vector&lt;uint8_t&gt; robot_dart::gui::Image::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>robot_dart::gui::Image::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="14" column="25" bodyfile="robot_dart/gui/helper.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/helper.hpp" line="11" column="9" bodyfile="robot_dart/gui/helper.hpp" bodystart="11" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1Image_1a04f8be5fd3308da87ba24f2289916282" prot="public" virt="non-virtual"><scope>robot_dart::gui::Image</scope><name>channels</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1Image_1ae30480fde7a4713fe030d9480c67e6c1" prot="public" virt="non-virtual"><scope>robot_dart::gui::Image</scope><name>data</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1Image_1adf62630fc27d2cdbae62e2d369abff58" prot="public" virt="non-virtual"><scope>robot_dart::gui::Image</scope><name>height</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1Image_1aaf8c13cbcd3c947da0b935d5cd41b926" prot="public" virt="non-virtual"><scope>robot_dart::gui::Image</scope><name>width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="phong__multi__light_8hpp" kind="file" language="C++">
+    <compoundname>phong_multi_light.hpp</compoundname>
+    <includes refid="light_8hpp" local="no">robot_dart/gui/magnum/gs/light.hpp</includes>
+    <includes local="no">Corrade/Containers/ArrayView.h</includes>
+    <includes local="no">Corrade/Containers/Reference.h</includes>
+    <includes local="no">Corrade/Utility/Assert.h</includes>
+    <includes local="no">Magnum/GL/AbstractShaderProgram.h</includes>
+    <includes local="no">Magnum/Math/Color.h</includes>
+    <includes local="no">Magnum/Math/Matrix4.h</includes>
+    <includes local="no">Magnum/Shaders/Generic.h</includes>
+    <includedby refid="base__application_8hpp" local="no">robot_dart/gui/magnum/base_application.hpp</includedby>
+    <includedby refid="drawables_8hpp" local="no">robot_dart/gui/magnum/drawables.hpp</includedby>
+    <includedby refid="phong__multi__light_8cpp" local="yes">robot_dart/gui/magnum/gs/phong_multi_light.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>robot_dart/gui/magnum/gs/light.hpp</label>
+        <link refid="light_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart/gui/magnum/gs/material.hpp</label>
+        <link refid="material_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart/gui/magnum/gs/phong_multi_light.hpp</label>
+        <link refid="phong__multi__light_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Corrade/Containers/ArrayView.h</label>
+      </node>
+      <node id="4">
+        <label>Corrade/Containers/Optional.h</label>
+      </node>
+      <node id="10">
+        <label>Corrade/Containers/Reference.h</label>
+      </node>
+      <node id="11">
+        <label>Corrade/Utility/Assert.h</label>
+      </node>
+      <node id="12">
+        <label>Magnum/GL/AbstractShaderProgram.h</label>
+      </node>
+      <node id="5">
+        <label>Magnum/GL/GL.h</label>
+      </node>
+      <node id="6">
+        <label>Magnum/Magnum.h</label>
+      </node>
+      <node id="7">
+        <label>Magnum/Math/Color.h</label>
+      </node>
+      <node id="8">
+        <label>Magnum/Math/Matrix4.h</label>
+      </node>
+      <node id="13">
+        <label>Magnum/Shaders/Generic.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>robot_dart/gui/magnum/base_application.hpp</label>
+        <link refid="base__application_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart/gui/magnum/base_graphics.hpp</label>
+        <link refid="base__graphics_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>robot_dart/gui/magnum/drawables.hpp</label>
+        <link refid="drawables_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart/gui/magnum/glfw_application.hpp</label>
+        <link refid="glfw__application_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>robot_dart/gui/magnum/graphics.hpp</label>
+        <link refid="graphics_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>robot_dart/gui/magnum/gs/phong_multi_light.hpp</label>
+        <link refid="phong__multi__light_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>robot_dart/gui/magnum/sensor/camera.hpp</label>
+        <link refid="sensor_2camera_8hpp_source"/>
+      </node>
+      <node id="8">
+        <label>robot_dart/gui/magnum/windowless_gl_application.hpp</label>
+        <link refid="windowless__gl__application_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>robot_dart/gui/magnum/windowless_graphics.hpp</label>
+        <link refid="windowless__graphics_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" prot="public">robot_dart::gui::magnum::gs::PhongMultiLight</innerclass>
+    <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum">robot_dart::gui::magnum</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum_1_1gs">robot_dart::gui::magnum::gs</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_GUI_MAGNUM_GS_PHONG_MULTI_LIGHT_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_GUI_MAGNUM_GS_PHONG_MULTI_LIGHT_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;robot_dart/gui/magnum/gs/light.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Corrade/Containers/ArrayView.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Corrade/Containers/Reference.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Corrade/Utility/Assert.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/GL/AbstractShaderProgram.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/Math/Color.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/Math/Matrix4.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/Shaders/Generic.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robot_dart<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">gui<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">magnum<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">gs<sp/>{</highlight></codeline>
+<codeline lineno="19" refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Magnum::GL::AbstractShaderProgram<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Position<sp/>=<sp/>Magnum::Shaders::Generic3D::Position;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Normal<sp/>=<sp/>Magnum::Shaders::Generic3D::Normal;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">TextureCoordinates<sp/>=<sp/>Magnum::Shaders::Generic3D::TextureCoordinates;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480d" kindref="member">Flag</ref><sp/>:<sp/>Magnum::UnsignedByte<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da3ae56a8ec764ef7cd26cdde384d85e19" kindref="member">AmbientTexture</ref><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>0,<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480dae712876b5313699d4e38e6f70c7c725e" kindref="member">DiffuseTexture</ref><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>1,<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight_1adb33e832a844357e2cf7698c24f5480da8f19fa0f2cc4078c09a89d31205980e7" kindref="member">SpecularTexture</ref><sp/>=<sp/>1<sp/>&lt;&lt;<sp/>2<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Flags<sp/>=<sp/>Magnum::Containers::EnumSet&lt;Flag&gt;;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1PhongMultiLight" kindref="compound">PhongMultiLight</ref>(Flags<sp/>flags<sp/>=<sp/>{},<sp/>Magnum::Int<sp/>max_lights<sp/>=<sp/>10);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/>PhongMultiLight(Magnum::NoCreateT)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Flags<sp/>flags()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_material(Material&amp;<sp/>material);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_light(Magnum::Int<sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Light&amp;<sp/>light);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_transformation_matrix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Magnum::Matrix4&amp;<sp/>matrix);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_camera_matrix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Magnum::Matrix4&amp;<sp/>matrix);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_normal_matrix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Magnum::Matrix3x3&amp;<sp/>matrix);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_projection_matrix(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Magnum::Matrix4&amp;<sp/>matrix);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_far_plane(Magnum::Float<sp/>far_plane);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_is_shadowed(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>shadows);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_transparent_shadows(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>shadows);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>set_specular_strength(Magnum::Float<sp/>specular_strength);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>bind_shadow_texture(Magnum::GL::Texture2DArray&amp;<sp/>texture);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>bind_shadow_color_texture(Magnum::GL::Texture2DArray&amp;<sp/>texture);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>bind_cube_map_texture(Magnum::GL::CubeMapTextureArray&amp;<sp/>texture);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PhongMultiLight&amp;<sp/>bind_cube_map_color_texture(Magnum::GL::CubeMapTextureArray&amp;<sp/>texture);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::Int<sp/>max_lights()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Flags<sp/>_flags;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::Int<sp/>_max_lights<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::Int<sp/>_transformation_matrix_uniform{0},<sp/>_camera_matrix_uniform{7},<sp/>_projection_matrix_uniform{1},<sp/>_normal_matrix_uniform{2},</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_shininess_uniform{3},<sp/>_ambient_color_uniform{4},<sp/>_diffuse_color_uniform{5},<sp/>_specular_color_uniform{6},<sp/>_specular_strength_uniform{11},</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_lights_uniform{12},<sp/>_lights_matrices_uniform,<sp/>_far_plane_uniform{8},<sp/>_is_shadowed_uniform{9},<sp/>_transparent_shadows_uniform{10},</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_shadow_textures_location{3},<sp/>_cube_map_textures_location{4},<sp/>_shadow_color_textures_location{5},<sp/>_cube_map_color_textures_location{6};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Magnum::Int<sp/>_light_loc_size<sp/>=<sp/>13;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CORRADE_ENUMSET_OPERATORS(PhongMultiLight::Flags)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>gs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>magnum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>gui</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robot_dart</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/gui/magnum/gs/phong_multi_light.hpp"/>
+  </compounddef>
+</doxygen>

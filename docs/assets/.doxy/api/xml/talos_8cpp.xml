@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="talos_8cpp" kind="file" language="C++">
+    <compoundname>talos.cpp</compoundname>
+    <includes refid="talos_8hpp" local="yes">robot_dart/robots/talos.hpp</includes>
+    <includes refid="robot__dart__simu_8hpp" local="yes">robot_dart/robot_dart_simu.hpp</includes>
+    <incdepgraph>
+      <node id="22">
+        <label>robot_dart/gui/base.hpp</label>
+        <link refid="base_8hpp_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>robot_dart/gui/helper.hpp</label>
+        <link refid="helper_8hpp_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>robot_dart/robot_dart_simu.hpp</label>
+        <link refid="robot__dart__simu_8hpp_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart/robots/talos.cpp</label>
+        <link refid="talos_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart/robots/talos.hpp</label>
+        <link refid="talos_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>robot_dart/scheduler.hpp</label>
+        <link refid="scheduler_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>robot_dart/sensor/force_torque.hpp</label>
+        <link refid="force__torque_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>robot_dart/sensor/imu.hpp</label>
+        <link refid="imu_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>robot_dart/sensor/sensor.hpp</label>
+        <link refid="sensor_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>robot_dart/sensor/torque.hpp</label>
+        <link refid="torque_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>robot_dart/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>robot_dart/utils_headers_external.hpp</label>
+        <link refid="utils__headers__external_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="10">
+        <label>Eigen/Geometry</label>
+      </node>
+      <node id="26">
+        <label>chrono</label>
+      </node>
+      <node id="11">
+        <label>dart/config.hpp</label>
+      </node>
+      <node id="12">
+        <label>dart/dynamics/MeshShape.hpp</label>
+      </node>
+      <node id="13">
+        <label>dart/dynamics/Skeleton.hpp</label>
+      </node>
+      <node id="14">
+        <label>dart/simulation/World.hpp</label>
+      </node>
+      <node id="6">
+        <label>exception</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="17">
+        <label>memory</label>
+      </node>
+      <node id="24">
+        <label>string</label>
+      </node>
+      <node id="27">
+        <label>thread</label>
+      </node>
+      <node id="4">
+        <label>unordered_map</label>
+      </node>
+      <node id="18">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1robots">robot_dart::robots</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;robot_dart/robots/talos.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;robot_dart/robot_dart_simu.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robot_dart<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robots<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Talos::Talos(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frequency,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>urdf,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::pair&lt;std::string,<sp/>std::string&gt;&gt;&amp;<sp/>packages)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>Robot(urdf,<sp/>packages),</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_imu(std::make_shared&lt;sensor::IMU&gt;(sensor::IMUConfig(body_node(</highlight><highlight class="stringliteral">&quot;imu_link&quot;</highlight><highlight class="normal">),<sp/>frequency))),</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ft_foot_left(std::make_shared&lt;sensor::ForceTorque&gt;(joint(</highlight><highlight class="stringliteral">&quot;leg_left_6_joint&quot;</highlight><highlight class="normal">),<sp/>frequency,<sp/></highlight><highlight class="stringliteral">&quot;parent_to_child&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ft_foot_right(std::make_shared&lt;sensor::ForceTorque&gt;(joint(</highlight><highlight class="stringliteral">&quot;leg_right_6_joint&quot;</highlight><highlight class="normal">),<sp/>frequency,<sp/></highlight><highlight class="stringliteral">&quot;parent_to_child&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ft_wrist_left(std::make_shared&lt;sensor::ForceTorque&gt;(joint(</highlight><highlight class="stringliteral">&quot;wrist_left_ft_joint&quot;</highlight><highlight class="normal">),<sp/>frequency,<sp/></highlight><highlight class="stringliteral">&quot;parent_to_child&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ft_wrist_right(std::make_shared&lt;sensor::ForceTorque&gt;(joint(</highlight><highlight class="stringliteral">&quot;wrist_right_ft_joint&quot;</highlight><highlight class="normal">),<sp/>frequency,<sp/></highlight><highlight class="stringliteral">&quot;parent_to_child&quot;</highlight><highlight class="normal">)),</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_frequency(frequency)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>use<sp/>position/torque<sp/>limits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set_position_enforced(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>position<sp/>Talos</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set_base_pose(robot_dart::make_vector({0.,<sp/>0.,<sp/>M_PI<sp/>/<sp/>2.,<sp/>0.,<sp/>0.,<sp/>1.1}));</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Talos::reset()</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Robot::reset();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>position<sp/>Talos</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>set_base_pose(robot_dart::make_vector({0.,<sp/>0.,<sp/>M_PI<sp/>/<sp/>2.,<sp/>0.,<sp/>0.,<sp/>1.1}));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Talos::_post_addition(RobotDARTSimu*<sp/>simu)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>do<sp/>not<sp/>want<sp/>to<sp/>add<sp/>sensors<sp/>if<sp/>we<sp/>are<sp/>a<sp/>ghost<sp/>robot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ghost())</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(_imu);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(_ft_foot_left);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(_ft_foot_right);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(_ft_wrist_left);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(_ft_wrist_right);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>torques<sp/>sensors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>joints<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>torso</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;torso_1_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;torso_2_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>arm_left</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;arm_left_1_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;arm_left_2_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;arm_left_3_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;arm_left_4_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>arm_right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;arm_right_1_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;arm_right_2_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;arm_right_3_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;arm_right_4_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>leg_left</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;leg_left_1_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_left_2_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_left_3_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;leg_left_4_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_left_5_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_left_6_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>leg_right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;leg_right_1_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_right_2_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_right_3_joint&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;leg_right_4_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_right_5_joint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;leg_right_6_joint&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>s<sp/>:<sp/>joints)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>t<sp/>=<sp/>std::make_shared&lt;sensor::Torque&gt;(joint(s),<sp/>_frequency);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_torques[s]<sp/>=<sp/>t;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;add_sensor(t);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Talos::_post_removal(RobotDARTSimu*<sp/>simu)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(_imu);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(_ft_foot_left);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(_ft_foot_right);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(_ft_wrist_left);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(_ft_wrist_right);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>t<sp/>:<sp/>_torques)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;remove_sensor(t.second);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TalosFastCollision::_post_addition(RobotDARTSimu*<sp/>simu)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Talos::_post_addition(simu);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>vec<sp/>=<sp/>TalosFastCollision::collision_vec();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>t<sp/>:<sp/>vec)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simu-&gt;set_collision_masks(simu-&gt;robots().size()<sp/>-<sp/>1,<sp/>std::get&lt;0&gt;(t),<sp/>std::get&lt;1&gt;(t),<sp/>std::get&lt;2&gt;(t));</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::tuple&lt;std::string,<sp/>uint32_t,<sp/>uint32_t&gt;&gt;<sp/>TalosFastCollision::collision_vec()</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::tuple&lt;std::string,<sp/>uint32_t,<sp/>uint32_t&gt;&gt;<sp/>vec;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_right_6_link&quot;</highlight><highlight class="normal">,<sp/>0x1,<sp/>0x1<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_right_4_link&quot;</highlight><highlight class="normal">,<sp/>0x2,<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_left_6_link&quot;</highlight><highlight class="normal">,<sp/>0x4,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_left_4_link&quot;</highlight><highlight class="normal">,<sp/>0x8,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_left_1_link&quot;</highlight><highlight class="normal">,<sp/>0x10,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_left_3_link&quot;</highlight><highlight class="normal">,<sp/>0x20,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_right_1_link&quot;</highlight><highlight class="normal">,<sp/>0x40,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_right_3_link&quot;</highlight><highlight class="normal">,<sp/>0x80,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;arm_left_7_link&quot;</highlight><highlight class="normal">,<sp/>0x100,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;arm_left_5_link&quot;</highlight><highlight class="normal">,<sp/>0x200,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;arm_right_7_link&quot;</highlight><highlight class="normal">,<sp/>0x400,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x400<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;arm_right_5_link&quot;</highlight><highlight class="normal">,<sp/>0x800,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;torso_2_link&quot;</highlight><highlight class="normal">,<sp/>0x1000,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000));</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;base_link&quot;</highlight><highlight class="normal">,<sp/>0x2000,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x2000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_right_2_link&quot;</highlight><highlight class="normal">,<sp/>0x4000,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;leg_left_2_link&quot;</highlight><highlight class="normal">,<sp/>0x8000,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x1000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vec.push_back(std::make_tuple(</highlight><highlight class="stringliteral">&quot;head_2_link&quot;</highlight><highlight class="normal">,<sp/>0x10000,<sp/>0x1<sp/>|<sp/>0x2<sp/>|<sp/>0x4<sp/>|<sp/>0x8<sp/>|<sp/>0x10<sp/>|<sp/>0x20<sp/>|<sp/>0x40<sp/>|<sp/>0x80<sp/>|<sp/>0x100<sp/>|<sp/>0x200<sp/>|<sp/>0x800<sp/>|<sp/>0x2000<sp/>|<sp/>0x4000<sp/>|<sp/>0x8000<sp/>|<sp/>0x10000));</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vec;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robots</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robot_dart</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/robots/talos.cpp"/>
+  </compounddef>
+</doxygen>

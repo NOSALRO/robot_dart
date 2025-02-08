@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1robots" kind="namespace" language="C++">
+    <compoundname>robot_dart::robots</compoundname>
+    <innerclass refid="classrobot__dart_1_1robots_1_1A1" prot="public">robot_dart::robots::A1</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Arm" prot="public">robot_dart::robots::Arm</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Franka" prot="public">robot_dart::robots::Franka</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Hexapod" prot="public">robot_dart::robots::Hexapod</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1ICub" prot="public">robot_dart::robots::ICub</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Iiwa" prot="public">robot_dart::robots::Iiwa</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Pendulum" prot="public">robot_dart::robots::Pendulum</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Talos" prot="public">robot_dart::robots::Talos</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1TalosFastCollision" prot="public">robot_dart::robots::TalosFastCollision</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1TalosLight" prot="public">robot_dart::robots::TalosLight</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Tiago" prot="public">robot_dart::robots::Tiago</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Ur3e" prot="public">robot_dart::robots::Ur3e</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Ur3eHand" prot="public">robot_dart::robots::Ur3eHand</innerclass>
+    <innerclass refid="classrobot__dart_1_1robots_1_1Vx300" prot="public">robot_dart::robots::Vx300</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robots/a1.cpp" line="5" column="5"/>
+  </compounddef>
+</doxygen>

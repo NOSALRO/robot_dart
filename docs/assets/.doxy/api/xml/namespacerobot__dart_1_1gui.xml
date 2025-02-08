@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1gui" kind="namespace" language="C++">
+    <compoundname>robot_dart::gui</compoundname>
+    <innerclass refid="classrobot__dart_1_1gui_1_1Base" prot="public">robot_dart::gui::Base</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1DepthImage" prot="public">robot_dart::gui::DepthImage</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1GrayscaleImage" prot="public">robot_dart::gui::GrayscaleImage</innerclass>
+    <innerclass refid="structrobot__dart_1_1gui_1_1Image" prot="public">robot_dart::gui::Image</innerclass>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum">robot_dart::gui::magnum</innernamespace>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="helper_8cpp_1af94bed6e707830d19a83e9eeed981a5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::save_png_image</definition>
+        <argsstring>(const std::string &amp;filename, const Image &amp;rgb)</argsstring>
+        <name>save_png_image</name>
+        <qualifiedname>robot_dart::gui::save_png_image</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1Image" kindref="compound">Image</ref> &amp;</type>
+          <declname>rgb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.cpp" line="8" column="14" bodyfile="robot_dart/gui/helper.cpp" bodystart="8" bodyend="21" declfile="robot_dart/gui/helper.hpp" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="helper_8cpp_1a13ebafdc4c95a91115a957ec398a358c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::save_png_image</definition>
+        <argsstring>(const std::string &amp;filename, const GrayscaleImage &amp;gray)</argsstring>
+        <name>save_png_image</name>
+        <qualifiedname>robot_dart::gui::save_png_image</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kindref="compound">GrayscaleImage</ref> &amp;</type>
+          <declname>gray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.cpp" line="23" column="14" bodyfile="robot_dart/gui/helper.cpp" bodystart="23" bodyend="36" declfile="robot_dart/gui/helper.hpp" declline="28" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="helper_8cpp_1ad6d17805aa36fc5d0f659f2434724140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structrobot__dart_1_1gui_1_1GrayscaleImage" kindref="compound">GrayscaleImage</ref></type>
+        <definition>GrayscaleImage robot_dart::gui::convert_rgb_to_grayscale</definition>
+        <argsstring>(const Image &amp;rgb)</argsstring>
+        <name>convert_rgb_to_grayscale</name>
+        <qualifiedname>robot_dart::gui::convert_rgb_to_grayscale</qualifiedname>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1Image" kindref="compound">Image</ref> &amp;</type>
+          <declname>rgb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.cpp" line="38" column="24" bodyfile="robot_dart/gui/helper.cpp" bodystart="38" bodyend="59" declfile="robot_dart/gui/helper.hpp" declline="30" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="helper_8cpp_1a90e1f22900b9927acc7eed71a27fe740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt; Eigen::Vector3d &gt; robot_dart::gui::point_cloud_from_depth_array</definition>
+        <argsstring>(const DepthImage &amp;depth_image, const Eigen::Matrix3d &amp;intrinsic_matrix, const Eigen::Matrix4d &amp;tf, double far_plane)</argsstring>
+        <name>point_cloud_from_depth_array</name>
+        <qualifiedname>robot_dart::gui::point_cloud_from_depth_array</qualifiedname>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1DepthImage" kindref="compound">DepthImage</ref> &amp;</type>
+          <declname>depth_image</declname>
+        </param>
+        <param>
+          <type>const Eigen::Matrix3d &amp;</type>
+          <declname>intrinsic_matrix</declname>
+        </param>
+        <param>
+          <type>const Eigen::Matrix4d &amp;</type>
+          <declname>tf</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.cpp" line="61" column="21" bodyfile="robot_dart/gui/helper.cpp" bodystart="61" bodyend="102" declfile="robot_dart/gui/helper.hpp" declline="32" declcolumn="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/base.hpp" line="9" column="5"/>
+  </compounddef>
+</doxygen>

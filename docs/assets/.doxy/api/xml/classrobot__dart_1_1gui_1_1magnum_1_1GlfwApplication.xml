@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::GlfwApplication</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" prot="public" virt="non-virtual">robot_dart::gui::magnum::BaseApplication</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::Platform::Application</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6770be3e69e1fc9f546d226e97ceb34a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu* robot_dart::gui::magnum::GlfwApplication::_simu</definition>
+        <argsstring></argsstring>
+        <name>_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_simu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="26" column="31" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a860748728fe7fcda3a66df75bdd54277" prot="protected" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_move</definition>
+        <argsstring></argsstring>
+        <name>_speed_move</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed_move</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="27" column="31" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4f3477ec910b52aa66107137fc645819" prot="protected" static="no" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed_strafe</definition>
+        <argsstring></argsstring>
+        <name>_speed_strafe</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed_strafe</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="27" column="43" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af8cde986e7b42265a7c5161b8c724b36" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GlfwApplication::_draw_main_camera</definition>
+        <argsstring></argsstring>
+        <name>_draw_main_camera</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_draw_main_camera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="28" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4a169d681a95a7313fb7f62a74702fc2" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::gui::magnum::GlfwApplication::_draw_debug</definition>
+        <argsstring></argsstring>
+        <name>_draw_debug</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_draw_debug</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="28" column="40" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a7d79e031ec0685ad3cdffe86af647465" prot="protected" static="no" mutable="no">
+        <type>Magnum::Color4</type>
+        <definition>Magnum::Color4 robot_dart::gui::magnum::GlfwApplication::_bg_color</definition>
+        <argsstring></argsstring>
+        <name>_bg_color</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_bg_color</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="29" column="32" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1afa36bf510f8d06496071337bf3877f7b" prot="protected" static="yes" constexpr="yes" mutable="no">
+        <type>Magnum::Float</type>
+        <definition>Magnum::Float robot_dart::gui::magnum::GlfwApplication::_speed</definition>
+        <argsstring></argsstring>
+        <name>_speed</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::_speed</qualifiedname>
+        <initializer>= 0.05f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="31" column="48" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af2bbf678a299f7c71950905b8edf1a4a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::GlfwApplication::GlfwApplication</definition>
+        <argsstring>(int argc, char **argv, RobotDARTSimu *simu, const GraphicsConfiguration &amp;configuration=GraphicsConfiguration())</argsstring>
+        <name>GlfwApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::GlfwApplication</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref> &amp;</type>
+          <declname>configuration</declname>
+          <defval><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="19" column="26" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="13" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c8e98c8a3f8fbe18dfe7df88d2cda9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::GlfwApplication::~GlfwApplication</definition>
+        <argsstring>()</argsstring>
+        <name>~GlfwApplication</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::~GlfwApplication</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="21" column="17" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1aeaf25dcd25336527e4ede5892fb6da8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::render</definition>
+        <argsstring>() override</argsstring>
+        <name>render</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::render</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a16d1087b2a12045167c0c6924fff6062">render</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="23" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="54" bodyend="57"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6f08ae7ae23c9b46d0ae03542d16210d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::viewportEvent</definition>
+        <argsstring>(ViewportEvent &amp;event) override</argsstring>
+        <name>viewportEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::viewportEvent</qualifiedname>
+        <param>
+          <type>ViewportEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="33" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="59" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a842a52b822a44809cff86295ba5b6670" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::drawEvent</definition>
+        <argsstring>() override</argsstring>
+        <name>drawEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::drawEvent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="35" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="66" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c39571cc0ffe635c2ad3a4cd504376" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::keyReleaseEvent</definition>
+        <argsstring>(KeyEvent &amp;event) override</argsstring>
+        <name>keyReleaseEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::keyReleaseEvent</qualifiedname>
+        <param>
+          <type>KeyEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="37" column="30" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="99" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a495a700ff1f7377476352b25bafa6fd6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::keyPressEvent</definition>
+        <argsstring>(KeyEvent &amp;event) override</argsstring>
+        <name>keyPressEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::keyPressEvent</qualifiedname>
+        <param>
+          <type>KeyEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="38" column="30" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="107" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1abd796ed7b267a891c04b1ca3dcf0c1e8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::mouseScrollEvent</definition>
+        <argsstring>(MouseScrollEvent &amp;event) override</argsstring>
+        <name>mouseScrollEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::mouseScrollEvent</qualifiedname>
+        <param>
+          <type>MouseScrollEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="40" column="30" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="128" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a3e080f1adf5acfd90db3dcc26df25acb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::mouseMoveEvent</definition>
+        <argsstring>(MouseMoveEvent &amp;event) override</argsstring>
+        <name>mouseMoveEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::mouseMoveEvent</qualifiedname>
+        <param>
+          <type>MouseMoveEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="41" column="30" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="144" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a8d62acc674f93c109160eacec1005e50" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::GlfwApplication::exitEvent</definition>
+        <argsstring>(ExitEvent &amp;event) override</argsstring>
+        <name>exitEvent</name>
+        <qualifiedname>robot_dart::gui::magnum::GlfwApplication::exitEvent</qualifiedname>
+        <param>
+          <type>ExitEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/glfw_application.hpp" line="43" column="22" bodyfile="robot_dart/gui/magnum/glfw_application.cpp" bodystart="153" bodyend="157"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Magnum::Platform::Application</label>
+      </node>
+      <node id="2">
+        <label>robot_dart::gui::magnum::BaseApplication</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::GlfwApplication</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>Magnum::Platform::Application</label>
+      </node>
+      <node id="4">
+        <label>robot_dart::RobotDARTSimu</label>
+        <link refid="classrobot__dart_1_1RobotDARTSimu"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_scheduler</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>robot_dart::Scheduler</label>
+        <link refid="classrobot__dart_1_1Scheduler"/>
+      </node>
+      <node id="2">
+        <label>robot_dart::gui::magnum::BaseApplication</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_configuration</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::GlfwApplication</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart::gui::magnum::GraphicsConfiguration</label>
+        <link refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration"/>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/glfw_application.hpp" line="17" column="13" bodyfile="robot_dart/gui/magnum/glfw_application.hpp" bodystart="17" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa397ec85bd3311cd42dd8faf360769a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_3D_axis_mesh</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac4ec4f32dfdf1636216795c70546c431" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_3D_axis_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0dbb4fbec93d804c184d5cb03541b722" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_background_mesh</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1140f9e2fb6cda51aa983b1706335861" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_background_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a7d79e031ec0685ad3cdffe86af647465" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_bg_color</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab04e9e8bbc4ae59fb3992adf35edf9df" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae6ff6b9d40c389fe3f1374e934454a74" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a903e8d20011dea55a80935cef5d430cb" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_configuration</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5acb41d58a818c533baa1553c1b1d25d" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_color_drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aac325dfdc1c44080ba73ea4d9f4a2465" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7d592b80afc7b7427640360c2d16491f" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c4dd07484ca16f4812fdd8e9f5a12d4" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abefe177e707e94c1d108d201fce25b27" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_texture_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8968c21c371d8f5a28d02ff58f95029f" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_cubemap_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6c45b5cb9c5ecdb90f1de36726e6ccce" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_dart_world</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a361c8ce66cda2051d6adbd780d7baeab" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_done</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4a169d681a95a7313fb7f62a74702fc2" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_draw_debug</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af8cde986e7b42265a7c5161b8c724b36" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_draw_main_camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7525328182618e105f398552b37b83d3" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_drawable_objects</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a11756e39cf8b6ec87cc49b43103c6e8a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aba8967b23153ba612080a872936c3eb5" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_font</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae9a8bd072e148017a87a022c014869f1" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_font_manager</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6ae637e77f0f516d4d0669cba1176e53" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_gl_clean_up</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a88e68689bbcf5ac140b5408d6be9c2d9" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_glyph_cache</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a92f3873426e8dc565011094615f0d195" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_importer_manager</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1d346341e3f7cb3270f3a788147c8116" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aacdd79c27de133cfc16db1c46b443ea3" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_max_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae13845b8aeb52e574e240b6e889f6332" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_prepare_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7088263b5d0fdd3744197a71265b050a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_scene</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1acbb890caa478924240a2aea1c2452dc3" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a933b0ef94177b3c80029603f91f349b6" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_camera_object</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ab105589dc33c5c43ac19d65f3331b19f" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_color_cube_map</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8b3475862d97e7124367324e7420f3df" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ac77fb93e46af72a525a6294e7acf6ac9" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_color_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1aabf0dfecaf4116f0c8d15e60ecd61187" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_cube_map</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a069bdac87c0e42768d40a89fcc7653ac" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_data</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0bd33eae75939327000ec2138a01af45" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_map_size</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae56f39ba4c67386624f38031241257c7" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a0c225c6c4fec07792bd8dc845590a8ac" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_texture</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85aaac9eb950b9a6209c51fcb39aa887" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_texture_color_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a78b770fb13170921b0af2eae900ffda3" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadow_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5f47cc95e61d8700fccad7680fdd92b4" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadowed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a1b771e4fe0f3a0676301957cc3a7dce2" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadowed_color_drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a76a15432ceae7b67ce667eebb44eb803" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_shadowed_drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6770be3e69e1fc9f546d226e97ceb34a" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1afa36bf510f8d06496071337bf3877f7b" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_speed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a860748728fe7fcda3a66df75bdd54277" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_speed_move</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a4f3477ec910b52aa66107137fc645819" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_speed_strafe</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a7e15f87aed52a88d5959a2b999f3794f" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_text_indices</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5d004fc8e4b3e432ded97de839df5986" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_text_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a318231298741ae5c6fc8fe1632f4caac" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_text_vertices</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5fef5f583b4db97767bd70c488ba8b99" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae4247f27c3dbb8f81242e9b176603df5" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_transparent_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6bcf72ac66cba6589b42013161012ea1" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>_transparentSize</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afa77529e009500d717de3bdd85deb34d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>add_light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a4279559dbff4c2d09855544bef168c76" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>attach_camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a5170be3d0d70694627d96e4897629792" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>BaseApplication</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae07a488f63a853e11d740bf6d8d81706" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af596e1b2e993d1839a4e5f7827098381" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>camera</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1abd37042f8ea2671c68826d44daa81d55" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>clear_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a85ae540943df00c65f2b6a3908002851" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>debug_draw_data</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a06c242d721736670813474715502b179" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>depth_array</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a174cf83abb87ab7a7223f88c3edfdd50" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a54c48ca9e097dc16662f15d09ee77efe" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>done</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afb707a29453914b2bfc86b642cf73df3" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>drawables</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a842a52b822a44809cff86295ba5b6670" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>drawEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ae960cb1a4f93cb3d0802c82556b0ac7e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>enable_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a8d62acc674f93c109160eacec1005e50" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>exitEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af2bbf678a299f7c71950905b8edf1a4a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>GlfwApplication</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3a2b065fe27a636b9e758edff1bcf16a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a6b31b07ed123d931ada4356f83d23d6e" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a495a700ff1f7377476352b25bafa6fd6" prot="protected" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>keyPressEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c39571cc0ffe635c2ad3a4cd504376" prot="protected" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>keyReleaseEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a25358d28f9c457b9d6a41b4ac9eba23b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>light</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a2c9c81152dc4169f0c77ecaa3ec5a7f7" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a9e79a5662c6136ee579962f8b78a9ee8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>look_at</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a3e080f1adf5acfd90db3dcc26df25acb" prot="protected" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>mouseMoveEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1abd796ed7b267a891c04b1ca3dcf0c1e8" prot="protected" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>mouseScrollEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af0eab50adb453ef3693ce9f7dd15d7c0" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>num_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a808c853dfd5447e3abc6cf6bfa608ddb" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>raw_depth_image</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a156e6c734b8e404b8061089982605a39" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>record_video</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1aeaf25dcd25336527e4ede5892fb6da8d" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>render</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1af7ef8e29e4fd619a1e9d29aa62ccfbe1" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>render_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1afdd639fcca1789878a1df15cfbd2858b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>scene</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1ad0973706a1a9679339b953ded651b987" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>shadowed</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a71d53f10e240e04d6869047183fbae61" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>transparent_shadows</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a3c6fcc428ab7c556d220e9e58f722a0a" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>update_graphics</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a8091cddb215f723564871cfa166678f0" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>update_lights</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1a6f08ae7ae23c9b46d0ae03542d16210d" prot="protected" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>viewportEvent</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication_1a786434c06b433215b121765138eda0be" prot="public" virt="virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>~BaseApplication</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1GlfwApplication_1af4c8e98c8a3f8fbe18dfe7df88d2cda9" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::GlfwApplication</scope><name>~GlfwApplication</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

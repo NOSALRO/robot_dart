@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1gui_1_1DepthImage" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::gui::DepthImage</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1DepthImage_1ac6e5e3a37d123c57d596c12897ad0a0d" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::DepthImage::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>robot_dart::gui::DepthImage::width</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="23" column="20" bodyfile="robot_dart/gui/helper.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1DepthImage_1abcc64dd34a01ed41def4d4f7615eccb2" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::gui::DepthImage::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <qualifiedname>robot_dart::gui::DepthImage::height</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="23" column="27" bodyfile="robot_dart/gui/helper.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1gui_1_1DepthImage_1a70b8f71223fcc12acc06e8356755aa12" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; robot_dart::gui::DepthImage::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>robot_dart::gui::DepthImage::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/helper.hpp" line="24" column="25" bodyfile="robot_dart/gui/helper.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/helper.hpp" line="22" column="9" bodyfile="robot_dart/gui/helper.hpp" bodystart="22" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1gui_1_1DepthImage_1a70b8f71223fcc12acc06e8356755aa12" prot="public" virt="non-virtual"><scope>robot_dart::gui::DepthImage</scope><name>data</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1DepthImage_1abcc64dd34a01ed41def4d4f7615eccb2" prot="public" virt="non-virtual"><scope>robot_dart::gui::DepthImage</scope><name>height</name></member>
+      <member refid="structrobot__dart_1_1gui_1_1DepthImage_1ac6e5e3a37d123c57d596c12897ad0a0d" prot="public" virt="non-virtual"><scope>robot_dart::gui::DepthImage</scope><name>width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

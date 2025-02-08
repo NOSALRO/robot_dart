@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_6a9d4b7ec29c938d1d9a486c655cfc8a" kind="dir">
+    <compoundname>robot_dart/gui</compoundname>
+    <innerdir refid="dir_5d18adecbc10cabf3ca51da31f2acdd1">robot_dart/gui/magnum</innerdir>
+    <innerfile refid="base_8hpp">base.hpp</innerfile>
+    <innerfile refid="helper_8cpp">helper.cpp</innerfile>
+    <innerfile refid="helper_8hpp">helper.hpp</innerfile>
+    <innerfile refid="stb__image__write_8h">stb_image_write.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/"/>
+  </compounddef>
+</doxygen>

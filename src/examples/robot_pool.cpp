@@ -1,8 +1,10 @@
 #include <thread>
-
 #include <robot_dart/robot_dart_simu.hpp>
+// @ROBOT_POOL_INCLUDE@
 #include <robot_dart/robot_pool.hpp>
+// @ROBOT_POOL_INCLUDE_END@
 #include <robot_dart/robots/talos.hpp>
+
 
 static constexpr int NUM_THREADS = 12;
 
@@ -48,17 +50,23 @@ inline void simulate_robot(const std::shared_ptr<robot_dart::Robot>& robot)
     }
 }
 
+// @ROBOT_POOL_GLOBAL_NAMESPACE@
 namespace pool {
+    // This function should load one robot: here we load Talos
     inline std::shared_ptr<robot_dart::Robot> robot_creator()
     {
         return std::make_shared<robot_dart::robots::Talos>();
     }
 
+    // To create the object we need to pass the robot_creator function and the number of maximum parallel threads
     robot_dart::RobotPool robot_pool(robot_creator, NUM_THREADS);
 } // namespace pool
+// @ROBOT_POOL_GLOBAL_NAMESPACE_END@
 
+// @ROBOT_POOL_EVAL@
 inline void eval_robot(int i)
 {
+    // We get one available robot
     auto robot = pool::robot_pool.get_robot();
     std::cout << "Robot " << i << " got [" << robot->skeleton() << "]" << std::endl;
 
@@ -73,13 +81,16 @@ inline void eval_robot(int i)
 
     std::cout << "Robot " << i << " freed!" << std::endl;
 }
+// @ROBOT_POOL_EVAL_END@
 
 int main()
 {
+    // @ROBOT_POOL_CREATE_THREADS@
     // for the example, we run NUM_THREADS threads of eval_robot()
     std::vector<std::thread> threads(NUM_THREADS * 2); // *2 to see some reuse
     for (size_t i = 0; i < threads.size(); ++i)
-        threads[i] = std::thread(eval_robot, i);
+        threads[i] = std::thread(eval_robot, i); // eval_robot is the function that uses the robot
+    // @ROBOT_POOL_CREATE_THREADS_END@
 
     // wait for the threads to finish
     for (size_t i = 0; i < threads.size(); ++i)

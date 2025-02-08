@@ -1,0 +1,631 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1sensor_1_1Sensor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>robot_dart::sensor::Sensor</compoundname>
+    <derivedcompoundref refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera" prot="public" virt="non-virtual">robot_dart::gui::magnum::sensor::Camera</derivedcompoundref>
+    <derivedcompoundref refid="classrobot__dart_1_1sensor_1_1ForceTorque" prot="public" virt="non-virtual">robot_dart::sensor::ForceTorque</derivedcompoundref>
+    <derivedcompoundref refid="classrobot__dart_1_1sensor_1_1IMU" prot="public" virt="non-virtual">robot_dart::sensor::IMU</derivedcompoundref>
+    <derivedcompoundref refid="classrobot__dart_1_1sensor_1_1Torque" prot="public" virt="non-virtual">robot_dart::sensor::Torque</derivedcompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1ad21f16b70a75a08291e4af17624f278a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu* robot_dart::sensor::Sensor::_simu</definition>
+        <argsstring></argsstring>
+        <name>_simu</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_simu</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="56" column="27" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1aa38108b58336a8a5910ba8ade2b87787" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::_active</definition>
+        <argsstring></argsstring>
+        <name>_active</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_active</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="57" column="18" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1aceee4ef806a6532fff21e9a92c88d5ed" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::sensor::Sensor::_frequency</definition>
+        <argsstring></argsstring>
+        <name>_frequency</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_frequency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="58" column="20" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1a2a740dd4f7969102d57cee13cef8a0f5" prot="protected" static="no" mutable="no">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::sensor::Sensor::_world_pose</definition>
+        <argsstring></argsstring>
+        <name>_world_pose</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_world_pose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="60" column="31" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1a7f42d09116155bfc7a9e0d87b132a820" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::_attaching_to_body</definition>
+        <argsstring></argsstring>
+        <name>_attaching_to_body</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_attaching_to_body</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="62" column="18" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1a97dad76329f9e77516e75ad1f364f8bc" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::_attached_to_body</definition>
+        <argsstring></argsstring>
+        <name>_attached_to_body</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_attached_to_body</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="62" column="38" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1a8ca0a617568113c9800a7a5b457d251e" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::_attaching_to_joint</definition>
+        <argsstring></argsstring>
+        <name>_attaching_to_joint</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_attaching_to_joint</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="63" column="18" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1a625e92a1e91d2887d527122e0f67d364" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::_attached_to_joint</definition>
+        <argsstring></argsstring>
+        <name>_attached_to_joint</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_attached_to_joint</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="63" column="39" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1aab446ec1457b610cae2bac9ff699fa50" prot="protected" static="no" mutable="no">
+        <type>Eigen::Isometry3d</type>
+        <definition>Eigen::Isometry3d robot_dart::sensor::Sensor::_attached_tf</definition>
+        <argsstring></argsstring>
+        <name>_attached_tf</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_attached_tf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="64" column="31" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1aedbc3a78b8efaa1aa40494c182d8da02" prot="protected" static="no" mutable="no">
+        <type>dart::dynamics::BodyNode *</type>
+        <definition>dart::dynamics::BodyNode* robot_dart::sensor::Sensor::_body_attached</definition>
+        <argsstring></argsstring>
+        <name>_body_attached</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_body_attached</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="65" column="38" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Sensor_1ab411ff9bf9d60a75b169ed0ab13a689c" prot="protected" static="no" mutable="no">
+        <type>dart::dynamics::Joint *</type>
+        <definition>dart::dynamics::Joint* robot_dart::sensor::Sensor::_joint_attached</definition>
+        <argsstring></argsstring>
+        <name>_joint_attached</name>
+        <qualifiedname>robot_dart::sensor::Sensor::_joint_attached</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="66" column="35" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a028a86f9968fb9bb164f6f1c73a322b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::Sensor::Sensor</definition>
+        <argsstring>(size_t freq=40)</argsstring>
+        <name>Sensor</name>
+        <qualifiedname>robot_dart::sensor::Sensor::Sensor</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>freq</declname>
+          <defval>40</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="23" column="13" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1aafbdf247836013dee14437f0e9fb8610" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual robot_dart::sensor::Sensor::~Sensor</definition>
+        <argsstring>()</argsstring>
+        <name>~Sensor</name>
+        <qualifiedname>robot_dart::sensor::Sensor::~Sensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="24" column="21" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1afd2687c694f5b89335ba8af5bf51eb95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::activate</definition>
+        <argsstring>(bool enable=true)</argsstring>
+        <name>activate</name>
+        <qualifiedname>robot_dart::sensor::Sensor::activate</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="26" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="10" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a1e727aded13a104871fd259f34df7f2a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::sensor::Sensor::active</definition>
+        <argsstring>() const</argsstring>
+        <name>active</name>
+        <qualifiedname>robot_dart::sensor::Sensor::active</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="27" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a65c9541d510af1ed8fca6dd726e45972" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::set_simu</definition>
+        <argsstring>(RobotDARTSimu *simu)</argsstring>
+        <name>set_simu</name>
+        <qualifiedname>robot_dart::sensor::Sensor::set_simu</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="29" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="23" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a215d8822d1346f316cf3092c87c78d7e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>const RobotDARTSimu * robot_dart::sensor::Sensor::simu</definition>
+        <argsstring>() const</argsstring>
+        <name>simu</name>
+        <qualifiedname>robot_dart::sensor::Sensor::simu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="30" column="33" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a758e280e81e3e6d7fabc6450bda18f57" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t robot_dart::sensor::Sensor::frequency</definition>
+        <argsstring>() const</argsstring>
+        <name>frequency</name>
+        <qualifiedname>robot_dart::sensor::Sensor::frequency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="32" column="20" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a20c0ad8a25971e59525756f1b1305b1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::set_frequency</definition>
+        <argsstring>(size_t freq)</argsstring>
+        <name>set_frequency</name>
+        <qualifiedname>robot_dart::sensor::Sensor::set_frequency</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="33" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a9f866c0839cad9626df1fa849cc2ec2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::set_pose</definition>
+        <argsstring>(const Eigen::Isometry3d &amp;tf)</argsstring>
+        <name>set_pose</name>
+        <qualifiedname>robot_dart::sensor::Sensor::set_pose</qualifiedname>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="35" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1ac44dc2534da5827ed3ea0fe4fce347b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Eigen::Isometry3d &amp;</type>
+        <definition>const Eigen::Isometry3d &amp; robot_dart::sensor::Sensor::pose</definition>
+        <argsstring>() const</argsstring>
+        <name>pose</name>
+        <qualifiedname>robot_dart::sensor::Sensor::pose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="36" column="37" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1aacf085afe662dc688d7d5ea07f88ba6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::refresh</definition>
+        <argsstring>(double t)</argsstring>
+        <name>refresh</name>
+        <qualifiedname>robot_dart::sensor::Sensor::refresh</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="38" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="53" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void robot_dart::sensor::Sensor::init</definition>
+        <argsstring>()=0</argsstring>
+        <name>init</name>
+        <qualifiedname>robot_dart::sensor::Sensor::init</qualifiedname>
+        <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1af970b5846890a6372fabc7edb627fe88">init</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a4da7b7284a18433931d43ff3e511fe54">init</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1IMU_1a74f3ab4fc9f5cb4853cd48c505085ade">init</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1Torque_1ad25fd57774d83439ebb2ee31c5130e86">init</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="40" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void robot_dart::sensor::Sensor::calculate</definition>
+        <argsstring>(double)=0</argsstring>
+        <name>calculate</name>
+        <qualifiedname>robot_dart::sensor::Sensor::calculate</qualifiedname>
+        <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a7287b4be4b9358150644b04f54b52bba">calculate</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a717bd8631c2763bd5c2b0d943734a1bb">calculate</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1IMU_1a487a1db67255781effd376f279ba3772">calculate</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1Torque_1ab1f5cc77513f34fe7cc30e7b17cbceca">calculate</reimplementedby>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="42" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string robot_dart::sensor::Sensor::type</definition>
+        <argsstring>() const =0</argsstring>
+        <name>type</name>
+        <qualifiedname>robot_dart::sensor::Sensor::type</qualifiedname>
+        <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a3cb552c93c79a5eb5d0e04458463fe42">type</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1ForceTorque_1aa22a9881b75c73e758f8096cca1c6949">type</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1IMU_1a0e59465e82037c3eb1f22672a99f86ae">type</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1Torque_1aefa728de2eaee42d2e017db711dfd6e1">type</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="44" column="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::attach_to_body</definition>
+        <argsstring>(dart::dynamics::BodyNode *body, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity())</argsstring>
+        <name>attach_to_body</name>
+        <qualifiedname>robot_dart::sensor::Sensor::attach_to_body</qualifiedname>
+        <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a62b0b2178dc25fda657fadb7864fccc2">attach_to_body</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1ForceTorque_1a6cbf05ed85d355f48449efee109dd5d5">attach_to_body</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1Torque_1a7a3c3e5faf10772db616d8bf92025106">attach_to_body</reimplementedby>
+        <param>
+          <type>dart::dynamics::BodyNode *</type>
+          <declname>body</declname>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="46" column="26" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="86" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1ada892ccecd413bf0f15e73b759c93324" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::attach_to_body</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot, const std::string &amp;body_name, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity())</argsstring>
+        <name>attach_to_body</name>
+        <qualifiedname>robot_dart::sensor::Sensor::attach_to_body</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>body_name</declname>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="47" column="18" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::attach_to_joint</definition>
+        <argsstring>(dart::dynamics::Joint *joint, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity())</argsstring>
+        <name>attach_to_joint</name>
+        <qualifiedname>robot_dart::sensor::Sensor::attach_to_joint</qualifiedname>
+        <reimplementedby refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera_1a269c8a783c4eba62207e9d42bf46fa6f">attach_to_joint</reimplementedby>
+        <reimplementedby refid="classrobot__dart_1_1sensor_1_1IMU_1a456714a083f005eef2387977a6d6c1ed">attach_to_joint</reimplementedby>
+        <param>
+          <type>dart::dynamics::Joint *</type>
+          <declname>joint</declname>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="49" column="26" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="105" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a4cdeb18f15974121e8fe6f85f8e5a054" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::attach_to_joint</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot, const std::string &amp;joint_name, const Eigen::Isometry3d &amp;tf=Eigen::Isometry3d::Identity())</argsstring>
+        <name>attach_to_joint</name>
+        <qualifiedname>robot_dart::sensor::Sensor::attach_to_joint</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>joint_name</declname>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Isometry3d::Identity()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="50" column="18" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a650f403364ec9144b82a58b9ab0593e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Sensor::detach</definition>
+        <argsstring>()</argsstring>
+        <name>detach</name>
+        <qualifiedname>robot_dart::sensor::Sensor::detach</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="52" column="18" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="44" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Sensor_1a65009c6a0456b5a3d16a3aee2a9c846d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; robot_dart::sensor::Sensor::attached_to</definition>
+        <argsstring>() const</argsstring>
+        <name>attached_to</name>
+        <qualifiedname>robot_dart::sensor::Sensor::attached_to</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/sensor.hpp" line="53" column="31" bodyfile="robot_dart/sensor/sensor.cpp" bodystart="122" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>robot_dart::gui::magnum::sensor::Camera</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1sensor_1_1Camera"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart::sensor::ForceTorque</label>
+        <link refid="classrobot__dart_1_1sensor_1_1ForceTorque"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart::sensor::IMU</label>
+        <link refid="classrobot__dart_1_1sensor_1_1IMU"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::sensor::Sensor</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Sensor"/>
+      </node>
+      <node id="5">
+        <label>robot_dart::sensor::Torque</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Torque"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>robot_dart::RobotDARTSimu</label>
+        <link refid="classrobot__dart_1_1RobotDARTSimu"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_scheduler</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>robot_dart::Scheduler</label>
+        <link refid="classrobot__dart_1_1Scheduler"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::sensor::Sensor</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Sensor"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/sensor/sensor.hpp" line="21" column="9" bodyfile="robot_dart/sensor/sensor.hpp" bodystart="21" bodyend="67"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aa38108b58336a8a5910ba8ade2b87787" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_active</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aab446ec1457b610cae2bac9ff699fa50" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_attached_tf</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a97dad76329f9e77516e75ad1f364f8bc" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_attached_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a625e92a1e91d2887d527122e0f67d364" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_attached_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a7f42d09116155bfc7a9e0d87b132a820" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_attaching_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a8ca0a617568113c9800a7a5b457d251e" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_attaching_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aedbc3a78b8efaa1aa40494c182d8da02" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_body_attached</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aceee4ef806a6532fff21e9a92c88d5ed" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ab411ff9bf9d60a75b169ed0ab13a689c" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_joint_attached</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ad21f16b70a75a08291e4af17624f278a" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a2a740dd4f7969102d57cee13cef8a0f5" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>_world_pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1afd2687c694f5b89335ba8af5bf51eb95" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>activate</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a1e727aded13a104871fd259f34df7f2a" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>active</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc" prot="public" virt="virtual"><scope>robot_dart::sensor::Sensor</scope><name>attach_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ada892ccecd413bf0f15e73b759c93324" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>attach_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b" prot="public" virt="virtual"><scope>robot_dart::sensor::Sensor</scope><name>attach_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a4cdeb18f15974121e8fe6f85f8e5a054" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>attach_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65009c6a0456b5a3d16a3aee2a9c846d" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>attached_to</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0" prot="public" virt="pure-virtual"><scope>robot_dart::sensor::Sensor</scope><name>calculate</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a650f403364ec9144b82a58b9ab0593e2" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>detach</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a758e280e81e3e6d7fabc6450bda18f57" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517" prot="public" virt="pure-virtual"><scope>robot_dart::sensor::Sensor</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ac44dc2534da5827ed3ea0fe4fce347b5" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aacf085afe662dc688d7d5ea07f88ba6f" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>refresh</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a028a86f9968fb9bb164f6f1c73a322b1" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>Sensor</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a20c0ad8a25971e59525756f1b1305b1e" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>set_frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a9f866c0839cad9626df1fa849cc2ec2f" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>set_pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65c9541d510af1ed8fca6dd726e45972" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>set_simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a215d8822d1346f316cf3092c87c78d7e" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Sensor</scope><name>simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0" prot="public" virt="pure-virtual"><scope>robot_dart::sensor::Sensor</scope><name>type</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aafbdf247836013dee14437f0e9fb8610" prot="public" virt="virtual"><scope>robot_dart::sensor::Sensor</scope><name>~Sensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -12,8 +12,10 @@
 // - the urdf does not have the mimic (used for grippers)
 int main()
 {
+    // @TALOS_FAST@
+    // load talos fast
     auto robot = std::make_shared<robot_dart::robots::TalosFastCollision>();
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
+    // @TALOS_FAST_END@
 
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
@@ -22,6 +24,7 @@ int main()
     robot_dart::RobotDARTSimu simu(dt);
     // we can use the DART (fast) collision detector
     simu.set_collision_detector("dart");
+
 #ifdef GRAPHIC
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>();
     simu.set_graphics(graphics);

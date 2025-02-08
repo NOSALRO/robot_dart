@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1sensor_1_1Torque" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::sensor::Torque</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1sensor_1_1Sensor" prot="public" virt="non-virtual">robot_dart::sensor::Sensor</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1sensor_1_1Torque_1a3823fd1da053ff9d6be0c78d1ce9ae39" prot="protected" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::sensor::Torque::_torques</definition>
+        <argsstring></argsstring>
+        <name>_torques</name>
+        <qualifiedname>robot_dart::sensor::Torque::_torques</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="27" column="29" bodyfile="robot_dart/sensor/torque.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1a0ac5826e79be44e0975dd917a91f4a5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::Torque::Torque</definition>
+        <argsstring>(dart::dynamics::Joint *joint, size_t frequency=1000)</argsstring>
+        <name>Torque</name>
+        <qualifiedname>robot_dart::sensor::Torque::Torque</qualifiedname>
+        <param>
+          <type>dart::dynamics::Joint *</type>
+          <declname>joint</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>frequency</declname>
+          <defval>1000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="10" column="13" bodyfile="robot_dart/sensor/torque.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1a7efd42a382843836ad5e01a11645e1c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::sensor::Torque::Torque</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot, const std::string &amp;joint_name, size_t frequency=1000)</argsstring>
+        <name>Torque</name>
+        <qualifiedname>robot_dart::sensor::Torque::Torque</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>joint_name</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>frequency</declname>
+          <defval>1000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="11" column="13" bodyfile="robot_dart/sensor/torque.hpp" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1ad25fd57774d83439ebb2ee31c5130e86" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Torque::init</definition>
+        <argsstring>() override</argsstring>
+        <name>init</name>
+        <qualifiedname>robot_dart::sensor::Torque::init</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a8c4862ff0d83fe5a8f29d9c0facbd517">init</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="13" column="18" bodyfile="robot_dart/sensor/torque.cpp" bodystart="13" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1ab1f5cc77513f34fe7cc30e7b17cbceca" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Torque::calculate</definition>
+        <argsstring>(double) override</argsstring>
+        <name>calculate</name>
+        <qualifiedname>robot_dart::sensor::Torque::calculate</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1af8f22376f5f6ff4d9d763582bc6c5be0">calculate</reimplements>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="15" column="18" bodyfile="robot_dart/sensor/torque.cpp" bodystart="21" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1aefa728de2eaee42d2e017db711dfd6e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string robot_dart::sensor::Torque::type</definition>
+        <argsstring>() const override</argsstring>
+        <name>type</name>
+        <qualifiedname>robot_dart::sensor::Torque::type</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1ae70ec474df573ff347d8cee7286cfed0">type</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="17" column="25" bodyfile="robot_dart/sensor/torque.cpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1a99378336df5d0e47d5c36f7d46d17027" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Eigen::VectorXd &amp;</type>
+        <definition>const Eigen::VectorXd &amp; robot_dart::sensor::Torque::torques</definition>
+        <argsstring>() const</argsstring>
+        <name>torques</name>
+        <qualifiedname>robot_dart::sensor::Torque::torques</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="19" column="35" bodyfile="robot_dart/sensor/torque.cpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1sensor_1_1Torque_1a7a3c3e5faf10772db616d8bf92025106" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::sensor::Torque::attach_to_body</definition>
+        <argsstring>(dart::dynamics::BodyNode *, const Eigen::Isometry3d &amp;) override</argsstring>
+        <name>attach_to_body</name>
+        <qualifiedname>robot_dart::sensor::Torque::attach_to_body</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1sensor_1_1Sensor_1a58b87038faefb1070ca0164321972fcc">attach_to_body</reimplements>
+        <param>
+          <type>dart::dynamics::BodyNode *</type>
+        </param>
+        <param>
+          <type>const Eigen::Isometry3d &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/sensor/torque.hpp" line="21" column="18" bodyfile="robot_dart/sensor/torque.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>robot_dart::sensor::Sensor</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Sensor"/>
+      </node>
+      <node id="1">
+        <label>robot_dart::sensor::Torque</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Torque"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>robot_dart::RobotDARTSimu</label>
+        <link refid="classrobot__dart_1_1RobotDARTSimu"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_scheduler</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>robot_dart::Scheduler</label>
+        <link refid="classrobot__dart_1_1Scheduler"/>
+      </node>
+      <node id="2">
+        <label>robot_dart::sensor::Sensor</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Sensor"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_simu</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart::sensor::Torque</label>
+        <link refid="classrobot__dart_1_1sensor_1_1Torque"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/sensor/torque.hpp" line="8" column="9" bodyfile="robot_dart/sensor/torque.hpp" bodystart="8" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aa38108b58336a8a5910ba8ade2b87787" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_active</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aab446ec1457b610cae2bac9ff699fa50" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_attached_tf</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a97dad76329f9e77516e75ad1f364f8bc" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_attached_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a625e92a1e91d2887d527122e0f67d364" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_attached_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a7f42d09116155bfc7a9e0d87b132a820" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_attaching_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a8ca0a617568113c9800a7a5b457d251e" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_attaching_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aedbc3a78b8efaa1aa40494c182d8da02" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_body_attached</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aceee4ef806a6532fff21e9a92c88d5ed" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ab411ff9bf9d60a75b169ed0ab13a689c" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_joint_attached</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ad21f16b70a75a08291e4af17624f278a" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1a3823fd1da053ff9d6be0c78d1ce9ae39" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_torques</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a2a740dd4f7969102d57cee13cef8a0f5" prot="protected" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>_world_pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1afd2687c694f5b89335ba8af5bf51eb95" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>activate</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a1e727aded13a104871fd259f34df7f2a" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>active</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1a7a3c3e5faf10772db616d8bf92025106" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>attach_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ada892ccecd413bf0f15e73b759c93324" prot="public" virt="non-virtual" ambiguityscope="robot_dart::sensor::Sensor::"><scope>robot_dart::sensor::Torque</scope><name>attach_to_body</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a22e61cb07f489ab5b17ab9b48b23535b" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>attach_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a4cdeb18f15974121e8fe6f85f8e5a054" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>attach_to_joint</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65009c6a0456b5a3d16a3aee2a9c846d" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>attached_to</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1ab1f5cc77513f34fe7cc30e7b17cbceca" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>calculate</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a650f403364ec9144b82a58b9ab0593e2" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>detach</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a758e280e81e3e6d7fabc6450bda18f57" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1ad25fd57774d83439ebb2ee31c5130e86" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1ac44dc2534da5827ed3ea0fe4fce347b5" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aacf085afe662dc688d7d5ea07f88ba6f" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>refresh</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a028a86f9968fb9bb164f6f1c73a322b1" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>Sensor</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a20c0ad8a25971e59525756f1b1305b1e" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>set_frequency</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a9f866c0839cad9626df1fa849cc2ec2f" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>set_pose</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a65c9541d510af1ed8fca6dd726e45972" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>set_simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1a215d8822d1346f316cf3092c87c78d7e" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>simu</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1a0ac5826e79be44e0975dd917a91f4a5c" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>Torque</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1a7efd42a382843836ad5e01a11645e1c6" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>Torque</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1a99378336df5d0e47d5c36f7d46d17027" prot="public" virt="non-virtual"><scope>robot_dart::sensor::Torque</scope><name>torques</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Torque_1aefa728de2eaee42d2e017db711dfd6e1" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>type</name></member>
+      <member refid="classrobot__dart_1_1sensor_1_1Sensor_1aafbdf247836013dee14437f0e9fb8610" prot="public" virt="virtual"><scope>robot_dart::sensor::Torque</scope><name>~Sensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

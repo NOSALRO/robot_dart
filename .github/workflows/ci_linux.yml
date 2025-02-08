@@ -6,9 +6,35 @@ on:
   push:
     branches:
       - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_linux.yml'
   pull_request:
     branches:
       - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_linux.yml'
 
 jobs:
   build:
@@ -18,12 +44,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         build_type: [Release]
         build_python: [ON]
         compiler: [gcc, clang]
         magnum_gui: [ON, OFF]
-        dart_tag: ["v6.12.1"]
+        dart_tag: ["v6.13.2"]
     env:
       COMPILER: ${{ matrix.compiler }}
       BUILD_TYPE: ${{ matrix.build_type }}
@@ -34,21 +60,18 @@ jobs:
       CI_HOME: ${{github.workspace}}
       DART_DIR: "/home/runner/.dart_install/share/dart/cmake"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install Ubuntu packages
         run: ${{github.workspace}}/ci/install_packages.sh
       - name: Cache DART
         id: cache-dart
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.dart_install
           key: dart-${{ matrix.dart_tag }}-${{ matrix.compiler }}-py3_${{ matrix.build_python }}-${{ matrix.os }}
       - name: Build DART
         if: steps.cache-dart.outputs.cache-hit != 'true'
-        run: ${{github.workspace}}/ci/install_dart_latest.sh
-      - name: Build pybind11
-        if: steps.cache-dart.outputs.cache-hit == 'true'
-        run: ${{github.workspace}}/ci/install_pybind11.sh
+        run: ${{github.workspace}}/ci/install_dart_latest.sh /home/runner/.dart_install ~/.deps $DART_TAG
       - name: Build Magnum
         run: if [ "$MAGNUM_GUI" = "ON" ]; then ${{github.workspace}}/ci/install_magnum.sh ; fi
       - name: Build robot_dart
@@ -63,9 +86,9 @@ jobs:
           fi
           cd ${{github.workspace}}
           if [ "$BUILD_PYTHON" = "ON" ]; then
-            ./waf configure --python --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --python --prefix=/usr --dart=~/.dart_install ;
           else
-            ./waf configure --prefix=/usr --dart=~/.dart_install ;
+            ./waf configure --tests --prefix=/usr --dart=~/.dart_install ;
           fi
           ./waf
       - name: Run tests
@@ -89,6 +112,6 @@ jobs:
           if [ "$BUILD_PYTHON" = "ON" ]; then
           python_dist_dir=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(plat_specific=True, prefix=''))")
           export PYTHONPATH=/home/runner/.dart_install/$python_dist_dir
-          python ${{github.workspace}}/src/python/ci.py
+          python ${{github.workspace}}/src/examples/python/ci.py
           fi
 

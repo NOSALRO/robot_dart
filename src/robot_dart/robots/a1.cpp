@@ -3,8 +3,9 @@
 
 namespace robot_dart {
     namespace robots {
-        A1::A1(const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
-            : Robot(urdf, packages)
+        A1::A1(size_t frequency, const std::string& urdf, const std::vector<std::pair<std::string, std::string>>& packages)
+            : Robot(urdf, packages),
+              _imu(std::make_shared<sensor::IMU>(sensor::IMUConfig(body_node("imu_link"), frequency)))
         {
             set_color_mode("material");
             set_self_collision(true);

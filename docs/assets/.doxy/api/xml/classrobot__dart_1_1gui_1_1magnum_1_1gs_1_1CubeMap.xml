@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::gs::CubeMap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::GL::AbstractShaderProgram</basecompoundref>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1" prot="public" static="no" strong="yes">
+        <type>Magnum::UnsignedByte</type>
+        <name>Flag</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::Flag</qualifiedname>
+        <enumvalue id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1ae712876b5313699d4e38e6f70c7c725e" prot="public">
+          <name>DiffuseTexture</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The shader uses diffuse texture instead of color </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="24" column="21" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a5f9cfff11efc78b2ed0661397acbe88b" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::Position</type>
+        <definition>using robot_dart::gui::magnum::gs::CubeMap::Position =  Magnum::Shaders::Generic3D::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::Position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="21" column="21" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a4e621f5964483532e54eee377a8b09e5" prot="public" static="no">
+        <type>Magnum::Shaders::Generic3D::TextureCoordinates</type>
+        <definition>using robot_dart::gui::magnum::gs::CubeMap::TextureCoordinates =  Magnum::Shaders::Generic3D::TextureCoordinates</definition>
+        <argsstring></argsstring>
+        <name>TextureCoordinates</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::TextureCoordinates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="22" column="21" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac9025c8598b911ae68a5570ec855981" prot="public" static="no">
+        <type>Magnum::Containers::EnumSet&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1" kindref="member">Flag</ref> &gt;</type>
+        <definition>using robot_dart::gui::magnum::gs::CubeMap::Flags =  Magnum::Containers::EnumSet&lt;Flag&gt;</definition>
+        <argsstring></argsstring>
+        <name>Flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::Flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="28" column="21" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1ad8e4cf606878fff27ec7d6748a292c45" prot="private" static="no" mutable="no">
+        <type>Flags</type>
+        <definition>Flags robot_dart::gui::magnum::gs::CubeMap::_flags</definition>
+        <argsstring></argsstring>
+        <name>_flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="43" column="27" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a22c957fbf4a419c4d387c41b40c22236" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_transformation_matrix_uniform</definition>
+        <argsstring></argsstring>
+        <name>_transformation_matrix_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_transformation_matrix_uniform</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="44" column="33" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36858dcfd71228082ae0020099f3003f" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_shadow_matrices_uniform</definition>
+        <argsstring></argsstring>
+        <name>_shadow_matrices_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_shadow_matrices_uniform</qualifiedname>
+        <initializer>{5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="45" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aa5b32f6092d57ec61b6e2dda129f6ead" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_light_position_uniform</definition>
+        <argsstring></argsstring>
+        <name>_light_position_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_light_position_uniform</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="46" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a94601379540971bfa21e938a7f7ccc06" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_far_plane_uniform</definition>
+        <argsstring></argsstring>
+        <name>_far_plane_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_far_plane_uniform</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="47" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a458e91614141953c14c919c03a460ffc" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_light_index_uniform</definition>
+        <argsstring></argsstring>
+        <name>_light_index_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_light_index_uniform</qualifiedname>
+        <initializer>{3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="48" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1abbaadee4c7bf106e89daa4a574cd1663" prot="private" static="no" mutable="no">
+        <type>Magnum::Int</type>
+        <definition>Magnum::Int robot_dart::gui::magnum::gs::CubeMap::_diffuse_color_uniform</definition>
+        <argsstring></argsstring>
+        <name>_diffuse_color_uniform</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::_diffuse_color_uniform</qualifiedname>
+        <initializer>{4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="49" column="25" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a7467a81a8fb07dc1ec3d2b3196356150" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::CubeMap::CubeMap</definition>
+        <argsstring>(Flags flags={})</argsstring>
+        <name>CubeMap</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::CubeMap</qualifiedname>
+        <param>
+          <type>Flags</type>
+          <declname>flags</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="30" column="30" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="10" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a1be36a738144b2eff09d8dc9f15ccf7f" prot="public" static="no" const="no" explicit="yes" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::gs::CubeMap::CubeMap</definition>
+        <argsstring>(Magnum::NoCreateT) noexcept</argsstring>
+        <name>CubeMap</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::CubeMap</qualifiedname>
+        <param>
+          <type>Magnum::NoCreateT</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="31" column="30" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a81976ef2f200c97bb7fc54ee23b80524" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Flags</type>
+        <definition>CubeMap::Flags robot_dart::gui::magnum::gs::CubeMap::flags</definition>
+        <argsstring>() const</argsstring>
+        <name>flags</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::flags</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="33" column="27" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a3d115076bc27cecec262c0927cb29df4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_transformation_matrix</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;matrix)</argsstring>
+        <name>set_transformation_matrix</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_transformation_matrix</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="35" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a620cdff04b2e3b4adbc35e5e39b01a96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_shadow_matrices</definition>
+        <argsstring>(Magnum::Matrix4 matrices[6])</argsstring>
+        <name>set_shadow_matrices</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_shadow_matrices</qualifiedname>
+        <param>
+          <type>Magnum::Matrix4</type>
+          <declname>matrices</declname>
+          <array>[6]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="36" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="66" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac4bbdbf31b742c3a774fc6fbae808a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_light_position</definition>
+        <argsstring>(const Magnum::Vector3 &amp;position)</argsstring>
+        <name>set_light_position</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_light_position</qualifiedname>
+        <param>
+          <type>const Magnum::Vector3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="37" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="73" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a07d5016dd6e74a3a6de1830062ef18ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_far_plane</definition>
+        <argsstring>(Magnum::Float far_plane)</argsstring>
+        <name>set_far_plane</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_far_plane</qualifiedname>
+        <param>
+          <type>Magnum::Float</type>
+          <declname>far_plane</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="38" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="79" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a409fe780605ba3f3eb939d7b0617f272" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_light_index</definition>
+        <argsstring>(Magnum::Int index)</argsstring>
+        <name>set_light_index</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_light_index</qualifiedname>
+        <param>
+          <type>Magnum::Int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="39" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="85" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a27ccc9fcc8174ff62597a718f82416a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap" kindref="compound">CubeMap</ref> &amp;</type>
+        <definition>CubeMap &amp; robot_dart::gui::magnum::gs::CubeMap::set_material</definition>
+        <argsstring>(Material &amp;material)</argsstring>
+        <name>set_material</name>
+        <qualifiedname>robot_dart::gui::magnum::gs::CubeMap::set_material</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="40" column="29" bodyfile="robot_dart/gui/magnum/gs/cube_map.cpp" bodystart="91" bodyend="101"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::CubeMap</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Magnum::GL::AbstractShaderProgram</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::gs::CubeMap</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/gs/cube_map.hpp" line="19" column="17" bodyfile="robot_dart/gui/magnum/gs/cube_map.hpp" bodystart="19" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1abbaadee4c7bf106e89daa4a574cd1663" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_diffuse_color_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a94601379540971bfa21e938a7f7ccc06" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_far_plane_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1ad8e4cf606878fff27ec7d6748a292c45" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a458e91614141953c14c919c03a460ffc" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_light_index_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aa5b32f6092d57ec61b6e2dda129f6ead" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_light_position_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36858dcfd71228082ae0020099f3003f" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_shadow_matrices_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a22c957fbf4a419c4d387c41b40c22236" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>_transformation_matrix_uniform</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a7467a81a8fb07dc1ec3d2b3196356150" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>CubeMap</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a1be36a738144b2eff09d8dc9f15ccf7f" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>CubeMap</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a36fff92caf9516073a02fe7dd7be9fd1" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>Flag</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac9025c8598b911ae68a5570ec855981" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>Flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a81976ef2f200c97bb7fc54ee23b80524" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>flags</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a5f9cfff11efc78b2ed0661397acbe88b" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>Position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a07d5016dd6e74a3a6de1830062ef18ea" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_far_plane</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a409fe780605ba3f3eb939d7b0617f272" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_light_index</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1aac4bbdbf31b742c3a774fc6fbae808a2" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_light_position</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a27ccc9fcc8174ff62597a718f82416a8" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_material</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a620cdff04b2e3b4adbc35e5e39b01a96" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_shadow_matrices</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a3d115076bc27cecec262c0927cb29df4" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>set_transformation_matrix</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMap_1a4e621f5964483532e54eee377a8b09e5" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::gs::CubeMap</scope><name>TextureCoordinates</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

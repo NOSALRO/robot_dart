@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1simu" kind="namespace" language="C++">
+    <compoundname>robot_dart::simu</compoundname>
+    <innerclass refid="structrobot__dart_1_1simu_1_1GUIData" prot="public">robot_dart::simu::GUIData</innerclass>
+    <innerclass refid="structrobot__dart_1_1simu_1_1TextData" prot="public">robot_dart::simu::TextData</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui_data.hpp" line="11" column="5"/>
+  </compounddef>
+</doxygen>

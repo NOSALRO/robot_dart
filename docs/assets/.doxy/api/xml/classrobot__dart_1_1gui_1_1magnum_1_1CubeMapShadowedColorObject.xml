@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::gui::magnum::CubeMapShadowedColorObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Object3D</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">Magnum::SceneGraph::Drawable3D</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ab863c5b2be3cfc2d3365c2893023c2ea" prot="private" static="no" mutable="no">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu* robot_dart::gui::magnum::CubeMapShadowedColorObject::_simu</definition>
+        <argsstring></argsstring>
+        <name>_simu</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_simu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="177" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aaa8158f26ec8343a3c820c8bd6955c50" prot="private" static="no" mutable="no">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode* robot_dart::gui::magnum::CubeMapShadowedColorObject::_shape</definition>
+        <argsstring></argsstring>
+        <name>_shape</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_shape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="178" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a3733654a31c7a6fe416530583ed45dda" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt;</type>
+        <definition>std::vector&lt;std::reference_wrapper&lt;Magnum::GL::Mesh&gt; &gt; robot_dart::gui::magnum::CubeMapShadowedColorObject::_meshes</definition>
+        <argsstring></argsstring>
+        <name>_meshes</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_meshes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="179" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ad6f79c07c1d97829cd535e8128ee6488" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::CubeMapColor&gt; robot_dart::gui::magnum::CubeMapShadowedColorObject::_shader</definition>
+        <argsstring></argsstring>
+        <name>_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_shader</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="180" column="40" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abdeca27e1183ff2b3751c1dda6412b54" prot="private" static="no" mutable="no">
+        <type>std::reference_wrapper&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &gt;</type>
+        <definition>std::reference_wrapper&lt;gs::CubeMapColor&gt; robot_dart::gui::magnum::CubeMapShadowedColorObject::_texture_shader</definition>
+        <argsstring></argsstring>
+        <name>_texture_shader</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_texture_shader</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="180" column="48" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a78b7b8bae67e3fbdbf3732cdb530684a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt;</type>
+        <definition>std::vector&lt;gs::Material&gt; robot_dart::gui::magnum::CubeMapShadowedColorObject::_materials</definition>
+        <argsstring></argsstring>
+        <name>_materials</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_materials</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="181" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abd11e80f29aa107388508a86b7120997" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; Magnum::Vector3 &gt;</type>
+        <definition>std::vector&lt;Magnum::Vector3&gt; robot_dart::gui::magnum::CubeMapShadowedColorObject::_scalings</definition>
+        <argsstring></argsstring>
+        <name>_scalings</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::_scalings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="182" column="29" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="182" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a85b0633ab4eb17bee98bf895b1dd168d" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::gui::magnum::CubeMapShadowedColorObject::CubeMapShadowedColorObject</definition>
+        <argsstring>(RobotDARTSimu *simu, dart::dynamics::ShapeNode *shape, const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes, gs::CubeMapColor &amp;shader, gs::CubeMapColor &amp;texture_shader, Object3D *parent, Magnum::SceneGraph::DrawableGroup3D *group)</argsstring>
+        <name>CubeMapShadowedColorObject</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::CubeMapShadowedColorObject</qualifiedname>
+        <param>
+          <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+          <declname>simu</declname>
+        </param>
+        <param>
+          <type>dart::dynamics::ShapeNode *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &amp;</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1CubeMapColor" kindref="compound">gs::CubeMapColor</ref> &amp;</type>
+          <declname>texture_shader</declname>
+        </param>
+        <param>
+          <type>Object3D *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::DrawableGroup3D *</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="158" column="26" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="305" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a464bb32c62f91e0d3bf0b41a777cea0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kindref="compound">CubeMapShadowedColorObject</ref> &amp;</type>
+        <definition>CubeMapShadowedColorObject &amp; robot_dart::gui::magnum::CubeMapShadowedColorObject::set_meshes</definition>
+        <argsstring>(const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;meshes)</argsstring>
+        <name>set_meshes</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::set_meshes</qualifiedname>
+        <param>
+          <type>const std::vector&lt; std::reference_wrapper&lt; Magnum::GL::Mesh &gt; &gt; &amp;</type>
+          <declname>meshes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="167" column="44" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="321" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a2909d1ab679ab89aa9e060c49d439ac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kindref="compound">CubeMapShadowedColorObject</ref> &amp;</type>
+        <definition>CubeMapShadowedColorObject &amp; robot_dart::gui::magnum::CubeMapShadowedColorObject::set_materials</definition>
+        <argsstring>(const std::vector&lt; gs::Material &gt; &amp;materials)</argsstring>
+        <name>set_materials</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::set_materials</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="classrobot__dart_1_1gui_1_1magnum_1_1gs_1_1Material" kindref="compound">gs::Material</ref> &gt; &amp;</type>
+          <declname>materials</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="168" column="44" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="327" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1af8fa02b8e073d0fe9e0f24921255eaaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject" kindref="compound">CubeMapShadowedColorObject</ref> &amp;</type>
+        <definition>CubeMapShadowedColorObject &amp; robot_dart::gui::magnum::CubeMapShadowedColorObject::set_scalings</definition>
+        <argsstring>(const std::vector&lt; Magnum::Vector3 &gt; &amp;scalings)</argsstring>
+        <name>set_scalings</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::set_scalings</qualifiedname>
+        <param>
+          <type>const std::vector&lt; Magnum::Vector3 &gt; &amp;</type>
+          <declname>scalings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="169" column="44" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="333" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86b85e92e52f0c427055775412b735c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref> *</type>
+        <definition>RobotDARTSimu * robot_dart::gui::magnum::CubeMapShadowedColorObject::simu</definition>
+        <argsstring>() const</argsstring>
+        <name>simu</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::simu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="171" column="31" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="171" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86fbe8cc9694b8de19d297a1b8db3682" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>dart::dynamics::ShapeNode *</type>
+        <definition>dart::dynamics::ShapeNode * robot_dart::gui::magnum::CubeMapShadowedColorObject::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::shape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="172" column="43" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aded84d7cc81707b65b7a39e06c91beba" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::gui::magnum::CubeMapShadowedColorObject::draw</definition>
+        <argsstring>(const Magnum::Matrix4 &amp;transformationMatrix, Magnum::SceneGraph::Camera3D &amp;camera) override</argsstring>
+        <name>draw</name>
+        <qualifiedname>robot_dart::gui::magnum::CubeMapShadowedColorObject::draw</qualifiedname>
+        <param>
+          <type>const Magnum::Matrix4 &amp;</type>
+          <declname>transformationMatrix</declname>
+        </param>
+        <param>
+          <type>Magnum::SceneGraph::Camera3D &amp;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/drawables.hpp" line="175" column="22" bodyfile="robot_dart/gui/magnum/drawables.cpp" bodystart="339" bodyend="360"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::CubeMapShadowedColorObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>Magnum::SceneGraph::Drawable3D</label>
+      </node>
+      <node id="2">
+        <label>Object3D</label>
+      </node>
+      <node id="1">
+        <label>robot_dart::gui::magnum::CubeMapShadowedColorObject</label>
+        <link refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="156" column="13" bodyfile="robot_dart/gui/magnum/drawables.hpp" bodystart="156" bodyend="183"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a78b7b8bae67e3fbdbf3732cdb530684a" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a3733654a31c7a6fe416530583ed45dda" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abd11e80f29aa107388508a86b7120997" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ad6f79c07c1d97829cd535e8128ee6488" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aaa8158f26ec8343a3c820c8bd6955c50" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1ab863c5b2be3cfc2d3365c2893023c2ea" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_simu</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1abdeca27e1183ff2b3751c1dda6412b54" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>_texture_shader</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a85b0633ab4eb17bee98bf895b1dd168d" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>CubeMapShadowedColorObject</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1aded84d7cc81707b65b7a39e06c91beba" prot="private" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>draw</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a2909d1ab679ab89aa9e060c49d439ac9" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>set_materials</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a464bb32c62f91e0d3bf0b41a777cea0c" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>set_meshes</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1af8fa02b8e073d0fe9e0f24921255eaaf" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>set_scalings</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86fbe8cc9694b8de19d297a1b8db3682" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>shape</name></member>
+      <member refid="classrobot__dart_1_1gui_1_1magnum_1_1CubeMapShadowedColorObject_1a86b85e92e52f0c427055775412b735c0" prot="public" virt="non-virtual"><scope>robot_dart::gui::magnum::CubeMapShadowedColorObject</scope><name>simu</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

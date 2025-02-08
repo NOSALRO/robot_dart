@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="structrobot__dart_1_1simu_1_1GUIData" kind="struct" language="C++" prot="public">
+    <compoundname>robot_dart::simu::GUIData</compoundname>
+    <innerclass refid="structrobot__dart_1_1simu_1_1GUIData_1_1RobotData" prot="private">robot_dart::simu::GUIData::RobotData</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1aee5f335f95696bcb1d2afc4e5909ab23" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; dart::dynamics::ShapeNode *, RobotData &gt;</type>
+        <definition>std::unordered_map&lt;dart::dynamics::ShapeNode*, RobotData&gt; robot_dart::simu::GUIData::robot_data</definition>
+        <argsstring></argsstring>
+        <name>robot_data</name>
+        <qualifiedname>robot_dart::simu::GUIData::robot_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="19" column="32" bodyfile="robot_dart/gui_data.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1aada5f271b02e476f8f9731b7042a38c0" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> *, std::vector&lt; std::pair&lt; dart::dynamics::BodyNode *, double &gt; &gt; &gt;</type>
+        <definition>std::unordered_map&lt;Robot*, std::vector&lt;std::pair&lt;dart::dynamics::BodyNode*, double&gt; &gt; &gt; robot_dart::simu::GUIData::robot_axes</definition>
+        <argsstring></argsstring>
+        <name>robot_axes</name>
+        <qualifiedname>robot_dart::simu::GUIData::robot_axes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="20" column="32" bodyfile="robot_dart/gui_data.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrobot__dart_1_1simu_1_1GUIData_1aa93c73a152332ceb5d40bec7047335d7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;simu::TextData&gt; &gt; robot_dart::simu::GUIData::text_drawings</definition>
+        <argsstring></argsstring>
+        <name>text_drawings</name>
+        <qualifiedname>robot_dart::simu::GUIData::text_drawings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="21" column="25" bodyfile="robot_dart/gui_data.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a5cc8c625d935018fdb4d0ecc3a2a5195" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; simu::TextData &gt; robot_dart::simu::GUIData::add_text</definition>
+        <argsstring>(const std::string &amp;text, const Eigen::Affine2d &amp;tf=Eigen::Affine2d::Identity(), Eigen::Vector4d color=Eigen::Vector4d(1, 1, 1, 1), std::uint8_t alignment=2&lt;&lt; 2, bool draw_bg=false, Eigen::Vector4d bg_color=Eigen::Vector4d(0, 0, 0, 0.75), double font_size=28)</argsstring>
+        <name>add_text</name>
+        <qualifiedname>robot_dart::simu::GUIData::add_text</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>const Eigen::Affine2d &amp;</type>
+          <declname>tf</declname>
+          <defval>Eigen::Affine2d::Identity()</defval>
+        </param>
+        <param>
+          <type>Eigen::Vector4d</type>
+          <declname>color</declname>
+          <defval>Eigen::Vector4d(1, 1, 1, 1)</defval>
+        </param>
+        <param>
+          <type>std::uint8_t</type>
+          <declname>alignment</declname>
+          <defval>2&lt;&lt; 2</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>draw_bg</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>Eigen::Vector4d</type>
+          <declname>bg_color</declname>
+          <defval>Eigen::Vector4d(0, 0, 0, 0.75)</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>font_size</declname>
+          <defval>28</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="24" column="29" bodyfile="robot_dart/gui_data.hpp" bodystart="24" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1aa3acb6ba9360c56290a5496f4acc658e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::simu::GUIData::remove_text</definition>
+        <argsstring>(const std::shared_ptr&lt; simu::TextData &gt; &amp;data)</argsstring>
+        <name>remove_text</name>
+        <qualifiedname>robot_dart::simu::GUIData::remove_text</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="31" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="31" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a5150da943acdb0d1271ff0f024c52028" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::simu::GUIData::remove_text</definition>
+        <argsstring>(size_t index)</argsstring>
+        <name>remove_text</name>
+        <qualifiedname>robot_dart::simu::GUIData::remove_text</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="41" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="41" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1aa394df8aec94a127046e6b6795d23870" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::simu::GUIData::update_robot</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot)</argsstring>
+        <name>update_robot</name>
+        <qualifiedname>robot_dart::simu::GUIData::update_robot</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="48" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="48" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a80d2087c9886a862a5318aacbbad9d0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::simu::GUIData::remove_robot</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot)</argsstring>
+        <name>remove_robot</name>
+        <qualifiedname>robot_dart::simu::GUIData::remove_robot</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="74" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="74" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1aad28759247c071ac66bbd022fdeee9ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::simu::GUIData::cast_shadows</definition>
+        <argsstring>(dart::dynamics::ShapeNode *shape) const</argsstring>
+        <name>cast_shadows</name>
+        <qualifiedname>robot_dart::simu::GUIData::cast_shadows</qualifiedname>
+        <param>
+          <type>dart::dynamics::ShapeNode *</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="90" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="90" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a12a4688ab10613d8f064ba0cc303ebe3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::simu::GUIData::ghost</definition>
+        <argsstring>(dart::dynamics::ShapeNode *shape) const</argsstring>
+        <name>ghost</name>
+        <qualifiedname>robot_dart::simu::GUIData::ghost</qualifiedname>
+        <param>
+          <type>dart::dynamics::ShapeNode *</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="99" column="18" bodyfile="robot_dart/gui_data.hpp" bodystart="99" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a53b7737aff7fd5af0fcf6c3ce2f6a2fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::pair&lt; dart::dynamics::BodyNode *, double &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; dart::dynamics::BodyNode *, double &gt; &gt; robot_dart::simu::GUIData::drawing_axes</definition>
+        <argsstring>() const</argsstring>
+        <name>drawing_axes</name>
+        <qualifiedname>robot_dart::simu::GUIData::drawing_axes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="108" column="25" bodyfile="robot_dart/gui_data.hpp" bodystart="108" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="structrobot__dart_1_1simu_1_1GUIData_1a2009bb26b10dc6f7e6daadaeb194d0d3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="structrobot__dart_1_1simu_1_1TextData" kindref="compound">simu::TextData</ref> &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt; std::shared_ptr&lt; simu::TextData &gt; &gt; &amp; robot_dart::simu::GUIData::drawing_texts</definition>
+        <argsstring>() const</argsstring>
+        <name>drawing_texts</name>
+        <qualifiedname>robot_dart::simu::GUIData::drawing_texts</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui_data.hpp" line="118" column="31" bodyfile="robot_dart/gui_data.hpp" bodystart="118" bodyend="118"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui_data.hpp" line="12" column="9" bodyfile="robot_dart/gui_data.hpp" bodystart="12" bodyend="119"/>
+    <listofallmembers>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5cc8c625d935018fdb4d0ecc3a2a5195" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>add_text</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aad28759247c071ac66bbd022fdeee9ed" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>cast_shadows</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a53b7737aff7fd5af0fcf6c3ce2f6a2fb" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>drawing_axes</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a2009bb26b10dc6f7e6daadaeb194d0d3" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>drawing_texts</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a12a4688ab10613d8f064ba0cc303ebe3" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>ghost</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a80d2087c9886a862a5318aacbbad9d0e" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>remove_robot</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa3acb6ba9360c56290a5496f4acc658e" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>remove_text</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1a5150da943acdb0d1271ff0f024c52028" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>remove_text</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aada5f271b02e476f8f9731b7042a38c0" prot="private" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>robot_axes</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aee5f335f95696bcb1d2afc4e5909ab23" prot="private" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>robot_data</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa93c73a152332ceb5d40bec7047335d7" prot="private" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>text_drawings</name></member>
+      <member refid="structrobot__dart_1_1simu_1_1GUIData_1aa394df8aec94a127046e6b6795d23870" prot="public" virt="non-virtual"><scope>robot_dart::simu::GUIData</scope><name>update_robot</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

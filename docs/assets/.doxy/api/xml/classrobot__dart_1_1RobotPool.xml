@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1RobotPool" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::RobotPool</compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classrobot__dart_1_1RobotPool_1a149cc2e0c69e85bd65bbf7f9da0b75ea" prot="public" static="no">
+        <type>std::function&lt; std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt;()&gt;</type>
+        <definition>using robot_dart::RobotPool::robot_creator_t =  std::function&lt;std::shared_ptr&lt;Robot&gt;()&gt;</definition>
+        <argsstring></argsstring>
+        <name>robot_creator_t</name>
+        <qualifiedname>robot_dart::RobotPool::robot_creator_t</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="14" column="9" bodyfile="robot_dart/robot_pool.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1a1fe3b037370ee0c95bcb021d86e2bdd5" prot="protected" static="no" mutable="no">
+        <type>robot_creator_t</type>
+        <definition>robot_creator_t robot_dart::RobotPool::_robot_creator</definition>
+        <argsstring></argsstring>
+        <name>_robot_creator</name>
+        <qualifiedname>robot_dart::RobotPool::_robot_creator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="28" column="25" bodyfile="robot_dart/robot_pool.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1af5d9cab5dd7794aed3a49c7dbc3f4105" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t robot_dart::RobotPool::_pool_size</definition>
+        <argsstring></argsstring>
+        <name>_pool_size</name>
+        <qualifiedname>robot_dart::RobotPool::_pool_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="29" column="16" bodyfile="robot_dart/robot_pool.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1a3b0e2563b4881d9af007663288f6d59f" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::RobotPool::_verbose</definition>
+        <argsstring></argsstring>
+        <name>_verbose</name>
+        <qualifiedname>robot_dart::RobotPool::_verbose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="30" column="14" bodyfile="robot_dart/robot_pool.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1af8d74817d2f05c917ab2028a916a21fa" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; dart::dynamics::SkeletonPtr &gt;</type>
+        <definition>std::vector&lt;dart::dynamics::SkeletonPtr&gt; robot_dart::RobotPool::_skeletons</definition>
+        <argsstring></argsstring>
+        <name>_skeletons</name>
+        <qualifiedname>robot_dart::RobotPool::_skeletons</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="31" column="21" bodyfile="robot_dart/robot_pool.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1a234ca1b2213e98326e276964dec0f3ef" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt;bool&gt; robot_dart::RobotPool::_free</definition>
+        <argsstring></argsstring>
+        <name>_free</name>
+        <qualifiedname>robot_dart::RobotPool::_free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="32" column="21" bodyfile="robot_dart/robot_pool.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1a6ced53e7badc83124ace8e1b7c09c27f" prot="protected" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex robot_dart::RobotPool::_skeleton_mutex</definition>
+        <argsstring></argsstring>
+        <name>_skeleton_mutex</name>
+        <qualifiedname>robot_dart::RobotPool::_skeleton_mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="33" column="20" bodyfile="robot_dart/robot_pool.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1RobotPool_1a367956051efefcd9e43d62587a2a3df4" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string robot_dart::RobotPool::_model_filename</definition>
+        <argsstring></argsstring>
+        <name>_model_filename</name>
+        <qualifiedname>robot_dart::RobotPool::_model_filename</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="34" column="21" bodyfile="robot_dart/robot_pool.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a33309fdb1ef1b72cc8fbc749adca0422" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::RobotPool::RobotPool</definition>
+        <argsstring>(const robot_creator_t &amp;robot_creator, size_t pool_size=32, bool verbose=true)</argsstring>
+        <name>RobotPool</name>
+        <qualifiedname>robot_dart::RobotPool::RobotPool</qualifiedname>
+        <param>
+          <type>const robot_creator_t &amp;</type>
+          <declname>robot_creator</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>pool_size</declname>
+          <defval>32</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>verbose</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="16" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1af7c70c83aada4f9d76d9de04258c287f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual robot_dart::RobotPool::~RobotPool</definition>
+        <argsstring>()</argsstring>
+        <name>~RobotPool</name>
+        <qualifiedname>robot_dart::RobotPool::~RobotPool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="17" column="17" bodyfile="robot_dart/robot_pool.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a5715a6cf1c7e7380f71a5eb16411e684" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::RobotPool::RobotPool</definition>
+        <argsstring>(const RobotPool &amp;)=delete</argsstring>
+        <name>RobotPool</name>
+        <qualifiedname>robot_dart::RobotPool::RobotPool</qualifiedname>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1RobotPool" kindref="compound">RobotPool</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="19" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a7e3cd7e4d4bc2a71fcc5fb0cbb5e644d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotPool::operator=</definition>
+        <argsstring>(const RobotPool &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>robot_dart::RobotPool::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classrobot__dart_1_1RobotPool" kindref="compound">RobotPool</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="20" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a20666ce10d287c645213fb18e789e799" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Robot &gt; robot_dart::RobotPool::get_robot</definition>
+        <argsstring>(const std::string &amp;name=&quot;robot&quot;)</argsstring>
+        <name>get_robot</name>
+        <qualifiedname>robot_dart::RobotPool::get_robot</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>&quot;robot&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="22" column="33" bodyfile="robot_dart/robot_pool.cpp" bodystart="28" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a328a0d9437b5900881b70f2120c58cf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotPool::free_robot</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot)</argsstring>
+        <name>free_robot</name>
+        <qualifiedname>robot_dart::RobotPool::free_robot</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="23" column="22" bodyfile="robot_dart/robot_pool.cpp" bodystart="40" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1a625132d9f60b18018c9ce4593f84b27a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; robot_dart::RobotPool::model_filename</definition>
+        <argsstring>() const</argsstring>
+        <name>model_filename</name>
+        <qualifiedname>robot_dart::RobotPool::model_filename</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="25" column="27" bodyfile="robot_dart/robot_pool.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classrobot__dart_1_1RobotPool_1aa34aad7aef30e11237f98bd1cca95d15" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::RobotPool::_reset_robot</definition>
+        <argsstring>(const std::shared_ptr&lt; Robot &gt; &amp;robot)</argsstring>
+        <name>_reset_robot</name>
+        <qualifiedname>robot_dart::RobotPool::_reset_robot</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrobot__dart_1_1Robot" kindref="compound">Robot</ref> &gt; &amp;</type>
+          <declname>robot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/robot_pool.hpp" line="36" column="22" bodyfile="robot_dart/robot_pool.cpp" bodystart="52" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/robot_pool.hpp" line="12" column="5" bodyfile="robot_dart/robot_pool.hpp" bodystart="12" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1RobotPool_1a234ca1b2213e98326e276964dec0f3ef" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_free</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a367956051efefcd9e43d62587a2a3df4" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_model_filename</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1af5d9cab5dd7794aed3a49c7dbc3f4105" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_pool_size</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1aa34aad7aef30e11237f98bd1cca95d15" prot="protected" virt="virtual"><scope>robot_dart::RobotPool</scope><name>_reset_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a1fe3b037370ee0c95bcb021d86e2bdd5" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_robot_creator</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a6ced53e7badc83124ace8e1b7c09c27f" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_skeleton_mutex</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1af8d74817d2f05c917ab2028a916a21fa" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_skeletons</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a3b0e2563b4881d9af007663288f6d59f" prot="protected" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>_verbose</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a328a0d9437b5900881b70f2120c58cf7" prot="public" virt="virtual"><scope>robot_dart::RobotPool</scope><name>free_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a20666ce10d287c645213fb18e789e799" prot="public" virt="virtual"><scope>robot_dart::RobotPool</scope><name>get_robot</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a625132d9f60b18018c9ce4593f84b27a" prot="public" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>model_filename</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a7e3cd7e4d4bc2a71fcc5fb0cbb5e644d" prot="public" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>operator=</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a149cc2e0c69e85bd65bbf7f9da0b75ea" prot="public" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>robot_creator_t</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a33309fdb1ef1b72cc8fbc749adca0422" prot="public" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>RobotPool</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1a5715a6cf1c7e7380f71a5eb16411e684" prot="public" virt="non-virtual"><scope>robot_dart::RobotPool</scope><name>RobotPool</name></member>
+      <member refid="classrobot__dart_1_1RobotPool_1af7c70c83aada4f9d76d9de04258c287f" prot="public" virt="virtual"><scope>robot_dart::RobotPool</scope><name>~RobotPool</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

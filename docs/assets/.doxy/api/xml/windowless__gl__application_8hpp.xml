@@ -1,0 +1,538 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="windowless__gl__application_8hpp" kind="file" language="C++">
+    <compoundname>windowless_gl_application.hpp</compoundname>
+    <includes refid="base__application_8hpp" local="no">robot_dart/gui/magnum/base_application.hpp</includes>
+    <includes local="no">Magnum/GL/Renderbuffer.h</includes>
+    <includes local="no">Magnum/PixelFormat.h</includes>
+    <includedby refid="windowless__gl__application_8cpp" local="yes">robot_dart/gui/magnum/windowless_gl_application.cpp</includedby>
+    <includedby refid="windowless__graphics_8hpp" local="no">robot_dart/gui/magnum/windowless_graphics.hpp</includedby>
+    <incdepgraph>
+      <node id="45">
+        <label>robot_dart/gui/base.hpp</label>
+        <link refid="base_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>robot_dart/gui/helper.hpp</label>
+        <link refid="helper_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart/gui/magnum/base_application.hpp</label>
+        <link refid="base__application_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>robot_dart/gui/magnum/drawables.hpp</label>
+        <link refid="drawables_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>robot_dart/gui/magnum/gs/camera.hpp</label>
+        <link refid="gs_2camera_8hpp_source"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>robot_dart/gui/magnum/gs/cube_map.hpp</label>
+        <link refid="cube__map_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>robot_dart/gui/magnum/gs/cube_map_color.hpp</label>
+        <link refid="cube__map__color_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>robot_dart/gui/magnum/gs/light.hpp</label>
+        <link refid="light_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>robot_dart/gui/magnum/gs/material.hpp</label>
+        <link refid="material_8hpp_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>robot_dart/gui/magnum/gs/phong_multi_light.hpp</label>
+        <link refid="phong__multi__light_8hpp_source"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>robot_dart/gui/magnum/gs/shadow_map.hpp</label>
+        <link refid="shadow__map_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>robot_dart/gui/magnum/gs/shadow_map_color.hpp</label>
+        <link refid="shadow__map__color_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>robot_dart/gui/magnum/types.hpp</label>
+        <link refid="types_8hpp_source"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>robot_dart/gui/magnum/windowless_gl_application.hpp</label>
+        <link refid="windowless__gl__application_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>robot_dart/robot.hpp</label>
+        <link refid="robot_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>robot_dart/robot_dart_simu.hpp</label>
+        <link refid="robot__dart__simu_8hpp_source"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>robot_dart/scheduler.hpp</label>
+        <link refid="scheduler_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>robot_dart/sensor/sensor.hpp</label>
+        <link refid="sensor_8hpp_source"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>robot_dart/utils.hpp</label>
+        <link refid="utils_8hpp_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>robot_dart/utils_headers_external.hpp</label>
+        <link refid="utils__headers__external_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>robot_dart/utils_headers_external_gui.hpp</label>
+        <link refid="utils__headers__external__gui_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Corrade/Containers/ArrayView.h</label>
+      </node>
+      <node id="22">
+        <label>Corrade/Containers/Optional.h</label>
+      </node>
+      <node id="27">
+        <label>Corrade/Containers/Reference.h</label>
+      </node>
+      <node id="28">
+        <label>Corrade/Utility/Assert.h</label>
+      </node>
+      <node id="13">
+        <label>Eigen/Core</label>
+      </node>
+      <node id="14">
+        <label>Eigen/Geometry</label>
+      </node>
+      <node id="58">
+        <label>Magnum/DartIntegration/World.h</label>
+      </node>
+      <node id="29">
+        <label>Magnum/GL/AbstractShaderProgram.h</label>
+      </node>
+      <node id="59">
+        <label>Magnum/GL/CubeMapTextureArray.h</label>
+      </node>
+      <node id="41">
+        <label>Magnum/GL/Framebuffer.h</label>
+      </node>
+      <node id="23">
+        <label>Magnum/GL/GL.h</label>
+      </node>
+      <node id="52">
+        <label>Magnum/GL/Mesh.h</label>
+      </node>
+      <node id="66">
+        <label>Magnum/GL/Renderbuffer.h</label>
+      </node>
+      <node id="60">
+        <label>Magnum/GL/TextureArray.h</label>
+      </node>
+      <node id="53">
+        <label>Magnum/Image.h</label>
+      </node>
+      <node id="24">
+        <label>Magnum/Magnum.h</label>
+      </node>
+      <node id="25">
+        <label>Magnum/Math/Color.h</label>
+      </node>
+      <node id="30">
+        <label>Magnum/Math/Matrix4.h</label>
+      </node>
+      <node id="67">
+        <label>Magnum/PixelFormat.h</label>
+      </node>
+      <node id="61">
+        <label>Magnum/Platform/GLContext.h</label>
+      </node>
+      <node id="62">
+        <label>Magnum/Platform/WindowlessEglApplication.h</label>
+      </node>
+      <node id="38">
+        <label>Magnum/SceneGraph/Camera.h</label>
+      </node>
+      <node id="42">
+        <label>Magnum/SceneGraph/Drawable.h</label>
+      </node>
+      <node id="39">
+        <label>Magnum/SceneGraph/MatrixTransformation3D.h</label>
+      </node>
+      <node id="40">
+        <label>Magnum/SceneGraph/Scene.h</label>
+      </node>
+      <node id="54">
+        <label>Magnum/Shaders/DistanceFieldVector.h</label>
+      </node>
+      <node id="63">
+        <label>Magnum/Shaders/Flat.h</label>
+      </node>
+      <node id="31">
+        <label>Magnum/Shaders/Generic.h</label>
+      </node>
+      <node id="55">
+        <label>Magnum/Shaders/VertexColor.h</label>
+      </node>
+      <node id="64">
+        <label>Magnum/Text/AbstractFont.h</label>
+      </node>
+      <node id="65">
+        <label>Magnum/Text/DistanceFieldGlyphCache.h</label>
+      </node>
+      <node id="56">
+        <label>Magnum/Text/Renderer.h</label>
+      </node>
+      <node id="48">
+        <label>chrono</label>
+      </node>
+      <node id="15">
+        <label>dart/config.hpp</label>
+      </node>
+      <node id="16">
+        <label>dart/dynamics/MeshShape.hpp</label>
+      </node>
+      <node id="17">
+        <label>dart/dynamics/Skeleton.hpp</label>
+      </node>
+      <node id="18">
+        <label>dart/simulation/World.hpp</label>
+      </node>
+      <node id="10">
+        <label>exception</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="51">
+        <label>memory</label>
+      </node>
+      <node id="3">
+        <label>mutex</label>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="49">
+        <label>thread</label>
+      </node>
+      <node id="4">
+        <label>unistd.h</label>
+      </node>
+      <node id="5">
+        <label>unordered_map</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>robot_dart/gui/magnum/windowless_gl_application.hpp</label>
+        <link refid="windowless__gl__application_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart/gui/magnum/windowless_graphics.hpp</label>
+        <link refid="windowless__graphics_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" prot="public">robot_dart::gui::magnum::WindowlessGLApplication</innerclass>
+    <innernamespace refid="namespacerobot__dart">robot_dart</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui">robot_dart::gui</innernamespace>
+    <innernamespace refid="namespacerobot__dart_1_1gui_1_1magnum">robot_dart::gui::magnum</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ROBOT_DART_GUI_MAGNUM_GLX_APPLICATION_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ROBOT_DART_GUI_MAGNUM_GLX_APPLICATION_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;robot_dart/gui/magnum/base_application.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/GL/Renderbuffer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Magnum/PixelFormat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">robot_dart<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">gui<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">magnum<sp/>{</highlight></codeline>
+<codeline lineno="12" refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" kindref="compound">WindowlessGLApplication</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1BaseApplication" kindref="compound">BaseApplication</ref>,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Magnum::Platform::WindowlessApplication<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" kindref="compound">WindowlessGLApplication</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv,<sp/><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref>*<sp/>simu,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref>&amp;<sp/>configuration<sp/>=<sp/><ref refid="structrobot__dart_1_1gui_1_1magnum_1_1GraphicsConfiguration" kindref="compound">GraphicsConfiguration</ref>());</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1gui_1_1magnum_1_1WindowlessGLApplication" kindref="compound">~WindowlessGLApplication</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>render()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classrobot__dart_1_1RobotDARTSimu" kindref="compound">RobotDARTSimu</ref>*<sp/>_simu;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_draw_main_camera,<sp/>_draw_debug;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::Color4<sp/>_bg_color;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::GL::Framebuffer<sp/>_framebuffer{Magnum::NoCreate};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::PixelFormat<sp/>_format;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Magnum::GL::Renderbuffer<sp/>_color{Magnum::NoCreate},<sp/>_depth{Magnum::NoCreate};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size_t<sp/>_index<sp/>=<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>exec()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>magnum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>gui</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>robot_dart</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="robot_dart/gui/magnum/windowless_gl_application.hpp"/>
+  </compounddef>
+</doxygen>

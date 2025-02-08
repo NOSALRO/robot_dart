@@ -1,9 +1,6 @@
 #include <robot_dart/robot_dart_simu.hpp>
 #include <robot_dart/robots/talos.hpp>
 
-#include <dart/collision/fcl/FCLCollisionDetector.hpp>
-#include <dart/constraint/ConstraintSolver.hpp>
-
 #ifdef GRAPHIC
 #include <robot_dart/gui/magnum/graphics.hpp>
 #endif

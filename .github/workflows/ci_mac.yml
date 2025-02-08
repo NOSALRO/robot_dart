@@ -1,0 +1,109 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+name: CI MacOS
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_mac.yml'
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - 'cmake/**'
+      - 'src/examples/**'
+      - 'src/python/**'
+      - 'src/robot_dart/**'
+      - 'src/tests/**'
+      - 'src/utheque/**'
+      - 'utheque/**'
+      - 'ci/**'
+      - 'waf_tools/**'
+      - 'wscript'
+      - 'waf'
+      - '.github/workflows/ci_mac.yml'
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_dispatch'
+    name: OS:${{ matrix.os }}-Magnum:${{ matrix.magnum_gui }}-Build:${{ matrix.build_type }}-Python:${{ matrix.build_python }}-Compiler:${{ matrix.compiler }}-DART:${{ matrix.dart_tag }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-12]
+        build_type: [Release]
+        build_python: [OFF] # Let's remove python for now from Mac CI
+        compiler: [gcc, clang]
+        magnum_gui: [ON, OFF]
+    env:
+      COMPILER: ${{ matrix.compiler }}
+      BUILD_TYPE: ${{ matrix.build_type }}
+      BUILD_PYTHON: ${{ matrix.build_python }}
+      MAGNUM_GUI: ${{ matrix.magnum_gui }}
+      DART_TAG: ${{ matrix.dart_tag }}
+      CI_HOME: ${{github.workspace}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: brew install binutils pybind11
+      - name: Install numpy
+        run: python -m pip install --upgrade pip && pip3 install numpy
+      - name: Install DART
+        run: |
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+            brew install dartsim --only-dependencies && pip3 install dartpy ;
+          else
+            brew install dartsim ;
+          fi
+      - name: Build Magnum
+        run: if [ "$MAGNUM_GUI" = "ON" ]; then brew install sdl2 glfw eigen glm bullet assimp devil faad2 freetype glslang harfbuzz libpng libspng jpeg openexr spirv-tools zstd webp python-setuptools && ${{github.workspace}}/ci/install_magnum.sh /usr/local ; fi
+      - name: Build robot_dart
+        run: |
+          if [ "$COMPILER" = "gcc" ]; then
+            export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+            export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
+          cd ${{github.workspace}}
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+            ./waf configure --tests --python --prefix=/usr/local ;
+          else
+            ./waf configure --tests --prefix=/usr/local ;
+          fi
+          ./waf
+      - name: Run tests
+        run: ./waf --tests
+      - name: Build examples
+        run: ./waf examples
+      - name: Install
+        run: sudo ./waf install
+      - name: Run CMake
+        run: |
+          if [ "$COMPILER" = "gcc" ]; then
+          export CC=/usr/bin/gcc && export CXX=/usr/bin/g++
+          fi
+          if [ "$COMPILER" = "clang" ]; then
+          export CC=/usr/bin/clang && export CXX=/usr/bin/clang++
+          fi
+          cd ${{github.workspace}}/cmake/example && mkdir -p build && cd build && cmake .. && make -j4
+          cd ${{github.workspace}}/cmake/example_utheque && mkdir -p build && cd build && cmake .. && make -j4
+      - name: Run Python
+        run: |
+          if [ "$BUILD_PYTHON" = "ON" ]; then
+          python ${{github.workspace}}/src/examples/python/ci.py
+          fi

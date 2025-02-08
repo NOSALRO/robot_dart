@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacedart" kind="namespace" language="C++">
+    <compoundname>dart</compoundname>
+    <innernamespace refid="namespacedart_1_1collision">dart::collision</innernamespace>
+    <innernamespace refid="namespacedart_1_1dynamics">dart::dynamics</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/drawables.hpp" line="16" column="1"/>
+  </compounddef>
+</doxygen>

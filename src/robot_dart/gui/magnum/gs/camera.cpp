@@ -4,7 +4,7 @@
 #include "robot_dart/robot_dart_simu.hpp"
 #include "robot_dart/utils.hpp"
 
-#include <external/subprocess.hpp>
+#include <external/process.hpp>
 
 #include <algorithm>
 
@@ -261,7 +261,9 @@ namespace robot_dart {
                         "-vb", "20M",
                         video_fname};
 
-                    _ffmpeg_process = new subprocess::popen(ffmpeg, args);
+                    args.insert(args.begin(), ffmpeg);
+                    _ffmpeg_process = new TinyProcessLib::Process(
+                        args, "", [](const char*, size_t) {}, [](const char*, size_t) {}, true);
                 }
 
                 void Camera::draw(Magnum::SceneGraph::DrawableGroup3D& drawables, Magnum::GL::AbstractFramebuffer& framebuffer, Magnum::PixelFormat format, RobotDARTSimu* simu, const DebugDrawData& debug_data, bool draw_debug)
@@ -325,26 +327,29 @@ namespace robot_dart {
                                 auto viewport = Magnum::Vector2{_camera->viewport()};
                                 auto sc = Magnum::Vector2{viewport.max() / 1024.f};
                                 auto text_scaling = Magnum::Matrix3::scaling(sc);
-                                auto extra_tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
-                                if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentLine) // if line (bottom) alignment, push the text a bit above
-                                    extra_tr = Magnum::Matrix3::translation({0.f, sc[1] * 0.25f * rectangle.sizeY()});
 
                                 auto text_tr = Magnum::Matrix3(Magnum::Matrix3d(text->transformation));
 
                                 if (text->draw_background) {
-                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY() * sc[1]});
+                                    auto extra_tr = Magnum::Matrix3(Magnum::Math::IdentityInit);
+                                    if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentBottom) // if bottom alignment, push the bg a bit above
+                                        extra_tr = Magnum::Matrix3::translation({0.f, sc[1] * 0.5f * rectangle.sizeY()});
+                                    if ((text->alignment & Magnum::Text::Implementation::AlignmentVertical) == Magnum::Text::Implementation::AlignmentTop) // if top alignment, push the bg a bit down
+                                        extra_tr = Magnum::Matrix3::translation({0.f, -sc[1] * 0.5f * rectangle.sizeY()});
+
+                                    auto bg_tr = text_tr * extra_tr; // * Magnum::Matrix3::translation({0.f, rectangle.sizeY() * sc[1] / 2.f});
+                                    auto bg_scaling = Magnum::Matrix3::scaling(Magnum::Vector2{viewport[0], rectangle.sizeY() * sc[1] / 2.f});
 
                                     // draw the background
                                     (*debug_data.background_shader)
-                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * bg_scaling)
+                                        .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * bg_tr * bg_scaling)
                                         .setColor(Magnum::Vector4(Magnum::Vector4d(text->background_color)))
                                         .draw(*debug_data.background_mesh);
                                 }
 
                                 (*debug_data.text_shader)
                                     .bindVectorTexture(debug_data.cache->texture())
-                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * extra_tr * text_scaling)
-                                    // .setTransformationProjectionMatrix(Magnum::Matrix3::projection(Magnum::Vector2{_camera->viewport()}) * Magnum::Matrix3::translation(Magnum::Vector2{-text_renderer->rectangle().sizeX() / 2.f, -text_renderer->rectangle().sizeY() / 2.f}) * Magnum::Matrix3(Magnum::Matrix3d(text.transformation)))
+                                    .setTransformationProjectionMatrix(Magnum::Matrix3::projection(viewport) * text_tr * text_scaling)
                                     .setColor(Magnum::Vector4(Magnum::Vector4d(text->color)))
                                     .setOutlineRange(0.4f, 0.45f)
                                     .setSmoothness(0.075f)
@@ -372,15 +377,14 @@ namespace robot_dart {
                         Corrade::Containers::StridedArrayView2D<Magnum::Color3ub> dst{Corrade::Containers::arrayCast<Magnum::Color3ub>(Corrade::Containers::arrayView(data)), {std::size_t(image.size().y()), std::size_t(image.size().x())}};
                         Corrade::Utility::copy(src, dst);
 
-                        _ffmpeg_process->stdin().write(reinterpret_cast<char*>(data.data()), data.size());
-                        _ffmpeg_process->stdin().flush();
+                        _ffmpeg_process->write(reinterpret_cast<char*>(data.data()), data.size());
                     }
                 }
 
                 void Camera::_clean_up_subprocess()
                 {
                     if (_ffmpeg_process) {
-                        _ffmpeg_process->close();
+                        _ffmpeg_process->close_stdin();
                         delete _ffmpeg_process;
                     }
 

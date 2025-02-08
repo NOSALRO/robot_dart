@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="classrobot__dart_1_1control_1_1PDControl" kind="class" language="C++" prot="public">
+    <compoundname>robot_dart::control::PDControl</compoundname>
+    <basecompoundref refid="classrobot__dart_1_1control_1_1RobotControl" prot="public" virt="non-virtual">robot_dart::control::RobotControl</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PDControl_1ab9eecb22ac996a94bd027c8a094ccb0a" prot="protected" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PDControl::_Kp</definition>
+        <argsstring></argsstring>
+        <name>_Kp</name>
+        <qualifiedname>robot_dart::control::PDControl::_Kp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="32" column="29" bodyfile="robot_dart/control/pd_control.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PDControl_1a6caf14d61de764c9b7d364730519be95" prot="protected" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PDControl::_Kd</definition>
+        <argsstring></argsstring>
+        <name>_Kd</name>
+        <qualifiedname>robot_dart::control::PDControl::_Kd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="33" column="29" bodyfile="robot_dart/control/pd_control.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrobot__dart_1_1control_1_1PDControl_1a6d620de41ece67a581e28a8273133335" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool robot_dart::control::PDControl::_use_angular_errors</definition>
+        <argsstring></argsstring>
+        <name>_use_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::_use_angular_errors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="34" column="18" bodyfile="robot_dart/control/pd_control.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a66de4437cb1dcf4578c241e4677b7f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PDControl::PDControl</definition>
+        <argsstring>()</argsstring>
+        <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="14" column="13" bodyfile="robot_dart/control/pd_control.cpp" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1af244bed8723f2320f99e2e8d9b972add" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PDControl::PDControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, bool full_control=false, bool use_angular_errors=true)</argsstring>
+        <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>full_control</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_angular_errors</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="15" column="13" bodyfile="robot_dart/control/pd_control.cpp" bodystart="9" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1ad27d486b2447f8523ccebc958f2ff250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>robot_dart::control::PDControl::PDControl</definition>
+        <argsstring>(const Eigen::VectorXd &amp;ctrl, const std::vector&lt; std::string &gt; &amp;controllable_dofs, bool use_angular_errors=true)</argsstring>
+        <name>PDControl</name>
+        <qualifiedname>robot_dart::control::PDControl::PDControl</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>ctrl</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>controllable_dofs</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_angular_errors</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="16" column="13" bodyfile="robot_dart/control/pd_control.cpp" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1aa3a161df0ea599bebe78fd851c2a4c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PDControl::configure</definition>
+        <argsstring>() override</argsstring>
+        <name>configure</name>
+        <qualifiedname>robot_dart::control::PDControl::configure</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a8686ee7b2abc81b9640b22365cbab71f">configure</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="18" column="18" bodyfile="robot_dart/control/pd_control.cpp" bodystart="12" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a7b5f299bf5ec3df54227797ef010a0d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd robot_dart::control::PDControl::calculate</definition>
+        <argsstring>(double) override</argsstring>
+        <name>calculate</name>
+        <qualifiedname>robot_dart::control::PDControl::calculate</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1a4c095d1e92b8c354d620dc16963a4232">calculate</reimplements>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Compute the simplest PD controller output: P gain * (target position - current position) + D gain * (0 - current velocity)</para>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="19" column="29" bodyfile="robot_dart/control/pd_control.cpp" bodystart="21" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a86a980d68313d2e3f2587ef1d0261d10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PDControl::set_pd</definition>
+        <argsstring>(double p, double d)</argsstring>
+        <name>set_pd</name>
+        <qualifiedname>robot_dart::control::PDControl::set_pd</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="21" column="18" bodyfile="robot_dart/control/pd_control.cpp" bodystart="100" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a866767ac727bc80ff01aa25cbf806afc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PDControl::set_pd</definition>
+        <argsstring>(const Eigen::VectorXd &amp;p, const Eigen::VectorXd &amp;d)</argsstring>
+        <name>set_pd</name>
+        <qualifiedname>robot_dart::control::PDControl::set_pd</qualifiedname>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const Eigen::VectorXd &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="22" column="18" bodyfile="robot_dart/control/pd_control.cpp" bodystart="106" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a1e691dda675d38940a2571fda16c3180" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; Eigen::VectorXd, Eigen::VectorXd &gt;</type>
+        <definition>std::pair&lt; Eigen::VectorXd, Eigen::VectorXd &gt; robot_dart::control::PDControl::pd</definition>
+        <argsstring>() const</argsstring>
+        <name>pd</name>
+        <qualifiedname>robot_dart::control::PDControl::pd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="24" column="23" bodyfile="robot_dart/control/pd_control.cpp" bodystart="114" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a93cd21c07be22d15e3113ca4513ccfda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool robot_dart::control::PDControl::using_angular_errors</definition>
+        <argsstring>() const</argsstring>
+        <name>using_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::using_angular_errors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="26" column="18" bodyfile="robot_dart/control/pd_control.cpp" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a432562883cd94085f97b2ef4756a49cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void robot_dart::control::PDControl::set_use_angular_errors</definition>
+        <argsstring>(bool enable=true)</argsstring>
+        <name>set_use_angular_errors</name>
+        <qualifiedname>robot_dart::control::PDControl::set_use_angular_errors</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="27" column="18" bodyfile="robot_dart/control/pd_control.cpp" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a707e19bad80ec1e2cd4c25774d54db28" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classrobot__dart_1_1control_1_1RobotControl" kindref="compound">RobotControl</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; RobotControl &gt; robot_dart::control::PDControl::clone</definition>
+        <argsstring>() const override</argsstring>
+        <name>clone</name>
+        <qualifiedname>robot_dart::control::PDControl::clone</qualifiedname>
+        <reimplements refid="classrobot__dart_1_1control_1_1RobotControl_1aed2dfc4fb986f55e167a48ca8434b2eb">clone</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="29" column="29" bodyfile="robot_dart/control/pd_control.cpp" bodystart="123" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classrobot__dart_1_1control_1_1PDControl_1a97d60e7cc9076abb9647ddb39977d781" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double robot_dart::control::PDControl::_angle_dist</definition>
+        <argsstring>(double target, double current)</argsstring>
+        <name>_angle_dist</name>
+        <qualifiedname>robot_dart::control::PDControl::_angle_dist</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>current</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/control/pd_control.hpp" line="36" column="27" bodyfile="robot_dart/control/pd_control.cpp" bodystart="128" bodyend="136"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>robot_dart::control::PDControl</label>
+        <link refid="classrobot__dart_1_1control_1_1PDControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>robot_dart::control::PDControl</label>
+        <link refid="classrobot__dart_1_1control_1_1PDControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>robot_dart::control::RobotControl</label>
+        <link refid="classrobot__dart_1_1control_1_1RobotControl"/>
+      </node>
+    </collaborationgraph>
+    <location file="robot_dart/control/pd_control.hpp" line="12" column="9" bodyfile="robot_dart/control/pd_control.hpp" bodystart="12" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6070efc4d9c34a8092e74578d5aa792" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a97d60e7cc9076abb9647ddb39977d781" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_angle_dist</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ade2feaf50fc0a25ae994dbfbf017a859" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_check_free</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a47eb2922359ead55d9ed9201340ad850" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_control_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1a3f35ab7b5212c419f2f236b3bb682c" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1aeb32018a448081f4762ab8bfb9562f31" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_ctrl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1af87bd256fa9a62d1dfa5809e4dea22d9" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_dof</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a6caf14d61de764c9b7d364730519be95" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_Kd</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1ab9eecb22ac996a94bd027c8a094ccb0a" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_Kp</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ae7ba328d762a5f6663665f98ee36fb25" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a6d620de41ece67a581e28a8273133335" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_use_angular_errors</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a4dca58ef8efc00f487ddcbea20e6f1c2" prot="protected" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1acd4bd86eaae9d61d205631e68336eb53" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>activate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ab86c121d2f0a9df165924758018331a9" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>active</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a7b5f299bf5ec3df54227797ef010a0d7" prot="public" virt="virtual"><scope>robot_dart::control::PDControl</scope><name>calculate</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a707e19bad80ec1e2cd4c25774d54db28" prot="public" virt="virtual"><scope>robot_dart::control::PDControl</scope><name>clone</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1aa3a161df0ea599bebe78fd851c2a4c2b" prot="public" virt="virtual"><scope>robot_dart::control::PDControl</scope><name>configure</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7da96bcb69a0a2ddb5db0b54e1edd03a" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>controllable_dofs</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1eb6d2c5186c7a056a9d92d8050af364" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>init</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6de25f4c2db2b500d5e69a548aeab99" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a1e691dda675d38940a2571fda16c3180" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>pd</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a66de4437cb1dcf4578c241e4677b7f41" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>PDControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1af244bed8723f2320f99e2e8d9b972add" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>PDControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1ad27d486b2447f8523ccebc958f2ff250" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>PDControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac6617700b65b105316b3ffe1c3817247" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a36fdb9b1fe31febc00e76a60a1a34d69" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac79d7c8cb68fac11051e22d13b0ec22d" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a7b13d33749f0bc7689aa11963287617d" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>RobotControl</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a1ed07aa76c578bc2bb92529e3c43bf67" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_parameters</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a86a980d68313d2e3f2587ef1d0261d10" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_pd</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a866767ac727bc80ff01aa25cbf806afc" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_pd</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1abdc2bfef410805ea3c30029e3fee9360" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_robot</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a432562883cd94085f97b2ef4756a49cc" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_use_angular_errors</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a6516b84c92d4da46d7e382fcd7ffeb58" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>set_weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1PDControl_1a93cd21c07be22d15e3113ca4513ccfda" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>using_angular_errors</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1a9ee8a3c4259d80be9f403073edc28433" prot="public" virt="non-virtual"><scope>robot_dart::control::PDControl</scope><name>weight</name></member>
+      <member refid="classrobot__dart_1_1control_1_1RobotControl_1ac3f60bced3a247862d00067a8c46c555" prot="public" virt="virtual"><scope>robot_dart::control::PDControl</scope><name>~RobotControl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

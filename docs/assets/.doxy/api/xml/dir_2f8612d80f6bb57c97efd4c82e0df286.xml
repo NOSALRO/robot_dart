@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_2f8612d80f6bb57c97efd4c82e0df286" kind="dir">
+    <compoundname>robot_dart/gui/magnum/gs</compoundname>
+    <innerfile refid="gs_2camera_8cpp">camera.cpp</innerfile>
+    <innerfile refid="gs_2camera_8hpp">camera.hpp</innerfile>
+    <innerfile refid="create__compatibility__shader_8hpp">create_compatibility_shader.hpp</innerfile>
+    <innerfile refid="cube__map_8cpp">cube_map.cpp</innerfile>
+    <innerfile refid="cube__map_8hpp">cube_map.hpp</innerfile>
+    <innerfile refid="cube__map__color_8cpp">cube_map_color.cpp</innerfile>
+    <innerfile refid="cube__map__color_8hpp">cube_map_color.hpp</innerfile>
+    <innerfile refid="magnum_2gs_2helper_8cpp">helper.cpp</innerfile>
+    <innerfile refid="magnum_2gs_2helper_8hpp">helper.hpp</innerfile>
+    <innerfile refid="light_8cpp">light.cpp</innerfile>
+    <innerfile refid="light_8hpp">light.hpp</innerfile>
+    <innerfile refid="material_8cpp">material.cpp</innerfile>
+    <innerfile refid="material_8hpp">material.hpp</innerfile>
+    <innerfile refid="phong__multi__light_8cpp">phong_multi_light.cpp</innerfile>
+    <innerfile refid="phong__multi__light_8hpp">phong_multi_light.hpp</innerfile>
+    <innerfile refid="shadow__map_8cpp">shadow_map.cpp</innerfile>
+    <innerfile refid="shadow__map_8hpp">shadow_map.hpp</innerfile>
+    <innerfile refid="shadow__map__color_8cpp">shadow_map_color.cpp</innerfile>
+    <innerfile refid="shadow__map__color_8hpp">shadow_map_color.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/gs/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21" kind="namespace" language="C++">
+    <compoundname>robot_dart::gui::magnum::gs</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespacerobot__dart_1_1gui_1_1magnum_1_1gs_1_1_0d21_1ac9c780023c500f0667a45d09545c706b" prot="public" static="no" strong="no">
+        <type>Magnum::Int</type>
+        <name></name>
+        <qualifiedname>robot_dart::gui::magnum::gs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" line="37" column="21" bodyfile="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="robot_dart/gui/magnum/gs/create_compatibility_shader.hpp" line="36" column="17"/>
+  </compounddef>
+</doxygen>

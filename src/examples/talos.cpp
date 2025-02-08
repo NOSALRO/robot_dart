@@ -7,15 +7,19 @@
 
 int main()
 {
+    // @TALOS@
     auto robot = std::make_shared<robot_dart::robots::Talos>();
-    std::cout << "The model used is: [" << robot->model_filename() << "]" << std::endl;
-
+    // @TALOS_END@
     // Set actuator types to VELOCITY (for speed)
     robot->set_actuator_types("velocity");
+    // Enforce limits (ON by default)
+    robot->set_position_enforced(true);
 
     double dt = 0.001;
     robot_dart::RobotDARTSimu simu(dt);
+    // must use fcl collision detector
     simu.set_collision_detector("fcl");
+    
 #ifdef GRAPHIC
     robot_dart::gui::magnum::GraphicsConfiguration configuration;
     configuration.width = 1280;
@@ -24,7 +28,9 @@ int main()
     auto graphics = std::make_shared<robot_dart::gui::magnum::Graphics>(configuration);
     simu.set_graphics(graphics);
     graphics->look_at({0., 3.5, 2.}, {0., 0., 0.25});
+    // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS@
     graphics->record_video("talos_dancing.mp4");
+    // @RECORD_VIDEO_ROBOT_GRAPHICS_PARAMS_END@
 #endif
 
     simu.add_checkerboard_floor();

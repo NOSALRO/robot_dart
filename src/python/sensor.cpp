@@ -6,10 +6,11 @@
 #include <robot_dart/sensor/force_torque.hpp>
 #include <robot_dart/sensor/imu.hpp>
 #include <robot_dart/sensor/sensor.hpp>
+#include <robot_dart/sensor/torque.hpp>
 
 namespace robot_dart {
     namespace python {
-        void py_sensors(py::module& m)
+        void py_sensors(py::module& m) 
         {
             auto sensormodule = m.def_submodule("sensor");
 
@@ -22,7 +23,7 @@ namespace robot_dart {
                 using Sensor::Sensor;
 
                 /* Trampolines */
-                void init() override
+                void init() override 
                 {
                     PYBIND11_OVERLOAD_PURE(
                         void, /* return type */
@@ -32,7 +33,7 @@ namespace robot_dart {
                     );
                 }
 
-                void calculate(double t) override
+                void calculate(double t) override 
                 {
                     PYBIND11_OVERLOAD_PURE(
                         void, /* return type */
@@ -43,7 +44,7 @@ namespace robot_dart {
                     );
                 }
 
-                std::string type() const override
+                std::string type() const override 
                 {
                     PYBIND11_OVERLOAD_PURE(
                         std::string, /* return type */
@@ -53,7 +54,7 @@ namespace robot_dart {
                     );
                 }
 
-                void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                void attach_to_body(dart::dynamics::BodyNode* body, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override 
                 {
                     PYBIND11_OVERLOAD(
                         void, /* return type */
@@ -65,7 +66,7 @@ namespace robot_dart {
                     );
                 }
 
-                void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override
+                void attach_to_joint(dart::dynamics::Joint* joint, const Eigen::Isometry3d& tf = Eigen::Isometry3d::Identity()) override 
                 {
                     PYBIND11_OVERLOAD(
                         void, /* return type */
@@ -151,6 +152,34 @@ namespace robot_dart {
                 .def("attach_to_joint", static_cast<void (Sensor::*)(const std::shared_ptr<Robot>&, const std::string&, const Eigen::Isometry3d& tf)>(&Sensor::attach_to_joint),
                     py::arg("robot"),
                     py::arg("joint_name"),
+                    py::arg("tf") = Eigen::Isometry3d::Identity());
+
+            // Torque Sensor class
+            class PublicistTSensor : public sensor::Torque {
+            public:
+                using sensor::Torque::_torques;
+            };
+
+            py::class_<sensor::Torque, Sensor, std::shared_ptr<sensor::Torque>>(sensormodule, "Torque")
+                .def(py::init<dart::dynamics::Joint*, size_t>(),
+                    py::arg("joint"),
+                    py::arg("frequency") = 1000)
+                .def(py::init<const std::shared_ptr<Robot>&, const std::string&, size_t>(),
+                    py::arg("robot"),
+                    py::arg("joint_name"),
+                    py::arg("frequency") = 1000)
+
+                .def_readonly("_torques", &PublicistTSensor::_torques)
+
+                .def("init", &sensor::Torque::init)
+                .def("calculate", &sensor::Torque::calculate,
+                    py::arg("t"))
+                .def("type", &sensor::Torque::type)
+
+                .def("torques", &sensor::Torque::torques)
+
+                .def("attach_to_body", static_cast<void (sensor::Torque::*)(dart::dynamics::BodyNode*, const Eigen::Isometry3d& tf)>(&sensor::Torque::attach_to_body),
+                    py::arg("body"),
                     py::arg("tf") = Eigen::Isometry3d::Identity());
 
             // Force-Torque Sensor Class
