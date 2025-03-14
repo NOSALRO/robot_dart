@@ -4,6 +4,9 @@ CLEAN=0
 
 CLEAN=${1:-$CLEAN}
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/dependency_version_tags.sh"
+
 sudo apt install -y lsb-release
 
 ub_version=$(cut -f2 <<< "$(lsb_release -r)")
@@ -53,7 +56,8 @@ fi
 # Magnum related
 if [ ! -d "corrade" ]
 then
-git clone https://github.com/mosra/corrade.git
+git clone https://github.com/mosra/corrade.git && cd corrade
+git checkout $CORRADE_TAG && cd ..
 fi
 cd corrade
 mkdir -p build && cd build
@@ -64,7 +68,8 @@ sudo make install
 cd ../..
 if [ ! -d "magnum" ]
 then
-git clone https://github.com/mosra/magnum.git
+git clone https://github.com/mosra/magnum.git && cd magnum
+git checkout $MAGNUM_TAG && cd ..
 fi
 cd magnum
 mkdir -p build && cd build
@@ -75,7 +80,8 @@ sudo make install
 cd ../..
 if [ ! -d "magnum-plugins" ]
 then
-git clone https://github.com/mosra/magnum-plugins.git
+git clone https://github.com/mosra/magnum-plugins.git && cd magnum-plugins
+git checkout $MAGNUM_PLUGINS_TAG && cd ..
 fi
 cd magnum-plugins
 mkdir -p build && cd build
@@ -86,7 +92,8 @@ sudo make install
 cd ../..
 if [ ! -d "magnum-integration" ]
 then
-git clone https://github.com/mosra/magnum-integration.git
+git clone https://github.com/mosra/magnum-integration.git && cd magnum-integration
+git checkout $MAGNUM_INTEGRATION_TAG && cd ..
 fi
 cd magnum-integration
 mkdir -p build && cd build
@@ -100,7 +107,8 @@ export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH
 cd ../..
 if [ ! -d "magnum-bindings" ]
 then
-git clone https://github.com/mosra/magnum-bindings.git
+git clone https://github.com/mosra/magnum-bindings.git && cd magnum-bindings
+git checkout $MAGNUM_BINDINGS_TAG && cd ..
 fi
 cd magnum-bindings
 mkdir -p build && cd build

@@ -1,0 +1,63 @@
+ARG BASE_TAG=24.04
+FROM ubuntu:${BASE_TAG} AS base
+
+ARG USER=ubuntu
+ENV DEBIAN_FRONTEND=noninteractive \
+    DISPLAY=:1 \
+    VNC_PORT=5901 \
+    NOVNC_PORT=6080 \
+    USER=$USER \
+    HOME=/home/$USER
+
+RUN apt-get update && apt-get install -y \
+    dbus-x11 \
+    x11vnc \
+    xvfb \
+    xfce4 \
+    xfce4-terminal \
+    novnc \
+    websockify \
+    sudo \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN usermod -a -G dialout $USER
+RUN echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_aptget
+RUN chmod 0440 /etc/sudoers.d/99_aptget && chown root:root /etc/sudoers.d/99_aptget
+
+RUN echo "#!/bin/bash\n\
+    export XDG_RUNTIME_DIR=/tmp/runtime-root\n\
+    mkdir -p $XDG_RUNTIME_DIR\n\
+    chmod 700 $XDG_RUNTIME_DIR\n\
+    Xvfb :1 -screen 0 1024x768x16 &\n\
+    sleep 2\n\
+    export DISPLAY=:1\n\
+    xfce4-session &\n\
+    sleep 5\n\
+    x11vnc -forever -nopw -display :1 -rfbport $VNC_PORT &\n\
+    websockify --web /usr/share/novnc/ $NOVNC_PORT localhost:$VNC_PORT &\n\
+    wait" > /start.sh \
+    && chmod +x /start.sh
+
+USER $USER
+WORKDIR ${HOME}/robot_dart
+
+COPY --chown=$USER:$USER . .
+RUN sudo apt update
+RUN /bin/bash ./scripts/install_ubuntu.sh
+RUN sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/*
+RUN sudo rm -r ${HOME}/robot_dart/temp_robot_dart
+RUN chown -R $USER:$USER ${HOME}/robot_dart/waf
+RUN chown -R $USER:$USER ${HOME}/robot_dart/wscript
+RUN sudo chown -R $USER:$USER ${HOME}/.cache
+
+RUN <<EOF 
+echo "export PATH=/opt/magnum/bin:$PATH" >> ~/.bashrc
+echo "export CMAKE_PREFIX_PATH=/opt/robot_dart:/opt/magnum" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/opt/magnum/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
+echo "export PYTHONPATH=/opt/magnum/lib/python3/site-packages:$PYTHONPATH" >> ~/.bashrc
+EOF
+
+EXPOSE 5901 6080
+CMD ["/bin/bash", "/start.sh"]
