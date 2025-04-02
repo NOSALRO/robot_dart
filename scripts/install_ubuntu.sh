@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 
 CLEAN=0
@@ -6,22 +8,21 @@ CLEAN=${1:-$CLEAN}
 
 sudo apt install -y lsb-release
 
-ub_version=$(cut -f2 <<< "$(lsb_release -r)")
-ub_v_list=$(echo $ub_version | tr ";" "\n")
-uv_v_major=$(echo $ub_v_list | awk '{print $1}')
-uv_v_minor=$(echo $ub_v_list | awk '{print $2}')
+ub_version=$(lsb_release -r | cut -d: -f2 | tr -d '[:space:]')
+uv_v_major=$(echo "$ub_version" | cut -d. -f1)
+uv_v_minor=$(echo "$ub_version" | cut -d. -f2)
 
 sudo apt install -y software-properties-common
 sudo apt install -y build-essential cmake pkg-config git
-sudo apt install -y python3-numpy python-is-python3 python3-setuptools
+sudo apt install -y  python-is-python3 python3-setuptools
 
-if [ $uv_v_major -lt 22 ]; then
+if [ $uv_v_major -le 22 ]; then
     sudo apt-add-repository -y ppa:dartsim/ppa
     sudo apt update
     sudo apt install -y python3-pip
-    pip3 install dartpy
+    pip3 install numpy dartpy
 else
-    sudo apt install -y python3-dartpy
+    sudo apt install -y python3-numpy python3-dartpy
 fi
 
 sudo apt install -y libboost-regex-dev libboost-system-dev libboost-test-dev
